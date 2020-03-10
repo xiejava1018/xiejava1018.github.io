@@ -136,7 +136,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="XieJava&#39;s blog">
-<meta property="og:url" content="https://xiejava1018.github.io/index.html">
+<meta property="og:url" content="https://xiejava.gitee.io/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="article:author" content="XieJava">
 <meta name="twitter:card" content="summary">
@@ -169,7 +169,7 @@
 
 
 
-  <link rel="canonical" href="https://xiejava1018.github.io/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/"/>
 
 
 
@@ -313,7 +313,2043 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava1018.github.io/posts/5661/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/272f3054/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/272f3054/" itemprop="url">2020-03-10-解决Hexo博客模板hexo-theme-next的翻页按钮不正常显示问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T16:11:33+08:00">
+                2020-03-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-10T16:12:48+08:00">
+                2020-03-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/272f3054/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/272f3054/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/272f3054/" class="leancloud_visitors" data-flag-title="2020-03-10-解决Hexo博客模板hexo-theme-next的翻页按钮不正常显示问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  347
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用Hexo搭了个Gitpage的博客，兴冲冲的发了11篇博文后发现翻页按钮不正常显示，显示为<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>的HTML编码。如下图：<br><img src="https://img-blog.csdnimg.cn/20200310154450109.png" alt="HTML编码"><br><code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>这是个什么鬼？<br>这是一个Font Awesome的字体图标，按道理来说这个图标应该可以正常显示的，现在这个图标不能显示了显示成了html源码。<br><img src="https://img-blog.csdnimg.cn/20200310154516827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="Font Awesone图标"><br><strong>解决办法:</strong><br>最简单的办法就是将<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>这个不能正常显示的字体图标改成一般的字符，我这里就是改成正常的一般左右键字符“&gt;”，“&lt;”。<br>在 themes\hexo-theme-next\layout_partials 下找到hexo-theme-next的翻页组件，就是pagination.swig<br>将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.prev or page.next %&#125;</span><br><span class="line">  &lt;nav class&#x3D;&quot;pagination&quot;&gt;</span><br><span class="line">    &#123;&#123;</span><br><span class="line">      paginator(&#123;</span><br><span class="line">        prev_text: &#39;&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;&#39;,</span><br><span class="line">        next_text: &#39;&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;&#39;,</span><br><span class="line">        mid_size: 1</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &lt;&#x2F;nav&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.prev or page.next %&#125;</span><br><span class="line">  &lt;nav class&#x3D;&quot;pagination&quot;&gt;</span><br><span class="line">    &#123;&#123;</span><br><span class="line">      paginator(&#123;</span><br><span class="line">        prev_text: &#39;&lt;&#39;,</span><br><span class="line">        next_text: &#39;&gt;&#39;,</span><br><span class="line">        mid_size: 1</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &lt;&#x2F;nav&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重新发布以后可以看到翻页按钮可以正常显示了<br><img src="https://img-blog.csdnimg.cn/20200310154621131.png" alt="正常显示箭头"></p>
+<hr>
+<p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f3e97829/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/f3e97829/" itemprop="url">通过filebeat、logstash、rsyslog采集nginx日志的几种方式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T23:13:51+08:00">
+                2020-03-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-10T14:56:34+08:00">
+                2020-03-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f3e97829/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f3e97829/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/f3e97829/" class="leancloud_visitors" data-flag-title="通过filebeat、logstash、rsyslog采集nginx日志的几种方式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由于nginx功能强大，性能突出，越来越多的web应用采用nginx作为http和反向代理的web服务器。而nginx的访问日志不管是做用户行为分析还是安全分析都是非常重要的数据源之一。如何有效便捷的采集nginx的日志进行有效的分析成为大家关注的问题。本文通过几个实例来介绍如何通过filebeat、logstash、rsyslog采集nginx的访问日志和错误日志。</p>
+<p>大家都知道ELK技术栈是采集、分析日志的利器。所以这里介绍的是从nginx采集日志到ES。当然至于日志采集以后存到看大家的需要。通过logstash可以方便的配置日志输出存储的方式。</p>
+<p>一般来说nginx默认安装后，日志文件在 /usr/local/nginx/logs 目录下。分别有 access.log和error.log 访问日志和错误日志。<br>这次示例Elasitcsearch是三个节点组成的集群172.28.65.22、172.28.65.23、172.28.65.24，172.28.65.30 是kibana的地址，172.28.65.32是数据采集服务器，上面装有logstash、nginx、 filebeat。一般来说采集服务器上有logstash，而nginx、 filebeat应该是装在采集目标上。</p>
+<h2 id="一、直接通过filebeat采集日志到ES"><a href="#一、直接通过filebeat采集日志到ES" class="headerlink" title="一、直接通过filebeat采集日志到ES"></a>一、直接通过filebeat采集日志到ES</h2><p><img src="https://img-blog.csdnimg.cn/20200309222757224.png" alt="filebeat到ES"><br>在filebeat的安装目录找到filebeat.yml 配置获取日志文件的路径及输出到ES的配置。<br> 具体：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- type: log</span><br><span class="line">  <span class="comment"># Change to true to enable this input configuration.</span></span><br><span class="line">  enabled: true</span><br><span class="line">  <span class="comment"># Paths that should be crawled and fetched. Glob based paths.</span></span><br><span class="line">  paths:</span><br><span class="line">    <span class="comment">#- /var/log/*.log</span></span><br><span class="line">    - /usr/local/nginx/logs/*.log</span><br><span class="line">    <span class="comment">#- c:\programdata\elasticsearch\logs\*</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200309222853340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="filebeat.yml配置"><br>如果需要在kibana中友好显示的化，可进行kibana配置<br><img src="https://img-blog.csdnimg.cn/20200309222955878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="kibana配置"><br>输出到es中，在hosts中配置好你的ES服务地址。如果单机只有一个节点，就可以只配一个ip和端口。<br><img src="https://img-blog.csdnimg.cn/20200309223104639.png" alt="filebeat.yml配置中配置es"><br>启动filebeat 进行日志数据采集</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./filebeat <span class="literal">-e</span> <span class="literal">-c</span> filebeat.yml <span class="literal">-d</span> <span class="string">"publish"</span></span><br></pre></td></tr></table></figure>
+
+<p>通过elasticsearch-head插件查看es索引中的日志信息<br><img src="https://img-blog.csdnimg.cn/20200309223159337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="elasticsearch-head插件查看es索引"><br>可以看到nginx中的access.log和error.log的日志都已经上来了。<br>在kibana中通过filebeat-*过滤看filebeat的索引，可以看到通过filebeat采过来的数据。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200309223308928.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="kibana中通过filebeat-*过滤看filebeat的索引"><br>这种直接通过filebeat直接对接ES采日志的方式简单直接，但是无法对采集的日志进行预处理和其他一些操作，也不够灵活。<br>可以在filebeat 和 ES之间加一层Logstash，可以将filebeat于ES解耦，通过Logstash可以做一些预处理，也可以通过Logstash采集到除ES以外的其他数据存储上。</p>
+<h2 id="二、通过filebeat采集日志到logstash再送到ES"><a href="#二、通过filebeat采集日志到logstash再送到ES" class="headerlink" title="二、通过filebeat采集日志到logstash再送到ES"></a>二、通过filebeat采集日志到logstash再送到ES</h2><p><img src="https://img-blog.csdnimg.cn/20200309223343261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="通过filebeat采集日志到logstash再送到ES"><br>首先得安装 logstash ，安装完后在logstash的安装目录下新建vi filebeat-pipeline.conf<br>filebeat-pipeline.conf的具体配置如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    beats &#123;</span><br><span class="line">        port =&gt; <span class="string">"5044"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">    elasticsearch &#123; hosts =&gt; [<span class="string">"172.28.65.24:9200"</span>] &#125;</span><br><span class="line">    stdout &#123; codec =&gt; rubydebug&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>input配置表示通过5044端口接收beats的数据<br>output配置表示输出到elasticsearch，并且同时输出到标准输出也就是控制台。<br>然后通过命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/logstash <span class="operator">-f</span> filebeat<span class="literal">-pipeline</span>.conf -<span class="literal">-config</span>.reload.automatic</span><br></pre></td></tr></table></figure>
+<p>应用filebeat-pipeline.conf启动logstash。<br><img src="https://img-blog.csdnimg.cn/20200309223435991.png" alt="应用filebeat-pipeline.conf启动logstash"><br>启动以后可以看到logstash的启动日志5044端口的服务已经起了，可以接受通过filebeat通过5044端口传过来的数据了。<br>接下来配置filebeat<br>在filebeat的安装目录找到filebeat.yml 配置获取日志文件的路径及输出到logstash的配置。不直接输出到ES了。<br>具体配置如下：<br>将output.elasticsearch的配置屏蔽<br>配置output.logstash，配置正确的logstash的服务主机和端口<br><img src="https://img-blog.csdnimg.cn/20200309223511426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="配置output.logstash"><br>启动filebeat 进行日志数据采集</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./filebeat <span class="literal">-e</span> <span class="literal">-c</span> filebeat.yml <span class="literal">-d</span> <span class="string">"publish"</span></span><br></pre></td></tr></table></figure>
+<p>我们访问nginx服务提供的web服务<a href="http://172.28.65.32/" target="_blank" rel="noopener">http://172.28.65.32/</a><br>在logstash的控制台 可以看到相应的访问access.log 日志<br><img src="https://img-blog.csdnimg.cn/20200309223557623.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logstash的控制台 可以看到相应的访问access.log 日志"><br>同时在ES 中也可以看到有相应的日志数据<br><img src="https://img-blog.csdnimg.cn/20200309223625788.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="在ES 中也可以看到有相应的日志数据"></p>
+<h2 id="三、直接通过rsyslog采集日志到logstash在送到ES"><a href="#三、直接通过rsyslog采集日志到logstash在送到ES" class="headerlink" title="三、直接通过rsyslog采集日志到logstash在送到ES"></a>三、直接通过rsyslog采集日志到logstash在送到ES</h2><p>在很多情况下你需要采集的web服务器并不是自己能够控制的，不是说你想装filebeat就可以让你装的，这时候就可以要求目标数据源通过 syslog  的方式将日志发出来。我们可以再通过 logstash送到ES或其他的日志存储处理平台。<br><img src="https://img-blog.csdnimg.cn/2020030922365724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="直接通过rsyslog采集日志到logstash在送到ES"><br>通过syslog往日志服务器上发nginx的日志有两种方式，一种就是利用nginx的配置往外发日志，一种就是通过配置linux的rsyslog的配置往外发日志。</p>
+<h3 id="通过nginx配置发送syslog到logstash"><a href="#通过nginx配置发送syslog到logstash" class="headerlink" title="通过nginx配置发送syslog到logstash"></a>通过nginx配置发送syslog到logstash</h3><p>参考见nginx官方文档：<a href="http://nginx.org/en/docs/syslog.html" target="_blank" rel="noopener">http://nginx.org/en/docs/syslog.html</a><br>具体配置如下：<br>在nginx的配置文件nginx.conf中<br>在server下配置access_log和error_log的输出方式</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">access_log syslog:server=<span class="number">172.28</span>.<span class="number">65.32</span>:<span class="number">514</span>,facility=local7,tag=nginx_access_log,severity=info;</span><br><span class="line">error_log syslog:server=<span class="number">172.28</span>.<span class="number">65.32</span>:<span class="number">514</span>,facility=local7,tag=nginx_error_log,severity=info;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020030922391711.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="nginx.conf配置"><br>配置完成后执行 <code>./nginx -s reload</code> 使配置生效。这样就通过linux的rsyslog服务将nginx的日志往外发了。<br>接着来配置logstash的syslog的服务接收配置 。在logstash的安装目录下新建<code>vi syslog-pipeline.conf</code><br>syslog-pipeline.conf的具体配置如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    syslog&#123;</span><br><span class="line">        type =&gt; <span class="string">"system-syslog"</span></span><br><span class="line">        port =&gt; <span class="number">514</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">    elasticsearch &#123;</span><br><span class="line">        hosts =&gt; [<span class="string">"172.28.65.24:9200"</span>]</span><br><span class="line">        index =&gt; <span class="string">"system-syslog-%&#123;+YYYY.MM&#125;"</span></span><br><span class="line">    &#125;</span><br><span class="line">    stdout &#123; codec =&gt; rubydebug&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>input配置表示通过514端口接收syslog的数据<br>output配置表示输出到elasticsearch，并且同时输出到标准输出也就是控制台。<br>通过执行 <code>bin/logstash -f syslog-pipeline.conf --config.reload.automatic</code> 启动logstash<br><img src="https://img-blog.csdnimg.cn/20200309224021167.png" alt="可以看到logstash启动以后开启了514端口的tcp和upd协议的侦听"><br>可以看到logstash启动以后开启了514端口的tcp和upd协议的侦听。<br>我们访问nginx服务提供的web服务<a href="http://172.28.65.32/" target="_blank" rel="noopener">http://172.28.65.32/</a><br>在logstash的控制台 可以看到相应的nginx访问access和error的日志<br><img src="https://img-blog.csdnimg.cn/20200309224058280.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logstash的控制台可以看到相应的nginx访问access和error的日志"><br>同样通过Elasticsearch-head在ES 中也可以看到有相应的日志数据<br><img src="https://img-blog.csdnimg.cn/20200309224153318.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="通过Elasticsearch-head在ES 中也可以看到有相应的日志"></p>
+<h3 id="通过配置rsyslog发送syslog日志到logstash"><a href="#通过配置rsyslog发送syslog日志到logstash" class="headerlink" title="通过配置rsyslog发送syslog日志到logstash"></a>通过配置rsyslog发送syslog日志到logstash</h3><p>有些老版本的nginx不支持配置syslog输出日志，或者说我想输出其他不是nginx的日志该怎么办呢？可以通过直接配置rsyslog的方式来往外发送日志。<br>在/etc/rsyslog.conf 中配置</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$IncludeConfig</span> /etc/rsyslog.d/*.conf</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200309224226484.png" alt="/etc/rsyslog.conf"><br>意思是可以引用外部的配置文件，引用外部的配置文件一方面可以不影响主配置文件，另一方面也比较好管理<br>在/etc/rsyslog.d目录下新建nginx-log.conf<br>配置如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ModLoad</span> imfile</span><br><span class="line"><span class="variable">$InputFilePollInterval</span> <span class="number">1</span></span><br><span class="line"><span class="variable">$WorkDirectory</span> /var/spool/rsyslog</span><br><span class="line"><span class="variable">$PrivDropToGroup</span> adm</span><br><span class="line"></span><br><span class="line"><span class="comment">##Nginx访问日志文件路径，根据实际情况修改:</span></span><br><span class="line"><span class="variable">$InputFileName</span> /usr/local/nginx/logs/access.log</span><br><span class="line"><span class="variable">$InputFileTag</span> nginx<span class="literal">-access</span>:</span><br><span class="line"><span class="variable">$InputFileStateFile</span> stat<span class="literal">-nginx</span><span class="literal">-access</span></span><br><span class="line"><span class="variable">$InputFileSeverity</span> info</span><br><span class="line"><span class="variable">$InputFilePersistStateInterval</span> <span class="number">25000</span></span><br><span class="line"><span class="variable">$InputRunFileMonitor</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##Nginx错误日志文件路径，根据实际情况修改:</span></span><br><span class="line"><span class="variable">$InputFileName</span> /usr/local/nginx/logs/error.log</span><br><span class="line"><span class="variable">$InputFileTag</span> nginx<span class="literal">-error</span>:</span><br><span class="line"><span class="variable">$InputFileStateFile</span> stat<span class="literal">-nginx</span><span class="literal">-error</span></span><br><span class="line"><span class="variable">$InputFileSeverity</span> error</span><br><span class="line"><span class="variable">$InputFilePersistStateInterval</span> <span class="number">25000</span></span><br><span class="line"><span class="variable">$InputRunFileMonitor</span></span><br><span class="line"></span><br><span class="line">*.* @<span class="number">172.28</span>.<span class="number">65</span>:<span class="number">514</span></span><br></pre></td></tr></table></figure>
+
+<p>配置好了以后，重启rsyslog服务</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart rsyslog</span><br></pre></td></tr></table></figure>
+
+<p>我们访问nginx服务提供的web服务<a href="http://172.28.65.32/" target="_blank" rel="noopener">http://172.28.65.32/</a><br>在logstash的控制台 可以看到同样的效果。<br><img src="https://img-blog.csdnimg.cn/20200309224257449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logstash的控制台"></p>
+<p>本文介绍了如何通过filebeat、logstash、rsyslog采集nginx的访问日志和错误日志的几种方式，具体需要根据实际情况灵活的运用。</p>
+<hr>
+<p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e29f28e5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/e29f28e5/" itemprop="url">浅析SIEM、态势感知平台、安全运营中心</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-02T21:50:03+08:00">
+                2020-03-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-02T21:53:29+08:00">
+                2020-03-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/e29f28e5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e29f28e5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/e29f28e5/" class="leancloud_visitors" data-flag-title="浅析SIEM、态势感知平台、安全运营中心">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近年来SIEM、态势感知平台、安全运营中心等概念炒的火热，有的人认为这都是安全管理产品，这些产品就是一回事，有人认为还是有所区分。那么到底什么是SIEM、什么是态势感知平台、什么是安全运营中心，他们之间有什么联系和区别呢？</p>
+<h1 id="一、SIEM"><a href="#一、SIEM" class="headerlink" title="一、SIEM"></a>一、SIEM</h1><p>SIEM英文是security information and event managemen安全信息和事件管理<br>SIEM是一个由多个监视和分析组件组成的安全系统，旨在帮助组织检测和减轻威胁<br>一款典型的SIEM产品是将许多其他安全规则和工具结合在一个综合的框架下形成的一个合集。<br>典型的包括以下模块<br>日志管理(LMS)——用于传统日志收集和存储的工具。<br>安全信息管理(SIM)——集中于从多个数据源收集和管理与安全相关的数据的工具或系统。例如，这些数据源可以是防火墙、DNS服务器、路由器和防病毒应用程序。<br>安全事件管理(SEM)——基于主动监视和分析的系统，包括数据可视化、事件相关性和警报<br>大多数的SIEM包括以下元素<br><strong>1、安全数据采集</strong><br>主要是基于安全日志数据，日志表示在数字环境中运行的进程的原始输出，是提供实时发生的事情的准确图像的最佳来源，因此是SIEM系统的主要数据源。无论是防火墙日志、服务器日志、数据库日志，还是在实际网络环境中生成的任何其他类型的日志，SIEM系统都能够收集这些数据并将其存储在一个中心位置以进行扩展的保留。此采集过程通常由代理或应用程序执行，部署在监视的系统上，并配置为将数据转发到SIEM系统的中央数据存储。<br><strong>2、安全数据解析处理和标准化</strong><br>为了能够跨不同源和事件相关性高效地解释数据，SIEM系统能够规范化日志。这个规范化过程包括将日志处理为可读的结构化格式，从日志中提取重要数据，并映射日志中包含的不同字段。<br><strong>3、安全数据集中存储</strong><br>安全信息数据存储的目地当然是为了利用数据进行管理分析发现安全事件。<br><strong>4、安全数据分析</strong><br>一旦收集、解析和存储，SIEM系统中的下一步将负责连接这些点并关联来自不同数据源的事件。这种关联工作基于各种SIEM工具提供的规则、为不同的攻击场景预定义的规则，或者由分析人员创建和调整的规则。大多数SIEM系统还提供生成报告的内置机制。这些报告可以用于管理、审计或合规性原因。例如，可以将详细描述触发警报或规则的每日报告嵌入到仪表板中。<br><strong>5、安全数据呈现</strong><br>可视化数据和事件的能力是SIEM系统中的另一个关键组件，因为它允许分析人员方便地查看数据。包含多个可视化或视图的仪表板有助于识别趋势、异常情况，并监控环境的总体健康或安全状态。一些SIEM工具将附带预先制作的仪表板，而另一些工具将允许用户创建和调整自己的仪表板。<br>基于目前海量的安全信息数据，<strong>大数据架构已经成为主流</strong>。并不是说SIEM必须使用大数据架构，因为这是一个应用场景问题而非技术问题。但面对大量数据需要处理的场景时，基于大数据架构的SIEM则必不可少。所以有些厂商提出了SDC（security data center）安全大数据中心的概念就是把所有的安全数据集中管理起来，在SDC的基础上构建安全数据分析和展现能力，形成SIEM平台。</p>
+<p>目前成熟的SIEM产品有很多，开源的有OSSIM、Elastic SIEM、Opensoc<br>OSSIM是SIEM的代表性产品，在产品形式上和Kali类似是一个基于Debain进行二次开发的Linux发行版，当前5.6.5版本基于Dibian 8（jessie）。<br>OSSIM使用Nmap等实现资产发现、使用Nessus等实现漏洞扫描、使用Snort等实现入侵检测、使用MySQL等进行数据存储，自己实现的部分主要是工具、数据整合和可视化展示。ossim存储架构是mysql，支持多种日志格式，包括鼎鼎大名的Snort、Nmap、 Nessus以及Ntop等，对于数据规模不大的情况是个不错的选择，新版界面很酷炫<br>从架构上来看，OSSIM系统是一个开放的框架，它的核心价值在于创新的集成各开源软件之所长，它里面的模块既有C/S架构，又有B/S架构，但作为最终用户主要掌握OSSIM WebUI主要采用B/S架构，Web服务器使用Apache。OSSIM系统结构示意图如下图所示。<br><img src="https://img-blog.csdnimg.cn/20200302211541393.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>第1层，属于数据采集层，使用各种采集技术采集流量信息、日志、各种资产信息，经过归一化处理后传入核心层。改层体现安全事件来源，入侵检测、防火墙、重要主机发出的日志都是安全事件来源，它们按发出机制分为两类：模式侦查器和异常监控（两者都采集警告信息，功能互补）由它们采集的安全事件，再被Agent转换为统一的格式发到OSSIM服务器，这一层就是Sensor要完成的内容。<br>第2层，属于核心处理层，主要实现对各种数据的深入加工处理，包括运行监控、安全分析、策略管理、风险评估、关联分析、安全对象管理、脆弱性管理、事件管理、报表管理等。该层中OSSIM Server是主角，OSSIM服务器，主要功能是安全事件的集中并对集中后的事件进行关联分析、风险评估及严重性标注等。所谓的集中就是以一种统一格式组织所有系统产生的安全事件告警信息（Alarms）并将所有的网络安全事件告警存储到数据库，这样就完成了对网络中所产生事件的一个庞大视图。系统通过事件序列关联和启发式算法关联来更好的识别误报和侦查攻击的能力。<br>OSSIM本质上通过对各种探测器和监控产生的告警进行格式化处理，再进行关联分析，通过后期这些处理能提高检测性能，即减少告警数量，减小关联引擎的压力，从整体上提高告警质量。<br>第3层，属于数据展现层，主要负责完成与用户之间的交互，达到安全预警和事件监控、安全运行监控、综合分析的统一展示，形式上以图形化方式展示给用户。Web框架(Framework)控制台界面即OSSIM的Web UI（Web User Interface，Web用户界面），其实就是OSSIM系统对外的门户站点，它主要由仪表盘、SIEM控制台、Alarm控制台、资产漏洞扫描管理、可靠性监控、报表及系统策略等部分组成。<br>OSSIM主要模块的关系<br>OSSIM系统主要使用了PHP、Python、Perl和C等四种编程语言，从软件层面上看OSSIM框架系统包括五大模块：Agent模块、Server模块、Database数据库模块、Frameworkd模块以及Framework模块，逻辑结构如图所示。<br><img src="https://img-blog.csdnimg.cn/20200302213041778.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Elastic SIEM 的核心是全新的 SIEM 应用，此应用是安全团队的交互式工作空间，可允许他们对事件进行分类并开展初期调查。其中包括的时间线事件查看器 (Timeline Event Viewer) 能够允许分析师收集和存储攻击证据，固定相关活动并添加注释，以及添加评论并分享他们的发现，而且这一切在 Kibana 中即可完成；这样一来，您便能够轻松处理符合 ECS 格式的任何数据了。<br><img src="https://img-blog.csdnimg.cn/20200302213101396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">Opensoc是思科2014年在BroCon大会上公布的开源项目，但是没有真正开源其源代码，只是发布了其技术框架。可以参考Opensoc发布的架构，结合实际落地SIEM的方案。Opensoc完全基于开源的大数据框架kafka、storm、spark和es等，天生具有强大的横向扩展能力<br><img src="https://img-blog.csdnimg.cn/20200302213127295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>所以从SIEM的定义和功能来看有两个核心能力，一个是安全信息数据的采集汇聚能力，一个就是安全事件的分析能力。</strong></p>
+<h1 id="二、安全态势感知平台"><a href="#二、安全态势感知平台" class="headerlink" title="二、安全态势感知平台"></a>二、安全态势感知平台</h1><p>“态势感知”早在 20 世纪 80 年代由美国空军提出，其包含感知、理解和预测三个层次。截止目前，业界对网络安全态势感知还没有一个统一全面的定义，基于美国Endsley 博士的理论对网络安全态势感知做出的定义：“网络安全态势感知是综合分析网络安全要素，评估网络安全状况，预测其发展趋势，并以可视化的方式展现给用户，并给出相应的报表和应对措施。”<br>什么是态势感知平台，大家都认为应该是利用大数据、机器学习等技术对态势感知态势海量数据进行提取，进行多维度的关联分析。能够提供对安全风险保持报警、趋势预测等，海量数据、关联分析、大屏展示和趋势预测是四个重点。而趋势预测最核心，目前做起来也比较难。<br>个人理解，<strong>SIEM重点在于对安全事件的感知和理解，态势感知重点在于通过大数据、机器学习等技术加深了对安全趋势的预测</strong>。国外一般不提态势感知系统，而国内，很多厂商都推出了态势感知系统。<br>目前国内安全厂商提供的“态势感知产品”包含的功能模块有：资产管理、漏洞管理、大数据平台、日志分析平台、威胁情报、沙箱、用户行为分析、网络流量分析、取证溯源、威胁捕捉等能力。<br>几个关键点：<br>1、 大数据平台。随着监测范围的扩大，数据量也在扩大，需要一个具备大数据处理和计算能力的平台，这是整个态势感知平台建设很重要的基础。<br>2、 基于威胁情报的监测。威胁情报对于降低大量数据和报警中的垃圾数据或者报警噪声，帮助更快速、更高效的发现攻击行为和攻击者非常关键，威胁情报的质量是检验态势感知平台能力的很重要的方面。<br>3、 全要素数据的采集。利用态势感知这样的平台能力的核心目的，是要监测到复杂的、高级的攻击，就需要态势感知平台首先要捕获到微观的状态，低成本、高效率的全要素数据采集能力是基础。<br>4、 基于攻击场景的分析研判。攻击不再是基于特征的监测，需要运用威胁情报、运用一些专家的经验，来构建基于场景的分析系统，它不是一个静态的东西，是一个与时俱进的攻防对抗过程中不断学习、学习参考的过程，需要持续运营这样的分析管理，需要更多的专家的经验和安全运营人员的参与。</p>
+<h1 id="三、安全运营中心"><a href="#三、安全运营中心" class="headerlink" title="三、安全运营中心"></a>三、安全运营中心</h1><p>SOC（安全运营中心）来源于NOC（网络运营中心）。<br>随着信息安全问题的日益突出，安全管理理论与技术的不断发展，需要从安全的角度去管理整个网络和系统，而传统的NOC在这方面缺少技术支撑，于是，出现了SOC的概念。<br>以前大家所说的SOC是SOC 1.0阶段，只是在SOC的核心部件SIEM的买卖，国外所说的SOC是一个复杂的系统，它使用SIEM产品进行运维又以此向客户提供服务，也就是我们所说的SOC 2.0<br>SOC(安全运营中心)是以资产为核心，以安全事件管理为关键流程，采用安全域划分的思想，建立一套实时的资产风险模型，协助管理员进行事件及风险分析，预警管理，应急响应的集中安全管理系统。<br>SOC是一个复杂的系统，它既有产品，又有服务，还有运维，SOC是技术、流程和人的有机结合。<br>随着<strong>安全态势感知平台的兴起，安全运营中心将以态势感知平台作为智能安全运营的载体</strong>，在风险监测、分析研判、通知协作、响应处置、溯源取证等各方面进行了增强，同时融入了当前流行的技术和平台作为支撑，如大数据技术、东西向流量采集技术，EDR 终端检测响应技术、机器学习、欺骗攻击技术等。同时态势感知平台与 ITIL（Information Technology Infrastructure Library，ITIL）理念与信息安全管理标准相融合，将安全运营划分为不同角色，如安全管理人员、安全专家、安全运维、安全分析师、安全应急响应人员、安全研究人员等，在集成了安全事件管理全生命周期的流程中，通过工作流程将其串联起来，使安全运营流程更加规范和有序。</p>
+<p><strong>所以个人认为SDC&lt;SIEM&lt;态势感知&lt;安全运营中心</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/79ebd763/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/79ebd763/" itemprop="url">通过Git Pages+Hexo搭建自己的博客</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-12T15:41:23+08:00">
+                2020-02-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-12T15:57:15+08:00">
+                2020-02-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/79ebd763/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/79ebd763/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/79ebd763/" class="leancloud_visitors" data-flag-title="通过Git Pages+Hexo搭建自己的博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、申请并配置Github-Pages"><a href="#一、申请并配置Github-Pages" class="headerlink" title="一、申请并配置Github Pages"></a>一、申请并配置Github Pages</h1><h2 id="step1-在github上创建一个git库"><a href="#step1-在github上创建一个git库" class="headerlink" title="step1 在github上创建一个git库"></a>step1 在github上创建一个git库</h2><p>用github账号登录<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a> ，如没有github账号则申请一个github账号。登录后点击“New repository”新建一个名为username.github.io（username是你的github用户名）如我的是：xiejava1018.github.io ，如果库名以及存在则会报库名已经存在的错误。<br><img src="https://img-blog.csdnimg.cn/20200212151727627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="新建库"></p>
+<h2 id="step2-绑定自己的域名（如果没有自己的域名也可以不绑）"><a href="#step2-绑定自己的域名（如果没有自己的域名也可以不绑）" class="headerlink" title="step2 绑定自己的域名（如果没有自己的域名也可以不绑）"></a>step2 绑定自己的域名（如果没有自己的域名也可以不绑）</h2><p>访问刚申请的git库，点击Settings<br><img src="https://img-blog.csdnimg.cn/20200212151814995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="Settings"><br>如果库名不是username.github.io（username是你的github用户名）在这里可以修改成username.github.io<br><img src="https://img-blog.csdnimg.cn/202002121518548.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="修改库名"><br>拖到下面可以看到GitHub Pages的信息，如果不绑定自己的域名实际可以通过<a href="https://username.github.io/来访问你的站点了。" target="_blank" rel="noopener">https://username.github.io/来访问你的站点了。</a><br><img src="https://img-blog.csdnimg.cn/20200212151939704.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="站点地址"><br>如果有申请自己的域名，可以将域名解析到你的GithubPages username.github.io 如我的是xiejava1018.github.io<br><img src="https://img-blog.csdnimg.cn/20200212152026730.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="解析自定义域名"><br>在GitHub Pages的自定义域名Custom domain中输入刚解析的域名保存后就可以看到你的站点被发布到你的域名上了，如<a href="https://xiejavablog.ishareread.com/" target="_blank" rel="noopener">https://xiejavablog.ishareread.com/</a><br><img src="https://img-blog.csdnimg.cn/20200212152056432.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="绑定自定义域名"><br>这时候你就可以用自己的域名来访问GitHub Pages的网站了，不过现在什么都没有，只有个空白页面。这就需要我们借助Hexo这个静态站点生成工具来生我们站点的内容了。</p>
+<h1 id="二、安装Hexo并生成站点"><a href="#二、安装Hexo并生成站点" class="headerlink" title="二、安装Hexo并生成站点"></a>二、安装Hexo并生成站点</h1><p>安装Hexo并生成站点可以参考官方的文档 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a>  </p>
+<h2 id="1、安装前的准备"><a href="#1、安装前的准备" class="headerlink" title="1、安装前的准备"></a>1、安装前的准备</h2><p>安装 Hexo 相当简单，只需要先安装下列应用程序即可：<br>Node.js (Node.js 版本需不低于 8.10，建议使用 Node.js 10.0 及以上版本)<br>Git</p>
+<h2 id="2、安装Hexo"><a href="#2、安装Hexo" class="headerlink" title="2、安装Hexo"></a>2、安装Hexo</h2><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装完了以后可以通过hexo version 查看相应的版本<br><img src="https://img-blog.csdnimg.cn/2020021215253021.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="版本信息"></p>
+<h2 id="3、生成站点"><a href="#3、生成站点" class="headerlink" title="3、生成站点"></a>3、生成站点</h2><p>安装 Hexo 完成后，执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<p>新建完成后，指定文件夹的目录如下：<br><img src="https://img-blog.csdnimg.cn/20200212152343204.png" alt="目录"><br>其中_config.yml 文件是网站的配置文件<br>package.json 是应用程序的信息<br>scaffolds<br>模版文件夹。当新建文章时，Hexo 会根据 scaffold 来建立文件。<br>Hexo的模板是指在新建的文章文件中默认填充的内容。例如，如果您修改scaffold/post.md中的Front-matter内容，那么每次新建一篇文章时都会包含这个修改。<br>source<br>资源文件夹是存放用户资源的地方。除 _posts 文件夹之外，开头命名为 _ (下划线)的文件 / 文件夹和隐藏的文件将会被忽略。Markdown 和 HTML 文件会被解析并放到 public 文件夹，而其他文件会被拷贝过去。<br>themes<br>主题 文件夹。Hexo 会根据主题来生成静态页面。</p>
+<h2 id="4、安装主题"><a href="#4、安装主题" class="headerlink" title="4、安装主题"></a>4、安装主题</h2><p>Hexo提供了很多主题，我用的是hexo-theme-next主题，大家可以直接克隆我的主题<a href="https://github.com/xiejava1018/hexo-theme-next.git" target="_blank" rel="noopener">https://github.com/xiejava1018/hexo-theme-next.git</a> 这里修复了一些bug如乱码问题等。<br>cd 切换到站点目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/xiejava1018/hexo-theme-next.git themes/hexo-theme-next</span><br></pre></td></tr></table></figure>
+<p>也可以用其他git客户端工具将主题拉取到themes目录下<br>修改_config.yml文件的theme改为</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme :</span> <span class="string">hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、写作"><a href="#5、写作" class="headerlink" title="5、写作"></a>5、写作</h2><p>可以执行下列命令来创建一篇新文章或者新的页面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以在命令中指定文章的布局（layout），默认为 post，可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。<br>如执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 2020-02-11-2020-02-11-看完全套149本《书虫》是种什么样的体验</span><br></pre></td></tr></table></figure>
+
+<p>执行该命令后就会在响应的站点目录的source_posts下生成2020-02-11-看完全套149本《书虫》是种什么样的体验.md文件。<br><img src="https://img-blog.csdnimg.cn/2020021215265521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="文件"><br>用任何喜欢的编辑器编辑这个.md文件即可，排版是支持MarkDown的。</p>
+<h2 id="6、生成和发布"><a href="#6、生成和发布" class="headerlink" title="6、生成和发布"></a>6、生成和发布</h2><p>编辑好需要发表的内容后。执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>就会生成相应的静态文件。改命令也可以简写成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>启动服务器。默认情况下，访问网址为： <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 就可以通过该地址访问本地的站点。<br>在本地检查没有问题以后就可以发布到Github Pages上通过互联网上访问了。<br>首先在配置_config.yml文件配置需要发布的地址。这个地址就是你在github上申请的Github Pages库的git地址<br><img src="https://img-blog.csdnimg.cn/20200212152738164.png" alt="发布地址配置"><br>然后就可以通过命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>进行发布了。发布以后就可以通过<a href="https://xiejava1018.github.io" target="_blank" rel="noopener">https://xiejava1018.github.io</a> 或者自定义的域名 <a href="https://xiejavablog.ishareread.com" target="_blank" rel="noopener">https://xiejavablog.ishareread.com</a> 来访问了。需要注意的是，每次重新发布以后，需要重新设置域名绑定才能正确访问，否则会报404的错误。</p>
+<p>欢迎大家访问我的BLOG  <a href="https://xiejavablog.ishareread.com/" target="_blank" rel="noopener">https://xiejavablog.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/40bbedc5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/40bbedc5/" itemprop="url">看完全套149本《书虫》是种什么样的体验</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T10:23:10+08:00">
+                2020-02-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-14T16:00:02+08:00">
+                2020-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/40bbedc5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/40bbedc5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/40bbedc5/" class="leancloud_visitors" data-flag-title="看完全套149本《书虫》是种什么样的体验">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200211/blogimage/english.png" alt="English" title="English"></p>
+<p>一直想学好英语，可惜一直在陷入”从入门到放弃”的怪圈，这么多年来一直尝试各种方式方法来学英语始终未成正果。当然这一切都归因于自己没有恒心没有毅力。有过坚持了330天终于放弃了背单词的经历，也找了很多如何学好英语的书籍和方法。受了李笑来老师的《人人都能用英语》及伍君仪的《把你的词汇用起来》的影响。经过自己仔细思考认为确实如果要把英语学好必须要用起来。考虑到自己的实际情况，没有相应的语言环境，从听说开始用起来可能也不太现实，最现实的方式就是从大量的阅读开始将英语用起来。即学了知识又学了英语，还没有那么枯燥。</p>
+<p>如何开始阅读，读什么东西呢？自己的水平还没有达到能够读懂英文原版书的程度，望着满片英文的原版书还是心生畏惧。也是在网上看大家学习英语的经验，有人就介绍了阅读的方式方法。初学者一开始就不要挑战太高难度了，容易打击自己的自信心。最好的方式是采取分级阅读的方式，阅读i+1的英语材料。也就是阅读比自己能力稍微高一点的英语材料。在找英语阅读的材料过程中发现了很多人推荐了《书虫》，也就是”书虫·牛津英汉双语读物”，这套读物是外语教学与研究出版社和牛津大学出版社联袂奉献给英语学习者的一大分级阅读精品书系，提供了从小学高年级至大学的全套阅读方案。图书按照词汇量和语言难度进行科学分级。共分了七个级别，15套，共149本书。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200211/blogimage/%E4%B9%A6%E8%99%AB2.png" alt="《书虫》系列" title="《书虫》系列"></p>
+<p>我觉得这套读物比较适合像我这样的初学者。离开学校多年了，也不知道自己的英语水平究竟是属于什么级别，抱着空杯的心态，干脆就从最低级的开始看起（想想还可以给小孩看）。我是2019年6月18日购买的全套，从快递点搬回来的时候一大箱子很重。看着这满满一箱足足149本，比较兴奋又比较忐忑。兴奋的是我终于可以开始我的英语阅读之旅了，忐忑的是这也149本也忒多了吧？从来没有尝试过一次性读过这么多的书，即使是中文书也没有挑战过。</p>
+<p>很欣赏伍君仪在《把你的词汇用起来》中的一句话，就是“学英语既然开始了，就一定要把它学好！”。反反复复从”从入门到放弃”浪费时间精力又没有什么效果。于是从2019年7月正式从书虫第一套入门级的第一本《 Survive！》生存游戏开始。入门级相当于小学高年级的水平，当然读起来很流畅很爽。有时候可以一口气看三、四本。入门级每一本都比较薄只有几十页，而且有一半还是中文解释。基本上没有什么挑战。毕竟有近150本怎么才能全部读完呢？我做了个计划给自己规定每天看40页或以上，准备用大半年的时间将这套书全部看完。书虫这套书可读性还是比较强，内容非常丰富，主题多样，包括悬疑、侦探、间谍等多种题材，大部分都是世界名著。小时候读名著读得比较少，这下可以过一下名著的瘾了，虽然是简写版的。尽管是简写版的但是改编得故事性挺强的，非常吸引人，很能提高阅读兴趣。为了让自己能够坚持下去，我每读一本都会在豆瓣上进行标记，并加入到自己的已读英文读本的豆列里。每读完一本就感觉到离胜利越近了一点。前面1至5级读得还很顺利，几乎都可以不用看中文翻译，后面到了第6级以后就有点磕磕绊绊了，有时候需要借助中文翻译才能看懂。不管怎么样，终于在2020年2月9日将全套书虫的最后一本《印度之行》全部读完，历时半年。除了其中11月底有段时间公司加班很厉害确实没有读以外，基本上每天都有阅读。看着满满的一箱书，这一本本标记已读的书，心里还是满满的成就感。</p>
+<p>通过阅读全套书虫的经历，让我建立了学好英语的信心，培养了我阅读英语的兴趣。我想我再也不会“从入门到放弃”了。我花了半年的时间和精力把全套《书虫》都看完了，你要我放弃，那不这半年的努力都白费了吗？</p>
+<p>但是有人可能会问我，看完全套书虫以后你的英语水平达到了什么程度。我想我会很遗憾的告诉你，“革命尚未成功，同志仍需努力”。我也曾经报有幻想，以为看完全套《书虫》自己的英语水平就很牛B了。但是越看到后面越清晰的认识到《书虫》这套书有它的局限性。整套书下来，最高级别的单词量才3000。也是高中毕业大学低年级的水平。也使我清晰的认识到自己目前的英语水平也就是高中毕业大学低年级的水平。一个意外的收获就是通过阅读《书虫》全套，大致的了解了英语的小说文学史，相当于给了我一个目录和一个指引。有哪些好的小说有兴趣可以更加深入的读下去。比如通过阅读书虫对英国文学史上著名的勃朗特三姐妹有了深刻的了解，因为里面有本书是写《勃朗特一家的故事》。这套书里还有《呼啸山庄》和《简·爱》,分别是勃朗特三姐妹中的艾米莉·勃朗特和夏洛蒂·勃朗特的名著，看了他们的简介再读了她们的作品理解更加全面和深刻了。让我有进一步看这两部名著的英文原版的欲望了。还有英国侦探小说女王阿加莎·克里斯蒂有本书《神秘女人——阿加莎•克里斯蒂》就是介绍她的经历和作品，看完以后我立马找了她的中文版的《东方快车谋杀案》看了觉得很有意思。还有狄更斯、哈代等的名作都让人看了还想看。通过这样大量的阅读体验以后，我对名著产生了浓厚的兴趣，我觉得我应该具备了阅读英文原版书的能力。下一个阶段我有信心准备开始我的英文原版书阅读了。今年我的计划是挑战看完十本英文原版书。</p>
+<p>我读过的英文读本豆列： <a href="https://www.douban.com/doulist/118432400/" target="_blank" rel="noopener">https://www.douban.com/doulist/118432400/</a></p>
+<p>爱分享读书豆瓣小组： <a href="https://www.douban.com/group/655112/" target="_blank" rel="noopener">https://www.douban.com/group/655112/</a></p>
+<hr>
+<center>关注：“爱分享读书”微信公众号 </center>
+
+<p><img src="http://image.ishareread.com/qrcode_for_gh_70fb5d85a824_258.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
+<center>读书我们是认真的</center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/48451ead/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/48451ead/" itemprop="url">坚持了330天，我终于放弃了背单词</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T10:01:38+08:00">
+                2020-02-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-14T16:23:08+08:00">
+                2020-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/48451ead/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/48451ead/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/48451ead/" class="leancloud_visitors" data-flag-title="坚持了330天，我终于放弃了背单词">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200211/blogimage/bdc.png" alt="不背单词，能学好英语吗？" title="不背单词，能学好英语吗？"><br>不背单词，能学好英语吗？<br>学习英语是我永远的痛，读书的时候没有把英语学好，工作后觉得英语很重要，经历了N多次从坚持到放弃。这一次，我是来真的，发誓不把英语学好不罢休，为此我下载了百词斩。为了有人监督我加入了打卡群，每天坚持英语背单词打卡，这是我坚持做得最好的一件事情，每天早上起床第一件事情就是背单词，每天20-30个，几乎从来没有中断过。但是我坚持到330天后，我还是决定放弃背单词了。为什么呢？因为没效果！！！我已经背完了从小学到大学以及新概念1-2册的单词，APP上显示我的词汇量已经达到7000，超过了80%的网友。可是我看英语文章还是一脸懵逼，即使是最浅的英语读物也有单词不认识。听不懂，更别奢望能说了。英语单词背了忘、忘了背，严重怀疑这个APP上显示7000多的单词量是哄我开心的，要不背了这么久的单词，英语水平还这么菜，依旧啥也看不懂……</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200211/blogimage/englishisharet.png" alt="学英语是会呼吸的痛" title="学英语是会呼吸的痛"></p>
+<p>放弃背单词，并不代表我放弃了英语，因为我找了一本书–《人人都能用英语》。经过傻傻的认为打卡背单词就可以学好英语沉痛而失败的教训后，越发认为这本书相见恨晚。学英语就是要用，要不学英语干啥？坚持非常重要，但是坚持的方向错了一切都是白搭！</p>
+<p>这不是一本英语的单词书、语法书。是一本教你如何学英语，不，应该是如何“用”英语的书。作者是我们都很熟悉的曾经是新东方专业英语老师，现在是比特币首富的–李笑来老师，《把时间当做朋友》的作者。虽然是专业的英语老师，在书中他没有卖弄自己的专业，而是非常真诚的讲述了自己学习英语的过程。整本书解决了我所有学英语的疑惑。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200211/blogimage/%E4%BA%BA%E4%BA%BA%E9%83%BD%E8%83%BD%E7%94%A8%E8%8B%B1%E8%AF%AD1.png" alt="《人人都能用英语》" title="《人人都能用英语》"></p>
+<p>经历了N多次从坚持到放弃，我曾经就差点相信学习英语要有天赋才能学好，自己不是学英语的那块料。在书中作者花了很大量的篇幅来告诉我们，人人都可以学好英语！书中举了个例子，大约在1988年前后，他父亲的同事一位教英语的副教授去考了一次托福，成绩是570（满分677分），一个专职的英语教授考托福才考570分，想想这是个多么难的考试。当年，甚至若干年作者都不敢想象自己能够去考托福。直到2000年底，他急需要一份稳定的工作，想去新东方应聘，他花了4个月的时间专注学习，考了托福，考了GRE，拿了变态的成绩去应聘了新东方成为了那里的英语教师。他以亲身经历说明了一个问题，你学不好，是因为你不信，只有你相信你能做好，你才能真正做好。哪里有那么多天才呢？所谓的天才，只不过是反复练习，持之以恒的结果。</p>
+<p>不要再“学”英语，你就应该“用”英语！这是最触动我的一句话，也是整本书的核心。大部分的人，包括我都是从初中、高中、大学，“学”了近十来年的英语，真正学会的人又有几个呢？只“学”不“用”的下场就是在十几年之后依然在学依然无用。依旧陷入从坚持到放弃的怪圈。学英语的核心其实是在用。只有不断地“用”，才能真正地学到，要不就会一直停留在“学”的阶段。既然不“用”就“学”不好，那不如从一开始就直接“用”。无论如何，一定要想明白对自己来说，英语真正的用处在哪儿？对于很多人来说，其实只要能够流利阅读英语或许已经足够了，至少对我来说已经够了。既然想要流利的阅读英语，那就直接从“用”英语阅读开始，抛开所谓的单词量、语法、语音、语调。不会的单词查字典，看不懂的句子查语法书。不管你是想流利的阅读，还是用英语交流，反正，用就是了。回想一下，也是哦，想想自己小学语文的经历，小学一年级还学下生字，二年级就开始学用字典查生字，以后慢慢的抛开字典可以自由的读写了。</p>
+<p>其实如何通过“用”来学习外语，国学大师、学界泰斗季羡林，季老先生在自己的言传身教中已经说的非常清楚，并且可操作性非常强。他说到：“我想斗胆提出一个，‘无师自通’的办法，供胡同志和其他读者参考。你只需要找一位通德语的人，用上二三个小时，把字母读音学好。从此你就可以丢掉老师这个拐棍，自己行走了。你找一本有可靠的汉文译文的德文科技图书，伴之以一本浅易的德文语法。先把语法了解个大概的情况，不必太深入，就立即读德文原文，字典反正不能离手，语法也放在手边。一开始必然如堕入五里雾中。读不懂，再读，也许不止一遍两遍。等到你认为对原文已经有了一个大概的了解，为了验证自己了解的正确程度，只是到了此时，才把那一本可靠的译本拿过来，看看自己了解得究竟如何。就这样一页页读下去，一本原文读完了，再加以努力，你慢慢就能够读没有汉译本的德文原文了。”</p>
+<p>嗯，我想我可以放心的放弃背单词，拿起我的那本英文版的《Spring in Action》开始慢慢啃了……</p>
+<hr>
+<center>关注：“爱分享读书”微信公众号 </center>
+
+<p><img src="http://image.ishareread.com/qrcode_for_gh_70fb5d85a824_258.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
+<center>读书我们是认真的</center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a0bb2f7e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/a0bb2f7e/" itemprop="url">把时间当作朋友，相信我，你并不孤独</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-05T18:21:18+08:00">
+                2020-01-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-14T20:48:07+08:00">
+                2020-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/a0bb2f7e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a0bb2f7e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/a0bb2f7e/" class="leancloud_visitors" data-flag-title="把时间当作朋友，相信我，你并不孤独">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200106/blogimage/3.jpg" alt="把时间当做朋友" title="把时间当做朋友"><br>相信我，你并不孤独！自卑、对任何事情都没有兴趣、在工作多年后，对未来还是很迷茫，对自己的效率不满，对自己的能力怀疑。相信在此世间，此时此刻，困恼的不是我一个。  </p>
+<p>《把时间当作朋友》这本书2009年出版，现在这本书已经是第三版了，并且还推出了逻辑思维独家定制版。该书长期在豆瓣上评分都是在8.3分以上，无数人看了以后都感觉到相见恨晚，受益匪浅。作者李笑来原来是新东方的老师，现在号称是投资人，比特币首富。新东方的老师像创始人俞敏洪、锤子手机的老罗、古典等都有个特点，都很都善于灌鸡汤，兜售所谓的成功学，很有煽动性。可以理解像英语那么枯燥有难度的学习过程，如果没有成功学的激励被放弃的几率还是蛮大的。成功离不开鸡血，也少不了鸡汤。   </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200106/blogimage/4.jpg" alt="《把时间当做朋友》" title="《把时间当做朋友》"><br>《把时间当作朋友》这本书从心智成长的角度来谈时间管理、学习方法、兴趣、人脉等成功的关键所在。虽然书中有个章节是”小心所谓的成功学”。但不可否认，这本书就是告诉大家如何了解时间，和时间做朋友，用心智成长开启自己的人生成功之旅的“成功学”。其中的某些观点和做法我觉得很有道理并值得付之于行动。  </p>
+<p>首先是对时间管理的认识，有很多书都在谈时间管理，而时间每天每个人都只有24小时，都在静静的不以人的意识为转移地流逝。时间它是不会听从任何人的管理，我们无法管理时间，我们真正能够管理的是我们自己。而管理好自己就是需要通过自己的大脑控制自己的大脑，需要有很强的意志力和成熟的心智。  </p>
+<p>管理好自己利用好时间，需要对自己的时间有个清楚的了解，知道自己的时间都花到哪里去了。最有效的办法就是《奇特的一生》的作者，苏联生物学家柳比歇夫的事件-事件日志记录方法。将自己每天做的每件事情都花的多少时间详细的记录下来。想尽一切办法真正了解自己，真正了解时间，精确地感知时间，而后再想办法使自己的行为与时间”合拍”，与时间做朋友。  </p>
+<p>学会了如何利用好自己的时间，接下来的就是行动。什么时候开始行动呢？如果要打算做某件事情，并且想做成的话，应该是立刻、马上、立即、now就开始行动！  </p>
+<p>开始行动后就要学会坚持。所有学习上的成功，都只靠两件事：策略和坚持，而坚持本身就是最重要的策略，坚持其实就是重复，而重复说到底就是时间的投入，任何领域想要取得卓越的成就都必须用一生的努力才能取得，想要出类拔萃，就要努力至少一万小时。</p>
+<h2 id="关于学习方法："><a href="#关于学习方法：" class="headerlink" title="关于学习方法："></a><strong>关于学习方法：</strong></h2><p>除了“试错”、“观察”、“阅读”之外，“思考”准确的说是“正确地思考”才是获得真正意义上的知识的主要手段。<br>提高自学能力</p>
+<ol>
+<li>自学能力的基础技能是阅读理解能力。</li>
+<li>检索能力是建立在相当熟练的阅读能力之上的能力。</li>
+<li>写作能力在自学能力中占据着重要的地位。</li>
+<li>实践能力是自学能力最终能够转换为真正价值的根本。<br>教是最好的学习方法。</li>
+</ol>
+<h2 id="关于兴趣："><a href="#关于兴趣：" class="headerlink" title="关于兴趣："></a><strong>关于兴趣：</strong></h2><p>很多人，包括我自己，不知道自己的兴趣在哪里？或试图要培养自己的兴趣。书中的一段话给我很大的启示，只要一件事你能做好，并且做得比谁都好，或者至少比大多数人好，你就不会对那件事情没兴趣。往往并不是有兴趣才能做好，而是做好了才有兴趣。  </p>
+<p>大多数事情都需要孰能生巧，做得多了，自然就擅长了，擅长了，就自然比别人做得好，做得比别人好，兴趣就大起来了，而后就更加喜欢做，更擅长，更……良性循环。但同样做得多久需要大量的时间投入，没兴趣，往往只不过是结果而已，如果被当做不去做好的理由，最终的惩罚就是大量的时间白白的流逝。</p>
+<h2 id="关于人脉："><a href="#关于人脉：" class="headerlink" title="关于人脉："></a><strong>关于人脉：</strong></h2><p>打造人脉不如打造自己，只有优秀的人才拥有有效的人脉。  </p>
+<p>关于书中讲到了通过自己的大脑控制自己的大脑。其实就是个人意志力的问题，只是书中换了个说法。个人的成功很大程度都是取决于个人意志力。通过意志力控制心智成长，让人成熟，成功。  </p>
+<p>如果你现在还在迷茫，相信我，你并不孤独。把这本书看完吧。再牛逼的人都有段苦逼的经历，如果你还在苦逼的过程中，请把时间当做朋友，沉下心来慢慢学习积累，收获成长，笃性自己能够成功！大家一起共勉。</p>
+<hr>
+<center>关注：“爱分享读书”微信公众号 </center>
+
+<p><img src="http://image.ishareread.com/qrcode_for_gh_70fb5d85a824_258.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
+<center>读书我们是认真的</center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/da35ea85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/da35ea85/" itemprop="url">终身学习时代，阅读是你大脑的磨刀石</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-05T16:25:38+08:00">
+                2020-01-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-02T21:52:09+08:00">
+                2020-03-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/da35ea85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/da35ea85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/da35ea85/" class="leancloud_visitors" data-flag-title="终身学习时代，阅读是你大脑的磨刀石">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200106/blogimage/1.jpg" alt="图书馆" title="图书馆"><br>  在这个互联网信息知识大爆炸的时代，学习能力是每个人的核心能力，如何通过学习把知识转化为自己的能力，拓宽人生的可能性，是每个人孜孜不倦渴求的。而阅读，尤其是高效的阅读是掌握知识最简单、成本最低、也是最高效的学习方式。阅读能力是学习能力的根本，会阅读的人才会具备快速学习的能力和良好思维以及应变能力。认识到这一点，所以想读书的人越来越多，爱读书的人越来越多。但是很多人在阅读或培养阅读的过程中碰到了各种各样的困难和问题。如：知道阅读很重要，但是拿起书就想睡觉根本看不进书；没有时间阅读；读不懂，记不住，用不上等等。市面上也涌现了不少教大家阅读的书籍，如被誉为阅读圣经的《如何阅读一本书》、《越读者》、《书都不会读，你还想成功》、《如何高效读懂一本书》等等。</p>
+<p>  好脑筋需要书本，就如同宝剑需要磨刀石。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200106/blogimage/2.jpg" alt="好脑筋需要书本，就如同宝剑需要磨刀石" title="好脑筋需要书本，就如同宝剑需要磨刀石"></p>
+<p>  通过阅读我们可以系统性地获取知识，但很多人在阅读习惯养成的前期也会面临很多问题，很多人对阅读有障碍、有困难，实际上是我们对阅读这件事的理解并不清晰透彻，我们应该了解阅读的本质。阅读的本质就是在可以利用的时间里，以你自己能理解的程度去学习。有些初学者了解到阅读的重要性以后，心情非常迫切，一上来就捧起大部头的书，或者比较深奥烧脑的书看，结果要不就是看几页昏昏入睡，要不就是看了几天都看不完，渐渐的失去了耐心，阅读兴趣和想培养的阅读习惯也就在屡次的打击中放弃了。其实要想开始阅读或培养阅读习惯，最有效的办法就是根据自己的能力先从一些入门级的自己感兴趣的书籍着手。在《书都不会读，你还想成功》的书中，就是建议先给自己定个计划读100本书开始，这100本书先抛开任何功利性的想法，不管什么书，只要是自己感兴趣的或者能够看得下去的书就可以，看不下去的书先放一边，通过100本书慢慢培养自己的阅读兴趣和习惯。先有了阅读兴趣和习惯，想看了愿意看了。再来谈阅读方法的问题，通过阅读方法解决看得快，记得牢的问题。再来逐渐选择高于自己目前能力的书籍进行有目的性的阅读。</p>
+<p>  其实阅读方法正如《洋葱阅读法》里所述，无非就是碎片化阅读、快速阅读、主题阅读。不管是那种阅读方法，都是需要带有强烈目的性的阅读，只有有目的的阅读，然后学以致用才能看得快，记得牢，用得上。</p>
+<p>  碎片阅读实际就是利用碎片化的时间，学习碎片化的内容。如何取得碎片化阅读的效果呢？有人每天都碎片化的阅读一些微信文章啥的，但是长期以来除了感觉有些文章写得不错每天点赞外，对自己并没有什么提高呢。其中最关键的就是要建立自己的知识体系。在基于自己的知识体系的基础上将阅读到的碎片化的内容补充到自己的知识体系中建立相应的联系。要不然阅读到的碎片还是碎片，不和已有的知识进行关联，永远都是碎片，久而久之久会忘记掉。没有自己的知识体系就相当于没有建立自己的银行账户，碎片化阅读看到的内容相当于打零工赚回来的钱没有地方放。东放一点，西放一点时间久了自然就忘记了。有了自己的知识体系就相当于建立自己的知识银行账户，打零工赚的钱可以零存整取，不断的往自己的知识体系中填砖加瓦，让自己的知识银行账户余额越存越多。</p>
+<p>  如何构建自己的知识体系呢，就要通过快速阅读和主题阅读。一本书本身的就是某个知识系统化的描述。所以要想系统的构建自己的知识体系，系统的看书是必经之路。</p>
+<p>  快速阅读的本质就是提升阅读的速度，快速掌握书中的知识。核心就是带着问题来阅读。在阅读之前，先了解一下自己读这本书的目的，梳理一下问题，为什么要读这本书，这本书能够解决我什么问题，自己以前有没有读过类似的书等等。通过快速的阅读，在书中找这些问题。有些无关紧要的描述就可以快速略看，与问题相关的仔细阅读。通过变速阅读达到快速了解一本书掌握关键知识点的目的。</p>
+<p>  主题阅读则更是为了构建自己的知识体系，在某个知识主题领域，通过广泛的阅读，同时阅读多本相同主题书的方式来深入对某个知识主题领域学习的过程。其主要目的是搞懂某个主题领域的知识。</p>
+<p>  当然不管是碎片化阅读、快速阅读、主题阅读，要想通过阅读来提高自己的能力，首先要有构建自己知识体系的意识；其次是通过某种方式彻底的搞懂自己没有懂的知识如通过反复阅读，一本书重复多读几遍或通过读同一知识点不同作者写的书来搞懂，或者通过费曼读书法将阅读的知识通过自己的理解用自己的方式讲述给懂的人；最后就是要学以制用，将通过阅读学到的知识在平时的工作、生活、学习等各个方面用起来。只有这样才能真正的通过阅读不断的提高自己的能力，真正找到阅读的乐趣，越读越有味，越读越想读！</p>
+<hr>
+<center>关注：“爱分享读书”微信公众号 </center>
+
+<p><img src="http://image.ishareread.com/qrcode_for_gh_70fb5d85a824_258.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
+<center>读书我们是认真的</center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f7e86db6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/f7e86db6/" itemprop="url">用系统方式思考，高效的工作</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-05T16:14:59+08:00">
+                2020-01-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-14T16:18:32+08:00">
+                2020-02-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f7e86db6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f7e86db6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/f7e86db6/" class="leancloud_visitors" data-flag-title="用系统方式思考，高效的工作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  827
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>　　用系统方式工作的思想是萨姆·卡彭特在《用系统来工作》的书中提到的。大家可以想想华为、富士康等公司为什么效率高？因为有一套系统化的流程让各个环节高效的运作。所以咱们也可以参考，运用到我们的工作、学习、生活中来，让我们更高效。 </p>
+<p>　　所有工作都可以用系统的视角的思考。如管理公司、上班的日常工作、学一门技能、健身等等。<br>　　首先我们要明确目标，比如管理公司我要达到什么经营目标，学习我要学到什么东西达到什么程度，减肥健身要达到什么效果，一定要有非常清晰的目标，最好是能够写下来，放在显眼的地方，时时关注。<br>　　其次我们要制定准则，即达到实现目标的大的方针，比如减肥健身，准则可以定义为控制饮食、加强锻炼等。<br>　　最后我们要明确做事的流程，如何明确流程？可以按照以下几点整理。<br>　　1、分解每个工作的任务项。<br>　　 将一个工作分解成一个个可以操作的具体任务项。如开会可以分解为确定会议室、准备会议材料、通知会议参与人、做会议纪要、跟踪会议结论执行情况等等。<br>　　 如减肥健身可以分解为：合理饮食、准备活动、有氧运动、肌肉强化运动、睡眠休息等等。<br>　　2、将每个工作任务项按依赖顺序整理形成固化的流程<br>　　 有些工作项是有依赖关系的，所以我们要按照依赖关系顺序整理成流程。先干什么，后干什么，这样做事才会更有条理，减少等待的时间更高效。<br>　　3、给每个工作任务项提供说明指导<br>　　 就是将每个细化的工作项做到最好。在华为，所有的岗位，每项工作都有具体的作业指导书。在作业指导书中详细定义了这个环节需要做什么，具体怎么做，完成后如何检查反馈。这个作业指导书是不断总结完善的。所以不管是老手，还是新来的菜鸟，都可以很好并高效的完成。<br>　　4、在实践的工作中不断完善流程<br>　　 一开始可能流程并不完善，我们可以在实际实施的过程中不断的优化调整，去掉一些不必要的环节，优化一些效率低下的环节，一切优化都是遵循我们开始定义的目标。 </p>
+<p>　　通过系统方式思考做事情可以用到工作、学习、生活的各个方面，总的来说，就是明确目标、制定准则、定义流程，不断完善流程。将事情高效的做好。作为领导者，有了流程后，你还可以将这个流程交给任何一个人都可以做好。将自己释放出来。有更多的时间平衡工作、学习、生活。这就是系统的力量。</p>
+<hr>
+<center>关注：“爱分享读书”微信公众号 </center>
+
+<p><img src="http://image.ishareread.com/qrcode_for_gh_70fb5d85a824_258.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
+<center>读书我们是认真的</center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5661/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -528,491 +2564,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava1018.github.io/posts/ebb1fd51/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ebb1fd51/" itemprop="url">2020是时候开启最棒的一年了！</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-01T16:47:14+08:00">
-                2020-01-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-05T17:15:48+08:00">
-                2020-01-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/ebb1fd51/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ebb1fd51/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/ebb1fd51/" class="leancloud_visitors" data-flag-title="2020是时候开启最棒的一年了！">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/dream1.png" alt="2020是时候开启最棒的一年了！" title="2020是时候开启最棒的一年了！"></p>
-<p>2019已经过去，回首过去你是否懊恼？本来计划要坚持每天跑步健身的，结果买好了装备坚持了几天后半途而废。雄心勃勃的每天阅读的计划也无疾而终。想把英语学好，却总是停留在书的前几页。我想成为最好的自己、想减肥健康、想多存钱少花钱、想学习新技能、想开创自己的事业……有很多美好的想法，但是事到如今只是美好的想法，回首往事时后悔不已，后悔没有正确的做出决定，后悔没有开始，后悔没有坚持。然而后悔又有什么用呢？岁月还是这样无情的流逝了，你还是原来的那个你。2020年，是时候开启最棒的一年了！</p>
-<p>今年是突破之年！是很多人发自内心的渴望。人们都喜欢在新年制定目标。但是在实现目标的过程中，一开始我们斗志昂扬，大步向前，信心满满。但之后要么计划被打乱，要么最终不了了之。然后大多数人开始以一种失落和懊悔的心情诉说自己的遭遇的一次次挫折和失败。大部分的人都曾经在某些年份制定过新年目标。但是人人都制定目标，并不意味着总是有效。今年是突破之年吗？能够突破制定计划-失败-懊恼-制定计划的怪圈吗？能够真正的突破成就最好的自己吗？</p>
-<p>今年必须是突破的一年！来自全球知名高效能专家迈克尔·海亚特的这本《规划最好的一年》。写给无力改变现状的你，让你从个人、职业、财富、人际关系等全面升级。如果你想摆脱失意与迷茫，走向自信与明朗，获得成功一年的力量。相信《规划最好的一年》一书中有你想要的答案。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/book1.png" alt="《规划最好的一年》" title="《规划最好的一年》"></p>
-<p>作者迈克尔·海亚特（Michael Hyatt），是全球知名高效能专家，《纽约时报》畅销书作家。全球极具魅力的传媒领袖、平台应用大师、自媒体营销泰斗。曾任美国最大的出版公司之一托马斯·纳尔逊出版公司董事会主席、CEO。他创作过《生命向前》（与丹尼尔·哈卡维合著）以及《平台：从喧闹世界脱颖而出》，荣登过《华尔街日报》《福布斯》《快公司》《企业家》的封面人物。迈克尔·海亚特在美国开设有“5天即达最棒的一年”线上及线下课程，改变了逾千万美国年轻人的命运。</p>
-<p>相信无论你有过什么好的或是不好的经历，即使是在你曾经深度受挫的领域，今年都绝对有可能成为你最有意义的一年。因为这本书告诉了你改变自己具体的做法。是时候开始最棒的一年了。</p>
-<h2 id="STEP-1-相信可能"><a href="#STEP-1-相信可能" class="headerlink" title="STEP 1 相信可能"></a>STEP 1 相信可能</h2><p>要创造最好的一年，首先就要升级观念，树立自我开放性观念，相信一切皆有可能。</p>
-<p>有益的思维习惯往往产生积极的结果，例如幸福感、个体满足感，甚至是物质上的成就。然而，不好的思维习惯往往会产生相反的结果：不幸福感、不满足感，甚至是时运不济的哀怨感。个人的生活格律可以由你改变。即使现有的思维习惯已经带来不错的成果，你还是可以通过升级自己的信念，在生活的各个领域体验变革性的个人进步。一旦我们开始关注信念升级，我们的境况往往也会随之改善。</p>
-<p>如果一个人经历的挫折越多，就会越不相信自己能够战胜挫折。自我怀疑是目标的毒药。消极的心态会毒害我们的灵魂，破坏我们的未来。所以我们要升级观念，改变信念，相信自己能够完成目标。这是决定目标能够实现的第一个关键因素。</p>
-<p>观念升级，避开自我设限性观念陷阱。相信你现在所拥有的，足以改变你的生活。不管现在处于什么环境，我们都有能力追求更好的未来。资源从来都不是我们实现目标过程中的主要挑战。</p>
-<p><em>具体行动计划：</em></p>
-<h3 id="1-认识信念的力量"><a href="#1-认识信念的力量" class="headerlink" title="1.认识信念的力量"></a>1.认识信念的力量</h3><p>如塞尔维亚维托夫尼卡的僧侣撒迪厄斯所言:“我们的想法决定我们的生活。”无论是积极的信念还是消极的信念，都会对生活经历产生巨大影响。明白这个事实，是进入最好的一年的第一阶段。 </p>
-<h3 id="2-直面自我设限性观念"><a href="#2-直面自我设限性观念" class="headerlink" title="2.直面自我设限性观念"></a>2.直面自我设限性观念</h3><p>我们都会有对世界、他人、自己的自我设限性观念。四个检验你是否陷入自我设限性观念的指标，你的观点是否有以下思维形成:非黑即白、主观化、小题大做、普遍化。还有很重要的一点，就是要识别出自我设限性观念的来源，即你的自我设限性观念是来自过去的经验、新闻媒体、社交媒体还是负面关系。 </p>
-<h3 id="3-观念升级-识别自我设限性观念。"><a href="#3-观念升级-识别自我设限性观念。" class="headerlink" title="3.观念升级 识别自我设限性观念。"></a>3.观念升级 识别自我设限性观念。</h3><p>升级观念要从认识观念开始，因此首先要仔细思考阻碍你前进的观念。记录自我设限性观念。在左边的一栏写下自我设限性观念，文字表达有助于将自我设限，性观念客观化。反思自我实现新观念。评估某种观念对你的贡献，这种观念赋予你力量了吗？对你实现目标有帮助吗？摒弃/重构自我设限性观念。有时候你可以直接否定一种自我设限性观念；有时候你可能需要论证推翻它，或是从另一个角度审视障碍。修正自我设限性观念。针对旧的自我设限性观念写下新的自我开放性观念。重新定位。相信新的真理，重新投入生活。</p>
-<h2 id="STEP-2-总结过去"><a href="#STEP-2-总结过去" class="headerlink" title="STEP 2 总结过去"></a>STEP 2 总结过去</h2><p>通过后向思考总结过去，在遗憾中发现机会，以及利用感恩优势培养富足性思维。</p>
-<p>人们都会陷入同样的困境，我们自己也在某种程度上处于这种困境中。除了自我设限性观念，第二个最常见的障碍就是过往的经历。我们把过去绑在身上，就像拖着一辆载满了破旧家具的拖车。因为我们太过受制于过去，所以才不能充分考虑未来。</p>
-<p>如果不愿意承认过去，过去就不会完整。不管我们在过去的岁月里经历过什么，都必须处理这些经历。如果采取无视的态度，不好的事就会重现。如果不寻求解决办法，我们就会把过去遗留下来的东西带到未来，破坏我们对未来的精心设计。</p>
-<p>不管我们有怎么样的过程，只要我们怀着感恩的心看待现在，就会发现我们所拥有的比想象中的要多得多。感恩能够放大生活中的一切美好事物。感恩是能够消除稀缺性思维，培养富足性思维的最好方法。</p>
-<p><em>具体行动计划：</em></p>
-<h3 id="1-事后回顾"><a href="#1-事后回顾" class="headerlink" title="1.事后回顾"></a>1.事后回顾</h3><p>事后回顾四个关键步骤：</p>
-<ul>
-<li>陈述理想结果</li>
-</ul>
-<p>首先问问自己，怎么看待过去的一年。你的计划是什么、梦想是什么，如果你有具体的目标，这些目标又是什么？要清楚自己的感受。</p>
-<ul>
-<li>承认实际结果</li>
-</ul>
-<p>在陈述理想结果时，你可能已经意识到了差距。理想与现实之间总是有距离的，你可能还有一些目标甚至很多目标没有实现。所以问问自己：你在过去的一年中有什么失意或遗憾？悔恨的意义不是让你奢求改变过去，而是让你更好地思考现在。问问自己：在过去的一年中，什么事情让你感到自豪？我们不仅要关注什么事情不成功，还要关注什么事情成功，分析是什么信念或行动带来了这种成功。这种分析对认识自己的力量及总结过去战胜困难的方法具有重要作用，同时也会增加我们对未来的信心。</p>
-<ul>
-<li>从经验中学习</li>
-</ul>
-<p>从经历中提炼经验教训，让经历成为前进的工具。</p>
-<ul>
-<li>调整行为</li>
-</ul>
-<p>如果是你的某种观念或行为造成了理想与实际结果之间的差距，那么是时候做出改变了。</p>
-<h3 id="2-在遗憾中看到机会"><a href="#2-在遗憾中看到机会" class="headerlink" title="2.在遗憾中看到机会"></a>2.在遗憾中看到机会</h3><p>在回答:“你在过去一年中有什么失意或遗憾？”问题时采取积极补救措施的可能性越大，遗憾的感觉就越强烈。所以问问自己，你的遗憾中隐藏着什么机会。</p>
-<h3 id="3-感恩练习"><a href="#3-感恩练习" class="headerlink" title="3.感恩练习"></a>3.感恩练习</h3><p>感恩不是一种情绪，而是一种行动，尝试一下三个练习:早晚自省；通过感激生活的恩赐，练习感恩；记感恩日记。</p>
-<h2 id="STEP-3-设计未来"><a href="#STEP-3-设计未来" class="headerlink" title="STEP 3 设计未来"></a>STEP 3 设计未来</h2><p>学习如何根据SMART目标管理原则建立成就型目标与习惯性目标的最佳组合，以及为什么要在舒适区之外设立目标。</p>
-<p>顺其自然不会本来非凡的成就随波逐流，不能达到想去的终点。我们只能有意识的去思考自己想要什么，为什么想要并根据目标制定行动方案，这一步在帮助我们清理自己的需要创造理想的生活，这也是乐趣的开始。</p>
-<p><em>具体行动计划：</em></p>
-<h3 id="1-设立目标"><a href="#1-设立目标" class="headerlink" title="1.设立目标"></a>1.设立目标</h3><p>每年设立7~10个目标，目标要满足smarter原则:明确性，可衡量性，可行性风险性，定时性，激励性，相关性，根据不同的生活领域制定相应的目标，将目标分散到各个季度，以保证注意力集中以及全年节奏稳定。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/smart1.png" alt="SMART法则" title="SMART法则"></p>
-<h3 id="2-成就型与习惯性目标合理结合"><a href="#2-成就型与习惯性目标合理结合" class="headerlink" title="2.成就型与习惯性目标合理结合"></a>2.成就型与习惯性目标合理结合</h3><p>成就型目标代表一次完成的成就；习惯型目标代表持续且规律的行动。习惯型目标还可以是成就型目标的实现方式。两种类型的目标都对规划最好的一年有所帮助，但是我们要根据个人需求来平衡这两种目标。对我们有用的组合就是正确的组合。</p>
-<h3 id="3-在不适区设立目标"><a href="#3-在不适区设立目标" class="headerlink" title="3.在不适区设立目标"></a>3.在不适区设立目标</h3><p>一个有意义的目标必须让我们提升自己。这就意味着我们必须离开舒适区。如果你明确知道一个目标应该怎么实现，那说明这个目标还太简单了。人生中所有重要的事都发生在舒适区之外。有意义的目标一定是处在不适区的。不适区的目标给我们带来挑战，让我们最大的发挥自己的能力。而恐慌区的目标可能导致失败，带来沮丧和失望。通常的做法是设立一个接近恐慌区的目标，然后再把它稍稍拖回来一些，处在学习区的目标是比较合适的。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/comfortzone.png" alt="舒适区三圈理论" title="舒适区三圈理论"></p>
-<p>最好的是往往发生在我们不得不成长的时候。这在我们对未来一年的规划中是绝对真理，但这违反了我们规避风险的本能，以下4点将有助于我们克服阻力:</p>
-<p>承认走出舒适区的价值。首先转变思维，只要你接受了挑战区的价值，接下来的事就简单多了。</p>
-<p>直面痛苦。大多数阻碍来自我们的内心，但转变思维还不够，通过直面痛苦，我们改变的还有我们的意愿。</p>
-<p>克服恐惧，负面情绪不可避免，不要无视负面情绪，你只需要将实现目标带来的成就感和负面情绪进行对比，是成就多，还是恐惧多？</p>
-<p>避免过度分析。分析瘫痪是真实存在的，你不需要在开头就看到结尾，也不需要知道目标实现的整个过程，你只需要清楚自己下一步应该做什么。</p>
-<h2 id="STEP-4-找到动力"><a href="#STEP-4-找到动力" class="headerlink" title="STEP 4 找到动力"></a>STEP 4 找到动力</h2><p>深入挖掘自己的内在动力，以及防止迷失自己的方法，与朋友同行。</p>
-<p>切记，目标的设定必须明确、易于衡量、有章可循，且无太大风险，节点清晰、振奋人心，并与自己的生活息息相关。识别目标以及动机与目标相关联，给你的目标一个理由。这一点至关重要，因为我们注定会陷入泥沼。无论哪个梦想哪个目标、哪次尝试都逃脱不了这样的命运。我们有时会想，要是有更好的计划，到达终点的路便会少些痛苦、少些风雨。然而，往往事与愿违，要走出困境必须善加利用你的动机，只有这样才能获得动力与毅力，不畏险阻，不言放弃。</p>
-<p><em>具体行动计划：</em></p>
-<h3 id="1-回忆动机"><a href="#1-回忆动机" class="headerlink" title="1.回忆动机"></a>1.回忆动机</h3><p>从识别主要动机入手。你的初衷是什么？它对你来说为什么重要？找个本子，要不就拿出一张纸，一一列出主要动机。只列动机还远远不够，记得给他们排个序，把最好的理由写在前面。最后，用脑子去想，用心去体会。</p>
-<h3 id="2-驾驭动机"><a href="#2-驾驭动机" class="headerlink" title="2.驾驭动机"></a>2.驾驭动机</h3><p>追逐目标的过程中，有4个方法能让我们坚持不懈:</p>
-<p>（1）识别、憧憬未来。最终，事情本身便有了意义。</p>
-<p>（2）要知道新习惯不是几个礼拜就能养成的，没准需要五六个月，所以别期望太高。</p>
-<p>（3）游戏人生，请习惯使用一些养成软件和日历簿帮个忙。</p>
-<p>（4）要衡量所得，而不是差距，珍视每个小的成就。</p>
-<h3 id="3-组建团体"><a href="#3-组建团体" class="headerlink" title="3.组建团体"></a>3.组建团体</h3><p>若是有朋友同行，目标的实现便会容易不少。主动交朋友给了成功4个好处:学习、鼓励、责任、竞争，至少有7种朋友能够帮你成长，帮你实现目标:网络社区，跑步健身社区，交流社区，指导性社交圈，读书学习小组，责任小组，好朋友，若是找不到合适的团体，千万别犹豫，干脆自己建一个吧。</p>
-<h2 id="STEP-5-付诸实践"><a href="#STEP-5-付诸实践" class="headerlink" title="STEP 5 付诸实践"></a>STEP 5 付诸实践</h2><p>规划是基础，行动才是关键。将目标付诸实现，勇于行动，全方位升级！</p>
-<p>伟大并非来自一次冲动，而是由一系列小时汇集而成。确定目标是成功的一半，成功的另一半在于采取行动。</p>
-<p><em>具体行动计划：</em></p>
-<h3 id="1-将总目标分解为可执行的后续步骤"><a href="#1-将总目标分解为可执行的后续步骤" class="headerlink" title="1.将总目标分解为可执行的后续步骤"></a>1.将总目标分解为可执行的后续步骤</h3><p>设立目标在舒适区之外考虑，执行目标从舒适区开始。先完成最简单的任务，遇到困难的时候寻求外界帮助。快速取得初步成功能为后续行动带来动力。</p>
-<h3 id="2-运动触发器"><a href="#2-运动触发器" class="headerlink" title="2.运动触发器"></a>2.运动触发器</h3><p>找到最有效的激活事件。利用杠杆效应，借助简单的任务完成困难的任务。不要依靠自己的即时自控力，通过清除诱惑、自动化、委托授权来优化触发器。</p>
-<p>我们在追求目标的过程中，会遇到干扰事项，所以要预测干扰，预置回应。关键就是在被干扰事项打乱计划之前，先想好应对策略，如果应对策略效果不佳，则调整到满意为止。</p>
-<h3 id="3-安排定期目标回顾"><a href="#3-安排定期目标回顾" class="headerlink" title="3.安排定期目标回顾"></a>3.安排定期目标回顾</h3><p>每日浏览目标列表，确保心中有目标，并在浏览时思考当天的具体任务，也就是“每日三大事”。</p>
-<p>在每周回顾中重点关注主要动机对前一周的任务进展进行一次快速的事后回顾，审查每个目标的后续步骤，并确定接下来一周必须取得的三个成果，也就是“每周三大事”。用“每周三大事”指导“每日三大事”。</p>
-<p>在季度回顾时，建议重新走一遍“5步实现新年目标”流程。重点如下:</p>
-<p>如果已经取得完全或阶段性的胜利，就庆祝自己的胜利；</p>
-<p>如果还没有取得任何形式的胜利，就重新开始追求目标；</p>
-<p>如果不能重新开始，就修改目标；</p>
-<p>如果不能修改，就删除目标；</p>
-<p>用新目标替代被删除的目标。</p>
-<p><em>不要拖着你的梦想。不要拖着你的目标。今日事今日毕，你的生活和工作才能有所起色。一旦下定决心，就行动起来。2020必须是突破的一年！</em></p>
-<hr>
-<center>关注：“爱分享读书”微信公众号 </center>
-
-<p><img src="http://image.ishareread.com/qrcode_for_gh_70fb5d85a824_258.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
-<center>读书我们是认真的</center>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava1018.github.io/posts/16107/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/16107/" itemprop="url">Hello World</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T19:36:48+08:00">
-                2019-12-31
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-05T17:18:52+08:00">
-                2020-01-05
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/16107/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/16107/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/16107/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  73
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
+  </nav>
+
 
 
           </div>
@@ -1062,7 +2620,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1073,7 +2631,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1084,7 +2642,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1170,7 +2728,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.2k</span>
+    <span title="Site words total count">19.5k</span>
   
 </div>
 
