@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>syslog日志接口调试方法</title>
+      <link href="/posts/7bbe2925/"/>
+      <url>/posts/7bbe2925/</url>
+      
+        <content type="html"><![CDATA[<p>日志数据采集，比较方便常用的就是通过syslog来进行数据采集，syslog可以通过udp协议来进行高效的数据传输。一般来说在工程实施的过程中需要对接对端系统的数据采集源可以通过以下步骤来进行syslog日志接口的调试。主要是验证syslog日志是否能正常送到指定的日志服务器的指定端口，日志服务器的指定端口是否能正常收到对端发过来的日志。</p><h1 id="1、检查双方网络是否通畅"><a href="#1、检查双方网络是否通畅" class="headerlink" title="1、检查双方网络是否通畅"></a>1、检查双方网络是否通畅</h1><p>网络通畅是所有网络连接的前提条件，可以先通过ping的方式，先确认一下对端数据源是不是可以ping通这边的日志接收服务器地址，看网络是否是通的。<br>一般来说只到对端能够ping通日志服务器地址就可以了，单向ping通就OK。<br>如果ping不通，那就要检查日志服务器的网络设置，如是否开启了防火墙，禁ping了。根据网络实际情况调整网络策略，确保网络是通的。</p><h1 id="2、检查端口是否通畅"><a href="#2、检查端口是否通畅" class="headerlink" title="2、检查端口是否通畅"></a>2、检查端口是否通畅</h1><p>通过数据源服务器telnet一下日志服务器地址和端口，看端口是不是通的。<br>有很多服务器上可能没有装telnet，也可以用ssh ip 端口  来验证一下。</p><h1 id="3、发送简单的报文测试"><a href="#3、发送简单的报文测试" class="headerlink" title="3、发送简单的报文测试"></a>3、发送简单的报文测试</h1><p>在对端通过发送udp报文来进行简单的测试<br>如日志接收服务器地址是172.28.65.32，端口514 则可以通过<code>echo “hello” &gt; /dev/udp/172.28.65.32/514</code> 来发送测试报文<br>在日志接收服务器用tcpdump收下有没有监听到报文过来。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump udp port 514 -A -i any</span><br></pre></td></tr></table></figure><p>如果有就会有相应的显示<br><img src="https://img-blog.csdnimg.cn/20200318100042259.png" alt="tcpdump"></p><h1 id="4、进行正式接口对接"><a href="#4、进行正式接口对接" class="headerlink" title="4、进行正式接口对接"></a>4、进行正式接口对接</h1><p>如果tcpdump可以收到日志，那就说明syslog的通信是没有问题的，接下来就可以进行具体的syslog的配置的调测了。</p><hr><p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大数据 </tag>
+            
+            <tag> syslog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>logstash集成kafka，mysql实现数据采集</title>
       <link href="/posts/54e4fd14/"/>
       <url>/posts/54e4fd14/</url>
