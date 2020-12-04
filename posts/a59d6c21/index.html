@@ -137,7 +137,7 @@
 <meta name="description" content="一、logstash是什么Logstash 是开源的服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送到您最喜欢的“存储库”中。官方介绍：Logstash is an open source data collection engine with real-time pipelining capabilities。简单来说logstash就是一根具备实时数据传输能力的管道，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logstash简明实用教程">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/a59d6c21/index.html">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/a59d6c21/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="一、logstash是什么Logstash 是开源的服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送到您最喜欢的“存储库”中。官方介绍：Logstash is an open source data collection engine with real-time pipelining capabilities。简单来说logstash就是一根具备实时数据传输能力的管道，">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200414152706269.png">
@@ -192,7 +192,7 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/a59d6c21/"/>
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/a59d6c21/"/>
 
 
 
@@ -335,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a59d6c21/">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/a59d6c21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -555,8 +555,8 @@
 <p>编辑input和output</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    stdin&#123;</span><br><span class="line">      type =&gt; <span class="string">"test-log"</span></span><br><span class="line">    &#125;</span><br><span class="line">    syslog&#123;</span><br><span class="line">        type =&gt; <span class="string">"test-log"</span></span><br><span class="line">        port =&gt; <span class="number">514</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output</span><br><span class="line">&#123;</span><br><span class="line">    stdout &#123;</span><br><span class="line">      codec =&gt; rubydebug</span><br><span class="line">    &#125;</span><br><span class="line">    syslog&#123;</span><br><span class="line">        host =&gt; <span class="string">"192.168.2.185"</span></span><br><span class="line">        port =&gt; <span class="number">514</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这样就相当于把日志转发到了192.168.2.185这台机器的514端口<br>编辑好配置文件以后执行<br><code>./logstash -f test-pipeline.conf --config.test_and_exit</code>     对配置文件进行检查，如果配置文件写得有问题，将会有错误提示。<br>配置文件检查没有问题后就可以启动logstash执行了<code>./logstash -f test-pipeline.conf  --config.reload.automatic</code><br>用udpsender工具往这台机器上发送日志信息，可以看到日志转发到192.168.2.185这台机器上了。<br><img src="https://img-blog.csdnimg.cn/20200414161139252.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="updsend发送日志"><br>在控制台可以看到192.168.2.185，接收到了192.168.2.173转发过来的日志<br><img src="https://img-blog.csdnimg.cn/20200414161229147.png" alt="控制台日志"></p>
-<h2 id="2、通过rsyslog、logstash采集nginx等中间件的日志送到ES"><a href="#2、通过rsyslog、logstash采集nginx等中间件的日志送到ES" class="headerlink" title="2、通过rsyslog、logstash采集nginx等中间件的日志送到ES"></a>2、通过rsyslog、logstash采集nginx等中间件的日志送到ES</h2><p>logstash可以与rsyslog、filebeat等无缝结合采集nginx等中间件日志，送给数据存储。<br><img src="https://img-blog.csdnimg.cn/20200414161255484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="通过rsyslog、logstash采集nginx等中间件的日志送到ES"><br>具体参见：<a href="https://xiejava.gitee.io/posts/f3e97829/">https://xiejava.gitee.io/posts/f3e97829/</a></p>
-<h2 id="3、通过logstash将日志入kafka再入mysql或ES"><a href="#3、通过logstash将日志入kafka再入mysql或ES" class="headerlink" title="3、通过logstash将日志入kafka再入mysql或ES"></a>3、通过logstash将日志入kafka再入mysql或ES</h2><p>数据先放到kafka队列里缓存削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<img src="https://img-blog.csdnimg.cn/20200414161405732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logstash将日志入kafka再入mysql或ES"><br>具体参见：<a href="https://xiejava.gitee.io/posts/54e4fd14/">https://xiejava.gitee.io/posts/54e4fd14/</a></p>
+<h2 id="2、通过rsyslog、logstash采集nginx等中间件的日志送到ES"><a href="#2、通过rsyslog、logstash采集nginx等中间件的日志送到ES" class="headerlink" title="2、通过rsyslog、logstash采集nginx等中间件的日志送到ES"></a>2、通过rsyslog、logstash采集nginx等中间件的日志送到ES</h2><p>logstash可以与rsyslog、filebeat等无缝结合采集nginx等中间件日志，送给数据存储。<br><img src="https://img-blog.csdnimg.cn/20200414161255484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="通过rsyslog、logstash采集nginx等中间件的日志送到ES"><br>具体参见：<a href="https://xiejava.gitee.io/posts/f3e97829/" target="_blank" rel="noopener">https://xiejava.gitee.io/posts/f3e97829/</a></p>
+<h2 id="3、通过logstash将日志入kafka再入mysql或ES"><a href="#3、通过logstash将日志入kafka再入mysql或ES" class="headerlink" title="3、通过logstash将日志入kafka再入mysql或ES"></a>3、通过logstash将日志入kafka再入mysql或ES</h2><p>数据先放到kafka队列里缓存削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<img src="https://img-blog.csdnimg.cn/20200414161405732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logstash将日志入kafka再入mysql或ES"><br>具体参见：<a href="https://xiejava.gitee.io/posts/54e4fd14/" target="_blank" rel="noopener">https://xiejava.gitee.io/posts/54e4fd14/</a></p>
 <h2 id="4、通过logstash进行日志补全后再转发或入库"><a href="#4、通过logstash进行日志补全后再转发或入库" class="headerlink" title="4、通过logstash进行日志补全后再转发或入库"></a>4、通过logstash进行日志补全后再转发或入库</h2><p>采集原始日志以后，需要对原始日志进行调整合补齐，比如最常见的是根据IP来补齐IP的经纬度等信息。<br><img src="https://img-blog.csdnimg.cn/2020041416162510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logstash进行日志补全"><br>这里就可以用logstash的geotip，也可以用其他的外部API接口，为了更具代表性的说明，这里调用的是第三方的http接口（<a href="http://ip-api.com/json/），这个接口也是可以自己定义的。" target="_blank" rel="noopener">http://ip-api.com/json/），这个接口也是可以自己定义的。</a><br>参考配置文件如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    stdin &#123; &#125;</span><br><span class="line">    syslog &#123;</span><br><span class="line">      port =&gt; <span class="string">"514"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">filter &#123;</span><br><span class="line">    grok&#123;</span><br><span class="line">         <span class="comment">#匹配获取IP</span></span><br><span class="line">         match =&gt; &#123;<span class="string">"message"</span> =&gt; <span class="string">"%&#123;IPV4:ip&#125;"</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    http &#123;</span><br><span class="line">        <span class="comment">#调用外部接口获取IP的详细信息</span></span><br><span class="line">        url =&gt; <span class="string">"http://ip-api.com/json/%&#123;ip&#125;"</span></span><br><span class="line">        verb =&gt; <span class="string">"GET"</span></span><br><span class="line">        add_field =&gt; &#123;</span><br><span class="line">          <span class="string">"new_field"</span> =&gt; <span class="string">"new_static_value"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    mutate &#123;</span><br><span class="line">        replace =&gt; &#123;     </span><br><span class="line">            <span class="comment">#这里对原始日志数据进行补全，如加了新的字段及从接口中获取的信息</span></span><br><span class="line">            <span class="string">"message"</span> =&gt; <span class="string">"%&#123;message&#125;|%&#123;ip&#125;: My new message|%&#123;new_field&#125;|%&#123;[body][as]&#125;"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">    stdout &#123; &#125;</span><br><span class="line">    syslog &#123;</span><br><span class="line">        host =&gt; <span class="string">"192.168.2.173"</span></span><br><span class="line">        port =&gt; <span class="string">"7514"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -582,7 +582,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/a59d6c21/" title="logstash简明实用教程">https://xiejava.gitee.io/posts/a59d6c21/</a>
+    <a href="http://xiejava.ishareread.com/posts/a59d6c21/" title="logstash简明实用教程">http://xiejava.ishareread.com/posts/a59d6c21/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -710,7 +710,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -732,7 +732,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -834,7 +834,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35k</span>
+    <span title="Site words total count">36.8k</span>
   
 </div>
 

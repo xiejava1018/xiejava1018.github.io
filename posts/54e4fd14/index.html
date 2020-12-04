@@ -137,7 +137,7 @@
 <meta name="description" content="logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。默认已经安装好了kafka、mysql、logstash，并">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logstash集成kafka，mysql实现数据采集">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/54e4fd14/index.html">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/54e4fd14/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。默认已经安装好了kafka、mysql、logstash，并">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
@@ -185,7 +185,7 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/54e4fd14/"/>
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/54e4fd14/"/>
 
 
 
@@ -328,7 +328,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/54e4fd14/">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/54e4fd14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -517,7 +517,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is a <span class="built_in">test</span>!</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong><br>从控制台输入信息，可以看到从stdin输入output到stdout的没有logsource标识，input从kafka订阅过来的信息加了一个logsource=&gt;kafkalog的标识。<br><img src="https://img-blog.csdnimg.cn/20200316171423390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logsource=&gt;kafkalog的标识"><br>用kafka tool工具看到kafka收到了从stdin发过来的信息。<br><img src="https://img-blog.csdnimg.cn/20200316171453670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="用kafka tool工具看到kafka收到了从stdin发过来的信息"><br>在看MySQL表里的数据，已经通过logstash从kafka中将数据采集到了MySQL的表中。<br><img src="https://img-blog.csdnimg.cn/20200316171523708.png" alt="MySQL的表的信息数据"><br>再来看从syslog采集日志的效果<br>从控制台看到的信息效果<br><img src="https://img-blog.csdnimg.cn/20200316171552633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="控制台看到的信息效果"><br>从kafka tool看到的效果<br><img src="https://img-blog.csdnimg.cn/20200316171613337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="kafka tool看到的效果"><br>从mysql 表中看到的效果。<br><img src="https://img-blog.csdnimg.cn/20200316171630325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="mysql 表中看到的效果"><br><strong>可以看到，logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置就能满足绝大多数数据采集场景的需求。</strong></p>
 <hr>
-<p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
+<p>作者博客:<a href="http://xiejava.gitee.io" target="_blank" rel="noopener">http://xiejava.gitee.io</a></p>
 
       
     </div>
@@ -538,7 +538,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/54e4fd14/" title="logstash集成kafka，mysql实现数据采集">https://xiejava.gitee.io/posts/54e4fd14/</a>
+    <a href="http://xiejava.ishareread.com/posts/54e4fd14/" title="logstash集成kafka，mysql实现数据采集">http://xiejava.ishareread.com/posts/54e4fd14/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -666,7 +666,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -688,7 +688,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -790,7 +790,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35k</span>
+    <span title="Site words total count">36.8k</span>
   
 </div>
 
