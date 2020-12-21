@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="大数据,ELK," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。默认已经安装好了kafka、mysql、logstash，并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="logstash集成kafka，mysql实现数据采集">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/54e4fd14/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。默认已经安装好了kafka、mysql、logstash，并">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171241910.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171324491.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171423390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171453670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171523708.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171552633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171613337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171630325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-16T09:38:37.000Z">
+<meta property="article:modified_time" content="2020-03-16T09:40:42.433Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="大数据">
+<meta property="article:tag" content="ELK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/54e4fd14/"/>
+
+
+
+
+
+  <title>logstash集成kafka，mysql实现数据采集 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/54e4fd14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">logstash集成kafka，mysql实现数据采集</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-16T17:38:37+08:00">
+                2020-03-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-16T17:40:42+08:00">
+                2020-03-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/54e4fd14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/54e4fd14/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/54e4fd14/" class="leancloud_visitors" data-flag-title="logstash集成kafka，mysql实现数据采集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。<br>采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<br><img src="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="从syslog采集日志到kafka然后在从kafka写到mysql数据库中"><br>本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。<br>默认已经安装好了kafka、mysql、logstash，并已经经过简单的验证。</p>
+<h1 id="准备logstash的环境"><a href="#准备logstash的环境" class="headerlink" title="准备logstash的环境"></a>准备logstash的环境</h1><h2 id="一、下载mysql的jdbc驱动包"><a href="#一、下载mysql的jdbc驱动包" class="headerlink" title="一、下载mysql的jdbc驱动包"></a>一、下载mysql的jdbc驱动包</h2><p>下载地址：<a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.15" target="_blank" rel="noopener">https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.15</a><br>下载后放到logstash的安装目录的/vendor/jar/目录下</p>
+<h2 id="二、安装logstash插件"><a href="#二、安装logstash插件" class="headerlink" title="二、安装logstash插件"></a>二、安装logstash插件</h2><p>logstash默认安装了kafka插件，但是mysql插件没有默认安装需要自己安装。<br>具体安装方法 /bin/logstash-plugin install logstash-output-jdbc ，这里应为要用到logstash写入mysql数据库，所以安装的插件是logstash-output-jdbc，如果要用到从mysql读数据，那么就要安装logstash-input-jdbc。安装方法类似。<br>因为安装时需要访问国外的源，安装进度很慢很慢，还经常安装不成功，所以需要更改国内的源。<br>也就是给 Ruby 换成国内的镜像站：<a href="https://gems.ruby-china.com/，替代https://rubygems.org。*请注意：国内的镜像站从https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.com/，替代https://rubygems.org。*请注意：国内的镜像站从https://gems.ruby-china.org</a> 换成了 <a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a> ！！！* 现在很多网上的资料就都是写的<a href="https://gems.ruby-china.org，导致很多人换了镜像源也装不上。" target="_blank" rel="noopener">https://gems.ruby-china.org，导致很多人换了镜像源也装不上。</a><br>具体方法如下：</p>
+<h3 id="1-安装Gem并更新"><a href="#1-安装Gem并更新" class="headerlink" title="1. 安装Gem并更新"></a>1. 安装Gem并更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install -y gem</span></span><br><span class="line"><span class="comment"># gem -v</span></span><br><span class="line">2.0.14.1</span><br><span class="line"><span class="comment"># gem update --system</span></span><br><span class="line"><span class="comment"># gem -v</span></span><br><span class="line">2.7.7</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-检查并修改镜像源"><a href="#2-检查并修改镜像源" class="headerlink" title="2. 检查并修改镜像源"></a>2. 检查并修改镜像源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gem sources -l</span></span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"> </span><br><span class="line">https://rubygems.org/</span><br><span class="line"></span><br><span class="line"><span class="comment"># gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/</span></span><br><span class="line">https://gems.ruby-china.org/ added to sources</span><br><span class="line">https://rubygems.org/ removed from sources</span><br><span class="line"></span><br><span class="line"><span class="comment"># cat ~/.gemrc </span></span><br><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.org/</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><em>请注意：国内的镜像站从<a href="https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.org</a> 换成了 <a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a> ！！！现在很多网上的资料就都是写的<a href="https://gems.ruby-china.org，导致很多人换了镜像源也装不上。" target="_blank" rel="noopener">https://gems.ruby-china.org，导致很多人换了镜像源也装不上。</a></em></p>
+<h3 id="3-修改-logstash的-gem-镜像源"><a href="#3-修改-logstash的-gem-镜像源" class="headerlink" title="3. 修改 logstash的 gem 镜像源"></a>3. 修改 logstash的 gem 镜像源</h3><p>cd到logstach的安装目录，可以看到Gemfile文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi Gemfile</span></span><br><span class="line"><span class="comment"># This is a Logstash generated Gemfile.</span></span><br><span class="line"><span class="comment"># If you modify this file manually all comments and formatting will be lost.</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">source</span> <span class="string">"https://rubygems.org"</span></span><br><span class="line">gem <span class="string">"logstash-core"</span>, :path =&gt; <span class="string">"./logstash-core"</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>更改默认的 <a href="https://rubygems.org" target="_blank" rel="noopener">https://rubygems.org</a> 为<a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a><br><img src="https://img-blog.csdnimg.cn/20200316171241910.png" alt="更换国内镜像源地址"></p>
+<h3 id="4-安装-logstash-output-jdbc"><a href="#4-安装-logstash-output-jdbc" class="headerlink" title="4. 安装 logstash-output-jdbc"></a>4. 安装 logstash-output-jdbc</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/logstash-plugin install logstash-output-jdbc</span></span><br><span class="line">Validating logstash-output-jdbc</span><br><span class="line">Installing logstash-output-jdbc</span><br><span class="line">Installation successful</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-查看插件是否安装成功"><a href="#5-查看插件是否安装成功" class="headerlink" title="5.查看插件是否安装成功"></a>5.查看插件是否安装成功</h3><p>在logstash的bin目录下执行./logstash-plugin list 可以查看已经安装的插件，可以看到logstash-output-jdbc的插件已经装好。<br><img src="https://img-blog.csdnimg.cn/20200316171324491.png" alt="检查插件安装"></p>
+<h1 id="配置logstash"><a href="#配置logstash" class="headerlink" title="配置logstash"></a>配置logstash</h1><p>新建一个pipline.conf的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="built_in">test</span>-pipeline.conf</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    stdin&#123;            #用于测试标准控制台输入的数据</span><br><span class="line">      type =&gt; <span class="string">"test-log"</span></span><br><span class="line">    &#125;</span><br><span class="line">    syslog&#123;           #用于接收来自syslog的日志</span><br><span class="line">        type =&gt; <span class="string">"test-log"</span></span><br><span class="line">        port =&gt; <span class="number">514</span></span><br><span class="line">    &#125;</span><br><span class="line">    kafka &#123;</span><br><span class="line">       bootstrap_servers =&gt; "172.28.65.26:9092" #kafka服务器地址</span><br><span class="line">       topics =&gt; "test1"           #kafka订阅的topic主题</span><br><span class="line">       codec =&gt; "json" #写入的时候使用json编码，因为logstash收集后会转换成json格式</span><br><span class="line">       consumer_threads =&gt; <span class="number">1</span></span><br><span class="line">       decorate_events =&gt; <span class="literal">true</span></span><br><span class="line">       add_field =&gt; &#123;</span><br><span class="line">             <span class="string">"logsource"</span> =&gt; <span class="string">"kafkalog"</span></span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ([type]==<span class="string">"test-log"</span> and <span class="string">"kafkalog"</span> not <span class="keyword">in</span> [logsource]) &#123;</span><br><span class="line">       kafka &#123;</span><br><span class="line">            codec =&gt; json</span><br><span class="line">            topic_id =&gt; <span class="string">"test1"</span></span><br><span class="line">            bootstrap_servers =&gt; <span class="string">"172.28.65.26:9092"</span></span><br><span class="line">            batch_size =&gt; <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ([type] == <span class="string">"test-log"</span> and <span class="string">"kafkalog"</span> <span class="keyword">in</span> [logsource]) &#123;</span><br><span class="line">        jdbc &#123;</span><br><span class="line">            driver_jar_path =&gt; <span class="string">"/opt/elk/logstash-7.6.0/vendor/jar/jdbc/mysql-connector-java-8.0.15.jar"</span></span><br><span class="line">            driver_class =&gt; <span class="string">"com.mysql.jdbc.Driver"</span></span><br><span class="line">            connection_string =&gt; <span class="string">"jdbc:mysql://172.28.65.32:3306/testdb?user=yourdbuser&amp;password=yourpassword"</span></span><br><span class="line">            statement =&gt; [ <span class="string">"INSERT INTO test_nginx_log (message) VALUES(?)"</span>, <span class="string">"message"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stdout &#123;</span><br><span class="line">       codec =&gt; rubydebug</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个逻辑就是从stdin或syslog接收数据output到kafka,然后从kafka中取出数据加入了一个logsource的字标识是从kafka过来的数据，然后又output到 jdbc写到mysql中去。<br>如果没有这几个if的逻辑判断，那么就会是个死循环。从kafka读同样的数据又写到kafka中。如果在两台机器上装有logstash一台取数据放到kafka,一台从kafka中取数据放到mysql中就可以不用加这样的判断逻辑会单纯简单一些。</p>
+<h1 id="执行logstash并查看效果"><a href="#执行logstash并查看效果" class="headerlink" title="执行logstash并查看效果"></a>执行logstash并查看效果</h1><p>通过在logstash安装目录下执行 bin/logstash -f test-pipeline.conf –config.test_and_exit 检查配置文件是否有问题，没有问题以后执行bin/logstash -f test-pipeline.conf –config.reload.automatic 运行logstash。<br>在控制台输入 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is a <span class="built_in">test</span>!</span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong><br>从控制台输入信息，可以看到从stdin输入output到stdout的没有logsource标识，input从kafka订阅过来的信息加了一个logsource=&gt;kafkalog的标识。<br><img src="https://img-blog.csdnimg.cn/20200316171423390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logsource=&gt;kafkalog的标识"><br>用kafka tool工具看到kafka收到了从stdin发过来的信息。<br><img src="https://img-blog.csdnimg.cn/20200316171453670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="用kafka tool工具看到kafka收到了从stdin发过来的信息"><br>在看MySQL表里的数据，已经通过logstash从kafka中将数据采集到了MySQL的表中。<br><img src="https://img-blog.csdnimg.cn/20200316171523708.png" alt="MySQL的表的信息数据"><br>再来看从syslog采集日志的效果<br>从控制台看到的信息效果<br><img src="https://img-blog.csdnimg.cn/20200316171552633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="控制台看到的信息效果"><br>从kafka tool看到的效果<br><img src="https://img-blog.csdnimg.cn/20200316171613337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="kafka tool看到的效果"><br>从mysql 表中看到的效果。<br><img src="https://img-blog.csdnimg.cn/20200316171630325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="mysql 表中看到的效果"><br><strong>可以看到，logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置就能满足绝大多数数据采集场景的需求。</strong></p>
+<hr>
+<p>作者博客:<a href="http://xiejava.gitee.io" target="_blank" rel="noopener">http://xiejava.gitee.io</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiejava.ishareread.com/posts/54e4fd14/" title="logstash集成kafka，mysql实现数据采集">http://xiejava.ishareread.com/posts/54e4fd14/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag"># 大数据</a>
+          
+            <a href="/tags/ELK/" rel="tag"># ELK</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/272f3054/" rel="next" title="解决Hexo博客模板hexo-theme-next的翻页按钮不正常显示问题">
+                <i class="fa fa-chevron-left"></i> 解决Hexo博客模板hexo-theme-next的翻页按钮不正常显示问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/7bbe2925/" rel="prev" title="syslog日志接口调试方法">
+                syslog日志接口调试方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备logstash的环境"><span class="nav-number">1.</span> <span class="nav-text">准备logstash的环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、下载mysql的jdbc驱动包"><span class="nav-number">1.1.</span> <span class="nav-text">一、下载mysql的jdbc驱动包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装logstash插件"><span class="nav-number">1.2.</span> <span class="nav-text">二、安装logstash插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Gem并更新"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 安装Gem并更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-检查并修改镜像源"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 检查并修改镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-修改-logstash的-gem-镜像源"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 修改 logstash的 gem 镜像源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-安装-logstash-output-jdbc"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 安装 logstash-output-jdbc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-查看插件是否安装成功"><span class="nav-number">1.2.5.</span> <span class="nav-text">5.查看插件是否安装成功</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置logstash"><span class="nav-number">2.</span> <span class="nav-text">配置logstash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行logstash并查看效果"><span class="nav-number">3.</span> <span class="nav-text">执行logstash并查看效果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">36.8k</span>
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
