@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="网络安全," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -134,20 +134,23 @@
 
 
 
-<meta name="description" content="企业安全能力框架(IPDRR)是美国国家标准与技术研究所（National Institute of Standards and Technology）的网络安全框架（简称NISTCSF )。第一个版本于2014年发布，旨在为寻求加强网咯安全防御的组织提供指导。企业可以根据自身需求加强网络安全防御。企业网络安全系统框架（参考IPDRR） 随着社会数字化转型的深入，网络攻击事件日益增多、破坏力逐步增">
+<meta name="description" content="环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。 一、查看系统版本12[root@localhost ~]# cat &#x2F;etc&#x2F;centos-releaseCentOS Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何理解企业安全能力框架(IPDRR)">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/6b94b28d/index.html">
+<meta property="og:title" content="CentOS7下安装python3.8">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/57cef505/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="企业安全能力框架(IPDRR)是美国国家标准与技术研究所（National Institute of Standards and Technology）的网络安全框架（简称NISTCSF )。第一个版本于2014年发布，旨在为寻求加强网咯安全防御的组织提供指导。企业可以根据自身需求加强网络安全防御。企业网络安全系统框架（参考IPDRR） 随着社会数字化转型的深入，网络攻击事件日益增多、破坏力逐步增">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210617155234944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210617155308964.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2021-06-17T08:49:08.000Z">
-<meta property="article:modified_time" content="2021-06-17T09:11:33.543Z">
+<meta property="og:description" content="环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。 一、查看系统版本12[root@localhost ~]# cat &#x2F;etc&#x2F;centos-releaseCentOS Linux">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9e8bcddbd7644d0b9bc702a13b3984e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/37df1186dcbf4820b7de6676120aa5ee.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/04054660445f497b886cb78119616722.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6777b0e3d68b4842a700a05af5eb6411.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2021-11-04T09:21:57.000Z">
+<meta property="article:modified_time" content="2021-11-04T10:24:03.667Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210617155234944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
 
 
 
@@ -177,13 +180,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/6b94b28d/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/57cef505/"/>
 
 
 
 
 
-  <title>如何理解企业安全能力框架(IPDRR) | XieJava's blog</title>
+  <title>CentOS7下安装python3.8 | XieJava's blog</title>
   
 
 
@@ -320,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6b94b28d/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/57cef505/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -337,7 +340,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">如何理解企业安全能力框架(IPDRR)</h2>
+          <h2 class="post-title" itemprop="name headline">CentOS7下安装python3.8</h2>
         
 
         <div class="post-meta">
@@ -349,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-17T16:49:08+08:00">
-                2021-06-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-04T17:21:57+08:00">
+                2021-11-04
               </time>
             
 
@@ -365,8 +368,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-06-17T17:11:33+08:00">
-                2021-06-17
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-04T18:24:03+08:00">
+                2021-11-04
               </time>
             
           </span>
@@ -395,8 +398,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -413,8 +416,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/6b94b28d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6b94b28d/" itemprop="commentCount"></span>
+                <a href="/posts/57cef505/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/57cef505/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -422,7 +425,7 @@
 
           
           
-             <span id="/posts/6b94b28d/" class="leancloud_visitors" data-flag-title="如何理解企业安全能力框架(IPDRR)">
+             <span id="/posts/57cef505/" class="leancloud_visitors" data-flag-title="CentOS7下安装python3.8">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -447,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.6k
+                  914
                 </span>
               
 
@@ -463,7 +466,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -484,15 +487,55 @@
       
 
       
-        <p>企业安全能力框架(IPDRR)是美国国家标准与技术研究所（National Institute of Standards and Technology）的网络安全框架（简称NISTCSF )。第一个版本于2014年发布，旨在为寻求加强网咯安全防御的组织提供指导。企业可以根据自身需求加强网络安全防御。<br><img src="https://img-blog.csdnimg.cn/20210617155234944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="企业网络安全系统框架"><br>企业网络安全系统框架（参考IPDRR）</p>
-<p>随着社会数字化转型的深入，网络攻击事件日益增多、破坏力逐步增强。安全方法论也正逐步从”针对威胁的安全防御”向“面向业务的安全治理”（IPDRR）等演进。</p>
-<p>IPDRR能力框架模型包括风险识别（Identify）、安全防御（Protect）、安全检测（Detect）、安全响应（Response）和安全恢复（Recovery）五大能力，从以防护为核心的模型，转向以检测和业务连续性管理的模型，变被动为主动，最终达成自适应的安全能力。</p>
-<p>IPDRR模型体现了安全保障系统化的思想，管理与技术结合来有效保障系统核心业务的安全。通过持续的安全检测来实现IPDRR的闭环安全，为用户提供完善的安全能力框架和支撑体系。</p>
-<p>具体来说IPDRR主要包含了五个部分：<br><strong>识别（Identify）</strong>：识别网络资产及风险，是指对系统、资产、数据和网络所面临的安全风险的认识及确认<br><strong>保护（Protect）</strong>：保护网络，是指制定和实施合适的安全措施，确保能够提供关键基础设施服务。<br><strong>检测（Detect）</strong>：发现攻击，在攻击产生时即时监测，同时监控业务和保护措施是否正常运行，制定和实施恰当的行动以发现网络安全事件<br><strong>响应（Respond）</strong>：响应和处理事件，指对已经发现的网络安全事件采取合适的行动。具体程序依据事件的影响程度来进行抉择，主要包括：事件调查、评估损害、收集证据、报告事件和恢复系统<br><strong>恢复（Recover）</strong>：恢复系统和修复漏洞，将系统恢复至正常状态，同时找到事件的根本原因，并进行预防和修复</p>
-<p>可以参考大家对实体财物是怎么保护的就很容易理解了。举个例子，大家如何对自己的私有财产是怎么保护的呢？<br>第一步识别（Identify）肯定是识别出有哪些资产分别都有什么风险吧，比如家里的现金、金银珠宝、贵重电器、房产证、82年的拉菲、92年的茅台等等对于我们来说都是属于我们要保护的资产，这些都有被小偷偷走，被破坏等风险。所以我们需要采取一定的措施将这些资产给保护起来。<br>比如现金、金银珠宝、房产证等放在保险柜里，82年的拉菲、92年的茅台等搞个酒窖上好锁，家里的房子装好防护门、防盗窗等，这些就是第二步保护（Protect），对需要保护的资产做好基本的防护。做到了这些够不够呢？显然是不够的，这只是做好被动防御，我们还要做好主动防御，也就是第三步检测（Detect），这时候我们可以装一些监控设备摄像头、传感器等等，看时时刻刻监控我们所要保护的资产看有没有什么情况，还可以雇佣一批保安7*24小时巡逻实时监测。响应（Respond）也就是发现了什么风吹草动，就采取响应的措施，比如如果是有人破门而入就及时的告警，制止，报警。恢复（Recover）就是对易发生的损失进行恢复，如有人破门而入把门给搞坏了，就得把门重新修好或换一个新的级别更高更安全的门。</p>
-<p>企业的网络安全也是一样的。首先要识别自己企业的网络安全资产如重要系统、服务器等都部署在哪里，有没有漏洞，基线配置有没有合规。然后需要做好基本的防护，比如在出入口部署防火墙、主机装EDR、Web服务器要在WAF的保护下、做好访问控制、部署IPS设备等等。有了基础的防护设备以后要做好检测响应比如部署NTA做好流量检测分析、部署SIEM或日志分析系统将这些基础防护设备的告警精心接入做好安全告警的检测分析。通过检测设备发现网络安全事件以后要采取响应的响应措施，比如发现漏洞要进行补洞加固等、发现攻击封堵IP等，可以通过SOAR安全编排与自动化响应平台对人、工具、流程进行协同提高对于安全事件的响应能力。最后是恢复，也就是对已经造成的破坏进行恢复至正常状态，对于失陷的主机进行离网、杀毒、重装、恢复等。</p>
-<p>本文试图对市面上常见的安全产品进行分类来映射到IPDRR的五大能力<br><strong>识别（Identify）</strong>提供识别能力的产品包括资产管理平台、资产测绘平台、基线管理平台、漏洞扫描工具等。<br><strong>保护（Protect）</strong>提供保护能力的产品包括主机防御类EDR、VPN、4A、防火墙、IPS、WAF、抗DOS等<br><strong>检测（Detect）</strong> 提供威胁检测能力的产品包括IDS、NTA、蜜罐、恶意代码检测、用户异常行为检测等。<br><strong>响应（Respond）</strong>：提供响应能力的产品包括SIEM、安全审计、态势感知、SOAR等<br><strong>恢复（Recover）</strong>：提供恢复能力的产品包括NG-SOC，NG-SOC理论上应该是覆盖了IPDRR所有的能力。<br><img src="https://img-blog.csdnimg.cn/20210617155308964.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="IPDRR产品能力映射"></p>
-<p>当然企业安全能力不能够仅仅的依靠工具，是人、策略、流程、工具综合能力的体现。企业可以根据自身需求参考IPDRR能力框架模型加强网络安全能力建设，哪里欠缺补哪里，通过管理与技术结合来有效保障系统核心业务的安全。</p>
+        <p>环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。</p>
+<h1 id="一、查看系统版本"><a href="#一、查看系统版本" class="headerlink" title="一、查看系统版本"></a>一、查看系统版本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat /etc/centos-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.0-327.el7.x86_64 <span class="comment">#1 SMP Thu Nov 19 22:10:57 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<p>查看python版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># python -V</span></span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+
+<p>系统默认安装了Python 2.7.5</p>
+<h1 id="二、安装依赖"><a href="#二、安装依赖" class="headerlink" title="二、安装依赖"></a>二、安装依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
+
+<p>如果有提示一路选择Y就可以</p>
+<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="下载Python源码包"></p>
+<p>下载稳定版本3.8版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、解压安装python源码包"><a href="#四、解压安装python源码包" class="headerlink" title="四、解压安装python源码包"></a>四、解压安装python源码包</h1><h2 id="1、解压"><a href="#1、解压" class="headerlink" title="1、解压"></a>1、解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><p>进入解压后的目录进行编译和安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.8.12/</span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ./configure</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># make&amp;&amp;make install</span></span><br></pre></td></tr></table></figure>
+<p>执行完后显示安装成功<br><img src="https://img-blog.csdnimg.cn/9e8bcddbd7644d0b9bc702a13b3984e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pyhont安装成功"></p>
+<h2 id="3、建立命令软链接"><a href="#3、建立命令软链接" class="headerlink" title="3、建立命令软链接"></a>3、建立命令软链接</h2><p>虽然python3.8.12安装成功了，但默认输入python还是显示是2.7版本的。如果要用python3.8.12需要输入python3即可，有时候不太方便。可以通过修改软链接的方式将默认的python指向python3.8.12。<br>先看一下默认的python及新安装的python3都安装在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python</span></span><br><span class="line">/usr/bin/python</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
+<p>可以看到默认的python路径为/usr/bin/python，python3的路径为/usr/local/bin/python3<br>将python3的软链接加到python上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># mv /usr/bin/python /usr/bin/python.bak</span></span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/python3 /usr/bin/python</span></span><br></pre></td></tr></table></figure>
+<p>通过python -V命令查看python版号，这时python的版本已经是3.8.12了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># python -V</span></span><br><span class="line">Python 3.8.12</span><br></pre></td></tr></table></figure>
+<p>pip命令也可以修改，python3.8.12默认的pip是pip3，CentOS7的python2.7默认没有安装pip.<br>输入pip命令的时候提示命令没有找到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip</span></span><br><span class="line">bash: pip: <span class="built_in">command</span> not found...</span><br></pre></td></tr></table></figure>
+<p>这时也可以通过建立软链接的方式将pip命令链接到pip3上。首先看pip3命令在哪?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which pip3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/pip3</span><br></pre></td></tr></table></figure>
+<p>然后建立pip到pip3的软链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/pip3 /usr/bin/pip</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip -V</span></span><br><span class="line">pip 21.1.1 from /usr/<span class="built_in">local</span>/lib/python3.8/site-packages/pip (python 3.8)</span><br></pre></td></tr></table></figure>
+<h1 id="五、配置yum"><a href="#五、配置yum" class="headerlink" title="五、配置yum"></a>五、配置yum</h1><p>安装python3改完软链接以后发现yum命令报错了，yum是依赖python2.7的，你把python改成了3.8了，所以报错了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># yum</span></span><br><span class="line">  File <span class="string">"/usr/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
+
+<p>可以修改yum里对python2的依赖即可。虽然安装了python3但是系统里python2依旧还在系统里，可以通过python2来指定用python2.7的命令，首先来看下python2的命令在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># which python2</span></span><br><span class="line">/usr/bin/python2</span><br></pre></td></tr></table></figure>
+<p>可以cd到/usr/bin目录下 通过ls -alh|grep python查看python命令的详细情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ls -alh|grep python</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/37df1186dcbf4820b7de6676120aa5ee.png#pic_center" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
+<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://img-blog.csdnimg.cn/04054660445f497b886cb78119616722.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/6777b0e3d68b4842a700a05af5eb6411.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
+<p>修改完这两个文件后，再敲yum命令就不会报错了。</p>
+<p><strong>至此CentOS7环境下python3.8.12已经成功安装！</strong></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 
       
     </div>
@@ -513,7 +556,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/6b94b28d/" title="如何理解企业安全能力框架(IPDRR)">https://xiejava.gitee.io/posts/6b94b28d/</a>
+    <a href="https://xiejava.gitee.io/posts/57cef505/" title="CentOS7下安装python3.8">https://xiejava.gitee.io/posts/57cef505/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -528,7 +571,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -541,8 +584,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/e5fab05b/" rel="next" title="再见2020,2021我来了！">
-                <i class="fa fa-chevron-left"></i> 再见2020,2021我来了！
+              <a href="/posts/63a3c769/" rel="next" title="认识SOAR-安全事件编排自动化响应">
+                <i class="fa fa-chevron-left"></i> 认识SOAR-安全事件编排自动化响应
               </a>
             
           </div>
@@ -550,10 +593,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/3866c7c1/" rel="prev" title="初识威胁情报">
-                初识威胁情报 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,8 +649,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -710,6 +758,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、查看系统版本"><span class="nav-number">1.</span> <span class="nav-text">一、查看系统版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、安装依赖"><span class="nav-number">2.</span> <span class="nav-text">二、安装依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、下载python源码包"><span class="nav-number">3.</span> <span class="nav-text">三、下载python源码包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、解压安装python源码包"><span class="nav-number">4.</span> <span class="nav-text">四、解压安装python源码包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、解压"><span class="nav-number">4.1.</span> <span class="nav-text">1、解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装"><span class="nav-number">4.2.</span> <span class="nav-text">2、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、建立命令软链接"><span class="nav-number">4.3.</span> <span class="nav-text">3、建立命令软链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、配置yum"><span class="nav-number">5.</span> <span class="nav-text">五、配置yum</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
