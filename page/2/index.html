@@ -313,6 +313,271 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/57cef505/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/57cef505/" itemprop="url">CentOS7下安装python3.8</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-04T17:21:57+08:00">
+                2021-11-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-04T18:24:15+08:00">
+                2021-11-04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/57cef505/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/57cef505/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/57cef505/" class="leancloud_visitors" data-flag-title="CentOS7下安装python3.8">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  914
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。</p>
+<h1 id="一、查看系统版本"><a href="#一、查看系统版本" class="headerlink" title="一、查看系统版本"></a>一、查看系统版本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat /etc/centos-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.0-327.el7.x86_64 <span class="comment">#1 SMP Thu Nov 19 22:10:57 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<p>查看python版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># python -V</span></span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+
+<p>系统默认安装了Python 2.7.5</p>
+<h1 id="二、安装依赖"><a href="#二、安装依赖" class="headerlink" title="二、安装依赖"></a>二、安装依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
+
+<p>如果有提示一路选择Y就可以</p>
+<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="下载Python源码包"></p>
+<p>下载稳定版本3.8版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、解压安装python源码包"><a href="#四、解压安装python源码包" class="headerlink" title="四、解压安装python源码包"></a>四、解压安装python源码包</h1><h2 id="1、解压"><a href="#1、解压" class="headerlink" title="1、解压"></a>1、解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><p>进入解压后的目录进行编译和安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.8.12/</span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ./configure</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># make&amp;&amp;make install</span></span><br></pre></td></tr></table></figure>
+<p>执行完后显示安装成功<br><img src="https://img-blog.csdnimg.cn/9e8bcddbd7644d0b9bc702a13b3984e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pyhont安装成功"></p>
+<h2 id="3、建立命令软链接"><a href="#3、建立命令软链接" class="headerlink" title="3、建立命令软链接"></a>3、建立命令软链接</h2><p>虽然python3.8.12安装成功了，但默认输入python还是显示是2.7版本的。如果要用python3.8.12需要输入python3即可，有时候不太方便。可以通过修改软链接的方式将默认的python指向python3.8.12。<br>先看一下默认的python及新安装的python3都安装在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python</span></span><br><span class="line">/usr/bin/python</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
+<p>可以看到默认的python路径为/usr/bin/python，python3的路径为/usr/local/bin/python3<br>将python3的软链接加到python上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># mv /usr/bin/python /usr/bin/python.bak</span></span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/python3 /usr/bin/python</span></span><br></pre></td></tr></table></figure>
+<p>通过python -V命令查看python版号，这时python的版本已经是3.8.12了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># python -V</span></span><br><span class="line">Python 3.8.12</span><br></pre></td></tr></table></figure>
+<p>pip命令也可以修改，python3.8.12默认的pip是pip3，CentOS7的python2.7默认没有安装pip.<br>输入pip命令的时候提示命令没有找到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip</span></span><br><span class="line">bash: pip: <span class="built_in">command</span> not found...</span><br></pre></td></tr></table></figure>
+<p>这时也可以通过建立软链接的方式将pip命令链接到pip3上。首先看pip3命令在哪?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which pip3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/pip3</span><br></pre></td></tr></table></figure>
+<p>然后建立pip到pip3的软链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/pip3 /usr/bin/pip</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip -V</span></span><br><span class="line">pip 21.1.1 from /usr/<span class="built_in">local</span>/lib/python3.8/site-packages/pip (python 3.8)</span><br></pre></td></tr></table></figure>
+<h1 id="五、配置yum"><a href="#五、配置yum" class="headerlink" title="五、配置yum"></a>五、配置yum</h1><p>安装python3改完软链接以后发现yum命令报错了，yum是依赖python2.7的，你把python改成了3.8了，所以报错了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># yum</span></span><br><span class="line">  File <span class="string">"/usr/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
+
+<p>可以修改yum里对python2的依赖即可。虽然安装了python3但是系统里python2依旧还在系统里，可以通过python2来指定用python2.7的命令，首先来看下python2的命令在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># which python2</span></span><br><span class="line">/usr/bin/python2</span><br></pre></td></tr></table></figure>
+<p>可以cd到/usr/bin目录下 通过ls -alh|grep python查看python命令的详细情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ls -alh|grep python</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/37df1186dcbf4820b7de6676120aa5ee.png#pic_center" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
+<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://img-blog.csdnimg.cn/04054660445f497b886cb78119616722.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/6777b0e3d68b4842a700a05af5eb6411.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
+<p>修改完这两个文件后，再敲yum命令就不会报错了。</p>
+<p><strong>至此CentOS7环境下python3.8.12已经成功安装！</strong></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/63a3c769/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2550,277 +2815,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8a1fa561/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/8a1fa561/" itemprop="url">网络信息安全管理要素和安全风险评估</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-04T16:41:52+08:00">
-                2020-12-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-01T00:44:57+08:00">
-                2021-01-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/8a1fa561/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8a1fa561/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/8a1fa561/" class="leancloud_visitors" data-flag-title="网络信息安全管理要素和安全风险评估">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>网络信息安全管理要素由网络管理对象、网络威胁、网络脆弱性、网络风险、网络保护措施组成。<br><img src="https://img-blog.csdnimg.cn/20201204163036136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="网络信息安全管理要素"><br>由于网络管理对象自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。</p>
-<p>网络安全管理实际上就是风险控制，其基本过程是通过网络管理对象的威胁和脆弱性进行分析，确定网络管理对象的价值、网络管理对象威胁发生的可能性、网络管理对象的脆弱程度，从而确定网络管理对象的风险等级，然后据此选取合适的安全保护措施，降低网络管理对象的风险。</p>
-<p>所有的安全管理、安全服务、安全技术等都是围绕网络信息安全管理要素来的。</p>
-<p>网络安全风险评估是评价网络信息系统遭受潜在的安全威胁所产生的影响。</p>
-<p>网络安全风险，是指由于网络系统所存在的脆弱性，因人为或自然的威胁导致安全事件发生所造成的可能性。网络风险评估就是评估威胁者利用网络资产的脆弱性，造成网络资产损失的严重程度。</p>
-<p>网络安全风险评估过程，主要包括网络安全风险评估准备、资产识别、威胁识别、脆弱性识别、已有的安全措施分析、网络安全风险分析、网络安全风险处置与管理等。<br><img src="https://img-blog.csdnimg.cn/20201204163226746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="网络安全风险评估过程"><br><strong>资产识别</strong>包含“网络资产鉴定”和“网络资产价值估算”。前者给出评估所考虑的具体对象，确认网络资产种类和清单，是整个评估工作的基础。常见的网络资产主要分为网络设备、主机、服务器、应用、数据和文档资产等六个方面。</p>
-<p>“网络资产价值估算”是某一具体资产在网络系统中的重要程度确认。</p>
-<p>威胁是指可能对评估对象造成损害的外部原因。威胁利用评估对象自身的脆弱性，采用一定的途径和方式，对评估对象造成损害或损失，从而形成风险，<strong>威胁识别</strong>是对网络资产有可能受到的安全危害进行分析，一般从威胁来源、威胁途径、威胁意图等几个方面来分析。</p>
-<p>脆弱性是指评估对象存在一个或多个脆弱的管理、技术、业务方面的漏洞，这些漏洞可能会被威胁所利用。<strong>脆弱性识别</strong>是指通过各种测试方法，获得网络资产中所存在的缺陷清单，这些缺陷会导致对信息资产的非授权访问、泄密、失控、破坏或不可用、绕过已有的安全机制，缺陷的存在将会危及网络资产的安全。</p>
-<table>
-<thead>
-<tr>
-<th>任务</th>
-<th>输出文档</th>
-<th>文档内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>风险评估准备</td>
-<td>会议记录并确认需要评估的系统、评估计划和评估程序</td>
-<td>评估系统、评估计划和内容安排，双方负责人及需要明确的协调工作</td>
-</tr>
-<tr>
-<td>访谈</td>
-<td>针对业务系统进行技术安全和管理安全评估的访谈表</td>
-<td>业务系统描述、运营情况和用户群体，并了解业务管理流程</td>
-</tr>
-<tr>
-<td>文档审查（资产识别）</td>
-<td>资产审查记录和业务系统审查记录</td>
-<td>资产管理台账、网络拓扑图、业务运营管理制度和责任人</td>
-</tr>
-<tr>
-<td>威胁识别</td>
-<td>技术安全测评的网络、主机、应用测评结果记录，工具测试完成后的电子输出记录</td>
-<td>漏洞扫描、渗透性测试、性能测试、入侵检测和协议分析等内容的技术测试结果</td>
-</tr>
-<tr>
-<td>脆弱性识别</td>
-<td>根据威胁识别结果，技术安全测评的网络、主机、应用测评</td>
-<td>检查检查内容的记录，并根据威胁对业务系统脆弱性进行识别</td>
-</tr>
-<tr>
-<td>风险处置</td>
-<td>风险处置措施记录</td>
-<td>对已识别的风险进行评估和处置，并评估是否存在残余风险</td>
-</tr>
-<tr>
-<td>风险管理</td>
-<td>对可接受的残余风险进行风险管理并出具风险评估报告</td>
-<td>风险评估过程中发现的问题、问题的证据和证据源、每项检查活动中测评委托单位配合人员的书面认可</td>
-</tr>
-</tbody></table>
-<p>网络安全风险分析是指在资产评估、威胁评估、脆弱性评估、安全管理评估、安全影响评估的基础上，综合利用定性和定量的分析方法，选择适当的风险计算方法或工具确定风险的大小与风险等级，即对网络系统安全管理范围内的每一个网络资产因遭受泄露、修改、不可用和破坏所带来的任何影响做出一个风险测量的列表，以便识别与选择适当和正确的安全控制方式。通过分析所评估的数据，进行风险值计算。</p>
-<p><img src="https://img-blog.csdnimg.cn/20201204163838552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="网络安全风险分析"><br>网络安全风险分析的主要步骤如下：<br>一、对资产进行识别，并对资产的价值进行赋值。<br>二、对威胁进行识别，描述威胁的属性，并对威胁出现的频率赋值。<br>三、对脆弱性进行识别，并对具体资产的脆弱性的严重程度赋值。<br>四、根据威胁及威胁利用脆弱性的难易程度判断安全事件发生的可能性<br>五、根据脆弱性的严重程度及安全事件所作用的资产价值计算安全事件的损失。<br>六、根据安全事件发生的可能性及安全事件出现后的损失，计算安全事件一旦发生对组织的影响，即网络安全风险值。其中，安全事件损失是指确定已经鉴定的资产受到损害所带来的影响。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2877,7 +2871,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2985,7 +2979,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">65.9k</span>
+    <span title="Site words total count">67.2k</span>
   
 </div>
 
