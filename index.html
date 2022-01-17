@@ -313,6 +313,353 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/72d6b06f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/72d6b06f/" itemprop="url">网络安全之恶意代码</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-17T22:31:41+08:00">
+                2022-01-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-01-17T23:36:30+08:00">
+                2022-01-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/72d6b06f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/72d6b06f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/72d6b06f/" class="leancloud_visitors" data-flag-title="网络安全之恶意代码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>恶意代码是一种有害的计算机代码或 web 脚本，其设计目的是创建系统漏洞，并借以造成后门、安全隐患、信息和数据盗窃、以及其他对文件和计算机系统的潜在破坏。恶意代码不仅使企业和用户蒙受了巨大的经济损失，而且使国家的安全面临着严重威胁。1991年的海湾战争是美国第一次公开在实战中使用恶意代码攻击技术取得重大军事利益，从此恶意代码攻击成为信息战、网络战最重要的入侵手段之一。恶意代码问题无论从政治上、经济上、还是军事上，都成为信息安全面临的首要问题。让我们一起来认识一下恶意代码。</p>
+<h1 id="一、什么是恶意代码"><a href="#一、什么是恶意代码" class="headerlink" title="一、什么是恶意代码"></a>一、什么是恶意代码</h1><p>恶意代码（Unwanted Code）是指故意编制或设置的、对网络或系统会产生威胁或潜在威胁的计算机代码。最常见的恶意代码有计算机病毒（简称病毒）、特洛伊木马（简称木马）、计算机蠕虫（简称蠕虫）、后门、逻辑炸弹等。</p>
+<h1 id="二、恶意代码的分类"><a href="#二、恶意代码的分类" class="headerlink" title="二、恶意代码的分类"></a>二、恶意代码的分类</h1><h2 id="1、恶意代码分类"><a href="#1、恶意代码分类" class="headerlink" title="1、恶意代码分类"></a>1、恶意代码分类</h2><p>恶意代码的分类标准主要是代码的<strong>独立性</strong>和<strong>自我复制性</strong>，独立的恶意代码是指具备一个完整程序所应该具有的全部功能功能，能够独立传播、运行的恶意代码，这样的恶意代码不需要寄宿在另一个程序中。非独立恶意代码只是一段代码，必须嵌入某个完整的程序中，作为该程序的一个组成部分进行传播和运行。对于非独立恶意代码，自我复制过程就是将自身嵌入宿主程序的过程，这个过程也称为感染宿主程序的过程。对于独立恶意代码，自我复制过程就是将自身传播给其他系统的过程。不具有自我复制能力的恶意代码必须借助其他媒介进行传播。</p>
+<p>分类：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>具有自我复制能力的依附性恶意代码</td>
+<td>主要代表是病毒</td>
+</tr>
+<tr>
+<td>具有自我复制能力的独立性恶意代码</td>
+<td>主要代表是蠕虫</td>
+</tr>
+<tr>
+<td>不具有自我复制能力的依附性恶意代码</td>
+<td>主要代表是后门</td>
+</tr>
+<tr>
+<td>不具有自我复制能力的独立性恶意代码</td>
+<td>主要代表是木马</td>
+</tr>
+</tbody></table>
+<h2 id="2、不同恶意代码的区别"><a href="#2、不同恶意代码的区别" class="headerlink" title="2、不同恶意代码的区别"></a>2、不同恶意代码的区别</h2><p>病毒侧重于破坏系统和程序的能力</p>
+<p>木马侧重于窃取敏感信息的能力</p>
+<p>蠕虫侧重于网络中的自我复制能力和自我传染能力</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>病毒</th>
+<th>木马</th>
+<th>蠕虫</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>存在形式</strong></td>
+<td>寄生</td>
+<td>独立文件</td>
+<td>独立文件</td>
+</tr>
+<tr>
+<td><strong>传染途径</strong></td>
+<td>通过宿主程序运行</td>
+<td>植入目标主机</td>
+<td>系统漏洞</td>
+</tr>
+<tr>
+<td><strong>传染速度</strong></td>
+<td>慢</td>
+<td>最慢</td>
+<td>快</td>
+</tr>
+<tr>
+<td><strong>攻击目标</strong></td>
+<td>本地文件</td>
+<td>文件、网络主机</td>
+<td>存在漏洞的网络程序</td>
+</tr>
+<tr>
+<td><strong>触发机制</strong></td>
+<td>攻击者指定条件</td>
+<td>自启动</td>
+<td>自动攻击有漏洞的程序</td>
+</tr>
+<tr>
+<td><strong>防范方法</strong></td>
+<td>从宿主文件中清除</td>
+<td>清除启动项和木马服务程序</td>
+<td>更新安全补丁</td>
+</tr>
+<tr>
+<td><strong>对抗主体</strong></td>
+<td>用户，反病毒软件</td>
+<td>用户、管理员、反病毒软件</td>
+<td>应用程序供应商、用户和管理员</td>
+</tr>
+</tbody></table>
+<h1 id="三、恶意代码基本技术"><a href="#三、恶意代码基本技术" class="headerlink" title="三、恶意代码基本技术"></a>三、恶意代码基本技术</h1><h2 id="1、隐蔽技术"><a href="#1、隐蔽技术" class="headerlink" title="1、隐蔽技术"></a>1、隐蔽技术</h2><h3 id="（1）本地隐藏"><a href="#（1）本地隐藏" class="headerlink" title="（1）本地隐藏"></a>（1）本地隐藏</h3><p> 防止本地系统管理人员觉察而采取的隐蔽手段。</p>
+<ul>
+<li><strong>文件隐蔽</strong>：将恶意代码的文件命名为与系统的合法程序文件名相似的名称，或者干脆取而代之，或者将恶意代码文件附加到合法程序文件中。</li>
+<li><strong>进程隐蔽</strong>：附着或替换系统进程，使恶意代码以合法服务的身份运行，从而隐蔽恶意代码。还可以通过修改进程列表程序，修改命令行参数使恶意代码进程的信息无法查询。也可以借助RootKit 技术实现进程隐蔽。</li>
+<li><strong>网络连接隐蔽</strong>：借用现有服务的端口实现网络连接隐蔽，如使用80端口，攻击者在自己的数据包设置特殊标识，通过标识识别连接信息，未标识的WWW 服务网络包仍转交给原服务程序处理。</li>
+<li><strong>编译器隐蔽</strong>：由编译器在对程序代码进行编译时植入恶意代码，从而实现恶意代码在用户程序中的隐藏和原始分发攻击。恶意代码的植入者是编译器开发人员。</li>
+<li><strong>RootKit隐蔽</strong>：利用适当的Rootkit工具，可以很好的隐蔽自身或指定的文件、进程和网络连接等，很难被管理员发现。<h3 id="（2）网络隐藏"><a href="#（2）网络隐藏" class="headerlink" title="（2）网络隐藏"></a>（2）网络隐藏</h3>网络隐藏主要是指通信内容和传输通道的隐藏。</li>
+<li><strong>通信内容隐蔽</strong>：使用加密算法对所传输的内容进行加密能够隐蔽通信内容。</li>
+<li><strong>传输通道隐藏</strong>：利用隐蔽通道技术，实现对传输通道的隐蔽。（隐蔽通道（Covert Channel）是一个不受安全机制控制的、利用共享资源作为通信通路的信息流。包括有：存储隐蔽通道和时间隐蔽通道。）</li>
+</ul>
+<h2 id="2、生存技术"><a href="#2、生存技术" class="headerlink" title="2、生存技术"></a>2、生存技术</h2><p>恶意代码的生存技术主要包括四种类型：</p>
+<ul>
+<li><strong>反跟踪技术</strong>：通过提高恶意代码分析难度，减少被发现的可能性</li>
+<li><strong>加密技术</strong>：利用加密技术，提高恶意代码自身保护能力<br>模糊变换技术：利用模糊变换技术，恶意代码可以躲避基于特征码的恶意代码检测系统，提高生存能力</li>
+<li><strong>自动生产技术</strong>：利用自动生成技术，在已有的恶意代码的基础上自动生成特征码不断变化的新的恶意代码，从而躲避基于特征码的恶意代码检测。</li>
+</ul>
+<h2 id="3、攻击技术"><a href="#3、攻击技术" class="headerlink" title="3、攻击技术"></a>3、攻击技术</h2><ul>
+<li><strong>进程注入技术</strong>：恶意代码程序将自身嵌入到操作系统和网络系统的服务程序中，不但实现了自身的隐藏，而且还能随着服务的加载而启动。</li>
+<li><strong>三线程技术</strong>：恶意代码进程同时开启三个线程，其中一个为主线程，负责远程控制的工作。另外两个辅助线程分别是监视和守护线程。一旦发现主线程被删除，则立即设法恢复。</li>
+<li><strong>端口复用技术</strong>：重复利用系统或网络服务打开的端口（如80端口），可以欺骗防火墙，具有很强的欺骗性。</li>
+<li><strong>超级管理技术</strong>：恶意代码采用超级管理技术对反恶意代码软件系统进行攻击，使其无法正常运行。</li>
+<li><strong>端口反向连接技术</strong>：指使恶意代码的服务端（被控制端）主动连接客户端（控制端）的技术。</li>
+<li><strong>缓冲区溢出技术</strong>：恶意代码利用系统和网络服务的安全漏洞植入并且执行攻击代码，造成缓冲区溢出，从而获得被攻击主机的控制权。</li>
+</ul>
+<h1 id="三、恶意代码传播方式及防范手段"><a href="#三、恶意代码传播方式及防范手段" class="headerlink" title="三、恶意代码传播方式及防范手段"></a>三、恶意代码传播方式及防范手段</h1><h2 id="1、传播方式"><a href="#1、传播方式" class="headerlink" title="1、传播方式"></a>1、传播方式</h2><p>传播途径</p>
+<ul>
+<li><strong>利用操作系统和应用软件的漏洞进行传播</strong></li>
+<li><strong>通过网站传播</strong><br>在网页上挂载恶意代码<br>如：主机流览该网页时，恶意代码会自动下载到主机执行。<br>将恶意代码与正常应用软件捆绑<br>如：主机下载正常软件运行时，恶意代码也随之自动运行。</li>
+<li><strong>利用移动媒介传播</strong><br>如：主机访问U盘和硬盘时，恶意代码可以自动执行。</li>
+<li><strong>利用用户之间的信任关系传播</strong><br>如：冒充用户发送虚假链接、图片、邮件等。</li>
+</ul>
+<p>总的来说，恶意代码的传播是因为用户的软件出现了漏洞、操作不慎或者是两者的结合造成。</p>
+<p>（1）病毒。病毒具备有自我复制能力，一般嵌入主机的程序中。当被感染文件执行操作，如，用户打开一个可执行文件时，病毒就会自我繁殖。病毒一般都具有破坏性。<br>（2）木马。这种程序从表面上看没有危害，但实际上却隐含着恶意的意图和破坏的作用。一些木马程序会通过覆盖系统中已经存在的文件的方式存在于系统之中；另外有的还会以软件的形式出现，因为它一般是以一个正常的应用程序身份在系统中运行的，所以这种程序通常不容易被发现。<br>（3）蠕虫。蠕虫是一种可以自我复制的完全独立的程序，它的传播不需要借助被感染主机中的程序和用户的操作，而是通过系统存在的漏洞和设置的不安全性来进行入侵，如通过共享的设置来侵入。蠕虫可以自动创建与它的功能完全相同的副本，并能在无人干涉的情况下自动运行，大量地复制占用计算机的空间，使计算机的运行缓慢甚至瘫痪。</p>
+<h2 id="2、攻击机制"><a href="#2、攻击机制" class="headerlink" title="2、攻击机制"></a>2、攻击机制</h2><p>恶意代码的行为表现各异，破坏程度千差万别，但基本作用机制大体相同，其整个作用过程分为6个部分。<br><strong>（1）侵入系统</strong>。侵入系统是而已代码实现其恶意目的的必要条件。恶意代码入侵的途径很多，包括前面传播方式的各种途径。如：从互联网下载的程序本身就可能含有而已代码；接收已感染恶意代码的电子邮件；从光盘或U盘往系统上安装软件；黑客或者攻击者故意将恶意代码植入系统等。<br><strong>（2）维持或提升权限</strong>。恶意代码的传播与破坏必须盗用用户或者进程的合法权限才能完成。<br><strong>（3）隐蔽策略</strong>。为了不让系统发现恶意代码已经侵入系统，恶意代码可能会改名、删除源文件或者修改系统的安全策略来隐藏自己。<br><strong>（4）潜伏</strong>。恶意代码侵入系统后，等待一定的条件，并具有足够的权限时，就发作并进行破坏活动。<br><strong>（5）破坏</strong>。恶意代码本质具有破坏性，其目的是造成信息丢失，泄密，破坏系统完整性等。<br><strong>（6）重复（1）至（5）对新的目标实施攻击过程。</strong><br><img src="https://img-blog.csdnimg.cn/746efa50ae124e18af6b275d10e8196a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="恶意代码的攻击模型"></p>
+<h2 id="3、防范手段"><a href="#3、防范手段" class="headerlink" title="3、防范手段"></a>3、防范手段</h2><p>通用恶意代码检测技术包括静态和动态检测技术：</p>
+<ul>
+<li><p><strong>基于特征的扫描技术</strong><br>建立恶意代码的特征文件，在扫描时根据特征进行匹配查找</p>
+</li>
+<li><p><strong>校验和法</strong><br>对需要监控的文件生成校验，周期性的生成新校验和并与原始值比较</p>
+</li>
+<li><p><strong>沙箱技术</strong><br>根据程序需要的资源和拥有的权限建立运行沙箱，可以安全地检测和分析程序行为</p>
+</li>
+<li><p><strong>基于蜜罐的检测技术</strong><br>将主机伪装为运行着脆弱的服务或系统，同时安装强大的监测系统。</p>
+</li>
+</ul>
+<p>其中基于特征的扫描技术和校验和法是静态检测技术，沙箱技术和基于蜜罐的检测技术属于动态检测技术。</p>
+<h2 id="四、常见恶意代码"><a href="#四、常见恶意代码" class="headerlink" title="四、常见恶意代码"></a>四、常见恶意代码</h2><p><img src="https://img-blog.csdnimg.cn/a67e601851d74a45ac57f45552261bd1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="常见的恶意代码"></p>
+<p>参考文献：<br>《网络攻防技术与实战 深入理解信息安全防护体系》 郭帆<br>《恶意代码及其防御》知乎 Drifter<br>《恶意代码》MBA智库百科</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e23ff2e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +707,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-01-10T10:55:36+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2022-01-10T10:55:56+08:00">
                 2022-01-10
               </time>
             
@@ -1288,8 +1635,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
                   </a>
                 </span>
 
@@ -1299,8 +1646,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -1786,8 +2133,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
                   </a>
                 </span>
 
@@ -1797,8 +2144,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -2449,253 +2796,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4ba25d97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/4ba25d97/" itemprop="url">CentOS7下配置Supervisor自启动的两种方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-11T14:18:19+08:00">
-                2021-11-11
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-11T14:43:48+08:00">
-                2021-11-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/4ba25d97/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4ba25d97/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/4ba25d97/" class="leancloud_visitors" data-flag-title="CentOS7下配置Supervisor自启动的两种方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  516
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>很多网友留言问如何配置Supervisor 自启动，现将如何在CentOS7下配置Supervisor自启动的两种方法整理如下：</p>
-<h1 id="一、方法一"><a href="#一、方法一" class="headerlink" title="一、方法一"></a>一、方法一</h1><p><strong>直接将启动命令加入到/etc/rc.d/rc.local中（简单但不推荐）</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
-<p>在现有的内容后面加入supervisor的启动命令<br>supervisord -c /etc/supervisord.conf<br><img src="https://img-blog.csdnimg.cn/b7074ff6ccf146de9015d83373ef7830.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="/etc/rc.d/rc.local"><br>注意：一定要执行 chmod +x /etc/rc.d/rc.local</p>
-<blockquote>
-<p>chmod +x /etc/rc.d/rc.local</p>
-</blockquote>
-<p>给文件加入可执行权限<br>根据官方的提示，该方式是不被建议的，强烈建议创建自己的systemd services或udev规则来启动自已的应用，也就是方法二。</p>
-<h1 id="二、方法二"><a href="#二、方法二" class="headerlink" title="二、方法二"></a>二、方法二</h1><p><strong>通过创建systemd services来实现自启动 （推荐）</strong><br>进入到/usr/lib/systemd/system/目录</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> ~]<span class="comment"># cd /usr/lib/systemd/system/</span></span><br></pre></td></tr></table></figure>
-
-<p>找到supervisord及supervisorctl命令的路径</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># which supervisord</span></span><br><span class="line">/usr/local/bin/supervisord</span><br><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># which supervisorctl</span></span><br><span class="line">/usr/local/bin/supervisorctl</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建文件supervisord-service"><a href="#创建文件supervisord-service" class="headerlink" title="创建文件supervisord.service"></a>创建文件supervisord.service</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi supervisord.service</span><br></pre></td></tr></table></figure>
-
-<p>复制以下代码。注意：supervisord及supervisorctl命令的路径根据实际情况进行修改</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#supervisord.service</span></span><br><span class="line"></span><br><span class="line">[<span class="type">Unit</span>]</span><br><span class="line">Description=Supervisor daemon</span><br><span class="line"></span><br><span class="line">[<span class="type">Service</span>]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/local/bin/supervisord <span class="literal">-c</span> /etc/supervisord.conf</span><br><span class="line">ExecStop=/usr/local/bin/supervisorctl shutdown</span><br><span class="line">ExecReload=/usr/local/bin/supervisorctl reload</span><br><span class="line">KillMode=<span class="keyword">process</span></span><br><span class="line">Restart=on<span class="literal">-failure</span></span><br><span class="line">RestartSec=<span class="number">42</span>s</span><br><span class="line"></span><br><span class="line">[<span class="type">Install</span>]</span><br><span class="line">WantedBy=multi<span class="literal">-user</span>.target</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="启用服务"><a href="#启用服务" class="headerlink" title="启用服务"></a>启用服务</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># systemctl enable supervisord</span></span><br><span class="line">Created symlink from /etc/systemd/system/multi<span class="literal">-user</span>.target.wants/supervisord.service to /usr/lib/systemd/system/supervisord.service</span><br></pre></td></tr></table></figure>
-
-<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> ~]<span class="comment"># systemctl start supervisord</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="查看服务状态"><a href="#查看服务状态" class="headerlink" title="查看服务状态"></a>查看服务状态</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> ~]<span class="comment"># systemctl status supervisord</span></span><br><span class="line">● supervisord.service - Supervisor daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/supervisord.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Thu <span class="number">2021</span><span class="literal">-11</span><span class="literal">-11</span> <span class="number">11</span>:<span class="number">11</span>:<span class="number">36</span> CST; <span class="number">12</span>s ago</span><br><span class="line">  <span class="keyword">Process</span>: <span class="number">3822</span> ExecStart=/usr/local/bin/supervisord <span class="literal">-c</span> /etc/supervisord.conf (code=exited, status=<span class="number">0</span>/SUCCESS)</span><br><span class="line"> Main PID: <span class="number">3850</span> (supervisord)</span><br><span class="line">   CGroup: /system.slice/supervisord.service</span><br><span class="line">           ├─<span class="number">3850</span> /usr/local/bin/python3.<span class="number">8</span> /usr/local/bin/supervisord <span class="literal">-c</span> /etc/supervisord.conf</span><br><span class="line">           ├─<span class="number">3916</span> uwsgi -<span class="literal">-ini</span> /home/flask_web/uwsgi.ini</span><br><span class="line">           ├─<span class="number">3918</span> uwsgi -<span class="literal">-ini</span> /home/flask_web/uwsgi.ini</span><br><span class="line">           └─<span class="number">3919</span> uwsgi -<span class="literal">-ini</span> /home/flask_web/uwsgi.ini</span><br></pre></td></tr></table></figure>
-
-<h2 id="验证一下是否为开机启动"><a href="#验证一下是否为开机启动" class="headerlink" title="验证一下是否为开机启动"></a>验证一下是否为开机启动</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># systemctl is-enabled supervisord</span></span><br><span class="line">enabled</span><br></pre></td></tr></table></figure>
-
-<p>reboot重启服务器后，可以发现supervisor随服务器启动后自动启动了。</p>
-<p><strong>至此，本文介绍了CentOS7下配置Supervisor自启动的两种方法，推荐使用第二中方式。</strong></p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2752,7 +2852,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2864,7 +2964,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">68.9k</span>
+    <span title="Site words total count">71.9k</span>
   
 </div>
 
