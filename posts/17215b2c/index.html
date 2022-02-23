@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -134,12 +134,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="XieJava&#39;s blog">
-<meta property="og:url" content="https://xiejava.gitee.io/archives/2020/10/index.html">
+<meta name="description" content="Pandas 是一个开源的第三方 Python 库，从 Numpy 和 Matplotlib 的基础上构建而来，享有数据分析“三剑客之一”的盛名（NumPy、Matplotlib、Pandas）。是学习数据分析、AI机器学习必学组件之一。Pandas 这个名字来源于面板数据（Panel Data）与数据分析（data analysis）这两个名词的组合。在经济学中，Panel Data 是一个关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas快速入门指南">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/17215b2c/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="Pandas 是一个开源的第三方 Python 库，从 Numpy 和 Matplotlib 的基础上构建而来，享有数据分析“三剑客之一”的盛名（NumPy、Matplotlib、Pandas）。是学习数据分析、AI机器学习必学组件之一。Pandas 这个名字来源于面板数据（Panel Data）与数据分析（data analysis）这两个名词的组合。在经济学中，Panel Data 是一个关">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/69c7c56ec4614617a28ae2fc480cbf88.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3c9638a1d2c14b479bb46e0e33b32614.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2022-02-23T02:29:43.000Z">
+<meta property="article:modified_time" content="2022-02-23T02:31:57.878Z">
 <meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/69c7c56ec4614617a28ae2fc480cbf88.png#pic_center">
 
 
 
@@ -169,13 +177,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/archives/2020/10/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/17215b2c/"/>
 
 
 
 
 
-  <title>归档 | XieJava's blog</title>
+  <title>pandas快速入门指南 | XieJava's blog</title>
   
 
 
@@ -194,7 +202,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,73 +306,298 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        好! 目前共计 59 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2020">2020</h2>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/17215b2c/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/posts/dc4d08f1/" itemprop="url">
-              
-                <span itemprop="name">等级保护与分级保护的关系和区别</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">pandas快速入门指南</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-10-24T16:35:36+08:00"
-              content="2020-10-24" >
-          10-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-23T10:29:43+08:00">
+                2022-02-23
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-02-23T10:31:57+08:00">
+                2022-02-23
+              </time>
+            
+          </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/17215b2c/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/17215b2c/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/17215b2c/" class="leancloud_visitors" data-flag-title="pandas快速入门指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  729
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p><img src="https://img-blog.csdnimg.cn/69c7c56ec4614617a28ae2fc480cbf88.png#pic_center" alt="pandas"></p>
+<p>Pandas 是一个开源的第三方 Python 库，从 Numpy 和 Matplotlib 的基础上构建而来，享有数据分析“三剑客之一”的盛名（NumPy、Matplotlib、Pandas）。是学习数据分析、AI机器学习必学组件之一。<br>Pandas 这个名字来源于面板数据（Panel Data）与数据分析（data analysis）这两个名词的组合。在经济学中，Panel Data 是一个关于多维数据集的术语。Pandas 对数据的处理是为数据的分析服务的，它所提供的各种数据处理方法、工具是基于数理统计学出发，包含了日常应用中的众多数据分析方法。</p>
+<p>Pandas 可以实现复杂的处理逻辑，这些往往是 Excel 等工具无法处理的，还可以自动化、批量化，对于相同的大量的数据处理我们不需要重复去工作。Pandas 的出现使得 Python 做数据分析的能力得到了大幅度提升，它主要实现了数据分析的五个重要环节：</p>
+<ul>
+<li>加载数据 </li>
+<li>整理数据 </li>
+<li>操作数据 </li>
+<li>构建数据模型 </li>
+<li>分析数据</li>
+</ul>
+<p>主要特点</p>
+<ul>
+<li>它提供了一个简单、高效、带有默认标签（也可以自定义标签）的 DataFrame 对象。 </li>
+<li>能够快速得从不同格式的文件中加载数据（比如<br>Excel、CSV 、SQL文件），然后将其转换为可处理的对象； </li>
+<li>能够按数据的行、列标签进行分组，并对分组后的对象执行聚合和转换操作；</li>
+<li>能够很方便地实现数据归一化操作和缺失值处理； </li>
+<li>能够很方便地对 DataFrame 的数据列进行增加、修改或者删除的操作；</li>
+<li>能够处理不同格式的数据集，比如矩阵数据、异构数据表、时间序列等；</li>
+<li>提供了多种处理数据集的方式，比如构建子集、切片、过滤、分组以及重新排序等。</li>
+</ul>
+<p>本教程梳理了快速入门pandas的一些知识点。</p>
+<p><img src="https://img-blog.csdnimg.cn/3c9638a1d2c14b479bb46e0e33b32614.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pandas快速入门"></p>
+<p><a href="http://xiejava.ishareread.com/posts/531458d5/" target="_blank" rel="noopener">一、pandas数据结构(Series和DataFrame)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">二、pandas数据加载(csv、excel、json、mysql、webAPI)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/808d8fe8/" target="_blank" rel="noopener">三、pandas基本操作之数据访问(查看与检索)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/16c9fc17/" target="_blank" rel="noopener">四、pandas数据分析之排序和排名(sort和rank)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/a87a78e2/" target="_blank" rel="noopener">五、pandas数据清洗之处理缺失、重复、异常数据</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/2c80aac2/" target="_blank" rel="noopener">六、pandas数据处理之数据转换(映射map、替换replace、重命名rename)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/f44191db/" target="_blank" rel="noopener">七、pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/e7d4d6e1/" target="_blank" rel="noopener">八、pandas数据处理之合并与拼接</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/dd24116d/" target="_blank" rel="noopener">九、pandas数据分析之分组聚合</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/bc5826bd/" target="_blank" rel="noopener">十、pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/e8cac912/" target="_blank" rel="noopener">十一、pandas数据分析之数据绘图</a></p>
+<p>学习pandas最好的资料肯定是pandas的官网  <a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank" rel="noopener">https://pandas.pydata.org/docs/user_guide/index.html</a></p>
+<p>书籍推荐pandas的作者写的《利用python进行数据分析》</p>
+<hr>
+<p>本教程作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/17215b2c/" title="pandas快速入门指南">https://xiejava.gitee.io/posts/17215b2c/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/e8cac912/" rel="next" title="pandas数据分析之数据绘图">
+                <i class="fa fa-chevron-left"></i> pandas数据分析之数据绘图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -372,6 +605,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -646,6 +886,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
 
   
 
