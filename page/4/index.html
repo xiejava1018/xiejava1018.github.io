@@ -313,6 +313,509 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/63a3c769/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/63a3c769/" itemprop="url">认识SOAR-安全事件编排自动化响应</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-01T21:54:04+08:00">
+                2021-11-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-01T22:01:41+08:00">
+                2021-11-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/63a3c769/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/63a3c769/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/63a3c769/" class="leancloud_visitors" data-flag-title="认识SOAR-安全事件编排自动化响应">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SOAR是最近几年安全市场上最火热的词汇之一。SOAR究竟是什么，发展历程是什么，能够起什么作用，带着这些问题我们来认识一下SOAR。</p>
+<h1 id="一、SOAR是什么"><a href="#一、SOAR是什么" class="headerlink" title="一、SOAR是什么"></a>一、SOAR是什么</h1><p>SOAR 一词来自分析机构 Gartner，SOAR-Security Orchestration, Automation and Response 安全编排和自动化响应。在Gartner的报告里，SOAR平台的核心组件为，编排与自动化、工作流引擎、案例与工单管理、威胁情报管理。而SOAR体系则是三个概念的交叉重叠：<strong>SOAR=SOA+SIRP+TIP</strong><br>1）精密编排的联动安全解决方案(SOA)；<br>2）事件应急响应平台(SIRP)；<br>3）威胁情报平台(TIP)。<br><img src="https://img-blog.csdnimg.cn/f1aefcc3e390408abb7effccbe41f083.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR"></p>
+<h1 id="二、SOAR的发展历程"><a href="#二、SOAR的发展历程" class="headerlink" title="二、SOAR的发展历程"></a>二、SOAR的发展历程</h1><p>2015年，可以定义为SOAR的1.0时代。Gartner将SOAR(当时被认为是“安全运维分析和报告”)描述成为安全运维团队提供机器可读的安全数据报告和分析管理功能的产品。2017年，SOAR进入2.0时代。Gartner提出了“安全编排、自动化及响应”(SOAR)这个术语，用以描述脱胎于事件响应、安全自动化、场景管理和其他安全工具的一系列新兴平台。Gartner观察到三种以前截然不同的技术：安全编排和自动化(SOA)、安全事件响应平台(SIRPs)和威胁情报平台(TIPs)，正在逐步融合到一起。<br>根据Gartner2019年最新定义，SOAR是指能使企业组织从SIEM等监控系统中收集报警信息，或通过与其它技术的集成和自动化协调，提供包括安全事件响应和威胁情报等功能。SOAR技术市场最终目标是将安全编排和自动化(SOA)、安全事件响应(SIR)和威胁情报平台(TIP)功能融合到单个解决方案中。<br><img src="https://img-blog.csdnimg.cn/84eb9177ec554c0d8f5f74163cda15b2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR的演进"></p>
+<p>根据Gartner预测，到2022年，有30%大型企业组织（安全团队超过5人）将在安全和运维的工作中使用SOAR，这一比例远超当下5%。当下SOAR技术的早期拥护者是那些已经拥有成熟安全运维中心，并且能够理解SOAR带来好处的那些成熟的安全组织。</p>
+<h1 id="三、SOAR主要解决什么问题"><a href="#三、SOAR主要解决什么问题" class="headerlink" title="三、SOAR主要解决什么问题"></a>三、SOAR主要解决什么问题</h1><p>随着网络安全攻防对抗的日趋激烈，网络安全单纯指望防范和阻止的策略已经失效，必须更加注重检测与响应。企业和组织要在网络已经遭受攻击的假定前提下构建集阻止、检测、响应和预防于一体的全新安全防护体系。在国际上，检测和响应类产品受到了极大的关注。放眼国内，更多的注意力集中到了新型检测产品，尤其是未知威胁检测领域。借助这些产品和技术，用户获得了更低的 MTTD（平均检测时间），能够更快更准确地检测出攻击和入侵。但是，这些产品和技术大都没有帮助用户降低 MTTR（平均响应时间）。事实上，对于用户而言，更快地检测出问题仅仅是第一步，如何快速地对问题进行响应更加重要。而在提升安全响应效率的时候，不能仅仅从单点（譬如单纯从端点或者网络）去考虑，还需要从全网整体安全运维的角度去考虑，要将分散的检测与响应机制整合起来。而这，正是 SOAR 要解决的问题。<br>Gartner指出，SOAR可供公司企业收集不同来源的安全威胁数据和警报，运用人机结合的方法进行事件分析与分类，根据标准流程辅助定义、排序和驱动标准化事件响应行为。SOAR主要为安全团队提供定制化的流程和控制，弥合并加速有效网络威胁的调查与缓解。安全运营团队的大量日常事务性工作也可以借助SOAR加以自动化。而且，案例战术手册还可以帮助分析师在单一平台上响应和缓解威胁，节约事件响应的每一分每一秒宝贵时间。<br>Gartner 用 OODA 模型，来描绘一个典型的安全运营流程。OODA 即 Observe(观察)、Orient(定位)、Decide(决策)、Act(行动)。</p>
+<ul>
+<li>观察：观察事件并确定发生了什么，即通过各种检测、分析工具，比如 SIEM 类工具，找到威胁线索，如告警。</li>
+<li>定位：确定观察的方向，并添加上下文来确定观察的含义，即对产生的告警的内容做调查、丰富化。比如查找外网域名的威胁情报，查找此 IP 的历史行为协助研判等等。</li>
+<li>决策：根据业务的风险容忍度和能力决定适当的响应行动，即判定是否需要对此告警采取行动，比如是否需要封禁，是否影响业务，是否需要进一步观察。</li>
+<li>行动：根据决定采取行动，并应用到观察过程中，然后重复，即执行确定的安全策略，并验证。每一步都对下一步提供了指导，周而复始，构成了一个良性促进的进化循环，不断优化企业的安全运营流程以应对不断变化的安全威胁。<br><img src="https://img-blog.csdnimg.cn/b37a4e16ee454bbe95aaf53e5235c9bd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="OODA 模型"></li>
+</ul>
+<p>OODA 环看起来逻辑清晰，易于操作。但事实上， OODA 环里的丰富化、调查取证、验证、执行安全策略变更等等，都是耗时耗力的工作。加上安全设备一直以来的误报问题产生的噪音，以及安全人员工作负荷重，资深从业人员短缺等原因，难以真正有效的推进 OODA 循环。更不用提在 HW 时段高强度的工作压力下，如何能够有条不紊的保持一贯的处置流程来处理每一个安全线索。SOAR 正是在这个背景下被提出，并被寄予厚望。SOAR 的核心，就是将安全流程或预案，即 OODA 循环的每一个实例，比如蠕虫爆发处理流程、挖矿病毒告警处理流程、疑似钓鱼邮件处理流程等等，数字化管理起来形成 Playbook。用自动化完成其中所有可能自动化的动作，无法自动的仍然交由人来处理，通过可视化编排工具将人、技术和流程有机的结合起来，形成标准统一的、可重复的、更高效的安全运营流程。</p>
+<h1 id="四、SOAR的核心功能"><a href="#四、SOAR的核心功能" class="headerlink" title="四、SOAR的核心功能"></a>四、SOAR的核心功能</h1><p>从SOAR安全编排自动化响应的字面定义来看SOAR应该具备三大核心能力，编排、自动化、响应</p>
+<h2 id="编排"><a href="#编排" class="headerlink" title="编排"></a>编排</h2><p>SOAR中的关键词是编排，这是在使用自动化和响应之前必须构建的关键组件。SOAR的编排体现的是一种协调和决策的能力，针对复杂性的安全事件，通过编排将分析过程中各种复杂性分析流程和处理平台进行组合。分析涉及多种数据或平台，如SIEM分析平台、漏洞管理平台、情报数据、资产数据等。处置响应的编排也涉及到很多平台或设备，如EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙等。仅仅以技术为中心的安全保障已不再能满足现状，将人员和流程的编排才能保证安全流程真正高效的运行。SOAR的终极目标就是实现技术、流程、人员的无缝编排。</p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><p>SOAR的自动化体现在三个方面，面对需要处理的安全事件能够根据策略自动选择编排的剧本、自动执行剧本的操作流程、根据决策结果自动联动设备进行防护阻断等行动策略。它允许剧本（常称为Playbooks）在安全流程的部分或全部内容上执行多个任务，将线性剧本串联起来。虽然线性剧本可能更容易创建，但只适用于处理决策需求较少的工作流。编排和自动化比线性剧本的最大优势就是其灵活性，为支持全自动化和半自动化的决策，需要更加灵活的工作流和执行剧本。SOAR能够识别这些决策模式，并基于以往事件中的执行操作，自动推荐新事件的剧本、执行剧本操作流程，自动化分析决策，根据决策结果自动下发防护阻断的行动策略。</p>
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>安全事件响应包括告警管理、工单管理、案件管理等功能。告警管理的核心不仅是对告警安全事件的收集、展示和响应，更强调告警分诊和告警调查。只有通过告警分诊和告警调查才能提升告警的质量，减少告警的数量。工单管理适用于中大型的安全运维团队协同化、流程化地进行告警处置与响应，并且确保响应过程可记录、可度量、可考核。案件管理是现代安全事件响应管理的核心能力。案件管理帮助用户对一组相关的告警进行流程化、持续化的调查分析与响应处置，并不断积累该案件相关的痕迹物证 (IOC) 和攻击者的战技过程指标信息 (TTP)。多个案件并行执行，从而持续化地对一系列安全事件进行追踪处置。<br><img src="https://img-blog.csdnimg.cn/c305603e5c6f4bff9d10fa706c7a4e8c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR事件响应"></p>
+<p>事件响应是SOC操作中非常复杂的部分，理想状态下，它将是一个有效的动态过程，涉及数十种相互关联的技术、IT、业务流程和整个组织的人员，将是持续性适应风险和信任评估（Continuous Adaptive Risk and Trust Assessment, CARTA）策略用于在持续监测和可视性方面时，SOC团队可使用SOAR技术执行连续活动，利用SOAR技术通过智能化编排与响应最大程度的将已有安全技术进行整合，提高整个安全事件的解决能力和效率。基于编排和自动化前期对事件的分析，SOAR所提供的响应技术是完善整个事件生命周期，提高解决安全威胁效率的关键一环。本质上，SOAR的最终目标是促进安全团队对事件有全面的、端到端的理解，完成更好、更明智响应。</p>
+<h1 id="五、SOAR的价值"><a href="#五、SOAR的价值" class="headerlink" title="五、SOAR的价值"></a>五、SOAR的价值</h1><p><strong>1、缩短响应时间</strong><br>通过自动化技术，尽可能多的自动完成一个安全事件处置流程中相关步骤，从而缩短响应时间即 MTTR。<br><strong>2、释放人力</strong><br>让安全专家从繁重的重复劳动中释放出来，将时间放在更有价值的安全分析、威胁猎捕、流程建立等工作上。<br><strong>3、安全运营流程标准化</strong><br>将公司的安全运营流程数字化管理起来，每一次安全事件的对应处置过程都在统一标准，统一步骤下执行，有迹可循。避免人员能力的差距导致的处置实际效果不可控。<br><strong>4、避免能力断层</strong><br>将安全专家的经验固化成处置预案Playbook，让不同的人都可以遵循同样的方法来完成特定安全事件的处置流程，避免因为个人的离职导致某个领域的安全能力缺失。<br><strong>5、运营流程指标可度量</strong><br>因为运营流程都通过 Playbook 数字化管理且每一次的执行过程都记录在案，因此流程的 KPI 如 MTTD、MTTR、TTQ、TTI 等全部可评估、可度量、可追踪。<br><strong>6、安全运营决策支撑</strong><br>通过对公司的所有运营流程数字化管理、数字化执行、数字化KPI评估后，管理者可以有效的评估什么流程基本无用，什么流程执行效率不高，什么流程发挥了最大的作用，甚至什么安全设备在所有流程中被使用的价值最大。从而为以后的安全投资决策，安全团队建设决策提供有价值的数值化支撑。</p>
+<h1 id="六、SOAR与其他安全产品的关系"><a href="#六、SOAR与其他安全产品的关系" class="headerlink" title="六、SOAR与其他安全产品的关系"></a>六、SOAR与其他安全产品的关系</h1><p><img src="https://img-blog.csdnimg.cn/bd575be2bac3412984d257a2470c4d40.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR与其他安全产品的关系"></p>
+<p>SOAR定位于安全运营操作平台，它收集不同来源的安全威胁数据和警报，事件来源于其他的态势感知平台、SIEM、日志分析系统或安全人员人工录入需要处理的事件。通过调用安全设备的能力如：情报平台、资产管理平台、漏洞扫描平台、EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙来实现对安全事件的分析、溯源、取证、处置、通知等。一端接安全事件源，一端对接安全设备能力。通过SOAR本身的编排能力将人员、设备、资源、流程协同起来。每个企业部署流程和技术并不相同，SOAR在实际落地应用过程中并不能“即插即用”，需要对接事件源、对接各类联动处置设备，根据企业具体的实际情况定制剧本流程。对接的实际安全设备能力数量以及剧本的积累，是SOAR平台能够很好的支持运营的关键。</p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8394d1a3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/8394d1a3/" itemprop="url">大脑不是用来思考的，如何让孩子更好的学习？</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-22T10:23:31+08:00">
+                2021-08-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-22T11:25:56+08:00">
+                2021-08-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/8394d1a3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8394d1a3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/8394d1a3/" class="leancloud_visitors" data-flag-title="大脑不是用来思考的，如何让孩子更好的学习？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E8%AF%BB%E4%B9%A6.png" alt="读书"></p>
+<p>在这个知识爆炸、学习竞争压力巨大的时代，让父母最焦虑的事情之一，莫过于家里有个厌学的孩子了。为了让孩子好好学习，家长们操碎了心。为了孩子报各种培训辅导班、自己亲自上阵陪同辅导、高价请一对一的家教辅导，就差自己代替孩子去学习了。而孩子依旧是，一写作业就磨蹭、一考试就不会、一上学就无精打彩，一放学就满血复活。为什么学生不喜欢上学？如何让孩子喜欢并更好的学习呢？让我们跟着这本《为什么学生不喜欢上学?》一起来探索学习的秘密。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E6%88%91%E7%9A%84%E5%BF%83%E9%87%8C%E5%8F%AA%E6%9C%89%E5%AD%A6%E4%B9%A0.jpg" alt="我的心里只有学习"><br>《为什么学生不喜欢上学?》是一本关于认知心理学的普及读物，也是一本教育心理学的入门书籍。作为美国弗吉尼亚大学心理学教授威林厄姆的重要著作，是一本深受学生和教师欢迎的教育心理学著作。他用认知心理学的原理，详细分析了学生学习的过程和教师在课堂教学中必须注意的一些问题。</p>
+<p>作者丹尼尔·T·威林厄姆，哈佛大学心理学博士，美国弗吉尼亚大学心理学教授。主要研究以大脑为基础的学习和记忆及认知心理学的基础教育应用。《美国教育家》杂志《向认知科学家提问》专栏作者。</p>
+<p>这本书有着容易被人忽视和低估的名字，实际上它是一本认知心理学和教育心理学的科普著作，长期在美国亚马逊图书榜畅销不衰。在豆瓣评分高达9.3分！</p>
+<p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E7%94%9F%E4%B8%8D%E5%96%9C%E6%AC%A2%E4%B8%8A%E5%AD%A6.png" alt="为什么学生不喜欢上学"><br>书中主要提出并回答了这些问题：</p>
+<ul>
+<li>为什么学生不喜欢上学？</li>
+<li>为什么学生能记住电视里的所有细节，却记不住我们教他的知识？</li>
+<li>为什么让学生理解抽象概念这么难？</li>
+<li>题海战术有用吗？</li>
+<li>科学家是怎样思考的？如何让学生像专家一样思考？</li>
+<li>如何因材施教？</li>
+</ul>
+<p>这本书刷新了很多人对学习的认知，不仅仅适合学生，同样适合处于终生学习时代的你和我。如果你的小学老师能早一点看到，你也就不会讨厌学习了。当然，现在的你看了也同样不晚。不论是教育孩子还是自己，了解了认知学的原理，按照符合科学原理的方法去做，都会让大家的学习更有效率。特别是，本书有许多震撼人心、不符合我们直觉的认知让我们重新去思考如何去更好的学习。</p>
+<h3 id="学生为什么不爱学习？"><a href="#学生为什么不爱学习？" class="headerlink" title="学生为什么不爱学习？"></a><strong>学生为什么不爱学习？</strong></h3><p>从认知心理学的角度来看，人是充满好奇心的，愿意探索了解一切；也喜欢思考，因为思考就是解决问题，而解决问题能带来愉悦感。比如当你苦苦思索，终于解出了一道难题或者想通了一件事情，你的大脑可能奖励它自己少量的多巴胺，让你恨不得手舞足蹈，瞬间自信心爆棚，觉得自己是世界上最棒的人。这种快乐，跟吃个甜点是完全不一样。学习应该是件很快乐的事情。</p>
+<p>既然解决问题也能带来快乐，那为什么还有这么多人不愿意思考，不愿意学习呢？</p>
+<p><strong>因为：大脑不是用来思考的！！！</strong></p>
+<p>看到这里估计大家会一脸闷逼，大脑不是用来思考的，哪是用来干啥的呢？是的，大脑能做很多事情，但思考并不是它最拿手的，人类不常思考是因为我们的大脑<strong>不是用来思考，而是用来避免思考的</strong>。思考很费力，而且它还是缓慢、靠不住的。幸运的是尽管我们并不擅长思考，但我们其实喜欢思考，我们生来就有着好奇心，也寻找可以进行思考的机会。但正是因为思考很难，需要条件合适，这份好奇心才能存活，否则我们很快就会放弃思考的念头。<strong>好奇心是与生俱来的，但它很脆弱</strong>。思考的愉悦感来自解决问题的过程，在一个要解决的问题上毫无进展是不会有愉悦感的，实际上，还会让你沮丧。同样只是知道问题的答案也不会有多大的愉悦感。如何保持好奇心，激发思考的兴趣呢？答案是思考问题的难易程度。太容易的问题不会带来愉悦感，同样太难的问题不但不会带来愉悦感还会带来挫折感让人渐渐的避免思考。</p>
+<p><strong>所以：要确保提供给学生的问题是可以解决的。尊重学生的认知局限和个体间的认知差异，难易适中。</strong></p>
+<p>根据资料，认知心理学把人类对于外部世界的认识分成了三个区域：舒适区、学习区、恐慌区。其中，“舒适区”是对自己来说没有学习难度的知识，接触这类知识感觉很舒适，但可学到的东西很少，进展缓慢；“学习区”有一定挑战，接触时会感到不适，但又不至于太难受，保持在这个区间学习，可以得到快速成长；“恐慌区”是超出自己能力范围太多的知识，接触会感到忧虑、恐惧，不堪负重以至放弃学习。学习具有适当挑战的东西，一段时间后，“学习区”会慢慢变为“舒适区”， 而一部分的“恐慌区” 又会变成“学习区”。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E8%88%92%E9%80%82%E5%8C%BA.jpg" alt="舒适区、学习区、恐慌区"></p>
+<p>在舒适区学习，会因为太容易而觉得枯燥，无法坚持；在恐慌区学习，会因为太难好奇心受挫，很快就放弃。所以学习任务要难易适中。要确保在学习过程中碰到的问题可以被解决。</p>
+<h3 id="在学习的过程中死记硬背是否合理？"><a href="#在学习的过程中死记硬背是否合理？" class="headerlink" title="在学习的过程中死记硬背是否合理？"></a><strong>在学习的过程中死记硬背是否合理？</strong></h3><p>一般大家都会死记硬背的学习方法嗤之以鼻，认为是读死书。然而你错了！有些东西该背的还得背，该记的还得记。事实性知识要先于技能，也就是说如9*9乘法表，元素周期表、历史年代表、一些常识等等，必须得用心记下，这些都是学习的基石。</p>
+<p>毫无疑问，让学生记住枯燥的事实是完全不够的，需要进行关联和分析。但是同样，如果没有事实性知识想要凭空让学生拥有分析能力或者归纳能力是不可能的。</p>
+<p><strong>因为：</strong><br><strong>第一，背景知识对阅读理解来说必不可少</strong>。它帮我们在单个的要点之间建立起联系。</p>
+<p><strong>第二，背景知识对于我们的认知是必要的</strong>。一个人看起来在进行逻辑思考，但其实大部分是在进行记忆检索。它使我们能够将独立的元素合成一个单元，进而增加工作记忆的空间。</p>
+<p><strong>第三，事实性知识可以增强记忆</strong>。如果你对一方面了解的越多，你就越能更好的理解这方面的新知识。</p>
+<p>长期记忆中的事实性记忆使得获取更多的事实性知识更容易，它说明持有的信息量取决于已有的信息量。</p>
+<p><strong>所以：</strong><br>我们必须让学生学习背景知识。学生必须学会反复出现的概念–统一所有学科的思想。</p>
+<p><strong>知识体系在先，批判性思维在后</strong>。批判性思考并不能够脱离背景知识而单独实践以至完善的。<br>具有浅显知识都比没有知识强。了解的深固然好，但是我们不可能细致地了解每一件事情，泛泛的知识显然比不懂要强。</p>
+<p><strong>加强阅读</strong>。大量的数据证实，读“闲书”的人一生都因此受益。</p>
+<p><strong>偶然获得知识</strong>。学习事实性知识可以随时随地的学习如读闲书、翻杂志、看记录片、新闻或者和朋友聊天都可以获得相应的知识。</p>
+<p><strong>尽早开始</strong>。家庭环境的培养，如父母使用的语言、书籍资源是否可得、家长是否平时看书。等等还有其他一些因素决定了孩子在上学前拥有的知识。</p>
+<h3 id="题海战术到底有没有用？"><a href="#题海战术到底有没有用？" class="headerlink" title="题海战术到底有没有用？"></a><strong>题海战术到底有没有用？</strong></h3><p>题海战术也是比较有争议的学习方法，现在有一种观点认为，题海战术只对提高考试成绩有帮助，扼杀了学生内在的学习动力，是现行教育下的畸形产物，它带来的弊远大于利。但同时也有教育专家跳出来说，学生必须反复地练习才能学会知识和技能。两者孰是孰非？</p>
+<p>在认知学看来，练习是最有效的窍门之一，它减少了大脑活动需要的空间。没有充分的练习，你不可能精通任何脑力活。</p>
+<p>为什么要练习？因为通过练习能获得最基本的能力，以期精益求精。如果你作为足球运动员在带球的同时还要思考踢球的角度和速度，你不太可能成为一个优秀的足球运动员。你必须得日复一日的练习。像这样的低层次过程必须不假思索，才能给更高层次的过程，比如战术策略提供足够的空间。类似的，你如果不熟记数据要诀也学不好代数。练习的目的是获得能力和提高能力。</p>
+<p><strong>因为：</strong></p>
+<p><strong>练习是为了日后更好的学</strong>习。通过大量的练习会让一些步骤变得自动化，学习者才能将思考能力提高到下一个层次。让思考过程变得省力，这样才能学得更多。</p>
+<p><strong>练习使记忆更长久</strong>。努力学习显然不能防止遗忘，但持续地练习可以防止遗忘。</p>
+<p><strong>练习促进知识的迁移</strong>。重复做很多某一类型的题目使你更容易辨识一个新问题的内在结构，即使你以前没有见过这一题目。</p>
+<p>但是，不是每件事情都需要无限度地练习的。</p>
+<p><strong>所以：</strong></p>
+<p>如果练习可以让思考过程变得省力，我们就要去识别哪些过程需要自动化，总的来说需要自动化的过程往往是自动化后效益能达到最大值的技能的基础。</p>
+<p><strong>分散练习时间</strong>。没有必要把关于一个概念的所有练习集中在很短的一段时间里完成。分散练习后记忆会更持久。持续不断地练习同一项技能是很无聊的事，最好能有点变化。分散练习的另一个好处是学习者有更多的时间思考如何将学到的东西加以应用。</p>
+<p><strong>在进阶环境中练习</strong>。自动化需要很多练习，聪明的办法是既分散练习的时间，又分散练习的环境。尽量多的设计有创意的方法来练习最关键的技巧，同时让学习者在更高阶的环境中学到基本技能。</p>
+<h3 id="有些孩子天生就不是学习的料？"><a href="#有些孩子天生就不是学习的料？" class="headerlink" title="有些孩子天生就不是学习的料？"></a><strong>有些孩子天生就不是学习的料？</strong></h3><p>有些人认为，学习能力是受基因影响，如果你的基因优秀，你就聪明；基因不好，就不聪明。你聪明就可以学得很好。另外一种看法就是认为智能是可以塑造的。如果考试考砸了或不理解某个知识点，不是因为笨，而是因为他们还不够努力。哪一种看法是正确的呢？</p>
+<p>答案是：两者都有正确的部分。我们的基因遗传确实对智能有影响，但是通常是通过环境影响的。毫无疑问智能是可以改变的！</p>
+<p>孩子智能上的差异可以通过持久的努力来改变。</p>
+<p><strong>因为：</strong></p>
+<p><strong>对于智能，态度很重要</strong><br>有充分证据证明，相信智能可以通过努力提高的学生比相信智能是改变不了得事情的学生学得更好，得到的分数更高。<br>孩子必须知道他的能力决定他所作事情时的成功率，他需要发展对于自己能力的自信，而且还要理解，对于不同类型的任务他拥有不同级别的能力。</p>
+<p><strong>所以：</strong></p>
+<p>要确保孩子相信自己能够进步，要让他们相信为此所作的努力是值得的。</p>
+<p><strong>赞扬努力，而非能力</strong>。赞扬过程而不是能力，赞扬孩子面对困难时坚持不懈的精神或对作业负责的态度。</p>
+<p>告诉他们<strong>一份耕耘一份收获</strong>。所有的所谓“天才”都是持续努力的结果。</p>
+<p><strong>坦然的接受失败</strong>。如果你想提高智能，你需要挑战自己，这表示接受了略高过自己能力的任务，你很有可能第一次就会失败，但失败没有什么大不了的。人生中的一次又一次的失败是成功的原因。<br>学习技能不是天生的。所有的学习者都要学会自觉、时间分配、足智多谋（如遇到难题时该如何做）。</p>
+<p>终身学习，做保持好奇心和探索欲的父母和老师，我们需要更多的智慧。而教育就是将智慧薪火相传的过程，尊重孩子的认知规律，谨慎积极的保持努力和践行。教育使人更聪明，聪明的人可以使教育更美好。</p>
+<hr>
+<center>
+关注：“爱分享读书”微信公众号 
+
+<p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/%E7%88%B1%E5%88%86%E4%BA%AB%E8%AF%BB%E4%B9%A6%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
+<p>读书我们是认真的</p>
+</center>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7626e526/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2318,511 +2821,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/19a32f6f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/19a32f6f/" itemprop="url">pyinstaller打包exe后不能运行报Failed to execute script XXXX问题分析与处理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-03T17:16:00+08:00">
-                2020-11-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-02T09:00:49+08:00">
-                2020-12-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/19a32f6f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/19a32f6f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/19a32f6f/" class="leancloud_visitors" data-flag-title="pyinstaller打包exe后不能运行报Failed to execute script XXXX问题分析与处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  341
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近用python的tkinter写了个小工具，发现用pyinstaller打包成exe后运行出错。报Failed to execute script XXXX</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -w worksubmit.py</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20201101171716408.png#pic_center" alt="报错"><br>为了搞清楚报错的原因，想看到程序具体执行的情况。可以通过不带-w的参数打包在控制台看程序执行情况。<br><code>pyinstaller -F worksubmit.py</code> 可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行<br><img src="https://img-blog.csdnimg.cn/20201101172133371.png#pic_center" alt="运行情况"><br>可以清楚的看到</p>
-<blockquote>
-<p>ModuleNotFoundError:No module named ‘xlrd’</p>
-</blockquote>
-<p>这时就要解决打包时xlrd模块没有打进去的问题，找到xlrd模块的位置，并将该模块打到运行程序包里。<br>先找到程序依赖的xlrd模块的位置，在PyCharm中通过”File”-&gt;”Setting”,在项目设置里查看Project interpreter，可以看到xlrd的目录位置。<br><img src="https://img-blog.csdnimg.cn/20201101172227853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70#pic_center" alt="找包路径"></p>
-<p>用pyinstall打包的时候通过加-p的参数将依赖的模块打进去。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -p J:\study\python\testsubmit\venv\Lib\site-packages worksubmit.py</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20201101172053955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这样就可以顺利将依赖的模块打进去，再执行exe文件不再报错了。</p>
-<p><strong>总结一下，碰到打包成exe后运行有问题，可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行。基本上所有的运行问题都可以通过控制台的命令定位和排查。</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dc4d08f1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/dc4d08f1/" itemprop="url">等级保护与分级保护的关系和区别</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-24T16:35:36+08:00">
-                2020-10-24
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-01T00:44:23+08:00">
-                2021-01-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/dc4d08f1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/dc4d08f1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/dc4d08f1/" class="leancloud_visitors" data-flag-title="等级保护与分级保护的关系和区别">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  932
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>等级保护与分级保护既有联系又有区别：</p>
-<p>国家安全信息等级保护，重点保护的对象是非涉密的涉及国计民生的重要信息系统和通信基础信息系统；涉密信息系统分级保护是国家信息安全等级保护的重要组成部分，是等级保护在涉密领域的具体体现。</p>
-<p>国家安全信息等级保护重点保护的对象是涉及国计民生的重要信息系统和通信基础信息系统，而不论它是否涉密。涉密信息系统分级保护保护的对象是所有涉及国家秘密的信息系统，重点是党政机关、军队和军工单位，由各级保密工作部门根据涉密信息系统的保护等级实施监督管理，确保系统和信息安全，确保国家秘密不被泄漏。</p>
-<p>国家信息安全等级保护是国家从整体上、根本上解决国家信息安全问题的办法,进一步确定了信息安全发展的主线和中心任务,提出了总体要求。对信息系统实行等级保护是国家法定制度和基本国策，是开展信息安全保护工作的有效办法，是信息安全保护工作的发展方向。而涉密信息系统分级保护则是国家信息安全等级保护在涉及国家秘密信息的信息系统中的特殊保护措施与方法。</p>
-<p><strong>等级保护与分级保护本质的区别是等级保护适用的对象为非涉密信息系统，分级保护适用的对象为涉密信息系统。</strong></p>
-<p>具体区别如下：</p>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th>等级保护</th>
-<th>分级保护</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>管理体系</td>
-<td>公安机关</td>
-<td>国家保密部门</td>
-</tr>
-<tr>
-<td>标准体系</td>
-<td>国家标准（GB、GB/T）</td>
-<td>国家保密标准（BMB，强制执行）</td>
-</tr>
-<tr>
-<td>适用对象</td>
-<td>非涉密信息系统</td>
-<td>涉密信息系统</td>
-</tr>
-<tr>
-<td>定级依据</td>
-<td>等级保护定级是依据重要业务系统与承载业务运行的网络、设备、系统及单位属性、遭到破坏后所影响的主、客体关系等。</td>
-<td>分级保护定级是依据信息的重要性，以信息最高密级确定受保护的级别。</td>
-</tr>
-<tr>
-<td>级别划分</td>
-<td>第一级：自主保护级<br>第二级：指导保护级<br>第三极：监督保护级<br>第四级：强制保护级<br>第五级：专控保护级</td>
-<td>秘密级<br>机密级<br>绝密级</td>
-</tr>
-<tr>
-<td>工作内容</td>
-<td>信息系统等级保护工作包括：<br>系统定级、系统备案、安全建设整改、等级测评和监督检查五个环节。</td>
-<td>涉密信息系统分级保护工作包括:<br>系统定级、方案设计、工程实施、系统测评、系统审批、日常管理、测评与检查和系统废止八个环节。</td>
-</tr>
-<tr>
-<td>测评频率</td>
-<td>第三级信息系统：应每年至少进行一次等级测评；<br>第四级信息系统：应每年至少进行一次等级测评；<br>第五级信息系统：应当根据特殊安全要求进行等级测评。</td>
-<td>秘密级、机密级信息系统：应每两年至少进行一次安全保密测评或保密检查；<br>绝密级信息系统：应每年至少进行一次安全保密测评或保密检查。</td>
-</tr>
-<tr>
-<td>评测机构</td>
-<td>国家信息安全等级保护工作协调小组办公室授权的信息安全等级保护测评机构</td>
-<td>由国家保密工作部门授权的系统测评机构</td>
-</tr>
-</tbody></table>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
   </nav>
 
 
@@ -2874,7 +2877,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2986,7 +2989,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">102.2k</span>
+    <span title="Site words total count">107.1k</span>
   
 </div>
 
