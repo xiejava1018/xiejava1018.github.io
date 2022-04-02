@@ -134,21 +134,19 @@
 
 
 
-<meta name="description" content="什么是“纵深防御”？很多人和资料都有不同的解释，有许多资料将“纵深防御”和“分层防护”等同起来，上次文章介绍了“分层防护”，分层防护是根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理等各个层级，在每个层级实施相应的防护策略和手段。“纵深防御”与“分层防护”既有区别又有联系。 “纵深防御”实际上并不是一个网络安全领域的专属名词，早">
+<meta name="description" content="一、什么是APT攻击当今，网络系统面临着越来越严重的安全挑战，在众多的安全挑战中，一种具有组织性、特定目标以及长时间持续性的新型网络攻击日益猖獗，国际上常称之为APT（Advanced Persistent Threat高级持续性威胁）攻击。APT攻击是一种以商业或者政治目的为前提的特定攻击，其通过一系列具有针对性的攻击行为以获取某个组织甚至国家的重要信息，特别是针对国家重要的基础设施和单位开展攻">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络信息安全之纵深防御">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/e2fd4a90/index.html">
+<meta property="og:title" content="网络信息安全之APT攻击">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/25e5f55a/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="什么是“纵深防御”？很多人和资料都有不同的解释，有许多资料将“纵深防御”和“分层防护”等同起来，上次文章介绍了“分层防护”，分层防护是根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理等各个层级，在每个层级实施相应的防护策略和手段。“纵深防御”与“分层防护”既有区别又有联系。 “纵深防御”实际上并不是一个网络安全领域的专属名词，早">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/55be794c0ca54144b664236a49d06321.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/fdddd1b8b76b4be3a41e4095d08edb49.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/4ccc279ac6a94841b36f5e6c786a90a0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="article:published_time" content="2022-03-30T10:30:28.000Z">
-<meta property="article:modified_time" content="2022-03-30T10:33:14.656Z">
+<meta property="og:description" content="一、什么是APT攻击当今，网络系统面临着越来越严重的安全挑战，在众多的安全挑战中，一种具有组织性、特定目标以及长时间持续性的新型网络攻击日益猖獗，国际上常称之为APT（Advanced Persistent Threat高级持续性威胁）攻击。APT攻击是一种以商业或者政治目的为前提的特定攻击，其通过一系列具有针对性的攻击行为以获取某个组织甚至国家的重要信息，特别是针对国家重要的基础设施和单位开展攻">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d0fb871498644cbca3999c9029b7771b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2022-04-02T07:54:07.000Z">
+<meta property="article:modified_time" content="2022-04-02T09:24:59.714Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/55be794c0ca54144b664236a49d06321.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/d0fb871498644cbca3999c9029b7771b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
 
 
 
@@ -178,13 +176,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/e2fd4a90/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/25e5f55a/"/>
 
 
 
 
 
-  <title>网络信息安全之纵深防御 | XieJava's blog</title>
+  <title>网络信息安全之APT攻击 | XieJava's blog</title>
   
 
 
@@ -321,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e2fd4a90/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/25e5f55a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -338,7 +336,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">网络信息安全之纵深防御</h2>
+          <h2 class="post-title" itemprop="name headline">网络信息安全之APT攻击</h2>
         
 
         <div class="post-meta">
@@ -350,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T18:30:28+08:00">
-                2022-03-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-02T15:54:07+08:00">
+                2022-04-02
               </time>
             
 
@@ -366,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-30T18:33:14+08:00">
-                2022-03-30
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-02T17:24:59+08:00">
+                2022-04-02
               </time>
             
           </span>
@@ -396,8 +394,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -414,8 +412,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/e2fd4a90/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e2fd4a90/" itemprop="commentCount"></span>
+                <a href="/posts/25e5f55a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/25e5f55a/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -423,7 +421,7 @@
 
           
           
-             <span id="/posts/e2fd4a90/" class="leancloud_visitors" data-flag-title="网络信息安全之纵深防御">
+             <span id="/posts/25e5f55a/" class="leancloud_visitors" data-flag-title="网络信息安全之APT攻击">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -448,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3k
+                  3.3k
                 </span>
               
 
@@ -464,7 +462,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  11
                 </span>
               
             </div>
@@ -485,53 +483,24 @@
       
 
       
-        <p>什么是“纵深防御”？很多人和资料都有不同的解释，有许多资料将“纵深防御”和“分层防护”等同起来，<br>上次文章介绍了“<a href="https://xiejava.blog.csdn.net/article/details/123794343" target="_blank" rel="noopener">分层防护</a>”，分层防护是根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理等各个层级，在每个层级实施相应的防护策略和手段。“纵深防御”与“分层防护”既有区别又有联系。</p>
-<p>“纵深防御”实际上并不是一个网络安全领域的专属名词，早在二十世纪初，前苏联元帅米·尼·图哈切夫斯基就在对第一次世界大战以及国内战争经验的基础上，提出了一种名为“大纵深作战理论”的思想。由于网络安全的本质就是黑客与开发者之间的攻防战，所以信息安全领域中的“纵深防御”概念确与战争学上的思想有着共通之处，其核心都是多点布防、以点带面、多面成体，以形成一个多层次的、立体的全方位防御体系来挫伤敌人、保障自身的整体安全。</p>
-<p>根据《信息安全工程师教程（第2版）》的描述，<strong>纵深防御模型的基本思路就是将信息网络安全防护措施有机组合起来，针对保护对象，部署合适的安全措施，形成多道保护线，各安全防护措施能够相互支持和补救，尽可能地阻断攻击者的威胁</strong>。目前，安全业界认为网络需要建立四道防线：安全保护是网络的第一道防线，能够阻止对网络的入侵和危害；安全监测是网络的第二道防线，可以及时发现入侵和破坏；实施响应是网络的第三道防线，当攻击发生时维持网络”打不垮”；恢复是网络的第四道防线，使网络在遭受攻击后能够以最快的速度“起死回升”，最大限度地降低安全事件带来的损失。看描述基本上是对应美国国防部提出的PDRR模型，即（Protection防护、Detection检测、Recovery恢复、Response响应）。PDRR改进了传统的只有防护的单一安全防御思想，强调信息安全保障的四个重要环节。<br>保护（Protection）的内容主要有加密机制、数据签名机制、访问控制机制、认证机制、信息隐藏、防火墙技术等。<br>检测（Detection）的内容主要有入侵检测、系统脆弱性检测、数据完整性检测、攻击性检测等。<br>恢复（Recovery）的内容主要有数据备份、数据修复、系统恢复等。<br>响应（Response）的内容主要有应急策略、应急机制、应急手段、入侵过程分析及安全状态评估等。<br><img src="https://img-blog.csdnimg.cn/55be794c0ca54144b664236a49d06321.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PDRR"></p>
-<p>但是PPDR模型总体还是比较局限与从技术上考虑安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木板构成的“木桶”，木桶的容量由最短的那块短板决定。在处理信息安全问题是，需要全面考虑各方面的因素。</p>
-<p>所以美国国家安全局（NSA）发布的信息安全保障技术框架IATF（Information Assurance Technical Framework）提出了纵深防御战略思想，其3个核心要素就是人、技术和操作。信息系统安全保障依赖于人、技术和操作来共同实现组织机构的职能。<br>IATF用一句话概括起来就是：<strong>一个核心思想、三个核心要素、四个焦点领域</strong>。<br><img src="https://img-blog.csdnimg.cn/fdddd1b8b76b4be3a41e4095d08edb49.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="IATF纵深防御"></p>
-<p><strong>一个核心思想</strong><br>一个核心思想就是”纵深防御”，<strong>纵深防御也被称为深度防护战略（Defense-in-Depth），是指网络安全需要采用一个多层次、纵深的安全措施来保障信息安全。因为网络信息的安全不是仅仅依靠一两种技术或简单的安全防御设施就能实现，必须在各个层次、不同技术框架区域中实施保障机制，才能最大程度地降低风险，应对攻击并保护信息系统的安全</strong>。在一个规范的信息系统网络中，我们可以看到在网络出口有防火墙，在DMZ区有防火墙，在服务器前端还有防火墙，这就是纵深防御思想的一个体现。需要在多个位置部署安全措施，看似重复，但是因其面对不同的业务、其安全策略有很大的差异。</p>
-<p><strong>三个核心要素</strong><br>三个核心要素是人、技术、操作。网络安全三分靠技术、七分靠管理，三要素中的“人”指的就是加强管理。<br>人是信息系统的主题，包括信息系统的拥有者、管理者和使用者，是信息安全保障的核心；<br>技术是重要手段，需要通过技术机制来保障各项业务的安全，是一种被动防御；<br>操作也称为运行或运营安全，是一种主动防御的体系和机制，包括风险评估、监控、审计、入侵检测等。<br><img src="https://img-blog.csdnimg.cn/4ccc279ac6a94841b36f5e6c786a90a0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="三个核心要素"></p>
-<p><strong>四个焦点领域</strong><br>网络和基础设施、区域边界、计算环境、支撑性基础设施4个焦点领域。基于这4个焦点领域，结合IATF纵深防御的思想进行信息安全防御从而形成保障框架。</p>
-<p>1.保护网络和基础设施</p>
-<p>网络和其他基础设施是信息系统及业务的支撑，是整个信息系统安全的基础。应采取昔施确保网络和基础设施能稳定可靠运行，不会因故障和外界影响导致服务的中断或数据延迟，确保在网络中进行传输的公共的、私人的信息能正确地被接收者获取，不会导致未受权的访问、更改等。保护网络和基础设施防护措施包括但并不限于以下方式。</p>
-<ul>
-<li>合理规划以确保骨干网可用性。</li>
-<li>使用安全的技 术架构，例如在使用无线网络时考虑安全的技术架构。</li>
-<li>使用冗余设备提高可用性。</li>
-<li>使用虚拟专网 ( VPN)保护通信。</li>
-</ul>
-<p>2.保护区域边界</p>
-<p>信息系统根据业务、管理方式和安全等级的不同，通常可以划分为多个区域，这些区或多或少都有与其他区域相连接的边界。保护区域边界关注的是如何对进出这此区域边界的数据流进行有效的控制与监视。要合理地将信息系统根据业务、管理方式和安全等级划分不同的安全区域，并明确定义不同网络区域间需要哪些数据传递。在此基础上采取措施对数据进行控制与监视。通常采取的措施包括但并不限于以下方式。</p>
-<ul>
-<li>在区域边界设 置身份认证和访问控制措施，例如部署防火墙对来访者进行身份认证。</li>
-<li>在区域边 界部署人侵检测系统以发现针对安全区域内的攻击行为。</li>
-<li>在区域边界部署防病毒网关以发现并过滤数据中的恶意代码。</li>
-<li>使用VPN设备以确保安全的接人。</li>
-<li>部署抗拒绝服务攻击设备以应对拒绝服务攻击。</li>
-<li>流量管理、行为管理等其他措施。</li>
-</ul>
-<p>3.保护计算环境</p>
-<p>计算环境指信息系统中的服务器、客户机及其中安装的操作系统、应用软件等。保护计算环境通常采用身份鉴别、访问控制、加密等一系列技术以确保计算环境内的数据保密性、完整性、可用性、不可否认性等。保护计算环境的措施包括但并不限于以下方式。<br>安装并使用安全的操作系统和应用软件。</p>
-<ul>
-<li>在服务 器上部署主机入侵检测系统、防病毒软件及其他安全防护软件。</li>
-<li>定期对系统进行漏洞扫描或者补丁加固，以避免系统脆弱性。</li>
-<li>定期对系统进行安全配置检查，确保最优配置。</li>
-<li>部署或配置对文件的完整性保护。</li>
-<li>定期对 系统和数据进行备份等。</li>
-</ul>
-<p>4.支撑性基础设施</p>
-<p>支撑性基础设施是提供安全服务的基础设施及与之相关的一系列活动的综合体。IATF定义了两种类型的支撑性基础设施：密钥管理基础设施( KMI) /公钥基础设施( PKI)和检测与响应。</p>
-<ul>
-<li>KMI/PKI：提供支持密钥、授权和证书管理的密码基础设施并能实现使用网络服务人员确实的身份识别。</li>
-<li>检测与响应：提供入侵检测、报告、分析、评估和响应基础设施，它能迅速检测和响应入侵、异常事件并提供运行状态的情况。</li>
-</ul>
-<p>IATF的4个技术焦点区域是一个逐层递进的关系，从而形成一种纵深防御系统。因此，以上4个方面的应用充分贯彻了纵深防御的思想，对整个信息系统的各个区域、各个层次，甚至在每一个层次内部都部署了信息安全设备和安全机制，保证访问者对每一个 系统组件进行访问时都受到保障机制的监视和检测，以实现系统全方位的充分防御，将系统遭受攻进行访问时都受到保障机制的监视和检测，以实现系统全方位的充分防御，将系统遭受攻击的风险降至最低,确保数据的安全和可靠。</p>
-<p>除了纵深防御这个核心思想之外，IATF还提出了其他一些信息安全原则，包括保护多个位置、分层防护。<br>1.保护多个位置<br>保护多个位置包括保护网络和基础设施、区域边界、计算环境等,这一原则提醒我们，仅仅在信息系统的重要敏感区域设置一些保护装置 是不够的，任意一个系统漏洞都有可能导致严重的攻击和破坏后果，所以在信息系统的各个方位布置全面的防御机制，才能将风险降至最低。<br>2.分层防御<br>如果说保护多个位置原则是横向防御，那么这一原则就是纵向防御，这也是纵深防御思想的一个具体体现。分层防御即在攻击者和目标之间部署多层防御机制，每个这样的机制必须对攻击者形成一道屏障。而且每一个这样的机制还应包括保护和检测措施，以使攻击者不得不面对被检测到的风险，迫使攻击者由于高昂的攻击代价而放弃攻击行为。</p>
-<p>可见，<strong>纵深防御是战略思想、分层防护是具体的战术实现</strong>。</p>
-<p>资料来源：<br>《信息安全工程师教程（第2版）》<br>《CISP培训教材》</p>
+        <h1 id="一、什么是APT攻击"><a href="#一、什么是APT攻击" class="headerlink" title="一、什么是APT攻击"></a>一、什么是APT攻击</h1><p>当今，网络系统面临着越来越严重的安全挑战，在众多的安全挑战中，一种具有组织性、特定目标以及长时间持续性的新型网络攻击日益猖獗，国际上常称之为<strong>APT（Advanced Persistent Threat高级持续性威胁）攻击</strong>。<br>APT攻击是一种以商业或者政治目的为前提的特定攻击，其通过一系列具有针对性的攻击行为以获取某个组织甚至国家的重要信息，特别是针对国家重要的基础设施和单位开展攻击，包括能源、电力、金融、国防等等。APT攻击常常采用多种攻击技术手段，包括一些最为先进的手段和社会工程学方法，并通过长时间持续性的网络渗透，一步步的获取内部网络权限，此后便长期潜伏在内部网络，不断地收集各种信息，直至窃取到重要情报。<br>对于APT攻击比较权威的定义是由美国国家标准与技术研究所( NIST)提出的，该定义给出了APT攻击的4个要素，具体如下。<br>(1)攻击者：拥有高水平专业知识和丰富资源的敌对方。<br>(2)攻击目的：破坏某组织的关键设施，或阻碍某项任务的正常进行。<br>(3)攻击手段：利用多种攻击方式，通过在目标基础设施上建立并扩展立足点来获取信息。<br>(4)攻击过程：在一个很长的时间段内潜伏并反复对目标进行攻击,同时适应安全系统的防御措施,通过保持高水平的交互来达到攻击目的。</p>
+<h1 id="二、APT攻击过程"><a href="#二、APT攻击过程" class="headerlink" title="二、APT攻击过程"></a>二、APT攻击过程</h1><p>一般APT攻击过程可概括为3个阶段：<strong>攻击前准备</strong>阶段、<strong>攻击入侵</strong>阶段和<strong>持续攻击</strong>阶段，又可细分为5个步骤：<strong>情报收集、防线突破、通道建立、横向渗透、信息收集及外传</strong>。<br><img src="https://img-blog.csdnimg.cn/d0fb871498644cbca3999c9029b7771b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="APT攻击过程"></p>
+<h2 id="1-情报收集"><a href="#1-情报收集" class="headerlink" title="1.情报收集"></a>1.情报收集</h2><p>在实施攻击之前，攻击者会针对特定组织的网络系统和相关员工展开大量的信息搜集。信息搜集方法多种多样，通常包括搜索引擎、爬网系统、网络隐蔽扫描、社会工程学方法等方式。信息来源包括相关员工的微博、博客、社交网站、公司网站，甚至通过某些渠道购买相关信息(如公司通讯录等)。攻击者通过对这些信息的分析，可以清晰地了解攻击目标所使用的应用、防御软件，组织内部架构和人员关系，核心资产存放情况等等。于是，攻击者针对特定目标(一般是内部员工)所使用的应用软件寻找漏洞，并结合特定目标所使用的杀毒软件、防火墙等设计特定木马/恶意代码以绕过防御。同时，攻击者搭建好入侵服务器，开展技术准备工作。</p>
+<h2 id="2-防线突破"><a href="#2-防线突破" class="headerlink" title="2.防线突破"></a>2.防线突破</h2><p>攻击者在完成情报收集和技术准备后，开始采用木马/恶意代码攻击特定员工的个人电脑，攻击方法主要有：①社会工程学方法，如电子邮件攻击，攻击者窃取与特定员工有关系的人员(如领导、同事、朋友等)电子邮箱，冒充发件人给该员工发送带有恶意代码附件的邮件，一旦该员 工打开附件，员工电脑便感染了恶意软件。②远程漏洞攻击方法，如网站挂马攻击，攻击者在员工常访问的网站上放置木马，当员工再次访问该网站时，个人电脑便受到网页代码攻击。由于这些恶意软件针对的是系统未知漏洞并被特殊处理，因此现有的杀毒软件和防火墙均无法察觉，攻击者便能逐渐获取个人电脑权限，最后直至控制个人电脑。</p>
+<h2 id="3-通道建立"><a href="#3-通道建立" class="headerlink" title="3.通道建立"></a>3.通道建立</h2><p>攻击者在突破防线并控制员工电脑后，在员工电脑与入侵服务器之间开始建立命令控制通道。通常，命令控制通道采用HTTP/HTTPS等协议构建，以突破电脑系统防火墙等安全设备。一旦攻击者完成通道建立，攻击者通过发送控制命令检查植入的恶意软件是否遭受查杀，并在恶意软件被安全软件检测到前，对恶意软件进行版本升级，以降低被发现的概率。</p>
+<h2 id="4-横向渗透"><a href="#4-横向渗透" class="headerlink" title="4.横向渗透"></a>4.横向渗透</h2><p>入侵和控制员工个人电脑并不是攻击者的最终目的，攻击者会采用口令窃听、漏洞攻击等多种渗透方法尝试进一步入侵组织内部更多的个人电脑和服务器，同时不断地提升自己的权限，以求控制更多的电脑和服务器，直至获得核心电脑和服务器的控制权。</p>
+<h2 id="5-信息收集及外传"><a href="#5-信息收集及外传" class="headerlink" title="5.信息收集及外传"></a>5.信息收集及外传</h2><p>攻击者常常长期潜伏，并不断实行网络内部横向渗透，通过端口扫描等方式获取服务器或设备上有价值的信息，针对个人电脑通过列表命令等方式获取文档列表信息等。攻击者会将内部某个服务器作为资料暂存的服务器，然后通过整理、压缩、加密、打包的方式，利用建立的隐蔽通信通道将信息进行外传。在获取这些信息后，攻击者会对这些信息数据进行分析识别，并做出最终的判断，甚至实施网络攻击破坏。</p>
+<h1 id="三、APT攻击和传统攻击的区别"><a href="#三、APT攻击和传统攻击的区别" class="headerlink" title="三、APT攻击和传统攻击的区别"></a>三、APT攻击和传统攻击的区别</h1><p>APT攻击具有不同于传统网络攻击的5个显著特征：针对性强、组织严密、持续时间长、高隐蔽性和间接攻击。<br>1.针对性强<br>APT攻击的目标明确，多数为拥有丰富数据/知识产权的目标，所获取的数据通常为商业机密、国家安全数据、知识产权等。<br>相对于传统攻击的盗取个人信息，APT攻击只关注预先指定的目标，所有的攻击方法都只针对特定目标和特定系统，针对性较强。<br>2.组织严密<br>APT攻击成功可带来巨大的商业利益，因此攻击者通常以组织形式存在，由熟练黑客形成团体，分工协作，长期预谋策划后进行攻击。他们在经济和技术上都拥有充足的资源，具备长时间专注APT研究的条件和能力。<br>3.持续时间长<br>APT攻击具有较强的持续性，经过长期的准备与策划，攻击者通常在目标网络中潜伏几个月甚至几年，通过反复渗透，不断改进攻击路径和方法，发动持续攻击，如零日漏洞攻击等。<br>4.高隐蔽性<br>APT攻击根据目标的特点，能绕过目标所在网络的防御系统，极其隐藏地盗取数据或进行破坏。在信息收集阶段，攻击者常利用搜索引擎、高级爬虫和数据泄漏等持续渗透，使被攻击者很难察觉；在攻击阶段，基于对目标嗅探的结果，设计开发极具针对性的木马等恶意软件，绕过目标网络防御系统，隐蔽攻击。<br>5.间接攻击<br>APT攻击不同于传统网络攻击的直接攻击方式，通常利用第三方网站或服务器作跳板，布设恶意程序或木马向目标进行渗透攻击。恶意程序或木马潜伏于目标网络中，可由攻击者在远端进行遥控攻击，也可由被攻击者无意触发启动攻击。<br>| 对比内容 |传统攻击  |APT攻击  |<br>|–|–|–|<br>| 攻击者特征 | 个体或小组织网络犯罪分子 | 全球性、有组织、有纪律的不法团体、公司、敌对者 |<br>| 攻击目标 | 随机性选择攻击，通常以个体为主，以达到获取金钱、盗窃身份、欺诈等 | 特定攻击目标，通常针对国家安全信息、重要行业商业机密信息等 |<br>| 攻击手段 | 攻击手段比较单一，常基于已有的恶意软件展开攻击 | 攻击手段复杂，形式多样，结合0day攻击、特种木马攻击、社会工程学等展开攻击 |<br>| 攻击时间 | 攻击时间较短，以一次性、大范围攻击为主 | 攻击时间较长，长期潜伏、多次渗透攻击 |<br>| 攻击痕迹 | 攻击特性很强，容易在较短时间内被检测和捕获 | 攻击特征弱，比较隐蔽，缺少样本数据，很难被检测和捕获 |</p>
+<h1 id="四、如何防范APT攻击"><a href="#四、如何防范APT攻击" class="headerlink" title="四、如何防范APT攻击"></a>四、如何防范APT攻击</h1><p>随着人们对APT攻击的研究不断深入，已经出现一些有效的防御技术来对抗APT攻击，其核心思想大多是针对APT“攻击链”的某一步骤展开防御。这些技术主要包括：沙箱技术、信誉技术、异常流量分析技术、大数据分析技术等等。</p>
+<h2 id="1-沙箱技术"><a href="#1-沙箱技术" class="headerlink" title="1.沙箱技术"></a>1.沙箱技术</h2><p>沙箱，又叫做沙盘，被认为是当前防御APT攻击的最有效技术之一。沙箱即是通过虚拟化技术形成一个模拟化的环境，同时将本地系统中的进程对象、内存、注册表等与模拟环境相互隔离，以便在这个虚拟化环境中测试和观察文件、访问等运行行为。沙箱通过重定向技术，将测试过程中生成和修改的文件定向到特定文件夹中，避免了对真是注册表、本地核心数据等的修改。当APT攻击在改虚拟环境发生时，可以及时地观察并分析其特征码，进一步防御其深入攻击。</p>
+<h2 id="2-信誉技术"><a href="#2-信誉技术" class="headerlink" title="2.信誉技术"></a>2.信誉技术</h2><p>安全信誉是对互联网资源和服务相关实体安全可信性的评估和看法。信誉技术是应用于APT攻击检测具有较好辅助功能的一项技术，通过建立信誉库，包括WEB URL信誉库、文件MD5码库、僵尸网络地址库、威胁情报库等，可以为新型病毒、木马等APT攻击的检测提供强有力的技术辅助支撑，实现网络安全设备对不良信誉资源的阻断或过滤。信誉库的充分利用，将进一步提高安全新品的安全防护能力。</p>
+<h2 id="3-主机漏洞防护技术"><a href="#3-主机漏洞防护技术" class="headerlink" title="3.主机漏洞防护技术"></a>3.主机漏洞防护技术</h2><p>针对横向移动与内部资料进行挖掘和探测的防御，可采用主机漏洞防护技术，能侦测任何针对主机漏洞的攻击并加以拦截，进而保护未修补的主机。这类解决方案可实现档案 / 系统一致性监控，保护未套用修补程序的主机，防止已知和0day 漏洞攻击。</p>
+<h2 id="4-异常流量分析技术"><a href="#4-异常流量分析技术" class="headerlink" title="4.异常流量分析技术"></a>4.异常流量分析技术</h2><p>这是一种流量检测及分析技术，其采用旁路接入方式提取流量信息，可以针对帧数、帧长、协议、端口、标识位、IP路由、物理路径、CPU/RAM消耗、宽带占用等进行监测，并基于时间、拓扑、节点等多种统计分析手段，建立流量行为轮廓和学习模型来识别流量异常情况，进而判断并识别0Day漏洞攻击等。</p>
+<h2 id="5-数据防泄漏技术（DLP）"><a href="#5-数据防泄漏技术（DLP）" class="headerlink" title="5.数据防泄漏技术（DLP）"></a>5.数据防泄漏技术（DLP）</h2><p>针对资料外传的风险，一般可采用加密和资料外泄防护 (DLP)技术，将关键、敏感、机密的数据加密，是降低数据外泄风险的一种方法，DLP 可提供一层额外的防护来防止数据外泄。然而，这类工具通常很复杂，而且有些部署条件，例如：数据要分类，要定义政策和规则等。</p>
+<h2 id="6、大数据分析技术"><a href="#6、大数据分析技术" class="headerlink" title="6、大数据分析技术"></a>6、大数据分析技术</h2><p>APT攻击防御离不开大数据分析技术，无论是网络系统本身产生的大量日志数据，还是SOC安管平台产生的大量日志信息，均可以利用大数据分析技术进行大数据再分析，运用数据统计、数据挖掘、关联分析、态势分析等从记录的历史数据中发现APT攻击的痕迹，以弥补传统安全防御技术的不足。</p>
+<p>我们熟知的APT防御产品主要针对的都是APT攻击链上的某个环节来展开防御，目前来说这是远远不够的。APT攻击防御应该是覆盖APT攻击所有环节，未来发展的趋势，是需要构建基于APT攻击链的多层次、多维度、多角度的纵深防御体系，如态势感知平台等。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 
       
     </div>
@@ -552,7 +521,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/e2fd4a90/" title="网络信息安全之纵深防御">https://xiejava.gitee.io/posts/e2fd4a90/</a>
+    <a href="https://xiejava.gitee.io/posts/25e5f55a/" title="网络信息安全之APT攻击">https://xiejava.gitee.io/posts/25e5f55a/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -580,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/3a099914/" rel="next" title="网络安全体系之分层防护">
-                <i class="fa fa-chevron-left"></i> 网络安全体系之分层防护
+              <a href="/posts/cb0f48b6/" rel="next" title="网络信息系统安全的发展演变">
+                <i class="fa fa-chevron-left"></i> 网络信息系统安全的发展演变
               </a>
             
           </div>
@@ -589,10 +558,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/f571f2b1/" rel="prev" title="Hexo博客加入51LA网站流量统计">
-                Hexo博客加入51LA网站流量统计 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -649,8 +614,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -753,6 +727,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、什么是APT攻击"><span class="nav-number">1.</span> <span class="nav-text">一、什么是APT攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、APT攻击过程"><span class="nav-number">2.</span> <span class="nav-text">二、APT攻击过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-情报收集"><span class="nav-number">2.1.</span> <span class="nav-text">1.情报收集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-防线突破"><span class="nav-number">2.2.</span> <span class="nav-text">2.防线突破</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-通道建立"><span class="nav-number">2.3.</span> <span class="nav-text">3.通道建立</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-横向渗透"><span class="nav-number">2.4.</span> <span class="nav-text">4.横向渗透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-信息收集及外传"><span class="nav-number">2.5.</span> <span class="nav-text">5.信息收集及外传</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、APT攻击和传统攻击的区别"><span class="nav-number">3.</span> <span class="nav-text">三、APT攻击和传统攻击的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、如何防范APT攻击"><span class="nav-number">4.</span> <span class="nav-text">四、如何防范APT攻击</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-沙箱技术"><span class="nav-number">4.1.</span> <span class="nav-text">1.沙箱技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-信誉技术"><span class="nav-number">4.2.</span> <span class="nav-text">2.信誉技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-主机漏洞防护技术"><span class="nav-number">4.3.</span> <span class="nav-text">3.主机漏洞防护技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-异常流量分析技术"><span class="nav-number">4.4.</span> <span class="nav-text">4.异常流量分析技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-数据防泄漏技术（DLP）"><span class="nav-number">4.5.</span> <span class="nav-text">5.数据防泄漏技术（DLP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、大数据分析技术"><span class="nav-number">4.6.</span> <span class="nav-text">6、大数据分析技术</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
