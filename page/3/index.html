@@ -313,6 +313,303 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/16c9fc17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/16c9fc17/" itemprop="url">pandas数据分析之排序和排名(sort和rank)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-30T09:14:37+08:00">
+                2022-01-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-01-30T09:55:55+08:00">
+                2022-01-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/16c9fc17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/16c9fc17/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/16c9fc17/" class="leancloud_visitors" data-flag-title="pandas数据分析之排序和排名(sort和rank)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。</p>
+<p>本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。<br>数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/50b98632593d4d96bc9d95d0914ba377.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="student数据集"><br>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<h1 id="一、排序"><a href="#一、排序" class="headerlink" title="一、排序"></a>一、排序</h1><p>对数据集进行排序是是常用的数据分析需求之一。pandas提供了按 索引标签排序sort_index()和按值排序sort_values()两种排序方法。对于DataFrame，可以根据任意一个轴上的索引标签进行排序。默认顺序排序，也可以设置按倒序排序。</p>
+<h2 id="1、按标签排序"><a href="#1、按标签排序" class="headerlink" title="1、按标签排序"></a>1、按标签排序</h2><h3 id="1）按行标签索引排序"><a href="#1）按行标签索引排序" class="headerlink" title="1）按行标签索引排序"></a>1）按行标签索引排序</h3><p>pandas默认按行标签索引顺序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引排序</span></span><br><span class="line">df.sort_index()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/7f59ca64cf504f0a81269276187a4ae9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按行索引排序"><br>可以通过设置<code>ascending=False</code>参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引倒序排序</span></span><br><span class="line">df.sort_index(ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/62cc7ea3d992450ea8c69e1552605427.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按行索引倒序排序"></p>
+<h3 id="2）按列标签索引排序"><a href="#2）按列标签索引排序" class="headerlink" title="2）按列标签索引排序"></a>2）按列标签索引排序</h3><p>通过给 axis 轴参数传递 0 或 1，可以对列标签进行排序。默认情况下，axis=0 表示按行排序；而 axis=1 则表示按列排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/555275e9780b4b9d911350ebf691b561.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按列索引排序"><br>同样可以设置ascending=False参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引倒序排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2b8e879e51f94dfa8ed66013d5b46ebf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按列索引倒序排序"></p>
+<h2 id="2、按值排序"><a href="#2、按值排序" class="headerlink" title="2、按值排序"></a>2、按值排序</h2><p>在实际应用中用得最多的应该是根据某一列的值进行排序。在pandas中可以通过sort_value()，在sort_value中可以设定按某个列排序，也可以通过sort_value(by=[])，通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。</p>
+<h3 id="1）对单个列的值排序"><a href="#1）对单个列的值排序" class="headerlink" title="1）对单个列的值排序"></a>1）对单个列的值排序</h3><p>如在数据集中对语文成绩进行排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩排序</span></span><br><span class="line">df.sort_values(<span class="string">'4-语文'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20590ee5b8ed45e69ec3f8936dadaba7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="对语文成绩进行排序"></p>
+<h3 id="2）对多个列的值进行排序"><a href="#2）对多个列的值进行排序" class="headerlink" title="2）对多个列的值进行排序"></a>2）对多个列的值进行排序</h3><p>通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。<br>如对数据集中的语文和数学进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/4137cab46c284d499f180dae9f32bdc2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="对数据集中的语文和数学进行排序"></p>
+<h2 id="3、排序算法"><a href="#3、排序算法" class="headerlink" title="3、排序算法"></a>3、排序算法</h2><p>sort_values() 提供了参数kind用来指定排序算法。这里有三种排序算法：</p>
+<ul>
+<li>mergesort（归并排序） </li>
+<li>heapsort（堆排序） </li>
+<li>quicksort（快速排序）</li>
+</ul>
+<p>默认为 quicksort(快速排序) ，其中 mergesort归并排序是最稳定的算法。<br>具体用法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学用mergesort归并排序算法排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>],kind=<span class="string">'mergesort'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/8def3ea3da0048298166f0fff482ccca.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="排序算法"></p>
+<h1 id="二、排名"><a href="#二、排名" class="headerlink" title="二、排名"></a>二、排名</h1><p>排名和排序的区别在于排序一定是有顺序，而排名分先后并列。如在现实生活中相同的分数存在排名并列的情况。<br>在《使用python进行数据分析》一书中对rank排名的描述为：排名是指对数组从1到有效数据点总数分配名次的操作。Series和DataFrame的rank方法是实现排名的方法，默认情况下，rank是通过“为各组分配一个平均排名”的方式破坏平级关系。这段话讲得是什么鬼？其实就是在存在并列排名的时候采用一定的策略来打破这种关系。<br>排名中的平级关系打破方法有如下几种：</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>average</td>
+<td>默认：在每个组中分配平均排名</td>
+</tr>
+<tr>
+<td>min</td>
+<td>对整个组使用最小排名</td>
+</tr>
+<tr>
+<td>max</td>
+<td>对整个组使用最大排名</td>
+</tr>
+<tr>
+<td>first</td>
+<td>按照值在数据中出现的次序分配排名</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>类似于method=’min’,但组件排名总是加1，而不是一个组中的相等元素的数量</td>
+</tr>
+</tbody></table>
+<p><strong>rank()函数原型：</strong><code>rank(axis=0, method: str = &#39;average&#39;, numeric_only: Union[bool, NoneType] = None, na_option: str = &#39;keep&#39;, ascending: bool = True, pct: bool = False)</code><br>这里method取值可以为’average’，’first’，’min’， ‘max’，’dense’，用来打破排名中的平级关系的。<br>光看这些说明还是比较难理解。下面通过实例来说明：</p>
+<h2 id="1、默认average-排名"><a href="#1、默认average-排名" class="headerlink" title="1、默认average 排名"></a>1、默认average 排名</h2><p>在数据集中我们只取“学号”、“姓名”、“语文”，然后取“语文”的排名，默认average</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_rank=df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>]].copy()</span><br><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/213aa6cf088d48b69f48ac64845f4581.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="默认average 排名"></p>
+<p>这个排名很奇怪，97分排名第一没有问题，居然没有第二名，三个96分排名均为3，还有两个90分排名为9.5。这是什么鬼？<br>原来这就是默认的“average”规则,成绩相同时，取顺序排名中所有名次之和除以该成绩的个数，如两个90分的名次为最后两名分别为9名和10名，即(9+10)/2=9.5，三个96分的名次分别为2、3、4 那么排名为（2+3+4)/3=9/3=3</p>
+<h2 id="2、mothod-’min’的排名"><a href="#2、mothod-’min’的排名" class="headerlink" title="2、mothod=’min’的排名"></a>2、mothod=’min’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/b289018016d448c6a59b03c6641ed06f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按语文成绩进行min排名"></p>
+<p>在这个排名中看到有3个并列为2的排名，但没有排名为3、4的，有两个排名为9的，但没有排名为10的。可以看出当method=“min”时，成绩相同的同学，取在顺序排名中最小的那个排名作为该值的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。因为有了三个2名，接下来就从5名开始，5、6、7、8，到了第9名又有两个同分数的取9、10的最小排名为9，所以有两个9名。</p>
+<h2 id="3、mothod-’max’的排名"><a href="#3、mothod-’max’的排名" class="headerlink" title="3、mothod=’max’的排名"></a>3、mothod=’max’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/397162df3494435c9acde13fc286eee5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按语文成绩进行max排名"><br>与min相反，成绩相同的同学，排名相同取顺序最大的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。当method为max时，取最大的4作为96分的整体排名，同理90分的取10为90分的整体排名。</p>
+<h2 id="4、mothod-’first’的排名"><a href="#4、mothod-’first’的排名" class="headerlink" title="4、mothod=’first’的排名"></a>4、mothod=’first’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/dfda709d0192404abf719ca156906758.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按语文成绩进行first排名"></p>
+<p>first排名很好理解了，有点先到先得的意思，成绩相同，谁的索引排前，谁的排名就靠前，比如张三、王五、顾十 这三个同学都是96分，按理应该是并列第2，但张三的索引比王五和顾十的都靠前，王五的索引比顾十靠前，所以他们的顺序分别为2、3、4，同理陈一、钱七的分数都是90分，但陈一的索引比钱七靠前所以陈一排名为9、钱七排名第10</p>
+<h2 id="5、mothod-’dense’的排名"><a href="#5、mothod-’dense’的排名" class="headerlink" title="5、mothod=’dense’的排名"></a>5、mothod=’dense’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2156d32683ea43da8294df5329869bef.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按语文成绩进行dense排名"><br>“dense”: 是密集的意思，也比较好理解，即相同成绩的同学排名相同，其他依次加1即可。可以看到张三、王五、顾十这三位同学都是96分，并列排名第2，后面的加1，即比他们分数稍低的赵六95分排名第3，后面依次。</p>
+<h2 id="6、不同method的排名对比"><a href="#6、不同method的排名对比" class="headerlink" title="6、不同method的排名对比"></a>6、不同method的排名对比</h2><p>最后不同method的排名对比：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-average'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-min'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-max'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-first'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-dense'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'4-语文'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/c082acec2ed9426aa5af7cee47d3ac30.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="按语文成绩进行rank的默认排名"></p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/531458d5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2749,244 +3046,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d101efba/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d101efba/" itemprop="url">解决Anaconda报The channel is not accessible源通道不可用问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-26T15:53:22+08:00">
-                2021-11-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-26T16:00:16+08:00">
-                2021-11-26
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d101efba/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d101efba/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d101efba/" class="leancloud_visitors" data-flag-title="解决Anaconda报The channel is not accessible源通道不可用问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  662
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在通过pycharm开发python程序，引用anaconda环境建立虚拟环境时报错，报UnavailableInvalidChannel: The channel is not accessible or is invalid.应该是镜像源访问通道无法访问或无效。现将解决办法记录如下：</p>
-<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：win10<br>安装有anaconda 4.10.3<br>pycharm2021.2</p>
-<h1 id="报错现象："><a href="#报错现象：" class="headerlink" title="报错现象："></a>报错现象：</h1><p>在pycharm中新建python项目，引用anaconda建立虚拟环境时报错<br>报“UnavailableInvalidChannel: The channel is not accessible or is invalid.”<br><img src="https://img-blog.csdnimg.cn/0b93fd9f35054b69a17eea98aace4d1b.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="建立虚拟环境报错"></p>
-<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><h2 id="1、找到anaconda的源配置文件"><a href="#1、找到anaconda的源配置文件" class="headerlink" title="1、找到anaconda的源配置文件"></a>1、找到anaconda的源配置文件</h2><p>根据报错的建议提示：</p>
-<blockquote>
-<p>You will need to ajust your conda configuration to proceed.<br>Use ‘cona config –show channels’ to view your configuration’s current state,<br>and use ‘conda config –show-sources’ to view config file location.</p>
-</blockquote>
-<p>意思是建议你需要调整conda的配置来处理，可以通过<code>cona config --show channels</code>命令来查看你当前的配置状态，可以用<code>conda config --show-sources</code>看查看本地的配置文件。<br>根据这个建议，打开anaconda的命令行控制台。<br><img src="https://img-blog.csdnimg.cn/9fdcb7a4f8e64cb19e069fad4e1ece6a.png#pic_center" alt="Anaconda Powershell"></p>
-<p>敲入“conda config –show-sources”命令，显示当前的通道为<a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a>  报错就是说这个通道无法访问或无效。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show channels</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-
-<p>通过“conda config –show-sources” 查看配置文件的路径。配置文件为用户目录下的<code>.condarc</code>文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/90ca54b07ef6417395a01c140b6b4381.png#pic_center" alt="在这里插入图片描述"></p>
-<h2 id="2、修改为清华的镜像源"><a href="#2、修改为清华的镜像源" class="headerlink" title="2、修改为清华的镜像源"></a>2、修改为清华的镜像源</h2><p>将找到的.condarc文件打开。<br>拷贝以下清华的镜像源到该文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-
-<p>然后再次运行<code>conda config --show-sources</code>，确认配置文件内容已经修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><p>再打开pycharm引用Conda Enviroment新建新的虚拟环境。<br><img src="https://img-blog.csdnimg.cn/86f0c2ffd7434ed1a591bb89c47f68d8.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="新建新的虚拟环境"><br>这时不报错可以正常创建Conda虚拟环境了。<br><img src="https://img-blog.csdnimg.cn/556082fa9af142e7adb3529de9da77b3.png#pic_center" alt="创建Conda Environment"><br>至此，修改成清华镜像源解决了Anaconda报The channel is not accessible源通道不可用的问题。</p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3043,7 +3102,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3155,7 +3214,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">124k</span>
+    <span title="Site words total count">129k</span>
   
   
 <!--51la网站应用监控-->
