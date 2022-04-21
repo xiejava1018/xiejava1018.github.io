@@ -313,6 +313,266 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6b6a91de/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/6b6a91de/" itemprop="url">机器学习实现恶意URL检测实战一</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-09T08:58:04+08:00">
+                2021-12-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-12-09T09:09:12+08:00">
+                2021-12-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6b6a91de/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6b6a91de/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/6b6a91de/" class="leancloud_visitors" data-flag-title="机器学习实现恶意URL检测实战一">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>恶意URL检测的方法很多，这里介绍通过机器学习分析URL文本分词词频来检测恶意URL。训练的数据集为开源数据集，通过机器学习训练检测模型，然后做了部分工程化的应用，将模型持久化，在应用的时候加载进来直接应用，不用重新进行训练。通过接口调用实现恶意URL检测预测判断。</p>
+<p>恶意URL检测，对应与机器学习是个分类问题，这里分别用逻辑回归和SVM支持向量机分类模型进行模型实现。</p>
+<p>具体实现过程包括<strong>数据载入</strong>–&gt;<strong>数据处理（分词、向量化处理）</strong>–&gt;<strong>模型训练</strong>–&gt;<strong>模型保存</strong>–&gt;<strong>模型应用</strong></p>
+<p><strong>项目组织结构如下：</strong><br><img src="https://img-blog.csdnimg.cn/cdcd148129c346f8a79ab6d91a120fe9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="项目组织结构"></p>
+<h1 id="一、数据载入"><a href="#一、数据载入" class="headerlink" title="一、数据载入"></a>一、数据载入</h1><p>从数据集中载入数据，读取数据，将URL和标签进行识别和区分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从文件中获取数据集</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDataFromFile</span><span class="params">(filename=<span class="string">'data/data.csv'</span>)</span>:</span></span><br><span class="line">    input_url = filename</span><br><span class="line">    data_csv = pd.read_csv(input_url, <span class="string">','</span>, error_bad_lines=<span class="literal">False</span>)</span><br><span class="line">    data_df = pd.DataFrame(data_csv)</span><br><span class="line">    url_df = np.array(data_df)</span><br><span class="line">    random.shuffle(url_df)</span><br><span class="line">    y = [d[<span class="number">1</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    inputurls = [d[<span class="number">0</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    <span class="keyword">return</span> inputurls,y</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、数据处理（分词、向量化处理）"><a href="#二、数据处理（分词、向量化处理）" class="headerlink" title="二、数据处理（分词、向量化处理）"></a>二、数据处理（分词、向量化处理）</h1><p>数据处理实现对URL的分词及向量化处理<br>分词:分析URL根据,.-进行分词，由于com、cn等常用域名不是关键影响因素，所以分词的时候去掉了</p>
+<h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#分词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getTokens</span><span class="params">(input)</span>:</span></span><br><span class="line">    web_url = input.lower()</span><br><span class="line">    urltoken = []</span><br><span class="line">    dot_slash = []</span><br><span class="line">    slash = str(web_url).split(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> slash:</span><br><span class="line">        r1 = str(i).split(<span class="string">'-'</span>)</span><br><span class="line">        token_slash = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(r1)):</span><br><span class="line">            r2 = str(r1[j]).split(<span class="string">'.'</span>)</span><br><span class="line">            token_slash = token_slash + r2</span><br><span class="line">        dot_slash = dot_slash + r1 + token_slash</span><br><span class="line">    urltoken = list(set(dot_slash))</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'com'</span> <span class="keyword">in</span> urltoken:</span><br><span class="line">        urltoken.remove(<span class="string">'com'</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'cn'</span> <span class="keyword">in</span> urltoken:</span><br><span class="line">        urltoken.remove(<span class="string">'cn'</span>)</span><br><span class="line">    <span class="keyword">return</span> urltoken</span><br></pre></td></tr></table></figure>
+<h2 id="向量化处理"><a href="#向量化处理" class="headerlink" title="向量化处理"></a>向量化处理</h2><p>将分词以后的结果进行词频的向量化处理，形成可以用于模型训练的稀疏矩阵向量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">all_urls,y=getDataFromFile(datapath)</span><br><span class="line">url_vectorizer = TfidfVectorizer(tokenizer=getTokens)</span><br><span class="line">x = url_vectorizer.fit_transform(all_urls)</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、模型训练"><a href="#三、模型训练" class="headerlink" title="三、模型训练"></a>三、模型训练</h1><p>将经过处理后的训练数据用模型进行训练，将数据集分为两部分一部分用于训练，一部分用于测试评估。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#训练,通过逻辑回归模型训练</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainLR</span><span class="params">(datapath)</span>:</span></span><br><span class="line">    all_urls,y=getDataFromFile(datapath)</span><br><span class="line">    url_vectorizer = TfidfVectorizer(tokenizer=getTokens)</span><br><span class="line">    x = url_vectorizer.fit_transform(all_urls)</span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>)</span><br><span class="line">    l_regress = LogisticRegression()                  <span class="comment"># Logistic regression</span></span><br><span class="line">    l_regress.fit(x_train, y_train)</span><br><span class="line">    l_score = l_regress.score(x_test, y_test)</span><br><span class="line">    print(<span class="string">"score: &#123;0:.2f&#125; %"</span>.format(<span class="number">100</span> * l_score))</span><br><span class="line">    <span class="keyword">return</span> l_regress,url_vectorizer</span><br></pre></td></tr></table></figure>
+
+<p>用逻辑回归模型训练的结果是 score: 98.50 %</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#训练，通过SVM支持向量机模型训练</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainSVM</span><span class="params">(datapath)</span>:</span></span><br><span class="line">    all_urls, y = getDataFromFile(datapath)</span><br><span class="line">    url_vectorizer = TfidfVectorizer(tokenizer=getTokens)</span><br><span class="line">    x = url_vectorizer.fit_transform(all_urls)</span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>)</span><br><span class="line">    svmModel=svm.LinearSVC()</span><br><span class="line">    svmModel.fit(x_train, y_train)</span><br><span class="line">    svm_score=svmModel.score(x_test, y_test)</span><br><span class="line">    print(<span class="string">"score: &#123;0:.2f&#125; %"</span>.format(<span class="number">100</span> * svm_score))</span><br><span class="line">    <span class="keyword">return</span> svmModel,url_vectorizer</span><br></pre></td></tr></table></figure>
+
+<p>用SVM模型训练的结果是 score: 99.64 %</p>
+<p>可以看出SVM模型训练的结果比逻辑回归模型训练的效果要稍好。</p>
+<h1 id="四、保存模型"><a href="#四、保存模型" class="headerlink" title="四、保存模型"></a>四、保存模型</h1><p>将训练好的模型进行持久化保存，通过pickle.dump()的方式把训练好的模型参数及特征保存至模型文件，以便于应用的时候不要再进行训练，直接应用训练好的模型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存模型及特征</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveModel</span><span class="params">(model,vector)</span>:</span></span><br><span class="line">    <span class="comment">#保存模型</span></span><br><span class="line">    file1 = modelfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file1, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        pickle.dump(model, f)</span><br><span class="line">    f.close()</span><br><span class="line">    <span class="comment">#保存特征</span></span><br><span class="line">    file2 = vectorfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file2, <span class="string">'wb'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        pickle.dump(vector, f2)</span><br><span class="line">    f2.close()</span><br></pre></td></tr></table></figure>
+
+<p>通过main方法执行训练模型及保存模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment">#model,vector=trainLR('data/data.csv')</span></span><br><span class="line">    model, vector = trainSVM(<span class="string">'data/data.csv'</span>)</span><br><span class="line">    saveModel(model,vector)</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、模型应用"><a href="#四、模型应用" class="headerlink" title="四、模型应用"></a>四、模型应用</h1><p>通过pickle.load载入已经训练好的模型和特征，并用Flask暴露一个接口调用模型的预测方法进行预测。</p>
+<h2 id="载入已经训练好的模型"><a href="#载入已经训练好的模型" class="headerlink" title="载入已经训练好的模型"></a>载入已经训练好的模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#载入已经训练好的模型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadModel</span><span class="params">()</span>:</span></span><br><span class="line">    file1 = modelfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file1, <span class="string">'rb'</span>) <span class="keyword">as</span> f1:</span><br><span class="line">        model = pickle.load(f1)</span><br><span class="line">    f1.close()</span><br><span class="line"></span><br><span class="line">    file2 = vectorfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file2, <span class="string">'rb'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        vector = pickle.load(f2)</span><br><span class="line">    f2.close()</span><br><span class="line">    <span class="keyword">return</span> model,vector</span><br></pre></td></tr></table></figure>
+<h2 id="通过接口进行调用"><a href="#通过接口进行调用" class="headerlink" title="通过接口进行调用"></a>通过接口进行调用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过接口进行调用</span></span><br><span class="line"><span class="meta">@app.route('/&lt;path:path&gt;')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_predict</span><span class="params">(path)</span>:</span></span><br><span class="line">    X_predict = []</span><br><span class="line">    X_predict.append(path)</span><br><span class="line">    model, vector = loadModel()</span><br><span class="line">    x = vector.transform(X_predict)</span><br><span class="line">    y_predict = model.predict(x)</span><br><span class="line">    print(y_predict[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"url predict: "</span>+str(y_predict[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、应用效果"><a href="#五、应用效果" class="headerlink" title="五、应用效果"></a>五、应用效果</h1><p>将需要检测的URL，输入到<a href="http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。" target="_blank" rel="noopener">http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。</a><br><a href="http://127.0.0.1:5000/sohu.com/a/338823532_354899" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/338823532_354899</a><br><img src="https://img-blog.csdnimg.cn/7f17697af706490ba693272f6f3780ad.png#pic_center" alt="检测效果1"><br><a href="http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test</a><br><img src="https://img-blog.csdnimg.cn/d6e2542df8944ce4803da80fe0f9f145.png#pic_center" alt="检测效果2"></p>
+<p>完整代码及数据集见：<a href="https://github.com/xiejava1018/urldetection.git" target="_blank" rel="noopener">https://github.com/xiejava1018/urldetection.git</a></p>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d101efba/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2588,277 +2848,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8394d1a3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/8394d1a3/" itemprop="url">大脑不是用来思考的，如何让孩子更好的学习？</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-22T10:23:31+08:00">
-                2021-08-22
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-22T11:25:56+08:00">
-                2021-08-22
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/8394d1a3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8394d1a3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/8394d1a3/" class="leancloud_visitors" data-flag-title="大脑不是用来思考的，如何让孩子更好的学习？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E8%AF%BB%E4%B9%A6.png" alt="读书"></p>
-<p>在这个知识爆炸、学习竞争压力巨大的时代，让父母最焦虑的事情之一，莫过于家里有个厌学的孩子了。为了让孩子好好学习，家长们操碎了心。为了孩子报各种培训辅导班、自己亲自上阵陪同辅导、高价请一对一的家教辅导，就差自己代替孩子去学习了。而孩子依旧是，一写作业就磨蹭、一考试就不会、一上学就无精打彩，一放学就满血复活。为什么学生不喜欢上学？如何让孩子喜欢并更好的学习呢？让我们跟着这本《为什么学生不喜欢上学?》一起来探索学习的秘密。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E6%88%91%E7%9A%84%E5%BF%83%E9%87%8C%E5%8F%AA%E6%9C%89%E5%AD%A6%E4%B9%A0.jpg" alt="我的心里只有学习"><br>《为什么学生不喜欢上学?》是一本关于认知心理学的普及读物，也是一本教育心理学的入门书籍。作为美国弗吉尼亚大学心理学教授威林厄姆的重要著作，是一本深受学生和教师欢迎的教育心理学著作。他用认知心理学的原理，详细分析了学生学习的过程和教师在课堂教学中必须注意的一些问题。</p>
-<p>作者丹尼尔·T·威林厄姆，哈佛大学心理学博士，美国弗吉尼亚大学心理学教授。主要研究以大脑为基础的学习和记忆及认知心理学的基础教育应用。《美国教育家》杂志《向认知科学家提问》专栏作者。</p>
-<p>这本书有着容易被人忽视和低估的名字，实际上它是一本认知心理学和教育心理学的科普著作，长期在美国亚马逊图书榜畅销不衰。在豆瓣评分高达9.3分！</p>
-<p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E7%94%9F%E4%B8%8D%E5%96%9C%E6%AC%A2%E4%B8%8A%E5%AD%A6.png" alt="为什么学生不喜欢上学"><br>书中主要提出并回答了这些问题：</p>
-<ul>
-<li>为什么学生不喜欢上学？</li>
-<li>为什么学生能记住电视里的所有细节，却记不住我们教他的知识？</li>
-<li>为什么让学生理解抽象概念这么难？</li>
-<li>题海战术有用吗？</li>
-<li>科学家是怎样思考的？如何让学生像专家一样思考？</li>
-<li>如何因材施教？</li>
-</ul>
-<p>这本书刷新了很多人对学习的认知，不仅仅适合学生，同样适合处于终生学习时代的你和我。如果你的小学老师能早一点看到，你也就不会讨厌学习了。当然，现在的你看了也同样不晚。不论是教育孩子还是自己，了解了认知学的原理，按照符合科学原理的方法去做，都会让大家的学习更有效率。特别是，本书有许多震撼人心、不符合我们直觉的认知让我们重新去思考如何去更好的学习。</p>
-<h3 id="学生为什么不爱学习？"><a href="#学生为什么不爱学习？" class="headerlink" title="学生为什么不爱学习？"></a><strong>学生为什么不爱学习？</strong></h3><p>从认知心理学的角度来看，人是充满好奇心的，愿意探索了解一切；也喜欢思考，因为思考就是解决问题，而解决问题能带来愉悦感。比如当你苦苦思索，终于解出了一道难题或者想通了一件事情，你的大脑可能奖励它自己少量的多巴胺，让你恨不得手舞足蹈，瞬间自信心爆棚，觉得自己是世界上最棒的人。这种快乐，跟吃个甜点是完全不一样。学习应该是件很快乐的事情。</p>
-<p>既然解决问题也能带来快乐，那为什么还有这么多人不愿意思考，不愿意学习呢？</p>
-<p><strong>因为：大脑不是用来思考的！！！</strong></p>
-<p>看到这里估计大家会一脸闷逼，大脑不是用来思考的，哪是用来干啥的呢？是的，大脑能做很多事情，但思考并不是它最拿手的，人类不常思考是因为我们的大脑<strong>不是用来思考，而是用来避免思考的</strong>。思考很费力，而且它还是缓慢、靠不住的。幸运的是尽管我们并不擅长思考，但我们其实喜欢思考，我们生来就有着好奇心，也寻找可以进行思考的机会。但正是因为思考很难，需要条件合适，这份好奇心才能存活，否则我们很快就会放弃思考的念头。<strong>好奇心是与生俱来的，但它很脆弱</strong>。思考的愉悦感来自解决问题的过程，在一个要解决的问题上毫无进展是不会有愉悦感的，实际上，还会让你沮丧。同样只是知道问题的答案也不会有多大的愉悦感。如何保持好奇心，激发思考的兴趣呢？答案是思考问题的难易程度。太容易的问题不会带来愉悦感，同样太难的问题不但不会带来愉悦感还会带来挫折感让人渐渐的避免思考。</p>
-<p><strong>所以：要确保提供给学生的问题是可以解决的。尊重学生的认知局限和个体间的认知差异，难易适中。</strong></p>
-<p>根据资料，认知心理学把人类对于外部世界的认识分成了三个区域：舒适区、学习区、恐慌区。其中，“舒适区”是对自己来说没有学习难度的知识，接触这类知识感觉很舒适，但可学到的东西很少，进展缓慢；“学习区”有一定挑战，接触时会感到不适，但又不至于太难受，保持在这个区间学习，可以得到快速成长；“恐慌区”是超出自己能力范围太多的知识，接触会感到忧虑、恐惧，不堪负重以至放弃学习。学习具有适当挑战的东西，一段时间后，“学习区”会慢慢变为“舒适区”， 而一部分的“恐慌区” 又会变成“学习区”。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20210822/%E8%88%92%E9%80%82%E5%8C%BA.jpg" alt="舒适区、学习区、恐慌区"></p>
-<p>在舒适区学习，会因为太容易而觉得枯燥，无法坚持；在恐慌区学习，会因为太难好奇心受挫，很快就放弃。所以学习任务要难易适中。要确保在学习过程中碰到的问题可以被解决。</p>
-<h3 id="在学习的过程中死记硬背是否合理？"><a href="#在学习的过程中死记硬背是否合理？" class="headerlink" title="在学习的过程中死记硬背是否合理？"></a><strong>在学习的过程中死记硬背是否合理？</strong></h3><p>一般大家都会死记硬背的学习方法嗤之以鼻，认为是读死书。然而你错了！有些东西该背的还得背，该记的还得记。事实性知识要先于技能，也就是说如9*9乘法表，元素周期表、历史年代表、一些常识等等，必须得用心记下，这些都是学习的基石。</p>
-<p>毫无疑问，让学生记住枯燥的事实是完全不够的，需要进行关联和分析。但是同样，如果没有事实性知识想要凭空让学生拥有分析能力或者归纳能力是不可能的。</p>
-<p><strong>因为：</strong><br><strong>第一，背景知识对阅读理解来说必不可少</strong>。它帮我们在单个的要点之间建立起联系。</p>
-<p><strong>第二，背景知识对于我们的认知是必要的</strong>。一个人看起来在进行逻辑思考，但其实大部分是在进行记忆检索。它使我们能够将独立的元素合成一个单元，进而增加工作记忆的空间。</p>
-<p><strong>第三，事实性知识可以增强记忆</strong>。如果你对一方面了解的越多，你就越能更好的理解这方面的新知识。</p>
-<p>长期记忆中的事实性记忆使得获取更多的事实性知识更容易，它说明持有的信息量取决于已有的信息量。</p>
-<p><strong>所以：</strong><br>我们必须让学生学习背景知识。学生必须学会反复出现的概念–统一所有学科的思想。</p>
-<p><strong>知识体系在先，批判性思维在后</strong>。批判性思考并不能够脱离背景知识而单独实践以至完善的。<br>具有浅显知识都比没有知识强。了解的深固然好，但是我们不可能细致地了解每一件事情，泛泛的知识显然比不懂要强。</p>
-<p><strong>加强阅读</strong>。大量的数据证实，读“闲书”的人一生都因此受益。</p>
-<p><strong>偶然获得知识</strong>。学习事实性知识可以随时随地的学习如读闲书、翻杂志、看记录片、新闻或者和朋友聊天都可以获得相应的知识。</p>
-<p><strong>尽早开始</strong>。家庭环境的培养，如父母使用的语言、书籍资源是否可得、家长是否平时看书。等等还有其他一些因素决定了孩子在上学前拥有的知识。</p>
-<h3 id="题海战术到底有没有用？"><a href="#题海战术到底有没有用？" class="headerlink" title="题海战术到底有没有用？"></a><strong>题海战术到底有没有用？</strong></h3><p>题海战术也是比较有争议的学习方法，现在有一种观点认为，题海战术只对提高考试成绩有帮助，扼杀了学生内在的学习动力，是现行教育下的畸形产物，它带来的弊远大于利。但同时也有教育专家跳出来说，学生必须反复地练习才能学会知识和技能。两者孰是孰非？</p>
-<p>在认知学看来，练习是最有效的窍门之一，它减少了大脑活动需要的空间。没有充分的练习，你不可能精通任何脑力活。</p>
-<p>为什么要练习？因为通过练习能获得最基本的能力，以期精益求精。如果你作为足球运动员在带球的同时还要思考踢球的角度和速度，你不太可能成为一个优秀的足球运动员。你必须得日复一日的练习。像这样的低层次过程必须不假思索，才能给更高层次的过程，比如战术策略提供足够的空间。类似的，你如果不熟记数据要诀也学不好代数。练习的目的是获得能力和提高能力。</p>
-<p><strong>因为：</strong></p>
-<p><strong>练习是为了日后更好的学</strong>习。通过大量的练习会让一些步骤变得自动化，学习者才能将思考能力提高到下一个层次。让思考过程变得省力，这样才能学得更多。</p>
-<p><strong>练习使记忆更长久</strong>。努力学习显然不能防止遗忘，但持续地练习可以防止遗忘。</p>
-<p><strong>练习促进知识的迁移</strong>。重复做很多某一类型的题目使你更容易辨识一个新问题的内在结构，即使你以前没有见过这一题目。</p>
-<p>但是，不是每件事情都需要无限度地练习的。</p>
-<p><strong>所以：</strong></p>
-<p>如果练习可以让思考过程变得省力，我们就要去识别哪些过程需要自动化，总的来说需要自动化的过程往往是自动化后效益能达到最大值的技能的基础。</p>
-<p><strong>分散练习时间</strong>。没有必要把关于一个概念的所有练习集中在很短的一段时间里完成。分散练习后记忆会更持久。持续不断地练习同一项技能是很无聊的事，最好能有点变化。分散练习的另一个好处是学习者有更多的时间思考如何将学到的东西加以应用。</p>
-<p><strong>在进阶环境中练习</strong>。自动化需要很多练习，聪明的办法是既分散练习的时间，又分散练习的环境。尽量多的设计有创意的方法来练习最关键的技巧，同时让学习者在更高阶的环境中学到基本技能。</p>
-<h3 id="有些孩子天生就不是学习的料？"><a href="#有些孩子天生就不是学习的料？" class="headerlink" title="有些孩子天生就不是学习的料？"></a><strong>有些孩子天生就不是学习的料？</strong></h3><p>有些人认为，学习能力是受基因影响，如果你的基因优秀，你就聪明；基因不好，就不聪明。你聪明就可以学得很好。另外一种看法就是认为智能是可以塑造的。如果考试考砸了或不理解某个知识点，不是因为笨，而是因为他们还不够努力。哪一种看法是正确的呢？</p>
-<p>答案是：两者都有正确的部分。我们的基因遗传确实对智能有影响，但是通常是通过环境影响的。毫无疑问智能是可以改变的！</p>
-<p>孩子智能上的差异可以通过持久的努力来改变。</p>
-<p><strong>因为：</strong></p>
-<p><strong>对于智能，态度很重要</strong><br>有充分证据证明，相信智能可以通过努力提高的学生比相信智能是改变不了得事情的学生学得更好，得到的分数更高。<br>孩子必须知道他的能力决定他所作事情时的成功率，他需要发展对于自己能力的自信，而且还要理解，对于不同类型的任务他拥有不同级别的能力。</p>
-<p><strong>所以：</strong></p>
-<p>要确保孩子相信自己能够进步，要让他们相信为此所作的努力是值得的。</p>
-<p><strong>赞扬努力，而非能力</strong>。赞扬过程而不是能力，赞扬孩子面对困难时坚持不懈的精神或对作业负责的态度。</p>
-<p>告诉他们<strong>一份耕耘一份收获</strong>。所有的所谓“天才”都是持续努力的结果。</p>
-<p><strong>坦然的接受失败</strong>。如果你想提高智能，你需要挑战自己，这表示接受了略高过自己能力的任务，你很有可能第一次就会失败，但失败没有什么大不了的。人生中的一次又一次的失败是成功的原因。<br>学习技能不是天生的。所有的学习者都要学会自觉、时间分配、足智多谋（如遇到难题时该如何做）。</p>
-<p>终身学习，做保持好奇心和探索欲的父母和老师，我们需要更多的智慧。而教育就是将智慧薪火相传的过程，尊重孩子的认知规律，谨慎积极的保持努力和践行。教育使人更聪明，聪明的人可以使教育更美好。</p>
-<hr>
-<center>
-关注：“爱分享读书”微信公众号 
-
-<p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/%E7%88%B1%E5%88%86%E4%BA%AB%E8%AF%BB%E4%B9%A6%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
-<p>读书我们是认真的</p>
-</center>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
   </nav>
 
 
@@ -2910,7 +2904,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3022,7 +3016,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">129k</span>
+    <span title="Site words total count">132.6k</span>
   
   
 <!--51la网站应用监控-->
