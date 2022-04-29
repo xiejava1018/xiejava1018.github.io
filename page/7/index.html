@@ -313,6 +313,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7bbe2925/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/7bbe2925/" itemprop="url">syslog日志接口调试方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T14:17:26+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-18T14:19:38+08:00">
+                2020-03-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/7bbe2925/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7bbe2925/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/7bbe2925/" class="leancloud_visitors" data-flag-title="syslog日志接口调试方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  525
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>日志数据采集，比较方便常用的就是通过syslog来进行数据采集，syslog可以通过udp协议来进行高效的数据传输。一般来说在工程实施的过程中需要对接对端系统的数据采集源可以通过以下步骤来进行syslog日志接口的调试。主要是验证syslog日志是否能正常送到指定的日志服务器的指定端口，日志服务器的指定端口是否能正常收到对端发过来的日志。</p>
+<h1 id="1、检查双方网络是否通畅"><a href="#1、检查双方网络是否通畅" class="headerlink" title="1、检查双方网络是否通畅"></a>1、检查双方网络是否通畅</h1><p>网络通畅是所有网络连接的前提条件，可以先通过ping的方式，先确认一下对端数据源是不是可以ping通这边的日志接收服务器地址，看网络是否是通的。<br>一般来说只到对端能够ping通日志服务器地址就可以了，单向ping通就OK。<br>如果ping不通，那就要检查日志服务器的网络设置，如是否开启了防火墙，禁ping了。根据网络实际情况调整网络策略，确保网络是通的。</p>
+<h1 id="2、检查端口是否通畅"><a href="#2、检查端口是否通畅" class="headerlink" title="2、检查端口是否通畅"></a>2、检查端口是否通畅</h1><p>通过数据源服务器telnet一下日志服务器地址和端口，看端口是不是通的。<br>有很多服务器上可能没有装telnet，也可以用ssh ip 端口  来验证一下。</p>
+<h1 id="3、发送简单的报文测试"><a href="#3、发送简单的报文测试" class="headerlink" title="3、发送简单的报文测试"></a>3、发送简单的报文测试</h1><p>在对端通过发送udp报文来进行简单的测试<br>如日志接收服务器地址是172.28.65.32，端口514 则可以通过<code>echo “hello” &gt; /dev/udp/172.28.65.32/514</code> 来发送测试报文<br>在日志接收服务器用tcpdump收下有没有监听到报文过来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump udp port 514 -A -i any</span><br></pre></td></tr></table></figure>
+<p>如果有就会有相应的显示<br><img src="https://img-blog.csdnimg.cn/20200318100042259.png" alt="tcpdump"></p>
+<h1 id="4、进行正式接口对接"><a href="#4、进行正式接口对接" class="headerlink" title="4、进行正式接口对接"></a>4、进行正式接口对接</h1><p>如果tcpdump可以收到日志，那就说明syslog的通信是没有问题的，接下来就可以进行具体的syslog的配置的调测了。</p>
+<hr>
+<p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/54e4fd14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2381,220 +2606,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f7e86db6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/f7e86db6/" itemprop="url">用系统方式思考，高效的工作</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-05T16:14:59+08:00">
-                2020-01-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-22T11:07:59+08:00">
-                2021-08-22
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/f7e86db6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f7e86db6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/f7e86db6/" class="leancloud_visitors" data-flag-title="用系统方式思考，高效的工作">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  827
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>　　用系统方式工作的思想是萨姆·卡彭特在《用系统来工作》的书中提到的。大家可以想想华为、富士康等公司为什么效率高？因为有一套系统化的流程让各个环节高效的运作。所以咱们也可以参考，运用到我们的工作、学习、生活中来，让我们更高效。 </p>
-<p>　　所有工作都可以用系统的视角的思考。如管理公司、上班的日常工作、学一门技能、健身等等。<br>　　首先我们要明确目标，比如管理公司我要达到什么经营目标，学习我要学到什么东西达到什么程度，减肥健身要达到什么效果，一定要有非常清晰的目标，最好是能够写下来，放在显眼的地方，时时关注。<br>　　其次我们要制定准则，即达到实现目标的大的方针，比如减肥健身，准则可以定义为控制饮食、加强锻炼等。<br>　　最后我们要明确做事的流程，如何明确流程？可以按照以下几点整理。<br>　　1、分解每个工作的任务项。<br>　　 将一个工作分解成一个个可以操作的具体任务项。如开会可以分解为确定会议室、准备会议材料、通知会议参与人、做会议纪要、跟踪会议结论执行情况等等。<br>　　 如减肥健身可以分解为：合理饮食、准备活动、有氧运动、肌肉强化运动、睡眠休息等等。<br>　　2、将每个工作任务项按依赖顺序整理形成固化的流程<br>　　 有些工作项是有依赖关系的，所以我们要按照依赖关系顺序整理成流程。先干什么，后干什么，这样做事才会更有条理，减少等待的时间更高效。<br>　　3、给每个工作任务项提供说明指导<br>　　 就是将每个细化的工作项做到最好。在华为，所有的岗位，每项工作都有具体的作业指导书。在作业指导书中详细定义了这个环节需要做什么，具体怎么做，完成后如何检查反馈。这个作业指导书是不断总结完善的。所以不管是老手，还是新来的菜鸟，都可以很好并高效的完成。<br>　　4、在实践的工作中不断完善流程<br>　　 一开始可能流程并不完善，我们可以在实际实施的过程中不断的优化调整，去掉一些不必要的环节，优化一些效率低下的环节，一切优化都是遵循我们开始定义的目标。 </p>
-<p>　　通过系统方式思考做事情可以用到工作、学习、生活的各个方面，总的来说，就是明确目标、制定准则、定义流程，不断完善流程。将事情高效的做好。作为领导者，有了流程后，你还可以将这个流程交给任何一个人都可以做好。将自己释放出来。有更多的时间平衡工作、学习、生活。这就是系统的力量。</p>
-<hr>
-<center>
-关注：“爱分享读书”微信公众号 
-
-<p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/%E7%88%B1%E5%88%86%E4%BA%AB%E8%AF%BB%E4%B9%A6%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
-<p>读书我们是认真的</p>
-</center>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2651,7 +2662,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2763,7 +2774,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">137.8k</span>
+    <span title="Site words total count">141.1k</span>
   
   
 <!--51la网站应用监控-->
