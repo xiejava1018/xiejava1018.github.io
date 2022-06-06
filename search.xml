@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>PyCharm在用Django开发时debug模式启动失败显示can&#39;t find &#39;__main__&#39; module的解决方法</title>
+      <link href="/posts/aebdf141/"/>
+      <url>/posts/aebdf141/</url>
+      
+        <content type="html"><![CDATA[<p>初次用Django开发web应用，在试图用Pycharm进行debug的时候，出现了一个奇怪的问题。以正常模式启动或者在terminal启动都没有问题。但是以debug模式启动时，显示<code>can&#39;t find &#39;__main__&#39; module”</code>报错。在网上找了很久都没有看到解决方法，最后在某乎上看到一篇文章，在启动时加上<code>--noreload</code>参数，既可以debug模式启动。</p><p><strong>报错信息：</strong><br><img src="https://img-blog.csdnimg.cn/f7a094b8e85c45dc841fdc4ff77a8698.png#pic_center" alt="报错信息"><br><strong>解决方法：</strong><br>在启动时加上 <code>--noreload</code> 参数可以正常启动调试<br><img src="https://img-blog.csdnimg.cn/3ade987b7c1040d7b504eb36871a7b37.png#pic_center" alt="加入不重新加载参数"></p><p>debug启动正常也可以调试了。<br><img src="https://img-blog.csdnimg.cn/c4993ebff26a4d80a43538bb8fcb9e71.png#pic_center" alt="debug正常启动"></p><p>踩过的坑记录一下，希望能帮到碰到同样问题的人。</p><p>感谢大佬的文章 <a href="https://zhuanlan.zhihu.com/p/443763989" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/443763989</a> </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python使用BeautifulSoup4修改网页内容实战</title>
       <link href="/posts/1ca32c3a/"/>
       <url>/posts/1ca32c3a/</url>
