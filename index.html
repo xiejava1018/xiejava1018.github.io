@@ -313,6 +313,277 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9277bcaa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9277bcaa/" itemprop="url">Vue快速入门</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-03T10:02:07+08:00">
+                2022-07-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-07-03T10:29:21+08:00">
+                2022-07-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9277bcaa/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9277bcaa/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9277bcaa/" class="leancloud_visitors" data-flag-title="Vue快速入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、什么是Vue"><a href="#一、什么是Vue" class="headerlink" title="一、什么是Vue"></a>一、什么是Vue</h2><p>Vue (读音 /vjuː/，类似于 view) 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</p>
+<h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><p>1、独立版本<br>直接下载并用<code>&lt;script&gt;</code>标签引入<br>官网下载地址：<a href="https://cn.vuejs.org/js/vue.js" target="_blank" rel="noopener">https://cn.vuejs.org/js/vue.js</a><br>2、使用CDN<br>和独立版本类似，与独立版本的区别就是不用下载到本地应用，直接引用CDN加速以后的地址。缺点是如果是内网封闭环境不能用，国内CDN也不稳定，国外的CDN有时无法访问。如官网的<br><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&quot;&gt;&lt;/script&gt;</code> 就无法访问。<br>几个比较稳定的CDN<br>Staticfile CDN（国内） : <a href="https://cdn.staticfile.org/vue/2.2.2/vue.min.js" target="_blank" rel="noopener">https://cdn.staticfile.org/vue/2.2.2/vue.min.js</a><br>unpkg：<a href="https://unpkg.com/vue@2.6.14/dist/vue.min.js。" target="_blank" rel="noopener">https://unpkg.com/vue@2.6.14/dist/vue.min.js。</a><br>cdnjs : <a href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js</a><br>3、命令行工具<br>Vue 提供了一个官方的 CLI，为单页面应用 (SPA) 快速搭建繁杂的脚手架。它为现代前端工作流提供了开箱即用的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 Vue CLI 的文档。</p>
+<h2 id="三、第一个Vue"><a href="#三、第一个Vue" class="headerlink" title="三、第一个Vue"></a>三、第一个Vue</h2><p>程序员学一门新的语音或框架，都是从hello world！开始的。来看一下Vue的hello world!<br>将vue.min.js下载到本地，在vue.min.js的目录下新建一个hellovue.html的文件，代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src=<span class="string">"vue.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">&lt;div id="app"&gt;</span></span><br><span class="line"><span class="regexp">  &#123;&#123; message &#125;&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>用浏览器打开，hello Vue! 成功的展现出来，第一个Vue就这么简单。<br><img src="https://img-blog.csdnimg.cn/30813985cd8b4dd183b83769da5758f1.png#pic_center" alt="hello Vue!"></p>
+<p>在这里我们通过<code>&lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</code>引入了本地的vue.min.js，就可以用vue框架了。<br>通过<code>&lt;div id=&quot;app&quot;&gt;</code>构建了一个DOM元素div标签元素，id为app，`{{message}}` 是占位符，类似于大多数的模板语法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在javascript代码中，定义了一个Vue对象，对象中构造了el和data两个参数。el是元素选择器，通过<code>#app</code>选择了<code>id=&quot;app&quot;</code>的div，data用来定义数据属性，这里定义了<code>massage:&#39;hellow Vue!&#39;</code>,通过`{{message}}`将数据hellow Vue显示输出。<br>可以用chrome浏览器的开发者工具打开控制台看到app.message的值为’hellow Vue!’。<br><img src="https://img-blog.csdnimg.cn/16b706a93fd64ddf92a84e98aaecb9c1.png#pic_center" alt="chrome浏览器的开发者工具调试"></p>
+<p>可以通过修改这个变量的值而改变显示在浏览器的值。<br><img src="https://img-blog.csdnimg.cn/fa964684d0414f688fb8b47c667de5fd.png#pic_center" alt="修改值"></p>
+<h2 id="四、常用基本语法"><a href="#四、常用基本语法" class="headerlink" title="四、常用基本语法"></a>四、常用基本语法</h2><p>模板语法<br>Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。<br>Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统。<br>结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上</p>
+<h3 id="插值文本"><a href="#插值文本" class="headerlink" title="插值文本"></a>插值文本</h3><p>数据绑定最常见的形式就是使用 `{{xxx}}`（双大括号）的文本插值：<br>正如我们的第一的Vue通过`{{ message }}`将文本值插入到占位符进行数据绑定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="绑定输出html"><a href="#绑定输出html" class="headerlink" title="绑定输出html"></a>绑定输出html</h3><p>使用v-html 指令用于输出 html 代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app2:v-html指令输出html代码</span><br><span class="line">&lt;div id=<span class="string">"app2"</span>&gt;</span><br><span class="line">    &lt;div v-html=<span class="string">"message"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">var app2 = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app2',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    message: '&lt;b&gt;Hello Vue!&lt;/</span>b&gt;<span class="string">'</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下图所示：<br><img src="https://img-blog.csdnimg.cn/4d2866a052e44a0e981edf2cb02f93bd.png#pic_center" alt="v-html"></p>
+<p>如果不用v-html插入，将<code>&lt;div id=&quot;app2&quot;&gt;</code>标签内容改成用文本插入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app2"</span>&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>显示效果如下，直接将html代码给显示出来了。<br><img src="https://img-blog.csdnimg.cn/b5da200f7fba41008b10e330e201951b.png#pic_center" alt="直接显示HTML代码"></p>
+<h3 id="绑定属性"><a href="#绑定属性" class="headerlink" title="绑定属性"></a>绑定属性</h3><p>HTML 属性中的值应使用 v-bind 指令。<br>如插入绑定 a 标签的href属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app3:v-bind指令绑定属性值</span><br><span class="line">&lt;div id=<span class="string">"app3"</span>&gt;</span><br><span class="line">    &lt;a target=<span class="string">"_blank"</span> v-bind:href=<span class="string">"url"</span>&gt;click me go to myblog&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"><span class="keyword">var</span> app3 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app3'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    url: <span class="string">'http://xiejava.ishareread.com/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/baf17428d00746e98423c7ae951cc632.png#pic_center" alt="绑定属性"></p>
+<h3 id="绑定样式"><a href="#绑定样式" class="headerlink" title="绑定样式"></a>绑定样式</h3><p>class 与 style 是 HTML 元素的属性，用于设置元素的样式，可以用 v-bind 来绑定设置样式属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app4:v-band:<span class="class"><span class="keyword">class</span>指令绑定样式</span></span><br><span class="line"><span class="class">&lt;<span class="title">div</span> <span class="title">id</span></span>=<span class="string">"app4"</span>&gt;</span><br><span class="line">  &lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; 'active': isActive &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp">var app4=new Vue(</span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp"> el: '#app4',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    isActive:true</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p>定义样式</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-class">.active</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/75b0ed8a42dc4f6a86e5bb5fb5246e61.png#pic_center" alt="v-band:class"></p>
+<h3 id="插值Javascript表达式"><a href="#插值Javascript表达式" class="headerlink" title="插值Javascript表达式"></a>插值Javascript表达式</h3><p>vue.js插值支持javascript表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">app5:vue.js插值的javascript表达式支持</span><br><span class="line">&lt;div id=<span class="string">"app5"</span>&gt;</span><br><span class="line">    &#123;&#123;<span class="number">5</span>+<span class="number">5</span>&#125;&#125;&lt;br&gt;</span><br><span class="line">    &#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;&lt;br&gt;</span><br><span class="line">    &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">    &lt;div v-bind:id=<span class="string">"'list-' + id"</span>&gt;xiejava&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"><span class="keyword">var</span> app5 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app5'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    ok: <span class="literal">true</span>,</span><br><span class="line">    message: <span class="string">'XIEJAVA'</span>,</span><br><span class="line">    id : <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/8c77649827624c29913b8f1463a3679a.png#pic_center" alt="vue.js插值支持javascript表达式"></p>
+<p>常用语句</p>
+<h3 id="v-if-v-else-（条件语句）"><a href="#v-if-v-else-（条件语句）" class="headerlink" title="v-if v-else （条件语句）"></a>v-if v-else （条件语句）</h3><p>条件判断使用 v-if 指令，可以用 v-else 指令给 v-if 添加一个 “else” 块：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app6:v-<span class="keyword">if</span>条件语句</span><br><span class="line">&lt;div id=<span class="string">"app6"</span>&gt;</span><br><span class="line">	&lt;div v-<span class="keyword">if</span>=<span class="string">"ok"</span>&gt;YES&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	&lt;div v-else&gt;NO&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">var app6 = new Vue(&#123;</span></span><br><span class="line"><span class="regexp"> el:"#app6",</span></span><br><span class="line"><span class="regexp"> data:&#123;</span></span><br><span class="line"><span class="regexp">	 ok:false,</span></span><br><span class="line"><span class="regexp"> &#125;</span></span><br><span class="line"><span class="regexp"> &#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p> 效果如下：<br><img src="https://img-blog.csdnimg.cn/5376029a58ea4efa9d28a89c1d4a8645.png#pic_center" alt="v-if v-else （条件语句）"></p>
+<h3 id="for循环语句"><a href="#for循环语句" class="headerlink" title="for循环语句"></a>for循环语句</h3><p>循环使用 v-for 指令，v-for 可以绑定数据到数组来渲染一个列表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app7"</span>&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"code in codes"</span>&gt;</span><br><span class="line">      &#123;&#123; code.name &#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>ol&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp">var app7=new Vue(</span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp"> el: '#app7',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    codes: [</span></span><br><span class="line"><span class="regexp">      &#123; name: 'java' &#125;,</span></span><br><span class="line"><span class="regexp">      &#123; name: 'python' &#125;,</span></span><br><span class="line"><span class="regexp">      &#123; name: 'php' &#125;</span></span><br><span class="line"><span class="regexp">    ]</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/c3fa12b69fb044d49541837216b8c1a4.png#pic_center" alt="for循环语句"></p>
+<h3 id="v-on绑定事件"><a href="#v-on绑定事件" class="headerlink" title="v-on绑定事件"></a>v-on绑定事件</h3><p>事件监听可以使用 v-on 指令进行绑定</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app8"</span>&gt;</span><br><span class="line">  &lt;button v-on:click=<span class="string">"counter += 1"</span>&gt;+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;p&gt;加了 &#123;&#123; counter &#125;&#125; 次1。&lt;/</span>p&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">var app8=new Vue(</span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp"> el: '#app8',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    counter:0</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><img src="https://img-blog.csdnimg.cn/448b65dc439f480aa86bd23a6ba1ecba.png#pic_center" alt="v-on绑定事件"></p>
+<p><strong>以上全部示例代码如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.staticfile.org/vue/2.2.2/vue.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">app1:hello Vue!</span></span><br><span class="line"><span class="regexp">&lt;div id="app1"&gt;</span></span><br><span class="line"><span class="regexp">  &#123;&#123; message &#125;&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">app2:v-html指令输出html代码</span><br><span class="line">&lt;div id=<span class="string">"app2"</span>&gt;</span><br><span class="line">    &lt;div v-html=<span class="string">"message"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app3:v-bind指令绑定属性值</span></span><br><span class="line"><span class="regexp">&lt;div id="app3"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;a target="_blank" v-bind:href="url"&gt;click me go to myblog&lt;/</span>a&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app4:v-band:class指令绑定样式</span></span><br><span class="line"><span class="regexp">&lt;div id="app4"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div v-bind:class="&#123; 'active': isActive &#125;"&gt;&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app5:vue.js插值的javascript表达式支持</span></span><br><span class="line"><span class="regexp">&lt;div id="app5"&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123;5+5&#125;&#125;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123; ok ? 'YES' : 'NO' &#125;&#125;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123; message.split('').reverse().join('') &#125;&#125;</span></span><br><span class="line"><span class="regexp">    &lt;div v-bind:id="'list-' + id"&gt;xiejava&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app6:v-if条件语句</span></span><br><span class="line"><span class="regexp">&lt;div id="app6"&gt;</span></span><br><span class="line"><span class="regexp">	&lt;div v-if="ok"&gt;YES&lt;/</span>div&gt;</span><br><span class="line">	&lt;div v-<span class="keyword">else</span>&gt;NO&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">app7:<span class="keyword">for</span>循环语句</span><br><span class="line">&lt;div id=<span class="string">"app7"</span>&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"code in codes"</span>&gt;</span><br><span class="line">      &#123;&#123; code.name &#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>ol&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app8:v-on绑定事件</span></span><br><span class="line"><span class="regexp">&lt;div id="app8"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button v-on:click="counter += 1"&gt;+1&lt;/</span>button&gt;</span><br><span class="line">  &lt;p&gt;加了 &#123;&#123; counter &#125;&#125; 次<span class="number">1</span>。&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="keyword">var</span> app1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'&lt;b&gt;Hello Vue!&lt;/b&gt;'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app3 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app3'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    url: <span class="string">'http://xiejava.ishareread.com/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app4=<span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line"> el: <span class="string">'#app4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    isActive:<span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app5 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app5'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    ok: <span class="literal">true</span>,</span><br><span class="line">    message: <span class="string">'XIEJAVA'</span>,</span><br><span class="line">    id : <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app6 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line"> el:<span class="string">"#app6"</span>,</span><br><span class="line"> data:&#123;</span><br><span class="line">	 ok:<span class="literal">false</span>,</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> app7=<span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line"> el: <span class="string">'#app7'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    codes: [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'java'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'python'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'php'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app8=<span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line"> el: <span class="string">'#app8'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">.active &#123;</span></span><br><span class="line"><span class="regexp">	width: 100px;</span></span><br><span class="line"><span class="regexp">	height: 100px;</span></span><br><span class="line"><span class="regexp">	background: red;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>通过上面的快速入门，基本了解什么是VUE、VUE的安装及基本的使用，常用的语法。后面还要更深入的学习VUE的组件、路由、后台接口调用等。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/aebdf141/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +631,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-06-06T08:58:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2022-06-06T08:58:34+08:00">
                 2022-06-06
               </time>
             
@@ -2850,274 +3121,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/25e5f55a/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/25e5f55a/" itemprop="url">网络信息安全之APT攻击</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-02T15:54:07+08:00">
-                2022-04-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-26T10:52:51+08:00">
-                2022-04-26
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/25e5f55a/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/25e5f55a/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/25e5f55a/" class="leancloud_visitors" data-flag-title="网络信息安全之APT攻击">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一、什么是APT攻击"><a href="#一、什么是APT攻击" class="headerlink" title="一、什么是APT攻击"></a>一、什么是APT攻击</h1><p>当今，网络系统面临着越来越严重的安全挑战，在众多的安全挑战中，一种具有组织性、特定目标以及长时间持续性的新型网络攻击日益猖獗，国际上常称之为<strong>APT（Advanced Persistent Threat高级持续性威胁）攻击</strong>。<br>APT攻击是一种以商业或者政治目的为前提的特定攻击，其通过一系列具有针对性的攻击行为以获取某个组织甚至国家的重要信息，特别是针对国家重要的基础设施和单位开展攻击，包括能源、电力、金融、国防等等。APT攻击常常采用多种攻击技术手段，包括一些最为先进的手段和社会工程学方法，并通过长时间持续性的网络渗透，一步步的获取内部网络权限，此后便长期潜伏在内部网络，不断地收集各种信息，直至窃取到重要情报。<br>对于APT攻击比较权威的定义是由美国国家标准与技术研究所( NIST)提出的，该定义给出了APT攻击的4个要素，具体如下。<br>(1)攻击者：拥有高水平专业知识和丰富资源的敌对方。<br>(2)攻击目的：破坏某组织的关键设施，或阻碍某项任务的正常进行。<br>(3)攻击手段：利用多种攻击方式，通过在目标基础设施上建立并扩展立足点来获取信息。<br>(4)攻击过程：在一个很长的时间段内潜伏并反复对目标进行攻击,同时适应安全系统的防御措施,通过保持高水平的交互来达到攻击目的。</p>
-<h1 id="二、APT攻击过程"><a href="#二、APT攻击过程" class="headerlink" title="二、APT攻击过程"></a>二、APT攻击过程</h1><p>一般APT攻击过程可概括为3个阶段：<strong>攻击前准备</strong>阶段、<strong>攻击入侵</strong>阶段和<strong>持续攻击</strong>阶段，又可细分为5个步骤：<strong>情报收集、防线突破、通道建立、横向渗透、信息收集及外传</strong>。<br><img src="https://img-blog.csdnimg.cn/d0fb871498644cbca3999c9029b7771b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="APT攻击过程"></p>
-<h2 id="1-情报收集"><a href="#1-情报收集" class="headerlink" title="1.情报收集"></a>1.情报收集</h2><p>在实施攻击之前，攻击者会针对特定组织的网络系统和相关员工展开大量的信息搜集。信息搜集方法多种多样，通常包括搜索引擎、爬网系统、网络隐蔽扫描、社会工程学方法等方式。信息来源包括相关员工的微博、博客、社交网站、公司网站，甚至通过某些渠道购买相关信息(如公司通讯录等)。攻击者通过对这些信息的分析，可以清晰地了解攻击目标所使用的应用、防御软件，组织内部架构和人员关系，核心资产存放情况等等。于是，攻击者针对特定目标(一般是内部员工)所使用的应用软件寻找漏洞，并结合特定目标所使用的杀毒软件、防火墙等设计特定木马/恶意代码以绕过防御。同时，攻击者搭建好入侵服务器，开展技术准备工作。</p>
-<h2 id="2-防线突破"><a href="#2-防线突破" class="headerlink" title="2.防线突破"></a>2.防线突破</h2><p>攻击者在完成情报收集和技术准备后，开始采用木马/恶意代码攻击特定员工的个人电脑，攻击方法主要有：①社会工程学方法，如电子邮件攻击，攻击者窃取与特定员工有关系的人员(如领导、同事、朋友等)电子邮箱，冒充发件人给该员工发送带有恶意代码附件的邮件，一旦该员 工打开附件，员工电脑便感染了恶意软件。②远程漏洞攻击方法，如网站挂马攻击，攻击者在员工常访问的网站上放置木马，当员工再次访问该网站时，个人电脑便受到网页代码攻击。由于这些恶意软件针对的是系统未知漏洞并被特殊处理，因此现有的杀毒软件和防火墙均无法察觉，攻击者便能逐渐获取个人电脑权限，最后直至控制个人电脑。</p>
-<h2 id="3-通道建立"><a href="#3-通道建立" class="headerlink" title="3.通道建立"></a>3.通道建立</h2><p>攻击者在突破防线并控制员工电脑后，在员工电脑与入侵服务器之间开始建立命令控制通道。通常，命令控制通道采用HTTP/HTTPS等协议构建，以突破电脑系统防火墙等安全设备。一旦攻击者完成通道建立，攻击者通过发送控制命令检查植入的恶意软件是否遭受查杀，并在恶意软件被安全软件检测到前，对恶意软件进行版本升级，以降低被发现的概率。</p>
-<h2 id="4-横向渗透"><a href="#4-横向渗透" class="headerlink" title="4.横向渗透"></a>4.横向渗透</h2><p>入侵和控制员工个人电脑并不是攻击者的最终目的，攻击者会采用口令窃听、漏洞攻击等多种渗透方法尝试进一步入侵组织内部更多的个人电脑和服务器，同时不断地提升自己的权限，以求控制更多的电脑和服务器，直至获得核心电脑和服务器的控制权。</p>
-<h2 id="5-信息收集及外传"><a href="#5-信息收集及外传" class="headerlink" title="5.信息收集及外传"></a>5.信息收集及外传</h2><p>攻击者常常长期潜伏，并不断实行网络内部横向渗透，通过端口扫描等方式获取服务器或设备上有价值的信息，针对个人电脑通过列表命令等方式获取文档列表信息等。攻击者会将内部某个服务器作为资料暂存的服务器，然后通过整理、压缩、加密、打包的方式，利用建立的隐蔽通信通道将信息进行外传。在获取这些信息后，攻击者会对这些信息数据进行分析识别，并做出最终的判断，甚至实施网络攻击破坏。</p>
-<h1 id="三、APT攻击和传统攻击的区别"><a href="#三、APT攻击和传统攻击的区别" class="headerlink" title="三、APT攻击和传统攻击的区别"></a>三、APT攻击和传统攻击的区别</h1><p>APT攻击具有不同于传统网络攻击的5个显著特征：针对性强、组织严密、持续时间长、高隐蔽性和间接攻击。<br>1.针对性强<br>APT攻击的目标明确，多数为拥有丰富数据/知识产权的目标，所获取的数据通常为商业机密、国家安全数据、知识产权等。<br>相对于传统攻击的盗取个人信息，APT攻击只关注预先指定的目标，所有的攻击方法都只针对特定目标和特定系统，针对性较强。<br>2.组织严密<br>APT攻击成功可带来巨大的商业利益，因此攻击者通常以组织形式存在，由熟练黑客形成团体，分工协作，长期预谋策划后进行攻击。他们在经济和技术上都拥有充足的资源，具备长时间专注APT研究的条件和能力。<br>3.持续时间长<br>APT攻击具有较强的持续性，经过长期的准备与策划，攻击者通常在目标网络中潜伏几个月甚至几年，通过反复渗透，不断改进攻击路径和方法，发动持续攻击，如零日漏洞攻击等。<br>4.高隐蔽性<br>APT攻击根据目标的特点，能绕过目标所在网络的防御系统，极其隐藏地盗取数据或进行破坏。在信息收集阶段，攻击者常利用搜索引擎、高级爬虫和数据泄漏等持续渗透，使被攻击者很难察觉；在攻击阶段，基于对目标嗅探的结果，设计开发极具针对性的木马等恶意软件，绕过目标网络防御系统，隐蔽攻击。<br>5.间接攻击<br>APT攻击不同于传统网络攻击的直接攻击方式，通常利用第三方网站或服务器作跳板，布设恶意程序或木马向目标进行渗透攻击。恶意程序或木马潜伏于目标网络中，可由攻击者在远端进行遥控攻击，也可由被攻击者无意触发启动攻击。</p>
-<table>
-<thead>
-<tr>
-<th>对比内容</th>
-<th>传统攻击</th>
-<th>APT攻击</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>攻击者特征</td>
-<td>个体或小组织网络犯罪分子</td>
-<td>全球性、有组织、有纪律的不法团体、公司、敌对者</td>
-</tr>
-<tr>
-<td>攻击目标</td>
-<td>随机性选择攻击，通常以个体为主，以达到获取金钱、盗窃身份、欺诈等</td>
-<td>特定攻击目标，通常针对国家安全信息、重要行业商业机密信息等</td>
-</tr>
-<tr>
-<td>攻击手段</td>
-<td>攻击手段比较单一，常基于已有的恶意软件展开攻击</td>
-<td>攻击手段复杂，形式多样，结合0day攻击、特种木马攻击、社会工程学等展开攻击</td>
-</tr>
-<tr>
-<td>攻击时间</td>
-<td>攻击时间较短，以一次性、大范围攻击为主</td>
-<td>攻击时间较长，长期潜伏、多次渗透攻击</td>
-</tr>
-<tr>
-<td>攻击痕迹</td>
-<td>攻击特性很强，容易在较短时间内被检测和捕获</td>
-<td>攻击特征弱，比较隐蔽，缺少样本数据，很难被检测和捕获</td>
-</tr>
-</tbody></table>
-<h1 id="四、如何防范APT攻击"><a href="#四、如何防范APT攻击" class="headerlink" title="四、如何防范APT攻击"></a>四、如何防范APT攻击</h1><p>随着人们对APT攻击的研究不断深入，已经出现一些有效的防御技术来对抗APT攻击，其核心思想大多是针对APT“攻击链”的某一步骤展开防御。这些技术主要包括：沙箱技术、信誉技术、异常流量分析技术、大数据分析技术等等。</p>
-<h2 id="1-沙箱技术"><a href="#1-沙箱技术" class="headerlink" title="1.沙箱技术"></a>1.沙箱技术</h2><p>沙箱，又叫做沙盘，被认为是当前防御APT攻击的最有效技术之一。沙箱即是通过虚拟化技术形成一个模拟化的环境，同时将本地系统中的进程对象、内存、注册表等与模拟环境相互隔离，以便在这个虚拟化环境中测试和观察文件、访问等运行行为。沙箱通过重定向技术，将测试过程中生成和修改的文件定向到特定文件夹中，避免了对真是注册表、本地核心数据等的修改。当APT攻击在改虚拟环境发生时，可以及时地观察并分析其特征码，进一步防御其深入攻击。</p>
-<h2 id="2-信誉技术"><a href="#2-信誉技术" class="headerlink" title="2.信誉技术"></a>2.信誉技术</h2><p>安全信誉是对互联网资源和服务相关实体安全可信性的评估和看法。信誉技术是应用于APT攻击检测具有较好辅助功能的一项技术，通过建立信誉库，包括WEB URL信誉库、文件MD5码库、僵尸网络地址库、威胁情报库等，可以为新型病毒、木马等APT攻击的检测提供强有力的技术辅助支撑，实现网络安全设备对不良信誉资源的阻断或过滤。信誉库的充分利用，将进一步提高安全新品的安全防护能力。</p>
-<h2 id="3-主机漏洞防护技术"><a href="#3-主机漏洞防护技术" class="headerlink" title="3.主机漏洞防护技术"></a>3.主机漏洞防护技术</h2><p>针对横向移动与内部资料进行挖掘和探测的防御，可采用主机漏洞防护技术，能侦测任何针对主机漏洞的攻击并加以拦截，进而保护未修补的主机。这类解决方案可实现档案 / 系统一致性监控，保护未套用修补程序的主机，防止已知和0day 漏洞攻击。</p>
-<h2 id="4-异常流量分析技术"><a href="#4-异常流量分析技术" class="headerlink" title="4.异常流量分析技术"></a>4.异常流量分析技术</h2><p>这是一种流量检测及分析技术，其采用旁路接入方式提取流量信息，可以针对帧数、帧长、协议、端口、标识位、IP路由、物理路径、CPU/RAM消耗、宽带占用等进行监测，并基于时间、拓扑、节点等多种统计分析手段，建立流量行为轮廓和学习模型来识别流量异常情况，进而判断并识别0Day漏洞攻击等。</p>
-<h2 id="5-数据防泄漏技术（DLP）"><a href="#5-数据防泄漏技术（DLP）" class="headerlink" title="5.数据防泄漏技术（DLP）"></a>5.数据防泄漏技术（DLP）</h2><p>针对资料外传的风险，一般可采用加密和资料外泄防护 (DLP)技术，将关键、敏感、机密的数据加密，是降低数据外泄风险的一种方法，DLP 可提供一层额外的防护来防止数据外泄。然而，这类工具通常很复杂，而且有些部署条件，例如：数据要分类，要定义政策和规则等。</p>
-<h2 id="6、大数据分析技术"><a href="#6、大数据分析技术" class="headerlink" title="6、大数据分析技术"></a>6、大数据分析技术</h2><p>APT攻击防御离不开大数据分析技术，无论是网络系统本身产生的大量日志数据，还是SOC安管平台产生的大量日志信息，均可以利用大数据分析技术进行大数据再分析，运用数据统计、数据挖掘、关联分析、态势分析等从记录的历史数据中发现APT攻击的痕迹，以弥补传统安全防御技术的不足。</p>
-<p>我们熟知的APT防御产品主要针对的都是APT攻击链上的某个环节来展开防御，目前来说这是远远不够的。APT攻击防御应该是覆盖APT攻击所有环节，未来发展的趋势，是需要构建基于APT攻击链的多层次、多维度、多角度的纵深防御体系，如态势感知平台等。</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3174,7 +3177,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3196,7 +3199,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3286,7 +3289,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">145.5k</span>
+    <span title="Site words total count">147.7k</span>
   
   
 <!--51la网站应用监控-->
