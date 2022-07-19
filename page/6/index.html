@@ -313,6 +313,508 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/57cef505/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/57cef505/" itemprop="url">CentOS7下安装python3.8</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-04T17:21:57+08:00">
+                2021-11-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-04T18:24:15+08:00">
+                2021-11-04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/57cef505/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/57cef505/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/57cef505/" class="leancloud_visitors" data-flag-title="CentOS7下安装python3.8">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  914
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。</p>
+<h1 id="一、查看系统版本"><a href="#一、查看系统版本" class="headerlink" title="一、查看系统版本"></a>一、查看系统版本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat /etc/centos-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.0-327.el7.x86_64 <span class="comment">#1 SMP Thu Nov 19 22:10:57 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<p>查看python版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># python -V</span></span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+
+<p>系统默认安装了Python 2.7.5</p>
+<h1 id="二、安装依赖"><a href="#二、安装依赖" class="headerlink" title="二、安装依赖"></a>二、安装依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
+
+<p>如果有提示一路选择Y就可以</p>
+<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="下载Python源码包"></p>
+<p>下载稳定版本3.8版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、解压安装python源码包"><a href="#四、解压安装python源码包" class="headerlink" title="四、解压安装python源码包"></a>四、解压安装python源码包</h1><h2 id="1、解压"><a href="#1、解压" class="headerlink" title="1、解压"></a>1、解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><p>进入解压后的目录进行编译和安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.8.12/</span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ./configure</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># make&amp;&amp;make install</span></span><br></pre></td></tr></table></figure>
+<p>执行完后显示安装成功<br><img src="https://img-blog.csdnimg.cn/9e8bcddbd7644d0b9bc702a13b3984e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pyhont安装成功"></p>
+<h2 id="3、建立命令软链接"><a href="#3、建立命令软链接" class="headerlink" title="3、建立命令软链接"></a>3、建立命令软链接</h2><p>虽然python3.8.12安装成功了，但默认输入python还是显示是2.7版本的。如果要用python3.8.12需要输入python3即可，有时候不太方便。可以通过修改软链接的方式将默认的python指向python3.8.12。<br>先看一下默认的python及新安装的python3都安装在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python</span></span><br><span class="line">/usr/bin/python</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
+<p>可以看到默认的python路径为/usr/bin/python，python3的路径为/usr/local/bin/python3<br>将python3的软链接加到python上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># mv /usr/bin/python /usr/bin/python.bak</span></span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/python3 /usr/bin/python</span></span><br></pre></td></tr></table></figure>
+<p>通过python -V命令查看python版号，这时python的版本已经是3.8.12了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># python -V</span></span><br><span class="line">Python 3.8.12</span><br></pre></td></tr></table></figure>
+<p>pip命令也可以修改，python3.8.12默认的pip是pip3，CentOS7的python2.7默认没有安装pip.<br>输入pip命令的时候提示命令没有找到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip</span></span><br><span class="line">bash: pip: <span class="built_in">command</span> not found...</span><br></pre></td></tr></table></figure>
+<p>这时也可以通过建立软链接的方式将pip命令链接到pip3上。首先看pip3命令在哪?</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which pip3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/pip3</span><br></pre></td></tr></table></figure>
+<p>然后建立pip到pip3的软链接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/pip3 /usr/bin/pip</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip -V</span></span><br><span class="line">pip 21.1.1 from /usr/<span class="built_in">local</span>/lib/python3.8/site-packages/pip (python 3.8)</span><br></pre></td></tr></table></figure>
+<h1 id="五、配置yum"><a href="#五、配置yum" class="headerlink" title="五、配置yum"></a>五、配置yum</h1><p>安装python3改完软链接以后发现yum命令报错了，yum是依赖python2.7的，你把python改成了3.8了，所以报错了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># yum</span></span><br><span class="line">  File <span class="string">"/usr/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
+
+<p>可以修改yum里对python2的依赖即可。虽然安装了python3但是系统里python2依旧还在系统里，可以通过python2来指定用python2.7的命令，首先来看下python2的命令在哪里</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># which python2</span></span><br><span class="line">/usr/bin/python2</span><br></pre></td></tr></table></figure>
+<p>可以cd到/usr/bin目录下 通过ls -alh|grep python查看python命令的详细情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ls -alh|grep python</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/37df1186dcbf4820b7de6676120aa5ee.png#pic_center" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
+<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://img-blog.csdnimg.cn/04054660445f497b886cb78119616722.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/6777b0e3d68b4842a700a05af5eb6411.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
+<p>修改完这两个文件后，再敲yum命令就不会报错了。</p>
+<p><strong>至此CentOS7环境下python3.8.12已经成功安装！</strong></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/63a3c769/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/63a3c769/" itemprop="url">认识SOAR-安全事件编排自动化响应</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-01T21:54:04+08:00">
+                2021-11-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-01T22:01:41+08:00">
+                2021-11-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/63a3c769/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/63a3c769/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/63a3c769/" class="leancloud_visitors" data-flag-title="认识SOAR-安全事件编排自动化响应">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>SOAR是最近几年安全市场上最火热的词汇之一。SOAR究竟是什么，发展历程是什么，能够起什么作用，带着这些问题我们来认识一下SOAR。</p>
+<h1 id="一、SOAR是什么"><a href="#一、SOAR是什么" class="headerlink" title="一、SOAR是什么"></a>一、SOAR是什么</h1><p>SOAR 一词来自分析机构 Gartner，SOAR-Security Orchestration, Automation and Response 安全编排和自动化响应。在Gartner的报告里，SOAR平台的核心组件为，编排与自动化、工作流引擎、案例与工单管理、威胁情报管理。而SOAR体系则是三个概念的交叉重叠：<strong>SOAR=SOA+SIRP+TIP</strong><br>1）精密编排的联动安全解决方案(SOA)；<br>2）事件应急响应平台(SIRP)；<br>3）威胁情报平台(TIP)。<br><img src="https://img-blog.csdnimg.cn/f1aefcc3e390408abb7effccbe41f083.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR"></p>
+<h1 id="二、SOAR的发展历程"><a href="#二、SOAR的发展历程" class="headerlink" title="二、SOAR的发展历程"></a>二、SOAR的发展历程</h1><p>2015年，可以定义为SOAR的1.0时代。Gartner将SOAR(当时被认为是“安全运维分析和报告”)描述成为安全运维团队提供机器可读的安全数据报告和分析管理功能的产品。2017年，SOAR进入2.0时代。Gartner提出了“安全编排、自动化及响应”(SOAR)这个术语，用以描述脱胎于事件响应、安全自动化、场景管理和其他安全工具的一系列新兴平台。Gartner观察到三种以前截然不同的技术：安全编排和自动化(SOA)、安全事件响应平台(SIRPs)和威胁情报平台(TIPs)，正在逐步融合到一起。<br>根据Gartner2019年最新定义，SOAR是指能使企业组织从SIEM等监控系统中收集报警信息，或通过与其它技术的集成和自动化协调，提供包括安全事件响应和威胁情报等功能。SOAR技术市场最终目标是将安全编排和自动化(SOA)、安全事件响应(SIR)和威胁情报平台(TIP)功能融合到单个解决方案中。<br><img src="https://img-blog.csdnimg.cn/84eb9177ec554c0d8f5f74163cda15b2.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR的演进"></p>
+<p>根据Gartner预测，到2022年，有30%大型企业组织（安全团队超过5人）将在安全和运维的工作中使用SOAR，这一比例远超当下5%。当下SOAR技术的早期拥护者是那些已经拥有成熟安全运维中心，并且能够理解SOAR带来好处的那些成熟的安全组织。</p>
+<h1 id="三、SOAR主要解决什么问题"><a href="#三、SOAR主要解决什么问题" class="headerlink" title="三、SOAR主要解决什么问题"></a>三、SOAR主要解决什么问题</h1><p>随着网络安全攻防对抗的日趋激烈，网络安全单纯指望防范和阻止的策略已经失效，必须更加注重检测与响应。企业和组织要在网络已经遭受攻击的假定前提下构建集阻止、检测、响应和预防于一体的全新安全防护体系。在国际上，检测和响应类产品受到了极大的关注。放眼国内，更多的注意力集中到了新型检测产品，尤其是未知威胁检测领域。借助这些产品和技术，用户获得了更低的 MTTD（平均检测时间），能够更快更准确地检测出攻击和入侵。但是，这些产品和技术大都没有帮助用户降低 MTTR（平均响应时间）。事实上，对于用户而言，更快地检测出问题仅仅是第一步，如何快速地对问题进行响应更加重要。而在提升安全响应效率的时候，不能仅仅从单点（譬如单纯从端点或者网络）去考虑，还需要从全网整体安全运维的角度去考虑，要将分散的检测与响应机制整合起来。而这，正是 SOAR 要解决的问题。<br>Gartner指出，SOAR可供公司企业收集不同来源的安全威胁数据和警报，运用人机结合的方法进行事件分析与分类，根据标准流程辅助定义、排序和驱动标准化事件响应行为。SOAR主要为安全团队提供定制化的流程和控制，弥合并加速有效网络威胁的调查与缓解。安全运营团队的大量日常事务性工作也可以借助SOAR加以自动化。而且，案例战术手册还可以帮助分析师在单一平台上响应和缓解威胁，节约事件响应的每一分每一秒宝贵时间。<br>Gartner 用 OODA 模型，来描绘一个典型的安全运营流程。OODA 即 Observe(观察)、Orient(定位)、Decide(决策)、Act(行动)。</p>
+<ul>
+<li>观察：观察事件并确定发生了什么，即通过各种检测、分析工具，比如 SIEM 类工具，找到威胁线索，如告警。</li>
+<li>定位：确定观察的方向，并添加上下文来确定观察的含义，即对产生的告警的内容做调查、丰富化。比如查找外网域名的威胁情报，查找此 IP 的历史行为协助研判等等。</li>
+<li>决策：根据业务的风险容忍度和能力决定适当的响应行动，即判定是否需要对此告警采取行动，比如是否需要封禁，是否影响业务，是否需要进一步观察。</li>
+<li>行动：根据决定采取行动，并应用到观察过程中，然后重复，即执行确定的安全策略，并验证。每一步都对下一步提供了指导，周而复始，构成了一个良性促进的进化循环，不断优化企业的安全运营流程以应对不断变化的安全威胁。<br><img src="https://img-blog.csdnimg.cn/b37a4e16ee454bbe95aaf53e5235c9bd.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="OODA 模型"></li>
+</ul>
+<p>OODA 环看起来逻辑清晰，易于操作。但事实上， OODA 环里的丰富化、调查取证、验证、执行安全策略变更等等，都是耗时耗力的工作。加上安全设备一直以来的误报问题产生的噪音，以及安全人员工作负荷重，资深从业人员短缺等原因，难以真正有效的推进 OODA 循环。更不用提在 HW 时段高强度的工作压力下，如何能够有条不紊的保持一贯的处置流程来处理每一个安全线索。SOAR 正是在这个背景下被提出，并被寄予厚望。SOAR 的核心，就是将安全流程或预案，即 OODA 循环的每一个实例，比如蠕虫爆发处理流程、挖矿病毒告警处理流程、疑似钓鱼邮件处理流程等等，数字化管理起来形成 Playbook。用自动化完成其中所有可能自动化的动作，无法自动的仍然交由人来处理，通过可视化编排工具将人、技术和流程有机的结合起来，形成标准统一的、可重复的、更高效的安全运营流程。</p>
+<h1 id="四、SOAR的核心功能"><a href="#四、SOAR的核心功能" class="headerlink" title="四、SOAR的核心功能"></a>四、SOAR的核心功能</h1><p>从SOAR安全编排自动化响应的字面定义来看SOAR应该具备三大核心能力，编排、自动化、响应</p>
+<h2 id="编排"><a href="#编排" class="headerlink" title="编排"></a>编排</h2><p>SOAR中的关键词是编排，这是在使用自动化和响应之前必须构建的关键组件。SOAR的编排体现的是一种协调和决策的能力，针对复杂性的安全事件，通过编排将分析过程中各种复杂性分析流程和处理平台进行组合。分析涉及多种数据或平台，如SIEM分析平台、漏洞管理平台、情报数据、资产数据等。处置响应的编排也涉及到很多平台或设备，如EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙等。仅仅以技术为中心的安全保障已不再能满足现状，将人员和流程的编排才能保证安全流程真正高效的运行。SOAR的终极目标就是实现技术、流程、人员的无缝编排。</p>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><p>SOAR的自动化体现在三个方面，面对需要处理的安全事件能够根据策略自动选择编排的剧本、自动执行剧本的操作流程、根据决策结果自动联动设备进行防护阻断等行动策略。它允许剧本（常称为Playbooks）在安全流程的部分或全部内容上执行多个任务，将线性剧本串联起来。虽然线性剧本可能更容易创建，但只适用于处理决策需求较少的工作流。编排和自动化比线性剧本的最大优势就是其灵活性，为支持全自动化和半自动化的决策，需要更加灵活的工作流和执行剧本。SOAR能够识别这些决策模式，并基于以往事件中的执行操作，自动推荐新事件的剧本、执行剧本操作流程，自动化分析决策，根据决策结果自动下发防护阻断的行动策略。</p>
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>安全事件响应包括告警管理、工单管理、案件管理等功能。告警管理的核心不仅是对告警安全事件的收集、展示和响应，更强调告警分诊和告警调查。只有通过告警分诊和告警调查才能提升告警的质量，减少告警的数量。工单管理适用于中大型的安全运维团队协同化、流程化地进行告警处置与响应，并且确保响应过程可记录、可度量、可考核。案件管理是现代安全事件响应管理的核心能力。案件管理帮助用户对一组相关的告警进行流程化、持续化的调查分析与响应处置，并不断积累该案件相关的痕迹物证 (IOC) 和攻击者的战技过程指标信息 (TTP)。多个案件并行执行，从而持续化地对一系列安全事件进行追踪处置。<br><img src="https://img-blog.csdnimg.cn/c305603e5c6f4bff9d10fa706c7a4e8c.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR事件响应"></p>
+<p>事件响应是SOC操作中非常复杂的部分，理想状态下，它将是一个有效的动态过程，涉及数十种相互关联的技术、IT、业务流程和整个组织的人员，将是持续性适应风险和信任评估（Continuous Adaptive Risk and Trust Assessment, CARTA）策略用于在持续监测和可视性方面时，SOC团队可使用SOAR技术执行连续活动，利用SOAR技术通过智能化编排与响应最大程度的将已有安全技术进行整合，提高整个安全事件的解决能力和效率。基于编排和自动化前期对事件的分析，SOAR所提供的响应技术是完善整个事件生命周期，提高解决安全威胁效率的关键一环。本质上，SOAR的最终目标是促进安全团队对事件有全面的、端到端的理解，完成更好、更明智响应。</p>
+<h1 id="五、SOAR的价值"><a href="#五、SOAR的价值" class="headerlink" title="五、SOAR的价值"></a>五、SOAR的价值</h1><p><strong>1、缩短响应时间</strong><br>通过自动化技术，尽可能多的自动完成一个安全事件处置流程中相关步骤，从而缩短响应时间即 MTTR。<br><strong>2、释放人力</strong><br>让安全专家从繁重的重复劳动中释放出来，将时间放在更有价值的安全分析、威胁猎捕、流程建立等工作上。<br><strong>3、安全运营流程标准化</strong><br>将公司的安全运营流程数字化管理起来，每一次安全事件的对应处置过程都在统一标准，统一步骤下执行，有迹可循。避免人员能力的差距导致的处置实际效果不可控。<br><strong>4、避免能力断层</strong><br>将安全专家的经验固化成处置预案Playbook，让不同的人都可以遵循同样的方法来完成特定安全事件的处置流程，避免因为个人的离职导致某个领域的安全能力缺失。<br><strong>5、运营流程指标可度量</strong><br>因为运营流程都通过 Playbook 数字化管理且每一次的执行过程都记录在案，因此流程的 KPI 如 MTTD、MTTR、TTQ、TTI 等全部可评估、可度量、可追踪。<br><strong>6、安全运营决策支撑</strong><br>通过对公司的所有运营流程数字化管理、数字化执行、数字化KPI评估后，管理者可以有效的评估什么流程基本无用，什么流程执行效率不高，什么流程发挥了最大的作用，甚至什么安全设备在所有流程中被使用的价值最大。从而为以后的安全投资决策，安全团队建设决策提供有价值的数值化支撑。</p>
+<h1 id="六、SOAR与其他安全产品的关系"><a href="#六、SOAR与其他安全产品的关系" class="headerlink" title="六、SOAR与其他安全产品的关系"></a>六、SOAR与其他安全产品的关系</h1><p><img src="https://img-blog.csdnimg.cn/bd575be2bac3412984d257a2470c4d40.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SOAR与其他安全产品的关系"></p>
+<p>SOAR定位于安全运营操作平台，它收集不同来源的安全威胁数据和警报，事件来源于其他的态势感知平台、SIEM、日志分析系统或安全人员人工录入需要处理的事件。通过调用安全设备的能力如：情报平台、资产管理平台、漏洞扫描平台、EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙来实现对安全事件的分析、溯源、取证、处置、通知等。一端接安全事件源，一端对接安全设备能力。通过SOAR本身的编排能力将人员、设备、资源、流程协同起来。每个企业部署流程和技术并不相同，SOAR在实际落地应用过程中并不能“即插即用”，需要对接事件源、对接各类联动处置设备，根据企业具体的实际情况定制剧本流程。对接的实际安全设备能力数量以及剧本的积累，是SOAR平台能够很好的支持运营的关键。</p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8394d1a3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2313,506 +2815,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8a1fa561/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/8a1fa561/" itemprop="url">网络信息安全管理要素和安全风险评估</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-04T16:41:52+08:00">
-                2020-12-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-01T00:44:57+08:00">
-                2021-01-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/8a1fa561/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8a1fa561/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/8a1fa561/" class="leancloud_visitors" data-flag-title="网络信息安全管理要素和安全风险评估">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>网络信息安全管理要素由网络管理对象、网络威胁、网络脆弱性、网络风险、网络保护措施组成。<br><img src="https://img-blog.csdnimg.cn/20201204163036136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="网络信息安全管理要素"><br>由于网络管理对象自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。</p>
-<p>网络安全管理实际上就是风险控制，其基本过程是通过网络管理对象的威胁和脆弱性进行分析，确定网络管理对象的价值、网络管理对象威胁发生的可能性、网络管理对象的脆弱程度，从而确定网络管理对象的风险等级，然后据此选取合适的安全保护措施，降低网络管理对象的风险。</p>
-<p>所有的安全管理、安全服务、安全技术等都是围绕网络信息安全管理要素来的。</p>
-<p>网络安全风险评估是评价网络信息系统遭受潜在的安全威胁所产生的影响。</p>
-<p>网络安全风险，是指由于网络系统所存在的脆弱性，因人为或自然的威胁导致安全事件发生所造成的可能性。网络风险评估就是评估威胁者利用网络资产的脆弱性，造成网络资产损失的严重程度。</p>
-<p>网络安全风险评估过程，主要包括网络安全风险评估准备、资产识别、威胁识别、脆弱性识别、已有的安全措施分析、网络安全风险分析、网络安全风险处置与管理等。<br><img src="https://img-blog.csdnimg.cn/20201204163226746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="网络安全风险评估过程"><br><strong>资产识别</strong>包含“网络资产鉴定”和“网络资产价值估算”。前者给出评估所考虑的具体对象，确认网络资产种类和清单，是整个评估工作的基础。常见的网络资产主要分为网络设备、主机、服务器、应用、数据和文档资产等六个方面。</p>
-<p>“网络资产价值估算”是某一具体资产在网络系统中的重要程度确认。</p>
-<p>威胁是指可能对评估对象造成损害的外部原因。威胁利用评估对象自身的脆弱性，采用一定的途径和方式，对评估对象造成损害或损失，从而形成风险，<strong>威胁识别</strong>是对网络资产有可能受到的安全危害进行分析，一般从威胁来源、威胁途径、威胁意图等几个方面来分析。</p>
-<p>脆弱性是指评估对象存在一个或多个脆弱的管理、技术、业务方面的漏洞，这些漏洞可能会被威胁所利用。<strong>脆弱性识别</strong>是指通过各种测试方法，获得网络资产中所存在的缺陷清单，这些缺陷会导致对信息资产的非授权访问、泄密、失控、破坏或不可用、绕过已有的安全机制，缺陷的存在将会危及网络资产的安全。</p>
-<table>
-<thead>
-<tr>
-<th>任务</th>
-<th>输出文档</th>
-<th>文档内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>风险评估准备</td>
-<td>会议记录并确认需要评估的系统、评估计划和评估程序</td>
-<td>评估系统、评估计划和内容安排，双方负责人及需要明确的协调工作</td>
-</tr>
-<tr>
-<td>访谈</td>
-<td>针对业务系统进行技术安全和管理安全评估的访谈表</td>
-<td>业务系统描述、运营情况和用户群体，并了解业务管理流程</td>
-</tr>
-<tr>
-<td>文档审查（资产识别）</td>
-<td>资产审查记录和业务系统审查记录</td>
-<td>资产管理台账、网络拓扑图、业务运营管理制度和责任人</td>
-</tr>
-<tr>
-<td>威胁识别</td>
-<td>技术安全测评的网络、主机、应用测评结果记录，工具测试完成后的电子输出记录</td>
-<td>漏洞扫描、渗透性测试、性能测试、入侵检测和协议分析等内容的技术测试结果</td>
-</tr>
-<tr>
-<td>脆弱性识别</td>
-<td>根据威胁识别结果，技术安全测评的网络、主机、应用测评</td>
-<td>检查检查内容的记录，并根据威胁对业务系统脆弱性进行识别</td>
-</tr>
-<tr>
-<td>风险处置</td>
-<td>风险处置措施记录</td>
-<td>对已识别的风险进行评估和处置，并评估是否存在残余风险</td>
-</tr>
-<tr>
-<td>风险管理</td>
-<td>对可接受的残余风险进行风险管理并出具风险评估报告</td>
-<td>风险评估过程中发现的问题、问题的证据和证据源、每项检查活动中测评委托单位配合人员的书面认可</td>
-</tr>
-</tbody></table>
-<p>网络安全风险分析是指在资产评估、威胁评估、脆弱性评估、安全管理评估、安全影响评估的基础上，综合利用定性和定量的分析方法，选择适当的风险计算方法或工具确定风险的大小与风险等级，即对网络系统安全管理范围内的每一个网络资产因遭受泄露、修改、不可用和破坏所带来的任何影响做出一个风险测量的列表，以便识别与选择适当和正确的安全控制方式。通过分析所评估的数据，进行风险值计算。</p>
-<p><img src="https://img-blog.csdnimg.cn/20201204163838552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="网络安全风险分析"><br>网络安全风险分析的主要步骤如下：<br>一、对资产进行识别，并对资产的价值进行赋值。<br>二、对威胁进行识别，描述威胁的属性，并对威胁出现的频率赋值。<br>三、对脆弱性进行识别，并对具体资产的脆弱性的严重程度赋值。<br>四、根据威胁及威胁利用脆弱性的难易程度判断安全事件发生的可能性<br>五、根据脆弱性的严重程度及安全事件所作用的资产价值计算安全事件的损失。<br>六、根据安全事件发生的可能性及安全事件出现后的损失，计算安全事件一旦发生对组织的影响，即网络安全风险值。其中，安全事件损失是指确定已经鉴定的资产受到损害所带来的影响。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/19a32f6f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/19a32f6f/" itemprop="url">pyinstaller打包exe后不能运行报Failed to execute script XXXX问题分析与处理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-03T17:16:00+08:00">
-                2020-11-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-02T09:00:49+08:00">
-                2020-12-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/19a32f6f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/19a32f6f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/19a32f6f/" class="leancloud_visitors" data-flag-title="pyinstaller打包exe后不能运行报Failed to execute script XXXX问题分析与处理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  341
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近用python的tkinter写了个小工具，发现用pyinstaller打包成exe后运行出错。报Failed to execute script XXXX</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -w worksubmit.py</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20201101171716408.png#pic_center" alt="报错"><br>为了搞清楚报错的原因，想看到程序具体执行的情况。可以通过不带-w的参数打包在控制台看程序执行情况。<br><code>pyinstaller -F worksubmit.py</code> 可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行<br><img src="https://img-blog.csdnimg.cn/20201101172133371.png#pic_center" alt="运行情况"><br>可以清楚的看到</p>
-<blockquote>
-<p>ModuleNotFoundError:No module named ‘xlrd’</p>
-</blockquote>
-<p>这时就要解决打包时xlrd模块没有打进去的问题，找到xlrd模块的位置，并将该模块打到运行程序包里。<br>先找到程序依赖的xlrd模块的位置，在PyCharm中通过”File”-&gt;”Setting”,在项目设置里查看Project interpreter，可以看到xlrd的目录位置。<br><img src="https://img-blog.csdnimg.cn/20201101172227853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70#pic_center" alt="找包路径"></p>
-<p>用pyinstall打包的时候通过加-p的参数将依赖的模块打进去。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -p J:\study\python\testsubmit\venv\Lib\site-packages worksubmit.py</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://img-blog.csdnimg.cn/20201101172053955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>这样就可以顺利将依赖的模块打进去，再执行exe文件不再报错了。</p>
-<p><strong>总结一下，碰到打包成exe后运行有问题，可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行。基本上所有的运行问题都可以通过控制台的命令定位和排查。</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2869,7 +2871,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2981,7 +2983,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">151.9k</span>
+    <span title="Site words total count">152.8k</span>
   
   
 <!--51la网站应用监控-->

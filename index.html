@@ -313,6 +313,469 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e37e6718/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/e37e6718/" itemprop="url">Vue3解析markdown解析并实现代码高亮显示</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-19T11:07:00+08:00">
+                2022-07-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-07-19T11:11:20+08:00">
+                2022-07-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/e37e6718/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e37e6718/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/e37e6718/" class="leancloud_visitors" data-flag-title="Vue3解析markdown解析并实现代码高亮显示">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  466
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Vue实现博客前端，需要实现markdown的解析，如果有代码则需要实现代码的高亮。<br>Vue的markdown解析库有很多，如markdown-it、vue-markdown-loader、marked、vue-markdown等。这些库都大同小异。这里选用的是marked，代码高亮的库选用的是highlight.js。</p>
+<p>具体实现步骤如下：</p>
+<h2 id="一、安装依赖库"><a href="#一、安装依赖库" class="headerlink" title="一、安装依赖库"></a>一、安装依赖库</h2><p>在vue项目下打开命令窗口，并输入以下命令</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install marked -save    <span class="comment">// marked 用于将markdown转换成html</span></span><br><span class="line">npm install highlight.js -save   <span class="comment">//用于代码高亮显示</span></span><br></pre></td></tr></table></figure>
+
+<p>命令执行完后可以在控制台或package.json文件中看到有安装的版本号<br><img src="https://img-blog.csdnimg.cn/fd7bdbb898a04806928bb4f3e70cf974.png#pic_center" alt="package.json文件中看到有安装的版本号"></p>
+<h2 id="二、在main-js文件中引入highlight-js及样式并创建一个自定义的全局指令"><a href="#二、在main-js文件中引入highlight-js及样式并创建一个自定义的全局指令" class="headerlink" title="二、在main.js文件中引入highlight.js及样式并创建一个自定义的全局指令"></a>二、在main.js文件中引入highlight.js及样式并创建一个自定义的全局指令</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hljs <span class="keyword">from</span> <span class="string">'highlight.js'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'highlight.js/styles/atom-one-dark.css'</span> <span class="comment">//样式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建v-highlight全局指令</span></span><br><span class="line">Vue.directive(<span class="string">'highlight'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> blocks = el.querySelectorAll(<span class="string">'pre code'</span>);</span><br><span class="line">  blocks.forEach(<span class="function">(<span class="params">block</span>)=&gt;</span>&#123;</span><br><span class="line">    hljs.highlightBlock(block)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以在vue组件中使用v-highlight引用代码高亮的方法了。</p>
+<h2 id="三、在Vue组件中应用marked解析及实现代码高亮"><a href="#三、在Vue组件中应用marked解析及实现代码高亮" class="headerlink" title="三、在Vue组件中应用marked解析及实现代码高亮"></a>三、在Vue组件中应用marked解析及实现代码高亮</h2><p>代码示例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- 正文输出 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"entry-content"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-highlight</span> <span class="attr">v-html</span>=<span class="string">"article"</span>  <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 将marked 引入</span></span><br><span class="line">  <span class="keyword">import</span> &#123; marked &#125;<span class="keyword">from</span> <span class="string">'marked'</span>;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        name: <span class="string">'articles'</span>,</span><br><span class="line">        data()&#123;</span><br><span class="line">          <span class="keyword">return</span>&#123;</span><br><span class="line">              article:<span class="string">''</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line">          getPostDetail() &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'getPostDetail()'</span>+<span class="keyword">this</span>.id)</span><br><span class="line">            fetchPostDetail(<span class="keyword">this</span>.id).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">               <span class="keyword">this</span>.postdetail=res.data</span><br><span class="line">               <span class="comment">// 调用marked()方法，将markdown转换成html</span></span><br><span class="line">               <span class="keyword">this</span>.article= marked(<span class="keyword">this</span>.postdetail.content);</span><br><span class="line">               <span class="built_in">console</span>.log(res.data)</span><br><span class="line">              &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(err)</span><br><span class="line">              &#125;)</span><br><span class="line"></span><br><span class="line">          &#125;,</span><br><span class="line">        created() &#123;</span><br><span class="line">          <span class="comment">//调用获取文章内容的接口方法</span></span><br><span class="line">          <span class="keyword">this</span>.getPostDetail()</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line"> &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="四、显示效果"><a href="#四、显示效果" class="headerlink" title="四、显示效果"></a>四、显示效果</h2><p>markdown解析及代码高亮显示效果<br><img src="https://img-blog.csdnimg.cn/83cb847638e64e4d97e6c6c2c48344dd.png#pic_center" alt="在这里插入图片描述"></p>
+<p>示例中引用的样式是 <code>import &#39;highlight.js/styles/atom-one-dark.css&#39;</code><br>实际highlight.js/styles中提供了很多样式，可以根据自己的喜好选用。</p>
+<p><img src="https://img-blog.csdnimg.cn/fdbe160b27234608af51d045eb8106be.png#pic_center" alt="代码高亮样式"></p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7435f815/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/7435f815/" itemprop="url">Python3.9环境安装mysqlclient报python setup.py egg_info did not run successfully错避坑</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-16T11:07:00+08:00">
+                2022-07-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-07-19T11:07:48+08:00">
+                2022-07-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/7435f815/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7435f815/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/7435f815/" class="leancloud_visitors" data-flag-title="Python3.9环境安装mysqlclient报python setup.py egg_info did not run successfully错避坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  434
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MySQL是常用的开源数据库，Python环境下django框架连接MySQL数据库用的是mysqlclient库，今天在用pip安装mysqlclient库时报错，特记录一下，避免后续继续踩坑。</p>
+<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：CentOS Linux 7.2<br>Python版本：Python 3.9.13<br>pip版本：pip 22.1.2</p>
+<h1 id="报错信息："><a href="#报错信息：" class="headerlink" title="报错信息："></a>报错信息：</h1><p>执行<code>pip3 install mysqlclient==2.1.1</code> 报错<br>报错信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Using cached http://mirrors.aliyun.com/pypi/packages/50/5f/eac919b88b9df39bbe4a855f136d58f80d191cfea34a3dcf96bf5d8ace0a/mysqlclient-2.1.1.tar.gz (88 kB)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line">  </span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ <span class="built_in">exit</span> code: 1</span><br><span class="line">  ╰─&gt; [16 lines of output]</span><br><span class="line">      /bin/sh: mysql_config: <span class="built_in">command</span> not found</span><br><span class="line">      /bin/sh: mariadb_config: <span class="built_in">command</span> not found</span><br><span class="line">      /bin/sh: mysql_config: <span class="built_in">command</span> not found</span><br><span class="line">      Traceback (most recent call last):</span><br><span class="line">        File <span class="string">"&lt;string&gt;"</span>, line 2, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">        File <span class="string">"&lt;pip-setuptools-caller&gt;"</span>, line 34, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">        File <span class="string">"/tmp/pip-install-i1nt_asj/mysqlclient_1b92535d58cd440b8797686ac8bc9882/setup.py"</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">          metadata, options = get_config()</span><br><span class="line">        File <span class="string">"/tmp/pip-install-i1nt_asj/mysqlclient_1b92535d58cd440b8797686ac8bc9882/setup_posix.py"</span>, line 70, <span class="keyword">in</span> get_config</span><br><span class="line">          libs = mysql_config(<span class="string">"libs"</span>)</span><br><span class="line">        File <span class="string">"/tmp/pip-install-i1nt_asj/mysqlclient_1b92535d58cd440b8797686ac8bc9882/setup_posix.py"</span>, line 31, <span class="keyword">in</span> mysql_config</span><br><span class="line">          raise OSError(<span class="string">"&#123;&#125; not found"</span>.format(_mysql_config_path))</span><br><span class="line">      OSError: mysql_config not found</span><br><span class="line">      mysql_config --version</span><br><span class="line">      mariadb_config --version</span><br><span class="line">      mysql_config --libs</span><br><span class="line">      [end of output]</span><br><span class="line">  </span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error <span class="keyword">while</span> generating package metadata.</span><br><span class="line">╰─&gt; See above <span class="keyword">for</span> output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/5e642c3acb114075a118e98f710722f8.png#pic_center" alt="mysqlclient报错"></p>
+<h1 id="避坑："><a href="#避坑：" class="headerlink" title="避坑："></a>避坑：</h1><p><strong>从报错信息看是找不到mysql_config</strong><br>通过<code>whereis mysql_config</code>命令查看mysql_config<br>发现mysql_confg没有<br><strong>执行<code>yum install mysql-devel</code> 安装mysql-devel</strong><br>执行whereis mysql_config命令查看mysql_config这时mysql_config有了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_config: /usr/bin/mysql_config /usr/share/man/man1/mysql_config.1.gz</span><br></pre></td></tr></table></figure>
+
+<p>再次执行pip安装命令安装成功！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mysqlclient==2.1.1</span><br><span class="line"></span><br><span class="line">Looking <span class="keyword">in</span> indexes: http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">Collecting mysqlclient==2.1.1</span><br><span class="line">  Using cached http://mirrors.aliyun.com/pypi/packages/50/5f/eac919b88b9df39bbe4a855f136d58f80d191cfea34a3dcf96bf5d8ace0a/mysqlclient-2.1.1.tar.gz (88 kB)</span><br><span class="line">  Preparing metadata (setup.py) ... <span class="keyword">done</span></span><br><span class="line">Using legacy <span class="string">'setup.py install'</span> <span class="keyword">for</span> mysqlclient, since package <span class="string">'wheel'</span> is not installed.</span><br><span class="line">Installing collected packages: mysqlclient</span><br><span class="line">  Running setup.py install <span class="keyword">for</span> mysqlclient ... <span class="keyword">done</span></span><br><span class="line">Successfully installed mysqlclient-2.1.1</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/462af16b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2311,531 +2774,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a937cbf5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/a937cbf5/" itemprop="url">安全运营之漏洞管理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-25T15:38:05+08:00">
-                2022-04-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-25T15:45:24+08:00">
-                2022-04-25
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/a937cbf5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a937cbf5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/a937cbf5/" class="leancloud_visitors" data-flag-title="安全运营之漏洞管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1947年冯·诺依曼建立计算机系统结构理论时认为，计算机系统也有天生的类似基因的缺陷，也可能在使用和发展过程中产生意想不到的问题。20世纪七八十年代，早期黑客的出现和第一个计算机病毒的产生，软件漏洞逐渐引起人们的关注。在各种产品、主机、网络和复杂信息系统中，安全漏洞以不同形式存在，而且数量逐年增加，利用漏洞造成的各类安全事件层出不穷。攻击行为或网络安全事件的发生正越来越多地受到利益驱动的影响，这种“黑色产业链”的兴起，导致越来越多的网络终端受害，大量机密信息被窃取，敏感数据信息在互联网上传播，并在黑市中待价而沽。工业控制领域以及新技术新应用的安全漏洞，特别是基础核心系统的安全漏洞已经成为危害国家经济和发展安全的重要因素。在安全运营过程中一个最重要的工作就是漏洞管理。</p>
-<h2 id="一、什么是安全漏洞"><a href="#一、什么是安全漏洞" class="headerlink" title="一、什么是安全漏洞"></a>一、什么是安全漏洞</h2><p><strong>安全漏洞（Vulnerability）也被称为脆弱性</strong>。<br>根据国标-信息安全技术-安全漏洞标识与描述规范[GB/T 28458-2012]对安全漏洞的定义，安全漏洞是计算机信息系统在需求、设计、实现、配置运行等过程中，有意或无意产生的缺陷。这些缺陷以不同形式存在于计算机信息系统的各个层次和环节之中，一旦被恶意主体所利用，就会对计算机信息系统的安全造成损害，从而影响计算机信息系统的正常运行，危害信息产品或系统及信息的安全属性。</p>
-<p>有时漏洞也被称作错误( Error)、缺陷 ( Fault)、 弱点( Weakness )或是故障( Failure )等，这些术语很容易引起混淆。在许多情况下，人们习惯于将错误、缺陷、弱点都简单地称为漏洞。需要指出的是，严格地说，错误、缺陷、弱点和故障并不等于漏洞。错误、缺陷和弱点是产生漏洞的条件，漏洞被利用后必然会破坏安全属性，但不一定能引起产品或系统故障。</p>
-<h2 id="二、安全漏洞标识与描述"><a href="#二、安全漏洞标识与描述" class="headerlink" title="二、安全漏洞标识与描述"></a>二、安全漏洞标识与描述</h2><p>以下为国标-信息安全技术-安全漏洞标识与描述规范[GB/T 28458-2012] 对安全漏洞标识与描述的定义：<br>安全漏洞描述项包括标识号、名称、发布时间、发布单位、类别、等级、影响系统等必须的描述项，并可更具需要扩充（但不限于）相关编号、利用方法、解决方案建议、其他描述等描述项。<br><img src="https://img-blog.csdnimg.cn/d260bdaf3a0a4d4cb2ec59ad888e3f84.png#pic_center" alt="安全漏洞描述"></p>
-<p><strong>标识号</strong><br>CVD-YYYY-NNNNNN格式为标识号。CVD为Common V ulnerabilities Description 的缩写；YYYY为4位十进制数字，表示产生本安全漏洞的年份；NNNNNN为6位十进制数字,表示当年内产生的安全漏洞的序号。<br><strong>名称</strong><br>安全漏洞标题，概括性描述安全漏洞信息的短语,例如InternetExplorer8.0缓冲区溢出漏洞。<br><strong>发布时间</strong><br>安全漏洞信息发布日期。<br><strong>发布单位</strong><br>发布安全漏洞的单位全称。<br><strong>类别</strong><br>安全漏洞所属分类，说明安全漏洞分类归属的信息。<br><strong>等级</strong><br>安全漏洞危害级别，说明安全漏洞能够造成的危害程度。<br><strong>影响系统</strong><br>安全漏洞所影响系统的信息，例如厂商、产品名称和版本号等。<br><strong>相关编号</strong><br>安全漏洞的其他相关编号,例如Bugtraq编号、CVE编号等。<br><strong>利用方法</strong><br>安全漏洞利用的方法，例如安全漏洞攻击方案或利用代码。<br><strong>解决方案建议</strong><br>安全漏洞的解决方案，例如补丁信息等。<br><strong>其他描述</strong><br>安全漏洞描述需要说明的其他相关信息，例如安全漏洞产生的具体原因。</p>
-<h2 id="三、安全漏洞的分类分级"><a href="#三、安全漏洞的分类分级" class="headerlink" title="三、安全漏洞的分类分级"></a>三、安全漏洞的分类分级</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>网络安全漏洞分类是基于漏洞产生或触发的技术原因对漏洞进行划分，分类如下：<br><img src="https://img-blog.csdnimg.cn/e53981eba89a4ebe891147f241ede159.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="安全漏洞分类"></p>
-<h3 id="分级"><a href="#分级" class="headerlink" title="分级"></a>分级</h3><p>网络安全漏洞分级是指采用分级的方式对网络安全漏洞潜在危害的程度进行描述，包括技术分级<br>和综合分级两种分级方式，每种方式均分为超危（严重）、高危、中危和低危四个等级,具体内容如下:<br><strong>超危（严重）</strong>：漏洞可以非常容易地对目标对象造成特别严重后果；<br><strong>高危</strong>：漏洞可以容易地对目标对象造成严重后果；<br><strong>中危</strong>：漏洞可以对目标对象造成一般后果，或者比较困难地对目标造成严重后果；<br><strong>低危</strong>：漏洞可以对目标对象造成轻微后果，或者比较困难地对目标对象造成一般严重后果，或<br>者非常困难地对目标对象造成严重后果。</p>
-<h2 id="四、安全漏洞的生命周期"><a href="#四、安全漏洞的生命周期" class="headerlink" title="四、安全漏洞的生命周期"></a>四、安全漏洞的生命周期</h2><p>依据信息安全漏洞从产生到消亡的整个过程，信息安全漏洞生命周期分以下几个阶段：<br>a)漏洞的发现：通过人工或者自动的方法分析、挖掘漏洞的过程，并且该漏洞可以被验证和重现。<br>b)漏洞的利用：利用漏洞对计算机信息系统的保密性、完整性和可用性造成损害的过程。<br>c)漏洞的修复：通过补丁、升级版本或配置策略等对漏洞进行修补的过程，使得该漏洞不能够被<br>恶意主体所利用。<br>d)漏洞的公开：通过公开渠道(如网站、邮件列表等)公布漏洞信息的过程。</p>
-<h2 id="五、安全漏洞的闭环管理"><a href="#五、安全漏洞的闭环管理" class="headerlink" title="五、安全漏洞的闭环管理"></a>五、安全漏洞的闭环管理</h2><p>根据漏洞生命周期中漏洞所处的不同状态，将漏洞管理行为对应为<strong>预防</strong>、<strong>收集</strong>、<strong>消减</strong>和<strong>发布</strong>等活动。<br><img src="https://img-blog.csdnimg.cn/006685a6190342bdba1455d3c8d79a83.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="漏洞生命周期"></p>
-<p>预防是指通过各种安全手段提高信息系统的安全水平，避免漏洞的产生和恶意利用。<br>收集是针对已发现的漏洞进行信息的及时跟踪与获取。<br>消减是指在漏洞被发现后积极采取补救措施,最大限度减少漏洞带来的损失。<br>发布是指在遵循一定的发布策略的前提下,对漏洞及其修复信息进行发布。<br>用户、厂商和漏洞管理组织可以根据漏洞的状态及管理活动建立符合自身特点的漏洞处理策略和处理流程。<br>对于企业组织安全运营来说可以参考以下漏洞处理流程：<br><img src="https://img-blog.csdnimg.cn/584faf04081b40ac8ac23dd93634d00a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="漏洞处理流程"></p>
-<h3 id="发现漏洞"><a href="#发现漏洞" class="headerlink" title="发现漏洞"></a>发现漏洞</h3><p>一般由渗透测试工程师通过漏洞扫描工具或渗透测试发现系统漏洞，提交渗透测试报告。由安全工程师进行漏洞验证，确定系统漏洞是否真实存在。</p>
-<h3 id="漏洞录入"><a href="#漏洞录入" class="headerlink" title="漏洞录入"></a>漏洞录入</h3><p>在漏洞验证完成后，安全工程师需要根据企业内部的漏洞等级划分标准，将存在的漏洞录入漏洞管理系统。</p>
-<h3 id="漏洞分发"><a href="#漏洞分发" class="headerlink" title="漏洞分发"></a>漏洞分发</h3><p>漏洞管理系统根据漏洞所影响的业务系统、主机IP等匹配到系统负责部门和修复人。通知系统负责人进行修复加固等。</p>
-<h3 id="漏洞跟进及修复"><a href="#漏洞跟进及修复" class="headerlink" title="漏洞跟进及修复"></a>漏洞跟进及修复</h3><p>根据漏洞等级设定的时效性，设置修复计划时间，漏洞复验时间，在漏洞管理系统中进行管理和跟进。漏洞修复人修复完成后提交安全工程师进行漏洞复验，验证漏洞是否确实已经修复。如果漏洞在目前的技术条件下确实无法修复，提交系统负责进行风险确认，采取其他规避风险的措施，如调整访控策略、下线等。</p>
-<h3 id="漏洞修复周期"><a href="#漏洞修复周期" class="headerlink" title="漏洞修复周期"></a>漏洞修复周期</h3><p>漏洞修复周期，包括漏洞的验证、评估、分发、复验、修复和关闭的各个环节。漏洞的修复周期，会根据漏洞等级确定。<br>参考如下：</p>
-<table>
-<thead>
-<tr>
-<th>漏洞等级</th>
-<th>漏洞确认时间</th>
-<th>漏洞修复时间</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>超危（严重）</td>
-<td>12小时</td>
-<td>24小时</td>
-</tr>
-<tr>
-<td>高危</td>
-<td>24小时</td>
-<td>3*24小时</td>
-</tr>
-<tr>
-<td>中危</td>
-<td>36小时</td>
-<td>7*24小时</td>
-</tr>
-<tr>
-<td>低危</td>
-<td>72小时</td>
-<td>14*24小时</td>
-</tr>
-</tbody></table>
-<h3 id="漏洞数据分析"><a href="#漏洞数据分析" class="headerlink" title="漏洞数据分析"></a>漏洞数据分析</h3><p>对于漏洞管理整个流程来说，漏洞缓解或已解决后，关闭工单不是最终的目的，需要对漏洞数据进行分析，持续运营，可以从以下几个方面考虑：<br>1）统计一段时间内，外网系统出现的次数最多的Top10漏洞排名，分析漏洞出现的原因；<br>如外网系统中出现多次SQL注入漏洞，可以检查WAF的规则库是否及时更新？规则是否生效？此外网系统是否在WAF的防护之内？对外的系统为何不做严格的字符过滤机制等。<br>2）统计一段时间内，自主开发系统中漏洞数量最多的Top10系统排名，分析造成的原因；<br>如弱口令次数过多，是安全意识宣传不够？研发人员不重视？<br>3）哪些供应商的开发的系统漏洞数量最多？分析存在的原因；<br>是否需要约谈供应商沟通，是安全开发能力的问题，还是研发安全意识不够？<br>4）哪些框架被利用造成的漏洞过多？<br>是情报问题？还是应急响应机制的原因？是否可以替换为其他框架？</p>
-<hr>
-<p>参考资料<br>信息安全技术 安全漏洞分类 GBT 33561-2017<br>信息安全技术 安全漏洞标识与描述规范 GB∕T 28458-2012<br>信息安全技术 安全漏洞等级划分指南 GB∕T 30279-2013<br>信息安全技术 信息安全漏洞管理规范 GB/T 30276-2013<br>安惞《浅谈企业内部安全漏洞的运营（一）：规范化》</p>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5156b28b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/5156b28b/" itemprop="url">网络信息安全之基于时间的安全模型（PDR和PPDR模型）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-23T10:18:07+08:00">
-                2022-04-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-23T10:19:59+08:00">
-                2022-04-23
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/5156b28b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5156b28b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/5156b28b/" class="leancloud_visitors" data-flag-title="网络信息安全之基于时间的安全模型（PDR和PPDR模型）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>基于时间的安全模型是基于”<strong>任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的</strong>“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。</p>
-<p>基于时间的安全模型主要包括PDR和后来改进的PPDR模型，PDR模型是源自美国国际互联网安全系统公司ISS提出的自适应网络安全模型ANSM（AdaptiveNetwork Security Model），是一个可量化、可数学证明、基于时间的安全模型。美国ISS公司（后被IBM收购）提出的。PPDR模型是PDR的模型上发展起来的，也称P2DR，加入的P是Policy策略。</p>
-<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PDR模型"></p>
-<p>P-protection，保护就是采用一切可能的措施来保护网络、系统以及信息的安全。通常采用的技术及方法主要包括加密、认证、访问控制、防火墙及防病毒等。</p>
-<p>D-detect，检测可以了解和评估网络和系统的安全状态，为安全防护和安全响应提供依据。常用的检测技术主要包括入侵检测、漏洞检测及网络扫描等技术。</p>
-<p> R-response，应急响应在安全模型中占有重要地位，是解决安全问题的最有效办法。解决安全问题就是解决紧急响应和异常处理问题，因此，建立应急响应机制，形成快速安全响应的能力，对网络和系统至关重要。</p>
-<p>PDR模型直观、实用，建立了一个所谓的基于时间的可证明的安全模型，定义了防护时间Pt(攻击者发起攻击时，保护系统不被攻破的时间)、检测时间Dt(从发起攻击到检测到攻击的时间)和响应时间Rt(从发现攻击到做出有效响应的时间)3个概念，并给出了评定系统安全的计算方式，<strong>当Pt&gt;Dt+Rt时，即认为系统是安全的</strong>，也就是说，如果在攻击者攻破系统之前发现并阻止了攻击的行为，那么系统就是安全的。</p>
-<p>局限性：系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明-一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化。</p>
-<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://img-blog.csdnimg.cn/4d73862be0024fbb81811491c43b56ab.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PPDR模型"></p>
-<p>策略（Policy）：模型的核心，所有的防护、检测和响应都是依据安全策略实施的。安全策略一般由总体安全策略和具体安全策略两部分组成。<br>保护（Protection）：保护是根据系统可能出现的安全问题而采取的预防措施，这些措施通过传统的静态安全技术实现。采用的防护技术通常包括数据加密、身份认证、访问控制、授权和虚拟专用网(VPN)技术、防火墙、安全扫描和数据备份等。<br>检测（Detection）：当攻击者穿透防护系统时，检测功能就发挥作用，与防护系统形成互补。检测是动态响应的依据。<br>响应（Response）：系统一旦检测到人侵，响应系统就开始工作，进行事件处理。响应包括应急响应和恢复处理，恢复处理又包括系统恢复和信息恢复。</p>
-<p>PPDR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等)的同时，利用检测工具(如漏洞评估、人侵检测等)了解和评估系统的安全状态，通过适当的反应将系统调整到“最安全”和“风险最低”的状态。保护、检测和响应组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
-<p>该理论的最基本原理就是信息安全相关的所有活动，不管是攻击行为、防护行为、检测行为和响应行为等都要消耗时间,因此可以用时间来衡量一个体系的安全性和安全能力。假设系统的防护、检测和反应时间分别是Pt、Dt和Rt。系统被对手成功攻击后的时间为暴露时间(Et)，那么PPDR模型就可以用典型的数学公式来表达安全的要求：如果Pt&gt;Dt+Rt,那么系统是安全的。</p>
-<p>P2DR模型中的数学法则：<br>假设S系统的防护、检测和反应的时间分别是<br>• Pt（防护时间、有效防御攻击的时间）<br>• Dt（检测时间、发起攻击到检测到的时间）<br>• Rt（反应时间、检测到攻击到处理完成时间）<br> 假设系统被对手成功攻击后的时间为<br>• Et（暴露时间）<br>则该系统防护、检测和反应的时间关系如下：<br>• 如果Pt＞Dt＋Rt，那么S是安全的；<br>• 如果Pt＜Dt＋Rt，那么Et＝（Dt＋Rt）－Pt。</p>
-<p>PPDR给出了安全的全新定义：“<strong>及时的检测和响应就是安全</strong>”，”<strong>及时的检测和恢复就是安全</strong>”。这样的定义给出了解决安全问题的明确方向:提高系统的防护时间Pt，降低检测时间Dt和响应时间Rt。</p>
-<p>与PDR模型相比，PPDR模型更强调控制和对抗，即强调系统安全的动态性，并且以安全检测、漏洞监测和自适应填充“安全间隙”为循环来提高网络安全。值得指出的是，在PPDR模型中，考虑了管理因素,它强调安全管理的持续性、安全策略的动态性，以实时监视网络活动、发现威胁和弱点来调整和填补网络漏洞。另外，该模型强调检测的重要性，通过经常对信息系统的评估把握系统风险点，及时弱化甚至消除系统的安全漏洞。但该模型忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>PDR</th>
-<th>PPDR</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>意义</td>
-<td>最早体现主动防御思想的一种网络安全模型</td>
-<td>是动态网络是安全体系的代表模型，动态安全模型的雏形。</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>保护-检测-响应( Protection-Detection-Response, PDR )</td>
-<td>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )</td>
-</tr>
-<tr>
-<td>特点</td>
-<td>PDR模型建立了一个所谓的基于时间的可证明的安全模型，定义了:防护时间Pt (黑客发起攻击时，保护系统不被攻破的时间)、检测时间Dt (从发起攻击到检测到攻击的时间)和响应时间Rt (从发现攻击到作出有效响应的时间)。当Pt&gt;Dt+Rt时，即认为系统是安全的，也就是说，如果在黑客攻破系统之前发现并阻止了黑客的行为，那么系统就是安全的。</td>
-<td>给出了安全一个全新的定义：“及时的检测和响应就是安全”，“及时的检测和恢复就是安全”。而且，这样的定义为安全问题的解决给出了明确的方向：提高系统的防护时间Pt，降低检测时间.Dt和响应时间Rt。</td>
-</tr>
-<tr>
-<td>局限性</td>
-<td>系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化</td>
-<td>忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</td>
-</tr>
-</tbody></table>
-<p>不管是PDR还是PPDR，总体来说还是局限于从技术上考虑信息安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木块构成的“木桶”，木桶的容量由最短的那块板决定。在处理信息安全问题时，必须全面考虑各方面的因素，任何一个方面的遗漏都有可能形成“短板”。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2892,7 +2830,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3004,7 +2942,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">151.9k</span>
+    <span title="Site words total count">152.8k</span>
   
   
 <!--51la网站应用监控-->
