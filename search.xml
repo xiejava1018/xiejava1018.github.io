@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Python二十行代码实现hexo的md文件格式解析</title>
+      <link href="/posts/f47f6214/"/>
+      <url>/posts/f47f6214/</url>
+      
+        <content type="html"><![CDATA[<p>最近用django+Vue实现了一个博客应用，原来的hexo的博客用着也挺好，想继续留着用，于是就想将hexo生成的.md的博客内容文件解析后直接写到django的博客数据库里做同步显示。</p><p>hexo生成的.md文件内容主要分两部分，一部分是博客的信息、一部分是博客内容，博客信息包括标题、目录、标签、发布日期等，博客内容就是具体博客写的内容主体了。<br><img src="https://img-blog.csdnimg.cn/855e166cf7454b24b89f03c05c5f57b1.png#pic_center" alt="hexo生成的.md文件内容"></p><p>其中博客信息通过”—“来区分，夹在两个”—“块之间。博客的信息是yaml来描叙的需要解析并提取出相应的字段及内容，博客内容就更简单了直接是markdown描叙的不需要再解析了。<br>这里要做的事情就是提取两个”—“符号之间的内容，并解析相应的字段，提取两个”—“符号后面的内容作为博客的内容，形成字典，便于后面的入库。</p><p>代码示例如下：<br>yaml的解析可以直接用Python的PyYAML库</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install PyYAML</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    :author: XieJava</span></span><br><span class="line"><span class="string">    :url: http://ishareread.com</span></span><br><span class="line"><span class="string">    :copyright: © 2021 XieJava &lt;xiejava@ishareread.com&gt;</span></span><br><span class="line"><span class="string">    :license: MIT, see LICENSE for more details.</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"></span><br><span class="line"><span class="string">'''将md文件转成blog对象'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseblog</span><span class="params">(blog_md_file)</span>:</span></span><br><span class="line">    <span class="comment">#读md文件</span></span><br><span class="line">    md_f = open(blog_md_file, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">    md_f_str=md_f.read()</span><br><span class="line">    <span class="comment">#解析两个---之间的内容</span></span><br><span class="line">    pattern=<span class="string">'---'</span></span><br><span class="line">    blog_data=&#123;&#125;</span><br><span class="line">    pattern_list=list(pattern_search(md_f_str, pattern))</span><br><span class="line">    <span class="keyword">if</span> len(pattern_list)&gt;=<span class="number">2</span>:</span><br><span class="line">        blog_info_str=md_f_str[pattern_list[<span class="number">0</span>]+len(pattern):pattern_list[<span class="number">1</span>]]</span><br><span class="line">        blog_data=yaml.load(blog_info_str,Loader=yaml.SafeLoader)</span><br><span class="line">        blog_data[<span class="string">'content'</span>]=md_f_str[pattern_list[<span class="number">1</span>]+len(pattern):]</span><br><span class="line">    md_f.close()</span><br><span class="line">    <span class="keyword">return</span> blog_data</span><br><span class="line"></span><br><span class="line"><span class="string">'''分割符号匹配检索'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pattern_search</span><span class="params">(string,pattern)</span>:</span></span><br><span class="line">    index=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index&lt;len(string)-len(pattern):</span><br><span class="line">        index=string.find(pattern,index,len(string))</span><br><span class="line">        <span class="keyword">if</span> index==<span class="number">-1</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">yield</span> index</span><br><span class="line">        index+=len(pattern)<span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    blog_data=parseblog(<span class="string">'E:\\CloudStation\\personal\\xiejavablog\\myhexo\\myblog\\source\\_posts\\2022-07-19-Vue3解析markdown解析并实现代码高亮显示.md'</span>)</span><br><span class="line">    print(blog_data)</span><br></pre></td></tr></table></figure><p>效果：<br>可以看到hexo的md文件正确解析出来，形成字典。后续可以直接进行入库操作了。<br><img src="https://img-blog.csdnimg.cn/a48c43438d004e2aafbb8e5b21d9bd6a.png#pic_center" alt="解析效果"><br>Python的库还是很丰富实用的，用Python二十行代码就实现hexo的md文件格式解析。</p><p>源代码仓库：<a href="https://gitee.com/ishareblog/ishareblog" target="_blank" rel="noopener">https://gitee.com/ishareblog/ishareblog</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Django+Vue快速实现博客网站</title>
       <link href="/posts/15ee23ea/"/>
       <url>/posts/15ee23ea/</url>
