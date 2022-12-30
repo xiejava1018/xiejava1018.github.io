@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Hexo," />
+  <meta name="keywords" content="Python,Django," />
 
 
 
@@ -134,26 +134,27 @@
 
 
 
-<meta name="description" content="自建hexo博客xiejava.ishareread.com一直在用CNZZ的网站流量统计，每天登陆到CNZZ的网站流量统计后台看博客的访问量成了建站以来的习惯。3月23日以后突然发现CNZZ的统计没有数据了，查了半天才知道CNZZ的U-Web统计分析产品停服了，计划要收费了。最开始用百度统计也是的，原来用得好好的，突然也是要收费了才开始转向用CNZZ的，现在CNZZ也要开始收费了。看来互联网公司">
+<meta name="description" content="通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。 一、Django邮件配置用Django发送邮件需要告诉你的邮件服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客加入51LA网站流量统计">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/f571f2b1/index.html">
+<meta property="og:title" content="通过Django发送邮件">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/73474fe7/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="自建hexo博客xiejava.ishareread.com一直在用CNZZ的网站流量统计，每天登陆到CNZZ的网站流量统计后台看博客的访问量成了建站以来的习惯。3月23日以后突然发现CNZZ的统计没有数据了，查了半天才知道CNZZ的U-Web统计分析产品停服了，计划要收费了。最开始用百度统计也是的，原来用得好好的，突然也是要收费了才开始转向用CNZZ的，现在CNZZ也要开始收费了。看来互联网公司">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/e24590a008154f04a807efaa7703eef1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/64f5b814778248c2a99e6635d51c5410.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_10,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/79491c98a91942639de92f88eb5e975b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/1308b239146f486e9aa5db9f631c9f5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/4987b4462e464d31b2d0ce8197aa3a53.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/322ef4197bdb47e6a2c7ff8420c923be.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/477087d995c9428bba3acacce0a70754.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/00ce0abe369941b7a35ba0094710e844.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="article:published_time" content="2022-04-01T04:42:04.000Z">
-<meta property="article:modified_time" content="2022-04-01T04:44:01.474Z">
+<meta property="og:description" content="通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。 一、Django邮件配置用Django发送邮件需要告诉你的邮件服务器">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/01e56aa8fcd4445d83f7d4363176c4d4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e832aa92deae43348df02688c1df1a38.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c7b70b42ca7f4dcb9f5c7cfbc175e642.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0930d68e01c8495fa3c61882e941793b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/70d5db3bcfee4daf8bb8fb199f8093fd.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a1779932a52544ee80fd34074eb57faf.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a8a2c3710e6844cdb132a2e29a064568.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/85b59a9da2ad450793807d3e4260e8f6.png">
+<meta property="article:published_time" content="2022-12-30T06:57:46.000Z">
+<meta property="article:modified_time" content="2022-12-30T07:06:50.842Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/e24590a008154f04a807efaa7703eef1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/01e56aa8fcd4445d83f7d4363176c4d4.png">
 
 
 
@@ -183,13 +184,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/f571f2b1/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/73474fe7/"/>
 
 
 
 
 
-  <title>Hexo博客加入51LA网站流量统计 | XieJava's blog</title>
+  <title>通过Django发送邮件 | XieJava's blog</title>
   
 
 
@@ -326,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f571f2b1/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/73474fe7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -343,7 +344,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hexo博客加入51LA网站流量统计</h2>
+          <h2 class="post-title" itemprop="name headline">通过Django发送邮件</h2>
         
 
         <div class="post-meta">
@@ -355,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-01T12:42:04+08:00">
-                2022-04-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-30T14:57:46+08:00">
+                2022-12-30
               </time>
             
 
@@ -371,8 +372,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-01T12:44:01+08:00">
-                2022-04-01
+              <time title="更新于" itemprop="dateModified" datetime="2022-12-30T15:06:50+08:00">
+                2022-12-30
               </time>
             
           </span>
@@ -397,17 +398,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -419,8 +409,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/f571f2b1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f571f2b1/" itemprop="commentCount"></span>
+                <a href="/posts/73474fe7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/73474fe7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -428,7 +418,7 @@
 
           
           
-             <span id="/posts/f571f2b1/" class="leancloud_visitors" data-flag-title="Hexo博客加入51LA网站流量统计">
+             <span id="/posts/73474fe7/" class="leancloud_visitors" data-flag-title="通过Django发送邮件">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -453,7 +443,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  917
+                  913
                 </span>
               
 
@@ -490,17 +480,31 @@
       
 
       
-        <p>自建hexo博客xiejava.ishareread.com一直在用CNZZ的网站流量统计，每天登陆到CNZZ的网站流量统计后台看博客的访问量成了建站以来的习惯。3月23日以后突然发现CNZZ的统计没有数据了，查了半天才知道CNZZ的U-Web统计分析产品停服了，计划要收费了。最开始用百度统计也是的，原来用得好好的，突然也是要收费了才开始转向用CNZZ的，现在CNZZ也要开始收费了。看来互联网公司日子比较难过了，免费时代已经一去不复返了。对于个人博客网站来说要付费买个网站流量统计又有点划不来。本来流量就很少，每年域名要付费、主机要付费，再弄个流量统计也要付费实在是有点承受不了。但是没有网站流量统计，不能看到自己的站点的访问量，对于个人自建网站来讲失去了大部分的乐趣。<br>所以这几天一直在寻找其他的网站流量统计的工具，只到找到了51LA。以前只知道百度和CNZZ的网站流量统计工具，最近才了解到51LA统计，它是15年老牌网站统计工具，是互联网上最早基于ASP编写的网站数据统计工具，拥有一大批忠实老站长，后来历经改造，推出新版51LA统计目前是网站统计V6，界面较以往有了较大的改动更加友好直观。<br>51LA网站统计V6的产品链接是 <a href="https://v6.51.la/" target="_blank" rel="noopener">https://v6.51.la/</a><br><img src="https://img-blog.csdnimg.cn/e24590a008154f04a807efaa7703eef1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="我要啦网站统计V6"></p>
-<p>看到”<strong>免费使用</strong>“几个大字的时候我的眼睛已经发光了。迫不及待的点击“注册”，进行使用。</p>
-<h2 id="一、注册登录"><a href="#一、注册登录" class="headerlink" title="一、注册登录"></a>一、注册登录</h2><p>注册流程很简单，要注册的信息很少，基本上就是手机号和登录密码。<br><img src="https://img-blog.csdnimg.cn/64f5b814778248c2a99e6635d51c5410.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_10,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="注册"></p>
-<p>注册过程很友好，注册完就可以登录了。</p>
-<h2 id="二、添加应用"><a href="#二、添加应用" class="headerlink" title="二、添加应用"></a>二、添加应用</h2><p>在正式使用网站统计服务之前要添加应用。也就是要将要统计的站点域名登记到应用里，生成统计代码。<br>点击“添加应用”按钮。要填的信息也就是你要统计的站点域名，可以是多个域名。我的hexo博客除了用到xiejava.ishareread.com外还在github和gited上都生成了。所以把这几个访问的域名都加上。<br><img src="https://img-blog.csdnimg.cn/79491c98a91942639de92f88eb5e975b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="添加应用"></p>
-<h2 id="三、加入网站流量统计代码"><a href="#三、加入网站流量统计代码" class="headerlink" title="三、加入网站流量统计代码"></a>三、加入网站流量统计代码</h2><p>添加应用后下一步就是生成统计代码，将统计代码加入到自己的hexo站点。<br><img src="https://img-blog.csdnimg.cn/1308b239146f486e9aa5db9f631c9f5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="生成统计代码"><br>标签页后面还有“图标引用”、“数据挂件”的代码，如果有需要也可以加入。<br>找到自己的hexo站点的文件目录的<code>footer.swig</code>文件，具体在<code>themes\hexo-theme-next\layout\_partials</code>目录下。编辑footer.swig文件，加入统计代码，根据需要加入图标引用、数据挂件的代码。<br><img src="https://img-blog.csdnimg.cn/4987b4462e464d31b2d0ce8197aa3a53.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="加入统计代码"></p>
-<h2 id="四、查看统计效果"><a href="#四、查看统计效果" class="headerlink" title="四、查看统计效果"></a>四、查看统计效果</h2><p>加入统计代码、图标引用、数据挂件代码后，大约5分钟刷新hexo站点，就可以在网站底部看到图标和数据挂件。<br><img src="https://img-blog.csdnimg.cn/322ef4197bdb47e6a2c7ff8420c923be.png#pic_center" alt="网站底部统计显示"></p>
-<p>登录到<a href="https://v6.51.la/user/application" target="_blank" rel="noopener">https://v6.51.la/user/application</a> 的管理后台，可以看到代码安装状态为“安装成功”<br><img src="https://img-blog.csdnimg.cn/477087d995c9428bba3acacce0a70754.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="应用列表"></p>
-<p>点击“查看报表”可以查看网站的流量统计分析信息。各种统计图表直观易懂，数据详实，感觉比CNZZ 及百度统计更加实用和方便。<br><img src="https://img-blog.csdnimg.cn/00ce0abe369941b7a35ba0094710e844.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="管理后台"><br>51LA可免费添加应用30个，每日应用统计总PV在3000000，对于个人站点或小型企业足足够用了。</p>
+        <p>通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。</p>
+<h2 id="一、Django邮件配置"><a href="#一、Django邮件配置" class="headerlink" title="一、Django邮件配置"></a>一、Django邮件配置</h2><p>用Django发送邮件需要告诉你的邮件服务器相应的参数配置，需要在settings.py中进行配置好。<br>默认情况下，使用配置文件中的<code>EMAIL_HOST</code>和<code>EMAIL_PORT</code>设置SMTP服务器主机和端口，<code>EMAIL_HOST_USER</code>和<br><code>EMAIL_HOST_PASSWORD</code>是用户名和密码。如果设置了EMAIL_USE_TLS和EMAIL_USE_SSL，它们将控制是否使用相应的加密链接。<br>典型的配置如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.126.com'</span>      <span class="comment">#126邮箱的邮箱服务地址</span></span><br><span class="line">EMAIL_PORT = <span class="number">25</span>          <span class="comment">#端口，大部分都是默认25</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@126.com'</span>    <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
+
+<p>这里要注意的两个地方，一个是EMAIL_PORT端口、一个是EMAIL_HOST_PASSWORD密码。<br>端口一般默认是25，但有些邮箱改了默认端口或需要用加密链接465、578端口，可以从邮件服务商查到。<br>密码以前可以用邮箱账号密码，但这几年随着安全要求的提高，大部分主要的邮件服务提供商都要用申请的授权码进一步加强安全系数。<br>这里介绍这些关键的信息如何在邮件服务商获取。</p>
+<blockquote>
+<p> <code>注意EMAIL_HOST_PASSWORD这里不能用你邮箱账号的密码，而要用申请的设备授权码。</code></p>
+</blockquote>
+<h3 id="126邮箱"><a href="#126邮箱" class="headerlink" title="126邮箱"></a>126邮箱</h3><p>进入到邮箱配置界面，点击“POP3/SMTP/IMAP”，注意要开启SMTP。<br><img src="https://img-blog.csdnimg.cn/01e56aa8fcd4445d83f7d4363176c4d4.png" alt="126邮箱配置界面"></p>
+<p>授权码是用于登录第三方邮件客户端的专用密码，点击”新增授权密码”，降会弹出一个账号安全验证，扫描后可以快速的发短信。<br><img src="https://img-blog.csdnimg.cn/e832aa92deae43348df02688c1df1a38.png" alt="账号安全验证界面"></p>
+<p>用你的注册手机发完短信后点击”我已发送”就会弹出一个授权码的窗口，要把这个授权码记下来，这个窗口只显示一次。<br><img src="https://img-blog.csdnimg.cn/c7b70b42ca7f4dcb9f5c7cfbc175e642.png" alt="授权码显示界面"></p>
+<h3 id="QQ邮箱"><a href="#QQ邮箱" class="headerlink" title="QQ邮箱"></a>QQ邮箱</h3><p>进入到QQ邮箱WEB界面后点击“设置”，点击“邮件设置”的“账户”页签拉到“账户安全”处就可以看到相关的SMTP服务信息</p>
+<p><img src="https://img-blog.csdnimg.cn/0930d68e01c8495fa3c61882e941793b.png" alt="QQ邮箱配置界面"></p>
+<p>点击“生成授权码”，将弹出验证密保的界面。<br><img src="https://img-blog.csdnimg.cn/70d5db3bcfee4daf8bb8fb199f8093fd.png" alt="验证密保界面"><br>根据提示发送短信后，点击我已发送，将会弹出生成授权码的界面显示授权码。<br><img src="https://img-blog.csdnimg.cn/a1779932a52544ee80fd34074eb57faf.png" alt="授权码生成界面"></p>
+<p>如果需要SSL加密方式，可以进一步查看服务商的SMTP服务说明<br>如QQ邮箱的服务说明 <a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331" target="_blank" rel="noopener">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=331</a><br><img src="https://img-blog.csdnimg.cn/a8a2c3710e6844cdb132a2e29a064568.png" alt="服务说明界面"></p>
+<p>看到使用SSL，端口号是465或587</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment">#QQ邮箱的smtp服务器</span></span><br><span class="line">EMAIL_PORT = <span class="number">465</span>           <span class="comment">#端口为465或587</span></span><br><span class="line">EMAIL_USE_SSL = <span class="literal">True</span>    <span class="comment">#SSL加密方式设置为True</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@qq.com'</span>     <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二、测试发送邮件"><a href="#二、测试发送邮件" class="headerlink" title="二、测试发送邮件"></a>二、测试发送邮件</h2><p>可以用django的环境在shell中测试。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">from django.core.mail import send_mail</span><br><span class="line">send_mail(<span class="string">'test'</span>,<span class="string">'this is test mail'</span>,<span class="string">'yourmail@qq.com'</span>,[<span class="string">'yourmail@126.com'</span>,<span class="string">'yormail@qq.com'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/85b59a9da2ad450793807d3e4260e8f6.png" alt="在这里插入图片描述"></p>
+<p>如果反回1就表示发送成功了, 查收邮件到达。</p>
+<p>如果发送不成功，请仔细核对邮箱服务的相关配置，一般来说与django无关。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 
       
     </div>
@@ -521,7 +525,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/f571f2b1/" title="Hexo博客加入51LA网站流量统计">https://xiejava.gitee.io/posts/f571f2b1/</a>
+    <a href="https://xiejava.gitee.io/posts/73474fe7/" title="通过Django发送邮件">https://xiejava.gitee.io/posts/73474fe7/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -536,7 +540,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
           
         </div>
       
@@ -549,8 +555,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/e2fd4a90/" rel="next" title="网络信息安全之纵深防御">
-                <i class="fa fa-chevron-left"></i> 网络信息安全之纵深防御
+              <a href="/posts/5381000/" rel="next" title="安全托管与重保安全服务">
+                <i class="fa fa-chevron-left"></i> 安全托管与重保安全服务
               </a>
             
           </div>
@@ -558,10 +564,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/cb0f48b6/" rel="prev" title="网络信息系统安全的发展演变">
-                网络信息系统安全的发展演变 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -741,7 +743,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、注册登录"><span class="nav-number">1.</span> <span class="nav-text">一、注册登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、添加应用"><span class="nav-number">2.</span> <span class="nav-text">二、添加应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、加入网站流量统计代码"><span class="nav-number">3.</span> <span class="nav-text">三、加入网站流量统计代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、查看统计效果"><span class="nav-number">4.</span> <span class="nav-text">四、查看统计效果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Django邮件配置"><span class="nav-number">1.</span> <span class="nav-text">一、Django邮件配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#126邮箱"><span class="nav-number">1.1.</span> <span class="nav-text">126邮箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QQ邮箱"><span class="nav-number">1.2.</span> <span class="nav-text">QQ邮箱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、测试发送邮件"><span class="nav-number">2.</span> <span class="nav-text">二、测试发送邮件</span></a></li></ol></div>
             
 
           </div>

@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="基于时间的安全模型是基于”任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。 基于时间的安全模型主要包括PDR和后来改进的PPDR模型，P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络信息安全之基于时间的安全模型（PDR和PPDR模型）">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/5156b28b/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="基于时间的安全模型是基于”任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。 基于时间的安全模型主要包括PDR和后来改进的PPDR模型，P">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4d73862be0024fbb81811491c43b56ab.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2022-04-23T02:18:07.000Z">
+<meta property="article:modified_time" content="2022-04-23T02:19:59.063Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/5156b28b/"/>
+
+
+
+
+
+  <title>网络信息安全之基于时间的安全模型（PDR和PPDR模型） | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5156b28b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络信息安全之基于时间的安全模型（PDR和PPDR模型）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-23T10:18:07+08:00">
+                2022-04-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-23T10:19:59+08:00">
+                2022-04-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/5156b28b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5156b28b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/5156b28b/" class="leancloud_visitors" data-flag-title="网络信息安全之基于时间的安全模型（PDR和PPDR模型）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基于时间的安全模型是基于”<strong>任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的</strong>“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。</p>
+<p>基于时间的安全模型主要包括PDR和后来改进的PPDR模型，PDR模型是源自美国国际互联网安全系统公司ISS提出的自适应网络安全模型ANSM（AdaptiveNetwork Security Model），是一个可量化、可数学证明、基于时间的安全模型。美国ISS公司（后被IBM收购）提出的。PPDR模型是PDR的模型上发展起来的，也称P2DR，加入的P是Policy策略。</p>
+<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PDR模型"></p>
+<p>P-protection，保护就是采用一切可能的措施来保护网络、系统以及信息的安全。通常采用的技术及方法主要包括加密、认证、访问控制、防火墙及防病毒等。</p>
+<p>D-detect，检测可以了解和评估网络和系统的安全状态，为安全防护和安全响应提供依据。常用的检测技术主要包括入侵检测、漏洞检测及网络扫描等技术。</p>
+<p> R-response，应急响应在安全模型中占有重要地位，是解决安全问题的最有效办法。解决安全问题就是解决紧急响应和异常处理问题，因此，建立应急响应机制，形成快速安全响应的能力，对网络和系统至关重要。</p>
+<p>PDR模型直观、实用，建立了一个所谓的基于时间的可证明的安全模型，定义了防护时间Pt(攻击者发起攻击时，保护系统不被攻破的时间)、检测时间Dt(从发起攻击到检测到攻击的时间)和响应时间Rt(从发现攻击到做出有效响应的时间)3个概念，并给出了评定系统安全的计算方式，<strong>当Pt&gt;Dt+Rt时，即认为系统是安全的</strong>，也就是说，如果在攻击者攻破系统之前发现并阻止了攻击的行为，那么系统就是安全的。</p>
+<p>局限性：系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明-一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化。</p>
+<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://img-blog.csdnimg.cn/4d73862be0024fbb81811491c43b56ab.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PPDR模型"></p>
+<p>策略（Policy）：模型的核心，所有的防护、检测和响应都是依据安全策略实施的。安全策略一般由总体安全策略和具体安全策略两部分组成。<br>保护（Protection）：保护是根据系统可能出现的安全问题而采取的预防措施，这些措施通过传统的静态安全技术实现。采用的防护技术通常包括数据加密、身份认证、访问控制、授权和虚拟专用网(VPN)技术、防火墙、安全扫描和数据备份等。<br>检测（Detection）：当攻击者穿透防护系统时，检测功能就发挥作用，与防护系统形成互补。检测是动态响应的依据。<br>响应（Response）：系统一旦检测到人侵，响应系统就开始工作，进行事件处理。响应包括应急响应和恢复处理，恢复处理又包括系统恢复和信息恢复。</p>
+<p>PPDR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等)的同时，利用检测工具(如漏洞评估、人侵检测等)了解和评估系统的安全状态，通过适当的反应将系统调整到“最安全”和“风险最低”的状态。保护、检测和响应组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
+<p>该理论的最基本原理就是信息安全相关的所有活动，不管是攻击行为、防护行为、检测行为和响应行为等都要消耗时间,因此可以用时间来衡量一个体系的安全性和安全能力。假设系统的防护、检测和反应时间分别是Pt、Dt和Rt。系统被对手成功攻击后的时间为暴露时间(Et)，那么PPDR模型就可以用典型的数学公式来表达安全的要求：如果Pt&gt;Dt+Rt,那么系统是安全的。</p>
+<p>P2DR模型中的数学法则：<br>假设S系统的防护、检测和反应的时间分别是<br>• Pt（防护时间、有效防御攻击的时间）<br>• Dt（检测时间、发起攻击到检测到的时间）<br>• Rt（反应时间、检测到攻击到处理完成时间）<br> 假设系统被对手成功攻击后的时间为<br>• Et（暴露时间）<br>则该系统防护、检测和反应的时间关系如下：<br>• 如果Pt＞Dt＋Rt，那么S是安全的；<br>• 如果Pt＜Dt＋Rt，那么Et＝（Dt＋Rt）－Pt。</p>
+<p>PPDR给出了安全的全新定义：“<strong>及时的检测和响应就是安全</strong>”，”<strong>及时的检测和恢复就是安全</strong>”。这样的定义给出了解决安全问题的明确方向:提高系统的防护时间Pt，降低检测时间Dt和响应时间Rt。</p>
+<p>与PDR模型相比，PPDR模型更强调控制和对抗，即强调系统安全的动态性，并且以安全检测、漏洞监测和自适应填充“安全间隙”为循环来提高网络安全。值得指出的是，在PPDR模型中，考虑了管理因素,它强调安全管理的持续性、安全策略的动态性，以实时监视网络活动、发现威胁和弱点来调整和填补网络漏洞。另外，该模型强调检测的重要性，通过经常对信息系统的评估把握系统风险点，及时弱化甚至消除系统的安全漏洞。但该模型忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PDR</th>
+<th>PPDR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>意义</td>
+<td>最早体现主动防御思想的一种网络安全模型</td>
+<td>是动态网络是安全体系的代表模型，动态安全模型的雏形。</td>
+</tr>
+<tr>
+<td>组成</td>
+<td>保护-检测-响应( Protection-Detection-Response, PDR )</td>
+<td>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>PDR模型建立了一个所谓的基于时间的可证明的安全模型，定义了:防护时间Pt (黑客发起攻击时，保护系统不被攻破的时间)、检测时间Dt (从发起攻击到检测到攻击的时间)和响应时间Rt (从发现攻击到作出有效响应的时间)。当Pt&gt;Dt+Rt时，即认为系统是安全的，也就是说，如果在黑客攻破系统之前发现并阻止了黑客的行为，那么系统就是安全的。</td>
+<td>给出了安全一个全新的定义：“及时的检测和响应就是安全”，“及时的检测和恢复就是安全”。而且，这样的定义为安全问题的解决给出了明确的方向：提高系统的防护时间Pt，降低检测时间.Dt和响应时间Rt。</td>
+</tr>
+<tr>
+<td>局限性</td>
+<td>系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化</td>
+<td>忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</td>
+</tr>
+</tbody></table>
+<p>不管是PDR还是PPDR，总体来说还是局限于从技术上考虑信息安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木块构成的“木桶”，木桶的容量由最短的那块板决定。在处理信息安全问题时，必须全面考虑各方面的因素，任何一个方面的遗漏都有可能形成“短板”。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/5156b28b/" title="网络信息安全之基于时间的安全模型（PDR和PPDR模型）">https://xiejava.gitee.io/posts/5156b28b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/7f2622dc/" rel="next" title="网络信息安全之零信任">
+                <i class="fa fa-chevron-left"></i> 网络信息安全之零信任
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/a937cbf5/" rel="prev" title="安全运营之漏洞管理">
+                安全运营之漏洞管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、PDR模型"><span class="nav-number">1.</span> <span class="nav-text">一、PDR模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、PPDR模型"><span class="nav-number">2.</span> <span class="nav-text">二、PPDR模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">161.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

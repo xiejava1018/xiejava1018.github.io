@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="近年安全圈XDR的概念非常火，是近几年热点的安全技术之一，究竟什么是XDR，XDR核心能力是什么？能够解决什么问题，XDR与EDR、NDR关系和区别又是什么？让我们带着这些问题一起来认识一下XDR。 一、什么是XDRXDR 于 2018 年由 Palo Alto 首席技术官 Nir Zuk 提出，2020-2021 年连续入选 Gartner 端点安全、安全运营技术成熟度曲线，目前处于创新启动期。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="认识XDR-扩展威胁检测与响应平台">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/160ef42d/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="近年安全圈XDR的概念非常火，是近几年热点的安全技术之一，究竟什么是XDR，XDR核心能力是什么？能够解决什么问题，XDR与EDR、NDR关系和区别又是什么？让我们带着这些问题一起来认识一下XDR。 一、什么是XDRXDR 于 2018 年由 Palo Alto 首席技术官 Nir Zuk 提出，2020-2021 年连续入选 Gartner 端点安全、安全运营技术成熟度曲线，目前处于创新启动期。">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8267fb595e88455ea6d478b3ea5baa46.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/688c91e5881d4e7bb938d660720fb8b0.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/12a6d67ea8354eb6ae19c3307dbc5cbd.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3b14d884dc884e3a8f70e6b8811eac81.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4a48e9f6edf546e083b4d1d47ae9725a.png#pic_center">
+<meta property="article:published_time" content="2022-10-13T11:30:54.000Z">
+<meta property="article:modified_time" content="2022-10-13T11:37:12.680Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/8267fb595e88455ea6d478b3ea5baa46.png#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/160ef42d/"/>
+
+
+
+
+
+  <title>认识XDR-扩展威胁检测与响应平台 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/160ef42d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">认识XDR-扩展威胁检测与响应平台</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-13T19:30:54+08:00">
+                2022-10-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-10-13T19:37:12+08:00">
+                2022-10-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/160ef42d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/160ef42d/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/160ef42d/" class="leancloud_visitors" data-flag-title="认识XDR-扩展威胁检测与响应平台">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>近年安全圈XDR的概念非常火，是近几年热点的安全技术之一，究竟什么是XDR，XDR核心能力是什么？能够解决什么问题，XDR与EDR、NDR关系和区别又是什么？让我们带着这些问题一起来认识一下XDR。</p>
+<h1 id="一、什么是XDR"><a href="#一、什么是XDR" class="headerlink" title="一、什么是XDR"></a>一、什么是XDR</h1><p>XDR 于 2018 年由 Palo Alto 首席技术官 Nir Zuk 提出，2020-2021 年连续入选 Gartner 端点安全、安全运营技术成熟度曲线，目前处于创新启动期。</p>
+<p>XDR全名是<strong>Extended Detection and Response（扩展检测和响应）</strong>，因为缩写与EDR重名了，所以就取了Extended第二个字母X，缩成了XDR。</p>
+<p>Gartner给出的XDR定义为：XDR是一种基于SaaS的、绑定于特定供应商的安全威胁检测和事件响应工具，它将多个安全产品集成到一个统一了所有许可安全组件的内聚安全运营系统中。</p>
+<p>通常情况下，可以认为XDR是一个融合了多种安全检测、响应能力的平台框架，只要是为了解决威胁检测与响应的问题能力模块，都可以往里装。它需要将多个安全产品能力有机的结合在一起，有统一的数据格式、策略、交互界面。相对于EDR（端点的检测与响应）和NDR（网络的检测与响应）来说，特别的强调X的概念，也就是可以扩展（Extended）的检测与响应。这里X覆盖了云、网、端、威胁情报等，EDR和NDR及其他的检测设备都可以作为XDR的能力模块为XDR提供数据来源和检测手段。</p>
+<h1 id="二、XDR解决什么问题"><a href="#二、XDR解决什么问题" class="headerlink" title="二、XDR解决什么问题"></a>二、XDR解决什么问题</h1><p>近期， Gartner正式发布了2022安全运营技术成熟度曲线（Hype Cycle），正如大家所预测的那样，XDR终于站上了Peak of Inflated Expectations的顶端，成为安全运营体系中最炙手可热的技术之一，具体如下图所示：<br><img src="https://img-blog.csdnimg.cn/8267fb595e88455ea6d478b3ea5baa46.png#pic_center" alt="2022安全运营技术成熟度曲线"></p>
+<p>那么在企业安全运营过程中究竟有什么困惑，XDR又能解决什么问题呢？</p>
+<h2 id="1、安全运营的困惑"><a href="#1、安全运营的困惑" class="headerlink" title="1、安全运营的困惑"></a>1、安全运营的困惑</h2><ul>
+<li><strong>单兵作战/数据孤岛</strong></li>
+</ul>
+<p>企业虽然有了SIEM/SOC等日志类数据分析平台，或是IDS、IPS、WAF、防火墙、EDR等单点安全设备，但前者无法理解下游检测设备告警，数据多而不准，安全误报多；后者获取的数据又有限，不同设备数据还无法紧密集成，最后变成了真实风险看不到，出现威胁防不了。</p>
+<ul>
+<li><strong>告警疲劳，误报多</strong></li>
+</ul>
+<p>安全人员每天都会收到来自不同安全设备的上万条威胁告警，而头疼的是，绝大多数（90%以上）都并非真实威胁，所以安全人员不是身体在处理误报的路上，就是精神在遭受误报的折磨，压力非常之大。</p>
+<ul>
+<li><strong>全局态势不可见</strong></li>
+</ul>
+<p>企业虽然买了一堆的安全设备，这些设备都产生了相应的告警，但是没有形成统一的全局的安全风险态势，对于安全主管来说要重点防范哪些地方，企业的安全建设还有哪些短板，这些都不可以知不可见。</p>
+<ul>
+<li><strong>响应处置能力弱</strong></li>
+</ul>
+<p>发生网络安全事件以后，无法有效溯源，快速的处置，尤其是多设备的联动处置，大多还停留在手工处置的阶段，处置效率先对比较低，不及时。</p>
+<h2 id="2、XDR的作用"><a href="#2、XDR的作用" class="headerlink" title="2、XDR的作用"></a>2、XDR的作用</h2><p>XDR通过统一的交互框架、统一的数据标准、统一的数据存储方式进行安全数据采集、安全威胁集中分析、安全事件统一处置、响应编排。</p>
+<p>XDR的核心作用在于能够跨越不同数据源与IT架构，集中汇集云、网、端、威胁情报等多源安全数据/工具。通过大数据与人工智能、用户行为分析等智能分析手段，对安全数据/事件进行关联分析，还原攻击路径，达到对整个攻击面的全面可视，解决安全孤岛的问题。基于动态更新的事件库与预置处置场景将产出的告警进行自动化编排与分诊，实现自动化响应。解决安全运营过程中数据孤岛、告警疲劳、全局态势不可见、响应处置能力弱的问题，更重要的是将企业安全运营水平和标准化产品挂钩，而非依赖不稳定的个人技术水平。</p>
+<p><img src="https://img-blog.csdnimg.cn/688c91e5881d4e7bb938d660720fb8b0.png#pic_center" alt="XDR的作用"></p>
+<h1 id="三、XDR与EDR、NDR的区别"><a href="#三、XDR与EDR、NDR的区别" class="headerlink" title="三、XDR与EDR、NDR的区别"></a>三、XDR与EDR、NDR的区别</h1><p>EDR从端点侧做威胁检测，确实能检测到攻击的准确信息，但是端点检测这种方式需要在用户主机上安装检测agent程序，无法覆盖用户所有的资产。并且端点检测的部署成本相比网络检测也更高，对于端点的操作系统、硬件配置、网络情况都有要求。</p>
+<p>NDR从网络侧做威胁检测，检测到的更多都是攻击的特征或者攻击意图，此时攻击很有可能并未真正发生，或者并未造成严重后果。如果全部转化为威胁事件，则会造成告警风暴，给运营带来困难。</p>
+<p>所以EDR的特点是检测的深但是覆盖面窄，而NDR的特点是检测的浅但是覆盖面广。</p>
+<p>XDR则结合了这两者的全部优点，对于重点资产可采用端点检测方式，对于其他资产可采用网络检测方式。XDR平台会将这两种能力检测到的原始事件信息进行自动化关联，最终可将这些疑似的攻击信息，关联分析形成精准的威胁告警事件。</p>
+<h1 id="四、XDR的架构和核心能力"><a href="#四、XDR的架构和核心能力" class="headerlink" title="四、XDR的架构和核心能力"></a>四、XDR的架构和核心能力</h1><h2 id="1、XDR的架构"><a href="#1、XDR的架构" class="headerlink" title="1、XDR的架构"></a>1、XDR的架构</h2><p>因为XDR是一个融合了多种安全检测、响应能力的平台框架，XDR的架构其关键组件包括前端组件（感应器，主要负责数据采集及检测）和后端平台组件（主要负责数据的汇聚、分析、威胁检测、响应处置）</p>
+<p><img src="https://img-blog.csdnimg.cn/12a6d67ea8354eb6ae19c3307dbc5cbd.png#pic_center" alt="XDR的架构"><br>XDR前端组件，由生成安全遥测数据的“触角”（感应器）组成，这些触角包括但不限于EDR（终端检测与响应-Endpoint Detection and Response)、EPP(终端防护平台-Endpoint Protection Platforms)、NDR（流量检测与响应平台-Network Detection and Response)、SSE（安全服务边缘-Security Services Edge)、CWPP(云工作负载安全防护平台-Cloud Workload Protection Platforms)、蜜罐、邮件安全。</p>
+<p>而XDR的后端平台，则是吸收所有关键位置的遥测数据、日志、威胁上下文信息，之后再对所有的数据进行关联、高级分析、从而完成威胁检测、调查分析、攻击溯源、工具编排、自动化响应等工作。</p>
+<p>从整体架构上<strong>XDR可以看成是融合了各安全能力组件（EDR、NDR等）+SDC（安全数据中心）+SIEM/SA（安全信息事件管理/态势感知）+SOAR（安全编排与自动化响应）形成的一个安全运营系统</strong>。</p>
+<h2 id="2、核心能力"><a href="#2、核心能力" class="headerlink" title="2、核心能力"></a>2、核心能力</h2><p>XDR核心能力包括数据集成、检测技术、可视化、编排响应技术。</p>
+<ul>
+<li><strong>安全数据全面集成</strong></li>
+</ul>
+<p>对不同安全设备的数据进行全面的采集包括：内部（资产、脆弱性）、外部（流量、日志）以及云端威胁情报接入等相关安全数据的全面采集，汇聚、分析。</p>
+<ul>
+<li><strong>安全威胁深度检测</strong></li>
+</ul>
+<p>对多源安全告警进行关联分析、规则分析、情报分析、机器学习等，发现潜伏的高级持续性威胁，提升告警检出率和准确率。</p>
+<ul>
+<li><strong>安全态势集中展示</strong></li>
+</ul>
+<p>告警可视、事件可视、攻击可视，从多安全事件、攻击方向、攻击趋势、影响范围等多维度多视角进行态势可视化呈现。</p>
+<ul>
+<li><strong>安全事件快速处置</strong></li>
+</ul>
+<p>通过可视化剧本编排，快速实现人员、流程、工具的有效协同，对接联动安全防护设备，在安全事件发生时自动下发阻断策略，并在必要时下发通知预警，及时完成安全闭环。</p>
+<p>   XDR成熟度模型如下：<br><img src="https://img-blog.csdnimg.cn/3b14d884dc884e3a8f70e6b8811eac81.png#pic_center" alt="XDR成熟度模型"></p>
+<h1 id="五、XDR应用场景"><a href="#五、XDR应用场景" class="headerlink" title="五、XDR应用场景"></a>五、XDR应用场景</h1><p>XDR集中汇集云、网、端、威胁情报等多源安全数据/工具，解决安全运营过程中数据孤岛、告警疲劳、全局态势不可见、响应处置能力弱的问题。可以有效应用于企业常态化安全运营及重保攻防实战对抗场景。</p>
+<p><img src="https://img-blog.csdnimg.cn/4a48e9f6edf546e083b4d1d47ae9725a.png#pic_center" alt="XDR威胁检测联动响应示意图"></p>
+<ul>
+<li><strong>日常安全运营场景</strong></li>
+</ul>
+<p>日常安全运营，通过XDR提升安全运营的威胁检测能力和响应效率。<br>精准响应：更好的检测效果及响应能力，解决原有海量告警导致事件难以有效检测、溯源深度不足导致响应效果差的问题，有效应对攻防对抗加剧带来新的安全风险。<br>风险管理：从被动事件响应转向有计划的风险管理，预防重大安全事件。<br>处置闭环：采用简单有效的方式开展安全分析、管理、处置工作，实现事件处置的有效闭环管控。<br>态势可见：安全态势统一呈现，安全运营有地放矢，哪里不足补哪里。</p>
+<ul>
+<li><strong>攻防实战对抗场景</strong></li>
+</ul>
+<p>攻防实战，通过XDR实现异构可扩展的威胁检测响应能力，进行快速响应、加固优化安全措施、攻击反制。<br>检测深度：更精准的高级威胁检测和安全事件溯源能力。<br>检测广度：拥有丰富的数据，包括事件完整的上下文信息、原始报文等供客户深度挖掘；全方位的的威胁数据采集，全面的威胁检测分析，全局的态势呈现。<br>敏捷响应：可进行快速响应、加固优化安全措施、攻击反制。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/160ef42d/" title="认识XDR-扩展威胁检测与响应平台">https://xiejava.gitee.io/posts/160ef42d/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/32650d1c/" rel="next" title="Django自定义manage.py命令实现hexo博客迁移">
+                <i class="fa fa-chevron-left"></i> Django自定义manage.py命令实现hexo博客迁移
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/5381000/" rel="prev" title="安全托管与重保安全服务">
+                安全托管与重保安全服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、什么是XDR"><span class="nav-number">1.</span> <span class="nav-text">一、什么是XDR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、XDR解决什么问题"><span class="nav-number">2.</span> <span class="nav-text">二、XDR解决什么问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、安全运营的困惑"><span class="nav-number">2.1.</span> <span class="nav-text">1、安全运营的困惑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、XDR的作用"><span class="nav-number">2.2.</span> <span class="nav-text">2、XDR的作用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、XDR与EDR、NDR的区别"><span class="nav-number">3.</span> <span class="nav-text">三、XDR与EDR、NDR的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、XDR的架构和核心能力"><span class="nav-number">4.</span> <span class="nav-text">四、XDR的架构和核心能力</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、XDR的架构"><span class="nav-number">4.1.</span> <span class="nav-text">1、XDR的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、核心能力"><span class="nav-number">4.2.</span> <span class="nav-text">2、核心能力</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、XDR应用场景"><span class="nav-number">5.</span> <span class="nav-text">五、XDR应用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">161.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在信息时代，信息已经成为第一战略资源，信息对组织使命的完成、组织目标的实现起着至关重要的作用，因此信息资产的安全是关系到该组织能否完成其使命的重大因素。资产与风险是对矛盾共同体，资产价值越高，面临的风险就越大。而对于目前的组织机构而言，由于组织的业务运营越来越依赖于信息资产，信息安全相关风险在组织整体风险中所占的比例也越来越高。信息安全风险管理的目的就是将风险控制到可接受的程度，保护信息及其相关资">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络信息安全之安全风险管理">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/88375ea1/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="在信息时代，信息已经成为第一战略资源，信息对组织使命的完成、组织目标的实现起着至关重要的作用，因此信息资产的安全是关系到该组织能否完成其使命的重大因素。资产与风险是对矛盾共同体，资产价值越高，面临的风险就越大。而对于目前的组织机构而言，由于组织的业务运营越来越依赖于信息资产，信息安全相关风险在组织整体风险中所占的比例也越来越高。信息安全风险管理的目的就是将风险控制到可接受的程度，保护信息及其相关资">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/507664e42a024ccc969927c2a2e9122e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/077ed7794d104aadafd25b4c3ebc0bad.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3a6ca1e002664e92af2ea57bee8a24f8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2022-04-19T07:06:00.000Z">
+<meta property="article:modified_time" content="2022-04-19T07:25:32.423Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/507664e42a024ccc969927c2a2e9122e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/88375ea1/"/>
+
+
+
+
+
+  <title>网络信息安全之安全风险管理 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/88375ea1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络信息安全之安全风险管理</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-19T15:06:00+08:00">
+                2022-04-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-19T15:25:32+08:00">
+                2022-04-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/88375ea1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/88375ea1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/88375ea1/" class="leancloud_visitors" data-flag-title="网络信息安全之安全风险管理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在信息时代，信息已经成为第一战略资源，信息对组织使命的完成、组织目标的实现起着至关重要的作用，因此信息资产的安全是关系到该组织能否完成其使命的重大因素。资产与风险是对矛盾共同体，资产价值越高，面临的风险就越大。而对于目前的组织机构而言，由于组织的业务运营越来越依赖于信息资产，信息安全相关风险在组织整体风险中所占的比例也越来越高。信息安全风险管理的目的就是将风险控制到可接受的程度，保护信息及其相关资产，最终保障组织能够完成其使命，实现其目标。</p>
+<h2 id="一、什么是安全风险"><a href="#一、什么是安全风险" class="headerlink" title="一、什么是安全风险"></a>一、什么是安全风险</h2><p>风险定义为事态的概率及其结果的组合。风险的目标可能有很多不同的方面，如财务目标、健康和人身安全目标、信息安全目标和环境目标等；目标也可能有不同的级别，如战略目标、组织目标、项目目标、产品目标和过程目标等。风险经常通过引用潜在事态和后果或这些的组合来描述。影响，是对一个预期的偏离，正面的或负面的偏离。<br>风险是客观存在的，与不确定性紧密相连，但又不能完全等同。风险带来的影响，通常都是负面的(正面的影响通常不被称为风险)。风险强调的是损害的潜在可能性，而不是事实上的损害。风险不能消除殆尽，包括人为因素带来的风险，也一样不能消除殆尽。衡量风险的两个基本要素就是事件的概率和影响。<br>威胁利用脆弱性作用于资产产生影响，威胁增加了组织资产的风险，脆弱点能够暴露资产，脆弱性本身不会构成对资产的损害，但是脆弱性被威胁利用就会增加组织资产的风险。<br><img src="https://img-blog.csdnimg.cn/507664e42a024ccc969927c2a2e9122e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="安全风险与资产、脆弱性、威胁之间的关系"></p>
+<h2 id="二、如何评估安全风险"><a href="#二、如何评估安全风险" class="headerlink" title="二、如何评估安全风险"></a>二、如何评估安全风险</h2><p>根据《信息安全技术信息安全风险评估规范》（GB/T 20984-2007），对评估对象进行安全风险评估分析，风险分析中涉及评估对象的影响范围、威胁、脆弱性三个基本要素。<br><img src="https://img-blog.csdnimg.cn/077ed7794d104aadafd25b4c3ebc0bad.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="风险评估"><br>以下参考互联网新技术新业务安全风险评估可以分为<strong>确定影响范围-&gt;确定威胁-&gt;确定脆弱性-&gt;计算分险值-&gt;形成评估结论</strong>，通过定量和定性相结合的方式进行安全风险评估。</p>
+<h3 id="1、确定影响范围"><a href="#1、确定影响范围" class="headerlink" title="1、确定影响范围"></a>1、确定影响范围</h3><p>影响范围是指评估对象涉及的传播影响，按评估对象支持的用户数计。<br>对于运营于互联网上的应用系统，参考下表进行赋值。</p>
+<table>
+<thead>
+<tr>
+<th>范围</th>
+<th>赋值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10万以内</td>
+<td>1</td>
+</tr>
+<tr>
+<td>10万-100万以内</td>
+<td>2</td>
+</tr>
+<tr>
+<td>100万-1000万以内</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1000万-5000万以内</td>
+<td>4</td>
+</tr>
+<tr>
+<td>5000万及以上</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<h3 id="2、确定威胁"><a href="#2、确定威胁" class="headerlink" title="2、确定威胁"></a>2、确定威胁</h3><p>威胁是指可能对评估对象造成损害的外部原因。威胁利用评估对象自身的脆弱性，采用一定的途径和方式，对评估对象造成损害或损失，从而形成风险。如：下表为互联网新技术新业务安全评估涉及的威胁及发生可能性赋值。</p>
+<table>
+<thead>
+<tr>
+<th>威胁分类</th>
+<th>威胁名称</th>
+<th>赋值</th>
+<th>威胁描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>假冒</td>
+<td>假冒</td>
+<td>4</td>
+<td>通过欺骗通信系统（或用户）达到非法用户冒充成为合法用户，或特权小的用户冒充成为特权大的用户的目的。黑客大多是采用假冒攻击。</td>
+</tr>
+<tr>
+<td>假冒</td>
+<td>诱骗欺诈</td>
+<td>1</td>
+<td>通过伪造、篡改、劫持短信、彩信、邮件、通讯录、通话记录、收藏夹、桌面等方式，诱骗用户，而达到不正当目的。</td>
+</tr>
+<tr>
+<td>假冒</td>
+<td>恶意扣费</td>
+<td>5</td>
+<td>在用户不知情或非授权的情况下，通过隐蔽执行、欺骗用户点击等手段，订购各类收费业务或使用移动终端支付，造成用户经济损失。</td>
+</tr>
+<tr>
+<td>篡改</td>
+<td>篡改</td>
+<td>3</td>
+<td>通过作伪的手段对应用程序的数据、进程、交互内容、发布内容进行修改。</td>
+</tr>
+<tr>
+<td>拒绝服务</td>
+<td>系统破坏</td>
+<td>4</td>
+<td>通过感染、劫持、篡改、删除、终止进程等手段导致移动终端或其它非恶意软件部分或全部功能、用户文件等无法正常使用，干扰、破坏、阻断移动通信网络、网络服务或其它合法业务正常运行。</td>
+</tr>
+<tr>
+<td>拒绝服务</td>
+<td>拒绝服务</td>
+<td>5</td>
+<td>对信息或其他资源的合法访问被无条件地阻止。</td>
+</tr>
+<tr>
+<td>拒绝服务</td>
+<td>资源消耗</td>
+<td>4</td>
+<td>在用户不知情或非授权的情况下，通过自动拨打电话、发送短信、彩信、邮件、频繁连接网络等方式，造成用户资费损失。</td>
+</tr>
+<tr>
+<td>暴力破解</td>
+<td>暴力破解</td>
+<td>2</td>
+<td>一种针对于用户账号和密码的破译方法，即将密码进行逐个推算直到找出真正的密码为止。</td>
+</tr>
+<tr>
+<td>抵赖</td>
+<td>抵赖</td>
+<td>4</td>
+<td>合法用户对自己操作行为否认的可能性。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>非授权访问</td>
+<td>3</td>
+<td>某一资源被某个非授权的人，或以非授权的方式使用。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>隐私窃取</td>
+<td>4</td>
+<td>在用户不知情或非授权的情况下，获取涉及用户个人信息。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>窃听</td>
+<td>3</td>
+<td>用各种可能的合法或非法的手段窃取系统中的信息资源和敏感信息。例如对通信线路中传输的信号搭线监听，或者利用通信设备在工作过程中产生的电磁泄露截取有用信息等。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>业务流分析</td>
+<td>3</td>
+<td>通过对系统进行长期监听，利用统计分析方法对诸如通信频度、通信的信息流向、通信总量的变化等参数进行研究，从中发现有价值的信息和规律。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>远程控制</td>
+<td>4</td>
+<td>在用户不知情或非授权的情况下，能够接受远程控制端指令并进行相关操作。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>破坏信息的完整性/可用性</td>
+<td>4</td>
+<td>数据被非授权地进行增删、修改或破坏而受到损失/数据遗失。</td>
+</tr>
+<tr>
+<td>越权（提升权限）</td>
+<td>授权侵犯（内部攻击）</td>
+<td>3</td>
+<td>被授权以某一目的使用某一系统或资源的某个人，将此权限用于其他非授权的目的。</td>
+</tr>
+<tr>
+<td>非法传播</td>
+<td>恶意传播</td>
+<td>5</td>
+<td>自动通过复制、感染、投递、下载等方式将自身、自身的衍生物或其它恶意代码进行扩散的行为。</td>
+</tr>
+<tr>
+<td>非法传播</td>
+<td>信息泄露</td>
+<td>5</td>
+<td>信息被泄露或透露给某个非授权的实体。</td>
+</tr>
+<tr>
+<td>非法传播</td>
+<td>三涉</td>
+<td>5</td>
+<td>传播的内容与应用包含了非法的信息，如涉黄、涉非、涉政，含病毒等。</td>
+</tr>
+<tr>
+<td>非法传播</td>
+<td>非法应用</td>
+<td>2</td>
+<td>传播内容与应用的方式让用户无法接受，如垃圾短信的发送、骚扰电话等。</td>
+</tr>
+<tr>
+<td>溯源失效</td>
+<td>溯源失效</td>
+<td>4</td>
+<td>无法准确追溯到传播违法有害信息或进行恶意攻击的责任主体。</td>
+</tr>
+<tr>
+<td>管理失控</td>
+<td>管理失控</td>
+<td>4</td>
+<td>用户、业务规模已超过企业最大安全监管能力范围；或企业安全保障能力无法满足针对业务实现方式或功能属性带来安全风险的管理。</td>
+</tr>
+</tbody></table>
+<p>为了便于对不同威胁发生的可能性概率数据进行类比、度量，依据经验或专家意见进行赋值，常用准则参照如下表。采用相对等级的方式进行度量，等级值为1-5，1为最低，5为最高。<br>表：威胁赋值准则</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>标识</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>VH（很高）</td>
+<td>威胁发生的可能性很高，在大多数情况下几乎不可避免或者可以证实发生过的频率较高。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>H（高）</td>
+<td>威胁发生的可能性较高，在大多数情况下很有可能会发生或者可以证实曾发生过。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>M（中）</td>
+<td>威胁发生的可能性中等，在某种情况下可能会发生但未被证实发生过。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>L（低）</td>
+<td>威胁发生的可能性较小，一般不太可能发生，也没有被证实发生过。</td>
+</tr>
+<tr>
+<td>1</td>
+<td>VL（很低）</td>
+<td>威胁几乎不可能发生，仅可能在非常罕见和例外的情况下发生。</td>
+</tr>
+</tbody></table>
+<h3 id="3、确定脆弱性"><a href="#3、确定脆弱性" class="headerlink" title="3、确定脆弱性"></a>3、确定脆弱性</h3><p>脆弱性是指评估对象存在一个或多个脆弱的管理、技术、业务方面的漏洞，这些漏洞可能会被威胁所利用。脆弱性依据经验或专家意见进行赋值，常用准则参照如下表。采用相对等级的方式进行度量，等级值为1-3，1为最低，3为最高。<br>表：脆弱性赋值准则</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>描述</th>
+<th>对应等级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>技术保障</td>
+<td>技术方面是否存在低等级缺陷，从技术角度是否易被利用。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>攻击利用</td>
+<td>对于攻击者来说，该漏洞目前是否能被直接或者间接利用，或者利用的难度。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>管理控制</td>
+<td>运营管理环节是否有相关的薄弱环节，被利用难易程度。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>防范控制</td>
+<td>是否有规定，是否严格审核、是否有记录校验等。</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p>脆弱性等级</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>标识</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>H（高）</td>
+<td>如果被威胁利用，将造成完全损害。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>M（中）</td>
+<td>如果被威胁利用，将造成一般损害。</td>
+</tr>
+<tr>
+<td>1</td>
+<td>L（低）</td>
+<td>如果被威胁利用，造成的损害可以忽略。</td>
+</tr>
+</tbody></table>
+<h3 id="4、计算风险值"><a href="#4、计算风险值" class="headerlink" title="4、计算风险值"></a>4、计算风险值</h3><p>风险计算公式：</p>
+<blockquote>
+<p>风险值=影响范围 * 威胁可能性 * 脆弱严重性</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/3a6ca1e002664e92af2ea57bee8a24f8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="风险评估彩虹图"></p>
+<p>根据风险计算公式得出风险值后可以对应其风险等级，如风险值在55-75分，表示风险极高</p>
+<h3 id="5、评估结论"><a href="#5、评估结论" class="headerlink" title="5、评估结论"></a>5、评估结论</h3><p>评估报告以风险计算得分形式呈现，即：不仅呈现脆弱性问题，并且对于不符合评估标准的项，根据面临威胁赋值和脆弱性赋值，结合评估对象的影响范围计算出风险得分，依据得分给出风险等级（极高、高、中、低、极低）。 任一评估要点匹配对应的企业安全保障能力的脆弱性测算值＞0时，须及时记录并反馈至本级信息安全部门进行报备。任一评估要点的风险值的对应等级为中及其以上程度时，必须纳入整改事项严格贯彻执行，并密切跟踪把握风险变化、持续健全更新与之匹配对应的信息安全管理措施和技术保障手段，根据业务上线后的经营发展情况适时开展安全评估，以确保将信息安全风险控制在中级以下范围内。评估管理部门应组织评估专家审查小组，对“评估结论”进行审核，通过后出具评审结论。</p>
+<h2 id="三、为什么要管理安全风险"><a href="#三、为什么要管理安全风险" class="headerlink" title="三、为什么要管理安全风险"></a>三、为什么要管理安全风险</h2><p>风险管理的目的是确保不确定性不会使企业的业务目标发生变化。风险管理是风险的识别、评估和优化，然后协调和经济地应用资源，以最小化监测和控制不良事件的可能性及影响，最大限度地实现业务。</p>
+<p>风险管理可使信息系统的主管者和运营者在安全措施的成本与资产价值之间寻求平衡，并最终通过对支持其使命的信息系统及数据进行保护而提高其实现使命的能力。</p>
+<p>一个单位的领导必须确保本单位具备完成其使命所需的能力。信息安全措施是有成本的，因此对信息安全的成本必须像其他管理决策一样进行全面检查。一套合理的风险管理方法，可以帮助信息系统的主管者和运营者最大程度地提高其信息安全保障能力，以有效实现其使命。</p>
+<h2 id="四、如何管理安全风险"><a href="#四、如何管理安全风险" class="headerlink" title="四、如何管理安全风险"></a>四、如何管理安全风险</h2><p>信息安全风险管理包括背景建立、风险评估、风险处理、批准监督、监控审查和沟通咨询6个方面的内容。<strong>背景建立、风险评估、风险处理和批准监督</strong>是信息安全风险管理的4个基本步骤，监控审查和沟通咨询则贯穿于这4个基本步骤中，如下图所示。</p>
+<h3 id="1、背景建立"><a href="#1、背景建立" class="headerlink" title="1、背景建立"></a>1、背景建立</h3><p>背景建立是信息安全风险管理的第一个步骤，是为了明确信息安全风险管理的范围和对象，以及对象的特性和安全要求，对信息安全风险管理项目进行规划和准备，保障后续的风险管理活动顺利进行。背景是建立在业务需求的基础上，通过有效的风险评估和国家、地区、行业相关法律法规及标准的约束下获得背景依据。<br>背景建立的过程包括风险管理准备、信息系统调查、信息系统分析和信息安全分析4个阶段。在信息安全风险管理过程中，对象确立过程是一次信息安全风险管理主循环的起始，为风险评估提供输人。</p>
+<h3 id="2、风险评估"><a href="#2、风险评估" class="headerlink" title="2、风险评估"></a>2、风险评估</h3><p>风险评估确定信息资产的价值、识别适用的威胁和(存在或可能存在的)脆弱点、识别现有控制措施及其对已识别风险的影响，确定潜在后果,对风险进行最终的优先级排序，并按照风险范畴中设定的风险评价准则进行排名。<br>风险评估的目的是通过风险评估的结果，来获得信息安全需求，信息安全风险管理要依靠风险评估的结果来确定随后的风险处理和批准监督活动。风险评估使得组织能够准确定位风险管理的策略、实践和工具，能够将安全活动的重点放在重要的问题上，能够选择有合理成本效益的和适用的安全对策。基于风险评估的风险管理方法被实践证明是有效的和实用的，已被广泛应用于各个领域。<br>风险评估的过程包括风险评估准备、风险要素识别、风险分析和风险结果判定4个阶段。在信息安全风险管理过程中，风险评估活动接受背景建立阶段的输出，形成本阶段的最终输出《风险评估报告》，此文档为风险处理活动提供输人。</p>
+<h3 id="3、风险处理"><a href="#3、风险处理" class="headerlink" title="3、风险处理"></a>3、风险处理</h3><p>风险处理是依据风险评估的结果，选择和实施合适的安全措施。风险处理的目的是为了将风险始终控制在可接受的范围内。风险处理的方式主要有降低、规避、转移和接受4种方式。</p>
+<ul>
+<li><p>降低方式:<br>组织首先应该选择降低风险，通常通过对面临风险的资产采取保护措施来降低风险。保护措施可以从构成风险的5个方面( 即威胁源、威胁行为、脆弱性、资产和影响)来降低风险。比如，采用法律的手段制裁计算机犯罪(包括窃取机密信息，攻击关键的信息系统基础设施，传播病毒、不健康信息和垃圾邮件等)，发挥法律的威慑作用，从而有效遏制威胁源的动机;采取身份认证措施，从而抵制身份假冒这种威胁行为的能力；及时给系统打补丁(特别是针对安全漏洞的补丁)，关闭无用的网络服务端口，从而减少系统的脆弱性，降低被利用的可能性；采用各种防护措施，建立资产的安全域，从而保证资产不受侵犯，其价值得到保持；采取容灾备份、应急响应和业务连续计划等措施，从而减少安全事件造成的影响程度。</p>
+</li>
+<li><p>规避方式:<br>当风险不能被降低时，通过不使用面临风险的资产来避免风险。比如，在没有足够安全保障的信息系统中，不处理特别敏感的信息，从而防止敏感信息的泄漏。再如，对于只处理内部业务的信息系统，不使用互联网，从而避免外部的有害人侵和不良攻击。</p>
+</li>
+<li><p>转移方式:<br>只有在风险既不能被降低，又不能被规避时，通过将面临风险的资产或其价值转移到更安全的地方来避免或降低风险。比如，在本机构不具备足够的安全保障的技术能力时，将信息系统的技术体系(即信息载体部分)外包给满足安全保障要求的第三方机构，从而避免技术风险。再如，通过给昂贵的设备上保险，将设备损失的风险转移给保险公司，从而降低资产价值的损失。</p>
+</li>
+<li><p>接受方式:<br>是选择对风险不采取进一步的处理措施，接受风险可能带来的结果。接受风险的前提是确定了风险的等级，评估了风险发生的可能性以及带来的潜在破坏，分析了使用每种处理措施的可行性，并进行了较全面的成本效益分析，认定某些功能、服务、信息或资产不需要进一 步保护。</p>
+</li>
+</ul>
+<p>风险处理的过程包括现存风险判断、处理目标确立、处理措施选择和处理措施实施4个阶段。</p>
+<h3 id="4、批准监督"><a href="#4、批准监督" class="headerlink" title="4、批准监督"></a>4、批准监督</h3><p>批准监督包括批准和持续监督两部分。<br>批准，是指机构的决策层依据风险评估和风险处理的结果是否满足信息系统的安全要求，做出是否认可风险管理活动的决定。批准应由机构内部或更高层的主管机构的决策层来执行。<br>持续监督，是指检查机构及其信息系统以及信息安全相关的环境有无变化，监督变化因素是否有可能引入新的安全隐患并影响到信息系统的安全保障级别。监督通常由机构内部管理层和执行层完成，必要时也可以委托支持层的外部专业机构提供支持，这主要取决于信息系统的性质和机构自身的专业能力。<br>对风险评估和风险处理的结果的批准和持续监督，不能仅依据相关标准进行僵化的对比，而是需要紧紧围绕信息系统所承载的业务，通过对业务的重要性和业务遭受损失后所带来的影响来开展相关工作。批准通过的依据( 原则)有两个：一是信息系统的残余风险是可接受的；二是安全措施能够满足信息系统当前业务的安全需求。</p>
+<p>参考资料：<br>《CISP培训教材》<br>《信息安全工程师教程（第2版）》<br>《信息安全技术信息安全风险评估规范》</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/88375ea1/" title="网络信息安全之安全风险管理">https://xiejava.gitee.io/posts/88375ea1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/ada9f957/" rel="next" title="CWPP与EDR的定义与区别">
+                <i class="fa fa-chevron-left"></i> CWPP与EDR的定义与区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/7f2622dc/" rel="prev" title="网络信息安全之零信任">
+                网络信息安全之零信任 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是安全风险"><span class="nav-number">1.</span> <span class="nav-text">一、什么是安全风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、如何评估安全风险"><span class="nav-number">2.</span> <span class="nav-text">二、如何评估安全风险</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、确定影响范围"><span class="nav-number">2.1.</span> <span class="nav-text">1、确定影响范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、确定威胁"><span class="nav-number">2.2.</span> <span class="nav-text">2、确定威胁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、确定脆弱性"><span class="nav-number">2.3.</span> <span class="nav-text">3、确定脆弱性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、计算风险值"><span class="nav-number">2.4.</span> <span class="nav-text">4、计算风险值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、评估结论"><span class="nav-number">2.5.</span> <span class="nav-text">5、评估结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、为什么要管理安全风险"><span class="nav-number">3.</span> <span class="nav-text">三、为什么要管理安全风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、如何管理安全风险"><span class="nav-number">4.</span> <span class="nav-text">四、如何管理安全风险</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、背景建立"><span class="nav-number">4.1.</span> <span class="nav-text">1、背景建立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、风险评估"><span class="nav-number">4.2.</span> <span class="nav-text">2、风险评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、风险处理"><span class="nav-number">4.3.</span> <span class="nav-text">3、风险处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、批准监督"><span class="nav-number">4.4.</span> <span class="nav-text">4、批准监督</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">161.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
