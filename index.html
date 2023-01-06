@@ -313,6 +313,598 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9421a9eb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9421a9eb/" itemprop="url">AI机器学习时序序列特征提取实现分类预测实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-06T21:02:35+08:00">
+                2023-01-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-06T21:04:38+08:00">
+                2023-01-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9421a9eb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9421a9eb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9421a9eb/" class="leancloud_visitors" data-flag-title="AI机器学习时序序列特征提取实现分类预测实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近有位做医疗项目的同学咨询有一批人员的身高、体重、性别、年龄、心电图、是否有心脏病等数据是否可以根据这些数据预测某个人是否有心脏病的迹象。这当然是可以的，AI机器学习不就是干这事的吗？这是一个典型的分类算法。根据这些人体特征来判断是否存在潜在的疾病。问题是如何对心电图进行特征提取，提取出相关的特征，让模型进行学习和训练。</p>
+<p>拿到数据后，第一步，我们首先来看一下数据。</p>
+<h2 id="一、数据探索"><a href="#一、数据探索" class="headerlink" title="一、数据探索"></a>一、数据探索</h2><h3 id="1、读入数据"><a href="#1、读入数据" class="headerlink" title="1、读入数据"></a>1、读入数据</h3><p>导入numpy、pandas、matplotlib三大件，读入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">df=pd.read_csv(<span class="string">'data_csv.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/d59efafd2b064078997cbb41a57d75ee.png" alt="在这里插入图片描述"></p>
+<p>数据集中有age年龄、ismale性别、Weight身高、Height体重、HRTrend心电图、label是否有心脏病（1，是有心脏病、0是无心脏病）<br>这里看到主要的几个关键性的指标。HRTrend是csv中载入的时候数据是文本字符串格式，还有nan及\n等字符串，我们要将这些数据进行清洗规则化，将其转化为数组。</p>
+<h3 id="2、数据处理"><a href="#2、数据处理" class="headerlink" title="2、数据处理"></a>2、数据处理</h3><p>先拿一个样本数据来看看数据的情况。对它进行相应的处理，包括去掉回车换行符、去多余空格、然后以空格作为分隔形成数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HRTrend_Data=df[<span class="string">'HRTrend'</span>][<span class="number">1</span>][<span class="number">1</span>:len(df[<span class="string">'HRTrend'</span>][<span class="number">1</span>])<span class="number">-1</span>]</span><br><span class="line">HRTrend_Data=HRTrend_Data.replace(<span class="string">'\n'</span>,<span class="string">''</span>) <span class="comment">#替换掉换行符</span></span><br><span class="line">HRTrend_Data=HRTrend_Data.replace(<span class="string">'nan'</span>,str(<span class="number">0</span>))   <span class="comment">#将nan补0</span></span><br><span class="line">HRTrend_Data=re.sub(<span class="string">' +'</span>, <span class="string">' '</span>, HRTrend_Data).strip() <span class="comment">#去掉多余的空格</span></span><br><span class="line">HRTrend_Data=np.asarray([float(s) <span class="keyword">for</span> s <span class="keyword">in</span> HRTrend_Data.split(<span class="string">' '</span>)])  <span class="comment">#将字符串通过空格分隔，转换成数组</span></span><br><span class="line">pd.DataFrame(HRTrend_Data).plot()</span><br><span class="line">HRTrend_Data</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/bc77af3d2bf749abaa9b72e48cb0cf26.png" alt="在这里插入图片描述"></p>
+<p>这个图形不是很规则不平滑，看数据是因为异常值太多，后面的数据都是0，这些0都是因为数据为Non补充进来的，有可能是应为数据采集的时候某个点位没有采集到。我们需要将这些异常值给处理掉。<br>对于中间为0的，我们可以通过采用前值填充或者后值填充（也就是用前面的值或后面的值来替代为0的值），后面全部为0的部分要去掉。应为会影响到一些关键性的特征，如均值、50%的值、70%的值等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_HRTrend1=pd.DataFrame(HRTrend_Data)</span><br><span class="line">df_HRTrend1.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/8a7ad090da6a46789a3f789c0a950671.png" alt="在这里插入图片描述"></p>
+<p>可以看到，这些异常值将会很大程度的影响一些关键特征，所以我们要处理异常值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HRTrend_Data=np.trim_zeros(HRTrend_Data)  <span class="comment">#去掉首尾的0</span></span><br><span class="line">df_data1=pd.DataFrame(HRTrend_Data)</span><br><span class="line">df_data1.replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>)  <span class="comment">#用前值替换掉中间的异常0</span></span><br><span class="line">df_data1.plot()</span><br><span class="line">df_data1.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/ba9f27cf3d754a4ba180fb2e643fc18c.png" alt="在这里插入图片描述"></p>
+<p>把刚对一个样本处理的过程写成一个函数，应用到所有的样本数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">procdata</span><span class="params">(df_dataclumn)</span>:</span></span><br><span class="line">    ary_data=df_dataclumn[<span class="number">1</span>:len(df_dataclumn)<span class="number">-1</span>]</span><br><span class="line">    ary_data=ary_data.replace(<span class="string">'\n'</span>,<span class="string">''</span>)</span><br><span class="line">    ary_data=ary_data.replace(<span class="string">'nan'</span>,str(<span class="number">0</span>))</span><br><span class="line">    ary_data=re.sub(<span class="string">' +'</span>, <span class="string">' '</span>, ary_data).strip()</span><br><span class="line">    ary_data=np.asarray([float(s) <span class="keyword">for</span> s <span class="keyword">in</span> ary_data.split(<span class="string">' '</span>)])</span><br><span class="line">    ary_data=np.trim_zeros(ary_data)</span><br><span class="line">    df_data=pd.DataFrame(ary_data)</span><br><span class="line">    df_data.replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    ary_data=df_data.values</span><br><span class="line">    <span class="keyword">return</span> ary_data</span><br><span class="line"></span><br><span class="line">df[<span class="string">'HRTrend'</span>]=df[<span class="string">'HRTrend'</span>].map(procdata)</span><br><span class="line">df[<span class="string">'Weight'</span>].replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>) <span class="comment">#去异常值</span></span><br><span class="line">df[<span class="string">'Height'</span>].replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>) <span class="comment">#去异常值</span></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+<p>找前六个样本看看效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig,axes = plt.subplots(<span class="number">2</span>,<span class="number">3</span>,figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">        i=i+<span class="number">1</span></span><br><span class="line">        axes[x,y].plot(df[<span class="string">'HRTrend'</span>][i])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/9648dfde1c3f48f1b957fe9edc6c99f0.png" alt="在这里插入图片描述"></p>
+<h2 id="二、特征工程及模型训练"><a href="#二、特征工程及模型训练" class="headerlink" title="二、特征工程及模型训练"></a>二、特征工程及模型训练</h2><h3 id="方法一：通过描叙统计提取时序特征并进行模型训练"><a href="#方法一：通过描叙统计提取时序特征并进行模型训练" class="headerlink" title="方法一：通过描叙统计提取时序特征并进行模型训练"></a>方法一：通过描叙统计提取时序特征并进行模型训练</h3><ul>
+<li>特征提取</li>
+</ul>
+<p>有量纲时序特征提取包括以内容。<br><img src="https://img-blog.csdnimg.cn/0024b33924104484a274bd0eec6e8d20.png" alt="在这里插入图片描述"></p>
+<p>可以看到，大部分内容都可以通过describe()获取。可以写个函数方法来获取相关的特征值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdescribefeatures</span><span class="params">(data)</span>:</span></span><br><span class="line">    df_feature=pd.DataFrame(data)</span><br><span class="line">    df_feature=df_feature.describe().T</span><br><span class="line">    range=df_feature[<span class="string">'max'</span>][<span class="number">0</span>]-df_feature[<span class="string">'min'</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> range,df_feature[<span class="string">'count'</span>][<span class="number">0</span>],df_feature[<span class="string">'mean'</span>][<span class="number">0</span>],df_feature[<span class="string">'std'</span>][<span class="number">0</span>],df_feature[<span class="string">'min'</span>][<span class="number">0</span>],df_feature[<span class="string">'25%'</span>][<span class="number">0</span>],df_feature[<span class="string">'50%'</span>][<span class="number">0</span>],df_feature[<span class="string">'75%'</span>][<span class="number">0</span>],df_feature[<span class="string">'max'</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">HRTrend_np=np.array(df[<span class="string">'HRTrend'</span>])</span><br><span class="line">HRTrend_features_ary=[getdescribefeatures(d) <span class="keyword">for</span> d <span class="keyword">in</span> HRTrend_np]</span><br><span class="line">df_HRTrend_features=pd.DataFrame(HRTrend_features_ary,columns=[<span class="string">'HRTrend'</span>+str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(HRTrend_features_ary[<span class="number">0</span>]))])</span><br><span class="line">df_HRTrend_features</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/9ed477289f10486c871c8c6b2995f697.png" alt="在这里插入图片描述"></p>
+<p>将心电图提出的统计信息特征与年龄、性别、身高、体重等特征合并，形成特征集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data=df[[<span class="string">'age'</span>,<span class="string">'ismale'</span>,<span class="string">'Weight'</span>,<span class="string">'Height'</span>,<span class="string">'label'</span>]].join(df_HRTrend_features)</span><br></pre></td></tr></table></figure>
+
+<p>预留15个样本做最后的预测看效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_train_data=df_data[<span class="number">0</span>:len(df_data)<span class="number">-15</span>]    <span class="comment">#训练数据</span></span><br><span class="line">df_predict_data=df_data[len(df_data)<span class="number">-15</span>:len(df_data)]  <span class="comment">#用于预测的数据</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>模型训练</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line">x_tt, x_validation, y_tt, y_validation = train_test_split(x, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"><span class="comment"># 将训练集再切分为训练集和测试集</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(x_tt, y_tt, test_size=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将模型的名字和模型函数作为元组添加到列表当中存储；</span></span><br><span class="line">models = []</span><br><span class="line">models.append((<span class="string">"KNN"</span>,KNeighborsClassifier(n_neighbors=<span class="number">3</span>))) <span class="comment">#指定邻居个数</span></span><br><span class="line">models.append((<span class="string">"SVM Classifier"</span>,SVC(C=<span class="number">1000</span>)))</span><br><span class="line"><span class="comment">#可以通过参数C来控制精度，C越大要求精度越高；  C——错分点的惩罚度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#循环调用所有模型进行训练、预测</span></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> models:</span><br><span class="line">    clf.fit(x_train, y_train)</span><br><span class="line">    xy_lst = [(x_train, y_train), (x_validation, y_validation), (x_test, y_test)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(xy_lst)):</span><br><span class="line">        x_part = xy_lst[i][<span class="number">0</span>]  <span class="comment"># 为遍历中的第0部分</span></span><br><span class="line">        y_part = xy_lst[i][<span class="number">1</span>]  <span class="comment"># 为遍历中的第1部分</span></span><br><span class="line">        y_pred = clf.predict(x_part)</span><br><span class="line">        print(i)  <span class="comment"># i是下标，0表示训练集，1表示验证集，2表示测试集</span></span><br><span class="line">        print(clf_name, <span class="string">"ACC:"</span>, accuracy_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"REC:"</span>, recall_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"F-score:"</span>, f1_score(y_part, y_pred))</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/5be3d9218fc54368acece8f3c70f10c6.png" alt="在这里插入图片描述"></p>
+<p>SVM分类模型的效果要稍好于KNN的模型，但整体效果还不是很好。应该是提取的特征还是不够。我们来试下通过tsfresh提取时序特征并进行模型训练。</p>
+<h3 id="方法二：通过tsfresh提取时序特征并进行模型训练"><a href="#方法二：通过tsfresh提取时序特征并进行模型训练" class="headerlink" title="方法二：通过tsfresh提取时序特征并进行模型训练"></a>方法二：通过tsfresh提取时序特征并进行模型训练</h3><ul>
+<li>特征提取</li>
+</ul>
+<p>tsfresh可以自动提取各种时间特征，可以参考官方文档，一般的取最大、最小、偏度、峰度等统计指标这些都自动化集成了。<br><a href="https://tsfresh.readthedocs.io/en/latest/text/introduction.html" target="_blank" rel="noopener">https://tsfresh.readthedocs.io/en/latest/text/introduction.html</a><br><img src="https://img-blog.csdnimg.cn/97af24b2fe5743e4a4a534536f8b04ea.png" alt="在这里插入图片描述"></p>
+<p>通过tsfresh提取时序特征代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tsfresh <span class="keyword">import</span> extract_features</span><br><span class="line"><span class="keyword">from</span> tsfresh <span class="keyword">import</span> select_features</span><br><span class="line">dfx_HRTrend=pd.DataFrame()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> df.index:</span><br><span class="line">    df_i=pd.DataFrame(df[<span class="string">'HRTrend'</span>][i],columns=[<span class="string">'HRTrend'</span>])</span><br><span class="line">    df_i[<span class="string">'id'</span>]=i</span><br><span class="line">    df_i[<span class="string">'time'</span>]=np.array(range(<span class="number">1</span>,len(df_i)+<span class="number">1</span>))</span><br><span class="line">    df_i[<span class="string">'label'</span>]=df[<span class="string">'label'</span>][i]</span><br><span class="line">    dfx_HRTrend=pd.concat(objs=[dfx_HRTrend,df_i])</span><br><span class="line"></span><br><span class="line">dfx_xtracted_features = extract_features(dfx_HRTrend,column_id=<span class="string">"id"</span>, column_sort=<span class="string">"time"</span>)</span><br><span class="line">dfx_xtracted_features</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/399e9d00ceb3441eba393e0132bf52d7.png" alt="在这里插入图片描述"></p>
+<p>可以看到tsfresh自动提取了1574colums的特征，但是我们要选取与标签有相关性的特征。tsfresh可以自动做到这一点，通过tsfresh的select_features传入特征和标签来选择与标签有相关性的特征，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tsfresh.utilities.dataframe_functions <span class="keyword">import</span> impute</span><br><span class="line">impute(dfx_xtracted_features)</span><br><span class="line">df_HRTrend_features = select_features(dfx_xtracted_features, df[<span class="string">'label'</span>])</span><br><span class="line">df_HRTrend_features</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/e5a63ecd8df94a96ac24a8baf9806a7a.png" alt="在这里插入图片描述"></p>
+<p>通过特征选择自动选取了有相关性的143个特征，比前面缩减了很多，有利于提高模型训练的效率和精度。<br>我们再来看一下模型训练的效果。<br>同样将心电图通过tsfresh提出的时序特征与年龄、性别、身高、体重等特征合并，形成特征集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data=df[[<span class="string">'age'</span>,<span class="string">'ismale'</span>,<span class="string">'Weight'</span>,<span class="string">'Height'</span>,<span class="string">'label'</span>]].join(df_HRTrend_features)</span><br></pre></td></tr></table></figure>
+
+<p>预留15个样本做最后的预测看效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_train_data=df_data[<span class="number">0</span>:len(df_data)<span class="number">-15</span>]    <span class="comment">#训练数据</span></span><br><span class="line">df_predict_data=df_data[len(df_data)<span class="number">-15</span>:len(df_data)]  <span class="comment">#用于预测的数据</span></span><br></pre></td></tr></table></figure>
+
+<p>模型训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line">x_tt, x_validation, y_tt, y_validation = train_test_split(x, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"><span class="comment"># 将训练集再切分为训练集和测试集</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(x_tt, y_tt, test_size=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将模型的名字和模型函数作为元组添加到列表当中存储；</span></span><br><span class="line">models = []</span><br><span class="line">models.append((<span class="string">"KNN"</span>,KNeighborsClassifier(n_neighbors=<span class="number">3</span>))) <span class="comment">#指定邻居个数</span></span><br><span class="line">models.append((<span class="string">"SVM Classifier"</span>,SVC(C=<span class="number">1000</span>)))</span><br><span class="line"><span class="comment">#可以通过参数C来控制精度，C越大要求精度越高；  C——错分点的惩罚度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#循环调用所有模型进行训练、预测</span></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> models:</span><br><span class="line">    clf.fit(x_train, y_train)</span><br><span class="line">    xy_lst = [(x_train, y_train), (x_validation, y_validation), (x_test, y_test)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(xy_lst)):</span><br><span class="line">        x_part = xy_lst[i][<span class="number">0</span>]  <span class="comment"># 为遍历中的第0部分</span></span><br><span class="line">        y_part = xy_lst[i][<span class="number">1</span>]  <span class="comment"># 为遍历中的第1部分</span></span><br><span class="line">        y_pred = clf.predict(x_part)</span><br><span class="line">        print(i)  <span class="comment"># i是下标，0表示训练集，1表示验证集，2表示测试集</span></span><br><span class="line">        print(clf_name, <span class="string">"ACC:"</span>, accuracy_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"REC:"</span>, recall_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"F-score:"</span>, f1_score(y_part, y_pred))</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/0e3b19d3f6304f5fbe649ba25021aca1.png" alt="在这里插入图片描述"></p>
+<p>可以看到不管是KNN模型和SVM的模型都取得了不错的效果。</p>
+<h2 id="三、效果"><a href="#三、效果" class="headerlink" title="三、效果"></a>三、效果</h2><p>最后我们来看一下，用预留的15个样本预测的效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pre_test_y=df_predict_data[<span class="string">'label'</span>]</span><br><span class="line">pre_test_x=df_predict_data.drop(columns=<span class="string">'label'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> models:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> pre_test_x.index:</span><br><span class="line">        y_predict=clf.predict(pre_test_x.loc[[i]])</span><br><span class="line">        predict_result=<span class="string">'预测错误！'</span></span><br><span class="line">        <span class="keyword">if</span> y_predict==pre_test_y.loc[[i]].values:</span><br><span class="line">            predict_result=<span class="string">'预测正确！'</span></span><br><span class="line">        print(<span class="string">'第'</span>+str(i)+<span class="string">'个样本'</span>+clf_name+<span class="string">' 预测y='</span>+str(y_predict)+<span class="string">'--实际 y='</span>+str(pre_test_y.loc[[i]].values)+<span class="string">' - '</span>+predict_result)</span><br><span class="line">    print(<span class="string">'-'</span>*<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>先是通过描叙统计提取时序特征并进行模型训练后模型预测的结果：<br><img src="https://img-blog.csdnimg.cn/bfe84fba45424bc5accc4a297161ff35.png" alt="在这里插入图片描述"></p>
+<p>还是有不少预测错误了。<br>再来看通过tsfresh提取时序特征并进行模型训练后模型预测的结果：<br><img src="https://img-blog.csdnimg.cn/a0312fd8471940b3b92974507a83bcfb.png" alt="在这里插入图片描述"></p>
+<p>可以看到预留的15个样本都预测正确，取得了不错的效果！</p>
+<p>本文通过心电图分类模型介绍了从数据处理、时序特征提取、模型训练和效果评估。验证了对于小数据量，通过tsfresh提取时序特征，往往能够取得很好的效果。</p>
+<p>全部源代码及数据集见：<a href="https://download.csdn.net/download/fullbug/87369380" target="_blank" rel="noopener">https://download.csdn.net/download/fullbug/87369380</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a>  </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c2fa9556/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/c2fa9556/" itemprop="url">Django+Celery+Flower实现异步和定时任务及其监控告警</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-06T21:00:15+08:00">
+                2023-01-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-01-06T21:02:03+08:00">
+                2023-01-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/c2fa9556/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c2fa9556/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/c2fa9556/" class="leancloud_visitors" data-flag-title="Django+Celery+Flower实现异步和定时任务及其监控告警">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用Django框架进行web开发非常的快捷方便，但Django框架请求/响应是同步的。但我们在实际项目中经常会碰到一些耗时的不能立即返回请求结果任务如：数据爬取、发邮件等，如果常时间等待对用户体验不是很好，在这种情况下就需要实现异步实现，马上返回响应请求，但真正的耗时任务在后台异步执行。Django框架本身无法实现异步响应但可以通过Celery很快的实现异步和定时任务。本文将介绍如何通过Django+Celery+Flower实现异步和定时任务及其任务的监控告警。</p>
+<p>常见的任务有两类，一类是异步任务，一类是定时任务（定时执行或按一定周期执行）。Celery都能很好的支持。</p>
+<p>Celery 是一个 基于python开发的分布式异步消息任务队列，通过它可以轻松的实现任务的异步处理， 如果你的业务场景中需要用到异步任务，就可以考虑使用celery， 举几个实例场景中可用的例子:</p>
+<ul>
+<li>异步任务：将耗时的操作任务提交给Celery去异步执行，比如发送短信/邮件、消息推送、音频处理等等</li>
+<li>做一个定时任务，比如每天定时执行爬虫爬取指定内容</li>
+</ul>
+<p>Celery 在执行任务时需要通过一个消息中间件（Broker）来接收和发送任务消息，以及存储任务结果， 一般使用rabbitMQ、Redis或其他DB。</p>
+<p>本文使用redis作为消息中间件和结果存储，在后面的通过数据库监控任务执行案例将介绍用到数据库作为结果存储。</p>
+<h2 id="一、在Django中引入Celary"><a href="#一、在Django中引入Celary" class="headerlink" title="一、在Django中引入Celary"></a>一、在Django中引入Celary</h2><h3 id="1、安装库"><a href="#1、安装库" class="headerlink" title="1、安装库"></a>1、安装库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install celery</span><br><span class="line">pip install redis</span><br><span class="line">pip install eventlet  <span class="comment">#在windows环境下需要安装eventlet包</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、引入celary"><a href="#2、引入celary" class="headerlink" title="2、引入celary"></a>2、引入celary</h3><p>在主项目目录下，新建celary.py文件，内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> django</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置系统环境变量，否则在启动celery时会报错</span></span><br><span class="line"><span class="comment"># taskproject 是当前项目名</span></span><br><span class="line">os.environ.setdefault(<span class="string">'DJANGO_SETTINGS_MODULE'</span>, <span class="string">'taskproject.settings'</span>)</span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line">celery_app = Celery(<span class="string">'taskproject'</span>)</span><br><span class="line">celery_app.config_from_object(<span class="string">'django.conf:settings'</span>)</span><br><span class="line">celery_app.autodiscover_tasks(<span class="keyword">lambda</span>: settings.INSTALLED_APPS)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/bb5250fc5af445e9b80984b4ff899220.png" alt="在这里插入图片描述"></p>
+<p>在主目录的<strong>init</strong>.py中添加如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .celery <span class="keyword">import</span> celery_app</span><br><span class="line"></span><br><span class="line">__all__ = [<span class="string">'celery_app'</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/78510f4664bf461f86875b46f38cb68e.png" alt="在这里插入图片描述"></p>
+<h3 id="3、在settings-py中设置celery的相关参数"><a href="#3、在settings-py中设置celery的相关参数" class="headerlink" title="3、在settings.py中设置celery的相关参数"></a>3、在settings.py中设置celery的相关参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###----Celery redis 配置-----###</span></span><br><span class="line"><span class="comment"># Broker配置，使用Redis作为消息中间件</span></span><br><span class="line">BROKER_URL = <span class="string">'redis://:redispassword@127.0.0.1:6379/0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># BACKEND配置，使用redis</span></span><br><span class="line">CELERY_RESULT_BACKEND = <span class="string">'redis://:redispassword@127.0.0.1:6379/1'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CELERY_ACCEPT_CONTENT=[<span class="string">'json'</span>]</span><br><span class="line">CELERY_TASK_SERIALIZER=<span class="string">'json'</span></span><br><span class="line"><span class="comment"># 结果序列化方案</span></span><br><span class="line">CELERY_RESULT_SERIALIZER = <span class="string">'json'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 任务结果过期时间，秒</span></span><br><span class="line">CELERY_TASK_RESULT_EXPIRES = <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时区配置</span></span><br><span class="line">CELERY_TIMEZONE = <span class="string">'Asia/Shanghai'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/3d3c6bcf67964ae7b1828119ea7ccf3d.png" alt="在这里插入图片描述"></p>
+<p>这时候Celery的基本配置完成了，可以实现并添加任务了。</p>
+<h2 id="二、实现异步任务"><a href="#二、实现异步任务" class="headerlink" title="二、实现异步任务"></a>二、实现异步任务</h2><h3 id="1、创建tasks-py"><a href="#1、创建tasks-py" class="headerlink" title="1、创建tasks.py"></a>1、创建tasks.py</h3><p>在子应用下建立各自对应的任务文件tasks.py(<code>必须是tasks.py这个名字，不允许修改</code>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task1</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(int(x)):</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">        logger.info(<span class="string">'this is task1 '</span>+str(i))</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scheduletask1</span><span class="params">()</span>:</span></span><br><span class="line">    now = datetime.datetime.now()</span><br><span class="line">    logger.info(<span class="string">'this is scheduletask '</span>+now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+<p>在tasks.py中我们定义了两个任务，这两个任务要用@shared_task装饰起来，否则celery无法管理。<br><img src="https://img-blog.csdnimg.cn/00b1edc1f06c415e8a91d2fb44436d24.png" alt="在这里插入图片描述"></p>
+<p>为了放便执行我们通过views把这两个任务通过函数方法调用起来，用URL进行发布。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> tasks</span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runtask</span><span class="params">(request)</span>:</span></span><br><span class="line">    x=request.GET.get(<span class="string">'x'</span>)</span><br><span class="line">    tasks.task1.delay(x)</span><br><span class="line">    content= &#123;<span class="string">'200'</span>: <span class="string">'run task1 success!---'</span>+str(x)&#125;</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runscheduletask</span><span class="params">(request)</span>:</span></span><br><span class="line">    tasks.scheduletask1.delay()</span><br><span class="line">    content= &#123;<span class="string">'200'</span>: <span class="string">'success！'</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(content)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/499b4fdabd3241d08ff639cca15483bb.png" alt="在这里插入图片描述"></p>
+<p>在urls中加入路由进行发布</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> taskapp <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'task'</span>, views.runtask),</span><br><span class="line">    path(<span class="string">'runscheduletask'</span>, views.runscheduletask),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/e5a24935c0d5465cb713356dc884752d.png" alt="在这里插入图片描述"></p>
+<p>在项目的主urls中加入子项目的urls<br><img src="https://img-blog.csdnimg.cn/9952643c8c074d5cba141987095b29ac.png" alt="在这里插入图片描述"></p>
+<h3 id="2、启动celery"><a href="#2、启动celery" class="headerlink" title="2、启动celery"></a>2、启动celery</h3><blockquote>
+<p>在启动celery之前，先要启动redis服务，因为celery在settings中配置要用到redis作为消息中间件和结果存储。<br>windows环境下启动redis的命令为redis-server.exe redis.windows.conf</p>
+</blockquote>
+<p>在控制台启动celery的worker</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject worker -l debug -P eventlet</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/cb1fae5568954d2fbd9fb515d16ffe37.png" alt="在这里插入图片描述"></p>
+<p>启动django访问url调用任务，看异步效果<br><img src="https://img-blog.csdnimg.cn/48f8e177034340248efaab1b4dea5f84.png" alt="在这里插入图片描述"></p>
+<h3 id="3、查看任务"><a href="#3、查看任务" class="headerlink" title="3、查看任务"></a>3、查看任务</h3><p>控制台查看异步任务执行的情况，可以看web的url很快返回响应结果，后台控制台一直在执行异步任务。<br><img src="https://img-blog.csdnimg.cn/323c620a2e87415780873f1a548c92a0.png" alt="在这里插入图片描述"></p>
+<h2 id="三、实现定时任务"><a href="#三、实现定时任务" class="headerlink" title="三、实现定时任务"></a>三、实现定时任务</h2><p>Celery实现定时任务也很方便</p>
+<h3 id="1、定义调度器"><a href="#1、定义调度器" class="headerlink" title="1、定义调度器"></a>1、定义调度器</h3><p>在settings.py中加入定时任务的定义就可以实现定时任务</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery.schedules <span class="keyword">import</span> crontab</span><br><span class="line"></span><br><span class="line">CELERYBEAT_SCHEDULE = &#123;</span><br><span class="line">    <span class="string">'every_5_seconds'</span>: &#123;</span><br><span class="line">        <span class="comment"># 任务路径</span></span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'taskapp.tasks.scheduletask1'</span>,</span><br><span class="line">        <span class="comment"># 每5秒执行一次</span></span><br><span class="line">        <span class="string">'schedule'</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">'args'</span>: ()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里这个scheduletask1是前面tasks.py中定义的任务，当然也可以定义多个定时任务，如加一个task1，task1是有参数的，可以在’args’: ()中传入参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CELERYBEAT_SCHEDULE = &#123;</span><br><span class="line">    <span class="string">'every_5_seconds'</span>: &#123;</span><br><span class="line">        <span class="comment"># 任务路径</span></span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'taskapp.tasks.scheduletask1'</span>,</span><br><span class="line">        <span class="comment"># 每5秒执行一次</span></span><br><span class="line">        <span class="string">'schedule'</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">'args'</span>: ()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'every_10_seconds'</span>: &#123;</span><br><span class="line">        <span class="comment"># 任务路径</span></span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'taskapp.tasks.task1'</span>,</span><br><span class="line">        <span class="comment"># 每10秒执行一次,task1的参数是5</span></span><br><span class="line">        <span class="string">'schedule'</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="string">'args'</span>: ([<span class="number">5</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/d30130f1d6454682bb182b1f347174cb.png" alt="在这里插入图片描述"></p>
+<p>这里定义了task1是10秒执行一次，传入的参数是5。</p>
+<h3 id="2、启动beat"><a href="#2、启动beat" class="headerlink" title="2、启动beat"></a>2、启动beat</h3><p>需要保持worker进程，另外开一个控制台启动beat</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject beat -l debug</span><br></pre></td></tr></table></figure>
+<h3 id="3、查看任务-1"><a href="#3、查看任务-1" class="headerlink" title="3、查看任务"></a>3、查看任务</h3><p>启动任务后看控制台打印的日志task1和scheduletask1都按计划定时执行了。<br><img src="https://img-blog.csdnimg.cn/49200e8a8cdf458b8ea928a77b64a439.png" alt="在这里插入图片描述"></p>
+<h2 id="三、通过数据库配置定时任务"><a href="#三、通过数据库配置定时任务" class="headerlink" title="三、通过数据库配置定时任务"></a>三、通过数据库配置定时任务</h2><p>虽然通过settings.py的配置可以实现定时任务的配置，做为实际项目中可能还是不够实用，更加工程化的做法是将定时任务的配置放到数据库里通过界面来配置。同样Celery对此也提供了很好的支持，这需要安装django-celery-beat插件。以下将介绍使用过程。</p>
+<h3 id="1、安装djiango-celery-beat"><a href="#1、安装djiango-celery-beat" class="headerlink" title="1、安装djiango-celery-beat"></a>1、安装djiango-celery-beat</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-celery-beat</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、在APP中注册djiango-celery-beat"><a href="#2、在APP中注册djiango-celery-beat" class="headerlink" title="2、在APP中注册djiango-celery-beat"></a>2、在APP中注册djiango-celery-beat</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">....</span><br><span class="line"><span class="string">'django_celery_beat'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在settings-py中设置调度器及时区"><a href="#3、在settings-py中设置调度器及时区" class="headerlink" title="3、在settings.py中设置调度器及时区"></a>3、在settings.py中设置调度器及时区</h3><p>在settings.py中屏蔽到原来的调度器，加入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CELERYBEAT_SCHEDULER = <span class="string">'django_celery_beat.schedulers.DatabaseScheduler'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/c48970948fcc44e4a73378459fad28d3.png" alt="在这里插入图片描述"></p>
+<p>在setings.py中设置好语言、时区等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LANGUAGE_CODE = <span class="string">'zh-hans'</span></span><br><span class="line"></span><br><span class="line">TIME_ZONE = <span class="string">'Asia/Shanghai'</span></span><br><span class="line"></span><br><span class="line">USE_I18N = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">USE_TZ = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、进行数据库迁移"><a href="#4、进行数据库迁移" class="headerlink" title="4、进行数据库迁移"></a>4、进行数据库迁移</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate django_celery_beat</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、分别启动woker和beta"><a href="#5、分别启动woker和beta" class="headerlink" title="5、分别启动woker和beta"></a>5、分别启动woker和beta</h3><p>在两个控制台分别启动woker和beta</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject worker -l debug -P eventlet</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject beat -l debug</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、启动django服务，访问admin的web管理端"><a href="#6、启动django服务，访问admin的web管理端" class="headerlink" title="6、启动django服务，访问admin的web管理端"></a>6、启动django服务，访问admin的web管理端</h3><p>访问 <a href="http://localhost:8000/admin/" target="_blank" rel="noopener">http://localhost:8000/admin/</a> 可以看到周期任务的管理菜单，管理定时任务非常方便。<br><img src="https://img-blog.csdnimg.cn/f7379eedb03a4f4e97fb3f111e4b65b0.png" alt="在这里插入图片描述"></p>
+<h3 id="7、配置定时任务"><a href="#7、配置定时任务" class="headerlink" title="7、配置定时任务"></a>7、配置定时任务</h3><p>点击“间隔”<br><img src="https://img-blog.csdnimg.cn/7b41207a4c9c4f9db9cdbffb9347d77c.png" alt="在这里插入图片描述"></p>
+<p>点击“增加间隔”来增加定时任务的配置，增加一个5秒执行一次的定时器。<br><img src="https://img-blog.csdnimg.cn/0c8da1a050ee49c0a18a6b39fccb5c86.png" alt="在这里插入图片描述"></p>
+<p>看到有个每5秒的定时器<br><img src="https://img-blog.csdnimg.cn/1d98930dc7c94e1795827f5c17b0a4cb.png" alt="在这里插入图片描述"></p>
+<p>这时可以用这个定时器去新建调度任务了。选择周期性任务，点击“增加周期性任务”<br><img src="https://img-blog.csdnimg.cn/105ffe5e5e264567989db855dea179e5.png" alt="在这里插入图片描述"></p>
+<p>填入任务名，选择需要定时执行的任务<br><img src="https://img-blog.csdnimg.cn/dffb17bacd6547c3943b9621b5a1ef1e.png" alt="在这里插入图片描述"></p>
+<p>因为task1需要参数，在后面参数设置中进行参数的设置。<br><img src="https://img-blog.csdnimg.cn/4140582cb0bb45d7b668b55b2820ebc8.png" alt="在这里插入图片描述"></p>
+<p>保存后可以看到新加了一条“每5秒执行一次task1”的调度任务。<br><img src="https://img-blog.csdnimg.cn/2aabbfcf63554599bd8bd24322744b5e.png" alt="在这里插入图片描述"></p>
+<h3 id="8、查看调度效果"><a href="#8、查看调度效果" class="headerlink" title="8、查看调度效果"></a>8、查看调度效果</h3><p>在woker和beta的控制台都可以看到有定时任务执行的信息，说明任务被成功调度执行了。<br><img src="https://img-blog.csdnimg.cn/33f1439495a64f4ba8c6c738e6caa0b1.png" alt="在这里插入图片描述"></p>
+<h2 id="四、通过django的web界面监控任务执行情况"><a href="#四、通过django的web界面监控任务执行情况" class="headerlink" title="四、通过django的web界面监控任务执行情况"></a>四、通过django的web界面监控任务执行情况</h2><p>在控制台监控任务执行情况，还不是很方便，最好是能够通过web界面看到任务的执行情况，如有多少任务在执行，有多少任务执行失败了等。这个Celery也是可以做到了，就是将任务执行结果写到数据库中，通过web界面显示出来。这里要用到django-celery-results插件。通过插件可以使用Django的orm作为结果存储，这样的好处在于我们可以直接通过django的数据查看到任务状态，同时为可以制定更多的操作，下面介绍如何使用orm作为结果存储。</p>
+<h3 id="1、安装django-celery-results"><a href="#1、安装django-celery-results" class="headerlink" title="1、安装django-celery-results"></a>1、安装django-celery-results</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-celery-results</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、配置settings-py，注册app"><a href="#2、配置settings-py，注册app" class="headerlink" title="2、配置settings.py，注册app"></a>2、配置settings.py，注册app</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = (</span><br><span class="line">...,</span><br><span class="line"><span class="string">'django_celery_results'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、修改backend配置，将Redis改为django-db"><a href="#3、修改backend配置，将Redis改为django-db" class="headerlink" title="3、修改backend配置，将Redis改为django-db"></a>3、修改backend配置，将Redis改为django-db</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BACKEND配置，使用redis</span></span><br><span class="line"><span class="comment">#CELERY_RESULT_BACKEND = 'redis://:12345678@127.0.0.1:6379/1'</span></span><br><span class="line"><span class="comment"># 使用使用django orm 作为结果存储</span></span><br><span class="line">CELERY_RESULT_BACKEND = <span class="string">'django-db'</span>  <span class="comment">#使用django orm 作为结果存储</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、迁移数据库"><a href="#4、迁移数据库" class="headerlink" title="4、迁移数据库"></a>4、迁移数据库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate django_celery_results</span><br></pre></td></tr></table></figure>
+
+<p>可以看到创建了django_celery_results相关的表<br><img src="https://img-blog.csdnimg.cn/fd7eea7697e741688d4aa1317dd2fdfa.png" alt="在这里插入图片描述"></p>
+<h3 id="5、查看任务"><a href="#5、查看任务" class="headerlink" title="5、查看任务"></a>5、查看任务</h3><p>启动django服务后，执行异步和定时任务，就可以在管理界面看到任务的执行情况，执行了哪些任务，哪些任务执行失败了等。<br><img src="https://img-blog.csdnimg.cn/1995ffd304c3440b96c34de13885a542.png" alt="在这里插入图片描述"></p>
+<h2 id="五、通过Flower监控任务执行情况"><a href="#五、通过Flower监控任务执行情况" class="headerlink" title="五、通过Flower监控任务执行情况"></a>五、通过Flower监控任务执行情况</h2><p>如果不想通django的管理界面监控任务的执行，还可以通过Flower插件来进行任务的监控。FLower的界面更加丰富，可以监控的信息更全。以下介绍通过Flower来进行任务监控。</p>
+<h3 id="1、安装flower"><a href="#1、安装flower" class="headerlink" title="1、安装flower"></a>1、安装flower</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install flower</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、启动flower"><a href="#2、启动flower" class="headerlink" title="2、启动flower"></a>2、启动flower</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject flower --port<span class="number">-5566</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/66ad267b5a1045e8a19d94cb075dca3c.png" alt="在这里插入图片描述"></p>
+<h3 id="3、使用flower进行任务监控"><a href="#3、使用flower进行任务监控" class="headerlink" title="3、使用flower进行任务监控"></a>3、使用flower进行任务监控</h3><p><img src="https://img-blog.csdnimg.cn/42aef4e96372459f920532fc18048547.png" alt="在这里插入图片描述"></p>
+<p>点击失败的我们可以看到执行失败的详情，这里是故意给task1的参数传了个‘a’字符，导致它执行报错了。可以看到任务执行的报错信息也展示出来了。<br><img src="https://img-blog.csdnimg.cn/0ef30804b9fc467aa83e64d43a9560a1.png" alt="在这里插入图片描述"></p>
+<h2 id="六、实现任务异常自动邮件告警"><a href="#六、实现任务异常自动邮件告警" class="headerlink" title="六、实现任务异常自动邮件告警"></a>六、实现任务异常自动邮件告警</h2><p>虽然可以通过界面来监控了，但是我们想要得更多，人不可能天天盯着界面看吧，如果能实现任务执行失败就自动发邮件告警就好了。这个Celery当然也是没有问题的。<br>通过钩子程序在异常的时候触发邮件通知。</p>
+<h3 id="1、加入钩子程序"><a href="#1、加入钩子程序" class="headerlink" title="1、加入钩子程序"></a>1、加入钩子程序</h3><p>对tasks.py的改造如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Task</span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHookTask</span><span class="params">(Task)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_success</span><span class="params">(self, retval, task_id, args, kwargs)</span>:</span></span><br><span class="line">        info=<span class="string">f'任务成功-- 0task id:<span class="subst">&#123;task_id&#125;</span> , arg:<span class="subst">&#123;args&#125;</span> , successful !'</span></span><br><span class="line">        logger.info(info)</span><br><span class="line">        send_mail(<span class="string">'celery任务监控'</span>, info, <span class="string">'sendmail@qq.com'</span>, [<span class="string">'tomail@qq.com'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_failure</span><span class="params">(self, exc, task_id, args, kwargs, einfo)</span>:</span></span><br><span class="line">        info=<span class="string">f'任务失败-- task id:<span class="subst">&#123;task_id&#125;</span> , arg:<span class="subst">&#123;args&#125;</span> , failed ! erros: <span class="subst">&#123;exc&#125;</span>'</span></span><br><span class="line">        logger.info(info)</span><br><span class="line">        send_mail(<span class="string">'celery任务监控异常'</span>, info, <span class="string">'sendmail@qq.com'</span>, [<span class="string">'tomail@qq.com'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_retry</span><span class="params">(self, exc, task_id, args, kwargs, einfo)</span>:</span></span><br><span class="line">        logger.info(<span class="string">f'task id:<span class="subst">&#123;task_id&#125;</span> , arg:<span class="subst">&#123;args&#125;</span> , retry !  erros: <span class="subst">&#123;exc&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task(base=MyHookTask, bind=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task1</span><span class="params">(self,x)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(int(x)):</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">        logger.info(<span class="string">'this is task1 '</span>+str(i))</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scheduletask1</span><span class="params">()</span>:</span></span><br><span class="line">    now = datetime.datetime.now()</span><br><span class="line">    logger.info(<span class="string">'this is scheduletask '</span>+now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/aed81f9565e0408c8669f2c0291f80b5.png" alt="在这里插入图片描述"></p>
+<h3 id="2、重启服务"><a href="#2、重启服务" class="headerlink" title="2、重启服务"></a>2、重启服务</h3><p>将work和beta服务关掉，在两个控制台分别重新启动woker和beta</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject worker -l debug -P eventlet</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject beat -l debug</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、验证效果"><a href="#3、验证效果" class="headerlink" title="3、验证效果"></a>3、验证效果</h3><p>在任务成功或失败的时候发邮件通知。<br><img src="https://img-blog.csdnimg.cn/0c9e08e1c6f34f22b2a7cca6747cfe37.png" alt="在这里插入图片描述"></p>
+<p>任务执行成功通知<br><img src="https://img-blog.csdnimg.cn/3572a9741e5d4ced9571e78adfcbfd7e.png" alt="在这里插入图片描述"></p>
+<p>任务执行异常告警通知<br><img src="https://img-blog.csdnimg.cn/71b93b3c246f465688bbfcdc89b2b850.png" alt="在这里插入图片描述"></p>
+<p>Django如何发送邮件见 <a href="https://blog.csdn.net/fullbug/article/details/128495415" target="_blank" rel="noopener">https://blog.csdn.net/fullbug/article/details/128495415</a></p>
+<p>至此，本文通过几个简单的应用介绍了Django+Celery+Flower实现异步和定时任务及其监控告警。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/73474fe7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +952,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-12-30T15:06:50+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2022-12-30T15:06:58+08:00">
                 2022-12-30
               </time>
             
@@ -2204,515 +2796,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/462af16b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/462af16b/" itemprop="url">Django加入markdown编辑器及markdown上传图片不回显避坑</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-15T23:29:21+08:00">
-                2022-07-15
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-07-15T23:40:10+08:00">
-                2022-07-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/462af16b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/462af16b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/462af16b/" class="leancloud_visitors" data-flag-title="Django加入markdown编辑器及markdown上传图片不回显避坑">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一般来说一个CMS系统如博客系统都需要一个好的富文本编辑器，现在大家更多的是选择MarkDown编辑器来编辑内容。Django作为python的主流web开发框架当然少不了markdown的插件。本文介绍如何在Django框架中引入markdown编辑器及在使用markdown时的注意事项。</p>
-<p>在Django框架中引入markdown编辑器主要是通过安装引入Django-mdeditor库来实现。<br>Django-mdeditor 是基于 Editor.md 的一个 django Markdown 文本编辑插件应用。<br>其官方下载地址见 <a href="https://pypi.org/project/django-mdeditor/" target="_blank" rel="noopener">https://pypi.org/project/django-mdeditor/</a><br>根据官方指导文档</p>
-<h1 id="一、安装使用"><a href="#一、安装使用" class="headerlink" title="一、安装使用"></a>一、安装使用</h1><h2 id="1、安装django-mdeditor"><a href="#1、安装django-mdeditor" class="headerlink" title="1、安装django-mdeditor"></a>1、安装django-mdeditor</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-mdeditor</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、在-settings-配置文件-INSTALLED-APPS-中添加-mdeditor"><a href="#2、在-settings-配置文件-INSTALLED-APPS-中添加-mdeditor" class="headerlink" title="2、在 settings 配置文件 INSTALLED_APPS 中添加 mdeditor"></a>2、在 settings 配置文件 INSTALLED_APPS 中添加 mdeditor</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'django_filters'</span>,<span class="comment">#注册条件查询</span></span><br><span class="line">    <span class="comment"># 注册markdown的应用</span></span><br><span class="line">    <span class="string">'mdeditor'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、针对django3-0-修改-frame-配置"><a href="#3、针对django3-0-修改-frame-配置" class="headerlink" title="3、针对django3.0+修改 frame 配置"></a>3、针对django3.0+修改 frame 配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_FRAME_OPTIONS = <span class="string">'SAMEORIGIN'</span>  <span class="comment"># django 3.0 + 默认为 deny</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4、在-settings-中添加媒体文件的路径配置"><a href="#4、在-settings-中添加媒体文件的路径配置" class="headerlink" title="4、在 settings 中添加媒体文件的路径配置"></a>4、在 settings 中添加媒体文件的路径配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'uploads'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在你项目根目录下创建 uploads/editor 目录，用于存放上传的图片。</p>
-<h2 id="5、在项目的根-urls-py-中添加扩展url和媒体文件url"><a href="#5、在项目的根-urls-py-中添加扩展url和媒体文件url" class="headerlink" title="5、在项目的根 urls.py 中添加扩展url和媒体文件url:"></a>5、在项目的根 urls.py 中添加扩展url和媒体文件url:</h2><p>注意是在项目的根 urls.py 中添加扩展url和媒体文件url，而不是在其他项目应用的urls.py中添加</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.conf.urls.static <span class="keyword">import</span> static</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    url(<span class="string">r'mdeditor/'</span>, include(<span class="string">'mdeditor.urls'</span>))</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> settings.DEBUG:</span><br><span class="line">    <span class="comment"># static files (images, css, javascript, etc.)</span></span><br><span class="line">    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</span><br></pre></td></tr></table></figure>
-
-<h2 id="6、在项目model中应用markdown"><a href="#6、在项目model中应用markdown" class="headerlink" title="6、在项目model中应用markdown"></a>6、在项目model中应用markdown</h2><p>示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    summary=models.CharField(max_length=<span class="number">500</span>,verbose_name=<span class="string">'内容摘要'</span>,default=<span class="string">''</span>)</span><br><span class="line">    content=MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount= models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount=models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br></pre></td></tr></table></figure>
-
-<p>见 <code>content=MDTextField(verbose_name=&#39;内容&#39;)</code> 表示博客文章的内容是MDTextField</p>
-<h2 id="7、向-admin-py-中注册model"><a href="#7、向-admin-py-中注册model" class="headerlink" title="7、向 admin.py 中注册model:"></a>7、向 admin.py 中注册model:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="meta">@admin.register(BlogPost)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPostAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'category'</span>,<span class="string">'isTop'</span>,<span class="string">'isHot'</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="8、迁移创建数据表"><a href="#8、迁移创建数据表" class="headerlink" title="8、迁移创建数据表"></a>8、迁移创建数据表</h2><p>运行 <code>python manage.py makemigrations</code> 和 <code>python manage.py migrate</code> 来创建你的model 数据库表，可以看到默认创建的content字段是longtext类型的<br><img src="https://img-blog.csdnimg.cn/a963a9ee98dc437fbb9605d56c48d798.png#pic_center" alt="默认创建的content字段是longtext类型的"></p>
-<h2 id="9、测试验证"><a href="#9、测试验证" class="headerlink" title="9、测试验证"></a>9、测试验证</h2><p>启动应用，访问<a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 点击新增博客文章，可以看到内容字段是markdown编辑器输入了。<br><img src="https://img-blog.csdnimg.cn/a82339a899c144b9bf49772cd4f807d3.png#pic_center" alt="markdown编辑器"></p>
-<p>至此django应用中就可以使用markdown编辑器了。</p>
-<h1 id="二、markdown上传图片不回显避坑"><a href="#二、markdown上传图片不回显避坑" class="headerlink" title="二、markdown上传图片不回显避坑"></a>二、markdown上传图片不回显避坑</h1><p>按照以上步骤配置django-mdeditor,markdown编辑器可以正常使用，但是这里有个大坑，就是有些浏览器在上传图片后上传的图片不回显！<br>我就碰到了这样的情况。<br><img src="https://img-blog.csdnimg.cn/63771e4b65b4499992aec3b425c6af46.png#pic_center" alt="上传图片后上传的图片不回显"></p>
-<p>在添加图片界面选择本地上传图片后发现后台接口调到了 <code>/mdeditor/uploads/?guid=1657867564930</code> 接口并且返回了200，但是上传的图片地址不回显，提交报“错误：图片地址不能为空。” 这就奇了怪了。<br>打开浏览器的调试工具，发现报了一个错，<code>Uncaught SyntaxError: Unexpected token 下 in JSON at position 141</code><br><img src="https://img-blog.csdnimg.cn/8d48982eb41846c3a25fc5271208531b.png#pic_center" alt="浏览器的调试工具，发现报了一个错"></p>
-<p>点击详情，具体应该是获取的JSON无法解析。<br><img src="https://img-blog.csdnimg.cn/9179dac6e320410b905175da624a6baa.png#pic_center" alt="JSON无法解析"></p>
-<p>这个JSON为什么无法解析呢？开始进一步调试，这个JSON是上传时调用的后台上传方法返回的。所以来看看是不是后台上传接口返回的JSON串有什么问题。找到/mdeditor/uploads路由所对应的源码<br><img src="https://img-blog.csdnimg.cn/cf8943365d794104a583f1b1613c3c6e.png#pic_center" alt="/mdeditor/uploads路由所对应的源码"></p>
-<p>UploadView的源代码，就是返回一个成功的json报文</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> JsonResponse(&#123;<span class="string">'success'</span>: <span class="number">1</span>,</span><br><span class="line">                     <span class="string">'message'</span>: <span class="string">"上传成功！"</span>,</span><br><span class="line">                     <span class="string">'url'</span>: os.path.join(settings.MEDIA_URL,</span><br><span class="line">                                         MDEDITOR_CONFIGS[<span class="string">'image_folder'</span>],</span><br><span class="line">                                         file_full_name)&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>实际打断点debug也是正常返回上传成功的json报文。<br><img src="https://img-blog.csdnimg.cn/9fae1d59d9194aed8856bb01b83bbf73.png#pic_center" alt="打断点debug也是正常返回上传成功的json报文"></p>
-<p>这就有点奇怪了，接口返回了正常的json报文怎么就解析不了了呢？接着继续调前台js代码，看究竟是什么原因。<br><img src="https://img-blog.csdnimg.cn/d01ac2d8b19d421c91a6bce58fd3c383.png#pic_center" alt="json串里多了几个字“下载视频”!"></p>
-<p>发现js获取的json串里多了几个字“下载视频”! 这是什么鬼？实在是没有地方有返回“下载视频”这几个字啊？看js代码是通过iframe来处理请求的，再来看看iframe的内容，发现iframe里确实有“下载视频”<br><img src="https://img-blog.csdnimg.cn/acc72d33e03746ef896058f625640bb9.png#pic_center" alt="iframe里确实有“下载视频”"><br>原来是有个chrome浏览器插件，擅自给加了“下载视频”的内容。再来看浏览器装了些啥插件。原来是有个迅雷插件，应该就是这个插件搞的鬼了，罪魁祸首就是它了！<br><img src="https://img-blog.csdnimg.cn/74175c998960443fb81d20e3f294f4a6.png#pic_center" alt="罪魁祸首迅雷插件"></p>
-<p>把这个迅雷插件删除或停用，果然一切正常！可以正常回显！！！<br><img src="https://img-blog.csdnimg.cn/f53ad6f543fa4036b9858398d83752f3.png#pic_center" alt="可以正常回显"></p>
-<p>显示插入的图片<br><img src="https://img-blog.csdnimg.cn/f7e7c7d586f34aae940edcb094f34254.png#pic_center" alt="显示插入的图片"></p>
-<p>所以，碰到markdown上传图片不回显的情况，先看下自己的浏览器是不是开启了迅雷插件应用，如果开启了迅雷插件应用先停用或删除！</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/1dea176f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/1dea176f/" itemprop="url">Django的restframework接口框架自定义返回数据格式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-14T09:30:59+08:00">
-                2022-07-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-07-14T09:32:38+08:00">
-                2022-07-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/1dea176f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/1dea176f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/1dea176f/" class="leancloud_visitors" data-flag-title="Django的restframework接口框架自定义返回数据格式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在前后端分离是大趋势的背景下，前端获取数据都是通过调用后台的接口来获取数据微服务的应用越来越多。Django是Python进行web应用开发常用的web框架，用Django框架进行web应用框架减少了很多工作，通常用很少量的代码就可以实现数据的增、删、改、查的业务应用，同样用Django的restframework的框架对外发布接口也是非常的简单方便，几行代码就可以将数据对象通过接口的方式提供服务。因为在实际开发过程中接口的返回数据有一定的格式，本文介绍通过自定义Response返回对象来自定义接口返回数据格式。</p>
-<p>以下示例将数据对象Friend通过restframework框架进行接口发布。<br>只要定义Friend数据对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Friend</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    siteName=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'友链站点名称'</span>)</span><br><span class="line">    path=models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'地址路径'</span>)</span><br><span class="line">    desc=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.siteName</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'友链'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'友链'</span></span><br></pre></td></tr></table></figure>
-
-<p>定义一个序列化类将返回的字段序列化</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Friend</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br></pre></td></tr></table></figure>
-
-<p>定义一个接口视图类获取数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendView</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line">    queryset = Friend.objects.all()</span><br><span class="line">    serializer_class = FriendModelSerializer</span><br></pre></td></tr></table></figure>
-
-<p>定义接口路由就可以通过httprestfull的接口进行访问了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">friend_list=views.FriendView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'friend/'</span>,friend_list),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>接口访问效果如下：<br><a href="http://localhost:8000/api/friend/" target="_blank" rel="noopener">http://localhost:8000/api/friend/</a><br><img src="https://img-blog.csdnimg.cn/f20a9ebcb04b4df98dc490a07f513ed6.png#pic_center" alt="httprestfull的接口"></p>
-<p>但是在项目中经常会碰到接口格式变化的情况，restframework框架默认的返回数据格式不满足应用的需求。比如一般的接口都会有接口返回的code、msg、data，code用来标识接口返回代码比如200是正常，msg用来记录异常或其信息，data用来返回具体的数据。<br>通过restframework接口自定义返回数据格式也是很简单方便的。<br>先自定义Response返回对象，在返回对象中自定义数据返回的格式，示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.serializers <span class="keyword">import</span> Serializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomResponse</span><span class="params">(Response)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,data=None,code=None,msg=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 status=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 template_name=None, headers=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 exception=False, content_type=None,**kwargs)</span>:</span></span><br><span class="line">        super().__init__(<span class="literal">None</span>, status=status)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> isinstance(data, Serializer):</span><br><span class="line">            msg = (</span><br><span class="line">                <span class="string">'You passed a Serializer instance as data, but '</span></span><br><span class="line">                <span class="string">'probably meant to pass serialized `.data` or '</span></span><br><span class="line">                <span class="string">'`.error`. representation.'</span></span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">raise</span> AssertionError(msg)</span><br><span class="line">        <span class="comment">#自定义返回格式</span></span><br><span class="line">        self.data=&#123;<span class="string">'code'</span>:code,<span class="string">'msg'</span>:msg,<span class="string">'data'</span>:data&#125;</span><br><span class="line">        self.data.update(kwargs)</span><br><span class="line">        self.template_name=template_name</span><br><span class="line">        self.exception=exception</span><br><span class="line">        self.content_type=content_type</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> headers:</span><br><span class="line">            <span class="keyword">for</span> name, value <span class="keyword">in</span> headers.items():</span><br><span class="line">                self[name] = value</span><br></pre></td></tr></table></figure>
-
-<p>在接口接口视图类获取数据返回时，使用该自定义的Response返回对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendView</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line">    queryset = Friend.objects.all()</span><br><span class="line">    serializer_class = FriendModelSerializer</span><br><span class="line">    <span class="comment">#自定义list方法，自定义Response返回</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        queryset = self.filter_queryset(self.get_queryset())</span><br><span class="line">        serializer = self.get_serializer(queryset, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data, code=<span class="number">200</span>, msg=<span class="string">"OK"</span>, status=status.HTTP_200_OK)</span><br></pre></td></tr></table></figure>
-
-<p>接口访问效果如下：<br>可以看到返回数据格式中增加了code,msg 数据放到了data节点<br><img src="https://img-blog.csdnimg.cn/57a2ae5b3cac4f81a65092b26fd37bd0.png#pic_center" alt="自定义数据返回格式"></p>
-<p>列表数据通常接口要提供翻页功能，在接口中要有总页数、当前页、是否有下一页的信息。<br>可以自定义一个分页器，在分页器中自定义需要返回的分页参数<br>参考示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> rest_framework.pagination <span class="keyword">import</span> PageNumberPagination</span><br><span class="line"><span class="keyword">from</span> common.customresponse <span class="keyword">import</span> CustomResponse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPage</span><span class="params">(PageNumberPagination)</span>:</span></span><br><span class="line">    page_size = <span class="number">8</span> <span class="comment">#每页显示数量</span></span><br><span class="line">    max_page_size = <span class="number">50</span> <span class="comment">#每页最大显示数量。</span></span><br><span class="line">    page_size_query_param = <span class="string">'size'</span> <span class="comment">#每页数量的参数名称</span></span><br><span class="line">    page_query_param = <span class="string">'page'</span>  <span class="comment">#页码的参数名称</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_paginated_response</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        <span class="comment">#自定义分页器的返回参数</span></span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=data,code=<span class="number">200</span>,msg=<span class="string">"OK"</span>,status=status.HTTP_200_OK, count=self.page.paginator.count,next=self.get_next_link(),previous=self.get_previous_link(),size=self.page_size,page=self.page.number)</span><br></pre></td></tr></table></figure>
-
-<p>在接口接口视图类获取数据返回时，如果有分页器则使用该分页器自定义的Response返回对象。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendView</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line">    queryset = Friend.objects.all()</span><br><span class="line">    serializer_class = FriendModelSerializer</span><br><span class="line">    pagination_class = MyPage</span><br><span class="line">    <span class="comment">#自定义list方法，自定义Response返回</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        queryset = self.filter_queryset(self.get_queryset())</span><br><span class="line">        page = self.paginate_queryset(queryset)</span><br><span class="line">        <span class="comment">#如果有分页器，则进行分页后返回</span></span><br><span class="line">        <span class="keyword">if</span> page <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            serializer = self.get_serializer(page, many=<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">return</span> self.get_paginated_response(serializer.data)</span><br><span class="line"></span><br><span class="line">        serializer = self.get_serializer(queryset, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data, code=<span class="number">200</span>, msg=<span class="string">"OK"</span>, status=status.HTTP_200_OK)</span><br></pre></td></tr></table></figure>
-
-<p>接口访问效果如下：<br>可以看到接口中自定义增加了分页信息。<br><img src="https://img-blog.csdnimg.cn/d7e5395ba3aa4d7ba13bf1a331c776c7.png#pic_center" alt="接口中自定义增加了分页信息"></p>
-<p>但是有时候可能希望分页的信息数据要放在data节点里面，这样也是可以做到的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> rest_framework.pagination <span class="keyword">import</span> PageNumberPagination</span><br><span class="line"><span class="keyword">from</span> common.customresponse <span class="keyword">import</span> CustomResponse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPage</span><span class="params">(PageNumberPagination)</span>:</span></span><br><span class="line">    page_size = <span class="number">8</span> <span class="comment">#每页显示数量</span></span><br><span class="line">    max_page_size = <span class="number">50</span> <span class="comment">#每页最大显示数量。</span></span><br><span class="line">    page_size_query_param = <span class="string">'size'</span> <span class="comment">#每页数量的参数名称</span></span><br><span class="line">    page_query_param = <span class="string">'page'</span>  <span class="comment">#页码的参数名称</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#自定义分页器的返回参数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_paginated_response</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        ret_data = dict()</span><br><span class="line">        ret_data[<span class="string">'items'</span>] = data</span><br><span class="line">        <span class="comment"># 加入自定义分页信息</span></span><br><span class="line">     ret_data[<span class="string">'total'</span>] = self.page.paginator.count</span><br><span class="line">        ret_data[<span class="string">'hasNextPage'</span>] = self.get_next_link()</span><br><span class="line">        ret_data[<span class="string">'size'</span>] = self.page_size</span><br><span class="line">        ret_data[<span class="string">'page'</span>] = self.page.number</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=ret_data,code=<span class="number">200</span>,msg=<span class="string">"OK"</span>,status=status.HTTP_200_OK)</span><br></pre></td></tr></table></figure>
-
-<p>接口访问效果如下：<br>可以看到接口中自定义增加了分页信息，分页的信息数据放在data节点里面了<br><img src="https://img-blog.csdnimg.cn/2c702bb72da242f48d27986887308b3a.png#pic_center" alt="自定义增加了分页信息，分页的信息数据放在data节点里面"><br>至此，本文介绍了通过Django的restframework接口框架自定义Response返回对象来自定义返回数据格式。Django的restframework接口框架使用简单方便，拿来即用，能够很大程度上减少代码开发量。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
   </nav>
 
 
@@ -2764,7 +2852,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2786,7 +2874,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2862,7 +2950,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2876,7 +2964,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">161.3k</span>
+    <span title="Site words total count">166.3k</span>
   
   
 <!--51la网站应用监控-->
