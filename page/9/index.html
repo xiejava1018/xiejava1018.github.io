@@ -313,6 +313,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/54e4fd14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/54e4fd14/" itemprop="url">logstash集成kafka，mysql实现数据采集</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-16T17:38:37+08:00">
+                2020-03-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-16T17:40:42+08:00">
+                2020-03-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/54e4fd14/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/54e4fd14/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/54e4fd14/" class="leancloud_visitors" data-flag-title="logstash集成kafka，mysql实现数据采集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。<br>采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<br><img src="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="从syslog采集日志到kafka然后在从kafka写到mysql数据库中"><br>本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。<br>默认已经安装好了kafka、mysql、logstash，并已经经过简单的验证。</p>
+<h1 id="准备logstash的环境"><a href="#准备logstash的环境" class="headerlink" title="准备logstash的环境"></a>准备logstash的环境</h1><h2 id="一、下载mysql的jdbc驱动包"><a href="#一、下载mysql的jdbc驱动包" class="headerlink" title="一、下载mysql的jdbc驱动包"></a>一、下载mysql的jdbc驱动包</h2><p>下载地址：<a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.15" target="_blank" rel="noopener">https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.15</a><br>下载后放到logstash的安装目录的/vendor/jar/目录下</p>
+<h2 id="二、安装logstash插件"><a href="#二、安装logstash插件" class="headerlink" title="二、安装logstash插件"></a>二、安装logstash插件</h2><p>logstash默认安装了kafka插件，但是mysql插件没有默认安装需要自己安装。<br>具体安装方法 /bin/logstash-plugin install logstash-output-jdbc ，这里应为要用到logstash写入mysql数据库，所以安装的插件是logstash-output-jdbc，如果要用到从mysql读数据，那么就要安装logstash-input-jdbc。安装方法类似。<br>因为安装时需要访问国外的源，安装进度很慢很慢，还经常安装不成功，所以需要更改国内的源。<br>也就是给 Ruby 换成国内的镜像站：<a href="https://gems.ruby-china.com/，替代https://rubygems.org。*请注意：国内的镜像站从https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.com/，替代https://rubygems.org。*请注意：国内的镜像站从https://gems.ruby-china.org</a> 换成了 <a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a> ！！！* 现在很多网上的资料就都是写的<a href="https://gems.ruby-china.org，导致很多人换了镜像源也装不上。" target="_blank" rel="noopener">https://gems.ruby-china.org，导致很多人换了镜像源也装不上。</a><br>具体方法如下：</p>
+<h3 id="1-安装Gem并更新"><a href="#1-安装Gem并更新" class="headerlink" title="1. 安装Gem并更新"></a>1. 安装Gem并更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install -y gem</span></span><br><span class="line"><span class="comment"># gem -v</span></span><br><span class="line">2.0.14.1</span><br><span class="line"><span class="comment"># gem update --system</span></span><br><span class="line"><span class="comment"># gem -v</span></span><br><span class="line">2.7.7</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-检查并修改镜像源"><a href="#2-检查并修改镜像源" class="headerlink" title="2. 检查并修改镜像源"></a>2. 检查并修改镜像源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gem sources -l</span></span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"> </span><br><span class="line">https://rubygems.org/</span><br><span class="line"></span><br><span class="line"><span class="comment"># gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/</span></span><br><span class="line">https://gems.ruby-china.org/ added to sources</span><br><span class="line">https://rubygems.org/ removed from sources</span><br><span class="line"></span><br><span class="line"><span class="comment"># cat ~/.gemrc </span></span><br><span class="line">---</span><br><span class="line">:backtrace: <span class="literal">false</span></span><br><span class="line">:bulk_threshold: 1000</span><br><span class="line">:sources:</span><br><span class="line">- https://gems.ruby-china.org/</span><br><span class="line">:update_sources: <span class="literal">true</span></span><br><span class="line">:verbose: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p><em>请注意：国内的镜像站从<a href="https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.org</a> 换成了 <a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a> ！！！现在很多网上的资料就都是写的<a href="https://gems.ruby-china.org，导致很多人换了镜像源也装不上。" target="_blank" rel="noopener">https://gems.ruby-china.org，导致很多人换了镜像源也装不上。</a></em></p>
+<h3 id="3-修改-logstash的-gem-镜像源"><a href="#3-修改-logstash的-gem-镜像源" class="headerlink" title="3. 修改 logstash的 gem 镜像源"></a>3. 修改 logstash的 gem 镜像源</h3><p>cd到logstach的安装目录，可以看到Gemfile文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi Gemfile</span></span><br><span class="line"><span class="comment"># This is a Logstash generated Gemfile.</span></span><br><span class="line"><span class="comment"># If you modify this file manually all comments and formatting will be lost.</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">source</span> <span class="string">"https://rubygems.org"</span></span><br><span class="line">gem <span class="string">"logstash-core"</span>, :path =&gt; <span class="string">"./logstash-core"</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>更改默认的 <a href="https://rubygems.org" target="_blank" rel="noopener">https://rubygems.org</a> 为<a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a><br><img src="https://img-blog.csdnimg.cn/20200316171241910.png" alt="更换国内镜像源地址"></p>
+<h3 id="4-安装-logstash-output-jdbc"><a href="#4-安装-logstash-output-jdbc" class="headerlink" title="4. 安装 logstash-output-jdbc"></a>4. 安装 logstash-output-jdbc</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/logstash-plugin install logstash-output-jdbc</span></span><br><span class="line">Validating logstash-output-jdbc</span><br><span class="line">Installing logstash-output-jdbc</span><br><span class="line">Installation successful</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-查看插件是否安装成功"><a href="#5-查看插件是否安装成功" class="headerlink" title="5.查看插件是否安装成功"></a>5.查看插件是否安装成功</h3><p>在logstash的bin目录下执行./logstash-plugin list 可以查看已经安装的插件，可以看到logstash-output-jdbc的插件已经装好。<br><img src="https://img-blog.csdnimg.cn/20200316171324491.png" alt="检查插件安装"></p>
+<h1 id="配置logstash"><a href="#配置logstash" class="headerlink" title="配置logstash"></a>配置logstash</h1><p>新建一个pipline.conf的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="built_in">test</span>-pipeline.conf</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">    stdin&#123;            #用于测试标准控制台输入的数据</span><br><span class="line">      type =&gt; <span class="string">"test-log"</span></span><br><span class="line">    &#125;</span><br><span class="line">    syslog&#123;           #用于接收来自syslog的日志</span><br><span class="line">        type =&gt; <span class="string">"test-log"</span></span><br><span class="line">        port =&gt; <span class="number">514</span></span><br><span class="line">    &#125;</span><br><span class="line">    kafka &#123;</span><br><span class="line">       bootstrap_servers =&gt; "172.28.65.26:9092" #kafka服务器地址</span><br><span class="line">       topics =&gt; "test1"           #kafka订阅的topic主题</span><br><span class="line">       codec =&gt; "json" #写入的时候使用json编码，因为logstash收集后会转换成json格式</span><br><span class="line">       consumer_threads =&gt; <span class="number">1</span></span><br><span class="line">       decorate_events =&gt; <span class="literal">true</span></span><br><span class="line">       add_field =&gt; &#123;</span><br><span class="line">             <span class="string">"logsource"</span> =&gt; <span class="string">"kafkalog"</span></span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">output</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ([type]==<span class="string">"test-log"</span> and <span class="string">"kafkalog"</span> not <span class="keyword">in</span> [logsource]) &#123;</span><br><span class="line">       kafka &#123;</span><br><span class="line">            codec =&gt; json</span><br><span class="line">            topic_id =&gt; <span class="string">"test1"</span></span><br><span class="line">            bootstrap_servers =&gt; <span class="string">"172.28.65.26:9092"</span></span><br><span class="line">            batch_size =&gt; <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ([type] == <span class="string">"test-log"</span> and <span class="string">"kafkalog"</span> <span class="keyword">in</span> [logsource]) &#123;</span><br><span class="line">        jdbc &#123;</span><br><span class="line">            driver_jar_path =&gt; <span class="string">"/opt/elk/logstash-7.6.0/vendor/jar/jdbc/mysql-connector-java-8.0.15.jar"</span></span><br><span class="line">            driver_class =&gt; <span class="string">"com.mysql.jdbc.Driver"</span></span><br><span class="line">            connection_string =&gt; <span class="string">"jdbc:mysql://172.28.65.32:3306/testdb?user=yourdbuser&amp;password=yourpassword"</span></span><br><span class="line">            statement =&gt; [ <span class="string">"INSERT INTO test_nginx_log (message) VALUES(?)"</span>, <span class="string">"message"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stdout &#123;</span><br><span class="line">       codec =&gt; rubydebug</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个逻辑就是从stdin或syslog接收数据output到kafka,然后从kafka中取出数据加入了一个logsource的字标识是从kafka过来的数据，然后又output到 jdbc写到mysql中去。<br>如果没有这几个if的逻辑判断，那么就会是个死循环。从kafka读同样的数据又写到kafka中。如果在两台机器上装有logstash一台取数据放到kafka,一台从kafka中取数据放到mysql中就可以不用加这样的判断逻辑会单纯简单一些。</p>
+<h1 id="执行logstash并查看效果"><a href="#执行logstash并查看效果" class="headerlink" title="执行logstash并查看效果"></a>执行logstash并查看效果</h1><p>通过在logstash安装目录下执行 bin/logstash -f test-pipeline.conf –config.test_and_exit 检查配置文件是否有问题，没有问题以后执行bin/logstash -f test-pipeline.conf –config.reload.automatic 运行logstash。<br>在控制台输入 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is a <span class="built_in">test</span>!</span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong><br>从控制台输入信息，可以看到从stdin输入output到stdout的没有logsource标识，input从kafka订阅过来的信息加了一个logsource=&gt;kafkalog的标识。<br><img src="https://img-blog.csdnimg.cn/20200316171423390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logsource=&gt;kafkalog的标识"><br>用kafka tool工具看到kafka收到了从stdin发过来的信息。<br><img src="https://img-blog.csdnimg.cn/20200316171453670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="用kafka tool工具看到kafka收到了从stdin发过来的信息"><br>在看MySQL表里的数据，已经通过logstash从kafka中将数据采集到了MySQL的表中。<br><img src="https://img-blog.csdnimg.cn/20200316171523708.png" alt="MySQL的表的信息数据"><br>再来看从syslog采集日志的效果<br>从控制台看到的信息效果<br><img src="https://img-blog.csdnimg.cn/20200316171552633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="控制台看到的信息效果"><br>从kafka tool看到的效果<br><img src="https://img-blog.csdnimg.cn/20200316171613337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="kafka tool看到的效果"><br>从mysql 表中看到的效果。<br><img src="https://img-blog.csdnimg.cn/20200316171630325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="mysql 表中看到的效果"><br><strong>可以看到，logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置就能满足绝大多数数据采集场景的需求。</strong></p>
+<hr>
+<p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/272f3054/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2353,234 +2595,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5661/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/5661/" itemprop="url">解决Hexo博客导航栏链接URL乱码问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-04T19:36:48+08:00">
-                2020-01-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-05T16:41:34+08:00">
-                2020-01-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/5661/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5661/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/5661/" class="leancloud_visitors" data-flag-title="解决Hexo博客导航栏链接URL乱码问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  728
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今年的计划之一是搭建一个博客，开始写博客。于是在网上找了一些博客程序发现用Hexo在gitHub上搭建自己的个人博客是比较简单而且易于维护的做法。<br>在网上找了一些教程后开始搭建，用自己比较中意的hexo-theme-next模板，发现搭建成功后导航栏链接不对，出现了URL乱码的问题。在网上搜索了一把发现有些网友也碰到了类似的问题不过都还没有解决。<br>我是从 <a href="https://github.com/Doublemine/hexo-theme-next.git" target="_blank" rel="noopener">https://github.com/Doublemine/hexo-theme-next.git</a> 这里Fork下来的。仔细看了一下Fork下来的hexo-theme-next模板代码,尝试自己解决。</p>
-<h2 id="问题现象："><a href="#问题现象：" class="headerlink" title="问题现象："></a>问题现象：</h2><p>URL乱码出现在两个地方，一个是上面的导航栏，一个是右边栏的“日志”菜单部分。<br>导航栏链接乱码问题<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/blogerror1.png" alt="乱码" title="导航栏链接乱码问题"><br>右边栏的“日志”菜单部分链接乱码问题<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/blogerror3.png" alt="乱码" title="右边栏的“日志”菜单部分"><br>发现链接后面都有乱码<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/blogerror2.png" alt="乱码" title="链接乱码"></p>
-<h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><h3 id="1-解决导航栏URL乱码"><a href="#1-解决导航栏URL乱码" class="headerlink" title="1.解决导航栏URL乱码"></a>1.解决导航栏URL乱码</h3><p>查看themes\hexo-theme-next\layout_partials 下面的 header.swig 代码和模板的配置文件 \themes\hexo-theme-next_config.yml，发现导航栏链接乱码是因为菜单配置是有空格造成的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;li class&#x3D;&quot;menu-item menu-item-&#123;&#123; itemName | replace(&#39; &#39;, &#39;-&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;a href&#x3D;&quot;&#123;&#123; url_for(path.split(&#39;||&#39;)[0]) | trim &#125;&#125;&quot; rel&#x3D;&quot;section&quot;&gt;</span><br><span class="line">	&#123;% if theme.menu_icons.enable %&#125;</span><br><span class="line">	  &lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-&#123;&#123; path.split(&#39;||&#39;)[1] | trim | default(&#39;question-circle&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;i&gt; &lt;br &#x2F;&gt;</span><br><span class="line">	&#123;% endif %&#125;</span><br><span class="line">	&#123;&#123; __(&#39;menu.&#39; + name) | replace(&#39;menu.&#39;, &#39;&#39;) &#125;&#125;</span><br><span class="line">  &lt;&#x2F;a&gt;</span><br><span class="line">&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-<p>因为url_for函数会将字符串转码，碰到空格或其他特殊字符会进行转意，就会出现乱码。<br>解决的办法是修改模板的配置文件 \themes\hexo-theme-next_config.yml文件去掉空格就是的。<br>原始配置文件配置如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/codeblock1.png" alt="原始配置文件" title="原始配置文件"><br>去掉链接字符串的空格<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/codeblock2.png" alt="去掉空格后的配置文件" title="去掉空格后的配置文件"></p>
-<h3 id="2-解决右边栏的“日志”菜单部分URL的乱码"><a href="#2-解决右边栏的“日志”菜单部分URL的乱码" class="headerlink" title="2.解决右边栏的“日志”菜单部分URL的乱码"></a>2.解决右边栏的“日志”菜单部分URL的乱码</h3><p>在 themes\hexo-theme-next\layout_macro 找到sidebar.swig 文件 找到如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if config.archive_dir !&#x3D; &#39;&#x2F;&#39; and site.posts.length &gt; 0 %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;site-state-item site-state-posts&quot;&gt;</span><br><span class="line">  &#123;% if theme.menu.archives %&#125;</span><br><span class="line">	&lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives).split(&#39;||&#39;)[0] | trim &#125;&#125;&quot;&gt;</span><br><span class="line">  &#123;% else %&#125;</span><br><span class="line">	&lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) &#125;&#125;&quot;&gt;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">	  &lt;span class&#x3D;&quot;site-state-item-count&quot;&gt;&#123;&#123; site.posts.length &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">	  &lt;span class&#x3D;&quot;site-state-item-name&quot;&gt;&#123;&#123; __(&#39;state.posts&#39;) &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">	&lt;&#x2F;a&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-<p>将</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives).split(&#39;||&#39;)[0] | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>修改成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives.split(&#39;||&#39;)[0]) | trim &#125;&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
-<p>即可解决。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2637,7 +2651,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2749,7 +2763,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">166.1k</span>
+    <span title="Site words total count">169k</span>
   
   
 <!--51la网站应用监控-->
