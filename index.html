@@ -313,6 +313,560 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/78efec46/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/78efec46/" itemprop="url">安全评估之漏洞扫描、基线检查、渗透测试</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-01T09:41:25+08:00">
+                2023-03-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-01T09:46:11+08:00">
+                2023-03-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/78efec46/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/78efec46/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/78efec46/" class="leancloud_visitors" data-flag-title="安全评估之漏洞扫描、基线检查、渗透测试">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>为保证业务系统运营的安全稳定，在业务系统上线前需要开展三同步检查，针对新业务系统上线、新版本上线、项目验收前开展安全评估。可以帮助其在技术层面了解系统存在的安全漏洞。今天就来了解一下安全评估之漏洞扫描、基线检查、渗透测试。</p>
+<p>安全评估的内容主要涉及主机漏洞扫描、安全基线检查、渗透测试三个方面：</p>
+<h2 id="主机漏洞扫描"><a href="#主机漏洞扫描" class="headerlink" title="主机漏洞扫描"></a>主机漏洞扫描</h2><p>主机漏洞扫描一般是采用漏洞扫描工具，根据其内置的弱点测试方法，从网络侧对被评估对象进行一系列的检查，从而发现弱点。发现其存在的不安全漏洞后进行人工分析和确认，针对每个漏洞的整改意见完成报告的输出。被评估对象系统的管理人员根据扫描的结果以及修复建议修复网络安全漏洞，在黑客攻击前进行防范。被评估对象系统的管理人员对这些漏洞进行修复后，安服工程师会对漏洞扫描报告中每个漏洞进行漏洞复测，并输出复测报告。使用户更加全面的了解全网的安全状态，提高对安全漏洞的认识和管理能力，并通过对漏洞的修补加强应用系统抵御恶意入侵的能力。</p>
+<h2 id="安全基线检查"><a href="#安全基线检查" class="headerlink" title="安全基线检查"></a>安全基线检查</h2><p>安全基线检查是通过采用安全检查设备以及人工检查两种方法从对应目标的安全合规性等方面开展对系统的全量安全基线检查，从而发现其基线的不合规项。其次在发现基线不合规项之后由安服工程师进行人工二次确认，依据工信部基线安全标准，针对性提供每个基线不合规项的整改建议，并完成基线不合规项报告输出。评估对象系统的管理人员可根据输出报告对基线不合规项进行基线整改。整改完成后，安服工程师会对按照工信部基线安全标准对所涉及不合规项进行安全基线复测，并输出复测报告。确保系统安全性得到提升，建立系统基础的安全防御体系。</p>
+<h2 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h2><p>渗透测试主要是模拟黑客的攻击手法，通过自动化漏洞扫描工具结合手工测试的方式对系统进行无害化的安全评估。渗透测试包含应用安全测试和业务安全测试两部分，应用安全测试包括但不限于如下内容：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>应用安全检查项</th>
+<th>检查项说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>注入类攻击</td>
+<td>注入攻击漏洞，例如SQL，OS以及LOAP注入，这些攻击发生在当不可信的数据作为命令或者查询语句的一部分，被发送给解释器的时候，攻击者发送的恶意数据可以欺骗解释器，以执行计划外的命令或者访问未授权的数据。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>跨站脚本（XSS）</td>
+<td>当应用程序收到含有不可信的数据，在没有进行适当的验证和转义的情况下，就将它发送给一个网页浏览器，这就会产生跨站脚本攻击（简称XSS）。XSS允许攻击者在受害者的浏览器上执行脚本，从而劫持用户会话、危害网站、或者将用户转向恶意网站。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>失效的身份认证和会话管理</td>
+<td>与身份认证和会话管理相关的应用程序功能往往得不到正确的实现，这就导致了攻击者破坏密码、秘钥、会话令牌或攻击其他的漏洞去冒充其他用户的身份</td>
+</tr>
+<tr>
+<td>4</td>
+<td>不安全的直接对象引用</td>
+<td>当开发人员暴露一个对内部实现对象的引用时，例如，一个文件、目录或数据库秘钥，就会产生一个不安全的直接对象引用，在没有访问控制检测或者其他保护时，攻击者会操作这些引用去访问未授权数据。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>跨站请求伪造</td>
+<td>一个跨站请求伪造攻击迫使登陆用户的浏览器将伪造的HTTP请求，包括该用户的会话cookie和其他认证信息，发送到一个存在漏洞的web应用程序，这就允许了攻击者迫使用户浏览器向存在漏洞的应用程序发送请求，而这些请求会被应用程序认为是用户的合法请求。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>安全配置错误</td>
+<td>好的安全需要对应用程序、框架、应用程序服务器、web服务器、数据库服务器和平台，定义和执行安全配置。由于许多设置的默认值并不是安全的，因此，必须定义、实施和维护所有这些设置。这包括了对所有的软件保持及时地更新，包括所有应用程序的库文件。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>不安全的加密存储</td>
+<td>许多web应用程序并没有使用恰当的加密措施或Hash算法保护敏刚数据，比如信用卡、身份证等等。攻击者可能利用这种弱保护数据实行身份盗窃、信用卡诈骗或其他犯罪。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>没有限制URL访问</td>
+<td>许多web应用程序在显示受保护的链接和按钮之前会检测URL访问权限。但是，当这些页面被访问是，应用程序也需要执行类似的访问控制检测，否则攻击者将可以伪造这些URL去访问隐藏的页面</td>
+</tr>
+<tr>
+<td>9</td>
+<td>传输层的保护不足</td>
+<td>应用程序时常没有进行身份认证，加密措施，甚至没有保护敏感网络数据的保密性和完整性。而当进行保护时，应用程序有时采用弱算法，使用过期或者无效的证书，或不正确地使用这些技术。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>未验证的重定向和转发</td>
+<td>WEB应用程序经常将用户重新定向和转发到其他网页和网站，并且利用不可信的数据去判定目的页面，如果没有得到适当验证，攻击者可以重定向受害用户到钓鱼软件或恶意网站，或者使用转发去访问未授权的页面</td>
+</tr>
+</tbody></table>
+<p>业务安全测试包括但不限于如下内容：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>业务安全检查项</th>
+<th>检查项说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>身份认证管理</td>
+<td>该项测试主要针对身份认证环节，以及在非授权情况下访问一些授权用户才能访问的页面，或进行授权用户的操作。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>业务一致性</td>
+<td>该项测试主要针对办理业务过程中用户的身份与用户办理的业务是否相关联一直的安全测试</td>
+</tr>
+<tr>
+<td>3</td>
+<td>业务授权安全</td>
+<td>该项测试主要针对于是否存在非授权情况下访问一些授权用户才能访问的页面，或进行授权用户的操作。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>用户输入合法性验证</td>
+<td>Web应用程序没有对用户输入数据的合法性进行判断，就会使应用程序存在安全隐患。从而容易受到跨站脚本及SQL注入等攻击</td>
+</tr>
+<tr>
+<td>5</td>
+<td>误操作回退</td>
+<td>手动进行误操作尝试，看系统是否能够正确回滚。例如，交易操作，在购买未完成时异常退出，看系统是否能够自动释放被购买物的锁定状态。又例如办理操作，如话费套餐变更，更改过程出错或异常退出是否能正确回滚到办理之前的状态</td>
+</tr>
+<tr>
+<td>6</td>
+<td>验证码机制</td>
+<td>验证码控制是一种由WEB应用程序生成的随机数，以确保用户提交的请求不是由bot生成。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>业务数据篡改</td>
+<td>该项测试主要针对于办理业务过程中用户浏览器端传递至服务端的字段篡改测试。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>业务流乱序</td>
+<td>该项测试主要针对业务的处理流程是否有正常的顺序，确保不会通过技术手段绕过某些重要流程步骤。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>信息正确呈现</td>
+<td>对于用户提交的请求，是否能够返回用户需要的页面信息。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>业务接口恶意调用</td>
+<td>1.对于敏感的业务接口，是否预先有身份认证机制？查看此类可能被恶意大规模调用的业务接口，如用户登录模块、密码找回、密码重置等等。<br>2.对于具有查询展示办理功能的业务皆苦，如果不需要身份认证是否有强制验证码机制防止机器人程序等自动化大规模的恶意调用。</td>
+</tr>
+</tbody></table>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c33148ad/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/c33148ad/" itemprop="url">写给两年后2025年的自己</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-01T09:40:54+08:00">
+                2023-03-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-01T09:44:32+08:00">
+                2023-03-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">人生</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/c33148ad/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c33148ad/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/c33148ad/" class="leancloud_visitors" data-flag-title="写给两年后2025年的自己">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  460
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://img-blog.csdnimg.cn/3831eb63ced044ebac973cee16a83668.png#pic_center" alt="致未来"></p>
+<p>2025年的我应该是实现了架子鼓演奏自由，可以轻松的驾驭并享受架子鼓演奏带来的愉悦和快乐。可以很自信的在抖音或B站上上传自己平时很惬意的架子鼓日常练习，不用再担心有人说”节奏不稳、勉强还行”了。技巧应该很熟了，什么重轻音、滚奏、双踩都不在话下了，16分节奏型速度在120以上那都是小case，可以挑战一些有难度的歌曲了。可以很有底气的说我会打架子鼓！要不要来表演一段？</p>
+<p>2025年的我应该是实现了英语阅读的自由，可以享受在英语文献中获取知识带来的快乐，可以不带字幕的看懂大部分的美剧大片了。不用再忍受看一页原版英语小说还要不停的翻英汉字典，搞得阅读兴趣全无了。应该可以畅快的看懂英文的计算机相关的技术文档了，可以尝试翻译英文技术文档了。</p>
+<p>2025年的我技术能力水平应该更高了，心智更加成熟，思考更加有深度了，更加乐意写技术文章做技术分享了。CSDN账号的粉丝应该是到了10W，可以小小的嘚瑟一下了！</p>
+<p>2025年的我还没有达到财富自由，上班还是在上班，但心态没有这么累了，应该是在享受工作了。开了多年的老爷车应该是换了，换成了新能源的混动车，偶尔可以开着新车去旅行，感受不一样的风景了。</p>
+<p><strong>如今的各种不如意，都是来自于过去的不努力！</strong></p>
+<p><strong>2025年的我，要感谢现在努力的自己！</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2f88a4b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +914,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-02-22T09:35:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2023-02-22T09:35:27+08:00">
                 2023-02-22
               </time>
             
@@ -2329,478 +2883,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f47f6214/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/f47f6214/" itemprop="url">Python二十行代码实现hexo的md文件格式解析</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-27T09:41:35+08:00">
-                2022-07-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-07-27T17:08:31+08:00">
-                2022-07-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/f47f6214/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f47f6214/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/f47f6214/" class="leancloud_visitors" data-flag-title="Python二十行代码实现hexo的md文件格式解析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  521
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近用django+Vue实现了一个博客应用，原来的hexo的博客用着也挺好，想继续留着用，于是就想将hexo生成的.md的博客内容文件解析后直接写到django的博客数据库里做同步显示。</p>
-<p>hexo生成的.md文件内容主要分两部分，一部分是博客的信息、一部分是博客内容，博客信息包括标题、目录、标签、发布日期等，博客内容就是具体博客写的内容主体了。<br><img src="https://img-blog.csdnimg.cn/855e166cf7454b24b89f03c05c5f57b1.png#pic_center" alt="hexo生成的.md文件内容"></p>
-<p>其中博客信息通过”—“来区分，夹在两个”—“块之间。博客的信息是yaml来描叙的需要解析并提取出相应的字段及内容，博客内容就更简单了直接是markdown描叙的不需要再解析了。<br>这里要做的事情就是提取两个”—“符号之间的内容，并解析相应的字段，提取两个”—“符号后面的内容作为博客的内容，形成字典，便于后面的入库。</p>
-<p>代码示例如下：<br>yaml的解析可以直接用Python的PyYAML库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install PyYAML</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    :author: XieJava</span></span><br><span class="line"><span class="string">    :url: http://ishareread.com</span></span><br><span class="line"><span class="string">    :copyright: © 2021 XieJava &lt;xiejava@ishareread.com&gt;</span></span><br><span class="line"><span class="string">    :license: MIT, see LICENSE for more details.</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">import</span> yaml</span><br><span class="line"></span><br><span class="line"><span class="string">'''将md文件转成blog对象'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parseblog</span><span class="params">(blog_md_file)</span>:</span></span><br><span class="line">    <span class="comment">#读md文件</span></span><br><span class="line">    md_f = open(blog_md_file, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">    md_f_str=md_f.read()</span><br><span class="line">    <span class="comment">#解析两个---之间的内容</span></span><br><span class="line">    pattern=<span class="string">'---'</span></span><br><span class="line">    blog_data=&#123;&#125;</span><br><span class="line">    pattern_list=list(pattern_search(md_f_str, pattern))</span><br><span class="line">    <span class="keyword">if</span> len(pattern_list)&gt;=<span class="number">2</span>:</span><br><span class="line">        blog_info_str=md_f_str[pattern_list[<span class="number">0</span>]+len(pattern):pattern_list[<span class="number">1</span>]]</span><br><span class="line">        blog_data=yaml.load(blog_info_str,Loader=yaml.SafeLoader)</span><br><span class="line">        blog_data[<span class="string">'content'</span>]=md_f_str[pattern_list[<span class="number">1</span>]+len(pattern):]</span><br><span class="line">    md_f.close()</span><br><span class="line">    <span class="keyword">return</span> blog_data</span><br><span class="line"></span><br><span class="line"><span class="string">'''分割符号匹配检索'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pattern_search</span><span class="params">(string,pattern)</span>:</span></span><br><span class="line">    index=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> index&lt;len(string)-len(pattern):</span><br><span class="line">        index=string.find(pattern,index,len(string))</span><br><span class="line">        <span class="keyword">if</span> index==<span class="number">-1</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">yield</span> index</span><br><span class="line">        index+=len(pattern)<span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    blog_data=parseblog(<span class="string">'E:\\CloudStation\\personal\\xiejavablog\\myhexo\\myblog\\source\\_posts\\2022-07-19-Vue3解析markdown解析并实现代码高亮显示.md'</span>)</span><br><span class="line">    print(blog_data)</span><br></pre></td></tr></table></figure>
-
-<p>效果：<br>可以看到hexo的md文件正确解析出来，形成字典。后续可以直接进行入库操作了。<br><img src="https://img-blog.csdnimg.cn/a48c43438d004e2aafbb8e5b21d9bd6a.png#pic_center" alt="解析效果"><br>Python的库还是很丰富实用的，用Python二十行代码就实现hexo的md文件格式解析。</p>
-<p>源代码仓库：<a href="https://gitee.com/ishareblog/ishareblog" target="_blank" rel="noopener">https://gitee.com/ishareblog/ishareblog</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/15ee23ea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/15ee23ea/" itemprop="url">Django+Vue快速实现博客网站</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-26T17:18:33+08:00">
-                2022-07-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-07-26T17:20:05+08:00">
-                2022-07-26
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/15ee23ea/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/15ee23ea/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/15ee23ea/" class="leancloud_visitors" data-flag-title="Django+Vue快速实现博客网站">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  12
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Django是一个开放源代码的Web应用框架，由Python写成。采用了MTV的框架模式，即模型M，视图V和模版T。它最初是被开发来用于管理劳伦斯出版集团旗下的一些以新闻内容为主的网站的，即是CMS（内容管理系统）软件。对于博客网站来说是典型的CMS应用。本文介绍通过Django+Vue的博客模版快速实现一个可用的博客网站。</p>
-<p>这里用的博客模板是Gblog是一款nice的基于 vue 的博客模板。界面简洁轻快，非常适合用作个人博客。<a href="https://gitee.com/fengziy/Gblog" target="_blank" rel="noopener">https://gitee.com/fengziy/Gblog</a> 后台的接口和管理界面就通过Django框架来实现了。</p>
-<p>这里数据库用mysql，接口框架主要用到的是Django的djangorestframework，内容编辑器用的是markdown通过django-mdedior库实现。</p>
-<h2 id="一、依赖库"><a href="#一、依赖库" class="headerlink" title="一、依赖库"></a>一、依赖库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">asgiref==3.5.2</span><br><span class="line">Django==4.0.6</span><br><span class="line">django-cors-headers==3.13.0</span><br><span class="line">django-filter==22.1</span><br><span class="line">django-mdeditor==0.1.20</span><br><span class="line">djangorestframework==3.13.1</span><br><span class="line">mysqlclient==2.1.1</span><br><span class="line">Pillow==9.2.0</span><br><span class="line">pytz==2022.1</span><br><span class="line">sqlparse==0.4.2</span><br><span class="line">tzdata==2022.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、工程目录组织结构"><a href="#二、工程目录组织结构" class="headerlink" title="二、工程目录组织结构"></a>二、工程目录组织结构</h2><p><img src="https://img-blog.csdnimg.cn/a0d4613e40ac45f595f005d186264d74.png#pic_center" alt="工程目录组织结构"></p>
-<h2 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h2><h3 id="1、模型"><a href="#1、模型" class="headerlink" title="1、模型"></a>1、模型</h3><p>模型很简单，根据Gblog前台要显示的内容包括有‘文章分类’、‘文章标签’、‘博客文章’、‘站点信息’、‘社交信息’、‘聚焦’，模型定义分别如下：<br>这里要说明的是因为博客文章内容准备用markdown编写，所以引入了mdeditor <code>from mdeditor.fields import MDTextField</code><br>内容字段<code>content=MDTextField(verbose_name=&#39;内容&#39;)</code><br>模型代码示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> common.basemodel <span class="keyword">import</span> BaseModel</span><br><span class="line"><span class="keyword">from</span> mdeditor.fields <span class="keyword">import</span> MDTextField</span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="string">'''文章分类'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategory</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title=models.CharField(max_length=<span class="number">50</span>,verbose_name=<span class="string">'分类名称'</span>,default=<span class="string">''</span>)</span><br><span class="line">    href=models.CharField(max_length=<span class="number">100</span>,verbose_name=<span class="string">'分类路径'</span>,default=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'文章分类'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'文章分类'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''文章标签'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    tag=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标签'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.tag</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'标签'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'标签'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    summary=models.CharField(max_length=<span class="number">500</span>,verbose_name=<span class="string">'内容摘要'</span>,default=<span class="string">''</span>)</span><br><span class="line">    content=MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount= models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount=models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line">    tags=models.ManyToManyField(to=Tag, related_name=<span class="string">"tag_post"</span>, blank=<span class="literal">True</span>, default=<span class="literal">None</span>,verbose_name=<span class="string">"标签"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tag_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">','</span>.join([i.tag <span class="keyword">for</span> i <span class="keyword">in</span> self.tags.all()])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''站点信息'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    name=models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">'站点名称'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    avatar=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点图标'</span>)</span><br><span class="line">    slogan=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点标语'</span>)</span><br><span class="line">    domain=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点域名'</span>)</span><br><span class="line">    notice=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点备注'</span>)</span><br><span class="line">    desc=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'站点信息'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'站点信息'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''社交信息'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Social</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标题'</span>)</span><br><span class="line">    icon=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'图标'</span>)</span><br><span class="line">    color=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'颜色'</span>)</span><br><span class="line">    href=models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'社交信息'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'社交信息'</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''聚焦'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Focus</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标题'</span>)</span><br><span class="line">    img=models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'聚焦'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'聚焦'</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''友链'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Friend</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    siteName=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'友链站点名称'</span>)</span><br><span class="line">    path=models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'地址路径'</span>)</span><br><span class="line">    desc=models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.siteName</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'友链'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'友链'</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、admin管理"><a href="#2、admin管理" class="headerlink" title="2、admin管理"></a>2、admin管理</h3><p>实际上只要把模型注册到admin就可以了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="meta">@admin.register(BlogCategory)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategoryAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    admin.site.site_title=<span class="string">"ishareblog后台"</span></span><br><span class="line">    admin.site.site_header=<span class="string">"ishareblog后台"</span></span><br><span class="line">    admin.site.index_title=<span class="string">"ishareblog管理"</span></span><br><span class="line"></span><br><span class="line">    list_display = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'href'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(BlogPost)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPostAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'category'</span>,<span class="string">'isTop'</span>,<span class="string">'isHot'</span>]</span><br><span class="line">    search_fields = (<span class="string">'title'</span>,)</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Site)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiteAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'name'</span>,<span class="string">'slogan'</span>,<span class="string">'domain'</span>,<span class="string">'desc'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Social)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SocialAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'href'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Focus)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoucusAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'img'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Friend)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoucusAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'siteName'</span>,<span class="string">'path'</span>,<span class="string">'desc'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Tag)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TagAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'id'</span>,<span class="string">'tag'</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、接口"><a href="#3、接口" class="headerlink" title="3、接口"></a>3、接口</h3><p>前端是Vue模板展示的，所以要为前端Vue提供相应的接口。通过djangorestframework将模型通过restful接口提供是非常easy的。</p>
-<h4 id="1）首先将需要暴露的模型通过序列化类序列化"><a href="#1）首先将需要暴露的模型通过序列化类序列化" class="headerlink" title="1）首先将需要暴露的模型通过序列化类序列化"></a>1）首先将需要暴露的模型通过序列化类序列化</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">serializers.py</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> serializers</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategoryModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model=BlogCategory</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TagModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Tag</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPostModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    create_time = serializers.DateTimeField(format=<span class="string">"%Y-%m-%d %H:%M:%S"</span>, required=<span class="literal">False</span>, read_only=<span class="literal">True</span>)</span><br><span class="line">    update_time = serializers.DateTimeField(format=<span class="string">"%Y-%m-%d %H:%M:%S"</span>, required=<span class="literal">False</span>, read_only=<span class="literal">True</span>)</span><br><span class="line">    category_id = serializers.CharField(max_length=<span class="number">32</span>, source=<span class="string">'category.id'</span>)</span><br><span class="line">    pubTime=update_time</span><br><span class="line">    category=BlogCategoryModelSerializer()</span><br><span class="line">    tags=serializers.SerializerMethodField()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 多对多，钩子函数序列化,必须是以get_开头的</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_tags</span><span class="params">(self, obj)</span>:</span></span><br><span class="line">        tags = obj.tags.all()</span><br><span class="line">        tag = TagModelSerializer(tags, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> tag.data</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model=BlogPost</span><br><span class="line">        fields=<span class="string">"__all__"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiteModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Site</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SocialModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Social</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FocusModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Focus</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendModelSerializer</span><span class="params">(serializers.ModelSerializer)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = Friend</span><br><span class="line">        fields = <span class="string">"__all__"</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2）将序列化的对象通过视图类提供接口"><a href="#2）将序列化的对象通过视图类提供接口" class="headerlink" title="2）将序列化的对象通过视图类提供接口"></a>2）将序列化的对象通过视图类提供接口</h4><p>custommodelviewset.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets</span><br><span class="line"><span class="keyword">from</span> common.customresponse <span class="keyword">import</span> CustomResponse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomModelViewSet</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#CreateModelMixin-&gt;create</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        serializer = self.get_serializer(data=request.data)</span><br><span class="line">        serializer.is_valid(raise_exception=<span class="literal">True</span>)</span><br><span class="line">        self.perform_create(serializer)</span><br><span class="line">        headers = self.get_success_headers(serializer.data)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data, code=<span class="number">201</span>,msg=<span class="string">"OK"</span>, status=status.HTTP_201_CREATED,headers=headers)</span><br><span class="line">    <span class="comment">#ListModelMixin-&gt;list</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">list</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        queryset = self.filter_queryset(self.get_queryset())</span><br><span class="line">        page = self.paginate_queryset(queryset)</span><br><span class="line">        <span class="keyword">if</span> page <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            serializer = self.get_serializer(page, many=<span class="literal">True</span>)</span><br><span class="line">            <span class="keyword">return</span> self.get_paginated_response(serializer.data)</span><br><span class="line"></span><br><span class="line">        serializer = self.get_serializer(queryset, many=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data, code=<span class="number">200</span>, msg=<span class="string">"OK"</span>, status=status.HTTP_200_OK)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#RetrieveModelMixin-&gt;retrieve</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retrieve</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        instance = self.get_object()</span><br><span class="line">        serializer = self.get_serializer(instance)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data, code=<span class="number">200</span>, msg=<span class="string">"OK"</span>, status=status.HTTP_200_OK)</span><br><span class="line">    <span class="comment">#UpdateModelMixin-&gt;update</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        partial = kwargs.pop(<span class="string">'partial'</span>, <span class="literal">False</span>)</span><br><span class="line">        instance = self.get_object()</span><br><span class="line">        serializer = self.get_serializer(instance, data=request.data, partial=partial)</span><br><span class="line">        serializer.is_valid(raise_exception=<span class="literal">True</span>)</span><br><span class="line">        self.perform_update(serializer)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> getattr(instance, <span class="string">'_prefetched_objects_cache'</span>, <span class="literal">None</span>):</span><br><span class="line">            <span class="comment"># If 'prefetch_related' has been applied to a queryset, we need to</span></span><br><span class="line">            <span class="comment"># forcibly invalidate the prefetch cache on the instance.</span></span><br><span class="line">            instance._prefetched_objects_cache = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data, code=<span class="number">200</span>, msg=<span class="string">"OK"</span>, status=status.HTTP_200_OK)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#DestroyModelMixin-&gt;destroy</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">destroy</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">        instance = self.get_object()</span><br><span class="line">        self.perform_destroy(instance)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=[], code=<span class="number">204</span>, msg=<span class="string">"OK"</span>, status=status.HTTP_204_NO_CONTENT)</span><br></pre></td></tr></table></figure>
-
-<p>views.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"><span class="keyword">from</span> django_filters.rest_framework <span class="keyword">import</span> DjangoFilterBackend</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> viewsets, status</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> filters</span><br><span class="line"><span class="keyword">from</span> api.myfilter <span class="keyword">import</span> BlogPostFilter</span><br><span class="line"><span class="keyword">from</span> api.serializers <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> BlogCategory, BlogPost,Site,Social,Focus,Friend,Tag</span><br><span class="line"><span class="keyword">from</span> api.mypage <span class="keyword">import</span> MyPage</span><br><span class="line"><span class="keyword">from</span> common.custommodelviewset <span class="keyword">import</span> CustomModelViewSet</span><br><span class="line"><span class="keyword">from</span> common.customresponse <span class="keyword">import</span> CustomResponse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategoryViewset</span><span class="params">(CustomModelViewSet)</span>:</span></span><br><span class="line">    queryset = BlogCategory.objects.all()</span><br><span class="line">    serializer_class = BlogCategoryModelSerializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogsView</span><span class="params">(CustomModelViewSet)</span>:</span></span><br><span class="line">    queryset = BlogPost.objects.order_by(<span class="string">'-isTop'</span>,<span class="string">'-update_time'</span>)</span><br><span class="line">    serializer_class = BlogPostModelSerializer</span><br><span class="line">    pagination_class = MyPage</span><br><span class="line">    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)</span><br><span class="line">    filterset_class = BlogPostFilter</span><br><span class="line">    <span class="comment">#搜索</span></span><br><span class="line">    search_fields=(<span class="string">'title'</span>,)</span><br><span class="line">    <span class="comment">#排序</span></span><br><span class="line">    ordering_fields = (<span class="string">'isTop'</span>, <span class="string">'update_time'</span>)</span><br><span class="line">    <span class="comment">#自定义获取详情接口</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">retrieve</span><span class="params">(self,request,*args, **kwargs)</span>:</span></span><br><span class="line">        instance=self.get_object()</span><br><span class="line">        instance.viewsCount+=<span class="number">1</span></span><br><span class="line">        instance.save()</span><br><span class="line">        serializer=self.get_serializer(instance)</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=serializer.data,code=<span class="number">200</span>,msg=<span class="string">"success"</span>,status=status.HTTP_200_OK)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiteView</span><span class="params">(CustomModelViewSet)</span>:</span></span><br><span class="line">    queryset = Site.objects.all()</span><br><span class="line">    serializer_class = SiteModelSerializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SocialView</span><span class="params">(CustomModelViewSet)</span>:</span></span><br><span class="line">    queryset = Social.objects.all()</span><br><span class="line">    serializer_class = SocialModelSerializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FocusView</span><span class="params">(CustomModelViewSet)</span>:</span></span><br><span class="line">    queryset = Focus.objects.all()</span><br><span class="line">    serializer_class = FocusModelSerializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FriendView</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line">    queryset = Friend.objects.all()</span><br><span class="line">    serializer_class = FriendModelSerializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TagView</span><span class="params">(viewsets.ModelViewSet)</span>:</span></span><br><span class="line">    queryset = Tag.objects.all()</span><br><span class="line">    serializer_class = TagModelSerializer</span><br></pre></td></tr></table></figure>
-
-<h4 id="3）通过路由来实现接口地址和视图的绑定和访问"><a href="#3）通过路由来实现接口地址和视图的绑定和访问" class="headerlink" title="3）通过路由来实现接口地址和视图的绑定和访问"></a>3）通过路由来实现接口地址和视图的绑定和访问</h4><p>urls.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">    :author: XieJava</span></span><br><span class="line"><span class="string">    :url: http://ishareread.com</span></span><br><span class="line"><span class="string">    :copyright: © 2021 XieJava &lt;xiejava@ishareread.com&gt;</span></span><br><span class="line"><span class="string">    :license: MIT, see LICENSE for more details.</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="keyword">from</span> api <span class="keyword">import</span> views</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path,include</span><br><span class="line"><span class="keyword">from</span> rest_framework.routers <span class="keyword">import</span> DefaultRouter</span><br><span class="line">blogcategory_list=views.BlogCategoryViewset.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">blogcategory_detail=views.BlogCategoryViewset.as_view(&#123; <span class="string">'get'</span>: <span class="string">'retrieve'</span>,&#125;)</span><br><span class="line">blog_list=views.BlogsView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">blog_detail=views.BlogsView.as_view(&#123; <span class="string">'get'</span>: <span class="string">'retrieve'</span>,&#125;)</span><br><span class="line">site_list=views.SiteView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">site_detail=views.SiteView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'retrieve'</span>,&#125;)</span><br><span class="line">social_list=views.SocialView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">social_detail=views.SocialView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'retrieve'</span>,&#125;)</span><br><span class="line">focus_list=views.FocusView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">focus_detail=views.FocusView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'retrieve'</span>&#125;)</span><br><span class="line">friend_list=views.FriendView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line">friend_detail=views.FriendView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'retrieve'</span>&#125;)</span><br><span class="line">tags_list=views.TagView.as_view(&#123;<span class="string">'get'</span>:<span class="string">'list'</span>,&#125;)</span><br><span class="line"><span class="comment"># router=DefaultRouter()</span></span><br><span class="line"><span class="comment"># router.register('blogs',views.BlogsView)</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'category/'</span>,blogcategory_list),</span><br><span class="line">    path(<span class="string">'category/&lt;pk&gt;/'</span>,blogcategory_detail),</span><br><span class="line">    path(<span class="string">'post/list'</span>,blog_list),</span><br><span class="line">    path(<span class="string">'post/&lt;pk&gt;'</span>,blog_detail),</span><br><span class="line">    path(<span class="string">'social/'</span>,social_list),</span><br><span class="line">    path(<span class="string">'site/&lt;pk&gt;'</span>,site_detail),</span><br><span class="line">    path(<span class="string">'focus/list'</span>,focus_list),</span><br><span class="line">    path(<span class="string">'comment/'</span>,blog_list),</span><br><span class="line">    path(<span class="string">'friend/'</span>,friend_list),</span><br><span class="line">    path(<span class="string">'tags/'</span>,tags_list),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h4 id="4）自定义接口返回格式"><a href="#4）自定义接口返回格式" class="headerlink" title="4）自定义接口返回格式"></a>4）自定义接口返回格式</h4><p>接口需要根据Glog定义的格式进行定义和返回，这里就需要自定义接口返回格式。<br>具体实现参见：<a href="https://xiejava.blog.csdn.net/article/details/125773730" target="_blank" rel="noopener">https://xiejava.blog.csdn.net/article/details/125773730</a><br>–自定义返回响应类customresponse.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.response <span class="keyword">import</span> Response</span><br><span class="line"><span class="keyword">from</span> rest_framework.serializers <span class="keyword">import</span> Serializer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomResponse</span><span class="params">(Response)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,data=None,code=None,msg=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 status=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 template_name=None, headers=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 exception=False, content_type=None,**kwargs)</span>:</span></span><br><span class="line">        super().__init__(<span class="literal">None</span>, status=status)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> isinstance(data, Serializer):</span><br><span class="line">            msg = (</span><br><span class="line">                <span class="string">'You passed a Serializer instance as data, but '</span></span><br><span class="line">                <span class="string">'probably meant to pass serialized `.data` or '</span></span><br><span class="line">                <span class="string">'`.error`. representation.'</span></span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">raise</span> AssertionError(msg)</span><br><span class="line">        self.data=&#123;<span class="string">'code'</span>:code,<span class="string">'msg'</span>:msg,<span class="string">'data'</span>:data&#125;</span><br><span class="line">        self.data.update(kwargs)</span><br><span class="line">        self.template_name=template_name</span><br><span class="line">        self.exception=exception</span><br><span class="line">        self.content_type=content_type</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> headers:</span><br><span class="line">            <span class="keyword">for</span> name, value <span class="keyword">in</span> headers.items():</span><br><span class="line">                self[name] = value</span><br></pre></td></tr></table></figure>
-
-<p>–翻页实现类mypage.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> status</span><br><span class="line"><span class="keyword">from</span> rest_framework.pagination <span class="keyword">import</span> PageNumberPagination</span><br><span class="line"><span class="keyword">from</span> common.customresponse <span class="keyword">import</span> CustomResponse</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyPage</span><span class="params">(PageNumberPagination)</span>:</span></span><br><span class="line">    page_size = <span class="number">8</span> <span class="comment">#每页显示数量</span></span><br><span class="line">    max_page_size = <span class="number">50</span> <span class="comment">#每页最大显示数量。</span></span><br><span class="line">    page_size_query_param = <span class="string">'size'</span> <span class="comment">#每页数量的参数名称</span></span><br><span class="line">    page_query_param = <span class="string">'page'</span>  <span class="comment">#页码的参数名称</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#自定义分页器的返回参数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_paginated_response</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        ret_data = dict()</span><br><span class="line">        ret_data[<span class="string">'items'</span>] = data</span><br><span class="line">        <span class="comment"># 加入自定义分页信息</span></span><br><span class="line">        ret_data[<span class="string">'total'</span>] = self.page.paginator.count</span><br><span class="line">        ret_data[<span class="string">'hasNextPage'</span>] = self.get_next_link()</span><br><span class="line">        ret_data[<span class="string">'size'</span>] = self.page_size</span><br><span class="line">        ret_data[<span class="string">'page'</span>] = self.page.number</span><br><span class="line">        <span class="keyword">return</span> CustomResponse(data=ret_data,code=<span class="number">200</span>,msg=<span class="string">"OK"</span>,status=status.HTTP_200_OK)</span><br></pre></td></tr></table></figure>
-
-<p>全部代码：<br>后台代码：<a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a><br>前台代码：<a href="https://gitee.com/xiejava/Gblog" target="_blank" rel="noopener">https://gitee.com/xiejava/Gblog</a></p>
-<h2 id="四、效果"><a href="#四、效果" class="headerlink" title="四、效果"></a>四、效果</h2><h3 id="1、后台管理"><a href="#1、后台管理" class="headerlink" title="1、后台管理"></a>1、后台管理</h3><p>管理界面<br><img src="https://img-blog.csdnimg.cn/eb834ee5e4ea4be49e4fa7d4adb2e6db.png#pic_center" alt="管理界面"><br>博客文章列表<br><img src="https://img-blog.csdnimg.cn/6d4ff80a5ec1497f8187f9ea26e326bd.png#pic_center" alt="博客文章列表"><br>文章内容编辑，支持markdown<br><img src="https://img-blog.csdnimg.cn/2467bec82fd84a2cae47bc4a7f61c5d1.png#pic_center" alt="文章内容编辑，支持markdown"><br>分类管理<br><img src="https://img-blog.csdnimg.cn/7421334028a3408bb79991c72daebcfc.png#pic_center" alt="文章分类"><br>标签管理<br><img src="https://img-blog.csdnimg.cn/6d26689942e04db4ab5302ba3f726668.png#pic_center" alt="标签管理"><br>社交信息<br><img src="https://img-blog.csdnimg.cn/5f2e1ae1071f4061a584f9bdaa6b1ae1.png#pic_center" alt="社交信息"></p>
-<h3 id="2、接口"><a href="#2、接口" class="headerlink" title="2、接口"></a>2、接口</h3><p>接口清单<br><img src="https://img-blog.csdnimg.cn/44b477f4c25e4a29a18921705c1e8bc8.png#pic_center" alt="接口清单"><br>文章列表接口，支持翻页<br><img src="https://img-blog.csdnimg.cn/b066c988f0d44d34a865e29b9fac0553.png#pic_center" alt="文章列表接口"></p>
-<p>文章详情接口<br><img src="https://img-blog.csdnimg.cn/5e15677117454dccad723d163e9b3b26.png#pic_center" alt="文章详情接口"></p>
-<h3 id="3、前台展现"><a href="#3、前台展现" class="headerlink" title="3、前台展现"></a>3、前台展现</h3><p><img src="https://img-blog.csdnimg.cn/2921705f22d7475cb161cc320acca0db.png#pic_center" alt="前台展现"></p>
-<p>文章列表<br><img src="https://img-blog.csdnimg.cn/35d536c30fdf49b4965257895863ea8f.png#pic_center" alt="文章列表"><br>文章详情，支持markdown显示及目录<br><img src="https://img-blog.csdnimg.cn/97b5db037f6f4272bac5a0d70fa67f18.png#pic_center" alt="文章详情"></p>
-<p>社交信息<br><img src="https://img-blog.csdnimg.cn/d143df3884914dbe9a4b866669a58147.png#pic_center" alt="社交信息"></p>
-<p>博客效果地址：<a href="http://blog.ishareread.com" target="_blank" rel="noopener">http://blog.ishareread.com</a></p>
-<p>后续考虑<br>1、django原生admin的管理界面还是简陋了一点，后续可能会用其他管理界面的UI给换掉<br>2、现在有了一个hexo的博客了，后续可能会考虑实现hexo生成的博客内容直接同步到django的博客，或者django博客编辑的内容直接生成hexo的.md文件<br>有兴趣的话可以关注本博客</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2857,7 +2939,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-count">95</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2969,7 +3051,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">169k</span>
+    <span title="Site words total count">171.8k</span>
   
   
 <!--51la网站应用监控-->
