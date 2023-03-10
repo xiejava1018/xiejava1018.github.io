@@ -313,6 +313,346 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4864590d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/4864590d/" itemprop="url">pandas数据加载(csv、excel、json、mysql、webAPI)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-22T17:35:55+08:00">
+                2022-01-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-02-02T09:58:09+08:00">
+                2022-02-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/4864590d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4864590d/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/4864590d/" class="leancloud_visitors" data-flag-title="pandas数据加载(csv、excel、json、mysql、webAPI)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://img-blog.csdnimg.cn/f5fc706f84454eb49d5457d751025441.png#pic_center" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
+<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://img-blog.csdnimg.cn/27deba5956b842dda6f845149b98d426.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
+<table>
+<thead>
+<tr>
+<th>Format Type</th>
+<th>Data Description</th>
+<th>Reader</th>
+<th>Writer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>text</td>
+<td>CSV</td>
+<td>read_csv</td>
+<td>to_csv</td>
+</tr>
+<tr>
+<td>text</td>
+<td>JSON</td>
+<td>read_json</td>
+<td>to_json</td>
+</tr>
+<tr>
+<td>text</td>
+<td>HTML</td>
+<td>read_html</td>
+<td>to_html</td>
+</tr>
+<tr>
+<td>text</td>
+<td>Local clipboard</td>
+<td>read_clipboard</td>
+<td>to_clipboard</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>MS Excel</td>
+<td>read_excel</td>
+<td>to_excel</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>OpenDocument</td>
+<td>read_excel</td>
+<td></td>
+</tr>
+<tr>
+<td>binary</td>
+<td>HDF5 Format</td>
+<td>read_hdf</td>
+<td>to_hdf</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>Feather Format</td>
+<td>read_feather</td>
+<td>to_feather</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>Parquet Format</td>
+<td>read_parquet</td>
+<td>to_parquet</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>Msgpack</td>
+<td>read_msgpack</td>
+<td>to_msgpack</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>Stata</td>
+<td>read_stata</td>
+<td>to_stata</td>
+</tr>
+<tr>
+<td>binary</td>
+<td>SAS</td>
+<td>read_sas</td>
+<td></td>
+</tr>
+<tr>
+<td>binary</td>
+<td>Python Pickle Format</td>
+<td>read_pickle</td>
+<td>to_pickle</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>SQL</td>
+<td>read_sql</td>
+<td>to_sql</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td>Google Big Query</td>
+<td>read_gbq</td>
+<td>to_gbq</td>
+</tr>
+</tbody></table>
+<p>本文通过几个实例，介绍几种常用的数据加载方式，包括从csv文件、excel文件、关系型数据库如mysql、API接口加载json数据，来初步体验一下pandas加载数据的便捷性。</p>
+<p>见上表pandas 提供了多种数据源读取数据的方法：<br>read_csv() 用于读取文本文件<br>read_json() 用于读取 json 文件<br>read_sql_query() 读取 sql 语句查询的表记录</p>
+<h1 id="一、读取CSV文件"><a href="#一、读取CSV文件" class="headerlink" title="一、读取CSV文件"></a>一、读取CSV文件</h1><p>CSV 又称逗号分隔值文件，是一种简单的文件格式，以特定的结构来排列表格数据。 CSV 文件能够以纯文本形式存储表格数据，比如电子表格、数据库文件，并具有数据交换的通用格式。CSV 文件会在 Excel 文件中被打开，其行和列都定义了标准的数据格式。<br>将 CSV 中的数据转换为 DataFrame 对象是非常便捷的。和一般文件读写不一样，它不需要你做打开文件、读取文件、关闭文件等操作。相反，只需要一行代码就可以完成上述所有步骤，并将数据存储在 DataFrame 中。<br>pandas通过read_csv()从 CSV 文件中读取数据，并创建 DataFrame 对象。<br>下面通过一个实例来说明。一个用于测试的员工数据集csv的数据如下，文件为staff.csv。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"staff_id"</span>,<span class="string">"staff_name"</span>,<span class="string">"staff_age"</span>,<span class="string">"staff_gender"</span>,<span class="string">"staff_salary"</span>,<span class="string">"staff_depatment_id"</span></span><br><span class="line"><span class="string">"1"</span>,<span class="string">"陈一"</span>,<span class="string">"30"</span>,<span class="string">"男"</span>,<span class="string">"7000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"2"</span>,<span class="string">"周二"</span>,<span class="string">"31"</span>,<span class="string">"男"</span>,<span class="string">"12000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"3"</span>,<span class="string">"张三"</span>,<span class="string">"30"</span>,<span class="string">"女"</span>,<span class="string">"13000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"4"</span>,<span class="string">"李四"</span>,<span class="string">"29"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"5"</span>,<span class="string">"王五"</span>,<span class="string">"29"</span>,<span class="string">"男"</span>,<span class="string">"9000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"6"</span>,<span class="string">"赵六"</span>,<span class="string">"35"</span>,<span class="string">"男"</span>,<span class="string">"8600"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"7"</span>,<span class="string">"钱七"</span>,<span class="string">"36"</span>,<span class="string">"女"</span>,<span class="string">"9700"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"8"</span>,<span class="string">"孙八"</span>,<span class="string">"40"</span>,<span class="string">"女"</span>,<span class="string">"10000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"9"</span>,<span class="string">"何九"</span>,<span class="string">"40"</span>,<span class="string">"男"</span>,<span class="string">"11000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"10"</span>,<span class="string">"顾十"</span>,<span class="string">"37"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"2"</span></span><br></pre></td></tr></table></figure>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="https://img-blog.csdnimg.cn/edaf91317adb42a7b479ebec9aa56bb7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="通过csv加载"></p>
+<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://img-blog.csdnimg.cn/96c125c34da24204ae9799f5c444c574.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="staff.xlsx"><br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="https://img-blog.csdnimg.cn/b46a651c81a74b119ad25e297d9c0d95.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="通过Excel加载数据"></p>
+<h1 id="三、读取MySQL数据库表"><a href="#三、读取MySQL数据库表" class="headerlink" title="三、读取MySQL数据库表"></a>三、读取MySQL数据库表</h1><p>在许多应用中，数据很少取自文本文件，因为这种方式存储数据量有限且比较低效。最常见的是基于SQL的关系型数据库如MySQL、MS-SQL、PostgreSQL等。pandas将关系型数据库加载到DataFrame的过程很简单，通过read_sql_query()方法就可以快速的将数据加载。<br>同样是staff的数据集，在mysql中的表结构如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`staff`</span> (</span><br><span class="line">  <span class="string">`staff_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_age`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`staff_gender`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'性别'</span>,</span><br><span class="line">  <span class="string">`staff_salary`</span> <span class="keyword">double</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪水'</span>,</span><br><span class="line">  <span class="string">`staff_depatment_id`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'部门ID'</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
+
+<p>数据如下：<br><img src="https://img-blog.csdnimg.cn/ed23c05b550d4f0da81e2d7d84455447.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="staff数据集MySQL记录"><br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:yourpassword@localhost:3306/pandastest'</span>)</span><br><span class="line">sql_query_staff = <span class="string">'select * from staff;'</span></span><br><span class="line">df_staff = pd.read_sql_query(sql_query_staff, engine)</span><br><span class="line">df_staff</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="https://img-blog.csdnimg.cn/ecdf46a8e02f4a70a490d9cdf89ce6f3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="加载mysql数据"></p>
+<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://img-blog.csdnimg.cn/2c962a4235794e95b2545605e44f7192.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">url=<span class="string">'http://127.0.0.1:5000/getstaff'</span></span><br><span class="line">resp=requests.get(url)</span><br><span class="line">data=json.loads(resp.text)</span><br><span class="line">staff=pd.DataFrame(data)</span><br><span class="line">staff</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="https://img-blog.csdnimg.cn/6ff9136048d7484e961e822826fb805f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="加载WEBAPI数据"></p>
+<p>至此，通过staff测试数据集介绍了pandas的常用多种类型数据源的加载，包括csv、excel、mysql、web API。可以看出pandas对于数据加载非常的方便高效。</p>
+<p>全部数据集及源代码：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/14434407/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2560,273 +2900,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/eab21fe5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/eab21fe5/" itemprop="url">Python爬虫获取电子书资源实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-20T15:41:01+08:00">
-                2021-11-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-20T23:02:40+08:00">
-                2021-11-20
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/eab21fe5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/eab21fe5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/eab21fe5/" class="leancloud_visitors" data-flag-title="Python爬虫获取电子书资源实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在学习Python，相对java来说python简单易学、语法简单，工具丰富，开箱即用，适用面广做全栈开发那是极好的，对于小型应用的开发，虽然运行效率慢点，但开发效率极高。大大提高了咱们的生产力。为什么python能够在这几年火起来，自然有他的道理，当然也受益于这几年大数据和AI的火。</p>
-<p>据说网络上80%的爬虫都是用python写的，不得不说python写爬虫真的是so easy。基本上一个不太复杂的网站可以通过python用100多行代码就能实现你所需要的爬取。<br>现在就以一个电子书的网站为例来实现python爬虫获取电子书资源。爬取整站的电子书资源，按目录保存到本地，并形成索引文件方便查找。</p>
-<p>爬取的目标网站：苦瓜书盘</p>
-<p>步骤：<strong>爬取-&gt;分析、解析-&gt;保存</strong></p>
-<p>对于一个不需要登录验证的资源分享类的网站，爬取最大的工作量应该是在对目标页面的分析、解析、识别，这里用的到是Python的BeautifulSoup库。</p>
-<p>一、获取目录</p>
-<p>二、获取书籍列表页</p>
-<p>三、获取书籍详情页</p>
-<p>四、分析书籍详情页的资源地址</p>
-<p>五、下载并保存</p>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>引入相应的包，设置 headerd, 和资源保存路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> Book <span class="keyword">import</span> Book</span><br><span class="line"></span><br><span class="line">savepath=<span class="string">"J://kgbook//books//"</span> <span class="comment">#保存地址</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">main_url=<span class="string">'https://kgbook.com/'</span></span><br><span class="line">bookcount=<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="一、获取目录"><a href="#一、获取目录" class="headerlink" title="一、获取目录"></a>一、获取目录</h1><p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9B%AE%E5%BD%95.png" alt="获取目录"><br>通过浏览器的调试工具可以看到目录在id=catagory的div标签下，下面还有ul和li标签，那我们可以迭代li可以获得目录及目录页的地址。<br>可以通过soup.find_all(attrs={‘id’: ‘category’})[0].ul 获取 到ul标签，然后获取ul的li标签，进行迭代获取。<br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">获取目录</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcategory</span><span class="params">()</span>:</span></span><br><span class="line">    req_result=requests.get(main_url,headers=headers)</span><br><span class="line">    <span class="keyword">if</span> req_result.status_code==<span class="number">200</span>:</span><br><span class="line">        htmlstr=req_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">        soup = BeautifulSoup(htmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">        categorys=soup.find_all(attrs=&#123;<span class="string">'id'</span>: <span class="string">'category'</span>&#125;)[<span class="number">0</span>].ul</span><br><span class="line">        <span class="keyword">for</span> li <span class="keyword">in</span> categorys.find_all(name=<span class="string">'li'</span>):</span><br><span class="line">            print(<span class="string">'开始抓取'</span>+li.a.attrs[<span class="string">'href'</span>]+<span class="string">"--"</span>+li.string)</span><br><span class="line">            getcategroydetail(main_url+li.a.attrs[<span class="string">'href'</span>],li.string)</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="二、获取书籍列表页"><a href="#二、获取书籍列表页" class="headerlink" title="二、获取书籍列表页"></a>二、获取书籍列表页</h1><p>在书籍列表页，我们要获取两个信息，分别是书籍列表的信息及翻页下一页书籍列表的URL地址。<br>通过浏览器的调试工具分别对列表的信息及翻页下一页的html进行分析。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E5%88%97%E8%A1%A8.png" alt="获取书籍列表页"><br>列表中的书籍详情页信息在class=”channel-item”的div标签下，通过class=”list-title”的h3标签循环迭代<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E7%BF%BB%E9%A1%B5.png" alt="翻页"><br>下一页，我们可以直接通过next_pag=soup.find(name=’a’,text=re.compile(‘下一页’))来获取。<br>然后我们可以通过递归来不断的调用获取下一页书籍列表页的代码，知道没有下一页为止。就可以把怎个目录都可以爬取完。<br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">获取书籍列表</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbookslist</span><span class="params">(bookurlstr,categroy_path)</span>:</span></span><br><span class="line">    book_result=requests.get(bookurlstr,headers=headers)</span><br><span class="line">    bookhtmlstr=book_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    soup = BeautifulSoup(bookhtmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">    booklists=soup.select(<span class="string">'.channel-item'</span>)</span><br><span class="line">    <span class="keyword">for</span> bookinfo_div <span class="keyword">in</span> booklists:</span><br><span class="line">        booktitle_div=bookinfo_div.select(<span class="string">'.list-title'</span>)[<span class="number">0</span>]</span><br><span class="line">        bookurl=booktitle_div.a.attrs[<span class="string">'href'</span>]</span><br><span class="line">        getbookdetail(bookurl,categroy_path)</span><br><span class="line">    next_pag=soup.find(name=<span class="string">'a'</span>,text=re.compile(<span class="string">'下一页'</span>))</span><br><span class="line">    <span class="keyword">if</span> next_pag <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        next_url=next_pag.attrs[<span class="string">'href'</span>]</span><br><span class="line">        print(<span class="string">'爬取下一页：'</span>+next_url)</span><br><span class="line">        getbookslist(next_url,categroy_path)</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="三、获取书籍详情页"><a href="#三、获取书籍详情页" class="headerlink" title="三、获取书籍详情页"></a>三、获取书籍详情页</h1><p>我们要在书籍详情页需要获得书籍详情信息包括书名、作者等信息<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E8%AF%A6%E6%83%85.png" alt="书籍详情"><br>关于书名和作者可以分别通过提取class=”news_title”的h1标签和id=”news_details”的div下的ul下的li再通过正则表达式对作者信息进行提取。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">booktitle=bookdetailsoup.select(<span class="string">'.news_title'</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">bookauthor=bookdetailsoup.select(<span class="string">'#news_details'</span>)[<span class="number">0</span>].ul.li.find(text=re.compile(<span class="string">'作者：(.*?)'</span>)).strip()</span><br><span class="line">bookauthor=bookauthor.replace(<span class="string">'作者：'</span>,<span class="string">''</span>)</span><br><span class="line">booktitleinfo=<span class="string">"《"</span>+booktitle+<span class="string">'》-'</span>+bookauthor</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="四、分析书籍详情页的资源地址"><a href="#四、分析书籍详情页的资源地址" class="headerlink" title="四、分析书籍详情页的资源地址"></a>四、分析书籍详情页的资源地址</h1><p>在书籍详情页，我们还要分析书籍详情页的资源地址<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%BA%90%E5%9C%B0%E5%9D%80.png" alt="资源地址"><br>电子书的资源下载地址可以通过提取a标签的信息来获取。通过正则表达式分别匹配azw3、mobi、epub分别提取不同的电子书资源。<br>book_url_item=bookdetailsoup.find(name=’a’,text=re.compile(booktype,re.I))<br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">根据书籍资源类型下载资源</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbookfortype</span><span class="params">(bookurl,categroy_path,bookdetailsoup,booktype)</span>:</span></span><br><span class="line">    booktitle=bookdetailsoup.select(<span class="string">'.news_title'</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">    bookauthor=bookdetailsoup.select(<span class="string">'#news_details'</span>)[<span class="number">0</span>].ul.li.find(text=re.compile(<span class="string">'作者：(.*?)'</span>)).strip()</span><br><span class="line">    bookauthor=bookauthor.replace(<span class="string">'作者：'</span>,<span class="string">''</span>)</span><br><span class="line">    booktitleinfo=<span class="string">"《"</span>+booktitle+<span class="string">'》-'</span>+bookauthor</span><br><span class="line">    print(<span class="string">'书籍详情：---'</span>+booktitleinfo)</span><br><span class="line">    book_url_item=bookdetailsoup.find(name=<span class="string">'a'</span>,text=re.compile(booktype,re.I))</span><br><span class="line">    <span class="keyword">if</span> book_url_item <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        downloadurl=book_url_item.attrs[<span class="string">'href'</span>]</span><br><span class="line">        print(<span class="string">'下载地址：'</span>+downloadurl)</span><br><span class="line">        <span class="keyword">if</span> checkIfNoExistBookByUrl(downloadurl):</span><br><span class="line">            r = requests.get(downloadurl)</span><br><span class="line">            <span class="keyword">if</span> r.status_code==<span class="number">200</span>:</span><br><span class="line">                savepath=createdir(categroy_path,booktitleinfo)</span><br><span class="line">                filename=booktitle+<span class="string">"."</span>+booktype</span><br><span class="line">                savebook(r.content,savepath,filename)</span><br><span class="line">                p,f=os.path.split(categroy_path)</span><br><span class="line">                bookcategory=f</span><br><span class="line">                book=Book(bookcategory,booktitle,bookauthor,bookurl,downloadurl,savepath,<span class="string">"苦瓜书盘"</span>,booktype)</span><br><span class="line">                print(book.toString())</span><br><span class="line">                savebooktojson(book)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'下载失败：status_code='</span>+str(r.status_code))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'没有'</span>+booktype+<span class="string">'格式的书'</span>)</span><br></pre></td></tr></table></figure>
-
-
-<p>五、下载并保存<br>有了资源的下载资源后下载就变得很简单了，主要用python的os库，对文件进行操作，包括建目录及保存资源文件。也可以通过连接数据库将爬取的数据保存到数据库。<br>定义书籍类Book用于组织和保存数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,bookcategory,bookname,bookauthor,bookurl,bookdownloadurl,booksavepath,booksource,booktype)</span>:</span></span><br><span class="line">        self.bookcategory=bookcategory</span><br><span class="line">        self.bookname=bookname</span><br><span class="line">        self.bookauthor=bookauthor</span><br><span class="line">        self.bookurl=bookurl</span><br><span class="line">        self.bookdownloadurl=bookdownloadurl</span><br><span class="line">        self.booksavepath=booksavepath</span><br><span class="line">        self.booksource=booksource</span><br><span class="line">        self.booktype=booktype</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">toString</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">"bookcategory"</span>:self.bookcategory,<span class="string">"bookname"</span>:self.bookname,<span class="string">"bookauthor"</span>:self.bookauthor,<span class="string">"bookurl"</span>:self.bookurl,<span class="string">"bookdownloadurl"</span>:self.bookdownloadurl,<span class="string">"booksavepath"</span>:self.booksavepath,<span class="string">"booksource"</span>:self.booksource,<span class="string">"booktype"</span>:self.booktype&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">将获取的信息保存至文件</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">savebooktojson</span><span class="params">(book)</span>:</span></span><br><span class="line">    bookdata=&#123;</span><br><span class="line">        <span class="string">'booksource'</span>:book.booksource,</span><br><span class="line">        <span class="string">'booktype'</span>:book.booktype,</span><br><span class="line">        <span class="string">'bookcategory'</span>:book.bookcategory,</span><br><span class="line">        <span class="string">'bookname'</span>:book.bookname,</span><br><span class="line">        <span class="string">'bookauthor'</span>:book.bookauthor,</span><br><span class="line">        <span class="string">'bookurl'</span>:book.bookurl,</span><br><span class="line">        <span class="string">'bookdownloadurl'</span>:book.bookdownloadurl,</span><br><span class="line">        <span class="string">'booksavepath'</span>:book.booksavepath</span><br><span class="line">    &#125;</span><br><span class="line">    bookjson=json.dumps(bookdata,ensure_ascii=<span class="literal">False</span>) <span class="comment">#ensure_ascii=False 就不会用 ASCII 编码，中文就可以正常显示了</span></span><br><span class="line">    print(bookjson)</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'a'</span>,encoding=<span class="string">'gbk'</span>) <span class="keyword">as</span> file:</span><br><span class="line">        file.write(bookjson+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">根据目录创建文件夹</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createdir</span><span class="params">(savepath,dir)</span>:</span></span><br><span class="line">    path=os.path.join(savepath,dir)</span><br><span class="line">    isExists=os.path.exists(path)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        print(<span class="string">'已经存在'</span>+dir)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'创建目录'</span>+dir)</span><br><span class="line">        os.mkdir(path)</span><br><span class="line">    <span class="keyword">return</span> path</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">下载书籍资源</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">savebook</span><span class="params">(content,savepath,savefilename)</span>:</span></span><br><span class="line">    savefile=os.path.join(savepath,savefilename)</span><br><span class="line">    <span class="keyword">with</span> open(savefile, <span class="string">"wb"</span>) <span class="keyword">as</span> code:</span><br><span class="line">       code.write(content)</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<p>运行效果如下：</p>
-<p>1、爬取过程<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%BF%87%E7%A8%8B.png" alt="爬取过程"><br>2、爬取记录的json信息<br>data.json的信息如下：<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%AE%B0%E5%BD%95%E7%9A%84json%E4%BF%A1%E6%81%AF.png" alt="爬取记录"><br>3、爬取获取的资源<br>按目录都已经整理好了，够你看的了。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9A%84%E8%B5%84%E6%BA%90.png" alt="获取的资源"></p>
-<p>​<br>Python爬虫获取电子书资源实战的全部代码，包括爬取-&gt;分析、解析-&gt;保存至本地及数据库。<a href="https://download.csdn.net/download/fullbug/10468606" target="_blank" rel="noopener">下载</a></p>
-<p>​<strong>github:</strong> <a href="https://github.com/xiejava1018/getbooks" target="_blank" rel="noopener">https://github.com/xiejava1018/getbooks</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2883,7 +2956,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2995,7 +3068,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">175.9k</span>
+    <span title="Site words total count">178.9k</span>
   
   
 <!--51la网站应用监控-->
