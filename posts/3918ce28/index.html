@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="Python,数据处理," />
 
 
 
@@ -134,23 +134,21 @@
 
 
 
-<meta name="description" content="环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。 一、查看系统版本12[root@localhost ~]# cat &#x2F;etc&#x2F;centos-releaseCentOS Linux">
+<meta name="description" content="在有些项目中需要对信号进行滤波处理，尤其是在医疗的设备中如心跳、脉搏等设备的采样后进行处理。滤波的目的就是除去某些频率的信号如噪声。常见的包括有低通滤波、高通滤波、带通滤波。 低通滤波指的是去除高于某一阈值频率的信号；高通滤波去除低于某一频率的信号；带通滤波指的是类似低通高通的结合保留中间频率信号；带阻滤波也是低通高通的结合只是过滤掉的是中间部分。通过滤波可以过滤到一些无用的噪音，得到的比较平滑的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7下安装python3.8">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/57cef505/index.html">
+<meta property="og:title" content="Python实现简单信号滤波实战">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/3918ce28/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。 一、查看系统版本12[root@localhost ~]# cat &#x2F;etc&#x2F;centos-releaseCentOS Linux">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/9e8bcddbd7644d0b9bc702a13b3984e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/37df1186dcbf4820b7de6676120aa5ee.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/04054660445f497b886cb78119616722.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/6777b0e3d68b4842a700a05af5eb6411.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="article:published_time" content="2021-11-04T09:21:57.000Z">
-<meta property="article:modified_time" content="2021-11-04T10:24:15.092Z">
+<meta property="og:description" content="在有些项目中需要对信号进行滤波处理，尤其是在医疗的设备中如心跳、脉搏等设备的采样后进行处理。滤波的目的就是除去某些频率的信号如噪声。常见的包括有低通滤波、高通滤波、带通滤波。 低通滤波指的是去除高于某一阈值频率的信号；高通滤波去除低于某一频率的信号；带通滤波指的是类似低通高通的结合保留中间频率信号；带阻滤波也是低通高通的结合只是过滤掉的是中间部分。通过滤波可以过滤到一些无用的噪音，得到的比较平滑的">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2023-03-13T07:19:26.000Z">
+<meta property="article:modified_time" content="2023-03-13T07:24:20.701Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="数据处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png">
 
 
 
@@ -180,13 +178,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/57cef505/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/3918ce28/"/>
 
 
 
 
 
-  <title>CentOS7下安装python3.8 | XieJava's blog</title>
+  <title>Python实现简单信号滤波实战 | XieJava's blog</title>
   
 
 
@@ -323,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/57cef505/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/3918ce28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -340,7 +338,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS7下安装python3.8</h2>
+          <h2 class="post-title" itemprop="name headline">Python实现简单信号滤波实战</h2>
         
 
         <div class="post-meta">
@@ -352,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-04T17:21:57+08:00">
-                2021-11-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-13T15:19:26+08:00">
+                2023-03-13
               </time>
             
 
@@ -368,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-04T18:24:15+08:00">
-                2021-11-04
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-13T15:24:20+08:00">
+                2023-03-13
               </time>
             
           </span>
@@ -394,17 +392,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -416,8 +403,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/57cef505/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/57cef505/" itemprop="commentCount"></span>
+                <a href="/posts/3918ce28/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/3918ce28/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -425,7 +412,7 @@
 
           
           
-             <span id="/posts/57cef505/" class="leancloud_visitors" data-flag-title="CentOS7下安装python3.8">
+             <span id="/posts/3918ce28/" class="leancloud_visitors" data-flag-title="Python实现简单信号滤波实战">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -450,7 +437,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  914
+                  1.2k
                 </span>
               
 
@@ -487,55 +474,34 @@
       
 
       
-        <p>环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。</p>
-<h1 id="一、查看系统版本"><a href="#一、查看系统版本" class="headerlink" title="一、查看系统版本"></a>一、查看系统版本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat /etc/centos-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.0-327.el7.x86_64 <span class="comment">#1 SMP Thu Nov 19 22:10:57 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
-<p>查看python版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># python -V</span></span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+        <p>在有些项目中需要对信号进行滤波处理，尤其是在医疗的设备中如心跳、脉搏等设备的采样后进行处理。滤波的目的就是除去某些频率的信号如噪声。常见的包括有低通滤波、高通滤波、带通滤波。</p>
+<p>低通滤波指的是去除高于某一阈值频率的信号；高通滤波去除低于某一频率的信号；带通滤波指的是类似低通高通的结合保留中间频率信号；带阻滤波也是低通高通的结合只是过滤掉的是中间部分。通过滤波可以过滤到一些无用的噪音，得到的比较平滑的波形，用来进行分析。</p>
+<p>scipy模块提供了常用简单的信号滤波方法包括低通滤波、高通滤波、带通滤波、带阻滤波等。</p>
+<h2 id="一、scipy信号滤波函数介绍"><a href="#一、scipy信号滤波函数介绍" class="headerlink" title="一、scipy信号滤波函数介绍"></a>一、scipy信号滤波函数介绍</h2><ol>
+<li>滤波器构造函数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scipy.signal.butter(N, Wn, btype=<span class="string">'low'</span>, analog=<span class="literal">False</span>, output=<span class="string">'ba'</span>)</span><br></pre></td></tr></table></figure>
+<p> 输入参数：<br> N:滤波器的阶数<br> Wn：归一化截止频率。计算公式Wn=2*截止频率/采样频率。（注意：根据采样定理，采样频率要大于两倍的信号本身最大的频率，才能还原信号。截止频率一定小于信号本身最大的频率，所以Wn一定在0和1之间）。当构造带通滤波器或者带阻滤波器时，Wn为长度为2的列表。<br> btype : 滤波器类型{‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’},<br> output : 输出类型{‘ba’, ‘zpk’, ‘sos’},<br> 输出参数：<br> b，a: IIR滤波器的分子（b）和分母（a）多项式系数向量。output=’ba’<br> z,p,k: IIR滤波器传递函数的零点、极点和系统增益. output= ‘zpk’<br> sos: IIR滤波器的二阶截面表示。output= ‘sos’</p>
+<ol start="2">
+<li>滤波函数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scipy.signal.filtfilt(b, a, x, axis=<span class="number">-1</span>, padtype=<span class="string">'odd'</span>, padlen=<span class="literal">None</span>, method=<span class="string">'pad'</span>, irlen=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 
-<p>系统默认安装了Python 2.7.5</p>
-<h1 id="二、安装依赖"><a href="#二、安装依赖" class="headerlink" title="二、安装依赖"></a>二、安装依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
+<p> 输入参数：<br> b: 滤波器的分子系数向量<br> a: 滤波器的分母系数向量<br> x: 要过滤的数据数组。（array型）<br> axis: 指定要过滤的数据数组x的轴<br> padtype: 必须是“奇数”、“偶数”、“常数”或“无”。这决定了用于过滤器应用的填充信号的扩展类型。{‘odd’, ‘even’, ‘constant’, None}<br> padlen：在应用滤波器之前在轴两端延伸X的元素数目。此值必须小于要滤波元素个数- 1。（int型或None）<br> method：确定处理信号边缘的方法。当method为“pad”时，填充信号；填充类型padtype和padlen决定，irlen被忽略。当method为“gust”时，使用古斯塔夫森方法，而忽略padtype和padlen。{“pad” ，“gust”}<br> irlen：当method为“gust”时，irlen指定滤波器的脉冲响应的长度。如果irlen是None，则脉冲响应的任何部分都被忽略。对于长信号，指定irlen可以显著改善滤波器的性能。（int型或None）<br> 输出参数：<br> y:滤波后的数据数组</p>
+<h2 id="二、代码介绍"><a href="#二、代码介绍" class="headerlink" title="二、代码介绍"></a>二、代码介绍</h2><p>scipy模块signal滤波器类型包括低通滤波、高通滤波、带通滤波、带阻滤波</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pip install scipy</span><br><span class="line"><span class="comment">#低通滤波</span></span><br><span class="line"><span class="comment">#假设采样频率为1000hz,信号本身最大的频率为500hz，要滤除400hz以上频率成分，即截至频率为400hz,则wn=2*400/1000=0.8。Wn=0.8</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.8</span>, <span class="string">'lowpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#高通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.2</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带阻滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandstop'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、信号滤波实战"><a href="#三、信号滤波实战" class="headerlink" title="三、信号滤波实战"></a>三、信号滤波实战</h2><p>这里以一个真实的心电数据为例，来实战对心电图某一段时间采样的信号数据进行高通滤波处理，对比一下原始的信号和高通滤波后的信号波形，然后输出成图片文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#引入包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> signal</span><br><span class="line"><span class="comment">#读取心电图数据文件</span></span><br><span class="line">bspfile=<span class="string">'data/1.txt'</span></span><br><span class="line">bsp_f = open(bspfile, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">bsp_content = bsp_f.read()</span><br><span class="line">ary=bsp_content.split(<span class="string">' '</span>)</span><br><span class="line">ary=[float(s) <span class="keyword">for</span> s <span class="keyword">in</span> bsp_content.split(<span class="string">' '</span>)]</span><br><span class="line">ary_data=ary[<span class="number">0</span>:<span class="number">10000</span>] <span class="comment">#取前10秒数据</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.3</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line"><span class="comment">#绘图</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, ary_data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br><span class="line">axes[<span class="number">0</span>].plot(ary_data)</span><br><span class="line">axes[<span class="number">0</span>].set(title=<span class="string">'Source signal'</span>)</span><br><span class="line">axes[<span class="number">1</span>].plot(filtedData)</span><br><span class="line">axes[<span class="number">1</span>].set(title=<span class="string">'highpass signal'</span>)</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">plt.savefig(<span class="string">'./signal1.png'</span>, <span class="comment"># ⽂件名：png、jpg、pdf</span></span><br><span class="line">dpi = <span class="number">80</span>, <span class="comment"># 保存图⽚像素密度</span></span><br><span class="line">bbox_inches = <span class="string">'tight'</span>)<span class="comment"># 保存图⽚完整</span></span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>微信公众号：fullbug  关注微信公众号，回复“信号滤波”获取全部代码+数据集</p>
+<center> 
 
-<p>如果有提示一路选择Y就可以</p>
-<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://img-blog.csdnimg.cn/5967484e1d49472ab817580815275fef.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="下载Python源码包"></p>
-<p>下载稳定版本3.8版</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
+<br>
 
-<h1 id="四、解压安装python源码包"><a href="#四、解压安装python源码包" class="headerlink" title="四、解压安装python源码包"></a>四、解压安装python源码包</h1><h2 id="1、解压"><a href="#1、解压" class="headerlink" title="1、解压"></a>1、解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
-<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><p>进入解压后的目录进行编译和安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.8.12/</span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ./configure</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># make&amp;&amp;make install</span></span><br></pre></td></tr></table></figure>
-<p>执行完后显示安装成功<br><img src="https://img-blog.csdnimg.cn/9e8bcddbd7644d0b9bc702a13b3984e3.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pyhont安装成功"></p>
-<h2 id="3、建立命令软链接"><a href="#3、建立命令软链接" class="headerlink" title="3、建立命令软链接"></a>3、建立命令软链接</h2><p>虽然python3.8.12安装成功了，但默认输入python还是显示是2.7版本的。如果要用python3.8.12需要输入python3即可，有时候不太方便。可以通过修改软链接的方式将默认的python指向python3.8.12。<br>先看一下默认的python及新安装的python3都安装在哪里</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python</span></span><br><span class="line">/usr/bin/python</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
-<p>可以看到默认的python路径为/usr/bin/python，python3的路径为/usr/local/bin/python3<br>将python3的软链接加到python上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># mv /usr/bin/python /usr/bin/python.bak</span></span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/python3 /usr/bin/python</span></span><br></pre></td></tr></table></figure>
-<p>通过python -V命令查看python版号，这时python的版本已经是3.8.12了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># python -V</span></span><br><span class="line">Python 3.8.12</span><br></pre></td></tr></table></figure>
-<p>pip命令也可以修改，python3.8.12默认的pip是pip3，CentOS7的python2.7默认没有安装pip.<br>输入pip命令的时候提示命令没有找到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip</span></span><br><span class="line">bash: pip: <span class="built_in">command</span> not found...</span><br></pre></td></tr></table></figure>
-<p>这时也可以通过建立软链接的方式将pip命令链接到pip3上。首先看pip3命令在哪?</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which pip3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/pip3</span><br></pre></td></tr></table></figure>
-<p>然后建立pip到pip3的软链接</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/pip3 /usr/bin/pip</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip -V</span></span><br><span class="line">pip 21.1.1 from /usr/<span class="built_in">local</span>/lib/python3.8/site-packages/pip (python 3.8)</span><br></pre></td></tr></table></figure>
-<h1 id="五、配置yum"><a href="#五、配置yum" class="headerlink" title="五、配置yum"></a>五、配置yum</h1><p>安装python3改完软链接以后发现yum命令报错了，yum是依赖python2.7的，你把python改成了3.8了，所以报错了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># yum</span></span><br><span class="line">  File <span class="string">"/usr/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
-
-<p>可以修改yum里对python2的依赖即可。虽然安装了python3但是系统里python2依旧还在系统里，可以通过python2来指定用python2.7的命令，首先来看下python2的命令在哪里</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># which python2</span></span><br><span class="line">/usr/bin/python2</span><br></pre></td></tr></table></figure>
-<p>可以cd到/usr/bin目录下 通过ls -alh|grep python查看python命令的详细情况。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ls -alh|grep python</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/37df1186dcbf4820b7de6676120aa5ee.png#pic_center" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
-<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://img-blog.csdnimg.cn/04054660445f497b886cb78119616722.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/6777b0e3d68b4842a700a05af5eb6411.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="修改依赖"></p>
-<p>修改完这两个文件后，再敲yum命令就不会报错了。</p>
-<p><strong>至此CentOS7环境下python3.8.12已经成功安装！</strong></p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
       
     </div>
@@ -556,7 +522,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/57cef505/" title="CentOS7下安装python3.8">https://xiejava.gitee.io/posts/57cef505/</a>
+    <a href="https://xiejava.gitee.io/posts/3918ce28/" title="Python实现简单信号滤波实战">https://xiejava.gitee.io/posts/3918ce28/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -573,6 +539,8 @@
           
             <a href="/tags/Python/" rel="tag"># Python</a>
           
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" rel="tag"># 数据处理</a>
+          
         </div>
       
 
@@ -584,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/63a3c769/" rel="next" title="认识SOAR-安全事件编排自动化响应">
-                <i class="fa fa-chevron-left"></i> 认识SOAR-安全事件编排自动化响应
+              <a href="/posts/6a8b36cb/" rel="next" title="网络安全之认识日志采集分析审计系统">
+                <i class="fa fa-chevron-left"></i> 网络安全之认识日志采集分析审计系统
               </a>
             
           </div>
@@ -593,10 +561,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/7f405b25/" rel="prev" title="CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境搭建">
-                CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -776,7 +740,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、查看系统版本"><span class="nav-number">1.</span> <span class="nav-text">一、查看系统版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、安装依赖"><span class="nav-number">2.</span> <span class="nav-text">二、安装依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、下载python源码包"><span class="nav-number">3.</span> <span class="nav-text">三、下载python源码包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、解压安装python源码包"><span class="nav-number">4.</span> <span class="nav-text">四、解压安装python源码包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、解压"><span class="nav-number">4.1.</span> <span class="nav-text">1、解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装"><span class="nav-number">4.2.</span> <span class="nav-text">2、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、建立命令软链接"><span class="nav-number">4.3.</span> <span class="nav-text">3、建立命令软链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、配置yum"><span class="nav-number">5.</span> <span class="nav-text">五、配置yum</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、scipy信号滤波函数介绍"><span class="nav-number">1.</span> <span class="nav-text">一、scipy信号滤波函数介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、代码介绍"><span class="nav-number">2.</span> <span class="nav-text">二、代码介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、信号滤波实战"><span class="nav-number">3.</span> <span class="nav-text">三、信号滤波实战</span></a></li></ol></div>
             
 
           </div>
