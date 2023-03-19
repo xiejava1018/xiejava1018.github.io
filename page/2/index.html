@@ -313,6 +313,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9421a9eb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9421a9eb/" itemprop="url">AI机器学习时序序列特征提取实现分类预测实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-06T21:02:35+08:00">
+                2023-01-06
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T15:58:52+08:00">
+                2023-03-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9421a9eb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9421a9eb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9421a9eb/" class="leancloud_visitors" data-flag-title="AI机器学习时序序列特征提取实现分类预测实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近有位做医疗项目的同学咨询有一批人员的身高、体重、性别、年龄、心电图、是否有心脏病等数据是否可以根据这些数据预测某个人是否有心脏病的迹象。这当然是可以的，AI机器学习不就是干这事的吗？这是一个典型的分类算法。根据这些人体特征来判断是否存在潜在的疾病。问题是如何对心电图进行特征提取，提取出相关的特征，让模型进行学习和训练。</p>
+<p>拿到数据后，第一步，我们首先来看一下数据。</p>
+<h2 id="一、数据探索"><a href="#一、数据探索" class="headerlink" title="一、数据探索"></a>一、数据探索</h2><h3 id="1、读入数据"><a href="#1、读入数据" class="headerlink" title="1、读入数据"></a>1、读入数据</h3><p>导入numpy、pandas、matplotlib三大件，读入数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">df=pd.read_csv(<span class="string">'data_csv.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/1_%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="在这里插入图片描述"></p>
+<p>数据集中有age年龄、ismale性别、Weight身高、Height体重、HRTrend心电图、label是否有心脏病（1，是有心脏病、0是无心脏病）<br>这里看到主要的几个关键性的指标。HRTrend是csv中载入的时候数据是文本字符串格式，还有nan及\n等字符串，我们要将这些数据进行清洗规则化，将其转化为数组。</p>
+<h3 id="2、数据处理"><a href="#2、数据处理" class="headerlink" title="2、数据处理"></a>2、数据处理</h3><p>先拿一个样本数据来看看数据的情况。对它进行相应的处理，包括去掉回车换行符、去多余空格、然后以空格作为分隔形成数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HRTrend_Data=df[<span class="string">'HRTrend'</span>][<span class="number">1</span>][<span class="number">1</span>:len(df[<span class="string">'HRTrend'</span>][<span class="number">1</span>])<span class="number">-1</span>]</span><br><span class="line">HRTrend_Data=HRTrend_Data.replace(<span class="string">'\n'</span>,<span class="string">''</span>) <span class="comment">#替换掉换行符</span></span><br><span class="line">HRTrend_Data=HRTrend_Data.replace(<span class="string">'nan'</span>,str(<span class="number">0</span>))   <span class="comment">#将nan补0</span></span><br><span class="line">HRTrend_Data=re.sub(<span class="string">' +'</span>, <span class="string">' '</span>, HRTrend_Data).strip() <span class="comment">#去掉多余的空格</span></span><br><span class="line">HRTrend_Data=np.asarray([float(s) <span class="keyword">for</span> s <span class="keyword">in</span> HRTrend_Data.split(<span class="string">' '</span>)])  <span class="comment">#将字符串通过空格分隔，转换成数组</span></span><br><span class="line">pd.DataFrame(HRTrend_Data).plot()</span><br><span class="line">HRTrend_Data</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/2_%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png" alt="在这里插入图片描述"></p>
+<p>这个图形不是很规则不平滑，看数据是因为异常值太多，后面的数据都是0，这些0都是因为数据为Non补充进来的，有可能是应为数据采集的时候某个点位没有采集到。我们需要将这些异常值给处理掉。<br>对于中间为0的，我们可以通过采用前值填充或者后值填充（也就是用前面的值或后面的值来替代为0的值），后面全部为0的部分要去掉。应为会影响到一些关键性的特征，如均值、50%的值、70%的值等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_HRTrend1=pd.DataFrame(HRTrend_Data)</span><br><span class="line">df_HRTrend1.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/3_%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B01.png" alt="在这里插入图片描述"></p>
+<p>可以看到，这些异常值将会很大程度的影响一些关键特征，所以我们要处理异常值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HRTrend_Data=np.trim_zeros(HRTrend_Data)  <span class="comment">#去掉首尾的0</span></span><br><span class="line">df_data1=pd.DataFrame(HRTrend_Data)</span><br><span class="line">df_data1.replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>)  <span class="comment">#用前值替换掉中间的异常0</span></span><br><span class="line">df_data1.plot()</span><br><span class="line">df_data1.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/4_%E6%95%B0%E6%8D%AE%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%90%8E.png" alt="在这里插入图片描述"></p>
+<p>把刚对一个样本处理的过程写成一个函数，应用到所有的样本数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">procdata</span><span class="params">(df_dataclumn)</span>:</span></span><br><span class="line">    ary_data=df_dataclumn[<span class="number">1</span>:len(df_dataclumn)<span class="number">-1</span>]</span><br><span class="line">    ary_data=ary_data.replace(<span class="string">'\n'</span>,<span class="string">''</span>)</span><br><span class="line">    ary_data=ary_data.replace(<span class="string">'nan'</span>,str(<span class="number">0</span>))</span><br><span class="line">    ary_data=re.sub(<span class="string">' +'</span>, <span class="string">' '</span>, ary_data).strip()</span><br><span class="line">    ary_data=np.asarray([float(s) <span class="keyword">for</span> s <span class="keyword">in</span> ary_data.split(<span class="string">' '</span>)])</span><br><span class="line">    ary_data=np.trim_zeros(ary_data)</span><br><span class="line">    df_data=pd.DataFrame(ary_data)</span><br><span class="line">    df_data.replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    ary_data=df_data.values</span><br><span class="line">    <span class="keyword">return</span> ary_data</span><br><span class="line"></span><br><span class="line">df[<span class="string">'HRTrend'</span>]=df[<span class="string">'HRTrend'</span>].map(procdata)</span><br><span class="line">df[<span class="string">'Weight'</span>].replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>) <span class="comment">#去异常值</span></span><br><span class="line">df[<span class="string">'Height'</span>].replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>,inplace=<span class="literal">True</span>) <span class="comment">#去异常值</span></span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/5_%E5%8E%BB%E5%BC%82%E5%B8%B8%E5%80%BC%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="在这里插入图片描述"><br>找前六个样本看看效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig,axes = plt.subplots(<span class="number">2</span>,<span class="number">3</span>,figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">        i=i+<span class="number">1</span></span><br><span class="line">        axes[x,y].plot(df[<span class="string">'HRTrend'</span>][i])</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/6_%E6%9F%A5%E7%9C%8B%E5%89%8D%E5%85%AD%E4%B8%AA%E6%95%B0%E6%8D%AE.png" alt="在这里插入图片描述"></p>
+<h2 id="二、特征工程及模型训练"><a href="#二、特征工程及模型训练" class="headerlink" title="二、特征工程及模型训练"></a>二、特征工程及模型训练</h2><h3 id="方法一：通过描叙统计提取时序特征并进行模型训练"><a href="#方法一：通过描叙统计提取时序特征并进行模型训练" class="headerlink" title="方法一：通过描叙统计提取时序特征并进行模型训练"></a>方法一：通过描叙统计提取时序特征并进行模型训练</h3><ul>
+<li>特征提取</li>
+</ul>
+<p>有量纲时序特征提取包括以内容。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/7_%E6%8F%8F%E8%BF%B0%E7%BB%9F%E8%AE%A1.png" alt="在这里插入图片描述"></p>
+<p>可以看到，大部分内容都可以通过describe()获取。可以写个函数方法来获取相关的特征值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdescribefeatures</span><span class="params">(data)</span>:</span></span><br><span class="line">    df_feature=pd.DataFrame(data)</span><br><span class="line">    df_feature=df_feature.describe().T</span><br><span class="line">    range=df_feature[<span class="string">'max'</span>][<span class="number">0</span>]-df_feature[<span class="string">'min'</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> range,df_feature[<span class="string">'count'</span>][<span class="number">0</span>],df_feature[<span class="string">'mean'</span>][<span class="number">0</span>],df_feature[<span class="string">'std'</span>][<span class="number">0</span>],df_feature[<span class="string">'min'</span>][<span class="number">0</span>],df_feature[<span class="string">'25%'</span>][<span class="number">0</span>],df_feature[<span class="string">'50%'</span>][<span class="number">0</span>],df_feature[<span class="string">'75%'</span>][<span class="number">0</span>],df_feature[<span class="string">'max'</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">HRTrend_np=np.array(df[<span class="string">'HRTrend'</span>])</span><br><span class="line">HRTrend_features_ary=[getdescribefeatures(d) <span class="keyword">for</span> d <span class="keyword">in</span> HRTrend_np]</span><br><span class="line">df_HRTrend_features=pd.DataFrame(HRTrend_features_ary,columns=[<span class="string">'HRTrend'</span>+str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(HRTrend_features_ary[<span class="number">0</span>]))])</span><br><span class="line">df_HRTrend_features</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/8_%E6%8F%8F%E8%BF%B0%E7%BB%9F%E8%AE%A1%E7%89%B9%E5%BE%81.png" alt="在这里插入图片描述"></p>
+<p>将心电图提出的统计信息特征与年龄、性别、身高、体重等特征合并，形成特征集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data=df[[<span class="string">'age'</span>,<span class="string">'ismale'</span>,<span class="string">'Weight'</span>,<span class="string">'Height'</span>,<span class="string">'label'</span>]].join(df_HRTrend_features)</span><br></pre></td></tr></table></figure>
+
+<p>预留15个样本做最后的预测看效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_train_data=df_data[<span class="number">0</span>:len(df_data)<span class="number">-15</span>]    <span class="comment">#训练数据</span></span><br><span class="line">df_predict_data=df_data[len(df_data)<span class="number">-15</span>:len(df_data)]  <span class="comment">#用于预测的数据</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>模型训练</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line">x_tt, x_validation, y_tt, y_validation = train_test_split(x, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"><span class="comment"># 将训练集再切分为训练集和测试集</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(x_tt, y_tt, test_size=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将模型的名字和模型函数作为元组添加到列表当中存储；</span></span><br><span class="line">models = []</span><br><span class="line">models.append((<span class="string">"KNN"</span>,KNeighborsClassifier(n_neighbors=<span class="number">3</span>))) <span class="comment">#指定邻居个数</span></span><br><span class="line">models.append((<span class="string">"SVM Classifier"</span>,SVC(C=<span class="number">1000</span>)))</span><br><span class="line"><span class="comment">#可以通过参数C来控制精度，C越大要求精度越高；  C——错分点的惩罚度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#循环调用所有模型进行训练、预测</span></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> models:</span><br><span class="line">    clf.fit(x_train, y_train)</span><br><span class="line">    xy_lst = [(x_train, y_train), (x_validation, y_validation), (x_test, y_test)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(xy_lst)):</span><br><span class="line">        x_part = xy_lst[i][<span class="number">0</span>]  <span class="comment"># 为遍历中的第0部分</span></span><br><span class="line">        y_part = xy_lst[i][<span class="number">1</span>]  <span class="comment"># 为遍历中的第1部分</span></span><br><span class="line">        y_pred = clf.predict(x_part)</span><br><span class="line">        print(i)  <span class="comment"># i是下标，0表示训练集，1表示验证集，2表示测试集</span></span><br><span class="line">        print(clf_name, <span class="string">"ACC:"</span>, accuracy_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"REC:"</span>, recall_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"F-score:"</span>, f1_score(y_part, y_pred))</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/9_%E6%8F%8F%E8%BF%B0%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<p>SVM分类模型的效果要稍好于KNN的模型，但整体效果还不是很好。应该是提取的特征还是不够。我们来试下通过tsfresh提取时序特征并进行模型训练。</p>
+<h3 id="方法二：通过tsfresh提取时序特征并进行模型训练"><a href="#方法二：通过tsfresh提取时序特征并进行模型训练" class="headerlink" title="方法二：通过tsfresh提取时序特征并进行模型训练"></a>方法二：通过tsfresh提取时序特征并进行模型训练</h3><ul>
+<li>特征提取</li>
+</ul>
+<p>tsfresh可以自动提取各种时间特征，可以参考官方文档，一般的取最大、最小、偏度、峰度等统计指标这些都自动化集成了。<br><a href="https://tsfresh.readthedocs.io/en/latest/text/introduction.html" target="_blank" rel="noopener">https://tsfresh.readthedocs.io/en/latest/text/introduction.html</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/10_tsfresh.png" alt="在这里插入图片描述"></p>
+<p>通过tsfresh提取时序特征代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tsfresh <span class="keyword">import</span> extract_features</span><br><span class="line"><span class="keyword">from</span> tsfresh <span class="keyword">import</span> select_features</span><br><span class="line">dfx_HRTrend=pd.DataFrame()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> df.index:</span><br><span class="line">    df_i=pd.DataFrame(df[<span class="string">'HRTrend'</span>][i],columns=[<span class="string">'HRTrend'</span>])</span><br><span class="line">    df_i[<span class="string">'id'</span>]=i</span><br><span class="line">    df_i[<span class="string">'time'</span>]=np.array(range(<span class="number">1</span>,len(df_i)+<span class="number">1</span>))</span><br><span class="line">    df_i[<span class="string">'label'</span>]=df[<span class="string">'label'</span>][i]</span><br><span class="line">    dfx_HRTrend=pd.concat(objs=[dfx_HRTrend,df_i])</span><br><span class="line"></span><br><span class="line">dfx_xtracted_features = extract_features(dfx_HRTrend,column_id=<span class="string">"id"</span>, column_sort=<span class="string">"time"</span>)</span><br><span class="line">dfx_xtracted_features</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/11_%E6%97%B6%E5%BA%8F%E7%89%B9%E5%BE%81%E6%89%A9%E5%B1%95.png" alt="在这里插入图片描述"></p>
+<p>可以看到tsfresh自动提取了1574colums的特征，但是我们要选取与标签有相关性的特征。tsfresh可以自动做到这一点，通过tsfresh的select_features传入特征和标签来选择与标签有相关性的特征，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tsfresh.utilities.dataframe_functions <span class="keyword">import</span> impute</span><br><span class="line">impute(dfx_xtracted_features)</span><br><span class="line">df_HRTrend_features = select_features(dfx_xtracted_features, df[<span class="string">'label'</span>])</span><br><span class="line">df_HRTrend_features</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/12_%E6%97%B6%E5%BA%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96.png" alt="在这里插入图片描述"></p>
+<p>通过特征选择自动选取了有相关性的143个特征，比前面缩减了很多，有利于提高模型训练的效率和精度。<br>我们再来看一下模型训练的效果。<br>同样将心电图通过tsfresh提出的时序特征与年龄、性别、身高、体重等特征合并，形成特征集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data=df[[<span class="string">'age'</span>,<span class="string">'ismale'</span>,<span class="string">'Weight'</span>,<span class="string">'Height'</span>,<span class="string">'label'</span>]].join(df_HRTrend_features)</span><br></pre></td></tr></table></figure>
+
+<p>预留15个样本做最后的预测看效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_train_data=df_data[<span class="number">0</span>:len(df_data)<span class="number">-15</span>]    <span class="comment">#训练数据</span></span><br><span class="line">df_predict_data=df_data[len(df_data)<span class="number">-15</span>:len(df_data)]  <span class="comment">#用于预测的数据</span></span><br></pre></td></tr></table></figure>
+
+<p>模型训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> recall_score</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line">x_tt, x_validation, y_tt, y_validation = train_test_split(x, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"><span class="comment"># 将训练集再切分为训练集和测试集</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(x_tt, y_tt, test_size=<span class="number">0.25</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将模型的名字和模型函数作为元组添加到列表当中存储；</span></span><br><span class="line">models = []</span><br><span class="line">models.append((<span class="string">"KNN"</span>,KNeighborsClassifier(n_neighbors=<span class="number">3</span>))) <span class="comment">#指定邻居个数</span></span><br><span class="line">models.append((<span class="string">"SVM Classifier"</span>,SVC(C=<span class="number">1000</span>)))</span><br><span class="line"><span class="comment">#可以通过参数C来控制精度，C越大要求精度越高；  C——错分点的惩罚度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#循环调用所有模型进行训练、预测</span></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> models:</span><br><span class="line">    clf.fit(x_train, y_train)</span><br><span class="line">    xy_lst = [(x_train, y_train), (x_validation, y_validation), (x_test, y_test)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(xy_lst)):</span><br><span class="line">        x_part = xy_lst[i][<span class="number">0</span>]  <span class="comment"># 为遍历中的第0部分</span></span><br><span class="line">        y_part = xy_lst[i][<span class="number">1</span>]  <span class="comment"># 为遍历中的第1部分</span></span><br><span class="line">        y_pred = clf.predict(x_part)</span><br><span class="line">        print(i)  <span class="comment"># i是下标，0表示训练集，1表示验证集，2表示测试集</span></span><br><span class="line">        print(clf_name, <span class="string">"ACC:"</span>, accuracy_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"REC:"</span>, recall_score(y_part, y_pred))</span><br><span class="line">        print(clf_name, <span class="string">"F-score:"</span>, f1_score(y_part, y_pred))</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/13_%E6%97%B6%E5%BA%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E5%90%8E%E7%9A%84%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<p>可以看到不管是KNN模型和SVM的模型都取得了不错的效果。</p>
+<h2 id="三、效果"><a href="#三、效果" class="headerlink" title="三、效果"></a>三、效果</h2><p>最后我们来看一下，用预留的15个样本预测的效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">pre_test_y=df_predict_data[<span class="string">'label'</span>]</span><br><span class="line">pre_test_x=df_predict_data.drop(columns=<span class="string">'label'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> clf_name, clf <span class="keyword">in</span> models:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> pre_test_x.index:</span><br><span class="line">        y_predict=clf.predict(pre_test_x.loc[[i]])</span><br><span class="line">        predict_result=<span class="string">'预测错误！'</span></span><br><span class="line">        <span class="keyword">if</span> y_predict==pre_test_y.loc[[i]].values:</span><br><span class="line">            predict_result=<span class="string">'预测正确！'</span></span><br><span class="line">        print(<span class="string">'第'</span>+str(i)+<span class="string">'个样本'</span>+clf_name+<span class="string">' 预测y='</span>+str(y_predict)+<span class="string">'--实际 y='</span>+str(pre_test_y.loc[[i]].values)+<span class="string">' - '</span>+predict_result)</span><br><span class="line">    print(<span class="string">'-'</span>*<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>先是通过描叙统计提取时序特征并进行模型训练后模型预测的结果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/14_%E6%8F%8F%E5%8F%99%E7%BB%9F%E8%AE%A1%E9%A2%84%E6%B5%8B.png" alt="在这里插入图片描述"></p>
+<p>还是有不少预测错误了。<br>再来看通过tsfresh提取时序特征并进行模型训练后模型预测的结果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230106/15_%E6%97%B6%E5%BA%8F%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96%E9%A2%84%E6%B5%8B.png" alt="在这里插入图片描述"></p>
+<p>可以看到预留的15个样本都预测正确，取得了不错的效果！</p>
+<p>本文通过心电图分类模型介绍了从数据处理、时序特征提取、模型训练和效果评估。验证了对于小数据量，通过tsfresh提取时序特征，往往能够取得很好的效果。</p>
+<p>全部源代码及数据集见：<a href="https://download.csdn.net/download/fullbug/87369380" target="_blank" rel="noopener">https://download.csdn.net/download/fullbug/87369380</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c2fa9556/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2548,265 +2830,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/462af16b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/462af16b/" itemprop="url">Django加入markdown编辑器及markdown上传图片不回显避坑</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-15T23:29:21+08:00">
-                2022-07-15
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-07-15T23:40:10+08:00">
-                2022-07-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/462af16b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/462af16b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/462af16b/" class="leancloud_visitors" data-flag-title="Django加入markdown编辑器及markdown上传图片不回显避坑">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一般来说一个CMS系统如博客系统都需要一个好的富文本编辑器，现在大家更多的是选择MarkDown编辑器来编辑内容。Django作为python的主流web开发框架当然少不了markdown的插件。本文介绍如何在Django框架中引入markdown编辑器及在使用markdown时的注意事项。</p>
-<p>在Django框架中引入markdown编辑器主要是通过安装引入Django-mdeditor库来实现。<br>Django-mdeditor 是基于 Editor.md 的一个 django Markdown 文本编辑插件应用。<br>其官方下载地址见 <a href="https://pypi.org/project/django-mdeditor/" target="_blank" rel="noopener">https://pypi.org/project/django-mdeditor/</a><br>根据官方指导文档</p>
-<h1 id="一、安装使用"><a href="#一、安装使用" class="headerlink" title="一、安装使用"></a>一、安装使用</h1><h2 id="1、安装django-mdeditor"><a href="#1、安装django-mdeditor" class="headerlink" title="1、安装django-mdeditor"></a>1、安装django-mdeditor</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-mdeditor</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、在-settings-配置文件-INSTALLED-APPS-中添加-mdeditor"><a href="#2、在-settings-配置文件-INSTALLED-APPS-中添加-mdeditor" class="headerlink" title="2、在 settings 配置文件 INSTALLED_APPS 中添加 mdeditor"></a>2、在 settings 配置文件 INSTALLED_APPS 中添加 mdeditor</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'django_filters'</span>,<span class="comment">#注册条件查询</span></span><br><span class="line">    <span class="comment"># 注册markdown的应用</span></span><br><span class="line">    <span class="string">'mdeditor'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、针对django3-0-修改-frame-配置"><a href="#3、针对django3-0-修改-frame-配置" class="headerlink" title="3、针对django3.0+修改 frame 配置"></a>3、针对django3.0+修改 frame 配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_FRAME_OPTIONS = <span class="string">'SAMEORIGIN'</span>  <span class="comment"># django 3.0 + 默认为 deny</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4、在-settings-中添加媒体文件的路径配置"><a href="#4、在-settings-中添加媒体文件的路径配置" class="headerlink" title="4、在 settings 中添加媒体文件的路径配置"></a>4、在 settings 中添加媒体文件的路径配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'uploads'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在你项目根目录下创建 uploads/editor 目录，用于存放上传的图片。</p>
-<h2 id="5、在项目的根-urls-py-中添加扩展url和媒体文件url"><a href="#5、在项目的根-urls-py-中添加扩展url和媒体文件url" class="headerlink" title="5、在项目的根 urls.py 中添加扩展url和媒体文件url:"></a>5、在项目的根 urls.py 中添加扩展url和媒体文件url:</h2><p>注意是在项目的根 urls.py 中添加扩展url和媒体文件url，而不是在其他项目应用的urls.py中添加</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.conf.urls.static <span class="keyword">import</span> static</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    url(<span class="string">r'mdeditor/'</span>, include(<span class="string">'mdeditor.urls'</span>))</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> settings.DEBUG:</span><br><span class="line">    <span class="comment"># static files (images, css, javascript, etc.)</span></span><br><span class="line">    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</span><br></pre></td></tr></table></figure>
-
-<h2 id="6、在项目model中应用markdown"><a href="#6、在项目model中应用markdown" class="headerlink" title="6、在项目model中应用markdown"></a>6、在项目model中应用markdown</h2><p>示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    summary=models.CharField(max_length=<span class="number">500</span>,verbose_name=<span class="string">'内容摘要'</span>,default=<span class="string">''</span>)</span><br><span class="line">    content=MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount= models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount=models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br></pre></td></tr></table></figure>
-
-<p>见 <code>content=MDTextField(verbose_name=&#39;内容&#39;)</code> 表示博客文章的内容是MDTextField</p>
-<h2 id="7、向-admin-py-中注册model"><a href="#7、向-admin-py-中注册model" class="headerlink" title="7、向 admin.py 中注册model:"></a>7、向 admin.py 中注册model:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="meta">@admin.register(BlogPost)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPostAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'category'</span>,<span class="string">'isTop'</span>,<span class="string">'isHot'</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="8、迁移创建数据表"><a href="#8、迁移创建数据表" class="headerlink" title="8、迁移创建数据表"></a>8、迁移创建数据表</h2><p>运行 <code>python manage.py makemigrations</code> 和 <code>python manage.py migrate</code> 来创建你的model 数据库表，可以看到默认创建的content字段是longtext类型的<br><img src="https://img-blog.csdnimg.cn/a963a9ee98dc437fbb9605d56c48d798.png#pic_center" alt="默认创建的content字段是longtext类型的"></p>
-<h2 id="9、测试验证"><a href="#9、测试验证" class="headerlink" title="9、测试验证"></a>9、测试验证</h2><p>启动应用，访问<a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 点击新增博客文章，可以看到内容字段是markdown编辑器输入了。<br><img src="https://img-blog.csdnimg.cn/a82339a899c144b9bf49772cd4f807d3.png#pic_center" alt="markdown编辑器"></p>
-<p>至此django应用中就可以使用markdown编辑器了。</p>
-<h1 id="二、markdown上传图片不回显避坑"><a href="#二、markdown上传图片不回显避坑" class="headerlink" title="二、markdown上传图片不回显避坑"></a>二、markdown上传图片不回显避坑</h1><p>按照以上步骤配置django-mdeditor,markdown编辑器可以正常使用，但是这里有个大坑，就是有些浏览器在上传图片后上传的图片不回显！<br>我就碰到了这样的情况。<br><img src="https://img-blog.csdnimg.cn/63771e4b65b4499992aec3b425c6af46.png#pic_center" alt="上传图片后上传的图片不回显"></p>
-<p>在添加图片界面选择本地上传图片后发现后台接口调到了 <code>/mdeditor/uploads/?guid=1657867564930</code> 接口并且返回了200，但是上传的图片地址不回显，提交报“错误：图片地址不能为空。” 这就奇了怪了。<br>打开浏览器的调试工具，发现报了一个错，<code>Uncaught SyntaxError: Unexpected token 下 in JSON at position 141</code><br><img src="https://img-blog.csdnimg.cn/8d48982eb41846c3a25fc5271208531b.png#pic_center" alt="浏览器的调试工具，发现报了一个错"></p>
-<p>点击详情，具体应该是获取的JSON无法解析。<br><img src="https://img-blog.csdnimg.cn/9179dac6e320410b905175da624a6baa.png#pic_center" alt="JSON无法解析"></p>
-<p>这个JSON为什么无法解析呢？开始进一步调试，这个JSON是上传时调用的后台上传方法返回的。所以来看看是不是后台上传接口返回的JSON串有什么问题。找到/mdeditor/uploads路由所对应的源码<br><img src="https://img-blog.csdnimg.cn/cf8943365d794104a583f1b1613c3c6e.png#pic_center" alt="/mdeditor/uploads路由所对应的源码"></p>
-<p>UploadView的源代码，就是返回一个成功的json报文</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> JsonResponse(&#123;<span class="string">'success'</span>: <span class="number">1</span>,</span><br><span class="line">                     <span class="string">'message'</span>: <span class="string">"上传成功！"</span>,</span><br><span class="line">                     <span class="string">'url'</span>: os.path.join(settings.MEDIA_URL,</span><br><span class="line">                                         MDEDITOR_CONFIGS[<span class="string">'image_folder'</span>],</span><br><span class="line">                                         file_full_name)&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>实际打断点debug也是正常返回上传成功的json报文。<br><img src="https://img-blog.csdnimg.cn/9fae1d59d9194aed8856bb01b83bbf73.png#pic_center" alt="打断点debug也是正常返回上传成功的json报文"></p>
-<p>这就有点奇怪了，接口返回了正常的json报文怎么就解析不了了呢？接着继续调前台js代码，看究竟是什么原因。<br><img src="https://img-blog.csdnimg.cn/d01ac2d8b19d421c91a6bce58fd3c383.png#pic_center" alt="json串里多了几个字“下载视频”!"></p>
-<p>发现js获取的json串里多了几个字“下载视频”! 这是什么鬼？实在是没有地方有返回“下载视频”这几个字啊？看js代码是通过iframe来处理请求的，再来看看iframe的内容，发现iframe里确实有“下载视频”<br><img src="https://img-blog.csdnimg.cn/acc72d33e03746ef896058f625640bb9.png#pic_center" alt="iframe里确实有“下载视频”"><br>原来是有个chrome浏览器插件，擅自给加了“下载视频”的内容。再来看浏览器装了些啥插件。原来是有个迅雷插件，应该就是这个插件搞的鬼了，罪魁祸首就是它了！<br><img src="https://img-blog.csdnimg.cn/74175c998960443fb81d20e3f294f4a6.png#pic_center" alt="罪魁祸首迅雷插件"></p>
-<p>把这个迅雷插件删除或停用，果然一切正常！可以正常回显！！！<br><img src="https://img-blog.csdnimg.cn/f53ad6f543fa4036b9858398d83752f3.png#pic_center" alt="可以正常回显"></p>
-<p>显示插入的图片<br><img src="https://img-blog.csdnimg.cn/f7e7c7d586f34aae940edcb094f34254.png#pic_center" alt="显示插入的图片"></p>
-<p>所以，碰到markdown上传图片不回显的情况，先看下自己的浏览器是不是开启了迅雷插件应用，如果开启了迅雷插件应用先停用或删除！</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">&gt;</a>
   </nav>
 
 
@@ -2858,7 +2886,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-count">101</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2880,7 +2908,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2970,7 +2998,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">184.6k</span>
+    <span title="Site words total count">186.9k</span>
   
   
 <!--51la网站应用监控-->
