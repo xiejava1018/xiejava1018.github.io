@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="自我管理," />
+  <meta name="keywords" content="网络安全," />
 
 
 
@@ -134,17 +134,27 @@
 
 
 
-<meta name="description" content="今天是2021年1月1日，按照惯例应该是回忆过去展望未来的一天。 回忆过去：在过去的一年里，曾今在2020年立下的flag是否都实现了呢？ 2020的flag：  看完10本英文原著。 爱分享网站运营PV要达5W,UV达5千 每周至少发一篇微信公众号文章 开通自己的博客 每周至少跑步3次  2020年完成得最好的是看完了10本英文原著，因为2020过春节到第一季度受疫情影响，老老实实待在家里。在5">
+<meta name="description" content="一、什么是DVWADamn Vulnerable Web Application (DVWA)(译注：可以直译为：”该死的”不安全Web应用程序)，是一个编码差的、易受攻击的 PHP&#x2F;MySQL Web应用程序。 它的主要目的是帮助信息安全专业人员在合法的环境中，练习技能和测试工具，帮助 Web 开发人员更好地了解如何加强 Web 应用程序的安全性，并帮助学生和教师在可控的教学环境中了解和学习 W">
 <meta property="og:type" content="article">
-<meta property="og:title" content="再见2020,2021我来了！">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/e5fab05b/index.html">
+<meta property="og:title" content="CentOS7+LAMP+DVWA靶机搭建">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/4405dad8/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="今天是2021年1月1日，按照惯例应该是回忆过去展望未来的一天。 回忆过去：在过去的一年里，曾今在2020年立下的flag是否都实现了呢？ 2020的flag：  看完10本英文原著。 爱分享网站运营PV要达5W,UV达5千 每周至少发一篇微信公众号文章 开通自己的博客 每周至少跑步3次  2020年完成得最好的是看完了10本英文原著，因为2020过春节到第一季度受疫情影响，老老实实待在家里。在5">
-<meta property="article:published_time" content="2020-12-31T16:13:00.000Z">
-<meta property="article:modified_time" content="2020-12-31T16:51:20.019Z">
+<meta property="og:description" content="一、什么是DVWADamn Vulnerable Web Application (DVWA)(译注：可以直译为：”该死的”不安全Web应用程序)，是一个编码差的、易受攻击的 PHP&#x2F;MySQL Web应用程序。 它的主要目的是帮助信息安全专业人员在合法的环境中，练习技能和测试工具，帮助 Web 开发人员更好地了解如何加强 Web 应用程序的安全性，并帮助学生和教师在可控的教学环境中了解和学习 W">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E8%AE%BF%E9%97%AEDVWA.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/showdatabases.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/setupcheck.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E6%A3%80%E6%9F%A5check.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E4%BF%AE%E5%A4%8D%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/createdatabase.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/dvwa%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/DVWA%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2023-03-31T07:43:55.000Z">
+<meta property="article:modified_time" content="2023-03-31T08:03:42.148Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="自我管理">
+<meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E8%AE%BF%E9%97%AEDVWA.png">
 
 
 
@@ -174,13 +184,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/e5fab05b/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/4405dad8/"/>
 
 
 
 
 
-  <title>再见2020,2021我来了！ | XieJava's blog</title>
+  <title>CentOS7+LAMP+DVWA靶机搭建 | XieJava's blog</title>
   
 
 
@@ -317,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e5fab05b/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4405dad8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -334,7 +344,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">再见2020,2021我来了！</h2>
+          <h2 class="post-title" itemprop="name headline">CentOS7+LAMP+DVWA靶机搭建</h2>
         
 
         <div class="post-meta">
@@ -346,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-01T00:13:00+08:00">
-                2021-01-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-31T15:43:55+08:00">
+                2023-03-31
               </time>
             
 
@@ -362,8 +372,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-01-01T00:51:20+08:00">
-                2021-01-01
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-31T16:03:42+08:00">
+                2023-03-31
               </time>
             
           </span>
@@ -381,8 +391,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
                   </a>
                 </span>
 
@@ -399,8 +420,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/e5fab05b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e5fab05b/" itemprop="commentCount"></span>
+                <a href="/posts/4405dad8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4405dad8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -408,7 +429,7 @@
 
           
           
-             <span id="/posts/e5fab05b/" class="leancloud_visitors" data-flag-title="再见2020,2021我来了！">
+             <span id="/posts/4405dad8/" class="leancloud_visitors" data-flag-title="CentOS7+LAMP+DVWA靶机搭建">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -433,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  936
+                  772
                 </span>
               
 
@@ -470,33 +491,50 @@
       
 
       
-        <p>今天是2021年1月1日，按照惯例应该是回忆过去展望未来的一天。</p>
-<h2 id="回忆过去："><a href="#回忆过去：" class="headerlink" title="回忆过去："></a>回忆过去：</h2><p>在过去的一年里，曾今在2020年立下的flag是否都实现了呢？</p>
-<p><strong>2020的flag：</strong></p>
+        <h2 id="一、什么是DVWA"><a href="#一、什么是DVWA" class="headerlink" title="一、什么是DVWA"></a>一、什么是DVWA</h2><p>Damn Vulnerable Web Application (DVWA)(译注：可以直译为：”该死的”不安全Web应用程序)，是一个编码差的、易受攻击的 PHP/MySQL Web应用程序。 它的主要目的是帮助信息安全专业人员在合法的环境中，练习技能和测试工具，帮助 Web 开发人员更好地了解如何加强 Web 应用程序的安全性，并帮助学生和教师在可控的教学环境中了解和学习 Web 安全技术。<br>DVWA的中文介绍见 <a href="https://github.com/digininja/DVWA/blob/master/README.zh.md" target="_blank" rel="noopener">https://github.com/digininja/DVWA/blob/master/README.zh.md</a><br>下载地址：git clone <a href="https://github.com/digininja/DVWA.git" target="_blank" rel="noopener">https://github.com/digininja/DVWA.git</a></p>
+<h2 id="二、环境准备"><a href="#二、环境准备" class="headerlink" title="二、环境准备"></a>二、环境准备</h2><h3 id="1、LAMP环境安装"><a href="#1、LAMP环境安装" class="headerlink" title="1、LAMP环境安装"></a>1、LAMP环境安装</h3><p>DVWA的安装依赖的软件包如下：</p>
 <ul>
-<li>看完10本英文原著。</li>
-<li>爱分享网站运营PV要达5W,UV达5千</li>
-<li>每周至少发一篇微信公众号文章</li>
-<li>开通自己的博客</li>
-<li>每周至少跑步3次</li>
+<li>apache2 </li>
+<li>libapache2-mod-php </li>
+<li>mariadb-server </li>
+<li>mariadb-client php</li>
+<li>php-mysqli php-gd</li>
 </ul>
-<p>2020年完成得最好的是看完了10本英文原著，因为2020过春节到第一季度受疫情影响，老老实实待在家里。在5月份就看完了10本英文原著。但是后来却没有坚持下来。看英文原著的热情慢慢的消退下来。一是看了这么多本原著似乎英文还是那么的菜打击了自己的信心，二是看英文原著比较耗时间4、5月份开始正常上班后时间就显得比较紧张了。后来7月份的时候准备考通信工程师的考试，时间更加紧张。所以继续看英文原著的事情就放下来了。英文很重要，学习英文2020年还是要继续坚持。</p>
-<p> 爱分享网站因为各种原因在7月份的时候基本上已经停了，但是服务器还在续费。其实在5,6月份以前网站的访问量等各方面指标都一直在上升，因为疫情大家可能待在家里看书的需求量大增，网站的访问量一直都在持续的上升。如果网站不停基本上运营的flag还是可以达到的。现在的环境对于个人网站来说很艰难了。网站还会继续下去主要内容会以自己的博客为主了。</p>
-<p>因为网站基本停了，一直在想网站生存的方向。微信公众号的文章也比较少更新了。还是自己肚子里的货太少了，写了一段时间以后发现没啥东西写了，坚持不下去了。真佩服那些现在还在每天更新的微信公众号。</p>
-<p>经过多方比较决定用hexo来搭建自己的博客。写博客已经被认为是很古老的方式了，一直以来都很羡慕那些一直坚持下来的优质博主。想通过博客的方式记录自己的学习、生活、工作。2020年共写了24篇博客，产量不是很高，说明思考和积累还是不够。</p>
-<p>跑步锻炼，在夏天天气好的时候还是坚持得不错，每周基本上坚持了一次。天气渐渐冷了起来以后懒筋发作很少出去跑步了。看着自己日益发胖的体重，要深刻的检讨一下。</p>
-<p>2020年全年阅读量有所减少在豆瓣上标记只读了29本书。因为2020年中旬的时候决定考通信工程师和信息安全工程师，所以其他书看得比较少了。经过几个月的努力，顺利通过了通信工程师和信息安全工程师的考试。虽然2020年年初立的flag很多都没有完成，完成了的效果也不是特别好，但是过了通信工程师和信息安全工程师心里稍微有点宽慰。毕竟2020年努力过。</p>
-<h2 id="展望未来："><a href="#展望未来：" class="headerlink" title="展望未来："></a>展望未来：</h2><p>不管怎么样，2020年已经成为过去式了。崭新的2021已经来到，先立下2021年的flag。</p>
-<p><strong>2021年flag:</strong></p>
-<ul>
-<li>考CISP</li>
-<li>考一建</li>
-<li>发两篇论文</li>
-<li>至少写30篇博客文章</li>
-<li>完成12本英文原著</li>
-<li>完成50本书籍的阅读量</li>
-</ul>
-<p>2021加油！</p>
+<p>就是依赖于LAMP环境，可以参考官方文档一个依赖包手工安装也可以通过下载lamp统一安装脚本一键安装。<br>安装 - LAMP一键安装包<br>运行 <code>wget -c http://soft.vpser.net/lnmp/lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lamp</code> 一路回车选择默认项，稍等片刻，即可完成安装<br>如果是手工安装：<code>yum install -y httpd php php-mysql php-gd mariadb-server mariadb</code></p>
+<h2 id="三、安装DVWA"><a href="#三、安装DVWA" class="headerlink" title="三、安装DVWA"></a>三、安装DVWA</h2><h3 id="1、下载DVWA的软件包"><a href="#1、下载DVWA的软件包" class="headerlink" title="1、下载DVWA的软件包"></a>1、下载DVWA的软件包</h3><p>进入到默认的web发布目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/digininja/DVWA.git</span><br></pre></td></tr></table></figure>
+<p>直接通过地址访问DVWA<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E8%AE%BF%E9%97%AEDVWA.png" alt="访问DVWA"><br>他会提示需要将config/config.inc.php.dist复制成config/config.inc.php并配置环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp config.inc.php.dist config.inc.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、配置数据库"><a href="#2、配置数据库" class="headerlink" title="2、配置数据库"></a>2、配置数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config.ini.php</span><br></pre></td></tr></table></figure>
+<p>找到数据库的配置信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_DVWA</span> = array();</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_server'</span> ]   = <span class="string">'127.0.0.1'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_database'</span> ] = <span class="string">'dvwa'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_user'</span> ]     = <span class="string">'dvwa'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_password'</span> ] = <span class="string">'p@ssw0rd'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_port'</span>] = <span class="string">'3306'</span>;</span><br></pre></td></tr></table></figure>
+<p>根据config.inc.php的数据库配置信息配置数据库，注意不要用root来访问数据库。<br>先用客户端工具创建dvwa的数据库，再创建dvwa的用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all on dvwa.* to <span class="string">'dvwa'</span>@<span class="string">'localhost'</span> identified by <span class="string">'p@ssw0rd'</span> with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>登录数据库查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u dvwa -p</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/showdatabases.png" alt="show databases"></p>
+<h3 id="3、修改php-ini的配置"><a href="#3、修改php-ini的配置" class="headerlink" title="3、修改php.ini的配置"></a>3、修改php.ini的配置</h3><p>再次访问DVWA<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/setupcheck.png" alt="在这里插入图片描述"></p>
+<p>这里提示要修改php.ini的配置将 <code>allow_url_fopen=On</code> 和<code>allow_url_include=On</code>。</p>
+<p>找到环境的php.ini我这里是在/etc/php.ini进行修改，不要修改/var/www/html/DVWA/php.ini中的配置了。<br>配置好后重启apache </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd</span><br></pre></td></tr></table></figure>
+
+<p>刷新浏览器，可以看到红色的Disabled告警消失了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E6%A3%80%E6%9F%A5check.png" alt="红色告警消失了"></p>
+<p>reCAPTCHA key: Missing 这个告警是因为reCAPTCHA没有配置，这个需要去谷歌的网站申请公钥和私钥。可以不用管</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ReCAPTCHA settings</span></span><br><span class="line"><span class="comment">#   Used for the 'Insecure CAPTCHA' module</span></span><br><span class="line"><span class="comment">#   You'll need to generate your own keys at: https://www.google.com/recaptcha/admin</span></span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'recaptcha_public_key'</span> ]  = <span class="string">''</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'recaptcha_private_key'</span> ] = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 -R hackable</span><br><span class="line">chmod 777 -R config</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E4%BF%AE%E5%A4%8D%E7%BB%93%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<h3 id="4、创建数据"><a href="#4、创建数据" class="headerlink" title="4、创建数据"></a>4、创建数据</h3><p>配置完后点击“Create/Reset Database”</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/createdatabase.png" alt="成功创建数据库"></p>
+<h3 id="5、登录靶机"><a href="#5、登录靶机" class="headerlink" title="5、登录靶机"></a>5、登录靶机</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/dvwa%E7%99%BB%E5%BD%95.png" alt="在这里插入图片描述"><br>DVWA的默认用户名和密码是admin /password<br>登录成功后就可以开始进行靶机的实验了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/DVWA%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png" alt="在这里插入图片描述"><br>后续我们将通过Open-WAF来搭建一个WAF来防护这个靶机感受一下软waf的防护情况。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
       
     </div>
@@ -517,7 +555,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/e5fab05b/" title="再见2020,2021我来了！">https://xiejava.gitee.io/posts/e5fab05b/</a>
+    <a href="https://xiejava.gitee.io/posts/4405dad8/" title="CentOS7+LAMP+DVWA靶机搭建">https://xiejava.gitee.io/posts/4405dad8/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -532,7 +570,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86/" rel="tag"># 自我管理</a>
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
           
         </div>
       
@@ -545,8 +583,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/9fed4f95/" rel="next" title="工作这么多年了，我为什么还在考证">
-                <i class="fa fa-chevron-left"></i> 工作这么多年了，我为什么还在考证
+              <a href="/posts/8510060b/" rel="next" title="网络安全之认识勒索病毒">
+                <i class="fa fa-chevron-left"></i> 网络安全之认识勒索病毒
               </a>
             
           </div>
@@ -554,10 +592,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/6b94b28d/" rel="prev" title="如何理解企业安全能力框架(IPDRR)">
-                如何理解企业安全能力框架(IPDRR) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -737,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回忆过去："><span class="nav-number">1.</span> <span class="nav-text">回忆过去：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展望未来："><span class="nav-number">2.</span> <span class="nav-text">展望未来：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是DVWA"><span class="nav-number">1.</span> <span class="nav-text">一、什么是DVWA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、环境准备"><span class="nav-number">2.</span> <span class="nav-text">二、环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、LAMP环境安装"><span class="nav-number">2.1.</span> <span class="nav-text">1、LAMP环境安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安装DVWA"><span class="nav-number">3.</span> <span class="nav-text">三、安装DVWA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、下载DVWA的软件包"><span class="nav-number">3.1.</span> <span class="nav-text">1、下载DVWA的软件包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置数据库"><span class="nav-number">3.2.</span> <span class="nav-text">2、配置数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、修改php-ini的配置"><span class="nav-number">3.3.</span> <span class="nav-text">3、修改php.ini的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、创建数据"><span class="nav-number">3.4.</span> <span class="nav-text">4、创建数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、登录靶机"><span class="nav-number">3.5.</span> <span class="nav-text">5、登录靶机</span></a></li></ol></li></ol></div>
             
 
           </div>
