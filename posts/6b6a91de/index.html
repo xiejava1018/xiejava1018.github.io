@@ -140,16 +140,16 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/6b6a91de/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="恶意URL检测的方法很多，这里介绍通过机器学习分析URL文本分词词频来检测恶意URL。训练的数据集为开源数据集，通过机器学习训练检测模型，然后做了部分工程化的应用，将模型持久化，在应用的时候加载进来直接应用，不用重新进行训练。通过接口调用实现恶意URL检测预测判断。 恶意URL检测，对应与机器学习是个分类问题，这里分别用逻辑回归和SVM支持向量机分类模型进行模型实现。 具体实现过程包括数据载入–&amp;">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/cdcd148129c346f8a79ab6d91a120fe9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/7f17697af706490ba693272f6f3780ad.png#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/d6e2542df8944ce4803da80fe0f9f145.png#pic_center">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/1-%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/2-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%AD%A3%E5%B8%B8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/3-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%81%B6%E6%84%8F.png">
 <meta property="article:published_time" content="2021-12-09T00:58:04.000Z">
-<meta property="article:modified_time" content="2021-12-09T01:09:12.581Z">
+<meta property="article:modified_time" content="2023-04-07T10:11:32.799Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/cdcd148129c346f8a79ab6d91a120fe9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/1-%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-12-09T09:09:12+08:00">
-                2021-12-09
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-07T18:11:32+08:00">
+                2023-04-07
               </time>
             
           </span>
@@ -500,7 +500,7 @@
         <p>恶意URL检测的方法很多，这里介绍通过机器学习分析URL文本分词词频来检测恶意URL。训练的数据集为开源数据集，通过机器学习训练检测模型，然后做了部分工程化的应用，将模型持久化，在应用的时候加载进来直接应用，不用重新进行训练。通过接口调用实现恶意URL检测预测判断。</p>
 <p>恶意URL检测，对应与机器学习是个分类问题，这里分别用逻辑回归和SVM支持向量机分类模型进行模型实现。</p>
 <p>具体实现过程包括<strong>数据载入</strong>–&gt;<strong>数据处理（分词、向量化处理）</strong>–&gt;<strong>模型训练</strong>–&gt;<strong>模型保存</strong>–&gt;<strong>模型应用</strong></p>
-<p><strong>项目组织结构如下：</strong><br><img src="https://img-blog.csdnimg.cn/cdcd148129c346f8a79ab6d91a120fe9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_11,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="项目组织结构"></p>
+<p><strong>项目组织结构如下：</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/1-%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="项目组织结构"></p>
 <h1 id="一、数据载入"><a href="#一、数据载入" class="headerlink" title="一、数据载入"></a>一、数据载入</h1><p>从数据集中载入数据，读取数据，将URL和标签进行识别和区分。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从文件中获取数据集</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDataFromFile</span><span class="params">(filename=<span class="string">'data/data.csv'</span>)</span>:</span></span><br><span class="line">    input_url = filename</span><br><span class="line">    data_csv = pd.read_csv(input_url, <span class="string">','</span>, error_bad_lines=<span class="literal">False</span>)</span><br><span class="line">    data_df = pd.DataFrame(data_csv)</span><br><span class="line">    url_df = np.array(data_df)</span><br><span class="line">    random.shuffle(url_df)</span><br><span class="line">    y = [d[<span class="number">1</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    inputurls = [d[<span class="number">0</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    <span class="keyword">return</span> inputurls,y</span><br></pre></td></tr></table></figure>
 
@@ -527,7 +527,7 @@
 <h2 id="载入已经训练好的模型"><a href="#载入已经训练好的模型" class="headerlink" title="载入已经训练好的模型"></a>载入已经训练好的模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#载入已经训练好的模型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadModel</span><span class="params">()</span>:</span></span><br><span class="line">    file1 = modelfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file1, <span class="string">'rb'</span>) <span class="keyword">as</span> f1:</span><br><span class="line">        model = pickle.load(f1)</span><br><span class="line">    f1.close()</span><br><span class="line"></span><br><span class="line">    file2 = vectorfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file2, <span class="string">'rb'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        vector = pickle.load(f2)</span><br><span class="line">    f2.close()</span><br><span class="line">    <span class="keyword">return</span> model,vector</span><br></pre></td></tr></table></figure>
 <h2 id="通过接口进行调用"><a href="#通过接口进行调用" class="headerlink" title="通过接口进行调用"></a>通过接口进行调用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过接口进行调用</span></span><br><span class="line"><span class="meta">@app.route('/&lt;path:path&gt;')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_predict</span><span class="params">(path)</span>:</span></span><br><span class="line">    X_predict = []</span><br><span class="line">    X_predict.append(path)</span><br><span class="line">    model, vector = loadModel()</span><br><span class="line">    x = vector.transform(X_predict)</span><br><span class="line">    y_predict = model.predict(x)</span><br><span class="line">    print(y_predict[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"url predict: "</span>+str(y_predict[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 
-<h1 id="五、应用效果"><a href="#五、应用效果" class="headerlink" title="五、应用效果"></a>五、应用效果</h1><p>将需要检测的URL，输入到<a href="http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。" target="_blank" rel="noopener">http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。</a><br><a href="http://127.0.0.1:5000/sohu.com/a/338823532_354899" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/338823532_354899</a><br><img src="https://img-blog.csdnimg.cn/7f17697af706490ba693272f6f3780ad.png#pic_center" alt="检测效果1"><br><a href="http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test</a><br><img src="https://img-blog.csdnimg.cn/d6e2542df8944ce4803da80fe0f9f145.png#pic_center" alt="检测效果2"></p>
+<h1 id="五、应用效果"><a href="#五、应用效果" class="headerlink" title="五、应用效果"></a>五、应用效果</h1><p>将需要检测的URL，输入到<a href="http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。" target="_blank" rel="noopener">http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。</a><br><a href="http://127.0.0.1:5000/sohu.com/a/338823532_354899" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/338823532_354899</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/2-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%AD%A3%E5%B8%B8.png" alt="检测效果1"><br><a href="http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/3-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%81%B6%E6%84%8F.png" alt="检测效果2"></p>
 <p>完整代码及数据集见：<a href="https://github.com/xiejava1018/urldetection.git" target="_blank" rel="noopener">https://github.com/xiejava1018/urldetection.git</a></p>
 <p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 
