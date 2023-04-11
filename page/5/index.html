@@ -313,6 +313,269 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e2fd4a90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/e2fd4a90/" itemprop="url">网络信息安全之纵深防御</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T18:30:28+08:00">
+                2022-03-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-26T10:47:35+08:00">
+                2022-04-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/e2fd4a90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e2fd4a90/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/e2fd4a90/" class="leancloud_visitors" data-flag-title="网络信息安全之纵深防御">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>什么是“纵深防御”？很多人和资料都有不同的解释，有许多资料将“纵深防御”和“分层防护”等同起来，<br>上次文章介绍了“<a href="https://xiejava.blog.csdn.net/article/details/123794343" target="_blank" rel="noopener">分层防护</a>”，分层防护是根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理等各个层级，在每个层级实施相应的防护策略和手段。“纵深防御”与“分层防护”既有区别又有联系。</p>
+<p>“纵深防御”实际上并不是一个网络安全领域的专属名词，早在二十世纪初，前苏联元帅米·尼·图哈切夫斯基就在对第一次世界大战以及国内战争经验的基础上，提出了一种名为“大纵深作战理论”的思想。由于网络安全的本质就是黑客与开发者之间的攻防战，所以信息安全领域中的“纵深防御”概念确与战争学上的思想有着共通之处，其核心都是多点布防、以点带面、多面成体，以形成一个多层次的、立体的全方位防御体系来挫伤敌人、保障自身的整体安全。</p>
+<p>根据《信息安全工程师教程（第2版）》的描述，<strong>纵深防御模型的基本思路就是将信息网络安全防护措施有机组合起来，针对保护对象，部署合适的安全措施，形成多道保护线，各安全防护措施能够相互支持和补救，尽可能地阻断攻击者的威胁</strong>。目前，安全业界认为网络需要建立四道防线：安全保护是网络的第一道防线，能够阻止对网络的入侵和危害；安全监测是网络的第二道防线，可以及时发现入侵和破坏；实施响应是网络的第三道防线，当攻击发生时维持网络”打不垮”；恢复是网络的第四道防线，使网络在遭受攻击后能够以最快的速度“起死回升”，最大限度地降低安全事件带来的损失。看描述基本上是对应美国国防部提出的PDRR模型，即（Protection防护、Detection检测、Recovery恢复、Response响应）。PDRR改进了传统的只有防护的单一安全防御思想，强调信息安全保障的四个重要环节。<br>保护（Protection）的内容主要有加密机制、数据签名机制、访问控制机制、认证机制、信息隐藏、防火墙技术等。<br>检测（Detection）的内容主要有入侵检测、系统脆弱性检测、数据完整性检测、攻击性检测等。<br>恢复（Recovery）的内容主要有数据备份、数据修复、系统恢复等。<br>响应（Response）的内容主要有应急策略、应急机制、应急手段、入侵过程分析及安全状态评估等。<br><img src="https://img-blog.csdnimg.cn/55be794c0ca54144b664236a49d06321.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PDRR"></p>
+<p>但是PPDR模型总体还是比较局限与从技术上考虑安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木板构成的“木桶”，木桶的容量由最短的那块短板决定。在处理信息安全问题是，需要全面考虑各方面的因素。</p>
+<p>所以美国国家安全局（NSA）发布的信息安全保障技术框架IATF（Information Assurance Technical Framework）提出了纵深防御战略思想，其3个核心要素就是人、技术和操作。信息系统安全保障依赖于人、技术和操作来共同实现组织机构的职能。<br>IATF用一句话概括起来就是：<strong>一个核心思想、三个核心要素、四个焦点领域</strong>。<br><img src="https://img-blog.csdnimg.cn/fdddd1b8b76b4be3a41e4095d08edb49.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="IATF纵深防御"></p>
+<p><strong>一个核心思想</strong><br>一个核心思想就是”纵深防御”，<strong>纵深防御也被称为深度防护战略（Defense-in-Depth），是指网络安全需要采用一个多层次、纵深的安全措施来保障信息安全。因为网络信息的安全不是仅仅依靠一两种技术或简单的安全防御设施就能实现，必须在各个层次、不同技术框架区域中实施保障机制，才能最大程度地降低风险，应对攻击并保护信息系统的安全</strong>。在一个规范的信息系统网络中，我们可以看到在网络出口有防火墙，在DMZ区有防火墙，在服务器前端还有防火墙，这就是纵深防御思想的一个体现。需要在多个位置部署安全措施，看似重复，但是因其面对不同的业务、其安全策略有很大的差异。</p>
+<p><strong>三个核心要素</strong><br>三个核心要素是人、技术、操作。网络安全三分靠技术、七分靠管理，三要素中的“人”指的就是加强管理。<br>人是信息系统的主题，包括信息系统的拥有者、管理者和使用者，是信息安全保障的核心；<br>技术是重要手段，需要通过技术机制来保障各项业务的安全，是一种被动防御；<br>操作也称为运行或运营安全，是一种主动防御的体系和机制，包括风险评估、监控、审计、入侵检测等。<br><img src="https://img-blog.csdnimg.cn/4ccc279ac6a94841b36f5e6c786a90a0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="三个核心要素"></p>
+<p><strong>四个焦点领域</strong><br>网络和基础设施、区域边界、计算环境、支撑性基础设施4个焦点领域。基于这4个焦点领域，结合IATF纵深防御的思想进行信息安全防御从而形成保障框架。</p>
+<p>1.保护网络和基础设施</p>
+<p>网络和其他基础设施是信息系统及业务的支撑，是整个信息系统安全的基础。应采取措施确保网络和基础设施能稳定可靠运行，不会因故障和外界影响导致服务的中断或数据延迟，确保在网络中进行传输的公共的、私人的信息能正确地被接收者获取，不会导致未受权的访问、更改等。保护网络和基础设施防护措施包括但并不限于以下方式。</p>
+<ul>
+<li>合理规划以确保骨干网可用性。</li>
+<li>使用安全的技 术架构，例如在使用无线网络时考虑安全的技术架构。</li>
+<li>使用冗余设备提高可用性。</li>
+<li>使用虚拟专网 ( VPN)保护通信。</li>
+</ul>
+<p>2.保护区域边界</p>
+<p>信息系统根据业务、管理方式和安全等级的不同，通常可以划分为多个区域，这些区或多或少都有与其他区域相连接的边界。保护区域边界关注的是如何对进出这此区域边界的数据流进行有效的控制与监视。要合理地将信息系统根据业务、管理方式和安全等级划分不同的安全区域，并明确定义不同网络区域间需要哪些数据传递。在此基础上采取措施对数据进行控制与监视。通常采取的措施包括但并不限于以下方式。</p>
+<ul>
+<li>在区域边界设 置身份认证和访问控制措施，例如部署防火墙对来访者进行身份认证。</li>
+<li>在区域边 界部署人侵检测系统以发现针对安全区域内的攻击行为。</li>
+<li>在区域边界部署防病毒网关以发现并过滤数据中的恶意代码。</li>
+<li>使用VPN设备以确保安全的接人。</li>
+<li>部署抗拒绝服务攻击设备以应对拒绝服务攻击。</li>
+<li>流量管理、行为管理等其他措施。</li>
+</ul>
+<p>3.保护计算环境</p>
+<p>计算环境指信息系统中的服务器、客户机及其中安装的操作系统、应用软件等。保护计算环境通常采用身份鉴别、访问控制、加密等一系列技术以确保计算环境内的数据保密性、完整性、可用性、不可否认性等。保护计算环境的措施包括但并不限于以下方式。<br>安装并使用安全的操作系统和应用软件。</p>
+<ul>
+<li>在服务 器上部署主机入侵检测系统、防病毒软件及其他安全防护软件。</li>
+<li>定期对系统进行漏洞扫描或者补丁加固，以避免系统脆弱性。</li>
+<li>定期对系统进行安全配置检查，确保最优配置。</li>
+<li>部署或配置对文件的完整性保护。</li>
+<li>定期对 系统和数据进行备份等。</li>
+</ul>
+<p>4.支撑性基础设施</p>
+<p>支撑性基础设施是提供安全服务的基础设施及与之相关的一系列活动的综合体。IATF定义了两种类型的支撑性基础设施：密钥管理基础设施( KMI) /公钥基础设施( PKI)和检测与响应。</p>
+<ul>
+<li>KMI/PKI：提供支持密钥、授权和证书管理的密码基础设施并能实现使用网络服务人员确实的身份识别。</li>
+<li>检测与响应：提供入侵检测、报告、分析、评估和响应基础设施，它能迅速检测和响应入侵、异常事件并提供运行状态的情况。</li>
+</ul>
+<p>IATF的4个技术焦点区域是一个逐层递进的关系，从而形成一种纵深防御系统。因此，以上4个方面的应用充分贯彻了纵深防御的思想，对整个信息系统的各个区域、各个层次，甚至在每一个层次内部都部署了信息安全设备和安全机制，保证访问者对每一个 系统组件进行访问时都受到保障机制的监视和检测，以实现系统全方位的充分防御，将系统遭受攻进行访问时都受到保障机制的监视和检测，以实现系统全方位的充分防御，将系统遭受攻击的风险降至最低,确保数据的安全和可靠。</p>
+<p>除了纵深防御这个核心思想之外，IATF还提出了其他一些信息安全原则，包括保护多个位置、分层防护。<br>1.保护多个位置<br>保护多个位置包括保护网络和基础设施、区域边界、计算环境等,这一原则提醒我们，仅仅在信息系统的重要敏感区域设置一些保护装置 是不够的，任意一个系统漏洞都有可能导致严重的攻击和破坏后果，所以在信息系统的各个方位布置全面的防御机制，才能将风险降至最低。<br>2.分层防御<br>如果说保护多个位置原则是横向防御，那么这一原则就是纵向防御，这也是纵深防御思想的一个具体体现。分层防御即在攻击者和目标之间部署多层防御机制，每个这样的机制必须对攻击者形成一道屏障。而且每一个这样的机制还应包括保护和检测措施，以使攻击者不得不面对被检测到的风险，迫使攻击者由于高昂的攻击代价而放弃攻击行为。</p>
+<p>可见，<strong>纵深防御是战略思想、分层防护是具体的战术实现</strong>。</p>
+<p>资料来源：<br>《信息安全工程师教程（第2版）》<br>《CISP培训教材》</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/3a099914/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2734,426 +2997,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e7d4d6e1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e7d4d6e1/" itemprop="url">pandas数据处理之合并与拼接</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-10T14:10:57+08:00">
-                2022-02-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-02-10T18:08:08+08:00">
-                2022-02-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e7d4d6e1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e7d4d6e1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/e7d4d6e1/" class="leancloud_visitors" data-flag-title="pandas数据处理之合并与拼接">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在许多应用中，数据可能来自不同的渠道，在数据处理的过程中常常需要将这些数据集进行组合合并拼接，形成更加丰富的数据集。pandas提供了多种方法完全可以满足数据处理的常用需求。具体来说包括有join、merge、concat、append等。<br><img src="https://img-blog.csdnimg.cn/dd40ce2e4f694ae89ce8f85eceeb0c29.png#pic_center" alt="合并与拼接"><br>一般来说</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>join</td>
-<td>最简单，主要用于基于索引的横向合并拼接</td>
-</tr>
-<tr>
-<td>merge</td>
-<td>最常用，主要用户基于指定列的横向合并拼接</td>
-</tr>
-<tr>
-<td>concat</td>
-<td>最强大，可用于横向和纵向合并拼接</td>
-</tr>
-<tr>
-<td>append</td>
-<td>主要用于纵向追加</td>
-</tr>
-<tr>
-<td>combine_first</td>
-<td>合并重叠数据，填充缺失值</td>
-</tr>
-<tr>
-<td>update</td>
-<td>将一个数据集的值更新到另一个数据集</td>
-</tr>
-</tbody></table>
-<p>下面就来逐一介绍每个方法</p>
-<h1 id="一、join"><a href="#一、join" class="headerlink" title="一、join"></a>一、join</h1><p>join主要用于基于索引的横向合并拼接<br>在介绍pandas的join之前我们来看一下SQL对数据集join的几种模式。如果大家对SQL比较熟悉的话应该对SQL操作数据集进行各种合并拼接印象深刻。SQL中各种JOIN的方法如下：<br><img src="https://img-blog.csdnimg.cn/4b3662215d2944efaf765b0846d6102a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="SQL-JOIN"></p>
-<p>pandas的join实现了<strong>left join、right jion、inner join、out jion</strong>常用的4中join方法<br>来自官网的参数说明：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dataframe.join(other,  <span class="comment"># 待合并的另一个数据集</span></span><br><span class="line">                   on=<span class="literal">None</span>,  <span class="comment"># 连接的键</span></span><br><span class="line">                   how=<span class="string">'left'</span>,   <span class="comment"># 连接方式：‘left’, ‘right’, ‘outer’, ‘inner’ 默认是left</span></span><br><span class="line">                   lsuffix=<span class="string">''</span>,  <span class="comment"># 左边（第一个）数据集相同键的后缀</span></span><br><span class="line">                   rsuffix=<span class="string">''</span>,  <span class="comment"># 第二个数据集的键的后缀</span></span><br><span class="line">                   sort=<span class="literal">False</span>)  <span class="comment"># 是否根据连接的键进行排序；默认False</span></span><br></pre></td></tr></table></figure>
-
-<p>我们来看下实例，有两个数据集一个是人员姓名，一个是人员的工资</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left=pd.DataFrame([<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>], index=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>],columns=[<span class="string">'姓名'</span>])</span><br><span class="line">right=pd.DataFrame([<span class="number">13000</span>,<span class="number">15000</span>,<span class="number">9000</span>,<span class="number">8600</span>,<span class="number">10000</span>], index=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>],columns=[<span class="string">'工资'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/1f04c5a156c44172960950508e287fbe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="数据集"></p>
-<blockquote>
-<p>注意，left和right的数据集分别都指定了index，因为join主要用于基于索引的横向合并拼接。</p>
-</blockquote>
-<h2 id="1、left-join"><a href="#1、left-join" class="headerlink" title="1、left join"></a>1、left join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right)  <span class="comment">#默认how='left'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/1b288957d7e0406984f56457544cc4e0.png#pic_center" alt="left join"></p>
-<p>jion操作默认是left jion的操作，可以看到left索引为7姓名为钱七，在right中没有索引为7的对应所以显示left的姓名但right的工资为NaN，right中索引为8的数据在left中没有索引为8的，所以没有显示。left join合并left的数据<br>left join 如下图所示<br><img src="https://img-blog.csdnimg.cn/f83248acc33f426cad52fd05f391f467.png#pic_center" alt="left join"></p>
-<h2 id="2、right-join"><a href="#2、right-join" class="headerlink" title="2、right join"></a>2、right join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'right'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/9c959ac942b24db7a8740e1bdcae416a.png#pic_center" alt="right join"></p>
-<p>右链接合并时可以看到，left的数据集没有索引为8的项，所以索引为8的项显示right数据集的工资数据但姓名为NaN，在left中索引为7的项因为right中不存在，所以没有显示。right join合并right的数据<br>right join 如下图所示<br><img src="https://img-blog.csdnimg.cn/57ca11901b8443a9bfd8eecfd39de242.png#pic_center" alt="right join"></p>
-<h2 id="3、inner-join"><a href="#3、inner-join" class="headerlink" title="3、inner join"></a>3、inner join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/2f46d399e5014f959aed74e50e3a8173.png#pic_center" alt="inner join"></p>
-<p>内链接合并时，可以看到left数据集中的索引为7姓名为钱七因为在right数据集中找不到对应的索引，right数据集中索引为8的在left找不到对应的索引所以内连接合并时索引7和8都没有进行合并，inner join只合并两个数据集共有的数据<br>inner join 如下图所示<br><img src="https://img-blog.csdnimg.cn/28191c9ea9c04060a72a4c9e3586a342.png#pic_center" alt="inner join"></p>
-<h2 id="4、out-join"><a href="#4、out-join" class="headerlink" title="4、out join"></a>4、out join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'outer'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/c94d60a0e8ac49658d81f0ee959ddd30.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="out join"><br>外链接合并时，可以看到不管是left中的数据还是right中的数据都进行了合并。right join合并两个数据集中所有的数据。<br>outer join 如下图所示<br><img src="https://img-blog.csdnimg.cn/58c32617de5c476487c9cf0dfe7a0e82.png#pic_center" alt="outer join"><br>join很简单，但是它有局限性，因为它只能根据索引来合并。不能指定键来进行合并。比如我要根据编号和姓名来合并，join就比较难办了。但是pandas提供了merge的方法，可以指定列来进行合并拼接。</p>
-<h1 id="二、merge"><a href="#二、merge" class="headerlink" title="二、merge"></a>二、merge</h1><p>merge最常用，主要用户基于指定列和横向合并拼接，语法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, how=<span class="string">'inner'</span>, on=<span class="literal">None</span>, left_on=<span class="literal">None</span>, right_on=<span class="literal">None</span>,</span><br><span class="line">left_index=<span class="literal">False</span>, right_index=<span class="literal">False</span>, sort=<span class="literal">True</span>,suffixes=(<span class="string">'_x'</span>, <span class="string">'_y'</span>), copy=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>left/right</td>
-<td>两个不同的 DataFrame 对象。</td>
-</tr>
-<tr>
-<td>on</td>
-<td>指定用于连接的键（即列标签的名字），该键必须同时存在于左右两个 DataFrame 中，如果没有指定，并且其他参数也未指定， 那么将会以两个 DataFrame 的列名交集做为连接键。</td>
-</tr>
-<tr>
-<td>left_on</td>
-<td>指定左侧 DataFrame 中作连接键的列名。该参数在左、右列标签名不相同，但表达的含义相同时非常有用。</td>
-</tr>
-<tr>
-<td>right_on</td>
-<td>指定左侧 DataFrame 中作连接键的列名。</td>
-</tr>
-<tr>
-<td>left_index</td>
-<td>布尔参数，默认为 False。如果为 True 则使用左侧 DataFrame 的行索引作为连接键，若 DataFrame 具有多层索引(MultiIndex)，则层的数量必须与连接键的数量相等。</td>
-</tr>
-<tr>
-<td>right_index</td>
-<td>布尔参数，默认为 False。如果为 True 则使用左侧 DataFrame 的行索引作为连接键。</td>
-</tr>
-<tr>
-<td>how</td>
-<td>要执行的合并类型，从 {‘left’, ‘right’, ‘outer’, ‘inner’} 中取值，默认为“inner”内连接。</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>布尔值参数，默认为True，它会将合并后的数据进行排序；若设置为 False，则按照 how 给定的参数值进行排序。</td>
-</tr>
-<tr>
-<td>suffixes</td>
-<td>字符串组成的元组。当左右 DataFrame 存在相同列名时，通过该参数可以在相同的列名后附加后缀名，默认为(‘_x’,’_y’)。</td>
-</tr>
-<tr>
-<td>copy</td>
-<td>默认为 True，表示对数据进行复制。</td>
-</tr>
-</tbody></table>
-<p>我们来看下面的数据集，在上面的数据集中left数据集加入了员工的编号，right数据集加入了编号及姓名。索引就按默认的索引。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">left=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>],[<span class="number">4</span>,<span class="string">'李四'</span>],[<span class="number">5</span>,<span class="string">'王五'</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>],[<span class="number">7</span>,<span class="string">'钱七'</span>]],</span><br><span class="line">columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br><span class="line"></span><br><span class="line">right=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>,<span class="number">13000</span>],[<span class="number">4</span>,<span class="string">'李四'</span>,<span class="number">15000</span>],[<span class="number">5</span>,<span class="string">'王五'</span>,<span class="number">9000</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>,<span class="number">8600</span>],[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>]],</span><br><span class="line">columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/fcc9ae729d564abd89ce6b0144269a53.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="merge数据集"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/d3a58242a2da4719a3fa8b63aab5f9b9.png#pic_center" alt="pd.merge(left,right)"></p>
-<p>没有指定连接键，默认用重叠列名，没有指定连接方式，默认inner内连接（取left和right编号和姓名的交集）<br>和join一样通过how来指定连接方式如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right,how=<span class="string">'left'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/e6ba32e087644c7ca662e18969d3419b.png#pic_center" alt="pd.merge(left,right,how=&#39;left&#39;)"></p>
-<p>how的连接方式和join一样支持left、right、inner、outer<br>merge还可以指定多个列进行合并链接，也就是和SQL一样设置多个关联的列。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right,how=<span class="string">'outer'</span>,on=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/ec980f11279948188c804f9bddd80f36.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="merge-out"></p>
-<p>如果两个对象的列名不同，可以使用<code>left_on</code>，<code>right_on</code>分别指定，如我们把right数据集的“编码”列标签改成“ID”后如果需要left数据集的”编号”和right数据集的”ID”进行关联</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">right=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>,<span class="number">13000</span>],[<span class="number">4</span>,<span class="string">'李四'</span>,<span class="number">15000</span>],[<span class="number">5</span>,<span class="string">'王五'</span>,<span class="number">9000</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>,<span class="number">8600</span>],[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>]],columns=[<span class="string">'ID'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br><span class="line"></span><br><span class="line">pd.merge(left,right,how=<span class="string">'outer'</span>,left_on=<span class="string">'编号'</span>,right_on=<span class="string">'ID'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/dbd437e103634655bef58d4ef5b05d2b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="指定列名关联"></p>
-<p>虽然说merge已经很强大了，但是pandas愿意给你更多，它提供了concat，可以实现横向和纵向的合并与拼接。也就是说不但实现了SQL中的join还实现了union</p>
-<h1 id="三、concat"><a href="#三、concat" class="headerlink" title="三、concat"></a>三、concat</h1><p>concat() 函数用于沿某个特定的轴执行连接操作，语法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat(objs,axis=<span class="number">0</span>,join=<span class="string">'outer'</span>,join_axes=<span class="literal">None</span>,ignore_index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>objs</td>
-<td>一个序列或者是Series、DataFrame对象。</td>
-</tr>
-<tr>
-<td>axis</td>
-<td>表示在哪个轴方向上（行或者列）进行连接操作，默认 axis=0 表示行方向。</td>
-</tr>
-<tr>
-<td>join</td>
-<td>指定连接方式，取值为{“inner”,”outer”}，默认为 outer 表示取并集，inner代表取交集。</td>
-</tr>
-<tr>
-<td>ignore_index</td>
-<td>布尔值参数，默认为 False，如果为 True，表示不在连接的轴上使用索引。</td>
-</tr>
-<tr>
-<td>join_axes</td>
-<td>表示索引对象的列表。</td>
-</tr>
-</tbody></table>
-<p>来看具体的例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left2=pd.DataFrame([[<span class="number">1</span>,<span class="string">'陈一'</span>],[<span class="number">2</span>,<span class="string">'周二'</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/22564f0092714a18ba0a8e312bde8ff2.png#pic_center" alt="数据集"></p>
-<h2 id="1、纵向合并"><a href="#1、纵向合并" class="headerlink" title="1、纵向合并"></a>1、纵向合并</h2><p>concat默认纵向拼接，我们要在left1数据集的基础上把left2数据集给合并上去，很简单用concat直接就可以合并。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df=pd.concat([left,left2])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/19c5007f016d4a46b5ef715aa4d52445.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="纵向合并"></p>
-<h2 id="2、横向合并"><a href="#2、横向合并" class="headerlink" title="2、横向合并"></a>2、横向合并</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_outer=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'outer'</span>)<span class="comment">#外链接</span></span><br><span class="line">df_inner=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)<span class="comment">#内链接</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/d7bf47354d8b45dbabe3ed5f82aee366.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="横向合并"></p>
-<blockquote>
-<p>注意：因为concat的链接和join一样是通过索引来链接合并，并不能指定通过某个特定的列来链接进行合并，所以看到的合并后的数据集left和right的编号和姓名是错位的。</p>
-</blockquote>
-<p>如果要根据编号来关联可以指定编号作为索引再进行横向合并，这样就没有问题了。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">left.index=left[<span class="string">'编号'</span>].values</span><br><span class="line">right.index=right[<span class="string">'编号'</span>].values</span><br><span class="line">df_outer=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'outer'</span>)</span><br><span class="line">df_inner=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/5b57174ea9b14e7e96164c1ae1dd183d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="横向合并"></p>
-<h1 id="四、append"><a href="#四、append" class="headerlink" title="四、append"></a>四、append</h1><p>df.append 可以将其他行附加到调用方的末尾，并返回一个新对象。它是最简单常用的数据合并方式。语法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.append(self, other, ignore_index=<span class="literal">False</span>,verify_integrity=<span class="literal">False</span>, sort=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-
-<p>其中：</p>
-<ul>
-<li>other 是它要追加的其他 DataFrame 或者类似序列内容 </li>
-<li>ignore_index 如果为 True 则重新进行自然索引</li>
-<li>verify_integrity 如果为 True 则遇到重复索引内容时报错 </li>
-<li>sort 进行排序</li>
-</ul>
-<p>来看下面的例子：</p>
-<h2 id="1、同结构数据追加"><a href="#1、同结构数据追加" class="headerlink" title="1、同结构数据追加"></a>1、同结构数据追加</h2><p>将同结构的数据追加在原数据后面，在left数据集后面追加left2数据集，left2的数据集内容如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left2=pd.DataFrame([[<span class="number">1</span>,<span class="string">'陈一'</span>],[<span class="number">2</span>,<span class="string">'周二'</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br><span class="line">left2</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/82937b0bd5404b2a983a61e1afae4b1d.png#pic_center" alt="append数据集"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append(left2)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/f968e6e71cd24039b3d5f3f728fe0efb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="append"></p>
-<h2 id="2、不同结构数据追加"><a href="#2、不同结构数据追加" class="headerlink" title="2、不同结构数据追加"></a>2、不同结构数据追加</h2><p>不同结构数据追加，原数据没有的列会增加，没有对应内容的会为空NaN。<br>如：left3的数据集列有”编号”、”姓名”、”工资”</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left3=pd.DataFrame([[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>],[<span class="number">9</span>,<span class="string">'何九'</span>,<span class="number">15000</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br><span class="line">left3</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/63772c8399cf42e1b5fa4c8056cdcf5e.png#pic_center" alt="left3的数据集"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append(left3)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/40aa9fe061454ec1b5a2a2085ceacc4e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="不同结构数据追加"></p>
-<p>当left后追加left3后的数据集会增加“工资列”，没有对应内容的会为空。</p>
-<h2 id="3、追加合并多个数据集"><a href="#3、追加合并多个数据集" class="headerlink" title="3、追加合并多个数据集"></a>3、追加合并多个数据集</h2><p>append参数可带数据集列表，可以将多个数据集追加到原数据集<br>如我们将left2和left3都追加到left</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append([left2,left3])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/3e6c5584e92e46a287a1fbe89e19fa54.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="追加合并多个数据集"></p>
-<h1 id="五、combine-first"><a href="#五、combine-first" class="headerlink" title="五、combine_first"></a>五、combine_first</h1><p>combine_first可用于合并重复数据，用其他数据集填充没有的数据。如一个DataFrame数据集中出现了缺失数据，就可以用其他DataFrame数据集中的数据进行填充。语法格式如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">combine_first(other) <span class="comment">#只有一个参数other，该参数用于接收填充缺失值的DataFrame对象。</span></span><br></pre></td></tr></table></figure>
-
-<p>如left数据集中没有”工资”的数据，我们可以用right数据集有的数据去填充left数据集中的数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.combine_first(right) <span class="comment">#用right去填充left</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/a7c3857131df4cd0879a6c211196eeb5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="combine_first"></p>
-<h1 id="六、update"><a href="#六、update" class="headerlink" title="六、update"></a>六、update</h1><p>update和combine_first比较类似，区别在于：<br>1、填充合并方式稍有差异<br>combine_first：如果s1中c的值为空，用s2的值替换，否则保留s1的值<br>update：如果s2中的值不为空，那么替换s1，否则保留s1的值<br>2、update是更新原数据，combine_first会返回一个填充后的新数据集，对原数据不做更新。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.update(right) <span class="comment">#用right的数据更新left中的数据。</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/023ee8c45f0c4ebcab1591405bd43162.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="update"></p>
-<p>至此，本文介绍了pandas的多种数据合并与拼接方法，并介绍了每种方法的异同，通过pandas的数据处理可以应付日常数据处理中大部分的数据处理工作。</p>
-<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3210,7 +3053,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">104</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3322,7 +3165,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">193.4k</span>
+    <span title="Site words total count">194.9k</span>
   
   
 <!--51la网站应用监控-->
