@@ -3202,8 +3202,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-01-17T23:36:30+08:00">
-                2022-01-17
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-13T10:22:00+08:00">
+                2023-04-13
               </time>
             
           </span>
@@ -3439,7 +3439,7 @@
 </ul>
 <p>总的来说，恶意代码的传播是因为用户的软件出现了漏洞、操作不慎或者是两者的结合造成。</p>
 <p>（1）病毒。病毒具备有自我复制能力，一般嵌入主机的程序中。当被感染文件执行操作，如，用户打开一个可执行文件时，病毒就会自我繁殖。病毒一般都具有破坏性。<br>（2）木马。这种程序从表面上看没有危害，但实际上却隐含着恶意的意图和破坏的作用。一些木马程序会通过覆盖系统中已经存在的文件的方式存在于系统之中；另外有的还会以软件的形式出现，因为它一般是以一个正常的应用程序身份在系统中运行的，所以这种程序通常不容易被发现。<br>（3）蠕虫。蠕虫是一种可以自我复制的完全独立的程序，它的传播不需要借助被感染主机中的程序和用户的操作，而是通过系统存在的漏洞和设置的不安全性来进行入侵，如通过共享的设置来侵入。蠕虫可以自动创建与它的功能完全相同的副本，并能在无人干涉的情况下自动运行，大量地复制占用计算机的空间，使计算机的运行缓慢甚至瘫痪。</p>
-<h2 id="2、攻击机制"><a href="#2、攻击机制" class="headerlink" title="2、攻击机制"></a>2、攻击机制</h2><p>恶意代码的行为表现各异，破坏程度千差万别，但基本作用机制大体相同，其整个作用过程分为6个部分。<br><strong>（1）侵入系统</strong>。侵入系统是而已代码实现其恶意目的的必要条件。恶意代码入侵的途径很多，包括前面传播方式的各种途径。如：从互联网下载的程序本身就可能含有而已代码；接收已感染恶意代码的电子邮件；从光盘或U盘往系统上安装软件；黑客或者攻击者故意将恶意代码植入系统等。<br><strong>（2）维持或提升权限</strong>。恶意代码的传播与破坏必须盗用用户或者进程的合法权限才能完成。<br><strong>（3）隐蔽策略</strong>。为了不让系统发现恶意代码已经侵入系统，恶意代码可能会改名、删除源文件或者修改系统的安全策略来隐藏自己。<br><strong>（4）潜伏</strong>。恶意代码侵入系统后，等待一定的条件，并具有足够的权限时，就发作并进行破坏活动。<br><strong>（5）破坏</strong>。恶意代码本质具有破坏性，其目的是造成信息丢失，泄密，破坏系统完整性等。<br><strong>（6）重复（1）至（5）对新的目标实施攻击过程。</strong><br><img src="https://img-blog.csdnimg.cn/746efa50ae124e18af6b275d10e8196a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="恶意代码的攻击模型"></p>
+<h2 id="2、攻击机制"><a href="#2、攻击机制" class="headerlink" title="2、攻击机制"></a>2、攻击机制</h2><p>恶意代码的行为表现各异，破坏程度千差万别，但基本作用机制大体相同，其整个作用过程分为6个部分。<br><strong>（1）侵入系统</strong>。侵入系统是而已代码实现其恶意目的的必要条件。恶意代码入侵的途径很多，包括前面传播方式的各种途径。如：从互联网下载的程序本身就可能含有而已代码；接收已感染恶意代码的电子邮件；从光盘或U盘往系统上安装软件；黑客或者攻击者故意将恶意代码植入系统等。<br><strong>（2）维持或提升权限</strong>。恶意代码的传播与破坏必须盗用用户或者进程的合法权限才能完成。<br><strong>（3）隐蔽策略</strong>。为了不让系统发现恶意代码已经侵入系统，恶意代码可能会改名、删除源文件或者修改系统的安全策略来隐藏自己。<br><strong>（4）潜伏</strong>。恶意代码侵入系统后，等待一定的条件，并具有足够的权限时，就发作并进行破坏活动。<br><strong>（5）破坏</strong>。恶意代码本质具有破坏性，其目的是造成信息丢失，泄密，破坏系统完整性等。<br><strong>（6）重复（1）至（5）对新的目标实施攻击过程。</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220117/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E6%94%BB%E5%87%BB%E6%A8%A1%E5%9E%8B.png" alt="恶意代码的攻击模型"></p>
 <h2 id="3、防范手段"><a href="#3、防范手段" class="headerlink" title="3、防范手段"></a>3、防范手段</h2><p>通用恶意代码检测技术包括静态和动态检测技术：</p>
 <ul>
 <li><p><strong>基于特征的扫描技术</strong><br>建立恶意代码的特征文件，在扫描时根据特征进行匹配查找</p>
@@ -3452,8 +3452,16 @@
 </li>
 </ul>
 <p>其中基于特征的扫描技术和校验和法是静态检测技术，沙箱技术和基于蜜罐的检测技术属于动态检测技术。</p>
-<h2 id="四、常见恶意代码"><a href="#四、常见恶意代码" class="headerlink" title="四、常见恶意代码"></a>四、常见恶意代码</h2><p><img src="https://img-blog.csdnimg.cn/a67e601851d74a45ac57f45552261bd1.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="常见的恶意代码"></p>
+<h2 id="四、常见恶意代码"><a href="#四、常见恶意代码" class="headerlink" title="四、常见恶意代码"></a>四、常见恶意代码</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220117/%E5%B8%B8%E8%A7%81%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81.png" alt="常见的恶意代码"></p>
 <p>参考文献：<br>《网络攻防技术与实战 深入理解信息安全防护体系》 郭帆<br>《恶意代码及其防御》知乎 Drifter<br>《恶意代码》MBA智库百科</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
           
         
