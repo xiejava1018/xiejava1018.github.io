@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="网络安全," />
 
 
 
@@ -134,24 +134,20 @@
 
 
 
-<meta name="description" content="环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。 一、查看系统版本12[root@localhost ~]# cat &#x2F;etc&#x2F;centos-releaseCentOS Linux">
+<meta name="description" content="安全风险管理的三要素分别是资产、威胁和脆弱性，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象（资产）自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。“摸清家底，认清风险”做好资产安全信息管理是安全运营的第一步也是最重要的一步。 资产管理范围《GBT 20984-2007信息安全技术信息安全风险评估规范》中，对于资产的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7下安装python3.8">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/57cef505/index.html">
+<meta property="og:title" content="安全运营之资产安全信息管理">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/a446b750/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。 一、查看系统版本12[root@localhost ~]# cat &#x2F;etc&#x2F;centos-releaseCentOS Linux">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%B8%8B%E8%BD%BDpython.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/python%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/python%E8%BD%AF%E9%93%BE%E6%8E%A5.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yun%E4%BE%9D%E8%B5%961.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yum%E4%BE%9D%E8%B5%962.png">
+<meta property="og:description" content="安全风险管理的三要素分别是资产、威胁和脆弱性，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象（资产）自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。“摸清家底，认清风险”做好资产安全信息管理是安全运营的第一步也是最重要的一步。 资产管理范围《GBT 20984-2007信息安全技术信息安全风险评估规范》中，对于资产的">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230418/%E8%B5%84%E4%BA%A7%E5%AE%89%E5%85%A8%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2021-11-04T09:21:57.000Z">
-<meta property="article:modified_time" content="2023-04-14T02:17:42.300Z">
+<meta property="article:published_time" content="2023-04-18T09:05:48.000Z">
+<meta property="article:modified_time" content="2023-04-18T09:13:22.470Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%B8%8B%E8%BD%BDpython.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230418/%E8%B5%84%E4%BA%A7%E5%AE%89%E5%85%A8%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png">
 
 
 
@@ -181,13 +177,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/57cef505/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/a446b750/"/>
 
 
 
 
 
-  <title>CentOS7下安装python3.8 | XieJava's blog</title>
+  <title>安全运营之资产安全信息管理 | XieJava's blog</title>
   
 
 
@@ -324,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/57cef505/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a446b750/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -341,7 +337,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CentOS7下安装python3.8</h2>
+          <h2 class="post-title" itemprop="name headline">安全运营之资产安全信息管理</h2>
         
 
         <div class="post-meta">
@@ -353,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-04T17:21:57+08:00">
-                2021-11-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-04-18T17:05:48+08:00">
+                2023-04-18
               </time>
             
 
@@ -369,8 +365,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-04-14T10:17:42+08:00">
-                2023-04-14
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-18T17:13:22+08:00">
+                2023-04-18
               </time>
             
           </span>
@@ -399,8 +395,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
                   </a>
                 </span>
 
@@ -417,8 +413,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/57cef505/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/57cef505/" itemprop="commentCount"></span>
+                <a href="/posts/a446b750/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a446b750/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -426,7 +422,7 @@
 
           
           
-             <span id="/posts/57cef505/" class="leancloud_visitors" data-flag-title="CentOS7下安装python3.8">
+             <span id="/posts/a446b750/" class="leancloud_visitors" data-flag-title="安全运营之资产安全信息管理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -451,7 +447,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  927
+                  1.9k
                 </span>
               
 
@@ -467,7 +463,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -488,55 +484,22 @@
       
 
       
-        <p>环境的搭建是进行开发的第一步，python因为存在python2和python3两个版本，让在建立python环境时造成不便，并且由于在Linux环境下不像Window环境安装那么友好，存在一些小坑。本教程记录了CentOS7下安装python3.8的过程和注意事项。</p>
-<h1 id="一、查看系统版本"><a href="#一、查看系统版本" class="headerlink" title="一、查看系统版本"></a>一、查看系统版本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cat /etc/centos-release</span></span><br><span class="line">CentOS Linux release 7.2.1511 (Core)</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># uname -a</span></span><br><span class="line">Linux localhost.localdomain 3.10.0-327.el7.x86_64 <span class="comment">#1 SMP Thu Nov 19 22:10:57 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
-<p>查看python版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># python -V</span></span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
-
-<p>系统默认安装了Python 2.7.5</p>
-<h1 id="二、安装依赖"><a href="#二、安装依赖" class="headerlink" title="二、安装依赖"></a>二、安装依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
-
-<p>如果有提示一路选择Y就可以</p>
-<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%B8%8B%E8%BD%BDpython.png" alt="下载Python源码包"></p>
-<p>下载稳定版本3.8版</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
-
-<h1 id="四、解压安装python源码包"><a href="#四、解压安装python源码包" class="headerlink" title="四、解压安装python源码包"></a>四、解压安装python源码包</h1><h2 id="1、解压"><a href="#1、解压" class="headerlink" title="1、解压"></a>1、解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
-<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><p>进入解压后的目录进行编译和安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.8.12/</span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ./configure</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># make&amp;&amp;make install</span></span><br></pre></td></tr></table></figure>
-<p>执行完后显示安装成功<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/python%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt="pyhont安装成功"></p>
-<h2 id="3、建立命令软链接"><a href="#3、建立命令软链接" class="headerlink" title="3、建立命令软链接"></a>3、建立命令软链接</h2><p>虽然python3.8.12安装成功了，但默认输入python还是显示是2.7版本的。如果要用python3.8.12需要输入python3即可，有时候不太方便。可以通过修改软链接的方式将默认的python指向python3.8.12。<br>先看一下默认的python及新安装的python3都安装在哪里</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python</span></span><br><span class="line">/usr/bin/python</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
-<p>可以看到默认的python路径为/usr/bin/python，python3的路径为/usr/local/bin/python3<br>将python3的软链接加到python上</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># mv /usr/bin/python /usr/bin/python.bak</span></span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/python3 /usr/bin/python</span></span><br></pre></td></tr></table></figure>
-<p>通过python -V命令查看python版号，这时python的版本已经是3.8.12了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># python -V</span></span><br><span class="line">Python 3.8.12</span><br></pre></td></tr></table></figure>
-<p>pip命令也可以修改，python3.8.12默认的pip是pip3，CentOS7的python2.7默认没有安装pip.<br>输入pip命令的时候提示命令没有找到</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip</span></span><br><span class="line">bash: pip: <span class="built_in">command</span> not found...</span><br></pre></td></tr></table></figure>
-<p>这时也可以通过建立软链接的方式将pip命令链接到pip3上。首先看pip3命令在哪?</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which pip3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/pip3</span><br></pre></td></tr></table></figure>
-<p>然后建立pip到pip3的软链接</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ln -s /usr/local/bin/pip3 /usr/bin/pip</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># pip -V</span></span><br><span class="line">pip 21.1.1 from /usr/<span class="built_in">local</span>/lib/python3.8/site-packages/pip (python 3.8)</span><br></pre></td></tr></table></figure>
-<h1 id="五、配置yum"><a href="#五、配置yum" class="headerlink" title="五、配置yum"></a>五、配置yum</h1><p>安装python3改完软链接以后发现yum命令报错了，yum是依赖python2.7的，你把python改成了3.8了，所以报错了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># yum</span></span><br><span class="line">  File <span class="string">"/usr/bin/yum"</span>, line 30</span><br><span class="line">    except KeyboardInterrupt, e:</span><br><span class="line">                            ^</span><br><span class="line">SyntaxError: invalid syntax</span><br></pre></td></tr></table></figure>
-
-<p>可以修改yum里对python2的依赖即可。虽然安装了python3但是系统里python2依旧还在系统里，可以通过python2来指定用python2.7的命令，首先来看下python2的命令在哪里</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># which python2</span></span><br><span class="line">/usr/bin/python2</span><br></pre></td></tr></table></figure>
-<p>可以cd到/usr/bin目录下 通过ls -alh|grep python查看python命令的详细情况。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ls -alh|grep python</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/python%E8%BD%AF%E9%93%BE%E6%8E%A5.png" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
-<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yun%E4%BE%9D%E8%B5%961.png" alt="修改依赖"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yum%E4%BE%9D%E8%B5%962.png" alt="修改依赖"></p>
-<p>修改完这两个文件后，再敲yum命令就不会报错了。</p>
-<p><strong>至此CentOS7环境下python3.8.12已经成功安装！</strong></p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+        <p>安全风险管理的三要素分别是资产、威胁和脆弱性，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象（资产）自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。“摸清家底，认清风险”做好资产安全信息管理是安全运营的第一步也是最重要的一步。</p>
+<h2 id="资产管理范围"><a href="#资产管理范围" class="headerlink" title="资产管理范围"></a>资产管理范围</h2><p>《GBT 20984-2007信息安全技术信息安全风险评估规范》中，对于资产的定义为“对组织有价值的信息或资源，是安全策略保护的对象”。</p>
+<p>对于网络空间资产来说，这里的资产是指赛博空间中某机构所拥有的一切可能被潜在攻击者利用的设备、信息、应用等数字资产。具体对象包括但不限于硬件设备、云主机、操作系统、IP地址、端口、证书、域名、Web应用、业务应用、中间件、框架、机构公众号、小程序、App、API、源代码等。概括来说，只要是可操作的对象，不管是实体还是属性。都可以称之为“网络空间资产”。所以对于企业来说这些资产安全信息都要做好管理。参考博文《<a href="https://xiejava.blog.csdn.net/article/details/129344013" target="_blank" rel="noopener">网络安全之资产及攻击面管理</a>》</p>
+<p>在工信部《基础电信企业资产安全管理平台建设指南（试行）》稿中，提到资产安全管理平台对于IP化软硬件资产提供安全管理，其管理范围包括但不限于网络产品、安全产品、物联网设备、办公外设、企业应用、系统软件、支撑系统。资产安全信息应该覆盖到所有的IP化软硬件资产。</p>
+<p>资产安全信息一般包括资产的基本属性（如：资产名称、类型、型号、厂商、IP地址、操作系统及其版本信息、端口、服务信息、中间件及其版本信息、程序应用框架及其版本信息、应用软件及其版本信息等）、资产的安全属性（如：安全等级等与网络安全脆弱性整治和威胁监测处置有关的信息等）、资产的管理属性（如：使用单位、责任人、联系电话等）、资产的业务属性（包括所属的业务系统、承载的业务等），应对资产安全信息实施全生命周期管理。</p>
+<h2 id="资产安全全生命周期管理"><a href="#资产安全全生命周期管理" class="headerlink" title="资产安全全生命周期管理"></a>资产安全全生命周期管理</h2><p>资产的全生命周期覆盖资产上线、资产运行、资产下线，在这过程中要对资产进行定级备案、对资产的台账进行维护、对资产进行风险评估、对资产进行定期的清查。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230418/%E8%B5%84%E4%BA%A7%E5%AE%89%E5%85%A8%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png" alt="资产安全全生命周期管理"></p>
+<h3 id="资产上线"><a href="#资产上线" class="headerlink" title="资产上线"></a>资产上线</h3><p>企业应建立统一的资产安全信息管理平台。资产上线，应在资产投入使用前完成对企业信息资产纳管。主机、虚机资产安装资产采集 Agent，网络设备纳入专业网管系统管理，变更的资产信息每天向资产安全信息管理平台同步。 </p>
+<h3 id="资产运行"><a href="#资产运行" class="headerlink" title="资产运行"></a>资产运行</h3><p>资产运行环节是资产生命周期中最重要的环节。安全运营维护单位应建立所辖资产清单台账，应确保相关信息资产IP 地址和端口全量纳管，实现资产安全信息管理平台数据与资产实际情况相符。做好资产运行期的资产台账维护和更新、做好定级备案信息的维护和更新、定期开展资产的风险评估等。</p>
+<h3 id="资产下线"><a href="#资产下线" class="headerlink" title="资产下线"></a>资产下线</h3><p>资产下线意味着资产的生命周期结束，安全运营维护单位应在资产退网后一定时期内（ 如两周或15 日）内完成资产安全信息管理平台数据更新。</p>
+<h3 id="资产台账维护"><a href="#资产台账维护" class="headerlink" title="资产台账维护"></a>资产台账维护</h3><p>安全运营维护单位应在资产上线前建立好资产台账并在投产前完成对企业信息资产在资产安全信息管理平台的纳管，在资产运行期定期维护台账信息如资产信息发生变化定期更新台账，资产下线推网后完成台账的删除及资产安全信息管理平台数据更新。资产台账维护的主要目的是要保障资产安全信息管理平台数据与资产实际情况相符。</p>
+<h3 id="资产定级备案"><a href="#资产定级备案" class="headerlink" title="资产定级备案"></a>资产定级备案</h3><p>资产因为其业务属性的不一样，影响的业务也不一样。对于重点的业务系统应予以重点的关注和保护。对于大型关基企业应对资产根据其重要级别进行定级备案。根据级别的不同制定防护策略开展风险评估。一般来说由维护单位在资产的全生命周期内进行定级备案信息的维护和更新，如资产上线前进行定级备案，在系统资产发生变化或下线时进行定级备案信息的更新。安全运营支撑单位对定级备案信息开展技术复核后完成定级备案信息的提交。</p>
+<h3 id="资产风险评估"><a href="#资产风险评估" class="headerlink" title="资产风险评估"></a>资产风险评估</h3><p>在资产上线前和资产承载的业务发生变化后都应该进行资产风险评估，并根据企业自身要求定期开展风险评估。根据资产定级备案的不同如三级及以上的网络设备和系统平台每年进行一次风险评估，二级网络设备和系统平台每两年进行一次风险评估。对于存在大量个人信息且暴露于互联网的网络设备和系统平台可以请具备资质的第三方单位开展风险评估。重大活动或重要保障前，开展专项风险评估等。 </p>
+<h3 id="资产定期清查"><a href="#资产定期清查" class="headerlink" title="资产定期清查"></a>资产定期清查</h3><p>资产清查，主要是定期对一些“三无”、“七边”的管理覆盖不到位或存在管理薄弱环节的资产进行清查。识别并推进“三无”资产下线（“三无”指“无人管理、无人使用、无人防护”），对“七边”系统进行规范管理（“七边”指测试系统、试验平台、退网未离网系统、工程已上线加载业务但未正式交维系统、与合作伙伴共同运营的业务或系统、责任交接不清的系统、处于衰退期的系统）。安全运营维护单位应配合开展资产清查和纳管，在“三无”资产回收过程中进行系统保障和应急响应。 </p>
+<p>做好资产安全信息管理是需要通过“技术”+“管理”手段相结合。技术方面企业可以根据自身需求建立资产安全管理平台、攻击面管理平台、互联网暴露面测绘平台，全面覆盖内外资产和互联网暴露面的资产管理；管理方面可以根据自身情况参考资产安全信息管理的全生命周期制定符合企业的资产安全信息管理制度。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
@@ -563,7 +526,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/57cef505/" title="CentOS7下安装python3.8">https://xiejava.gitee.io/posts/57cef505/</a>
+    <a href="https://xiejava.gitee.io/posts/a446b750/" title="安全运营之资产安全信息管理">https://xiejava.gitee.io/posts/a446b750/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,7 +541,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
           
         </div>
       
@@ -591,8 +554,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/63a3c769/" rel="next" title="认识SOAR-安全事件编排自动化响应">
-                <i class="fa fa-chevron-left"></i> 认识SOAR-安全事件编排自动化响应
+              <a href="/posts/3b6a1140/" rel="next" title="运营商在安全领域的优势分析">
+                <i class="fa fa-chevron-left"></i> 运营商在安全领域的优势分析
               </a>
             
           </div>
@@ -600,10 +563,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/7f405b25/" rel="prev" title="CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境搭建">
-                CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -783,7 +742,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、查看系统版本"><span class="nav-number">1.</span> <span class="nav-text">一、查看系统版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、安装依赖"><span class="nav-number">2.</span> <span class="nav-text">二、安装依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、下载python源码包"><span class="nav-number">3.</span> <span class="nav-text">三、下载python源码包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、解压安装python源码包"><span class="nav-number">4.</span> <span class="nav-text">四、解压安装python源码包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、解压"><span class="nav-number">4.1.</span> <span class="nav-text">1、解压</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装"><span class="nav-number">4.2.</span> <span class="nav-text">2、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、建立命令软链接"><span class="nav-number">4.3.</span> <span class="nav-text">3、建立命令软链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、配置yum"><span class="nav-number">5.</span> <span class="nav-text">五、配置yum</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资产管理范围"><span class="nav-number">1.</span> <span class="nav-text">资产管理范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资产安全全生命周期管理"><span class="nav-number">2.</span> <span class="nav-text">资产安全全生命周期管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#资产上线"><span class="nav-number">2.1.</span> <span class="nav-text">资产上线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产运行"><span class="nav-number">2.2.</span> <span class="nav-text">资产运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产下线"><span class="nav-number">2.3.</span> <span class="nav-text">资产下线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产台账维护"><span class="nav-number">2.4.</span> <span class="nav-text">资产台账维护</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产定级备案"><span class="nav-number">2.5.</span> <span class="nav-text">资产定级备案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产风险评估"><span class="nav-number">2.6.</span> <span class="nav-text">资产风险评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资产定期清查"><span class="nav-number">2.7.</span> <span class="nav-text">资产定期清查</span></a></li></ol></li></ol></div>
             
 
           </div>
