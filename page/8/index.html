@@ -578,8 +578,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-11T14:43:48+08:00">
-                2021-11-11
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-28T14:22:51+08:00">
+                2023-04-28
               </time>
             
           </span>
@@ -660,7 +660,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  516
+                  529
                 </span>
               
 
@@ -702,7 +702,7 @@
             <p>很多网友留言问如何配置Supervisor 自启动，现将如何在CentOS7下配置Supervisor自启动的两种方法整理如下：</p>
 <h1 id="一、方法一"><a href="#一、方法一" class="headerlink" title="一、方法一"></a>一、方法一</h1><p><strong>直接将启动命令加入到/etc/rc.d/rc.local中（简单但不推荐）</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
-<p>在现有的内容后面加入supervisor的启动命令<br>supervisord -c /etc/supervisord.conf<br><img src="https://img-blog.csdnimg.cn/b7074ff6ccf146de9015d83373ef7830.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="/etc/rc.d/rc.local"><br>注意：一定要执行 chmod +x /etc/rc.d/rc.local</p>
+<p>在现有的内容后面加入supervisor的启动命令<br>supervisord -c /etc/supervisord.conf<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211111/rc.local.png" alt="/etc/rc.d/rc.local"><br>注意：一定要执行 chmod +x /etc/rc.d/rc.local</p>
 <blockquote>
 <p>chmod +x /etc/rc.d/rc.local</p>
 </blockquote>
@@ -728,8 +728,15 @@
 <h2 id="验证一下是否为开机启动"><a href="#验证一下是否为开机启动" class="headerlink" title="验证一下是否为开机启动"></a>验证一下是否为开机启动</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># systemctl is-enabled supervisord</span></span><br><span class="line">enabled</span><br></pre></td></tr></table></figure>
 
 <p>reboot重启服务器后，可以发现supervisor随服务器启动后自动启动了。</p>
-<p><strong>至此，本文介绍了CentOS7下配置Supervisor自启动的两种方法，推荐使用第二中方式。</strong></p>
+<p><strong>至此，本文介绍了CentOS7下配置Supervisor自启动的两种方法，推荐使用第二种方式。</strong></p>
+<hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
 
           
         
