@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2023-04-27T06:39:54.608Z</updated>
+  <updated>2023-05-15T06:41:07.378Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络安全之互联网暴露资产端口</title>
+    <link href="https://xiejava.gitee.io/posts/ff84f2fb/"/>
+    <id>https://xiejava.gitee.io/posts/ff84f2fb/</id>
+    <published>2023-05-15T06:22:32.000Z</published>
+    <updated>2023-05-15T06:41:07.378Z</updated>
+    
+    <content type="html"><![CDATA[<p>互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。</p><p>作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。</p><p>本文介绍互联网暴露资产端口的定义、分类及管理。</p><h2 id="互联网暴露资产端口定义"><a href="#互联网暴露资产端口定义" class="headerlink" title="互联网暴露资产端口定义"></a>互联网暴露资产端口定义</h2><p>互联网暴露端口指信息系统资产、网络设备或终端设备面向互联网开放服务或开放协议的端口（含 NAT 映射端口），该端口可被其他互联网的资产进行主动探测、访问或连接。当某资产至少具备一个互联网暴露端口时，则认定该资产为互联网暴露资产；当某信息系统内部至少具备一台互联网暴露资产时，则认定该信息系统为互联网暴露信息系统。<br>当互联网暴露资产同时面向内网（或私网）开放服务或开放协议时，相关端口不属于互联网暴露端口，不纳入互联网暴露端口管控范围；当某资产通过互联网主动发起单向通信时，因该资产用于通信服务的端口并未暴露于互联网，也无法被其他互联网资产主动探测、访问或连接，则认定该资产不属于互联网暴露资产，且不具备互联网暴露端口。<br>互联网暴露端口的判定，与该端口是否已执行访问控制策略不相关。</p><h2 id="互联网暴露资产端口分类"><a href="#互联网暴露资产端口分类" class="headerlink" title="互联网暴露资产端口分类"></a>互联网暴露资产端口分类</h2><p>互联网暴露资产（含信息系统、网络设备、终端）端口按照其功能用途，可分为业务类端口及管理类端口两大类：<br>1）业务类端口。具体可细分为以下三类：</p><ul><li>用户访问端口：主要指各类与用户侧交互的，支撑用户访问服务的端口，如 WEB 访问端口、视频流端口等。</li><li>平台交互端口：系统内外部服务器间的接口交互、数据交互等服务端口。</li><li>路由协议端口：常见于路由设备，用于配置路由协议而开放的端口服务，如 BGP边界网关协议端口、OSPF 开放式最短路径优先协议端口等。</li></ul><p>2）管理类端口。主要包含实现远程操控管理、后台访问运维、用户数据收集及用户终端主动管控等服务的端口。</p><h2 id="互联网暴露资产端口管理"><a href="#互联网暴露资产端口管理" class="headerlink" title="互联网暴露资产端口管理"></a>互联网暴露资产端口管理</h2><ul><li>尽量缩减收敛减少暴露面，基于最小使用原则，对于高危风险端口应严禁对互联网开放，尤其是管理类端口如数据库、运维管理等端口。如mysql的3306端口、Redis的6379端口等。对于必须要暴露的资产端口进行有效管控，如：制定合理的访问控制策略、加强鉴权等。</li><li>应该建立互联网暴露资产台账，规范的流程严控互联网暴露端口的审批，动态维护好互联网暴露资产台账。</li><li>对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对没有没纳管的暴露面资产进行纳管加强管控或下线，及时维护台账。</li></ul><h3 id="常见的高危风险端口"><a href="#常见的高危风险端口" class="headerlink" title="常见的高危风险端口"></a>常见的高危风险端口</h3><table><thead><tr><th>高危端口号（默认）</th><th>22（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>SSH （Secure Shell），安全外壳协议</td></tr><tr><td>应用场景或应用组件</td><td>远程登录、SSH 端口转发</td></tr><tr><td>端口用途说明</td><td>SSH 协议的服务连接端口，可用于进行远程操作维护</td></tr><tr><td>端口类别</td><td>管理类端口</td></tr><tr><td>风险描述</td><td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>23（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>Telnet （ 远程终端协议）</td></tr><tr><td>应用场景或应用组件</td><td>远程登录</td></tr><tr><td>端口用途说明</td><td>Telnet 协议的服务连接端口，可用于进行远程操作维护</td></tr><tr><td>端口类别</td><td>管理类端口</td></tr><tr><td>风险描述</td><td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>161（UDP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>SNMP（Simple Network Management Protocol，简单网络管理协议）</td></tr><tr><td>端口用途说明</td><td>可用于对网络设备进行远程信息读取、管理和配置</td></tr><tr><td>端口类别</td><td>管理类端口</td></tr><tr><td>风险描述</td><td>爆破默认团队字符串，导致信息泄漏</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>111（TCP/UDP）、2049（TCP/UDP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>NFS（Network File System），网络文件系统</td></tr><tr><td>端口用途说明</td><td>用于远程文件传输</td></tr><tr><td>端口类别</td><td>业务类端口（用户访问端口、平台交互端口）</td></tr><tr><td>风险描述</td><td>权限配置不当</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>3306（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>MySQL（数据库）</td></tr><tr><td>端口用途说明</td><td>MySQL 是一款开源关系数据库管理系统。该端口端口用于数据库远程管理和连接</td></tr><tr><td>端口类别</td><td>管理类端口、业务类端口（平台交互端口）</td></tr><tr><td>风险描述</td><td>暴力破解、信息泄漏、远程命令执行</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>6379（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>Redis（数据库）</td></tr><tr><td>端口用途说明</td><td>Redis 默认管理和服务端口</td></tr><tr><td>端口类别</td><td>管理类端口</td></tr><tr><td>风险描述</td><td>可能会存在未授权访问，或者进行弱口令爆破；获得访问权限后，可能存在任意文件写入导致获取系统远程控制权限。</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>27017（TCP）、27018（TCP）、27019（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>MongoDB（数据库）</td></tr><tr><td>端口用途说明</td><td>用于 MongoDB 数据库的远程管理和服务，以及集群间通信</td></tr><tr><td>端口类别</td><td>管理类端口、业务类端口（平台交互端口）</td></tr><tr><td>风险描述</td><td>爆破，未授权访问</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>1433（TCP）、1434（UDP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>SQLServer（数据库）</td></tr><tr><td>端口用途说明</td><td>SQL Server 是 Microsoft 公司推出的关系型数据库管理系统。<br>1433（默认）端口用于数据库远程管理和连接，1434（默认）用于命名服务</td></tr><tr><td>端口类别</td><td>管理类端口、业务类端口（平台交互端口）</td></tr><tr><td>风险描述</td><td>提权，弱口令，爆破；早期版本还存在远程命令执行漏洞</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>1521（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>Oracle（甲骨文数据库）</td></tr><tr><td>端口用途说明</td><td>Oracle 是甲骨文公司的一款关系数据库管理系统。该端口端口用于数据库远程管理和连接</td></tr><tr><td>端口类别</td><td>管理类端口、业务类端口（平台交互端口）</td></tr><tr><td>风险描述</td><td>暴力破解、信息泄漏、远程命令执行</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>5432（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>PostgreSQL（数据库）</td></tr><tr><td>端口用途说明</td><td>PostgreSQL 是一款开源关系数据库管理系统。该端口用于数据库远程管理和连接</td></tr><tr><td>端口类别</td><td>管理类端口、业务类端口（平台交互端口）</td></tr><tr><td>风险描述</td><td>暴力破解、信息泄漏、远程命令执行</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>3389（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>Windows RDP（远程桌面协议）</td></tr><tr><td>端口用途说明</td><td>用于访问服务器的远程桌面服务，提供基于图形界面的远程操作维护功能。</td></tr><tr><td>端口类别</td><td>管理类端口</td></tr><tr><td>风险描述</td><td>暴力破解，远程控制</td></tr></tbody></table><table><thead><tr><th>高危端口号（默认）</th><th>5800（TCP），5900（TCP）</th></tr></thead><tbody><tr><td>协议或服务</td><td>VNC（Virtual Network Console），虚拟网络控制台</td></tr><tr><td>端口用途说明</td><td>VNC 是一款远程桌面和远程控制软件，5800 和 5900（默认）端口均为 VNC 服务启动端口或远端控制端口</td></tr><tr><td>端口类别</td><td>管理类端口</td></tr><tr><td>风险描述</td><td>暴力破解，远程控制</td></tr></tbody></table><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注微信公众号,一起学习、成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。&lt;/p&gt;
+&lt;p&gt;作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>网络安全入行？来了解下网络安全从业人员类别及其工作任务</title>
@@ -544,35 +573,6 @@
       <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
     
       <category term="Django" scheme="https://xiejava.gitee.io/tags/Django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安全托管与重保安全服务</title>
-    <link href="https://xiejava.gitee.io/posts/5381000/"/>
-    <id>https://xiejava.gitee.io/posts/5381000/</id>
-    <published>2022-12-28T06:48:37.000Z</published>
-    <updated>2023-03-05T04:59:01.551Z</updated>
-    
-    <content type="html"><![CDATA[<p>近年来，高新技术数字经济快速发展，数字化转型成为各个行业高质量发展的重要引擎和创新路径。网络安全作为数字化建设的安全基石，却面临着网络安全人才缺口不断攀升的直接挑战。各安全公司依托自己网络安全经验的人才优势向客户提供各类安全服务，最常见的就是安全托管和重保安全。</p><p>安全托管服务与重保安全服务都是为客户提供安全服务，这两者有啥区别呢？</p><h2 id="一、安全托管服务"><a href="#一、安全托管服务" class="headerlink" title="一、安全托管服务"></a>一、安全托管服务</h2><p><strong>安全托管服务（Managed Security Service，MSS）</strong>，是由Gartner于2011年提出，简单来讲，即网络安全厂商通过自身的安全运营服务，包括人员、工具、平台等，为其用户提供7*24小时的安全托管服务。MSS安全托管服务最直接的目的，就是解决用户自身安全能力不足的问题，将专业的事情交给专业的人来做。说白了其实就是企业将自身的安全运营外包给有能力的安全厂商，解决自身安全运营能力不足的问题。</p><h2 id="二、重保安全服务"><a href="#二、重保安全服务" class="headerlink" title="二、重保安全服务"></a>二、重保安全服务</h2><p><strong>重保安全服务（Cybersecurity in Important Period, CIP）</strong>，是指在特殊时期（如HVV等）、重要活动（如两会等）、重大节日（如国庆等）期间为用户构建全方面的重要敏感时期的安全保障服务。保障网络基础设施、重点网站和业务系统安全，提供全方位的安全防守建设咨询以及事前、事中、事后的全面安全建设托管服务，确保企业客户的业务系统能够在重大活动期间安全平稳运行。</p><h2 id="三、安全托管服务与重保安全服务的区别"><a href="#三、安全托管服务与重保安全服务的区别" class="headerlink" title="三、安全托管服务与重保安全服务的区别"></a>三、安全托管服务与重保安全服务的区别</h2><p>从安全托管服务与重保安全服务的概念和定义上，个人理解安全托管服务与重保安全服务还是有所区别的。</p><p>一般来说，<strong>安全托管服务(MSS)服务侧重于管理和运营</strong>，以保障企业IT业务稳定运行为目的，主要是日常的安全运营。而<strong>重保安全更接近实战化</strong>主要侧重于重保期间的防护值守，有重点的企业客户的业务系统能够在重大活动期间安全平稳运行。</p><p>拿平时我们见到社会安保来类比，日常安全运营就是我们平时看到的日常治安巡逻；重保就是比如国庆期间、两会其间有针对性的加大安保防范力度如特警武装上岗执勤、某些重要场所限制人流、加强舆情监控等必要的防控手段。</p><ul><li><strong>从具体的服务内容来看：</strong></li></ul><p>安全托管服务主要是日常安全运营相关的内容如：资产的定期梳理、暴露面的检测、定期的漏扫、漏扫后的安全加固整改、安全监测、事件协助处置、安全策略定期优化等。</p><p>重保安全服务主要是针对重保时期有重点的安全保障更贴近实战化如：准备阶段的资产清查、暴露面识别、暴露面收敛等；重保初期的重点系统（或靶标系统）专项加固、情报收集、攻击阻断演练等；重保阶段的安全事件分析、响应处置、溯源反制、防守报告等。</p><ul><li><strong>从人员配置来看：</strong></li></ul><p>重保安全服务的人员配置不管是从人员数量还是个人网络安全专业水平来看都要比安全托管服务的高。一般来说重保安全服务的核心人员都会要求有攻防对抗能力。可以想像一下普通安保人员与武装特警的区别。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;近年来，高新技术数字经济快速发展，数字化转型成为各个行业高质量发展的重要引擎和创新路径。网络安全作为数字化建设的安全基石，却面临着网络安全人才缺口不断攀升的直接挑战。各安全公司依托自己网络安全经验的人才优势向客户提供各类安全服务，最常见的就是安全托管和重保安全。&lt;/p&gt;
-&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   

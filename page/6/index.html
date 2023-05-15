@@ -313,6 +313,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e8cac912/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/e8cac912/" itemprop="url">pandas数据分析之数据绘图</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-16T11:32:09+08:00">
+                2022-02-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-02-16T11:33:30+08:00">
+                2022-02-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/e8cac912/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e8cac912/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/e8cac912/" class="leancloud_visitors" data-flag-title="pandas数据分析之数据绘图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一图胜千言，将信息可视化（绘图）是数据分析中最重要的工作之一。它除了让人们对数据更加直观以外，还可以帮助我们找出异常值、必要的数据转换、得出有关模型的想法等等。pandas 在数据分析、数据可视化方面有着较为广泛的应用。本文将通过实例介绍pandas的数据绘图。<br><img src="https://img-blog.csdnimg.cn/71f0a92c1e9b4d72985c5d7705076be8.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pandas数据绘图"></p>
+<p>pandas的数据可视化依赖于matplotlib模块的pyplot类，matplotlib在安装Pandas会自动安装。Matplotlib可以对图形做细节控制，绘制出出版质量级别的图形，通过Matplotlib，可以简单地绘制出常用的统计图形。pandas 对 Matplotlib 绘图软件包的基础上单独封装了一个plot()接口，通过调用该接口可以实现常用的绘图操作。<br>让我们先来认识mataplotlib图形的基本构成。</p>
+<h1 id="一、matplotlib图形基本构成"><a href="#一、matplotlib图形基本构成" class="headerlink" title="一、matplotlib图形基本构成"></a>一、matplotlib图形基本构成</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.arange(<span class="number">10</span>)</span><br><span class="line">plt.plot(data)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/8fb478e612224148b3f7346cd78895ac.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="matplotlib.plot()"></p>
+<p>通过引入matplotlib模块的pyplot类，将数据传入plot()的接口，就可以将数据以图形化的方式展示出来。Matplotlib 生成的图形主要由以下几个部分构成：<br><img src="https://img-blog.csdnimg.cn/7f23fcaedb244bada98003004d7e975f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_9,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="绘图基本结构"></p>
+<ul>
+<li>Figure：指整个图形，您可以把它理解成一张画布，它包括了所有的元素，比如标题、轴线等； </li>
+<li>Axes：绘制 2D图像的实际区域，也称为轴域区，或者绘图区； </li>
+<li>Axis：指坐标系中的垂直轴与水平轴，包含轴的长度大小（图中轴长为 7）、轴标签（指 x轴，y轴）和刻度标签； </li>
+<li>Artist：在画布上看到的所有元素都属于 Artist对象，比如文本对象（title、xlabel、ylabel）、Line2D 对象（用于绘制2D图像）等。</li>
+</ul>
+<p>了解matplotlib图形的基本构成非常重要，绘图就是通过matplotlib提供的方法来定义和设置这些基本图形的构成元素来将数据显示在这些元素中。</p>
+<h1 id="二、matplotlib显示中文"><a href="#二、matplotlib显示中文" class="headerlink" title="二、matplotlib显示中文"></a>二、matplotlib显示中文</h1><p>Matplotlib 默认不支持中文字体，这因为 Matplotlib 只支持 ASCII 字符，但中文标注更加符合中国人的阅读习惯。下面介绍如何在 Windows 环境下让 Matplotlib 显示中文。</p>
+<h2 id="1、方法一：临时重写配置文件（临时）"><a href="#1、方法一：临时重写配置文件（临时）" class="headerlink" title="1、方法一：临时重写配置文件（临时）"></a>1、方法一：临时重写配置文件（临时）</h2><p>通过临时重写配置文件的方法，可以解决 Matplotlib 显示中文乱码的问题，代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.rcParams[<span class="string">"font.sans-serif"</span>]=[<span class="string">"SimHei"</span>] <span class="comment">#设置字体</span></span><br><span class="line">plt.rcParams[<span class="string">"axes.unicode_minus"</span>]=<span class="literal">False</span> <span class="comment">#该语句解决图像中的“-”负号的乱码问题</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、方法二：修改配置文件-（永久）"><a href="#2、方法二：修改配置文件-（永久）" class="headerlink" title="2、方法二：修改配置文件 （永久）"></a>2、方法二：修改配置文件 （永久）</h2><p>通过直接修改配置文件的方法，可以一劳永逸的解决 Matplotlib 的中文乱码问题。注意此过程在 Windows 环境下进行。<br>Matplotlib 从配置文件 matplotlibrc 中读取相关配置信息，比如字体、样式等，因此我们需要对该配置文件进行更改。使用如下代码查看 matplotlibrc 所在的目录：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.matplotlib_fname()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/784e00d0e5664e00a67f54309f8fa9b7.png#pic_center" alt="matplotlib_fname"></p>
+<p>打开配置文件后，找到以下信息：<br>#font.family: sans-serif<br>#font.serif: DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif<br>修改配置将#注释去掉，并将微软雅黑Microsoft  YaHei的字体给加上。<br><img src="https://img-blog.csdnimg.cn/ceaa6040ac1f44ecaf70121f7e691f79.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="微软雅黑"><br>最后，在windows的字体目录中复制中文字体微软雅黑：<br>C:\Windows\Fonts\Microsoft YaHei UI<br>将微软雅黑的字体复制粘贴到matplotlib的字体库中，字体库路径就在matplotlibrc 所在的目录下<br>D:\Anaconda3\Lib\site-packages\matplotlib\mpl-data\fonts\ttf<br><img src="https://img-blog.csdnimg.cn/1a25065992144bff99f693d16b143a5c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="复制字体"><br>如果是jupyter notbook重启启动jupyter notbook让它重新读取配置文件即可。</p>
+<h1 id="三、pandas绘图"><a href="#三、pandas绘图" class="headerlink" title="三、pandas绘图"></a>三、pandas绘图</h1><p>数据分析将数据进行可视化绘图展示离不开数据，pandas的两大数据结构Series和DataFrame都提供了相应的方法很方便的进行数据的可视化绘图展示。</p>
+<h2 id="1、数据"><a href="#1、数据" class="headerlink" title="1、数据"></a>1、数据</h2><p>pandas 提供了 plot() 方法可以快速方便地将 Series 和 DataFrame 中的数据进行可视化。</p>
+<h3 id="a-Series"><a href="#a-Series" class="headerlink" title="a) Series"></a>a) Series</h3><p>Series 使用 plot 时 x 轴为索引，y 轴为索引对应的具体值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">series_data=pd.Series(np.random.randn(<span class="number">10</span>),index=range(<span class="number">10</span>))</span><br><span class="line">series_data</span><br><span class="line">series_data.plot()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/c72c01ada00d4db6b5b60154d59e06b3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="Series绘图"></p>
+<h3 id="b-DataFrame"><a href="#b-DataFrame" class="headerlink" title="b) DataFrame"></a>b) DataFrame</h3><p>DataFrame 使用 plot 时 x 轴为索引，y 轴为索引对应的多个具体值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_staff = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff_sale_byQ.xlsx'</span>)</span><br><span class="line">df_staff</span><br><span class="line">df_staff.plot()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/14733be19b964a818d897f061fa7dcbf.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="DataFrame绘图"><br>plot()可以通过传入x和y指定显示具体的列数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定X轴及y显示的列数据</span></span><br><span class="line">df_staff.plot(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/5e25b52456c94e54a321eb6fcfe52d02.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="dataframe指定x和y"></p>
+<h2 id="2、图形"><a href="#2、图形" class="headerlink" title="2、图形"></a>2、图形</h2><p>plot 默认为折线图，折线图也是最常用和最基础的可视化图形，足以满足我们日常 80% 的需求。<br>除了使用默认的线条绘图外，还可以使用其他绘图方式，如下所示：</p>
+<ul>
+<li>柱状图：bar() 或 barh() </li>
+<li>箱形图：box() </li>
+<li>区域图：area() </li>
+<li>饼状图：pie() </li>
+<li>散点图：scatter()</li>
+<li>直方图：hist()</li>
+</ul>
+<h3 id="a-柱状图"><a href="#a-柱状图" class="headerlink" title="a) 柱状图"></a>a) 柱状图</h3><p>柱状图（bar chart），使用与轴垂直的柱子，通过柱形的高低来表达数据的多少，适用于数据的对比，在整体中也能看到数据的发展变化趋势。<br>DataFrame 可以直接调用 plot.bar() 生成折线图，与折线图类似，x 轴为索引，其他数字类型的列为 y 轴上的条形，可以设置参数stacked=True生成柱状堆叠图<br>df.plot.bar()<br>df.plot.barh() # 横向<br>df[:5].plot.bar(x=’name’, y=’Q4’) # 指定xy轴<br>df[:5].plot.bar(‘name’, [‘Q1’, ‘Q2’]) # 指定xy轴</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#柱状图</span></span><br><span class="line">df_staff.plot.bar(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>]) </span><br><span class="line"><span class="comment">#柱状图可以设置参数stacked=True生成柱状堆叠图</span></span><br><span class="line">df_staff.plot.bar(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>],stacked=<span class="literal">True</span>) </span><br><span class="line"><span class="comment">#通过barh()方法可以绘制水平柱状图</span></span><br><span class="line">df_staff.plot.barh(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>],stacked=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/b6aa2053a83e4488a41590fca651e31b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="柱状图"></p>
+<h3 id="b-箱形图"><a href="#b-箱形图" class="headerlink" title="b) 箱形图"></a>b) 箱形图</h3><p>箱形图（Box Chart）又称盒须图、盒式图或箱线图，是一种用作显示一组数据分布情况的统计图。Series.plot.box() 、 DataFrame.plot.box(), 和 DataFrame.boxplot() 都可以绘制箱形图。<br>从箱形图中我们可以观察到：</p>
+<ul>
+<li>一组数据的关键值：中位数、最大值、最小值等。</li>
+<li>数据集中是否存在异常值，以及异常值的具体数值。 </li>
+<li>数据是否是对称的。</li>
+<li>这组数据的分布是否密集、集中。 </li>
+<li>数据是否扭曲，即是否有偏向性。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_staff.plot.box(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/872f3c82acf141adb2b37d6b8474acb2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="箱形图"></p>
+<h3 id="c-区域图"><a href="#c-区域图" class="headerlink" title="c) 区域图"></a>c) 区域图</h3><p>区域图（Area Chart），又叫面积图。 将折线图中折线与自变量坐标轴之间的区域使用颜色或者纹理填充，这样一个填充区域叫做面积，颜色的填充可以更好的突出趋势信息，需要注意的是颜色要带有一定的透明度，透明度可以很好的帮助使用者观察不同序列之间的重叠关系，没有透明度的面积会导致不同序列之间相互遮盖减少可以被观察到的信息。<br>面积图默认情况下是堆叠的。 要生成堆积面积图，每列必须全部为正值或全部为负值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_staff.plot.area(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/314e2710b0554883b9edd185a8578b19.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="区域图"></p>
+<h3 id="d-饼状图"><a href="#d-饼状图" class="headerlink" title="d) 饼状图"></a>d) 饼状图</h3><p>饼图（Pie Chart）广泛得应用在各个领域，用于表示不同分类的占比情况，通过弧度大小来对比各种分类。饼图通过将一个圆饼按照分类的占比划分成多个区块，整个圆饼代表数据的总量，每个区块（圆弧）表示该分类占总体的比例大小，所有区块（圆弧）的加和等于 100%。<br>可以使用 DataFrame.plot.pie() 或 Series.plot.pie() 创建饼图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df_staff</span><br><span class="line"><span class="comment">#看张三每个季度的业绩分布</span></span><br><span class="line">df_staff.plot.pie(y=<span class="string">'张三'</span>,subplots=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#看第一个季度，每个人的绩效分布</span></span><br><span class="line">df_staff1=df_staff.loc[<span class="number">0</span>:<span class="number">0</span>,<span class="string">'张三'</span>:<span class="string">'孙八'</span>].T</span><br><span class="line">df_staff1.columns=[<span class="string">'Q'</span>]</span><br><span class="line">df_staff1.plot.pie(y=<span class="string">'Q'</span>,subplots=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/30d2a79821494d60b71788d59a973731.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="饼图"></p>
+<h3 id="e-散点图"><a href="#e-散点图" class="headerlink" title="e) 散点图"></a>e) 散点图</h3><p>散点图（Scatter graph）也叫 X-Y 图，它将所有的数据以点的形式展现在直角坐标系上，以显示变量之间的相互影响程度，点的位置由变量的数值决定。<br>通过观察散点图上数据点的分布情况，我们可以推断出变量间的相关性。如果变量之间不存在相互关系，那么在散点图上就会表现为随机分布的离散的点，如果存在某种相关性，那么大部分的数据点就会相对密集并以某种趋势呈现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1 = pd.DataFrame(np.random.rand(<span class="number">50</span>, <span class="number">4</span>), columns=[<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>])</span><br><span class="line">df1.plot.scatter(x=<span class="string">"a"</span>, y=<span class="string">"b"</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/808e596351ac4d498e7ff764a61d58bd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在散点图"></p>
+<h3 id="f-直方图"><a href="#f-直方图" class="headerlink" title="f) 直方图"></a>f) 直方图</h3><p>直方图(Histogram)，又称质量分布图，是一种统计报告图，它是根据具体数据的分布情况，画成以组距为底边、以频数为高度的一系列连接起来的直方型矩形图。<br><img src="https://img-blog.csdnimg.cn/e196cd720e62469288f48ac3e5d3170c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="直方图说明"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#构建数据集</span></span><br><span class="line">df4=pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">"a"</span>: np.random.randn(<span class="number">1000</span>) + <span class="number">1</span>,</span><br><span class="line">    <span class="string">"b"</span>: np.random.randn(<span class="number">1000</span>),</span><br><span class="line">    <span class="string">"c"</span>: np.random.randn(<span class="number">1000</span>) - <span class="number">1</span>,</span><br><span class="line">    <span class="string">"d"</span>: np.random.randn(<span class="number">1000</span>) - <span class="number">2</span>,</span><br><span class="line">    &#125;,columns=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df4</span><br><span class="line">df4.plot.hist(alpha=<span class="number">0.5</span>)  <span class="comment">#指定图形透明度</span></span><br><span class="line">df4.plot.hist(stacked=<span class="literal">True</span>,bins=<span class="number">20</span>) <span class="comment">#堆叠并指定箱数为20</span></span><br><span class="line">df4.diff().hist() <span class="comment">#通过diff给每一列数据都绘制一个直方图</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/f12ed9d079a641c7953c15a54534d494.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="直方图"></p>
+<p>至此，本文介绍了pandas常用的绘图组件matplotlib，包括mataplotlib绘图的基本构成，如何在windows下解决中文问题，并通过实例介绍了如何通过pandas的数据集绘制折线图、箱线图、柱状图、饼图、面积图、散点图、直方图等。</p>
+<p>参考资料：《利用python进行数据分析》、pandas官网 user guide</p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/bc5826bd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3139,346 +3424,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4864590d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/4864590d/" itemprop="url">pandas数据加载(csv、excel、json、mysql、webAPI)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-22T17:35:55+08:00">
-                2022-01-22
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2022-02-02T09:58:09+08:00">
-                2022-02-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/4864590d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4864590d/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/4864590d/" class="leancloud_visitors" data-flag-title="pandas数据加载(csv、excel、json、mysql、webAPI)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://img-blog.csdnimg.cn/f5fc706f84454eb49d5457d751025441.png#pic_center" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
-<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://img-blog.csdnimg.cn/27deba5956b842dda6f845149b98d426.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
-<table>
-<thead>
-<tr>
-<th>Format Type</th>
-<th>Data Description</th>
-<th>Reader</th>
-<th>Writer</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>text</td>
-<td>CSV</td>
-<td>read_csv</td>
-<td>to_csv</td>
-</tr>
-<tr>
-<td>text</td>
-<td>JSON</td>
-<td>read_json</td>
-<td>to_json</td>
-</tr>
-<tr>
-<td>text</td>
-<td>HTML</td>
-<td>read_html</td>
-<td>to_html</td>
-</tr>
-<tr>
-<td>text</td>
-<td>Local clipboard</td>
-<td>read_clipboard</td>
-<td>to_clipboard</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>MS Excel</td>
-<td>read_excel</td>
-<td>to_excel</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>OpenDocument</td>
-<td>read_excel</td>
-<td></td>
-</tr>
-<tr>
-<td>binary</td>
-<td>HDF5 Format</td>
-<td>read_hdf</td>
-<td>to_hdf</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Feather Format</td>
-<td>read_feather</td>
-<td>to_feather</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Parquet Format</td>
-<td>read_parquet</td>
-<td>to_parquet</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Msgpack</td>
-<td>read_msgpack</td>
-<td>to_msgpack</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Stata</td>
-<td>read_stata</td>
-<td>to_stata</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>SAS</td>
-<td>read_sas</td>
-<td></td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Python Pickle Format</td>
-<td>read_pickle</td>
-<td>to_pickle</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>SQL</td>
-<td>read_sql</td>
-<td>to_sql</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>Google Big Query</td>
-<td>read_gbq</td>
-<td>to_gbq</td>
-</tr>
-</tbody></table>
-<p>本文通过几个实例，介绍几种常用的数据加载方式，包括从csv文件、excel文件、关系型数据库如mysql、API接口加载json数据，来初步体验一下pandas加载数据的便捷性。</p>
-<p>见上表pandas 提供了多种数据源读取数据的方法：<br>read_csv() 用于读取文本文件<br>read_json() 用于读取 json 文件<br>read_sql_query() 读取 sql 语句查询的表记录</p>
-<h1 id="一、读取CSV文件"><a href="#一、读取CSV文件" class="headerlink" title="一、读取CSV文件"></a>一、读取CSV文件</h1><p>CSV 又称逗号分隔值文件，是一种简单的文件格式，以特定的结构来排列表格数据。 CSV 文件能够以纯文本形式存储表格数据，比如电子表格、数据库文件，并具有数据交换的通用格式。CSV 文件会在 Excel 文件中被打开，其行和列都定义了标准的数据格式。<br>将 CSV 中的数据转换为 DataFrame 对象是非常便捷的。和一般文件读写不一样，它不需要你做打开文件、读取文件、关闭文件等操作。相反，只需要一行代码就可以完成上述所有步骤，并将数据存储在 DataFrame 中。<br>pandas通过read_csv()从 CSV 文件中读取数据，并创建 DataFrame 对象。<br>下面通过一个实例来说明。一个用于测试的员工数据集csv的数据如下，文件为staff.csv。</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"staff_id"</span>,<span class="string">"staff_name"</span>,<span class="string">"staff_age"</span>,<span class="string">"staff_gender"</span>,<span class="string">"staff_salary"</span>,<span class="string">"staff_depatment_id"</span></span><br><span class="line"><span class="string">"1"</span>,<span class="string">"陈一"</span>,<span class="string">"30"</span>,<span class="string">"男"</span>,<span class="string">"7000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"2"</span>,<span class="string">"周二"</span>,<span class="string">"31"</span>,<span class="string">"男"</span>,<span class="string">"12000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"3"</span>,<span class="string">"张三"</span>,<span class="string">"30"</span>,<span class="string">"女"</span>,<span class="string">"13000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"4"</span>,<span class="string">"李四"</span>,<span class="string">"29"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"5"</span>,<span class="string">"王五"</span>,<span class="string">"29"</span>,<span class="string">"男"</span>,<span class="string">"9000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"6"</span>,<span class="string">"赵六"</span>,<span class="string">"35"</span>,<span class="string">"男"</span>,<span class="string">"8600"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"7"</span>,<span class="string">"钱七"</span>,<span class="string">"36"</span>,<span class="string">"女"</span>,<span class="string">"9700"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"8"</span>,<span class="string">"孙八"</span>,<span class="string">"40"</span>,<span class="string">"女"</span>,<span class="string">"10000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"9"</span>,<span class="string">"何九"</span>,<span class="string">"40"</span>,<span class="string">"男"</span>,<span class="string">"11000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"10"</span>,<span class="string">"顾十"</span>,<span class="string">"37"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"2"</span></span><br></pre></td></tr></table></figure>
-<p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://img-blog.csdnimg.cn/edaf91317adb42a7b479ebec9aa56bb7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="通过csv加载"></p>
-<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://img-blog.csdnimg.cn/96c125c34da24204ae9799f5c444c574.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="staff.xlsx"><br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://img-blog.csdnimg.cn/b46a651c81a74b119ad25e297d9c0d95.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="通过Excel加载数据"></p>
-<h1 id="三、读取MySQL数据库表"><a href="#三、读取MySQL数据库表" class="headerlink" title="三、读取MySQL数据库表"></a>三、读取MySQL数据库表</h1><p>在许多应用中，数据很少取自文本文件，因为这种方式存储数据量有限且比较低效。最常见的是基于SQL的关系型数据库如MySQL、MS-SQL、PostgreSQL等。pandas将关系型数据库加载到DataFrame的过程很简单，通过read_sql_query()方法就可以快速的将数据加载。<br>同样是staff的数据集，在mysql中的表结构如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`staff`</span> (</span><br><span class="line">  <span class="string">`staff_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_age`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`staff_gender`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'性别'</span>,</span><br><span class="line">  <span class="string">`staff_salary`</span> <span class="keyword">double</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪水'</span>,</span><br><span class="line">  <span class="string">`staff_depatment_id`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'部门ID'</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
-
-<p>数据如下：<br><img src="https://img-blog.csdnimg.cn/ed23c05b550d4f0da81e2d7d84455447.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="staff数据集MySQL记录"><br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:yourpassword@localhost:3306/pandastest'</span>)</span><br><span class="line">sql_query_staff = <span class="string">'select * from staff;'</span></span><br><span class="line">df_staff = pd.read_sql_query(sql_query_staff, engine)</span><br><span class="line">df_staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://img-blog.csdnimg.cn/ecdf46a8e02f4a70a490d9cdf89ce6f3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="加载mysql数据"></p>
-<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://img-blog.csdnimg.cn/2c962a4235794e95b2545605e44f7192.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">url=<span class="string">'http://127.0.0.1:5000/getstaff'</span></span><br><span class="line">resp=requests.get(url)</span><br><span class="line">data=json.loads(resp.text)</span><br><span class="line">staff=pd.DataFrame(data)</span><br><span class="line">staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://img-blog.csdnimg.cn/6ff9136048d7484e961e822826fb805f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="加载WEBAPI数据"></p>
-<p>至此，通过staff测试数据集介绍了pandas的常用多种类型数据源的加载，包括csv、excel、mysql、web API。可以看出pandas对于数据加载非常的方便高效。</p>
-<p>全部数据集及源代码：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3535,7 +3480,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">107</span>
+                  <span class="site-state-item-count">108</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3647,7 +3592,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">199k</span>
+    <span title="Site words total count">201.1k</span>
   
   
 <!--51la网站应用监控-->
