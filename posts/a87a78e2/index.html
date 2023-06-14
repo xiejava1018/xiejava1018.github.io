@@ -151,13 +151,14 @@
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%A3%80%E6%B5%8B%E9%87%8D%E5%A4%8D%E9%A1%B9.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9-keeplast.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE%E9%9B%86.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E5%80%BC2.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8any%E6%96%B9%E6%B3%95.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%9B%BF%E6%8D%A2%E5%BC%82%E5%B8%B8%E5%80%BC.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8%E5%80%BC.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-02-02T01:55:55.000Z">
-<meta property="article:modified_time" content="2023-05-30T01:59:04.480Z">
+<meta property="article:modified_time" content="2023-05-30T02:13:42.215Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -379,7 +380,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-05-30T09:59:04+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2023-05-30T10:13:42+08:00">
                 2023-05-30
               </time>
             
@@ -527,7 +528,7 @@
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="删除重复值"><br>可以看到第7行也就是index为6的重复行被删除了。<br>当带了<code>keep=&#39;last&#39;</code>参数时，保留最后一个重复项，前面的重复项将被丢弃。可以看到保留的是索引为6的，索引为5的重复项被丢弃了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9-keeplast.png" alt="保留最后一个重复项"></p>
 <h1 id="三、处理异常值"><a href="#三、处理异常值" class="headerlink" title="三、处理异常值"></a>三、处理异常值</h1><h2 id="1、判断异常值"><a href="#1、判断异常值" class="headerlink" title="1、判断异常值"></a>1、判断异常值</h2><p>判断异常值的标准依赖具体分析数据，如大于或小于某个基线范围的值。<br>我们来看一个含有正态分布的DataFrame数据集</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=pd.DataFrame(np.random.randn(<span class="number">1000</span>,<span class="number">4</span>))</span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
-<p>![含有正态分布的DataFrame数据集](<a href="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas正态分布数据集" target="_blank" rel="noopener">https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas正态分布数据集</a> .png)</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="含有正态分布的DataFrame数据集"></p>
 <p>假设我们认为某列中绝对值大小超过3的是异常值，那么判断异常值就是要找出某列中大小超过3的值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[np.abs(col)&gt;<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
 
