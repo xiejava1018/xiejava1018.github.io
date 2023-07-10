@@ -140,23 +140,24 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/2c80aac2/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="我们在数据处理的过程中经常碰到需要对数据进行转换的工作，比如将原来数据里的字典值根据字典转义成有意义的说明，将某些数据转换成其他的数据，将空值转换成其他值，将数据字段名进行重命名等。pandas作为数据处理分析的利器当然为上述的这些数据转换提供了便捷的方法。我们可以利用pandas提供的映射、替换、重命名等操作方便的进行相应的数据转换操作。 本文通过实例重点介绍pandas常用的数据转换工具映射m">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/b829442e9d9b402e9f241d04fc3d52ee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/d564c69bd9294e9fbe783c521f913e9f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/fbc75117bc9145098d3a43d848ce76d3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/ceea930a6c144766951c729461e4b67f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/1d8ab00c51404059bd2a3738d6a09822.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2dfc6617e129434dba02868ac172d15e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/6d5a4ba993ea4540840d22c79204f7c0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/3dbf9c7775484138b24860fffa065918.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/3e48e91116f94ee28d52a00fd49878ad.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/42e0aec53edb418c9844fda59025384f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/128baee4f1a14f3b9ebdce0d57f5cb27.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/student%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/map%E5%AD%97%E5%85%B8%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/map%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/lambda%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E5%87%BD%E6%95%B0%E6%98%A0%E5%B0%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/replace%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/replace%E7%A9%BA%E5%80%BC.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/query%E6%8A%A5%E9%94%99.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1%E5%88%97.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D%E5%A4%9A%E5%88%97.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-02-04T14:07:01.000Z">
-<meta property="article:modified_time" content="2022-02-04T14:09:06.650Z">
+<meta property="article:modified_time" content="2023-07-10T04:18:44.404Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/b829442e9d9b402e9f241d04fc3d52ee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/student%E6%95%B0%E6%8D%AE%E9%9B%86.png">
 
 
 
@@ -374,8 +375,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-02-04T22:09:06+08:00">
-                2022-02-04
+              <time title="更新于" itemprop="dateModified" datetime="2023-07-10T12:18:44+08:00">
+                2023-07-10
               </time>
             
           </span>
@@ -506,32 +507,38 @@
 </ul>
 <p>下面通过实例来说明pandas的map()的使用，演示的student数据集如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/b829442e9d9b402e9f241d04fc3d52ee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="student数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"></p>
 <h2 id="1、通过数据字典映射"><a href="#1、通过数据字典映射" class="headerlink" title="1、通过数据字典映射"></a>1、通过数据字典映射</h2><p>map()方法接受数据字典参数，通过数据字典将数据进行映射。如我们需要将“性别”列的1和2替换成“男”和“女”，定义一个数据字典{1:’男’,2:’女’}，将1映射成“男”，将2映射成“女”。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gender_map=&#123;<span class="number">1</span>:<span class="string">'男'</span>,<span class="number">2</span>:<span class="string">'女'</span>&#125;</span><br><span class="line">df[<span class="string">'性别'</span>]=df[<span class="string">'性别'</span>].map(gender_map)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/d564c69bd9294e9fbe783c521f913e9f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="数据字典映射"><br>可以看到通过map()将需要转换的列的值进行的转换，具体的转换过程如下图所示：<br><img src="https://img-blog.csdnimg.cn/fbc75117bc9145098d3a43d848ce76d3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="map转换过程"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/map%E5%AD%97%E5%85%B8%E6%98%A0%E5%B0%84.png" alt="数据字典映射"><br>可以看到通过map()将需要转换的列的值进行的转换，具体的转换过程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/map%E8%BF%87%E7%A8%8B.png" alt="map转换过程"></p>
 <h2 id="2、lambda函数映射"><a href="#2、lambda函数映射" class="headerlink" title="2、lambda函数映射"></a>2、lambda函数映射</h2><p>map()方法还接受lambda函数的方式进行值的映射，如我们现在要把数学分数为95分以上的映射数学等级为“优秀”，95及以下的映射为“良好”。可以通过lambda函数进行映射。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'数学等级'</span>]=df[<span class="string">'5-数学'</span>].map(<span class="keyword">lambda</span> x:<span class="string">'优秀'</span> <span class="keyword">if</span> x&gt;<span class="number">95</span> <span class="keyword">else</span> <span class="string">'良好'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/ceea930a6c144766951c729461e4b67f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="lambda函数映射"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/lambda%E6%98%A0%E5%B0%84.png" alt="lambda函数映射"></p>
 <h2 id="3、通用函数映射"><a href="#3、通用函数映射" class="headerlink" title="3、通用函数映射"></a>3、通用函数映射</h2><p>map()方法可以接收自定义通用的函数进行值的映射，如我们现在要把语文分数为95以上的映射为语文等级为“优秀”，95及以下的映射为“良好”，也可以通过自定义函数来实现映射。<br>先定义一个函数score(x)用于接收需要映射的值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(x)</span>:</span></span><br><span class="line">    score_class=<span class="string">'良好'</span></span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">95</span>:</span><br><span class="line">        score_class=<span class="string">'优秀'</span></span><br><span class="line">    <span class="keyword">return</span> score_class</span><br><span class="line">    </span><br><span class="line">df[<span class="string">'语文等级'</span>]=df[<span class="string">'4-语文'</span>].map(score)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/1d8ab00c51404059bd2a3738d6a09822.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="函数映射"></p>
-<h1 id="二、替换-replace"><a href="#二、替换-replace" class="headerlink" title="二、替换 replace()"></a>二、替换 replace()</h1><p>如果要对全DataFrame数据集中的数据进行某种替换，map()可能需要对数据集中的每个列都进行map()操作才可以，但是通过pandas的替换方法replace可以一次性替换掉DataFrame中所有的数据。如：我们现在要将数据集中所有的“良好”替换成“良”，所有的“优秀”替换成“优”<br>可以直接通过 <code>df.replace([&#39;优秀&#39;,&#39;良好&#39;],[&#39;优&#39;,&#39;良&#39;])</code> 一句代码搞定。<br><img src="https://img-blog.csdnimg.cn/2dfc6617e129434dba02868ac172d15e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="替换"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E5%87%BD%E6%95%B0%E6%98%A0%E5%B0%84.png" alt="函数映射"></p>
+<h1 id="二、替换-replace"><a href="#二、替换-replace" class="headerlink" title="二、替换 replace()"></a>二、替换 replace()</h1><p>如果要对全DataFrame数据集中的数据进行某种替换，map()可能需要对数据集中的每个列都进行map()操作才可以，但是通过pandas的替换方法replace可以一次性替换掉DataFrame中所有的数据。如：我们现在要将数据集中所有的“良好”替换成“良”，所有的“优秀”替换成“优”<br>可以直接通过 <code>df.replace([&#39;优秀&#39;,&#39;良好&#39;],[&#39;优&#39;,&#39;良&#39;])</code> 一句代码搞定。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/replace%E8%BF%87%E7%A8%8B.png" alt="替换"></p>
 <p>以前文章中介绍了处理缺失值用fillna的方式来填充缺失值，用replace则提供了一种更加简单、灵活的处理缺失值或异常值的方式。<br>如在数据集中有一个数据列“是否接种”，这里的值有“已”、“是”、“否”、NaN，实际是在收集统计表格的时候大家填的数据不一致，不标准。现在需要将“已”的全部改成“是”，NaN没有填的改成“否”</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.replace([<span class="string">'已'</span>,np.nan],[<span class="string">'是'</span>,<span class="string">'否'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/6d5a4ba993ea4540840d22c79204f7c0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="填充缺失值"></p>
-<h1 id="三、重命名-rename"><a href="#三、重命名-rename" class="headerlink" title="三、重命名 rename()"></a>三、重命名 rename()</h1><p>在数据处理的过程有时候需要对列索引进行重命名，一个典型的例子就是对于数据的检索或其他操作df[column]对于任意列名均有效，但是df.column只在列名是有效的Python变量名时才有效。<br>我们在检索英语大于95分的数据时可以用<code>df[df[&#39;6-英语&#39;]&gt;95]</code><br><img src="https://img-blog.csdnimg.cn/3dbf9c7775484138b24860fffa065918.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_19,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="英语大于95分的数据"></p>
-<p> 但是用<code>df.query(&#39;6-英语 &gt;95&#39;)</code> 就会报列名没有定义的错，因为’6-英语’列名不是有效的Python变量名。<br><img src="https://img-blog.csdnimg.cn/3e48e91116f94ee28d52a00fd49878ad.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="报列名没有定义的错"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/replace%E7%A9%BA%E5%80%BC.png" alt="填充缺失值"></p>
+<h1 id="三、重命名-rename"><a href="#三、重命名-rename" class="headerlink" title="三、重命名 rename()"></a>三、重命名 rename()</h1><p>在数据处理的过程有时候需要对列索引进行重命名，一个典型的例子就是对于数据的检索或其他操作df[column]对于任意列名均有效，但是df.column只在列名是有效的Python变量名时才有效。<br>我们在检索英语大于95分的数据时可以用<code>df[df[&#39;6-英语&#39;]&gt;95]</code><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1.png" alt="英语大于95分的数据"></p>
+<p> 但是用<code>df.query(&#39;6-英语 &gt;95&#39;)</code> 就会报列名没有定义的错，因为’6-英语’列名不是有效的Python变量名。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/query%E6%8A%A5%E9%94%99.png" alt="报列名没有定义的错"></p>
 <p>这时候就需要将列名重命名为有效的Python变量名，有效的Python变量名应该是只能_，数字，字母组成，不可以是空格或者特殊字符(!@#$%^&amp;*~)，不能是数字开头，不能有中文。我们将“6-英语”的列名重命名为“english”。注意带上inplace=True参数用于更新作用于本数据集，而不是返回一个新的数据集。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.rename(columns=&#123;<span class="string">'6-英语'</span>:<span class="string">'english'</span>&#125;,inplace=<span class="literal">True</span>)</span><br><span class="line">df.query(<span class="string">'english &gt; 95'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/42e0aec53edb418c9844fda59025384f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="重命名"><br>可以看到“6-英语”列名改成了“english”，并且df.query(‘english &gt; 95’)不报错，可以正常检索出数据了。<br>更多的，如果要重命名多个列，可以传入一个需要重命名的多个字典值，进行多个列的重命名。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1%E5%88%97.png" alt="重命名"><br>可以看到“6-英语”列名改成了“english”，并且df.query(‘english &gt; 95’)不报错，可以正常检索出数据了。<br>更多的，如果要重命名多个列，可以传入一个需要重命名的多个字典值，进行多个列的重命名。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'3-年龄'</span>]].rename(columns=&#123;<span class="string">'1-学号'</span>:<span class="string">'ID'</span>,<span class="string">'2-姓名'</span>:<span class="string">'name'</span>,<span class="string">'3-年龄'</span>:<span class="string">'age'</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/128baee4f1a14f3b9ebdce0d57f5cb27.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="多个列重命名"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D%E5%A4%9A%E5%88%97.png" alt="多个列重命名"></p>
 <p>如果需要重命名行索引，可以通过df.rename(index={‘原索引’:’重命名索引’})的方式进行重命名。</p>
 <p>至此，本文通过几个实例介绍了pandas常用的数据转换工具映射map()、替换replace()、重命名rename()</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
       
     </div>
