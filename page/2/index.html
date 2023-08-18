@@ -313,6 +313,270 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6a8b36cb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/6a8b36cb/" itemprop="url">网络安全之认识日志采集分析审计系统</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-10T17:12:22+08:00">
+                2023-03-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-10T17:26:08+08:00">
+                2023-03-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6a8b36cb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6a8b36cb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/6a8b36cb/" class="leancloud_visitors" data-flag-title="网络安全之认识日志采集分析审计系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>日志对于大家来说非常熟悉，机房中的各种系统、防火墙、交换机、路由器等等，都在不断地产生日志。无数实践告诉我们，健全的日志记录和分析系统是系统正常运营与优化以及安全事故响应的基础。我们一起来认识日志采集分析审计系统。</p>
+<h2 id="一、什么是日志数据"><a href="#一、什么是日志数据" class="headerlink" title="一、什么是日志数据"></a>一、什么是日志数据</h2><h3 id="1、日志的概念"><a href="#1、日志的概念" class="headerlink" title="1、日志的概念"></a>1、日志的概念</h3><p>日志数据的核心就是日志消息或日志，日志消息是计算机系统、设备、软件等在某种刺激下反应生成的东西。例如：Linux用户登录和注销、防火墙ACL通过和拒绝、存储系统故障等。</p>
+<p>日志数据（log data）就是一条日志消息的内在含义，用来告诉你为什么生成日志消息的信息。日志（log）指用于展示某些事件全貌的日志消息的集合。</p>
+<h3 id="2、日志的类型"><a href="#2、日志的类型" class="headerlink" title="2、日志的类型"></a>2、日志的类型</h3><p>日志通用的几种类型：</p>
+<ul>
+<li>信息（Info）:告诉用户和管理员发生了一些没有风险的事情。</li>
+<li>调试（Debug）:在应用程序代码运行时生成调试信息，给软件开发人员提供故障检测和定位问题的帮助。</li>
+<li>警告（Warning）:缺少需要的文件、参数、数据，但又不影响系统运行时生成警告。</li>
+<li>错误（Error）:传达在计算机系统重出现的各种级别的错误。许多错误消息只能给出为什么出错的起点，要寻找出导致错误发生的根本原因还需要进一步的调查。</li>
+<li>警报（Alarm）:警报表明发生了一些有趣的事情。一般情况下，警报数据安全设备和安全相关系统领域的。如IPS检测到了一个恶意链接，可能会采取任何预先配置的行动，IPS会记录下检测结果以及所采取的行动。</li>
+</ul>
+<p>可以看到日志数据包含了系统运行的很多重要信息，了解日志、做好日志的分析审计可以很好帮助用户更好监控和保障信息系统运行，及时识别针对信息系统的入侵攻击、内部违规等信息。</p>
+<h2 id="二、为什么要做日志分析审计"><a href="#二、为什么要做日志分析审计" class="headerlink" title="二、为什么要做日志分析审计"></a>二、为什么要做日志分析审计</h2><h3 id="1、满足法律法规的要求"><a href="#1、满足法律法规的要求" class="headerlink" title="1、满足法律法规的要求"></a>1、满足法律法规的要求</h3><p>国家的政策法规、行业标准等都明确对日志审计提出了要求，日志审计已成为企业满足合规内控要求所必须的一项基本要求。 2017年6月1日起施行的《中华人民共和国网络安全法》中规定：采取监测、记录网络运行状态、网络安全事件的技术措施，并按照规定留存相关的网络日志不少于六个月。 </p>
+<p>《网络安全等级保护基本要求》（GB∕T 22239-2019）中规定：二到四级需要对网络、主机、应用安全三部分进行日志审计，留存日志需符合法律法规规定。</p>
+<p>我国政府及相关行业已相继推出了数十部法律法规。如国家《企业内控基本规范》、国家《计算机信 息系统安全等级保护划分准则》同时银行、证券、通信行业均提出了相关标准及要求，确立了面向内控的信息安全审计的必要性。如：<br>《ISO27001:2013 》4.3.3小节、 《ISO17799:2005 》10.10小节<br>《商业银行内部控制指引》第一百二十六条 银监局《商业银行信息科技风险管理指引》<br>《银行业金融机构信息系统风险管理指引》第四十六条<br>《证券公司内部控制指引》第一百一十七条<br>《互联网安全保护技术措施规定》第八条</p>
+<h3 id="2、满足系统安全管理需求"><a href="#2、满足系统安全管理需求" class="headerlink" title="2、满足系统安全管理需求"></a>2、满足系统安全管理需求</h3><p>当前信息安全形势日益严峻，信息安全防护工作面临前所未有的困难和挑战。日志审计能够帮助用户更好监控和保障信息系统运行，及时识别针对信息系统的入侵攻击、内部违规等信息，同时日志审计能够为安全事件的事后分析、调查取证提供必要的信息。</p>
+<h2 id="三、日志分析审计的挑战"><a href="#三、日志分析审计的挑战" class="headerlink" title="三、日志分析审计的挑战"></a>三、日志分析审计的挑战</h2><ol>
+<li>日志数据量巨大，无法很好的管控<br>每类设备产生的日志量都是十分巨大，分析审计员无法对数量巨大的日志进行查看与管控。</li>
+<li>日志数据格式各异，可读性差<br>不同品牌、不同类型设备的日志格式都不相同，分析审计员无法准确解读所有设备的日志。</li>
+<li>日志数据存储风险，彼此割裂<br>各类设备分散在网络中的不同位置，分析审计人员无法及时有效的查看到存储于不同位置的日志。</li>
+<li>日志数据无法关联，分析困难<br>当威胁产生时无法关联其他日志进行溯源分析，无法找到问题的源头从根本上解决问题。</li>
+</ol>
+<h2 id="四、日志采集分析审计系统的主要核心功能"><a href="#四、日志采集分析审计系统的主要核心功能" class="headerlink" title="四、日志采集分析审计系统的主要核心功能"></a>四、日志采集分析审计系统的主要核心功能</h2><p>对于前面的日志分析审计现状带来的挑战，很多企业购买或自建了日志采集分析审计系统。一方面满足合规要求，另一方面满足自身业务系统安全管理的要求。</p>
+<p>日志采集分析审计系统，通过海量日志采集、异构设备日志范式化、安全事件关联分析等技术，<strong>实现日志全生命周期管理</strong>。协助运维人员从事前（发现安全风险）、事中（分析溯源）及事后（调查取证）等多个维度监控网络安全事件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230310/%E6%97%A5%E5%BF%97%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png" alt="日志全生命周期管理"></p>
+<p>一般来说日志采集分析审计系统核心功能包括日志采集、日志存储、日志分析、日志查询、日志监控、日志事件告警、统计展示。</p>
+<h3 id="1、日志采集"><a href="#1、日志采集" class="headerlink" title="1、日志采集"></a>1、日志采集</h3><p>系统应提供全面的日志采集能力：支持网络安全设备、网络设备、数据库、windows/linux主机日志、web服务器日志、虚拟化平台日志以及自定义等日志；<br>提供多种的数据源管理功能：支持数据源的信息展示与管理、采集器的信息展示与管理以及agent的信息展示与管理；提供分布式外置采集器、Agent等多种日志采集方式；支持IPv4、IPv6日志采集、分析以及检索查询；</p>
+<h3 id="2、日志存储"><a href="#2、日志存储" class="headerlink" title="2、日志存储"></a>2、日志存储</h3><p>提供原始日志、范式化日志的存储，可自定义存储周期，支持FTP日志备份以及NFS网络文件共享存储等多种存储扩展方式。一般来说支持大数据技术的存储方式如ES等，日志数据存储需要满足不少于六个月。</p>
+<h3 id="3、日志分析"><a href="#3、日志分析" class="headerlink" title="3、日志分析"></a>3、日志分析</h3><p>提供便捷的日志分析操作，支持对日志进行分组、分组查询以及从叶子节点可直接查询分析日志；</p>
+<h3 id="4、日志查询"><a href="#4、日志查询" class="headerlink" title="4、日志查询"></a>4、日志查询</h3><p>提供丰富灵活的日志查询方式，支持全文、key-value、多kv布尔组合、括弧、正则、模糊等检索；<br>提供便捷的日志检索操作，支持保存检索、从已保存的检索导入见多条件等；</p>
+<h3 id="5、日志监控"><a href="#5、日志监控" class="headerlink" title="5、日志监控"></a>5、日志监控</h3><p>在采集器维度对日志源情况进行实时监控，对日志源的基本情况及事件信息进行展示，提供日志监控能力，支持对采集器、采集器资产的实时状态进行监控。如发现某一采集器在一段时间内没有日志数据报送，就需要排查是否是源系统或网络传输出现了问题。<br>在平台维度对平台自身的组件进行实时监控，保障平台自身的稳定运行。支持查看CPU、磁盘、内存总量及当前使用情况；支持查看资产的概览信息及资产关联的事件分布；</p>
+<h3 id="6、日志事件告警"><a href="#6、日志事件告警" class="headerlink" title="6、日志事件告警"></a>6、日志事件告警</h3><p>能够实现单事件的关联、多事件的关联分析；支持自定义事件规则，可按照日志、字段布尔逻辑关系等方式自定义规则；支持时间的查询、查询结果统计以及统计结果的展示等；支持对告警规则的自定义，可设置针对事件的各种筛选规则、告警等级等；</p>
+<p>能够进行统计关联分析、时序关联分析、逻辑关联分析<br><strong>统计关联</strong>：基于统计条件规则的关联分析，如某一事件重复出现多次。典型的如：暴力破解，在某一时间段某一相同账号频繁多次失败的尝试登录日志。<br><strong>时序关联</strong>：基于时序的规则的分析，如发生某动作后接着发生了其他的动作。如：发生了在某一时间段某一相同账号频繁多次失败的尝试登录日志后，发生了一次成功登录的日志。就有可能怀疑是暴力破解成功了。<br><strong>逻辑关联</strong>：基于逻辑的关联，如满足什么条件的情况下发生了什么。如：不是白名单的IP访问了某台设备等。</p>
+<h3 id="7、统计展示"><a href="#7、统计展示" class="headerlink" title="7、统计展示"></a>7、统计展示</h3><p>支持丰富的内置报表以及灵活的自定义报表模式，按照日、周、月、年生成专项审计报告，支持实时报表、定时报表、周期性任务报表等方式；支持编辑报表的目录接口、引用统计项、设置报表标题、展示页眉和页码、报表配置基本内容（名称、描述等）；支持html，pdf，word格式的报表文件以及报表logo的灵活配置；可视化的交互界面能够展现当前审计情况，展现日志审计工作成果与价值。</p>
+<p>通过对人员角色的定义，可根据角色定义监控的个人工作台，过滤关键重要的事件和监控指标，更加方便安全的日常审计工作，有效提升日志审计的关注度和时效性。</p>
+<h2 id="五、日志采集分析审计系统的价值"><a href="#五、日志采集分析审计系统的价值" class="headerlink" title="五、日志采集分析审计系统的价值"></a>五、日志采集分析审计系统的价值</h2><ol>
+<li>日志集中管控<br>日志采集分析审计系统可以帮助客户对海量日志进行集中管控，客户能够从日志采集、存储、分析、告警等环节参与日志全生命周期管理，有效解决日志分散、日志量大、日志格式不统一的问题，助力安全运维。</li>
+<li>日志回溯与取证<br>日志采集分析审计系统能够对日志进行留存，支持回溯查询，有效解决事后追查困难、无法提供有效证据的难题。</li>
+<li>监测体系构建<br>日志作为网络安全监测体系中比较重要的一环，可在信息获取和分析验证等方面提供技术支撑，当体系做出调整后，日志能够更加准确的反映出系统情况，助力企业网络安全监测体系构建，提升安全防御能力。</li>
+<li>等保合规<br>日志采集分析审计系统平台支持大数据日志存储方案，可助力客户满足网络安全法、等保合规日志留存6个月的要求，同时支持灵活的自定义报表，可满足多样化的报表需求。</li>
+</ol>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dc7085dc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2741,242 +3005,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/73474fe7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/73474fe7/" itemprop="url">通过Django发送邮件</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-30T14:57:46+08:00">
-                2022-12-30
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-05T12:58:48+08:00">
-                2023-03-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/73474fe7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/73474fe7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/73474fe7/" class="leancloud_visitors" data-flag-title="通过Django发送邮件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  926
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。</p>
-<h2 id="一、Django邮件配置"><a href="#一、Django邮件配置" class="headerlink" title="一、Django邮件配置"></a>一、Django邮件配置</h2><p>用Django发送邮件需要告诉你的邮件服务器相应的参数配置，需要在settings.py中进行配置好。<br>默认情况下，使用配置文件中的<code>EMAIL_HOST</code>和<code>EMAIL_PORT</code>设置SMTP服务器主机和端口，<code>EMAIL_HOST_USER</code>和<br><code>EMAIL_HOST_PASSWORD</code>是用户名和密码。如果设置了EMAIL_USE_TLS和EMAIL_USE_SSL，它们将控制是否使用相应的加密链接。<br>典型的配置如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.126.com'</span>      <span class="comment">#126邮箱的邮箱服务地址</span></span><br><span class="line">EMAIL_PORT = <span class="number">25</span>          <span class="comment">#端口，大部分都是默认25</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@126.com'</span>    <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
-
-<p>这里要注意的两个地方，一个是EMAIL_PORT端口、一个是EMAIL_HOST_PASSWORD密码。<br>端口一般默认是25，但有些邮箱改了默认端口或需要用加密链接465、578端口，可以从邮件服务商查到。<br>密码以前可以用邮箱账号密码，但这几年随着安全要求的提高，大部分主要的邮件服务提供商都要用申请的授权码进一步加强安全系数。<br>这里介绍这些关键的信息如何在邮件服务商获取。</p>
-<blockquote>
-<p> <code>注意EMAIL_HOST_PASSWORD这里不能用你邮箱账号的密码，而要用申请的设备授权码。</code></p>
-</blockquote>
-<h3 id="126邮箱"><a href="#126邮箱" class="headerlink" title="126邮箱"></a>126邮箱</h3><p>进入到邮箱配置界面，点击“POP3/SMTP/IMAP”，注意要开启SMTP。<br><img src="https://img-blog.csdnimg.cn/01e56aa8fcd4445d83f7d4363176c4d4.png" alt="126邮箱配置界面"></p>
-<p>授权码是用于登录第三方邮件客户端的专用密码，点击”新增授权密码”，降会弹出一个账号安全验证，扫描后可以快速的发短信。<br><img src="https://img-blog.csdnimg.cn/e832aa92deae43348df02688c1df1a38.png" alt="账号安全验证界面"></p>
-<p>用你的注册手机发完短信后点击”我已发送”就会弹出一个授权码的窗口，要把这个授权码记下来，这个窗口只显示一次。<br><img src="https://img-blog.csdnimg.cn/c7b70b42ca7f4dcb9f5c7cfbc175e642.png" alt="授权码显示界面"></p>
-<h3 id="QQ邮箱"><a href="#QQ邮箱" class="headerlink" title="QQ邮箱"></a>QQ邮箱</h3><p>进入到QQ邮箱WEB界面后点击“设置”，点击“邮件设置”的“账户”页签拉到“账户安全”处就可以看到相关的SMTP服务信息</p>
-<p><img src="https://img-blog.csdnimg.cn/0930d68e01c8495fa3c61882e941793b.png" alt="QQ邮箱配置界面"></p>
-<p>点击“生成授权码”，将弹出验证密保的界面。<br><img src="https://img-blog.csdnimg.cn/70d5db3bcfee4daf8bb8fb199f8093fd.png" alt="验证密保界面"><br>根据提示发送短信后，点击我已发送，将会弹出生成授权码的界面显示授权码。<br><img src="https://img-blog.csdnimg.cn/a1779932a52544ee80fd34074eb57faf.png" alt="授权码生成界面"></p>
-<p>如果需要SSL加密方式，可以进一步查看服务商的SMTP服务说明<br>如QQ邮箱的服务说明 <a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331" target="_blank" rel="noopener">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=331</a><br><img src="https://img-blog.csdnimg.cn/a8a2c3710e6844cdb132a2e29a064568.png" alt="服务说明界面"></p>
-<p>看到使用SSL，端口号是465或587</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment">#QQ邮箱的smtp服务器</span></span><br><span class="line">EMAIL_PORT = <span class="number">465</span>           <span class="comment">#端口为465或587</span></span><br><span class="line">EMAIL_USE_SSL = <span class="literal">True</span>    <span class="comment">#SSL加密方式设置为True</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@qq.com'</span>     <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="二、测试发送邮件"><a href="#二、测试发送邮件" class="headerlink" title="二、测试发送邮件"></a>二、测试发送邮件</h2><p>可以用django的环境在shell中测试。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">from django.core.mail import send_mail</span><br><span class="line">send_mail(<span class="string">'test'</span>,<span class="string">'this is test mail'</span>,<span class="string">'yourmail@qq.com'</span>,[<span class="string">'yourmail@126.com'</span>,<span class="string">'yormail@qq.com'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdnimg.cn/85b59a9da2ad450793807d3e4260e8f6.png" alt="在这里插入图片描述"></p>
-<p>如果反回1就表示发送成功了, 查收邮件到达。</p>
-<p>如果发送不成功，请仔细核对邮箱服务的相关配置，一般来说与django无关。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3033,7 +3061,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-count">109</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3145,7 +3173,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">201.3k</span>
+    <span title="Site words total count">201.9k</span>
   
   
 <!--51la网站应用监控-->
