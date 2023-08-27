@@ -313,6 +313,239 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/3918ce28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/3918ce28/" itemprop="url">Python实现简单信号滤波实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-13T15:19:26+08:00">
+                2023-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-13T15:24:32+08:00">
+                2023-03-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/3918ce28/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/3918ce28/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/3918ce28/" class="leancloud_visitors" data-flag-title="Python实现简单信号滤波实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在有些项目中需要对信号进行滤波处理，尤其是在医疗的设备中如心跳、脉搏等设备的采样后进行处理。滤波的目的就是除去某些频率的信号如噪声。常见的包括有低通滤波、高通滤波、带通滤波。</p>
+<p>低通滤波指的是去除高于某一阈值频率的信号；高通滤波去除低于某一频率的信号；带通滤波指的是类似低通高通的结合保留中间频率信号；带阻滤波也是低通高通的结合只是过滤掉的是中间部分。通过滤波可以过滤到一些无用的噪音，得到的比较平滑的波形，用来进行分析。</p>
+<p>scipy模块提供了常用简单的信号滤波方法包括低通滤波、高通滤波、带通滤波、带阻滤波等。</p>
+<h2 id="一、scipy信号滤波函数介绍"><a href="#一、scipy信号滤波函数介绍" class="headerlink" title="一、scipy信号滤波函数介绍"></a>一、scipy信号滤波函数介绍</h2><ol>
+<li>滤波器构造函数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scipy.signal.butter(N, Wn, btype=<span class="string">'low'</span>, analog=<span class="literal">False</span>, output=<span class="string">'ba'</span>)</span><br></pre></td></tr></table></figure>
+<p> 输入参数：<br> N:滤波器的阶数<br> Wn：归一化截止频率。计算公式Wn=2*截止频率/采样频率。（注意：根据采样定理，采样频率要大于两倍的信号本身最大的频率，才能还原信号。截止频率一定小于信号本身最大的频率，所以Wn一定在0和1之间）。当构造带通滤波器或者带阻滤波器时，Wn为长度为2的列表。<br> btype : 滤波器类型{‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’},<br> output : 输出类型{‘ba’, ‘zpk’, ‘sos’},<br> 输出参数：<br> b，a: IIR滤波器的分子（b）和分母（a）多项式系数向量。output=’ba’<br> z,p,k: IIR滤波器传递函数的零点、极点和系统增益. output= ‘zpk’<br> sos: IIR滤波器的二阶截面表示。output= ‘sos’</p>
+<ol start="2">
+<li>滤波函数</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scipy.signal.filtfilt(b, a, x, axis=<span class="number">-1</span>, padtype=<span class="string">'odd'</span>, padlen=<span class="literal">None</span>, method=<span class="string">'pad'</span>, irlen=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p> 输入参数：<br> b: 滤波器的分子系数向量<br> a: 滤波器的分母系数向量<br> x: 要过滤的数据数组。（array型）<br> axis: 指定要过滤的数据数组x的轴<br> padtype: 必须是“奇数”、“偶数”、“常数”或“无”。这决定了用于过滤器应用的填充信号的扩展类型。{‘odd’, ‘even’, ‘constant’, None}<br> padlen：在应用滤波器之前在轴两端延伸X的元素数目。此值必须小于要滤波元素个数- 1。（int型或None）<br> method：确定处理信号边缘的方法。当method为“pad”时，填充信号；填充类型padtype和padlen决定，irlen被忽略。当method为“gust”时，使用古斯塔夫森方法，而忽略padtype和padlen。{“pad” ，“gust”}<br> irlen：当method为“gust”时，irlen指定滤波器的脉冲响应的长度。如果irlen是None，则脉冲响应的任何部分都被忽略。对于长信号，指定irlen可以显著改善滤波器的性能。（int型或None）<br> 输出参数：<br> y:滤波后的数据数组</p>
+<h2 id="二、代码介绍"><a href="#二、代码介绍" class="headerlink" title="二、代码介绍"></a>二、代码介绍</h2><p>scipy模块signal滤波器类型包括低通滤波、高通滤波、带通滤波、带阻滤波</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pip install scipy</span><br><span class="line"><span class="comment">#低通滤波</span></span><br><span class="line"><span class="comment">#假设采样频率为1000hz,信号本身最大的频率为500hz，要滤除400hz以上频率成分，即截至频率为400hz,则wn=2*400/1000=0.8。Wn=0.8</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.8</span>, <span class="string">'lowpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#高通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.2</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带阻滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandstop'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、信号滤波实战"><a href="#三、信号滤波实战" class="headerlink" title="三、信号滤波实战"></a>三、信号滤波实战</h2><p>这里以一个真实的心电数据为例，来实战对心电图某一段时间采样的信号数据进行高通滤波处理，对比一下原始的信号和高通滤波后的信号波形，然后输出成图片文件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#引入包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> signal</span><br><span class="line"><span class="comment">#读取心电图数据文件</span></span><br><span class="line">bspfile=<span class="string">'data/1.txt'</span></span><br><span class="line">bsp_f = open(bspfile, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">bsp_content = bsp_f.read()</span><br><span class="line">ary=bsp_content.split(<span class="string">' '</span>)</span><br><span class="line">ary=[float(s) <span class="keyword">for</span> s <span class="keyword">in</span> bsp_content.split(<span class="string">' '</span>)]</span><br><span class="line">ary_data=ary[<span class="number">0</span>:<span class="number">10000</span>] <span class="comment">#取前10秒数据</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.3</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line"><span class="comment">#绘图</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, ary_data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br><span class="line">axes[<span class="number">0</span>].plot(ary_data)</span><br><span class="line">axes[<span class="number">0</span>].set(title=<span class="string">'Source signal'</span>)</span><br><span class="line">axes[<span class="number">1</span>].plot(filtedData)</span><br><span class="line">axes[<span class="number">1</span>].set(title=<span class="string">'highpass signal'</span>)</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">plt.savefig(<span class="string">'./signal1.png'</span>, <span class="comment"># ⽂件名：png、jpg、pdf</span></span><br><span class="line">dpi = <span class="number">80</span>, <span class="comment"># 保存图⽚像素密度</span></span><br><span class="line">bbox_inches = <span class="string">'tight'</span>)<span class="comment"># 保存图⽚完整</span></span><br></pre></td></tr></table></figure>
+<p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>微信公众号：fullbug  关注微信公众号，回复“信号滤波”获取全部代码+数据集</p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6a8b36cb/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2673,338 +2906,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c2fa9556/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/c2fa9556/" itemprop="url">Django+Celery+Flower实现异步和定时任务及其监控告警</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-01-06T21:00:15+08:00">
-                2023-01-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T14:52:53+08:00">
-                2023-03-19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/c2fa9556/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c2fa9556/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/c2fa9556/" class="leancloud_visitors" data-flag-title="Django+Celery+Flower实现异步和定时任务及其监控告警">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用Django框架进行web开发非常的快捷方便，但Django框架请求/响应是同步的。但我们在实际项目中经常会碰到一些耗时的不能立即返回请求结果任务如：数据爬取、发邮件等，如果常时间等待对用户体验不是很好，在这种情况下就需要实现异步实现，马上返回响应请求，但真正的耗时任务在后台异步执行。Django框架本身无法实现异步响应但可以通过Celery很快的实现异步和定时任务。本文将介绍如何通过Django+Celery+Flower实现异步和定时任务及其任务的监控告警。</p>
-<p>常见的任务有两类，一类是异步任务，一类是定时任务（定时执行或按一定周期执行）。Celery都能很好的支持。</p>
-<p>Celery 是一个 基于python开发的分布式异步消息任务队列，通过它可以轻松的实现任务的异步处理， 如果你的业务场景中需要用到异步任务，就可以考虑使用celery， 举几个实例场景中可用的例子:</p>
-<ul>
-<li>异步任务：将耗时的操作任务提交给Celery去异步执行，比如发送短信/邮件、消息推送、音频处理等等</li>
-<li>做一个定时任务，比如每天定时执行爬虫爬取指定内容</li>
-</ul>
-<p>Celery 在执行任务时需要通过一个消息中间件（Broker）来接收和发送任务消息，以及存储任务结果， 一般使用rabbitMQ、Redis或其他DB。</p>
-<p>本文使用redis作为消息中间件和结果存储，在后面的通过数据库监控任务执行案例将介绍用到数据库作为结果存储。</p>
-<h2 id="一、在Django中引入Celary"><a href="#一、在Django中引入Celary" class="headerlink" title="一、在Django中引入Celary"></a>一、在Django中引入Celary</h2><h3 id="1、安装库"><a href="#1、安装库" class="headerlink" title="1、安装库"></a>1、安装库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install celery</span><br><span class="line">pip install redis</span><br><span class="line">pip install eventlet  <span class="comment">#在windows环境下需要安装eventlet包</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2、引入celary"><a href="#2、引入celary" class="headerlink" title="2、引入celary"></a>2、引入celary</h3><p>在主项目目录下，新建celary.py文件，内容如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> django</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置系统环境变量，否则在启动celery时会报错</span></span><br><span class="line"><span class="comment"># taskproject 是当前项目名</span></span><br><span class="line">os.environ.setdefault(<span class="string">'DJANGO_SETTINGS_MODULE'</span>, <span class="string">'taskproject.settings'</span>)</span><br><span class="line">django.setup()</span><br><span class="line"></span><br><span class="line">celery_app = Celery(<span class="string">'taskproject'</span>)</span><br><span class="line">celery_app.config_from_object(<span class="string">'django.conf:settings'</span>)</span><br><span class="line">celery_app.autodiscover_tasks(<span class="keyword">lambda</span>: settings.INSTALLED_APPS)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/1_%E5%BC%95%E5%85%A5celery.png" alt="在这里插入图片描述"></p>
-<p>在主目录的<strong>init</strong>.py中添加如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .celery <span class="keyword">import</span> celery_app</span><br><span class="line"></span><br><span class="line">__all__ = [<span class="string">'celery_app'</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/2___init__py%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81.png" alt="在这里插入图片描述"></p>
-<h3 id="3、在settings-py中设置celery的相关参数"><a href="#3、在settings-py中设置celery的相关参数" class="headerlink" title="3、在settings.py中设置celery的相关参数"></a>3、在settings.py中设置celery的相关参数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###----Celery redis 配置-----###</span></span><br><span class="line"><span class="comment"># Broker配置，使用Redis作为消息中间件</span></span><br><span class="line">BROKER_URL = <span class="string">'redis://:redispassword@127.0.0.1:6379/0'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># BACKEND配置，使用redis</span></span><br><span class="line">CELERY_RESULT_BACKEND = <span class="string">'redis://:redispassword@127.0.0.1:6379/1'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CELERY_ACCEPT_CONTENT=[<span class="string">'json'</span>]</span><br><span class="line">CELERY_TASK_SERIALIZER=<span class="string">'json'</span></span><br><span class="line"><span class="comment"># 结果序列化方案</span></span><br><span class="line">CELERY_RESULT_SERIALIZER = <span class="string">'json'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 任务结果过期时间，秒</span></span><br><span class="line">CELERY_TASK_RESULT_EXPIRES = <span class="number">60</span> * <span class="number">60</span> * <span class="number">24</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 时区配置</span></span><br><span class="line">CELERY_TIMEZONE = <span class="string">'Asia/Shanghai'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/3_setting%E4%B8%AD%E8%AE%BE%E7%BD%AEcelery%E7%9A%84%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0.png" alt="在这里插入图片描述"></p>
-<p>这时候Celery的基本配置完成了，可以实现并添加任务了。</p>
-<h2 id="二、实现异步任务"><a href="#二、实现异步任务" class="headerlink" title="二、实现异步任务"></a>二、实现异步任务</h2><h3 id="1、创建tasks-py"><a href="#1、创建tasks-py" class="headerlink" title="1、创建tasks.py"></a>1、创建tasks.py</h3><p>在子应用下建立各自对应的任务文件tasks.py(<code>必须是tasks.py这个名字，不允许修改</code>)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task1</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(int(x)):</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">        logger.info(<span class="string">'this is task1 '</span>+str(i))</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scheduletask1</span><span class="params">()</span>:</span></span><br><span class="line">    now = datetime.datetime.now()</span><br><span class="line">    logger.info(<span class="string">'this is scheduletask '</span>+now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-<p>在tasks.py中我们定义了两个任务，这两个任务要用@shared_task装饰起来，否则celery无法管理。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/4_@shared_task.png" alt="在这里插入图片描述"></p>
-<p>为了放便执行我们通过views把这两个任务通过函数方法调用起来，用URL进行发布。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> tasks</span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runtask</span><span class="params">(request)</span>:</span></span><br><span class="line">    x=request.GET.get(<span class="string">'x'</span>)</span><br><span class="line">    tasks.task1.delay(x)</span><br><span class="line">    content= &#123;<span class="string">'200'</span>: <span class="string">'run task1 success!---'</span>+str(x)&#125;</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">runscheduletask</span><span class="params">(request)</span>:</span></span><br><span class="line">    tasks.scheduletask1.delay()</span><br><span class="line">    content= &#123;<span class="string">'200'</span>: <span class="string">'success！'</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(content)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/5_views%E5%8F%91%E5%B8%83%E4%BB%BB%E5%8A%A1.png" alt="在这里插入图片描述"></p>
-<p>在urls中加入路由进行发布</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> taskapp <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'task'</span>, views.runtask),</span><br><span class="line">    path(<span class="string">'runscheduletask'</span>, views.runscheduletask),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/6_urls%E5%8A%A0%E5%85%A5%E8%B7%AF%E7%94%B1%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%B8%83.png" alt="在这里插入图片描述"></p>
-<p>在项目的主urls中加入子项目的urls<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/images/2023/20230112/7_%E4%B8%BBurls%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%AD%90%E9%A1%B9%E7%9B%AE%E7%9A%84urls.png" alt="在这里插入图片描述"></p>
-<h3 id="2、启动celery"><a href="#2、启动celery" class="headerlink" title="2、启动celery"></a>2、启动celery</h3><blockquote>
-<p>在启动celery之前，先要启动redis服务，因为celery在settings中配置要用到redis作为消息中间件和结果存储。<br>windows环境下启动redis的命令为redis-server.exe redis.windows.conf</p>
-</blockquote>
-<p>在控制台启动celery的worker</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject worker -l debug -P eventlet</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/8_%E5%90%AF%E5%8A%A8celery.png" alt="在这里插入图片描述"></p>
-<p>启动django访问url调用任务，看异步效果<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/9.%E6%9F%A5%E7%9C%8B%E5%BC%82%E6%AD%A5%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
-<h3 id="3、查看任务"><a href="#3、查看任务" class="headerlink" title="3、查看任务"></a>3、查看任务</h3><p>控制台查看异步任务执行的情况，可以看web的url很快返回响应结果，后台控制台一直在执行异步任务。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/10_%E6%9F%A5%E7%9C%8B%E4%BB%BB%E5%8A%A1.png" alt="在这里插入图片描述"></p>
-<h2 id="三、实现定时任务"><a href="#三、实现定时任务" class="headerlink" title="三、实现定时任务"></a>三、实现定时任务</h2><p>Celery实现定时任务也很方便</p>
-<h3 id="1、定义调度器"><a href="#1、定义调度器" class="headerlink" title="1、定义调度器"></a>1、定义调度器</h3><p>在settings.py中加入定时任务的定义就可以实现定时任务</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> celery.schedules <span class="keyword">import</span> crontab</span><br><span class="line"></span><br><span class="line">CELERYBEAT_SCHEDULE = &#123;</span><br><span class="line">    <span class="string">'every_5_seconds'</span>: &#123;</span><br><span class="line">        <span class="comment"># 任务路径</span></span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'taskapp.tasks.scheduletask1'</span>,</span><br><span class="line">        <span class="comment"># 每5秒执行一次</span></span><br><span class="line">        <span class="string">'schedule'</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">'args'</span>: ()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里这个scheduletask1是前面tasks.py中定义的任务，当然也可以定义多个定时任务，如加一个task1，task1是有参数的，可以在’args’: ()中传入参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">CELERYBEAT_SCHEDULE = &#123;</span><br><span class="line">    <span class="string">'every_5_seconds'</span>: &#123;</span><br><span class="line">        <span class="comment"># 任务路径</span></span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'taskapp.tasks.scheduletask1'</span>,</span><br><span class="line">        <span class="comment"># 每5秒执行一次</span></span><br><span class="line">        <span class="string">'schedule'</span>: <span class="number">5</span>,</span><br><span class="line">        <span class="string">'args'</span>: ()</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'every_10_seconds'</span>: &#123;</span><br><span class="line">        <span class="comment"># 任务路径</span></span><br><span class="line">        <span class="string">'task'</span>: <span class="string">'taskapp.tasks.task1'</span>,</span><br><span class="line">        <span class="comment"># 每10秒执行一次,task1的参数是5</span></span><br><span class="line">        <span class="string">'schedule'</span>: <span class="number">10</span>,</span><br><span class="line">        <span class="string">'args'</span>: ([<span class="number">5</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/11_%E5%B8%A6%E5%8F%82%E6%95%B0%E7%9A%84%E4%BB%BB%E5%8A%A1.png" alt="在这里插入图片描述"></p>
-<p>这里定义了task1是10秒执行一次，传入的参数是5。</p>
-<h3 id="2、启动beat"><a href="#2、启动beat" class="headerlink" title="2、启动beat"></a>2、启动beat</h3><p>需要保持worker进程，另外开一个控制台启动beat</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject beat -l debug</span><br></pre></td></tr></table></figure>
-<h3 id="3、查看任务-1"><a href="#3、查看任务-1" class="headerlink" title="3、查看任务"></a>3、查看任务</h3><p>启动任务后看控制台打印的日志task1和scheduletask1都按计划定时执行了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/12_%E6%9F%A5%E7%9C%8Btask%E5%92%8Cscheduletask.png" alt="在这里插入图片描述"></p>
-<h2 id="三、通过数据库配置定时任务"><a href="#三、通过数据库配置定时任务" class="headerlink" title="三、通过数据库配置定时任务"></a>三、通过数据库配置定时任务</h2><p>虽然通过settings.py的配置可以实现定时任务的配置，做为实际项目中可能还是不够实用，更加工程化的做法是将定时任务的配置放到数据库里通过界面来配置。同样Celery对此也提供了很好的支持，这需要安装django-celery-beat插件。以下将介绍使用过程。</p>
-<h3 id="1、安装djiango-celery-beat"><a href="#1、安装djiango-celery-beat" class="headerlink" title="1、安装djiango-celery-beat"></a>1、安装djiango-celery-beat</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-celery-beat</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、在APP中注册djiango-celery-beat"><a href="#2、在APP中注册djiango-celery-beat" class="headerlink" title="2、在APP中注册djiango-celery-beat"></a>2、在APP中注册djiango-celery-beat</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">....</span><br><span class="line"><span class="string">'django_celery_beat'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、在settings-py中设置调度器及时区"><a href="#3、在settings-py中设置调度器及时区" class="headerlink" title="3、在settings.py中设置调度器及时区"></a>3、在settings.py中设置调度器及时区</h3><p>在settings.py中屏蔽到原来的调度器，加入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CELERYBEAT_SCHEDULER = <span class="string">'django_celery_beat.schedulers.DatabaseScheduler'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/13_settings%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
-<p>在setings.py中设置好语言、时区等</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">LANGUAGE_CODE = <span class="string">'zh-hans'</span></span><br><span class="line"></span><br><span class="line">TIME_ZONE = <span class="string">'Asia/Shanghai'</span></span><br><span class="line"></span><br><span class="line">USE_I18N = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">USE_TZ = <span class="literal">False</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4、进行数据库迁移"><a href="#4、进行数据库迁移" class="headerlink" title="4、进行数据库迁移"></a>4、进行数据库迁移</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate django_celery_beat</span><br></pre></td></tr></table></figure>
-
-<h3 id="5、分别启动woker和beta"><a href="#5、分别启动woker和beta" class="headerlink" title="5、分别启动woker和beta"></a>5、分别启动woker和beta</h3><p>在两个控制台分别启动woker和beta</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject worker -l debug -P eventlet</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject beat -l debug</span><br></pre></td></tr></table></figure>
-
-<h3 id="6、启动django服务，访问admin的web管理端"><a href="#6、启动django服务，访问admin的web管理端" class="headerlink" title="6、启动django服务，访问admin的web管理端"></a>6、启动django服务，访问admin的web管理端</h3><p>访问 <a href="http://localhost:8000/admin/" target="_blank" rel="noopener">http://localhost:8000/admin/</a> 可以看到周期任务的管理菜单，管理定时任务非常方便。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/14_Django%E7%AE%A1%E7%90%86web%E7%AB%AF.png" alt="在这里插入图片描述"></p>
-<h3 id="7、配置定时任务"><a href="#7、配置定时任务" class="headerlink" title="7、配置定时任务"></a>7、配置定时任务</h3><p>点击“间隔”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/15_%E9%85%8D%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%82%B9%E5%87%BB%E9%97%B4%E9%9A%94.png" alt="在这里插入图片描述"></p>
-<p>点击“增加间隔”来增加定时任务的配置，增加一个5秒执行一次的定时器。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/16_%E7%82%B9%E5%87%BB%E5%A2%9E%E5%8A%A0%E9%97%B4%E9%9A%94.png" alt="在这里插入图片描述"></p>
-<p>看到有个每5秒的定时器<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/17_%E6%AF%8F5%E7%A7%92%E7%9A%84%E5%AE%9A%E6%97%B6%E5%99%A8.png" alt="在这里插入图片描述"></p>
-<p>这时可以用这个定时器去新建调度任务了。选择周期性任务，点击“增加周期性任务”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/18_%E5%A2%9E%E5%8A%A0%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1.png" alt="在这里插入图片描述"></p>
-<p>填入任务名，选择需要定时执行的任务<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/19_%E5%A2%9E%E5%8A%A0%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1%E7%95%8C%E9%9D%A2.png" alt="在这里插入图片描述"></p>
-<p>因为task1需要参数，在后面参数设置中进行参数的设置。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/20_%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE.png" alt="在这里插入图片描述"></p>
-<p>保存后可以看到新加了一条“每5秒执行一次task1”的调度任务。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/21_%E6%88%90%E5%8A%9F%E6%B7%BB%E5%8A%A0%E6%AF%8F5%E7%A7%92%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1task1.png" alt="在这里插入图片描述"></p>
-<h3 id="8、查看调度效果"><a href="#8、查看调度效果" class="headerlink" title="8、查看调度效果"></a>8、查看调度效果</h3><p>在woker和beta的控制台都可以看到有定时任务执行的信息，说明任务被成功调度执行了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/22_%E6%9F%A5%E7%9C%8B%E8%B0%83%E5%BA%A6%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
-<h2 id="四、通过django的web界面监控任务执行情况"><a href="#四、通过django的web界面监控任务执行情况" class="headerlink" title="四、通过django的web界面监控任务执行情况"></a>四、通过django的web界面监控任务执行情况</h2><p>在控制台监控任务执行情况，还不是很方便，最好是能够通过web界面看到任务的执行情况，如有多少任务在执行，有多少任务执行失败了等。这个Celery也是可以做到了，就是将任务执行结果写到数据库中，通过web界面显示出来。这里要用到django-celery-results插件。通过插件可以使用Django的orm作为结果存储，这样的好处在于我们可以直接通过django的数据查看到任务状态，同时为可以制定更多的操作，下面介绍如何使用orm作为结果存储。</p>
-<h3 id="1、安装django-celery-results"><a href="#1、安装django-celery-results" class="headerlink" title="1、安装django-celery-results"></a>1、安装django-celery-results</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-celery-results</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、配置settings-py，注册app"><a href="#2、配置settings-py，注册app" class="headerlink" title="2、配置settings.py，注册app"></a>2、配置settings.py，注册app</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = (</span><br><span class="line">...,</span><br><span class="line"><span class="string">'django_celery_results'</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、修改backend配置，将Redis改为django-db"><a href="#3、修改backend配置，将Redis改为django-db" class="headerlink" title="3、修改backend配置，将Redis改为django-db"></a>3、修改backend配置，将Redis改为django-db</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># BACKEND配置，使用redis</span></span><br><span class="line"><span class="comment">#CELERY_RESULT_BACKEND = 'redis://:12345678@127.0.0.1:6379/1'</span></span><br><span class="line"><span class="comment"># 使用使用django orm 作为结果存储</span></span><br><span class="line">CELERY_RESULT_BACKEND = <span class="string">'django-db'</span>  <span class="comment">#使用django orm 作为结果存储</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4、迁移数据库"><a href="#4、迁移数据库" class="headerlink" title="4、迁移数据库"></a>4、迁移数据库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py migrate django_celery_results</span><br></pre></td></tr></table></figure>
-
-<p>可以看到创建了django_celery_results相关的表<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/23_%E8%BF%81%E7%A7%BB%E6%95%B0%E6%8D%AE%E5%BA%93.png" alt="在这里插入图片描述"></p>
-<h3 id="5、查看任务"><a href="#5、查看任务" class="headerlink" title="5、查看任务"></a>5、查看任务</h3><p>启动django服务后，执行异步和定时任务，就可以在管理界面看到任务的执行情况，执行了哪些任务，哪些任务执行失败了等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/24_web%E7%95%8C%E9%9D%A2%E6%9F%A5%E7%9C%8B%E4%BB%BB%E5%8A%A1.png" alt="在这里插入图片描述"></p>
-<h2 id="五、通过Flower监控任务执行情况"><a href="#五、通过Flower监控任务执行情况" class="headerlink" title="五、通过Flower监控任务执行情况"></a>五、通过Flower监控任务执行情况</h2><p>如果不想通django的管理界面监控任务的执行，还可以通过Flower插件来进行任务的监控。FLower的界面更加丰富，可以监控的信息更全。以下介绍通过Flower来进行任务监控。</p>
-<h3 id="1、安装flower"><a href="#1、安装flower" class="headerlink" title="1、安装flower"></a>1、安装flower</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install flower</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、启动flower"><a href="#2、启动flower" class="headerlink" title="2、启动flower"></a>2、启动flower</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject flower --port<span class="number">-5566</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/25_%E5%90%AF%E5%8A%A8flower.png" alt="在这里插入图片描述"></p>
-<h3 id="3、使用flower进行任务监控"><a href="#3、使用flower进行任务监控" class="headerlink" title="3、使用flower进行任务监控"></a>3、使用flower进行任务监控</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/26_%E4%BD%BF%E7%94%A8flower%E8%BF%9B%E8%A1%8C%E4%BB%BB%E5%8A%A1%E7%9B%91%E6%8E%A7.png" alt="在这里插入图片描述"></p>
-<p>点击失败的我们可以看到执行失败的详情，这里是故意给task1的参数传了个‘a’字符，导致它执行报错了。可以看到任务执行的报错信息也展示出来了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/27_flower%E7%BB%93%E6%9E%9C.png" alt="在这里插入图片描述"></p>
-<h2 id="六、实现任务异常自动邮件告警"><a href="#六、实现任务异常自动邮件告警" class="headerlink" title="六、实现任务异常自动邮件告警"></a>六、实现任务异常自动邮件告警</h2><p>虽然可以通过界面来监控了，但是我们想要得更多，人不可能天天盯着界面看吧，如果能实现任务执行失败就自动发邮件告警就好了。这个Celery当然也是没有问题的。<br>通过钩子程序在异常的时候触发邮件通知。</p>
-<h3 id="1、加入钩子程序"><a href="#1、加入钩子程序" class="headerlink" title="1、加入钩子程序"></a>1、加入钩子程序</h3><p>对tasks.py的改造如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> shared_task</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Task</span><br><span class="line"><span class="keyword">from</span> django.core.mail <span class="keyword">import</span> send_mail</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line">logger = logging.getLogger(__name__)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHookTask</span><span class="params">(Task)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_success</span><span class="params">(self, retval, task_id, args, kwargs)</span>:</span></span><br><span class="line">        info=<span class="string">f'任务成功-- 0task id:<span class="subst">&#123;task_id&#125;</span> , arg:<span class="subst">&#123;args&#125;</span> , successful !'</span></span><br><span class="line">        logger.info(info)</span><br><span class="line">        send_mail(<span class="string">'celery任务监控'</span>, info, <span class="string">'sendmail@qq.com'</span>, [<span class="string">'tomail@qq.com'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_failure</span><span class="params">(self, exc, task_id, args, kwargs, einfo)</span>:</span></span><br><span class="line">        info=<span class="string">f'任务失败-- task id:<span class="subst">&#123;task_id&#125;</span> , arg:<span class="subst">&#123;args&#125;</span> , failed ! erros: <span class="subst">&#123;exc&#125;</span>'</span></span><br><span class="line">        logger.info(info)</span><br><span class="line">        send_mail(<span class="string">'celery任务监控异常'</span>, info, <span class="string">'sendmail@qq.com'</span>, [<span class="string">'tomail@qq.com'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_retry</span><span class="params">(self, exc, task_id, args, kwargs, einfo)</span>:</span></span><br><span class="line">        logger.info(<span class="string">f'task id:<span class="subst">&#123;task_id&#125;</span> , arg:<span class="subst">&#123;args&#125;</span> , retry !  erros: <span class="subst">&#123;exc&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task(base=MyHookTask, bind=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">task1</span><span class="params">(self,x)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(int(x)):</span><br><span class="line">        sleep(<span class="number">1</span>)</span><br><span class="line">        logger.info(<span class="string">'this is task1 '</span>+str(i))</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@shared_task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">scheduletask1</span><span class="params">()</span>:</span></span><br><span class="line">    now = datetime.datetime.now()</span><br><span class="line">    logger.info(<span class="string">'this is scheduletask '</span>+now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/28_%E5%8A%A0%E5%85%A5%E9%92%A9%E5%AD%90%E7%A8%8B%E5%BA%8F.png" alt="在这里插入图片描述"></p>
-<h3 id="2、重启服务"><a href="#2、重启服务" class="headerlink" title="2、重启服务"></a>2、重启服务</h3><p>将work和beta服务关掉，在两个控制台分别重新启动woker和beta</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject worker -l debug -P eventlet</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A taskproject beat -l debug</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、验证效果"><a href="#3、验证效果" class="headerlink" title="3、验证效果"></a>3、验证效果</h3><p>在任务成功或失败的时候发邮件通知。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/29_%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%BB%93%E6%9E%9C.png" alt="在这里插入图片描述"></p>
-<p>任务执行成功通知<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/30_%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%88%90%E5%8A%9F%E9%80%9A%E7%9F%A5.png" alt="在这里插入图片描述"></p>
-<p>任务执行异常告警通知<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230112/31_%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E5%BC%82%E5%B8%B8%E5%91%8A%E8%AD%A6%E9%80%9A%E7%9F%A5.png" alt="在这里插入图片描述"></p>
-<p>Django如何发送邮件见 <a href="https://blog.csdn.net/fullbug/article/details/128495415" target="_blank" rel="noopener">https://blog.csdn.net/fullbug/article/details/128495415</a></p>
-<p>至此，本文通过几个简单的应用介绍了Django+Celery+Flower实现异步和定时任务及其监控告警。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3061,7 +2962,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3173,7 +3074,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">201.9k</span>
+    <span title="Site words total count">203.8k</span>
   
   
 <!--51la网站应用监控-->
