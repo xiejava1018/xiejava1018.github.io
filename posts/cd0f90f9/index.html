@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="平时在做数据分析的时候，会要对特征进行相关性分析，分析某些特征之间是否存在相关性。本文将通过一个实例来对数据进行相关性分析与展示。 一、数据集介绍本次分析的是企业合作研发模式效果分析，企业的合作研发大致分为 企企合作、企学合作、企研合作、企学研合作，也就是企业与企业合作研发、企业与大学合作研发、企业与研究所合作研法、企业联合学校、研究所共同合作研发。现在就是想通过数据分析来看看那种合作研发模式的效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python进行数据相关性分析实战">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/cd0f90f9/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="平时在做数据分析的时候，会要对特征进行相关性分析，分析某些特征之间是否存在相关性。本文将通过一个实例来对数据进行相关性分析与展示。 一、数据集介绍本次分析的是企业合作研发模式效果分析，企业的合作研发大致分为 企企合作、企学合作、企研合作、企学研合作，也就是企业与企业合作研发、企业与大学合作研发、企业与研究所合作研法、企业联合学校、研究所共同合作研发。现在就是想通过数据分析来看看那种合作研发模式的效">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E4%B8%93%E5%88%A9%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E6%A0%87%E7%AD%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%B9%B4%E4%BB%BD%E6%A0%87%E7%AD%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E7%A0%94%E5%8F%91%E6%95%B0%E6%8D%AE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%93%E5%88%A9%E6%95%B0%E9%87%8F%E5%A2%9E%E9%95%BF%E8%B6%8B%E5%8A%BF.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%93%E5%88%A9%E6%95%B0%E9%87%8F%E5%AF%B9%E6%AF%94%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%9B%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%88%86%E5%B8%83%E5%9B%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2023-08-31T10:10:01.000Z">
+<meta property="article:modified_time" content="2023-08-31T10:21:05.597Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E4%B8%93%E5%88%A9%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/cd0f90f9/"/>
+
+
+
+
+
+  <title>Python进行数据相关性分析实战 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/cd0f90f9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python进行数据相关性分析实战</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-31T18:10:01+08:00">
+                2023-08-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-08-31T18:21:05+08:00">
+                2023-08-31
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/cd0f90f9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/cd0f90f9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/cd0f90f9/" class="leancloud_visitors" data-flag-title="Python进行数据相关性分析实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>平时在做数据分析的时候，会要对特征进行相关性分析，分析某些特征之间是否存在相关性。本文将通过一个实例来对数据进行相关性分析与展示。</p>
+<h2 id="一、数据集介绍"><a href="#一、数据集介绍" class="headerlink" title="一、数据集介绍"></a>一、数据集介绍</h2><p>本次分析的是企业合作研发模式效果分析，企业的合作研发大致分为 企企合作、企学合作、企研合作、企学研合作，也就是企业与企业合作研发、企业与大学合作研发、企业与研究所合作研法、企业联合学校、研究所共同合作研发。现在就是想通过数据分析来看看那种合作研发模式的效果最好，产出最佳。</p>
+<p>数据集是从公开网站获取的公开的专利信息，包括专利的公告日期、专利评分、专利估值，这些指标说明了专利的价值。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E4%B8%93%E5%88%A9%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="专利数据集"></p>
+<h2 id="二、数据整理和探索"><a href="#二、数据整理和探索" class="headerlink" title="二、数据整理和探索"></a>二、数据整理和探索</h2><p>有了数据后先对数据进行整理，在这里我们用II表示企企合作、IU表示企学合作、IR表示企研合作、IUR表示企学研合作。<br>先导入python数据分析三大件numpy、pandas、matplotlib</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.rcParams[<span class="string">"font.sans-serif"</span>]=[<span class="string">"SimHei"</span>] <span class="comment">#设置字体</span></span><br><span class="line">plt.rcParams[<span class="string">"axes.unicode_minus"</span>]=<span class="literal">False</span> <span class="comment">#该语句解决图像中的“-”负号的乱码问题</span></span><br></pre></td></tr></table></figure>
+
+<p>对数据进行整理，将“有效”的数据检索出来，将合作研发的模式标识出来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">II_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企企合作申报总数据_21578_2023-03-11.xlsx'</span>) <span class="comment">#企企合作</span></span><br><span class="line">IU_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企学合作申报总数据_6451_2023-03-11.xlsx'</span>)  <span class="comment">#企学合作</span></span><br><span class="line">IR_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企研合作申报总数据_1706_2023-03-11.xlsx'</span>)  <span class="comment">#企研合作</span></span><br><span class="line">IUR_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企学研合作申报总数据_241_2023-03-11.xlsx'</span>)  <span class="comment">#企学研合作</span></span><br><span class="line">II_data_original[<span class="string">'class_type'</span>]=<span class="string">'II'</span></span><br><span class="line">IU_data_original[<span class="string">'class_type'</span>]=<span class="string">'IU'</span></span><br><span class="line">IR_data_original[<span class="string">'class_type'</span>]=<span class="string">'IR'</span></span><br><span class="line">IUR_data_original[<span class="string">'class_type'</span>]=<span class="string">'IUR'</span></span><br><span class="line">data_original=II_data_original.append([IU_data_original,IR_data_original,IUR_data_original])</span><br><span class="line">data_original=data_original[(data_original.法律有效性==<span class="string">'有效'</span>)]</span><br><span class="line">data_original</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E6%A0%87%E7%AD%BE.png" alt="合作研发的模式标识"><br>对日期进行处理，我们以年度为单位来分析每年各企业合作研发模式的数据，所以将日期处理成“年”为单位。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#处理日期</span></span><br><span class="line">data_original[<span class="string">'date'</span>]=pd.to_datetime(data_original[<span class="string">'公开(公告)日'</span>],format=<span class="string">"%Y%m%d"</span>)</span><br><span class="line">data_original[<span class="string">'year'</span>]=data_original[<span class="string">'date'</span>].dt.strftime(<span class="string">'%Y'</span>)</span><br><span class="line">data_original</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%B9%B4%E4%BB%BD%E6%A0%87%E7%AD%BE.png" alt="年份标签"></p>
+<p>我们只需要分析相应的专利质量的指标，这里与专利质量相关的指标大致为引文数量、专利估值、专利评分。然后以年度为单位来看看数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data_group=data_original.groupby([<span class="string">'year'</span>,<span class="string">'class_type'</span>]).size()</span><br><span class="line">df_data_group=data_group.unstack()</span><br><span class="line">data_group_count=data_original.groupby([<span class="string">'year'</span>]).size()</span><br><span class="line">data_group_quotecount=data_original[[<span class="string">'year'</span>,<span class="string">'引文数量总计'</span>]].groupby([<span class="string">'year'</span>]).sum()  <span class="comment">#引文数量</span></span><br><span class="line">data_group_value=data_original[[<span class="string">'year'</span>,<span class="string">'专利估值'</span>]].groupby([<span class="string">'year'</span>]).mean() <span class="comment">#专利估值</span></span><br><span class="line">data_group_grade=data_original[[<span class="string">'year'</span>,<span class="string">'专利评分'</span>]].groupby([<span class="string">'year'</span>]).mean() <span class="comment">#专利评分grade</span></span><br><span class="line">df_data_group[<span class="string">'count'</span>]=data_group_count</span><br><span class="line">df_data_group[<span class="string">'quotecount'</span>]=data_group_quotecount</span><br><span class="line">df_data_group[<span class="string">'value'</span>]=data_group_value</span><br><span class="line">df_data_group[<span class="string">'grade'</span>]=data_group_grade</span><br><span class="line">df_data_group</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E7%A0%94%E5%8F%91%E6%95%B0%E6%8D%AE.png" alt="合作研发数据"></p>
+<p>历年（2004-2022年）专利的合作模式的专利数量增长趋势</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data_group.plot.bar(y=[<span class="string">'II'</span>,<span class="string">'IR'</span>,<span class="string">'IU'</span>,<span class="string">'IUR'</span>],figsize=(<span class="number">32</span>,<span class="number">4</span>),stacked=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%93%E5%88%A9%E6%95%B0%E9%87%8F%E5%A2%9E%E9%95%BF%E8%B6%8B%E5%8A%BF.png" alt="合作模式的专利数量增长趋势"></p>
+<p>历年（2015-2022年）的合作模式的专利数量对比情况</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data_group[<span class="string">'2015'</span>:<span class="string">'2022'</span>].plot.bar(y=[<span class="string">'II'</span>, <span class="string">'IR'</span>, <span class="string">'IU'</span>, <span class="string">'IUR'</span>], figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%93%E5%88%A9%E6%95%B0%E9%87%8F%E5%AF%B9%E6%AF%94%E6%83%85%E5%86%B5.png" alt="合作模式的专利数量对比情况"></p>
+<p>从数据上可以看出，从2004年-2021年前些年，企业的研发模式是比较单一的，2004-2008年大部分都是企企合作的研发模式，其他研发模式先对比较少。从2004年-2021年，随着我国企业对研发的投入力度也来越大，专利的数量是逐年递增的，研发模式也逐步的多样化起来，但还是以企企合作和企学合作为主。</p>
+<h2 id="三、数据相关性分析与展示"><a href="#三、数据相关性分析与展示" class="headerlink" title="三、数据相关性分析与展示"></a>三、数据相关性分析与展示</h2><p>因为从数据上看，从2015年以后各种研发模式逐步的多样化起来，所以我们来看一下2015年以后研发模式与研发质量各项指标的相关性。<br>通过numpyde的corrcoef()方法可以很方便的计算出各个特征之间的相关性系数，得出相关性矩阵。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ruslut=np.corrcoef(df_data_group[<span class="string">'2015'</span>:<span class="string">'2022'</span>],rowvar=<span class="literal">False</span>)</span><br><span class="line">ruslut</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5.png" alt="相关性矩阵"></p>
+<p>看数据肯定没有看图形直观，所以我们将这个相关性矩阵进行可视化的展示。这里用seaborn来做数据的图形化展示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">figure, ax = plt.subplots(figsize=(<span class="number">12</span>, <span class="number">12</span>))</span><br><span class="line">df=df_data_group[<span class="string">'2015'</span>:<span class="string">'2022'</span>]</span><br><span class="line">sns.heatmap(df.corr(), square=<span class="literal">True</span>, annot=<span class="literal">True</span>, ax=ax)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%9B%BE.png" alt="相关性矩阵图形化展示"></p>
+<p>这里可以看出企企合作和企学合作的数量相关性比较高，而企研合作value和grade具有相关性，说明企研合作模式的研发质量相对来说比较好。</p>
+<p>最后，我们来看一下专利TOP20的单位研发类型分布、估值TOP20的专利的研发类型分布、评分TOP20的专利、研发类型的分布。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">data_countbyComp=data_original[[<span class="string">'第一申请人-原文'</span>,<span class="string">'class_type'</span>]].groupby([<span class="string">'第一申请人-原文'</span>]).size()</span><br><span class="line">df_data_countbyComp=pd.DataFrame(data_countbyComp,columns=[<span class="string">'counts'</span>])</span><br><span class="line">df_data_countbyCompTOP=df_data_countbyComp.sort_values(<span class="string">'counts'</span>,ascending=<span class="literal">False</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">count_top=data_original[(data_original[<span class="string">'第一申请人-原文'</span>].isin(df_data_countbyCompTOP.index.values))]</span><br><span class="line">value_top=data_original.sort_values(<span class="string">'专利估值'</span>,ascending=<span class="literal">False</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">grade_top=data_original.sort_values(<span class="string">'专利评分'</span>,ascending=<span class="literal">False</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">count_top_show=count_top.groupby([<span class="string">'class_type'</span>]).size()</span><br><span class="line">value_top_show=value_top.groupby([<span class="string">'class_type'</span>]).size()</span><br><span class="line">grade_top_show=grade_top.groupby([<span class="string">'class_type'</span>]).size()</span><br><span class="line">grade_top_show.index.values</span><br><span class="line">fig, axs = plt.subplots(<span class="number">1</span>, <span class="number">3</span>,figsize=(<span class="number">18</span>, <span class="number">18</span>))</span><br><span class="line">axs[<span class="number">0</span>].pie(count_top_show,labels=count_top_show.index.values,autopct=<span class="string">'%.2f%%'</span>,explode=(<span class="number">0.05</span>,<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">axs[<span class="number">0</span>].set(title=<span class="string">'数量TOP20的单位,研发类型分布'</span>)</span><br><span class="line">axs[<span class="number">1</span>].pie(value_top_show,labels=value_top_show.index.values,autopct=<span class="string">'%.2f%%'</span>,explode=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.05</span>))</span><br><span class="line">axs[<span class="number">1</span>].set(title=<span class="string">'估值TOP20的专利,研发类型分布'</span>)</span><br><span class="line">axs[<span class="number">2</span>].pie(grade_top_show,labels=grade_top_show.index.values,autopct=<span class="string">'%.2f%%'</span>,explode=(<span class="number">0.05</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">axs[<span class="number">2</span>].set(title=<span class="string">'评分TOP20的专利,研发类型分布'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%88%86%E5%B8%83%E5%9B%BE.png" alt="分布图"></p>
+<p>这里可以看出数量上还是以企企合作研发的模式最多，但是从专利的估值评分来看企学的专利估值占比最高。说明从 企企合作、企学合作、企研合作、企学研合作的这些企业合作研发模式看，企企合作研发数量最多，企学合作研发的质量相对较高。</p>
+<p>至此，本文通过一个实例介绍了用python通过数据分析三件套numpy、pandas、matplotlib进行数据相关性分析的过程。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/cd0f90f9/" title="Python进行数据相关性分析实战">https://xiejava.gitee.io/posts/cd0f90f9/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/66779ce6/" rel="next" title="Python通过matplotlib动态绘图实现中美GDP历年对比趋势动图">
+                <i class="fa fa-chevron-left"></i> Python通过matplotlib动态绘图实现中美GDP历年对比趋势动图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据集介绍"><span class="nav-number">1.</span> <span class="nav-text">一、数据集介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、数据整理和探索"><span class="nav-number">2.</span> <span class="nav-text">二、数据整理和探索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、数据相关性分析与展示"><span class="nav-number">3.</span> <span class="nav-text">三、数据相关性分析与展示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">205.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
