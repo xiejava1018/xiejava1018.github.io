@@ -140,22 +140,23 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/54e4fd14/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。默认已经安装好了kafka、mysql、logstash，并">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171241910.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171324491.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171423390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171453670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171523708.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171552633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171613337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316171630325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/3.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/4.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/7.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/9.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2020-03-16T09:38:37.000Z">
-<meta property="article:modified_time" content="2020-03-16T09:40:42.433Z">
+<meta property="article:modified_time" content="2023-09-01T02:50:20.205Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="大数据">
 <meta property="article:tag" content="ELK">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/1.png">
 
 
 
@@ -373,8 +374,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-16T17:40:42+08:00">
-                2020-03-16
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T10:50:20+08:00">
+                2023-09-01
               </time>
             
           </span>
@@ -492,7 +493,7 @@
       
 
       
-        <p>logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。<br>采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<br><img src="https://img-blog.csdnimg.cn/20200316171007439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="从syslog采集日志到kafka然后在从kafka写到mysql数据库中"><br>本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。<br>默认已经安装好了kafka、mysql、logstash，并已经经过简单的验证。</p>
+        <p>logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。<br>采集数据一个非常典型的场景就是将数据先放到kafka队列里削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/1.png" alt="从syslog采集日志到kafka然后在从kafka写到mysql数据库中"><br>本文通过一个简单的示例来演示从syslog采集日志到kafka然后在从kafka写到mysql数据库中。<br>默认已经安装好了kafka、mysql、logstash，并已经经过简单的验证。</p>
 <h1 id="准备logstash的环境"><a href="#准备logstash的环境" class="headerlink" title="准备logstash的环境"></a>准备logstash的环境</h1><h2 id="一、下载mysql的jdbc驱动包"><a href="#一、下载mysql的jdbc驱动包" class="headerlink" title="一、下载mysql的jdbc驱动包"></a>一、下载mysql的jdbc驱动包</h2><p>下载地址：<a href="https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.15" target="_blank" rel="noopener">https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.15</a><br>下载后放到logstash的安装目录的/vendor/jar/目录下</p>
 <h2 id="二、安装logstash插件"><a href="#二、安装logstash插件" class="headerlink" title="二、安装logstash插件"></a>二、安装logstash插件</h2><p>logstash默认安装了kafka插件，但是mysql插件没有默认安装需要自己安装。<br>具体安装方法 /bin/logstash-plugin install logstash-output-jdbc ，这里应为要用到logstash写入mysql数据库，所以安装的插件是logstash-output-jdbc，如果要用到从mysql读数据，那么就要安装logstash-input-jdbc。安装方法类似。<br>因为安装时需要访问国外的源，安装进度很慢很慢，还经常安装不成功，所以需要更改国内的源。<br>也就是给 Ruby 换成国内的镜像站：<a href="https://gems.ruby-china.com/，替代https://rubygems.org。*请注意：国内的镜像站从https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.com/，替代https://rubygems.org。*请注意：国内的镜像站从https://gems.ruby-china.org</a> 换成了 <a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a> ！！！* 现在很多网上的资料就都是写的<a href="https://gems.ruby-china.org，导致很多人换了镜像源也装不上。" target="_blank" rel="noopener">https://gems.ruby-china.org，导致很多人换了镜像源也装不上。</a><br>具体方法如下：</p>
 <h3 id="1-安装Gem并更新"><a href="#1-安装Gem并更新" class="headerlink" title="1. 安装Gem并更新"></a>1. 安装Gem并更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yum install -y gem</span></span><br><span class="line"><span class="comment"># gem -v</span></span><br><span class="line">2.0.14.1</span><br><span class="line"><span class="comment"># gem update --system</span></span><br><span class="line"><span class="comment"># gem -v</span></span><br><span class="line">2.7.7</span><br></pre></td></tr></table></figure>
@@ -502,10 +503,10 @@
 <h3 id="3-修改-logstash的-gem-镜像源"><a href="#3-修改-logstash的-gem-镜像源" class="headerlink" title="3. 修改 logstash的 gem 镜像源"></a>3. 修改 logstash的 gem 镜像源</h3><p>cd到logstach的安装目录，可以看到Gemfile文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vi Gemfile</span></span><br><span class="line"><span class="comment"># This is a Logstash generated Gemfile.</span></span><br><span class="line"><span class="comment"># If you modify this file manually all comments and formatting will be lost.</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">source</span> <span class="string">"https://rubygems.org"</span></span><br><span class="line">gem <span class="string">"logstash-core"</span>, :path =&gt; <span class="string">"./logstash-core"</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
 
-<p>更改默认的 <a href="https://rubygems.org" target="_blank" rel="noopener">https://rubygems.org</a> 为<a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a><br><img src="https://img-blog.csdnimg.cn/20200316171241910.png" alt="更换国内镜像源地址"></p>
+<p>更改默认的 <a href="https://rubygems.org" target="_blank" rel="noopener">https://rubygems.org</a> 为<a href="https://gems.ruby-china.com" target="_blank" rel="noopener">https://gems.ruby-china.com</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/2.png" alt="更换国内镜像源地址"></p>
 <h3 id="4-安装-logstash-output-jdbc"><a href="#4-安装-logstash-output-jdbc" class="headerlink" title="4. 安装 logstash-output-jdbc"></a>4. 安装 logstash-output-jdbc</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#/bin/logstash-plugin install logstash-output-jdbc</span></span><br><span class="line">Validating logstash-output-jdbc</span><br><span class="line">Installing logstash-output-jdbc</span><br><span class="line">Installation successful</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-查看插件是否安装成功"><a href="#5-查看插件是否安装成功" class="headerlink" title="5.查看插件是否安装成功"></a>5.查看插件是否安装成功</h3><p>在logstash的bin目录下执行./logstash-plugin list 可以查看已经安装的插件，可以看到logstash-output-jdbc的插件已经装好。<br><img src="https://img-blog.csdnimg.cn/20200316171324491.png" alt="检查插件安装"></p>
+<h3 id="5-查看插件是否安装成功"><a href="#5-查看插件是否安装成功" class="headerlink" title="5.查看插件是否安装成功"></a>5.查看插件是否安装成功</h3><p>在logstash的bin目录下执行./logstash-plugin list 可以查看已经安装的插件，可以看到logstash-output-jdbc的插件已经装好。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/3.png" alt="检查插件安装"></p>
 <h1 id="配置logstash"><a href="#配置logstash" class="headerlink" title="配置logstash"></a>配置logstash</h1><p>新建一个pipline.conf的配置文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="built_in">test</span>-pipeline.conf</span><br></pre></td></tr></table></figure>
 
@@ -515,9 +516,13 @@
 <p>这个逻辑就是从stdin或syslog接收数据output到kafka,然后从kafka中取出数据加入了一个logsource的字标识是从kafka过来的数据，然后又output到 jdbc写到mysql中去。<br>如果没有这几个if的逻辑判断，那么就会是个死循环。从kafka读同样的数据又写到kafka中。如果在两台机器上装有logstash一台取数据放到kafka,一台从kafka中取数据放到mysql中就可以不用加这样的判断逻辑会单纯简单一些。</p>
 <h1 id="执行logstash并查看效果"><a href="#执行logstash并查看效果" class="headerlink" title="执行logstash并查看效果"></a>执行logstash并查看效果</h1><p>通过在logstash安装目录下执行 bin/logstash -f test-pipeline.conf –config.test_and_exit 检查配置文件是否有问题，没有问题以后执行bin/logstash -f test-pipeline.conf –config.reload.automatic 运行logstash。<br>在控制台输入 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this is a <span class="built_in">test</span>!</span><br></pre></td></tr></table></figure>
-<p><strong>效果：</strong><br>从控制台输入信息，可以看到从stdin输入output到stdout的没有logsource标识，input从kafka订阅过来的信息加了一个logsource=&gt;kafkalog的标识。<br><img src="https://img-blog.csdnimg.cn/20200316171423390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="logsource=&gt;kafkalog的标识"><br>用kafka tool工具看到kafka收到了从stdin发过来的信息。<br><img src="https://img-blog.csdnimg.cn/20200316171453670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="用kafka tool工具看到kafka收到了从stdin发过来的信息"><br>在看MySQL表里的数据，已经通过logstash从kafka中将数据采集到了MySQL的表中。<br><img src="https://img-blog.csdnimg.cn/20200316171523708.png" alt="MySQL的表的信息数据"><br>再来看从syslog采集日志的效果<br>从控制台看到的信息效果<br><img src="https://img-blog.csdnimg.cn/20200316171552633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="控制台看到的信息效果"><br>从kafka tool看到的效果<br><img src="https://img-blog.csdnimg.cn/20200316171613337.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="kafka tool看到的效果"><br>从mysql 表中看到的效果。<br><img src="https://img-blog.csdnimg.cn/20200316171630325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="mysql 表中看到的效果"><br><strong>可以看到，logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置就能满足绝大多数数据采集场景的需求。</strong></p>
+<p><strong>效果：</strong><br>从控制台输入信息，可以看到从stdin输入output到stdout的没有logsource标识，input从kafka订阅过来的信息加了一个logsource=&gt;kafkalog的标识。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/4.png" alt="logsource=&gt;kafkalog的标识"><br>用kafka tool工具看到kafka收到了从stdin发过来的信息。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/5.png" alt="用kafka tool工具看到kafka收到了从stdin发过来的信息"><br>在看MySQL表里的数据，已经通过logstash从kafka中将数据采集到了MySQL的表中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/6.png" alt="MySQL的表的信息数据"><br>再来看从syslog采集日志的效果<br>从控制台看到的信息效果<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/7.png" alt="控制台看到的信息效果"><br>从kafka tool看到的效果<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/8.png" alt="kafka tool看到的效果"><br>从mysql 表中看到的效果。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200316/blogimage/9.png" alt="mysql 表中看到的效果"><br><strong>可以看到，logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置就能满足绝大多数数据采集场景的需求。</strong></p>
 <hr>
 <p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
       
     </div>
@@ -794,7 +799,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">205.4k</span>
+    <span title="Site words total count">205.5k</span>
   
   
 <!--51la网站应用监控-->

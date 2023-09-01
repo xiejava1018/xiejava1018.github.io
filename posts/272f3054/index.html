@@ -140,15 +140,15 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/272f3054/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="用Hexo搭了个Gitpage的博客，兴冲冲的发了11篇博文后发现翻页按钮不正常显示，显示为&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;的HTML编码。如下图：&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;这是个什么鬼？这是一个Font Awesome的字体图标，按道理">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200310154450109.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200310154516827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20200310154621131.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/3.png">
 <meta property="article:published_time" content="2020-03-10T08:11:33.000Z">
-<meta property="article:modified_time" content="2020-03-16T09:38:53.642Z">
+<meta property="article:modified_time" content="2023-09-01T02:44:29.645Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200310154450109.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/1.png">
 
 
 
@@ -366,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-16T17:38:53+08:00">
-                2020-03-16
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T10:44:29+08:00">
+                2023-09-01
               </time>
             
           </span>
@@ -485,12 +485,12 @@
       
 
       
-        <p>用Hexo搭了个Gitpage的博客，兴冲冲的发了11篇博文后发现翻页按钮不正常显示，显示为<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>的HTML编码。如下图：<br><img src="https://img-blog.csdnimg.cn/20200310154450109.png" alt="HTML编码"><br><code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>这是个什么鬼？<br>这是一个Font Awesome的字体图标，按道理来说这个图标应该可以正常显示的，现在这个图标不能显示了显示成了html源码。<br><img src="https://img-blog.csdnimg.cn/20200310154516827.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z1bGxidWc=,size_16,color_FFFFFF,t_70" alt="Font Awesone图标"><br><strong>解决办法:</strong><br>最简单的办法就是将<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>这个不能正常显示的字体图标改成一般的字符，我这里就是改成正常的一般左右键字符“&gt;”，“&lt;”。<br>在 themes\hexo-theme-next\layout_partials 下找到hexo-theme-next的翻页组件，就是pagination.swig<br>将</p>
+        <p>用Hexo搭了个Gitpage的博客，兴冲冲的发了11篇博文后发现翻页按钮不正常显示，显示为<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>的HTML编码。如下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/1.png" alt="HTML编码"><br><code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>这是个什么鬼？<br>这是一个Font Awesome的字体图标，按道理来说这个图标应该可以正常显示的，现在这个图标不能显示了显示成了html源码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/2.png" alt="Font Awesone图标"><br><strong>解决办法:</strong><br>最简单的办法就是将<code>&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;/i&gt;</code>这个不能正常显示的字体图标改成一般的字符，我这里就是改成正常的一般左右键字符“&gt;”，“&lt;”。<br>在 themes\hexo-theme-next\layout_partials 下找到hexo-theme-next的翻页组件，就是pagination.swig<br>将</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.prev or page.next %&#125;</span><br><span class="line">  &lt;nav class&#x3D;&quot;pagination&quot;&gt;</span><br><span class="line">    &#123;&#123;</span><br><span class="line">      paginator(&#123;</span><br><span class="line">        prev_text: &#39;&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;&#39;,</span><br><span class="line">        next_text: &#39;&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;&#39;,</span><br><span class="line">        mid_size: 1</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &lt;&#x2F;nav&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <p>改成</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.prev or page.next %&#125;</span><br><span class="line">  &lt;nav class&#x3D;&quot;pagination&quot;&gt;</span><br><span class="line">    &#123;&#123;</span><br><span class="line">      paginator(&#123;</span><br><span class="line">        prev_text: &#39;&lt;&#39;,</span><br><span class="line">        next_text: &#39;&gt;&#39;,</span><br><span class="line">        mid_size: 1</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  &lt;&#x2F;nav&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 
-<p>重新发布以后可以看到翻页按钮可以正常显示了<br><img src="https://img-blog.csdnimg.cn/20200310154621131.png" alt="正常显示箭头"></p>
+<p>重新发布以后可以看到翻页按钮可以正常显示了<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200310/blogimage/3.png" alt="正常显示箭头"></p>
 <hr>
 <p>作者博客:<a href="http://xiejava.gitee.io">http://xiejava.gitee.io</a></p>
 
@@ -742,7 +742,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">205.4k</span>
+    <span title="Site words total count">205.5k</span>
   
   
 <!--51la网站应用监控-->
