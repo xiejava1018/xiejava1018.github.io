@@ -140,14 +140,15 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/5156b28b/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="基于时间的安全模型是基于”任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。 基于时间的安全模型主要包括PDR和后来改进的PPDR模型，P">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/4d73862be0024fbb81811491c43b56ab.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PDR.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PPDR.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-04-23T02:18:07.000Z">
-<meta property="article:modified_time" content="2022-04-23T02:19:59.063Z">
+<meta property="article:modified_time" content="2023-09-01T09:22:40.045Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PDR.png">
 
 
 
@@ -365,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-23T10:19:59+08:00">
-                2022-04-23
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T17:22:40+08:00">
+                2023-09-01
               </time>
             
           </span>
@@ -463,7 +464,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  9
                 </span>
               
             </div>
@@ -486,13 +487,13 @@
       
         <p>基于时间的安全模型是基于”<strong>任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的</strong>“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。</p>
 <p>基于时间的安全模型主要包括PDR和后来改进的PPDR模型，PDR模型是源自美国国际互联网安全系统公司ISS提出的自适应网络安全模型ANSM（AdaptiveNetwork Security Model），是一个可量化、可数学证明、基于时间的安全模型。美国ISS公司（后被IBM收购）提出的。PPDR模型是PDR的模型上发展起来的，也称P2DR，加入的P是Policy策略。</p>
-<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://img-blog.csdnimg.cn/bec7ca0d344442959d2cbf53b6d64eed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PDR模型"></p>
+<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PDR.png" alt="PDR模型"></p>
 <p>P-protection，保护就是采用一切可能的措施来保护网络、系统以及信息的安全。通常采用的技术及方法主要包括加密、认证、访问控制、防火墙及防病毒等。</p>
 <p>D-detect，检测可以了解和评估网络和系统的安全状态，为安全防护和安全响应提供依据。常用的检测技术主要包括入侵检测、漏洞检测及网络扫描等技术。</p>
 <p> R-response，应急响应在安全模型中占有重要地位，是解决安全问题的最有效办法。解决安全问题就是解决紧急响应和异常处理问题，因此，建立应急响应机制，形成快速安全响应的能力，对网络和系统至关重要。</p>
 <p>PDR模型直观、实用，建立了一个所谓的基于时间的可证明的安全模型，定义了防护时间Pt(攻击者发起攻击时，保护系统不被攻破的时间)、检测时间Dt(从发起攻击到检测到攻击的时间)和响应时间Rt(从发现攻击到做出有效响应的时间)3个概念，并给出了评定系统安全的计算方式，<strong>当Pt&gt;Dt+Rt时，即认为系统是安全的</strong>，也就是说，如果在攻击者攻破系统之前发现并阻止了攻击的行为，那么系统就是安全的。</p>
 <p>局限性：系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明-一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化。</p>
-<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://img-blog.csdnimg.cn/4d73862be0024fbb81811491c43b56ab.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAeGllamF2YTEwMTg=,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="PPDR模型"></p>
+<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PPDR.png" alt="PPDR模型"></p>
 <p>策略（Policy）：模型的核心，所有的防护、检测和响应都是依据安全策略实施的。安全策略一般由总体安全策略和具体安全策略两部分组成。<br>保护（Protection）：保护是根据系统可能出现的安全问题而采取的预防措施，这些措施通过传统的静态安全技术实现。采用的防护技术通常包括数据加密、身份认证、访问控制、授权和虚拟专用网(VPN)技术、防火墙、安全扫描和数据备份等。<br>检测（Detection）：当攻击者穿透防护系统时，检测功能就发挥作用，与防护系统形成互补。检测是动态响应的依据。<br>响应（Response）：系统一旦检测到人侵，响应系统就开始工作，进行事件处理。响应包括应急响应和恢复处理，恢复处理又包括系统恢复和信息恢复。</p>
 <p>PPDR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等)的同时，利用检测工具(如漏洞评估、人侵检测等)了解和评估系统的安全状态，通过适当的反应将系统调整到“最安全”和“风险最低”的状态。保护、检测和响应组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
 <p>该理论的最基本原理就是信息安全相关的所有活动，不管是攻击行为、防护行为、检测行为和响应行为等都要消耗时间,因此可以用时间来衡量一个体系的安全性和安全能力。假设系统的防护、检测和反应时间分别是Pt、Dt和Rt。系统被对手成功攻击后的时间为暴露时间(Et)，那么PPDR模型就可以用典型的数学公式来表达安全的要求：如果Pt&gt;Dt+Rt,那么系统是安全的。</p>
@@ -529,6 +530,14 @@
 </tr>
 </tbody></table>
 <p>不管是PDR还是PPDR，总体来说还是局限于从技术上考虑信息安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木块构成的“木桶”，木桶的容量由最短的那块板决定。在处理信息安全问题时，必须全面考虑各方面的因素，任何一个方面的遗漏都有可能形成“短板”。</p>
+<hr>
+<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
       
     </div>
@@ -803,7 +812,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">205.5k</span>
+    <span title="Site words total count">205.7k</span>
   
   
 <!--51la网站应用监控-->
