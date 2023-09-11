@@ -134,19 +134,22 @@
 
 
 
-<meta name="description" content="互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。 作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。 本文介绍互联网暴露资产端口的定义">
+<meta name="description" content="“网络安全网格（CyberSecurity Mesh）”是 Gartner 提出的网络安全技术发展新趋势，近两年连续入选其年度重要战略技术趋势研究报告，成为当前网络安全领域流行的热词，受到网络安全从业者的高度关注。 一、概念产生的背景如今，由于现在平均每个企业在自己的网络上部署了多达45个安全解决方案，使得任何形式的集中管理都几乎无法实现。更糟糕的是，检测和响应网络事件需要在其中的19个工具之间进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络安全之互联网暴露资产端口">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/ff84f2fb/index.html">
+<meta property="og:title" content="网络安全之认识网络安全网格架构（CSMA）">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/d236743/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。 作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。 本文介绍互联网暴露资产端口的定义">
+<meta property="og:description" content="“网络安全网格（CyberSecurity Mesh）”是 Gartner 提出的网络安全技术发展新趋势，近两年连续入选其年度重要战略技术趋势研究报告，成为当前网络安全领域流行的热词，受到网络安全从业者的高度关注。 一、概念产生的背景如今，由于现在平均每个企业在自己的网络上部署了多达45个安全解决方案，使得任何形式的集中管理都几乎无法实现。更糟糕的是，检测和响应网络事件需要在其中的19个工具之间进">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/1-CSAM%E6%A6%82%E5%BF%B5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/3-CSMA%E6%9E%B6%E6%9E%842.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/4-CSMA%E6%9E%B6%E6%9E%843.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2023-05-15T06:22:32.000Z">
-<meta property="article:modified_time" content="2023-05-15T06:41:20.144Z">
+<meta property="article:published_time" content="2023-09-11T08:18:40.000Z">
+<meta property="article:modified_time" content="2023-09-11T08:33:20.920Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/1-CSAM%E6%A6%82%E5%BF%B5.png">
 
 
 
@@ -176,13 +179,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/ff84f2fb/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/d236743/"/>
 
 
 
 
 
-  <title>网络安全之互联网暴露资产端口 | XieJava's blog</title>
+  <title>网络安全之认识网络安全网格架构（CSMA） | XieJava's blog</title>
   
 
 
@@ -319,7 +322,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ff84f2fb/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d236743/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -336,7 +339,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">网络安全之互联网暴露资产端口</h2>
+          <h2 class="post-title" itemprop="name headline">网络安全之认识网络安全网格架构（CSMA）</h2>
         
 
         <div class="post-meta">
@@ -348,8 +351,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-05-15T14:22:32+08:00">
-                2023-05-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-09-11T16:18:40+08:00">
+                2023-09-11
               </time>
             
 
@@ -364,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-05-15T14:41:20+08:00">
-                2023-05-15
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-11T16:33:20+08:00">
+                2023-09-11
               </time>
             
           </span>
@@ -412,8 +415,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/ff84f2fb/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ff84f2fb/" itemprop="commentCount"></span>
+                <a href="/posts/d236743/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d236743/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -421,7 +424,7 @@
 
           
           
-             <span id="/posts/ff84f2fb/" class="leancloud_visitors" data-flag-title="网络安全之互联网暴露资产端口">
+             <span id="/posts/d236743/" class="leancloud_visitors" data-flag-title="网络安全之认识网络安全网格架构（CSMA）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -446,7 +449,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.1k
+                  4k
                 </span>
               
 
@@ -462,7 +465,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  13
                 </span>
               
             </div>
@@ -483,321 +486,66 @@
       
 
       
-        <p>互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。</p>
-<p>作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。</p>
-<p>本文介绍互联网暴露资产端口的定义、分类及管理。</p>
-<h2 id="互联网暴露资产端口定义"><a href="#互联网暴露资产端口定义" class="headerlink" title="互联网暴露资产端口定义"></a>互联网暴露资产端口定义</h2><p>互联网暴露端口指信息系统资产、网络设备或终端设备面向互联网开放服务或开放协议的端口（含 NAT 映射端口），该端口可被其他互联网的资产进行主动探测、访问或连接。当某资产至少具备一个互联网暴露端口时，则认定该资产为互联网暴露资产；当某信息系统内部至少具备一台互联网暴露资产时，则认定该信息系统为互联网暴露信息系统。<br>当互联网暴露资产同时面向内网（或私网）开放服务或开放协议时，相关端口不属于互联网暴露端口，不纳入互联网暴露端口管控范围；当某资产通过互联网主动发起单向通信时，因该资产用于通信服务的端口并未暴露于互联网，也无法被其他互联网资产主动探测、访问或连接，则认定该资产不属于互联网暴露资产，且不具备互联网暴露端口。<br>互联网暴露端口的判定，与该端口是否已执行访问控制策略不相关。</p>
-<h2 id="互联网暴露资产端口分类"><a href="#互联网暴露资产端口分类" class="headerlink" title="互联网暴露资产端口分类"></a>互联网暴露资产端口分类</h2><p>互联网暴露资产（含信息系统、网络设备、终端）端口按照其功能用途，可分为业务类端口及管理类端口两大类：<br>1）业务类端口。具体可细分为以下三类：</p>
+        <p>“网络安全网格（CyberSecurity Mesh）”是 Gartner 提出的网络安全技术发展新趋势，近两年连续入选其年度重要战略技术趋势研究报告，成为当前网络安全领域流行的热词，受到网络安全从业者的高度关注。</p>
+<h2 id="一、概念产生的背景"><a href="#一、概念产生的背景" class="headerlink" title="一、概念产生的背景"></a>一、概念产生的背景</h2><p>如今，由于现在平均每个企业在自己的网络上部署了多达45个安全解决方案，使得任何形式的集中管理都几乎无法实现。更糟糕的是，检测和响应网络事件需要在其中的19个工具之间进行协调，导致每次设备升级时都需要不断管理和重新配置。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/1-CSAM%E6%A6%82%E5%BF%B5.png" alt="CSMA概念背景"></p>
+<p>仅仅依靠连接不同安全技术的变通方法是不够的，企业需要一个全面覆盖、深度集成和动态协同的“网络安全网格平台”，提供集中管理和可见性，支持在一个庞大的解决方案生态系统中协同运行，自动适应网络中的动态变化。</p>
+<p>因此有了网络安全网格这个概念。</p>
+<p>Gartner 发布的《2021 年重要战略技术趋势》（Top Strategic Technology Trends for 2021）中描述了网络安全网格的概念：“网络安全网格是一种分布式架构方法，能够实现可扩展、灵活和可靠的网络安全控制。现在许多资产存在于传统安全边界之外，网络安全网格本质上允许围绕人或事物的身份定义安全边界。通过集中策略编排和分布策略执行来实现更加模块化、更加快速响应的安全防护。”</p>
+<p>在 Gartner 发布的《2022 年重要战略技术趋势 》（Top Strategic Technology Trends for 2022）中对网络安全网格概念有了进一步的说明：“数字业务资产分布在云和数据中心，基于边界的传统、分散的安全方法使组织容易遭受攻击。网络安全网格架构提供一种基于身份的可组合安全方法，以创建可扩展和可互操作的服务。通用的集成结构可以保护任务组织的任何资产，对于使用这样的一体化安全工具的组织来说，可将单项安全事件的财务影响平均减少 90%。”</p>
+<p>从上述 Gartner 报告的描述中可以看出，网络安全网格是一种安全架构方法或者策略，而不是一种定义明确的架构或标准化的技术方法，更不是某种产品，其目的是找到能够应对不断发展的业务系统以及网络环境演变所带来的安全挑战的新方法，提供比传统物理边界防护更强大、更灵活和可扩展的安全能力。通过连接、集成和协同管理各种网络安全控制系统、服务和数据来提供综合安全保护的框架。它致力于构建一个灵活、弹性和动态的安全环境，以适应日益复杂和多样化的网络安全威胁。</p>
+<h2 id="二、架构与实现"><a href="#二、架构与实现" class="headerlink" title="二、架构与实现"></a>二、架构与实现</h2><p>Gartner 提出了网络安全网格的具体实现框架，即网络安全网格架构（CyberSecurity Mesh Architecture，CSMA）。这是一种分布式安全服务的协作框架，提供安全分析与情报、统一策略管理、整合操控界面和分布式身份结构等 4个安全基础设施使不同的安全工具能够基于该基础设施协同工作并实现统一的配置和管理，提高安全工具的可组合性、可扩展性和互操作性，解决多种安全工具在各个孤立体系中运行时所带来的问题，实现各种安全能力的有机聚合，适应业务发展需要并达到“力量倍增”的效果。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/3-CSMA%E6%9E%B6%E6%9E%842.png" alt="CSMA架构图"><br>网络安全网格架构的组成如上图图所示，4 个基础支撑层之间以及与其他安全系统之间的关系如下：</p>
+<ol>
+<li>安全分析与情报层。可与来自第三方的安全工具开展联合协同检测，基于丰富的威胁分析手段，结合威胁情报，利用机器学习等技术形成更加准确一致的威胁分析结果。</li>
+<li>统一策略管理层。主要包括安全策略编排和安全态势管理，将集中的策略转换为各个安全工具的本地配置策略，实现分布式执行，并支持动态策略管理服务。</li>
+<li>整合操控界面层。实现安全数据可视化，提供安全系统复合视图，主要包括统一的控制面板、告警、审查、指导手册和报告等，使安全团队能够更快速、更有效地响应安全事件。</li>
+<li>身份架构层。主要提供目录服务、自适应访问以及去中心化的身份管理、身份验证和授权管理等功能，支撑构建适合用户需求的零信任网络架构。</li>
+</ol>
+<p>网络安全网格是在物理网络之上构建的逻辑层，网络安全架构的应用视图如下图所示，直观展示了在逻辑层中通过对各种安全能力的编排、执行，使得各种安全工具基于 4 个安全基础层实现互操作，提供统一的安全管控和可见性，而不是在孤岛中运行每个安全工具，从而构建一个能在庞大的安全生态中协同运行，且自动适应网络环境演化的安全平台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230911/4-CSMA%E6%9E%B6%E6%9E%843.png" alt="CSMA应用视图"></p>
+<h2 id="三、主要特点"><a href="#三、主要特点" class="headerlink" title="三、主要特点"></a>三、主要特点</h2><p>网络安全网格主要涉及设计和建设 IT 安全基础设施，采用“水平”分布式方式将各种安全能力集成到网络中，而不是采用传统的“自上而下”、各种安全设备“一应俱全”的集成方式，致力于构建一个能在庞大的安全生态系统中协同运行，且自动适应网络环境演化的全面覆盖、统一管控、动态协同和快速响应的安全平台。</p>
 <ul>
-<li>用户访问端口：主要指各类与用户侧交互的，支撑用户访问服务的端口，如 WEB 访问端口、视频流端口等。</li>
-<li>平台交互端口：系统内外部服务器间的接口交互、数据交互等服务端口。</li>
-<li>路由协议端口：常见于路由设备，用于配置路由协议而开放的端口服务，如 BGP边界网关协议端口、OSPF 开放式最短路径优先协议端口等。</li>
+<li><p>通用集成框架。网络安全网格提供一种通用的集成框架和方法，实现类似“乐高”化思维的灵活、可组合、可扩展的安全架构。通过标准化工具支持可互操作的各种安全服务编排和协同，从而实现广泛分布的不同安全服务的高效集成，建立起合作的安全生态系统来保护处于本地、数据中心和云中的数字资产，并基于数据分析、情报支持和策略管理等能力的聚合形成更加强大的整体安全防御和响应处置能力。</p>
+</li>
+<li><p>分布式网络架构。网络安全网格利用了“网格”的去中心化、对等协作、结构灵活、连接可靠、扩展性强等优势，不再侧重于围绕所有设备或节点构建“单一”边界，而是围绕每个接入点创建更小的、单独的边界 [5-6]。通过建立与接入点同样多的安全边界，保证物理位置广泛分布的用户能随时随地安全接入，符合零信任网络中的“微分段”要求，使得网络犯罪分子和黑客更难利用整个网络。同时，网络中主客体之间在逻辑上都是点对点直连关系，无须关注具体的物理网络部署，能够简化安全配置且能自动适应网络动态变化。</p>
+</li>
+<li><p>集中管理与分散执行。与传统的网关集中访问控制不同，网络安全网格采用了集中的策略编排和权限管理，基于策略分布式的执行，将网络安全控制能力分布到网络的更多地方，使安全措施更接近需要保护的资产，一方面，有利于消除安全管控盲点，缓解传统集中安全控制存在的性能处理瓶颈，适应用户终端和组织业务分散化发展需要；另一方面，有利于实现全局的安全威胁分析，形成更加一致的安全态势，从而实现更加精准的安全管控和更加快速的响应处置。</p>
+</li>
+<li><p>围绕身份定义安全边界。在当前网络协议中，因缺失身份要素带来了很多安全问题，物理 IP 地址与人和终端的关联性越来越弱，导致基于地址、流量、日志的安全检测和威胁分析技术难以实现针对人的威胁研判；基于网络协议字段特征检测的传统边界访问控制技术，同样使得基于身份的授权访问成为天方夜谭。由于网络威胁本质上是人带来的威胁，因此难以实现精准高效的安全威胁处置。网络安全网格延续了零信任网络的思想，用身份定义网络边界，让身份成为威胁研判与安全管控的基础。</p>
+</li>
 </ul>
-<p>2）管理类端口。主要包含实现远程操控管理、后台访问运维、用户数据收集及用户终端主动管控等服务的端口。</p>
-<h2 id="互联网暴露资产端口管理"><a href="#互联网暴露资产端口管理" class="headerlink" title="互联网暴露资产端口管理"></a>互联网暴露资产端口管理</h2><ul>
-<li>尽量缩减收敛减少暴露面，基于最小使用原则，对于高危风险端口应严禁对互联网开放，尤其是管理类端口如数据库、运维管理等端口。如mysql的3306端口、Redis的6379端口等。对于必须要暴露的资产端口进行有效管控，如：制定合理的访问控制策略、加强鉴权等。</li>
-<li>应该建立互联网暴露资产台账，规范的流程严控互联网暴露端口的审批，动态维护好互联网暴露资产台账。</li>
-<li>对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对没有没纳管的暴露面资产进行纳管加强管控或下线，及时维护台账。</li>
-</ul>
-<h3 id="常见的高危风险端口"><a href="#常见的高危风险端口" class="headerlink" title="常见的高危风险端口"></a>常见的高危风险端口</h3><table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>22（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>SSH （Secure Shell），安全外壳协议</td>
-</tr>
-<tr>
-<td>应用场景或应用组件</td>
-<td>远程登录、SSH 端口转发</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>SSH 协议的服务连接端口，可用于进行远程操作维护</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>23（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>Telnet （ 远程终端协议）</td>
-</tr>
-<tr>
-<td>应用场景或应用组件</td>
-<td>远程登录</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>Telnet 协议的服务连接端口，可用于进行远程操作维护</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>161（UDP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>SNMP（Simple Network Management Protocol，简单网络管理协议）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>可用于对网络设备进行远程信息读取、管理和配置</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>爆破默认团队字符串，导致信息泄漏</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>111（TCP/UDP）、2049（TCP/UDP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>NFS（Network File System），网络文件系统</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>用于远程文件传输</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>业务类端口（用户访问端口、平台交互端口）</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>权限配置不当</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>3306（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>MySQL（数据库）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>MySQL 是一款开源关系数据库管理系统。该端口端口用于数据库远程管理和连接</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口、业务类端口（平台交互端口）</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>暴力破解、信息泄漏、远程命令执行</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>6379（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>Redis（数据库）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>Redis 默认管理和服务端口</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>可能会存在未授权访问，或者进行弱口令爆破；获得访问权限后，可能存在任意文件写入导致获取系统远程控制权限。</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>27017（TCP）、27018（TCP）、27019（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>MongoDB（数据库）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>用于 MongoDB 数据库的远程管理和服务，以及集群间通信</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口、业务类端口（平台交互端口）</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>爆破，未授权访问</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>1433（TCP）、1434（UDP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>SQLServer（数据库）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>SQL Server 是 Microsoft 公司推出的关系型数据库管理系统。<br>1433（默认）端口用于数据库远程管理和连接，1434（默认）用于命名服务</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口、业务类端口（平台交互端口）</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>提权，弱口令，爆破；早期版本还存在远程命令执行漏洞</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>1521（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>Oracle（甲骨文数据库）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>Oracle 是甲骨文公司的一款关系数据库管理系统。该端口端口用于数据库远程管理和连接</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口、业务类端口（平台交互端口）</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>暴力破解、信息泄漏、远程命令执行</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>5432（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>PostgreSQL（数据库）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>PostgreSQL 是一款开源关系数据库管理系统。该端口用于数据库远程管理和连接</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口、业务类端口（平台交互端口）</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>暴力破解、信息泄漏、远程命令执行</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>3389（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>Windows RDP（远程桌面协议）</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>用于访问服务器的远程桌面服务，提供基于图形界面的远程操作维护功能。</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>暴力破解，远程控制</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>高危端口号（默认）</th>
-<th>5800（TCP），5900（TCP）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>协议或服务</td>
-<td>VNC（Virtual Network Console），虚拟网络控制台</td>
-</tr>
-<tr>
-<td>端口用途说明</td>
-<td>VNC 是一款远程桌面和远程控制软件，5800 和 5900（默认）端口均为 VNC 服务启动端口或远端控制端口</td>
-</tr>
-<tr>
-<td>端口类别</td>
-<td>管理类端口</td>
-</tr>
-<tr>
-<td>风险描述</td>
-<td>暴力破解，远程控制</td>
-</tr>
-</tbody></table>
+<h2 id="四、应用场景"><a href="#四、应用场景" class="headerlink" title="四、应用场景"></a>四、应用场景</h2><p><strong>网络安全网格的应用场景包括：</strong></p>
+<ol>
+<li>云安全：网络安全网格可用于跨多个云环境提供综合的安全管理和保护，确保云服务的安全性和合规性。</li>
+<li>边缘安全：网络安全网格可以应用于边缘计算环境，以提供安全的边缘设备管理、数据保护和边缘网络保护。</li>
+<li>供应链安全：通过网络安全网格，可以实现供应链中各个环节的安全协同，共享安全信息，降低供应链中的安全风险。</li>
+<li>物联网安全：网络安全网格可以为物联网设备和系统提供统一的安全管理和保护，保障物联网环境的安全性和可信度。</li>
+</ol>
+<h2 id="五、价值和优势"><a href="#五、价值和优势" class="headerlink" title="五、价值和优势"></a>五、价值和优势</h2><p><strong>网络安全网格的主要价值包括：</strong></p>
+<ol>
+<li>综合安全保护：网络安全网格可以集成多个安全控制系统和服务，提供全面的安全保护，从网络边界到终端设备，覆盖各个层面和环节的安全需求。</li>
+<li>动态适应能力：网络安全网格具备弹性和动态适应的特性，能够快速识别和响应新的威胁，并自动调整安全策略和控制措施以提供即时和有效的保护。</li>
+<li>协同合作：网络安全网格促进了不同安全系统和服务之间的协同合作和信息共享。通过共享威胁情报和安全事件信息，提高整体的安全防御能力，并加强各方之间的合作与配合。</li>
+<li>可扩展性和灵活性：网络安全网格具备高度的可扩展性，可以根据实际需求快速部署和调整安全控制系统，适用于各种规模和复杂度的网络环境。</li>
+</ol>
+<p><strong>网络安全网格与传统网络安全方法在以下几个方面存在区别：</strong></p>
+<ol>
+<li>集成性：传统网络安全方法通常是独立而孤立的解决方案，每个安全设备或系统都有自己的管理界面和策略。而网络安全网格强调集成不同的安全控制系统和服务，通过连接和协同工作来提供综合的安全保护，实现整体的安全扩展性和一致性。</li>
+<li>动态适应性：传统网络安全方法通常是静态的，在部署后很少变动，而网络安全网格具备弹性和动态适应的特性。它可以根据实际需求自动调整安全策略和控制措施，灵活应对不断变化的威胁环境。</li>
+<li>协同合作：传统网络安全方法主要依赖于各个安全设备或系统的独立工作，缺乏跨系统的协同合作。而网络安全网格通过实现安全控制系统和服务之间的协同和信息共享，提高整体的安全防御能力，并加强各方之间的合作与配合。</li>
+<li>统一视图和管理：传统网络安全方法通常需要使用多个不同的管理界面来管理各个安全设备或系统，使得安全管理变得复杂而繁琐。而网络安全网格提供统一的视图和管理平台，使得管理员可以更便捷地管理和监控整个安全环境，提高管理效率和反应速度。</li>
+<li>灵活性和可扩展性：传统网络安全方法在部署和扩展时通常需要考虑设备间的兼容性和差异性。而网络安全网格具备高度的灵活性和可扩展性，可以根据实际需求灵活部署和调整安全控制系统，适用于各种规模和复杂度的网络环境。</li>
+</ol>
+<p><strong>网络安全网格架构的优势主要体现以下几个方面：</strong></p>
+<ol>
+<li>实现更加可靠的安全防御。网络安全网格摒弃了传统的边界防护思想，不仅是围绕网络数据中心、服务中心构建“边界”，还围绕每个接入点创建更小的、独立的边界，并由集中的控制中心进行统一管理，从而将安全控制扩展到广泛分布的资产，在提高威胁应对能力的同时，增强了安全系统的可扩展性、灵活性和弹性。</li>
+<li>应对复杂环境下的安全需求。通过网络安全策略集中编排但分散执行的方法，在统一的安全策略控制下，提供一种灵活且易于扩展的安全基础架构，可为混合云和多云等复杂环境中的资产保护提供所需的安全能力。</li>
+<li>实现更加高效的威胁处置。通过安全工具集成，加强了安全数据采集和预测分析之间的协作，可以更加快速、准确地获取安全态势，及时发现并应对安全威胁，可大幅度增强对违规和攻击事件的响应处置能力。</li>
+<li>构建更加开放的安全架构。提供了一种可编排的通用集成框架和方法，支持各类安全服务之间的协同工作，用户可自主选择当前和新兴的安全技术与标准，面向云原生和应用程序接口（Application Programming Interface，API） 插 件的环境更加易于集成，便于定制与扩展，能有效弥补不同供应商安全方案之间的能力差距。</li>
+<li>降低建设维护的成本与难度。用户可以有效减少管理一组庞大的孤立安全解决方案的开销，同时，安全能力部署和维护所需的时间更少、成本更低，易于与用户已建设的身份识别与访问管理（Identity and Access Management，IAM）、安全信息和事件管理（Security Information and Event Management，SIEM）、 安 全运营中心（Security Operations Center，SOC）、态势感知等安全系统共存，也方便对接已建设的专线、软件定义广域网（Software-Defined Wide Area Network，SD-WAN）等网络服务。</li>
+</ol>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
+<p> 博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+ <center> 
 
 <br>
 
@@ -823,7 +571,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/ff84f2fb/" title="网络安全之互联网暴露资产端口">https://xiejava.gitee.io/posts/ff84f2fb/</a>
+    <a href="https://xiejava.gitee.io/posts/d236743/" title="网络安全之认识网络安全网格架构（CSMA）">https://xiejava.gitee.io/posts/d236743/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -851,8 +599,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/d2f9b6e7/" rel="next" title="网络安全入行？来了解下网络安全从业人员类别及其工作任务">
-                <i class="fa fa-chevron-left"></i> 网络安全入行？来了解下网络安全从业人员类别及其工作任务
+              <a href="/posts/cd0f90f9/" rel="next" title="Python进行数据相关性分析实战">
+                <i class="fa fa-chevron-left"></i> Python进行数据相关性分析实战
               </a>
             
           </div>
@@ -860,10 +608,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/213c546f/" rel="prev" title="Python三行代码实现json转Excel">
-                Python三行代码实现json转Excel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1043,7 +787,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网暴露资产端口定义"><span class="nav-number">1.</span> <span class="nav-text">互联网暴露资产端口定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网暴露资产端口分类"><span class="nav-number">2.</span> <span class="nav-text">互联网暴露资产端口分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网暴露资产端口管理"><span class="nav-number">3.</span> <span class="nav-text">互联网暴露资产端口管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的高危风险端口"><span class="nav-number">3.1.</span> <span class="nav-text">常见的高危风险端口</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、概念产生的背景"><span class="nav-number">1.</span> <span class="nav-text">一、概念产生的背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、架构与实现"><span class="nav-number">2.</span> <span class="nav-text">二、架构与实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、主要特点"><span class="nav-number">3.</span> <span class="nav-text">三、主要特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、应用场景"><span class="nav-number">4.</span> <span class="nav-text">四、应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、价值和优势"><span class="nav-number">5.</span> <span class="nav-text">五、价值和优势</span></a></li></ol></div>
             
 
           </div>
