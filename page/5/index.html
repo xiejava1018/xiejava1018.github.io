@@ -313,6 +313,247 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/1ca32c3a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/1ca32c3a/" itemprop="url">Python使用BeautifulSoup4修改网页内容实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-18T21:45:28+08:00">
+                2022-05-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2022-05-18T21:54:53+08:00">
+                2022-05-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/1ca32c3a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/1ca32c3a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/1ca32c3a/" class="leancloud_visitors" data-flag-title="Python使用BeautifulSoup4修改网页内容实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近有个小项目，需要爬取页面上相应的资源数据后，保存到本地，然后将原始的HTML源文件保存下来，对HTML页面的内容进行修改将某些标签整个给替换掉。</p>
+<p>对于这类需要对HTML进行操作的需求，最方便的莫过于<strong>BeautifulSoup4</strong>的库了。</p>
+<p>样例的HTML代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"videoslide"</span> <span class="attr">href</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/1381824922.JPG"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/1381824922_zy_compress.JPG"</span> <span class="attr">data-zy-media-id</span>=<span class="string">"zy_location_201310151613422786"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/第一张_1381824798.JPG"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">data-zy-media-id</span>=<span class="string">"zy_image_201310151613169945"</span> <span class="attr">src</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/第一张_1381824798_zy_compress.JPG"</span>/&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/第二张_1381824796.jpg"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">data-zy-media-id</span>=<span class="string">"zy_image_201310151613163009"</span> <span class="attr">src</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/第二张_1381824796_zy_compress.jpg"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/第三张.jpg"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">data-zy-media-id</span>=<span class="string">"zy_image_201312311838584446"</span> <span class="attr">src</span>=<span class="string">"http://www.test.com/wp-content/uploads/1020/第三张_zy_compress.jpg"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里主要包括了<code>&lt;a &gt;</code>标签，<code>&lt;a &gt;</code>标签里面嵌入了<code>&lt;img &gt;</code>标签，其中有<code>&lt;a class=&quot;videoslide&quot;&gt;</code>的标识该标签实际是可以播放动画的。需要根据<code>class=&quot;videoslide&quot;</code> 来判断将整个<code>&lt;a &gt;</code>标签换成播放器的<code>&lt;video &gt;</code>标签，将没有<code>class=&quot;videoslide&quot;</code> 的<code>&lt;a &gt;</code>标签换成<code>&lt;figure&gt;</code>标签。</p>
+<p>也就是将带有的<code>&lt;a class=&quot;videoslide&quot; ...&gt;&lt;img ... /&gt;&lt;/a&gt;</code>标签换成 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"video"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">poster</span>=<span class="string">"视频链接的图片地址.jpg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"视频文件的静态地址.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span> /&gt;</span></span><br><span class="line">    您的浏览器不支持H5视频，请使用Chrome/Firefox/Edge浏览器。</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>将<code>&lt;a ....&gt;&lt;img .../&gt;&lt;/a&gt;</code>标签换成</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt; <span class="attr">img</span> <span class="attr">src</span>=<span class="string">"图片地址_compressed.jpg"</span> <span class="attr">data-zy-media-id</span>=<span class="string">"图片地址.jpg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>文字说明（如果有）<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里通过BeautifulSoup4 的select()方法找到标签，通过get()方法获取标签及标签属性值，通过replaceWith来替换标签，具体代码如下：<br>首先安装BeautifulSoup4的库，BeautifulSoup4库依赖于lxml库，所以也需要安装lxml库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install bs4</span><br><span class="line">pip install lxml</span><br></pre></td></tr></table></figure>
+
+<p>具体代码实现如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">htmlstr=<span class="string">'&lt;html&gt;&lt;body&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;a class="videoslide" href="http://www.test.com/wp-content/uploads/1020/1381824922.JPG"&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;img src="http://www.test.com/wp-content/uploads/1020/1381824922_zy_compress.JPG" data-zy-media-id="zy_location_201310151613422786"/&gt;&lt;/a&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;a href="http://www.test.com/wp-content/uploads/1020/第一张_1381824798.JPG"&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;img data-zy-media-id="zy_image_201310151613169945" src="http://www.test.com/wp-content/uploads/1020/第一张_1381824798_zy_compress.JPG"/&gt;&lt;/a&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;a href="http://www.test.com/wp-content/uploads/1020/第二张_1381824796.jpg"&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;img data-zy-media-id="zy_image_201310151613163009" src="http://www.test.com/wp-content/uploads/1020/第二张_1381824796_zy_compress.jpg"/&gt;&lt;/a&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;a href="http://www.test.com/wp-content/uploads/1020/第三张.jpg"&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;img data-zy-media-id="zy_image_201312311838584446" src="http://www.test.com/wp-content/uploads/1020/第三张_zy_compress.jpg"/&gt;&lt;/a&gt;'</span> \</span><br><span class="line">        <span class="string">'&lt;/body&gt;&lt;/html&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">procHtml</span><span class="params">(htmlstr)</span>:</span></span><br><span class="line">    soup = BeautifulSoup(htmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">    a_tags=soup.select(<span class="string">'a'</span>)</span><br><span class="line">    <span class="keyword">for</span> a_tag <span class="keyword">in</span> a_tags:</span><br><span class="line">        a_tag_src = a_tag.get(<span class="string">'href'</span>)</span><br><span class="line">        a_tag_filename = os.path.basename(a_tag_src)</span><br><span class="line">        a_tag_path = os.path.join(<span class="string">'src'</span>, a_tag_filename)</span><br><span class="line">        a_tag[<span class="string">'href'</span>]=a_tag_path</span><br><span class="line">        next_tag=a_tag.next</span><br><span class="line">        <span class="comment">#判断是视频还是图片，如果a标签带了class="videoslide" 是视频否则是图片</span></span><br><span class="line">        <span class="keyword">if</span> a_tag.get(<span class="string">'class'</span>) <span class="keyword">and</span> <span class="string">'videoslide'</span>==a_tag.get(<span class="string">'class'</span>)[<span class="number">0</span>]:</span><br><span class="line">            <span class="comment"># 处理视频文件</span></span><br><span class="line">            media_id = next_tag.get(<span class="string">'data-zy-media-id'</span>)</span><br><span class="line">            <span class="keyword">if</span> media_id:</span><br><span class="line">                media_url = <span class="string">'http://www.test.com/travel/show_media/'</span> + str(media_id)+<span class="string">'.mp4'</span></span><br><span class="line">                media_filename = os.path.basename(media_url)</span><br><span class="line">                media_path = os.path.join(<span class="string">'src'</span>, media_filename)</span><br><span class="line">                <span class="comment"># 将div.video标签替换a标签</span></span><br><span class="line">                video_html = <span class="string">'&lt;div class=\"video\"&gt;&lt;video controls width = \"100%\" poster = \"'</span> + a_tag_path + <span class="string">'\" &gt;&lt;source src = \"'</span> + media_path + <span class="string">'\" type = \"video/mp4\" /&gt; 您的浏览器不支持H5视频，请使用Chrome / Firefox / Edge浏览器。 &lt;/video&gt;&lt;/div&gt;'</span></span><br><span class="line">                video_soup = BeautifulSoup(video_html, <span class="string">'lxml'</span>)</span><br><span class="line">                a_tag.replaceWith(video_soup.div)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment">#获取图片信息</span></span><br><span class="line">            <span class="keyword">if</span> <span class="string">'img'</span>==next_tag.name:</span><br><span class="line">                img_src=next_tag.get(<span class="string">'src'</span>)</span><br><span class="line">                <span class="comment"># 判断是否路径是否为本地资源 data:image和file:</span></span><br><span class="line">                <span class="keyword">if</span> img_src.find(<span class="string">'data:image'</span>) == <span class="number">-1</span> <span class="keyword">and</span> img_src.find(<span class="string">'file:'</span>) == <span class="number">-1</span>:</span><br><span class="line">                    img_filename = os.path.basename(img_src)</span><br><span class="line">                    img_path = os.path.join(<span class="string">'src'</span>, img_filename)</span><br><span class="line">                    <span class="comment"># 将&lt;figure&gt;&lt;img&gt;标签替换a标签</span></span><br><span class="line">                    figcaption=<span class="string">''</span></span><br><span class="line">                    figure_html=<span class="string">'&lt;figure&gt;&lt;img src=\"'</span>+img_path+<span class="string">'\" data-zy-media-id=\"'</span>+a_tag_path+<span class="string">'\"&gt;&lt;figcaption&gt;'</span>+figcaption+<span class="string">'&lt;/figcaption&gt;&lt;/figure&gt;'</span></span><br><span class="line">                    figure_soup = BeautifulSoup(figure_html, <span class="string">'lxml'</span>)</span><br><span class="line">                    a_tag.replaceWith(figure_soup.figure)</span><br><span class="line">    html_content = soup.contents[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> html_content</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pro_html_str=procHtml(htmlstr)</span><br><span class="line">    print(pro_html_str)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"video"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span>=<span class="string">""</span> <span class="attr">poster</span>=<span class="string">"src\1381824922.JPG"</span> <span class="attr">width</span>=<span class="string">"100%"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"src\zy_location_201310151613422786.mp4"</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>/&gt;</span> 您的浏览器不支持H5视频，请使用Chrome / Firefox / Edge浏览器。 </span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">data-zy-media-id</span>=<span class="string">"src\第一张_1381824798.JPG"</span> <span class="attr">src</span>=<span class="string">"src\第一张_1381824798_zy_compress.JPG"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">data-zy-media-id</span>=<span class="string">"src\第二张_1381824796.jpg"</span> <span class="attr">src</span>=<span class="string">"src\第二张_1381824796_zy_compress.jpg"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">data-zy-media-id</span>=<span class="string">"src\第三张.jpg"</span> <span class="attr">src</span>=<span class="string">"src\第三张_zy_compress.jpg"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">figcaption</span>&gt;</span><span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9c723d09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2947,239 +3188,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f571f2b1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/f571f2b1/" itemprop="url">Hexo博客加入51LA网站流量统计</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-01T12:42:04+08:00">
-                2022-04-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-04-26T09:35:15+08:00">
-                2023-04-26
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/f571f2b1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f571f2b1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/f571f2b1/" class="leancloud_visitors" data-flag-title="Hexo博客加入51LA网站流量统计">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  930
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>自建hexo博客xiejava.ishareread.com一直在用CNZZ的网站流量统计，每天登陆到CNZZ的网站流量统计后台看博客的访问量成了建站以来的习惯。3月23日以后突然发现CNZZ的统计没有数据了，查了半天才知道CNZZ的U-Web统计分析产品停服了，计划要收费了。最开始用百度统计也是的，原来用得好好的，突然也是要收费了才开始转向用CNZZ的，现在CNZZ也要开始收费了。看来互联网公司日子比较难过了，免费时代已经一去不复返了。对于个人博客网站来说要付费买个网站流量统计又有点划不来。本来流量就很少，每年域名要付费、主机要付费，再弄个流量统计也要付费实在是有点承受不了。但是没有网站流量统计，不能看到自己的站点的访问量，对于个人自建网站来讲失去了大部分的乐趣。<br>所以这几天一直在寻找其他的网站流量统计的工具，只到找到了51LA。以前只知道百度和CNZZ的网站流量统计工具，最近才了解到51LA统计，它是15年老牌网站统计工具，是互联网上最早基于ASP编写的网站数据统计工具，拥有一大批忠实老站长，后来历经改造，推出新版51LA统计目前是网站统计V6，界面较以往有了较大的改动更加友好直观。<br>51LA网站统计V6的产品链接是 <a href="https://v6.51.la/" target="_blank" rel="noopener">https://v6.51.la/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/51LA%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1V6.png" alt="我要啦网站统计V6"></p>
-<p>看到”<strong>免费使用</strong>“几个大字的时候我的眼睛已经发光了。迫不及待的点击“注册”，进行使用。</p>
-<h2 id="一、注册登录"><a href="#一、注册登录" class="headerlink" title="一、注册登录"></a>一、注册登录</h2><p>注册流程很简单，要注册的信息很少，基本上就是手机号和登录密码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E6%B3%A8%E5%86%8C.png" alt="注册"></p>
-<p>注册过程很友好，注册完就可以登录了。</p>
-<h2 id="二、添加应用"><a href="#二、添加应用" class="headerlink" title="二、添加应用"></a>二、添加应用</h2><p>在正式使用网站统计服务之前要添加应用。也就是要将要统计的站点域名登记到应用里，生成统计代码。<br>点击“添加应用”按钮。要填的信息也就是你要统计的站点域名，可以是多个域名。我的hexo博客除了用到xiejava.ishareread.com外还在github和gited上都生成了。所以把这几个访问的域名都加上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8.png" alt="添加应用"></p>
-<h2 id="三、加入网站流量统计代码"><a href="#三、加入网站流量统计代码" class="headerlink" title="三、加入网站流量统计代码"></a>三、加入网站流量统计代码</h2><p>添加应用后下一步就是生成统计代码，将统计代码加入到自己的hexo站点。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E7%94%9F%E6%88%90%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81.png" alt="生成统计代码"><br>标签页后面还有“图标引用”、“数据挂件”的代码，如果有需要也可以加入。<br>找到自己的hexo站点的文件目录的<code>footer.swig</code>文件，具体在<code>themes\hexo-theme-next\layout\_partials</code>目录下。编辑footer.swig文件，加入统计代码，根据需要加入图标引用、数据挂件的代码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E5%8A%A0%E5%85%A5%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81.png" alt="加入统计代码"></p>
-<h2 id="四、查看统计效果"><a href="#四、查看统计效果" class="headerlink" title="四、查看统计效果"></a>四、查看统计效果</h2><p>加入统计代码、图标引用、数据挂件代码后，大约5分钟刷新hexo站点，就可以在网站底部看到图标和数据挂件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E7%BB%9F%E8%AE%A1%E6%98%BE%E7%A4%BA.png" alt="网站底部统计显示"></p>
-<p>登录到<a href="https://v6.51.la/user/application" target="_blank" rel="noopener">https://v6.51.la/user/application</a> 的管理后台，可以看到代码安装状态为“安装成功”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8.png" alt="应用列表"></p>
-<p>点击“查看报表”可以查看网站的流量统计分析信息。各种统计图表直观易懂，数据详实，感觉比CNZZ 及百度统计更加实用和方便。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86.png" alt="管理后台"><br>51LA可免费添加应用30个，每日应用统计总PV在3000000，对于个人站点或小型企业足足够用了。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3236,7 +3244,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">115</span>
+                  <span class="site-state-item-count">116</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3348,7 +3356,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">215.4k</span>
+    <span title="Site words total count">216.3k</span>
   
   
 <!--51la网站应用监控-->
