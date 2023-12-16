@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2023-12-02T09:39:05.755Z</updated>
+  <updated>2023-12-16T13:25:54.939Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python将列表中的数据写入csv并正确解析出来</title>
+    <link href="https://xiejava.gitee.io/posts/9d6f73eb/"/>
+    <id>https://xiejava.gitee.io/posts/9d6f73eb/</id>
+    <published>2023-12-16T13:18:15.000Z</published>
+    <updated>2023-12-16T13:25:54.939Z</updated>
+    
+    <content type="html"><![CDATA[<p>用Python做数据处理常常会将数据写到文件中进行保存，又或将保存在文件中的数据读出来进行使用。通过Python将列表中的数据写入到csv文件中很多人都会，可以通过Python直接写文件或借助pandas很方便的实现将列表中的数据写入到csv文件中，但是写进去以后取出有些字段会有变化有些坑还是要避免。本文通过实例来介绍如何将列表中的数据写入文件如csv并正确解析出来使用。</p><p>示例数据如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>]]]</span><br></pre></td></tr></table></figure><h2 id="通过pandas将数据写入csv"><a href="#通过pandas将数据写入csv" class="headerlink" title="通过pandas将数据写入csv"></a>通过pandas将数据写入csv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">filename = <span class="string">'data\pd_data.csv'</span></span><br><span class="line">df.to_csv(filename, index=<span class="literal">False</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p><p>我们对原始的数据中的分数Score字段进行求和统计总分TotalScore</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'TotalScore'</span>]=df[<span class="string">'Score'</span>].apply(sum)</span><br><span class="line">df</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p><h2 id="通过pandas将csv文件中的数据读出"><a href="#通过pandas将csv文件中的数据读出" class="headerlink" title="通过pandas将csv文件中的数据读出"></a>通过pandas将csv文件中的数据读出</h2><p>用pandas将csv文件将数据读出也是非常方便的一行代码就可以搞定</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_read_csv=pd.read_csv(filename)</span><br><span class="line">df_read_csv</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p><p>但是会发现从csv文件中读出数据后形成的dataframe数据集对数据中的分数Score字段进行求和统计总分TotalScore会报错！</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_read_csv[<span class="string">'TotalScore'</span>]=df_read_csv[<span class="string">'Score'</span>].app</span><br><span class="line"></span><br><span class="line">TypeError: unsupported operand type(s) <span class="keyword">for</span> +: <span class="string">'int'</span> <span class="keyword">and</span> <span class="string">'str'</span></span><br></pre></td></tr></table></figure><p>原因是原数据中Score字段中的数据是list但是报错至文件读出来后这个字段变成了字符串，字符串不能求和。</p><p><strong>解决方案</strong><br>将字段中为字符串的值进行转换，转换成list，numpy提供了string转list的方法，当然也可以自己写。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeArray</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="comment">#return [int(item) for item in text[1:-1].split(',')]  #将字串转换成列表</span></span><br><span class="line">    <span class="keyword">return</span> np.fromstring(text[<span class="number">1</span>:<span class="number">-1</span>], sep=<span class="string">','</span>)  <span class="comment">#用numpy提供的方法将字串转换成列表</span></span><br><span class="line"></span><br><span class="line">df_read_csv[<span class="string">'Score'</span>]=df_read_csv[<span class="string">'Score'</span>].apply(makeArray) <span class="comment">#将Score由字符串转成列表</span></span><br><span class="line">df_read_csv[<span class="string">'TotalScore'</span>]=df_read_csv[<span class="string">'Score'</span>].apply(sum)</span><br><span class="line">df_read_csv</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p><p>可以看到这下Score字段可以正常的进行求和统计总分TotalScore了。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a><br> <center> </p><br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注微信公众号,一起学习、成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;用Python做数据处理常常会将数据写到文件中进行保存，又或将保存在文件中的数据读出来进行使用。通过Python将列表中的数据写入到csv文件中很多人都会，可以通过Python直接写文件或借助pandas很方便的实现将列表中的数据写入到csv文件中，但是写进去以后取出有些字
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>《芯片战争》读后感-得芯片者得天下</title>
@@ -540,34 +568,6 @@
       
       
         &lt;p&gt;安全风险管理的三要素分别是资产、威胁和脆弱性，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象（资产）自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。“摸清家底，认清风险”做好资产安全信息管理是
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>运营商在安全领域的优势分析</title>
-    <link href="https://xiejava.gitee.io/posts/3b6a1140/"/>
-    <id>https://xiejava.gitee.io/posts/3b6a1140/</id>
-    <published>2023-04-11T06:03:26.000Z</published>
-    <updated>2023-04-11T06:21:42.963Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230410/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A84.jpeg" alt="网络安全" title="网络安全"></p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>近年来，中美贸易摩擦加剧，国际争端凸显，国家高度重视网络安全的建设，网络安全已上升及国家战略层面，网络空间作为“第五疆域”受到极大重视。个人与企业对于网络安全的需求不断增加，中国网络安全市场也随之发展。</p><h3 id="政策支持，网络安全需求不断增加"><a href="#政策支持，网络安全需求不断增加" class="headerlink" title="政策支持，网络安全需求不断增加"></a>政策支持，网络安全需求不断增加</h3><p>近年来，网络安全被提升到国家战略高度，正在加快推进网络安全技术自主创新，朝着建设网络强国目标不懈努力。2014年以来先后设立中国安全委员会、中央网络安全和信息化委员会，发布了《国家安全法》、《中华人民共和国网络安全法》、《国家网络空间安全战略》、《网络空间国际合作战略》、《中华人民共和国数据安全法》等多项鼓励行业发展的法规和政策。这些法规政策规范了网络信息安全行业，为网络安全行业发展营造了良好的环境。</p><h3 id="信息化水平、云计算、大数据、5G、物联网水平提升，网络安全对产业及业态提出新要求"><a href="#信息化水平、云计算、大数据、5G、物联网水平提升，网络安全对产业及业态提出新要求" class="headerlink" title="信息化水平、云计算、大数据、5G、物联网水平提升，网络安全对产业及业态提出新要求"></a>信息化水平、云计算、大数据、5G、物联网水平提升，网络安全对产业及业态提出新要求</h3><p>近年来，中国信息化水平不断攀升：云计算的进步带动计算能力和数据的集中；大数据的出现带来数据收集、处理、分析业态的革新；5G网络加速了网络数据处理速度；随着“云+5G”的共同催化，联网设备将呈现指数级增长，中国网络安全行业未来将布局更多的应用领域。<br>同时，以上科技进步也引发了新的网络安全问题，对网络安全行业提出新要求，数据的产生流通和应用更加普遍化和密集化，使网络安全的防范更加复杂，对网络安全提出更高的挑战。<br>2019年9月27日工信部公开征求对《关于促进网络安全产业发展的指导意见（征求意见稿）》的意见，征求意见稿中提出，到2025年，培育形成一批年营收超过20亿的网络安全企业，形成若干具有国际竞争力的网络安全骨干企业，网络安全产业规模超过2000亿。</p><p>在此背景下大型国有企业尤其是电信运营商纷纷布局网络安全。如中国移动收购启明星辰、中国电信组建专门的网络与信息安全研究院成立成立天翼安全科技有限公司、联通成立一家专注于网络安全服务的新公司计划将信息安全业务打造成创新业务发展的主要增长点。</p><h2 id="优势分析"><a href="#优势分析" class="headerlink" title="优势分析"></a>优势分析</h2><p>那么运营商在安全领域发展都会有哪些优势呢？</p><h3 id="一、网络优势"><a href="#一、网络优势" class="headerlink" title="一、网络优势"></a>一、网络优势</h3><p>电信运营商，作为国家网络基础设施的建设者和运营者，具备强大的网络优势。在工信部《关于促进网络安全产业发展的指导意见（征求意见稿）》明确提出鼓励基础电信企业和云服务提供商发挥网络资源优势，面向客户提供网络安全监测预警、攻击防护、应急保障等增值服务。</p><h3 id="二、数据优势"><a href="#二、数据优势" class="headerlink" title="二、数据优势"></a>二、数据优势</h3><p>运营商有大网的数据优势，如：DDOS异常流量监测数据、IDC/ISP数据、僵木蠕恶意程序数据、互联网暴露资产数据等，通过整合电信运营商大网数据能力，汇聚各类安全数据资源，结合大网威胁情报信息，能够更好的赋能安全产品。</p><h3 id="三、产品优势"><a href="#三、产品优势" class="headerlink" title="三、产品优势"></a>三、产品优势</h3><p>运营商自身自研建设了大量的安全基础能力。以电信为例，近年来积极打造了一系列硬核自主研发的安全产品如云堤抗DDoS、互联网测绘平台、安全态势感知平台、安全运营中心、安全资源池等保租手等等，安全产品均已通过运营商级的大网实战验证。生态开放，具备端到端的产品集成、产品研发和定制能力，提供一体化、全方位、一站式的综合解决方案。相对于传统的安全产商，传统安全设备产商的某些个别的产品可能有优势，但产品可能只适配自家的产品，对其他厂商比较封闭，端到端的产品集成和定制化能力相对较弱。</p><h3 id="四、运营优势"><a href="#四、运营优势" class="headerlink" title="四、运营优势"></a>四、运营优势</h3><p>成功的安全在于运营，运营商自身作为典型的关基行业企业，面对工信部、通管局、公安、网信办等多个监管部门的监管和考核，自身积累了丰富的安全运营经验和实战化的重保经验，并且将自身的安全运营经验、重保经验赋能至安全产品。可面向行业监管单位和关基等客户量身打造基于实战化、可视化、专业级的安全运营产品集。而传统安全产商，一般只提供标准产品，安全运营经验赋能产品相对不足。</p><h3 id="五、服务优势"><a href="#五、服务优势" class="headerlink" title="五、服务优势"></a>五、服务优势</h3><p>电信运营商具备强大的信息化和安全的一体两翼的能力，比传统安全公司更懂信息化和网络，建立了从信息系统和网络的规划与设计、再到实施建设、生产运行维护，涉及整个业务系统安全稳定运行的安全服务体系。</p><p>电信运营商具备覆盖全国的省-市-县的本地化专业的安全服务团队，专业安全服务团队能对客户形成一对一的贴身服务。</p><hr><p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230410/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A84.jpeg&quot; alt=&quot;网络安全&quot; title
       
     
     </summary>
