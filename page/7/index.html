@@ -313,6 +313,280 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/25e5f55a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/25e5f55a/" itemprop="url">网络信息安全之APT攻击</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-02T15:54:07+08:00">
+                2022-04-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-26T09:17:39+08:00">
+                2023-04-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/25e5f55a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/25e5f55a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/25e5f55a/" class="leancloud_visitors" data-flag-title="网络信息安全之APT攻击">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、什么是APT攻击"><a href="#一、什么是APT攻击" class="headerlink" title="一、什么是APT攻击"></a>一、什么是APT攻击</h1><p>当今，网络系统面临着越来越严重的安全挑战，在众多的安全挑战中，一种具有组织性、特定目标以及长时间持续性的新型网络攻击日益猖獗，国际上常称之为<strong>APT（Advanced Persistent Threat高级持续性威胁）攻击</strong>。<br>APT攻击是一种以商业或者政治目的为前提的特定攻击，其通过一系列具有针对性的攻击行为以获取某个组织甚至国家的重要信息，特别是针对国家重要的基础设施和单位开展攻击，包括能源、电力、金融、国防等等。APT攻击常常采用多种攻击技术手段，包括一些最为先进的手段和社会工程学方法，并通过长时间持续性的网络渗透，一步步的获取内部网络权限，此后便长期潜伏在内部网络，不断地收集各种信息，直至窃取到重要情报。<br>对于APT攻击比较权威的定义是由美国国家标准与技术研究所( NIST)提出的，该定义给出了APT攻击的4个要素，具体如下。<br>(1)攻击者：拥有高水平专业知识和丰富资源的敌对方。<br>(2)攻击目的：破坏某组织的关键设施，或阻碍某项任务的正常进行。<br>(3)攻击手段：利用多种攻击方式，通过在目标基础设施上建立并扩展立足点来获取信息。<br>(4)攻击过程：在一个很长的时间段内潜伏并反复对目标进行攻击,同时适应安全系统的防御措施,通过保持高水平的交互来达到攻击目的。</p>
+<h1 id="二、APT攻击过程"><a href="#二、APT攻击过程" class="headerlink" title="二、APT攻击过程"></a>二、APT攻击过程</h1><p>一般APT攻击过程可概括为3个阶段：<strong>攻击前准备</strong>阶段、<strong>攻击入侵</strong>阶段和<strong>持续攻击</strong>阶段，又可细分为5个步骤：<strong>情报收集、防线突破、通道建立、横向渗透、信息收集及外传</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220402/APT%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B.png" alt="APT攻击过程"></p>
+<h2 id="1-情报收集"><a href="#1-情报收集" class="headerlink" title="1.情报收集"></a>1.情报收集</h2><p>在实施攻击之前，攻击者会针对特定组织的网络系统和相关员工展开大量的信息搜集。信息搜集方法多种多样，通常包括搜索引擎、爬网系统、网络隐蔽扫描、社会工程学方法等方式。信息来源包括相关员工的微博、博客、社交网站、公司网站，甚至通过某些渠道购买相关信息(如公司通讯录等)。攻击者通过对这些信息的分析，可以清晰地了解攻击目标所使用的应用、防御软件，组织内部架构和人员关系，核心资产存放情况等等。于是，攻击者针对特定目标(一般是内部员工)所使用的应用软件寻找漏洞，并结合特定目标所使用的杀毒软件、防火墙等设计特定木马/恶意代码以绕过防御。同时，攻击者搭建好入侵服务器，开展技术准备工作。</p>
+<h2 id="2-防线突破"><a href="#2-防线突破" class="headerlink" title="2.防线突破"></a>2.防线突破</h2><p>攻击者在完成情报收集和技术准备后，开始采用木马/恶意代码攻击特定员工的个人电脑，攻击方法主要有：①社会工程学方法，如电子邮件攻击，攻击者窃取与特定员工有关系的人员(如领导、同事、朋友等)电子邮箱，冒充发件人给该员工发送带有恶意代码附件的邮件，一旦该员 工打开附件，员工电脑便感染了恶意软件。②远程漏洞攻击方法，如网站挂马攻击，攻击者在员工常访问的网站上放置木马，当员工再次访问该网站时，个人电脑便受到网页代码攻击。由于这些恶意软件针对的是系统未知漏洞并被特殊处理，因此现有的杀毒软件和防火墙均无法察觉，攻击者便能逐渐获取个人电脑权限，最后直至控制个人电脑。</p>
+<h2 id="3-通道建立"><a href="#3-通道建立" class="headerlink" title="3.通道建立"></a>3.通道建立</h2><p>攻击者在突破防线并控制员工电脑后，在员工电脑与入侵服务器之间开始建立命令控制通道。通常，命令控制通道采用HTTP/HTTPS等协议构建，以突破电脑系统防火墙等安全设备。一旦攻击者完成通道建立，攻击者通过发送控制命令检查植入的恶意软件是否遭受查杀，并在恶意软件被安全软件检测到前，对恶意软件进行版本升级，以降低被发现的概率。</p>
+<h2 id="4-横向渗透"><a href="#4-横向渗透" class="headerlink" title="4.横向渗透"></a>4.横向渗透</h2><p>入侵和控制员工个人电脑并不是攻击者的最终目的，攻击者会采用口令窃听、漏洞攻击等多种渗透方法尝试进一步入侵组织内部更多的个人电脑和服务器，同时不断地提升自己的权限，以求控制更多的电脑和服务器，直至获得核心电脑和服务器的控制权。</p>
+<h2 id="5-信息收集及外传"><a href="#5-信息收集及外传" class="headerlink" title="5.信息收集及外传"></a>5.信息收集及外传</h2><p>攻击者常常长期潜伏，并不断实行网络内部横向渗透，通过端口扫描等方式获取服务器或设备上有价值的信息，针对个人电脑通过列表命令等方式获取文档列表信息等。攻击者会将内部某个服务器作为资料暂存的服务器，然后通过整理、压缩、加密、打包的方式，利用建立的隐蔽通信通道将信息进行外传。在获取这些信息后，攻击者会对这些信息数据进行分析识别，并做出最终的判断，甚至实施网络攻击破坏。</p>
+<h1 id="三、APT攻击和传统攻击的区别"><a href="#三、APT攻击和传统攻击的区别" class="headerlink" title="三、APT攻击和传统攻击的区别"></a>三、APT攻击和传统攻击的区别</h1><p>APT攻击具有不同于传统网络攻击的5个显著特征：针对性强、组织严密、持续时间长、高隐蔽性和间接攻击。<br>1.针对性强<br>APT攻击的目标明确，多数为拥有丰富数据/知识产权的目标，所获取的数据通常为商业机密、国家安全数据、知识产权等。<br>相对于传统攻击的盗取个人信息，APT攻击只关注预先指定的目标，所有的攻击方法都只针对特定目标和特定系统，针对性较强。<br>2.组织严密<br>APT攻击成功可带来巨大的商业利益，因此攻击者通常以组织形式存在，由熟练黑客形成团体，分工协作，长期预谋策划后进行攻击。他们在经济和技术上都拥有充足的资源，具备长时间专注APT研究的条件和能力。<br>3.持续时间长<br>APT攻击具有较强的持续性，经过长期的准备与策划，攻击者通常在目标网络中潜伏几个月甚至几年，通过反复渗透，不断改进攻击路径和方法，发动持续攻击，如零日漏洞攻击等。<br>4.高隐蔽性<br>APT攻击根据目标的特点，能绕过目标所在网络的防御系统，极其隐藏地盗取数据或进行破坏。在信息收集阶段，攻击者常利用搜索引擎、高级爬虫和数据泄漏等持续渗透，使被攻击者很难察觉；在攻击阶段，基于对目标嗅探的结果，设计开发极具针对性的木马等恶意软件，绕过目标网络防御系统，隐蔽攻击。<br>5.间接攻击<br>APT攻击不同于传统网络攻击的直接攻击方式，通常利用第三方网站或服务器作跳板，布设恶意程序或木马向目标进行渗透攻击。恶意程序或木马潜伏于目标网络中，可由攻击者在远端进行遥控攻击，也可由被攻击者无意触发启动攻击。</p>
+<table>
+<thead>
+<tr>
+<th>对比内容</th>
+<th>传统攻击</th>
+<th>APT攻击</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>攻击者特征</td>
+<td>个体或小组织网络犯罪分子</td>
+<td>全球性、有组织、有纪律的不法团体、公司、敌对者</td>
+</tr>
+<tr>
+<td>攻击目标</td>
+<td>随机性选择攻击，通常以个体为主，以达到获取金钱、盗窃身份、欺诈等</td>
+<td>特定攻击目标，通常针对国家安全信息、重要行业商业机密信息等</td>
+</tr>
+<tr>
+<td>攻击手段</td>
+<td>攻击手段比较单一，常基于已有的恶意软件展开攻击</td>
+<td>攻击手段复杂，形式多样，结合0day攻击、特种木马攻击、社会工程学等展开攻击</td>
+</tr>
+<tr>
+<td>攻击时间</td>
+<td>攻击时间较短，以一次性、大范围攻击为主</td>
+<td>攻击时间较长，长期潜伏、多次渗透攻击</td>
+</tr>
+<tr>
+<td>攻击痕迹</td>
+<td>攻击特性很强，容易在较短时间内被检测和捕获</td>
+<td>攻击特征弱，比较隐蔽，缺少样本数据，很难被检测和捕获</td>
+</tr>
+</tbody></table>
+<h1 id="四、如何防范APT攻击"><a href="#四、如何防范APT攻击" class="headerlink" title="四、如何防范APT攻击"></a>四、如何防范APT攻击</h1><p>随着人们对APT攻击的研究不断深入，已经出现一些有效的防御技术来对抗APT攻击，其核心思想大多是针对APT“攻击链”的某一步骤展开防御。这些技术主要包括：沙箱技术、信誉技术、异常流量分析技术、大数据分析技术等等。</p>
+<h2 id="1-沙箱技术"><a href="#1-沙箱技术" class="headerlink" title="1.沙箱技术"></a>1.沙箱技术</h2><p>沙箱，又叫做沙盘，被认为是当前防御APT攻击的最有效技术之一。沙箱即是通过虚拟化技术形成一个模拟化的环境，同时将本地系统中的进程对象、内存、注册表等与模拟环境相互隔离，以便在这个虚拟化环境中测试和观察文件、访问等运行行为。沙箱通过重定向技术，将测试过程中生成和修改的文件定向到特定文件夹中，避免了对真是注册表、本地核心数据等的修改。当APT攻击在改虚拟环境发生时，可以及时地观察并分析其特征码，进一步防御其深入攻击。</p>
+<h2 id="2-信誉技术"><a href="#2-信誉技术" class="headerlink" title="2.信誉技术"></a>2.信誉技术</h2><p>安全信誉是对互联网资源和服务相关实体安全可信性的评估和看法。信誉技术是应用于APT攻击检测具有较好辅助功能的一项技术，通过建立信誉库，包括WEB URL信誉库、文件MD5码库、僵尸网络地址库、威胁情报库等，可以为新型病毒、木马等APT攻击的检测提供强有力的技术辅助支撑，实现网络安全设备对不良信誉资源的阻断或过滤。信誉库的充分利用，将进一步提高安全新品的安全防护能力。</p>
+<h2 id="3-主机漏洞防护技术"><a href="#3-主机漏洞防护技术" class="headerlink" title="3.主机漏洞防护技术"></a>3.主机漏洞防护技术</h2><p>针对横向移动与内部资料进行挖掘和探测的防御，可采用主机漏洞防护技术，能侦测任何针对主机漏洞的攻击并加以拦截，进而保护未修补的主机。这类解决方案可实现档案 / 系统一致性监控，保护未套用修补程序的主机，防止已知和0day 漏洞攻击。</p>
+<h2 id="4-异常流量分析技术"><a href="#4-异常流量分析技术" class="headerlink" title="4.异常流量分析技术"></a>4.异常流量分析技术</h2><p>这是一种流量检测及分析技术，其采用旁路接入方式提取流量信息，可以针对帧数、帧长、协议、端口、标识位、IP路由、物理路径、CPU/RAM消耗、宽带占用等进行监测，并基于时间、拓扑、节点等多种统计分析手段，建立流量行为轮廓和学习模型来识别流量异常情况，进而判断并识别0Day漏洞攻击等。</p>
+<h2 id="5-数据防泄漏技术（DLP）"><a href="#5-数据防泄漏技术（DLP）" class="headerlink" title="5.数据防泄漏技术（DLP）"></a>5.数据防泄漏技术（DLP）</h2><p>针对资料外传的风险，一般可采用加密和资料外泄防护 (DLP)技术，将关键、敏感、机密的数据加密，是降低数据外泄风险的一种方法，DLP 可提供一层额外的防护来防止数据外泄。然而，这类工具通常很复杂，而且有些部署条件，例如：数据要分类，要定义政策和规则等。</p>
+<h2 id="6、大数据分析技术"><a href="#6、大数据分析技术" class="headerlink" title="6、大数据分析技术"></a>6、大数据分析技术</h2><p>APT攻击防御离不开大数据分析技术，无论是网络系统本身产生的大量日志数据，还是SOC安管平台产生的大量日志信息，均可以利用大数据分析技术进行大数据再分析，运用数据统计、数据挖掘、关联分析、态势分析等从记录的历史数据中发现APT攻击的痕迹，以弥补传统安全防御技术的不足。</p>
+<p>我们熟知的APT防御产品主要针对的都是APT攻击链上的某个环节来展开防御，目前来说这是远远不够的。APT攻击防御应该是覆盖APT攻击所有环节，未来发展的趋势，是需要构建基于APT攻击链的多层次、多维度、多角度的纵深防御体系，如态势感知平台等。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/cb0f48b6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2650,297 +2924,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e8cac912/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e8cac912/" itemprop="url">pandas数据分析之数据绘图</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-16T11:32:09+08:00">
-                2022-02-16
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-07-10T11:20:34+08:00">
-                2023-07-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e8cac912/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e8cac912/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/e8cac912/" class="leancloud_visitors" data-flag-title="pandas数据分析之数据绘图">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一图胜千言，将信息可视化（绘图）是数据分析中最重要的工作之一。它除了让人们对数据更加直观以外，还可以帮助我们找出异常值、必要的数据转换、得出有关模型的想法等等。pandas 在数据分析、数据可视化方面有着较为广泛的应用。本文将通过实例介绍pandas的数据绘图。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/pandas%E6%95%B0%E6%8D%AE%E7%BB%98%E5%9B%BE.png" alt="pandas数据绘图"></p>
-<p>pandas的数据可视化依赖于matplotlib模块的pyplot类，matplotlib在安装Pandas会自动安装。Matplotlib可以对图形做细节控制，绘制出出版质量级别的图形，通过Matplotlib，可以简单地绘制出常用的统计图形。pandas 对 Matplotlib 绘图软件包的基础上单独封装了一个plot()接口，通过调用该接口可以实现常用的绘图操作。<br>让我们先来认识mataplotlib图形的基本构成。</p>
-<h1 id="一、matplotlib图形基本构成"><a href="#一、matplotlib图形基本构成" class="headerlink" title="一、matplotlib图形基本构成"></a>一、matplotlib图形基本构成</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.arange(<span class="number">10</span>)</span><br><span class="line">plt.plot(data)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/matplotlib%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95.png" alt="matplotlib.plot()"></p>
-<p>通过引入matplotlib模块的pyplot类，将数据传入plot()的接口，就可以将数据以图形化的方式展示出来。Matplotlib 生成的图形主要由以下几个部分构成：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/matplotlib%E5%9B%BE%E5%BD%A2%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86.png" alt="绘图基本结构"></p>
-<ul>
-<li>Figure：指整个图形，您可以把它理解成一张画布，它包括了所有的元素，比如标题、轴线等； </li>
-<li>Axes：绘制 2D图像的实际区域，也称为轴域区，或者绘图区； </li>
-<li>Axis：指坐标系中的垂直轴与水平轴，包含轴的长度大小（图中轴长为 7）、轴标签（指 x轴，y轴）和刻度标签； </li>
-<li>Artist：在画布上看到的所有元素都属于 Artist对象，比如文本对象（title、xlabel、ylabel）、Line2D 对象（用于绘制2D图像）等。</li>
-</ul>
-<p>了解matplotlib图形的基本构成非常重要，绘图就是通过matplotlib提供的方法来定义和设置这些基本图形的构成元素来将数据显示在这些元素中。</p>
-<h1 id="二、matplotlib显示中文"><a href="#二、matplotlib显示中文" class="headerlink" title="二、matplotlib显示中文"></a>二、matplotlib显示中文</h1><p>Matplotlib 默认不支持中文字体，这因为 Matplotlib 只支持 ASCII 字符，但中文标注更加符合中国人的阅读习惯。下面介绍如何在 Windows 环境下让 Matplotlib 显示中文。</p>
-<h2 id="1、方法一：临时重写配置文件（临时）"><a href="#1、方法一：临时重写配置文件（临时）" class="headerlink" title="1、方法一：临时重写配置文件（临时）"></a>1、方法一：临时重写配置文件（临时）</h2><p>通过临时重写配置文件的方法，可以解决 Matplotlib 显示中文乱码的问题，代码如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.rcParams[<span class="string">"font.sans-serif"</span>]=[<span class="string">"SimHei"</span>] <span class="comment">#设置字体</span></span><br><span class="line">plt.rcParams[<span class="string">"axes.unicode_minus"</span>]=<span class="literal">False</span> <span class="comment">#该语句解决图像中的“-”负号的乱码问题</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2、方法二：修改配置文件-（永久）"><a href="#2、方法二：修改配置文件-（永久）" class="headerlink" title="2、方法二：修改配置文件 （永久）"></a>2、方法二：修改配置文件 （永久）</h2><p>通过直接修改配置文件的方法，可以一劳永逸的解决 Matplotlib 的中文乱码问题。注意此过程在 Windows 环境下进行。<br>Matplotlib 从配置文件 matplotlibrc 中读取相关配置信息，比如字体、样式等，因此我们需要对该配置文件进行更改。使用如下代码查看 matplotlibrc 所在的目录：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.matplotlib_fname()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/matplotlib_fname.png" alt="matplotlib_fname"></p>
-<p>打开配置文件后，找到以下信息：<br>#font.family: sans-serif<br>#font.serif: DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif<br>修改配置将#注释去掉，并将微软雅黑Microsoft  YaHei的字体给加上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/matplotlib%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93.png" alt="微软雅黑"><br>最后，在windows的字体目录中复制中文字体微软雅黑：<br>C:\Windows\Fonts\Microsoft YaHei UI<br>将微软雅黑的字体复制粘贴到matplotlib的字体库中，字体库路径就在matplotlibrc 所在的目录下<br>D:\Anaconda3\Lib\site-packages\matplotlib\mpl-data\fonts\ttf<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/matplotlib%E6%8B%B7%E8%B4%9D%E5%AD%97%E4%BD%93.png" alt="复制字体"><br>如果是jupyter notbook重启启动jupyter notbook让它重新读取配置文件即可。</p>
-<h1 id="三、pandas绘图"><a href="#三、pandas绘图" class="headerlink" title="三、pandas绘图"></a>三、pandas绘图</h1><p>数据分析将数据进行可视化绘图展示离不开数据，pandas的两大数据结构Series和DataFrame都提供了相应的方法很方便的进行数据的可视化绘图展示。</p>
-<h2 id="1、数据"><a href="#1、数据" class="headerlink" title="1、数据"></a>1、数据</h2><p>pandas 提供了 plot() 方法可以快速方便地将 Series 和 DataFrame 中的数据进行可视化。</p>
-<h3 id="a-Series"><a href="#a-Series" class="headerlink" title="a) Series"></a>a) Series</h3><p>Series 使用 plot 时 x 轴为索引，y 轴为索引对应的具体值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">series_data=pd.Series(np.random.randn(<span class="number">10</span>),index=range(<span class="number">10</span>))</span><br><span class="line">series_data</span><br><span class="line">series_data.plot()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/Series%E7%BB%98%E5%9B%BE.png" alt="Series绘图"></p>
-<h3 id="b-DataFrame"><a href="#b-DataFrame" class="headerlink" title="b) DataFrame"></a>b) DataFrame</h3><p>DataFrame 使用 plot 时 x 轴为索引，y 轴为索引对应的多个具体值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_staff = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff_sale_byQ.xlsx'</span>)</span><br><span class="line">df_staff</span><br><span class="line">df_staff.plot()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/DataFrame%E7%BB%98%E5%9B%BE.png" alt="DataFrame绘图"><br>plot()可以通过传入x和y指定显示具体的列数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定X轴及y显示的列数据</span></span><br><span class="line">df_staff.plot(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/DataFrame%E7%BB%98%E5%9B%BE1.png" alt="dataframe指定x和y"></p>
-<h2 id="2、图形"><a href="#2、图形" class="headerlink" title="2、图形"></a>2、图形</h2><p>plot 默认为折线图，折线图也是最常用和最基础的可视化图形，足以满足我们日常 80% 的需求。<br>除了使用默认的线条绘图外，还可以使用其他绘图方式，如下所示：</p>
-<ul>
-<li>柱状图：bar() 或 barh() </li>
-<li>箱形图：box() </li>
-<li>区域图：area() </li>
-<li>饼状图：pie() </li>
-<li>散点图：scatter()</li>
-<li>直方图：hist()</li>
-</ul>
-<h3 id="a-柱状图"><a href="#a-柱状图" class="headerlink" title="a) 柱状图"></a>a) 柱状图</h3><p>柱状图（bar chart），使用与轴垂直的柱子，通过柱形的高低来表达数据的多少，适用于数据的对比，在整体中也能看到数据的发展变化趋势。<br>DataFrame 可以直接调用 plot.bar() 生成折线图，与折线图类似，x 轴为索引，其他数字类型的列为 y 轴上的条形，可以设置参数stacked=True生成柱状堆叠图<br>df.plot.bar()<br>df.plot.barh() # 横向<br>df[:5].plot.bar(x=’name’, y=’Q4’) # 指定xy轴<br>df[:5].plot.bar(‘name’, [‘Q1’, ‘Q2’]) # 指定xy轴</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#柱状图</span></span><br><span class="line">df_staff.plot.bar(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>]) </span><br><span class="line"><span class="comment">#柱状图可以设置参数stacked=True生成柱状堆叠图</span></span><br><span class="line">df_staff.plot.bar(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>],stacked=<span class="literal">True</span>) </span><br><span class="line"><span class="comment">#通过barh()方法可以绘制水平柱状图</span></span><br><span class="line">df_staff.plot.barh(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>],stacked=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E6%9F%B1%E7%8A%B6%E5%9B%BE.png" alt="柱状图"></p>
-<h3 id="b-箱形图"><a href="#b-箱形图" class="headerlink" title="b) 箱形图"></a>b) 箱形图</h3><p>箱形图（Box Chart）又称盒须图、盒式图或箱线图，是一种用作显示一组数据分布情况的统计图。Series.plot.box() 、 DataFrame.plot.box(), 和 DataFrame.boxplot() 都可以绘制箱形图。<br>从箱形图中我们可以观察到：</p>
-<ul>
-<li>一组数据的关键值：中位数、最大值、最小值等。</li>
-<li>数据集中是否存在异常值，以及异常值的具体数值。 </li>
-<li>数据是否是对称的。</li>
-<li>这组数据的分布是否密集、集中。 </li>
-<li>数据是否扭曲，即是否有偏向性。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_staff.plot.box(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E7%AE%B1%E5%9E%8B%E5%9B%BE.png" alt="箱形图"></p>
-<h3 id="c-区域图"><a href="#c-区域图" class="headerlink" title="c) 区域图"></a>c) 区域图</h3><p>区域图（Area Chart），又叫面积图。 将折线图中折线与自变量坐标轴之间的区域使用颜色或者纹理填充，这样一个填充区域叫做面积，颜色的填充可以更好的突出趋势信息，需要注意的是颜色要带有一定的透明度，透明度可以很好的帮助使用者观察不同序列之间的重叠关系，没有透明度的面积会导致不同序列之间相互遮盖减少可以被观察到的信息。<br>面积图默认情况下是堆叠的。 要生成堆积面积图，每列必须全部为正值或全部为负值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_staff.plot.area(x=<span class="string">'季度'</span>,y=[<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E5%8C%BA%E5%9F%9F%E5%9B%BE.png" alt="区域图"></p>
-<h3 id="d-饼状图"><a href="#d-饼状图" class="headerlink" title="d) 饼状图"></a>d) 饼状图</h3><p>饼图（Pie Chart）广泛得应用在各个领域，用于表示不同分类的占比情况，通过弧度大小来对比各种分类。饼图通过将一个圆饼按照分类的占比划分成多个区块，整个圆饼代表数据的总量，每个区块（圆弧）表示该分类占总体的比例大小，所有区块（圆弧）的加和等于 100%。<br>可以使用 DataFrame.plot.pie() 或 Series.plot.pie() 创建饼图</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df_staff</span><br><span class="line"><span class="comment">#看张三每个季度的业绩分布</span></span><br><span class="line">df_staff.plot.pie(y=<span class="string">'张三'</span>,subplots=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#看第一个季度，每个人的绩效分布</span></span><br><span class="line">df_staff1=df_staff.loc[<span class="number">0</span>:<span class="number">0</span>,<span class="string">'张三'</span>:<span class="string">'孙八'</span>].T</span><br><span class="line">df_staff1.columns=[<span class="string">'Q'</span>]</span><br><span class="line">df_staff1.plot.pie(y=<span class="string">'Q'</span>,subplots=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E9%A5%BC%E7%8A%B6%E5%9B%BE.png" alt="饼图"></p>
-<h3 id="e-散点图"><a href="#e-散点图" class="headerlink" title="e) 散点图"></a>e) 散点图</h3><p>散点图（Scatter graph）也叫 X-Y 图，它将所有的数据以点的形式展现在直角坐标系上，以显示变量之间的相互影响程度，点的位置由变量的数值决定。<br>通过观察散点图上数据点的分布情况，我们可以推断出变量间的相关性。如果变量之间不存在相互关系，那么在散点图上就会表现为随机分布的离散的点，如果存在某种相关性，那么大部分的数据点就会相对密集并以某种趋势呈现。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df1 = pd.DataFrame(np.random.rand(<span class="number">50</span>, <span class="number">4</span>), columns=[<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>])</span><br><span class="line">df1.plot.scatter(x=<span class="string">"a"</span>, y=<span class="string">"b"</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E6%95%A3%E7%82%B9%E5%9B%BE.png" alt="散点图"></p>
-<h3 id="f-直方图"><a href="#f-直方图" class="headerlink" title="f) 直方图"></a>f) 直方图</h3><p>直方图(Histogram)，又称质量分布图，是一种统计报告图，它是根据具体数据的分布情况，画成以组距为底边、以频数为高度的一系列连接起来的直方型矩形图。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E7%9B%B4%E6%96%B9%E5%9B%BE%E8%AF%B4%E6%98%8E.png" alt="直方图说明"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#构建数据集</span></span><br><span class="line">df4=pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">"a"</span>: np.random.randn(<span class="number">1000</span>) + <span class="number">1</span>,</span><br><span class="line">    <span class="string">"b"</span>: np.random.randn(<span class="number">1000</span>),</span><br><span class="line">    <span class="string">"c"</span>: np.random.randn(<span class="number">1000</span>) - <span class="number">1</span>,</span><br><span class="line">    <span class="string">"d"</span>: np.random.randn(<span class="number">1000</span>) - <span class="number">2</span>,</span><br><span class="line">    &#125;,columns=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>])</span><br><span class="line">df4</span><br><span class="line">df4.plot.hist(alpha=<span class="number">0.5</span>)  <span class="comment">#指定图形透明度</span></span><br><span class="line">df4.plot.hist(stacked=<span class="literal">True</span>,bins=<span class="number">20</span>) <span class="comment">#堆叠并指定箱数为20</span></span><br><span class="line">df4.diff().hist() <span class="comment">#通过diff给每一列数据都绘制一个直方图</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220216/%E7%9B%B4%E6%96%B9%E5%9B%BE.png" alt="直方图"></p>
-<p>至此，本文介绍了pandas常用的绘图组件matplotlib，包括mataplotlib绘图的基本构成，如何在windows下解决中文问题，并通过实例介绍了如何通过pandas的数据集绘制折线图、箱线图、柱状图、饼图、面积图、散点图、直方图等。</p>
-<p>参考资料：《利用python进行数据分析》、pandas官网 user guide</p>
-<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2997,7 +2980,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">127</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3109,7 +3092,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">244.3k</span>
+    <span title="Site words total count">248.5k</span>
   
   
 <!--51la网站应用监控-->

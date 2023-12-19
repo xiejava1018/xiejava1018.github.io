@@ -313,6 +313,281 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/eab21fe5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/eab21fe5/" itemprop="url">Python爬虫获取电子书资源实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-20T15:41:01+08:00">
+                2021-11-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T17:10:19+08:00">
+                2023-09-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/eab21fe5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/eab21fe5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/eab21fe5/" class="leancloud_visitors" data-flag-title="Python爬虫获取电子书资源实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在学习Python，相对java来说python简单易学、语法简单，工具丰富，开箱即用，适用面广做全栈开发那是极好的，对于小型应用的开发，虽然运行效率慢点，但开发效率极高。大大提高了咱们的生产力。为什么python能够在这几年火起来，自然有他的道理，当然也受益于这几年大数据和AI的火。</p>
+<p>据说网络上80%的爬虫都是用python写的，不得不说python写爬虫真的是so easy。基本上一个不太复杂的网站可以通过python用100多行代码就能实现你所需要的爬取。<br>现在就以一个电子书的网站为例来实现python爬虫获取电子书资源。爬取整站的电子书资源，按目录保存到本地，并形成索引文件方便查找。</p>
+<p>爬取的目标网站：苦瓜书盘</p>
+<p>步骤：<strong>爬取-&gt;分析、解析-&gt;保存</strong></p>
+<p>对于一个不需要登录验证的资源分享类的网站，爬取最大的工作量应该是在对目标页面的分析、解析、识别，这里用的到是Python的BeautifulSoup库。</p>
+<p>一、获取目录</p>
+<p>二、获取书籍列表页</p>
+<p>三、获取书籍详情页</p>
+<p>四、分析书籍详情页的资源地址</p>
+<p>五、下载并保存</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>引入相应的包，设置 headerd, 和资源保存路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> Book <span class="keyword">import</span> Book</span><br><span class="line"></span><br><span class="line">savepath=<span class="string">"J://kgbook//books//"</span> <span class="comment">#保存地址</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">main_url=<span class="string">'https://kgbook.com/'</span></span><br><span class="line">bookcount=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="一、获取目录"><a href="#一、获取目录" class="headerlink" title="一、获取目录"></a>一、获取目录</h1><p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9B%AE%E5%BD%95.png" alt="获取目录"><br>通过浏览器的调试工具可以看到目录在id=catagory的div标签下，下面还有ul和li标签，那我们可以迭代li可以获得目录及目录页的地址。<br>可以通过soup.find_all(attrs={‘id’: ‘category’})[0].ul 获取 到ul标签，然后获取ul的li标签，进行迭代获取。<br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">获取目录</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcategory</span><span class="params">()</span>:</span></span><br><span class="line">    req_result=requests.get(main_url,headers=headers)</span><br><span class="line">    <span class="keyword">if</span> req_result.status_code==<span class="number">200</span>:</span><br><span class="line">        htmlstr=req_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">        soup = BeautifulSoup(htmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">        categorys=soup.find_all(attrs=&#123;<span class="string">'id'</span>: <span class="string">'category'</span>&#125;)[<span class="number">0</span>].ul</span><br><span class="line">        <span class="keyword">for</span> li <span class="keyword">in</span> categorys.find_all(name=<span class="string">'li'</span>):</span><br><span class="line">            print(<span class="string">'开始抓取'</span>+li.a.attrs[<span class="string">'href'</span>]+<span class="string">"--"</span>+li.string)</span><br><span class="line">            getcategroydetail(main_url+li.a.attrs[<span class="string">'href'</span>],li.string)</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="二、获取书籍列表页"><a href="#二、获取书籍列表页" class="headerlink" title="二、获取书籍列表页"></a>二、获取书籍列表页</h1><p>在书籍列表页，我们要获取两个信息，分别是书籍列表的信息及翻页下一页书籍列表的URL地址。<br>通过浏览器的调试工具分别对列表的信息及翻页下一页的html进行分析。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E5%88%97%E8%A1%A8.png" alt="获取书籍列表页"><br>列表中的书籍详情页信息在class=”channel-item”的div标签下，通过class=”list-title”的h3标签循环迭代<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E7%BF%BB%E9%A1%B5.png" alt="翻页"><br>下一页，我们可以直接通过next_pag=soup.find(name=’a’,text=re.compile(‘下一页’))来获取。<br>然后我们可以通过递归来不断的调用获取下一页书籍列表页的代码，知道没有下一页为止。就可以把怎个目录都可以爬取完。<br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">获取书籍列表</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbookslist</span><span class="params">(bookurlstr,categroy_path)</span>:</span></span><br><span class="line">    book_result=requests.get(bookurlstr,headers=headers)</span><br><span class="line">    bookhtmlstr=book_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    soup = BeautifulSoup(bookhtmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">    booklists=soup.select(<span class="string">'.channel-item'</span>)</span><br><span class="line">    <span class="keyword">for</span> bookinfo_div <span class="keyword">in</span> booklists:</span><br><span class="line">        booktitle_div=bookinfo_div.select(<span class="string">'.list-title'</span>)[<span class="number">0</span>]</span><br><span class="line">        bookurl=booktitle_div.a.attrs[<span class="string">'href'</span>]</span><br><span class="line">        getbookdetail(bookurl,categroy_path)</span><br><span class="line">    next_pag=soup.find(name=<span class="string">'a'</span>,text=re.compile(<span class="string">'下一页'</span>))</span><br><span class="line">    <span class="keyword">if</span> next_pag <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        next_url=next_pag.attrs[<span class="string">'href'</span>]</span><br><span class="line">        print(<span class="string">'爬取下一页：'</span>+next_url)</span><br><span class="line">        getbookslist(next_url,categroy_path)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="三、获取书籍详情页"><a href="#三、获取书籍详情页" class="headerlink" title="三、获取书籍详情页"></a>三、获取书籍详情页</h1><p>我们要在书籍详情页需要获得书籍详情信息包括书名、作者等信息<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E8%AF%A6%E6%83%85.png" alt="书籍详情"><br>关于书名和作者可以分别通过提取class=”news_title”的h1标签和id=”news_details”的div下的ul下的li再通过正则表达式对作者信息进行提取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">booktitle=bookdetailsoup.select(<span class="string">'.news_title'</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">bookauthor=bookdetailsoup.select(<span class="string">'#news_details'</span>)[<span class="number">0</span>].ul.li.find(text=re.compile(<span class="string">'作者：(.*?)'</span>)).strip()</span><br><span class="line">bookauthor=bookauthor.replace(<span class="string">'作者：'</span>,<span class="string">''</span>)</span><br><span class="line">booktitleinfo=<span class="string">"《"</span>+booktitle+<span class="string">'》-'</span>+bookauthor</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="四、分析书籍详情页的资源地址"><a href="#四、分析书籍详情页的资源地址" class="headerlink" title="四、分析书籍详情页的资源地址"></a>四、分析书籍详情页的资源地址</h1><p>在书籍详情页，我们还要分析书籍详情页的资源地址<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%BA%90%E5%9C%B0%E5%9D%80.png" alt="资源地址"><br>电子书的资源下载地址可以通过提取a标签的信息来获取。通过正则表达式分别匹配azw3、mobi、epub分别提取不同的电子书资源。<br>book_url_item=bookdetailsoup.find(name=’a’,text=re.compile(booktype,re.I))<br>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">根据书籍资源类型下载资源</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbookfortype</span><span class="params">(bookurl,categroy_path,bookdetailsoup,booktype)</span>:</span></span><br><span class="line">    booktitle=bookdetailsoup.select(<span class="string">'.news_title'</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">    bookauthor=bookdetailsoup.select(<span class="string">'#news_details'</span>)[<span class="number">0</span>].ul.li.find(text=re.compile(<span class="string">'作者：(.*?)'</span>)).strip()</span><br><span class="line">    bookauthor=bookauthor.replace(<span class="string">'作者：'</span>,<span class="string">''</span>)</span><br><span class="line">    booktitleinfo=<span class="string">"《"</span>+booktitle+<span class="string">'》-'</span>+bookauthor</span><br><span class="line">    print(<span class="string">'书籍详情：---'</span>+booktitleinfo)</span><br><span class="line">    book_url_item=bookdetailsoup.find(name=<span class="string">'a'</span>,text=re.compile(booktype,re.I))</span><br><span class="line">    <span class="keyword">if</span> book_url_item <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        downloadurl=book_url_item.attrs[<span class="string">'href'</span>]</span><br><span class="line">        print(<span class="string">'下载地址：'</span>+downloadurl)</span><br><span class="line">        <span class="keyword">if</span> checkIfNoExistBookByUrl(downloadurl):</span><br><span class="line">            r = requests.get(downloadurl)</span><br><span class="line">            <span class="keyword">if</span> r.status_code==<span class="number">200</span>:</span><br><span class="line">                savepath=createdir(categroy_path,booktitleinfo)</span><br><span class="line">                filename=booktitle+<span class="string">"."</span>+booktype</span><br><span class="line">                savebook(r.content,savepath,filename)</span><br><span class="line">                p,f=os.path.split(categroy_path)</span><br><span class="line">                bookcategory=f</span><br><span class="line">                book=Book(bookcategory,booktitle,bookauthor,bookurl,downloadurl,savepath,<span class="string">"苦瓜书盘"</span>,booktype)</span><br><span class="line">                print(book.toString())</span><br><span class="line">                savebooktojson(book)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'下载失败：status_code='</span>+str(r.status_code))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'没有'</span>+booktype+<span class="string">'格式的书'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>五、下载并保存<br>有了资源的下载资源后下载就变得很简单了，主要用python的os库，对文件进行操作，包括建目录及保存资源文件。也可以通过连接数据库将爬取的数据保存到数据库。<br>定义书籍类Book用于组织和保存数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,bookcategory,bookname,bookauthor,bookurl,bookdownloadurl,booksavepath,booksource,booktype)</span>:</span></span><br><span class="line">        self.bookcategory=bookcategory</span><br><span class="line">        self.bookname=bookname</span><br><span class="line">        self.bookauthor=bookauthor</span><br><span class="line">        self.bookurl=bookurl</span><br><span class="line">        self.bookdownloadurl=bookdownloadurl</span><br><span class="line">        self.booksavepath=booksavepath</span><br><span class="line">        self.booksource=booksource</span><br><span class="line">        self.booktype=booktype</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">toString</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">"bookcategory"</span>:self.bookcategory,<span class="string">"bookname"</span>:self.bookname,<span class="string">"bookauthor"</span>:self.bookauthor,<span class="string">"bookurl"</span>:self.bookurl,<span class="string">"bookdownloadurl"</span>:self.bookdownloadurl,<span class="string">"booksavepath"</span>:self.booksavepath,<span class="string">"booksource"</span>:self.booksource,<span class="string">"booktype"</span>:self.booktype&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">将获取的信息保存至文件</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">savebooktojson</span><span class="params">(book)</span>:</span></span><br><span class="line">    bookdata=&#123;</span><br><span class="line">        <span class="string">'booksource'</span>:book.booksource,</span><br><span class="line">        <span class="string">'booktype'</span>:book.booktype,</span><br><span class="line">        <span class="string">'bookcategory'</span>:book.bookcategory,</span><br><span class="line">        <span class="string">'bookname'</span>:book.bookname,</span><br><span class="line">        <span class="string">'bookauthor'</span>:book.bookauthor,</span><br><span class="line">        <span class="string">'bookurl'</span>:book.bookurl,</span><br><span class="line">        <span class="string">'bookdownloadurl'</span>:book.bookdownloadurl,</span><br><span class="line">        <span class="string">'booksavepath'</span>:book.booksavepath</span><br><span class="line">    &#125;</span><br><span class="line">    bookjson=json.dumps(bookdata,ensure_ascii=<span class="literal">False</span>) <span class="comment">#ensure_ascii=False 就不会用 ASCII 编码，中文就可以正常显示了</span></span><br><span class="line">    print(bookjson)</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'data.json'</span>, <span class="string">'a'</span>,encoding=<span class="string">'gbk'</span>) <span class="keyword">as</span> file:</span><br><span class="line">        file.write(bookjson+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">根据目录创建文件夹</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createdir</span><span class="params">(savepath,dir)</span>:</span></span><br><span class="line">    path=os.path.join(savepath,dir)</span><br><span class="line">    isExists=os.path.exists(path)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        print(<span class="string">'已经存在'</span>+dir)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'创建目录'</span>+dir)</span><br><span class="line">        os.mkdir(path)</span><br><span class="line">    <span class="keyword">return</span> path</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">下载书籍资源</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">savebook</span><span class="params">(content,savepath,savefilename)</span>:</span></span><br><span class="line">    savefile=os.path.join(savepath,savefilename)</span><br><span class="line">    <span class="keyword">with</span> open(savefile, <span class="string">"wb"</span>) <span class="keyword">as</span> code:</span><br><span class="line">       code.write(content)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>运行效果如下：</p>
+<p>1、爬取过程<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%BF%87%E7%A8%8B.png" alt="爬取过程"><br>2、爬取记录的json信息<br>data.json的信息如下：<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%AE%B0%E5%BD%95%E7%9A%84json%E4%BF%A1%E6%81%AF.png" alt="爬取记录"><br>3、爬取获取的资源<br>按目录都已经整理好了，够你看的了。<br><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9A%84%E8%B5%84%E6%BA%90.png" alt="获取的资源"></p>
+<p>​<br>Python爬虫获取电子书资源实战的全部代码，包括爬取-&gt;分析、解析-&gt;保存至本地及数据库。<a href="https://download.csdn.net/download/fullbug/10468606" target="_blank" rel="noopener">下载</a></p>
+<p>​<strong>github:</strong> <a href="https://github.com/xiejava1018/getbooks" target="_blank" rel="noopener">https://github.com/xiejava1018/getbooks</a></p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e6daf5ca/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2552,402 +2827,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/57a81e07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/57a81e07/" itemprop="url">网络信息安全管理之资产、脆弱性、威胁、风险</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-19T15:16:23+08:00">
-                2021-08-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-28T09:43:20+08:00">
-                2023-03-28
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/57a81e07/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/57a81e07/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/57a81e07/" class="leancloud_visitors" data-flag-title="网络信息安全管理之资产、脆弱性、威胁、风险">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​<br><strong>网络信息安全管理</strong>是指对网络资产采取合适的安全措施，以确保网络资产的可用性、完整性、可控制性和抗抵赖性，不致因网络设备、网络通信协议、网络服务、网络管理受到人为和自然因素的危害，而导致网络中断、信息泄露或破坏。网络信息管理对象主要包括网络设备、网络通信协议、网络操作系统、网络服务、安全网络管理等在内的所有支持网络系统运行的软、硬件总和。网络信息安全管理的目标就是通过适当的安全防范措施，保障网络的运行安全和信息安全，满足网上业务开展的安全要求。</p>
-<p><strong>网络信息安全管理要素</strong>由网络管理对象、网络威胁、网络脆弱性、网络风险、网络保护措施组成。由于网络管理对象自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。网络安全管理实际上就是风险控制，其基本过程是通过网络管理对象的威胁和脆弱性进行分析，确定网络管理对象的价值、网络管理对象威胁发生的可能性、网络管理对象的脆弱程度，从而确定网络管理对象的风险等级，然后据此选取合适的安全保护措施，降低网络管理对象的风险。</p>
-<p><strong>安全风险管理的三要素</strong>分别是<strong>资产</strong>、<strong>威胁</strong>和<strong>脆弱性</strong>，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210819/%E8%B5%84%E4%BA%A7%E8%84%86%E5%BC%B1%E6%80%A7%E5%A8%81%E8%83%81%E9%A3%8E%E9%99%A9%E5%85%B3%E7%B3%BB.png" alt="网络信息安全管理要素"></p>
-<p>网络信息安全管理对象是企业、机构直接赋予了价值而需要保护的资产。它的存在形式包括有形的和无形的，如网络设备硬件、软件文档是有形的，而服务质量、网络带宽是无形的。</p>
-<p>常见的网络信息安全管理对象信息安全资产分类如下：</p>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>数据</td>
-<td>保存在信息媒介上的各种数据资料，包括源代码、数据库数据、系统文档、运行管理规程、计划报告、用户手册、各类纸质的文档等</td>
-</tr>
-<tr>
-<td>软件</td>
-<td>系统软件：操作系统、数据库管理系统、语句包、开发系统<br>应用软件：办公软件、数据库软件、各类工具软件等<br>源程序：各种共享源代码、自行或合作开发的各种代码等</td>
-</tr>
-<tr>
-<td>硬件</td>
-<td>网络设备：路由器、网关、交换机等<br>计算机设备：大型机、小型机、服务器、工作站、台式计算机、便携计算机等<br>存储设备：磁带机、磁盘阵列、磁带、光盘、软盘、移动硬盘等<br>传输线路：光纤、双绞线等<br>保障设备：UPS、变电设备、空调、保险柜、文件柜、门禁、消防设施等<br>安全设备：防火墙、入侵检测系统、身份鉴别等<br>其他：打印机、复印机、扫描仪、传真机等</td>
-</tr>
-<tr>
-<td>服务</td>
-<td>信息服务：对外依赖该系统开展的各类服务<br>网络服务：各种网络设备、设施提供的网络连接服务<br>办公服务：为提高效率而开发的管理信息系统，包括各种内部配置管理、文件流转管理等服务</td>
-</tr>
-<tr>
-<td>人员</td>
-<td>掌握重要信息和核心业务的人员，如主机维护主管、网络维护主管及应用项目经理等</td>
-</tr>
-<tr>
-<td>其他</td>
-<td>企业形象、客户关系等</td>
-</tr>
-</tbody></table>
-<p><strong>脆弱性</strong>：脆弱性也可称为弱点或漏洞，是资产或资产组中存在的可能被威胁利用造成损害的薄弱环节。脆弱性一旦被威胁成功利用就可能对资产造成损害。脆弱性可能存在于物理环境、组织、过程、人员、管理、配置、硬件、软件和信息等各个方面。</p>
-<p>脆弱性是与资产紧密相连的，是其固有的属性，客观存在是绝对的，但存在脆弱性不一定就绝对造成安全事件。如果没有被相应的威胁利用，单纯的脆弱性本身不会对资产造成伤害。</p>
-<table>
-<tr>
-<th>类型</th><th>识别对象</th><th>脆弱性子类</th>
-</tr>
-<tr >
-<td rowspan=6>技术脆弱性</td>
-<td>物理环境</td>
-<td>
-机房场地、机房防火、机房供配电、机房防静电、机房接地与防雷、电磁防护、通讯线路的保护、机房区域防护、机房设备管理等
-</td>
-<tr>
-<td>网络结构</td>
-<td>
-网络结构设计、网络传输加密、网络设备安全漏洞、边界保护、外部访问控制策略、内部访问控制策略、网络设备安全配置等
-</td>
-</tr>
-<tr>
-<td>服务器/系统软件</td>
-<td>
-补丁安装、物理保护、用户帐号、口令策略、资源共享、事件审计、访问控制、新系统配置（初始化）、注册表加固、网络安全、系统软件安全漏洞、软件安全功能管理等
-</td>
-</tr>
-<tr>
-<td>
-数据库
-</td>
-<td>
-补丁安装、鉴别机制、口令机制、访问控制、网络和服务设置、备份恢复机制、审计机制等
-</td>
-</tr>
-<tr>
-<td>
-应用系统
-</td>
-<td>
-审计机制、审计存储、访问控制策略、数据完整性、通讯、鉴别机制、密码保护等
-</td>
-</tr>
-<tr>
-<td>
-应用中间件
-</td>
-<td>
-协议安全、交易完整性、数据完整性等
-</td>
-</tr>
-<tr>
-<td rowspan=2>
-管理脆弱性
-</td>
-<td>
-技术管理
-</td>
-<td>
-物理和环境安全、通讯和操作管理、访问控制、系统开发与维护、业务连续性等
-</td>
-</tr>
-<tr>
-
-<td>
-组织管理
-</td>
-<td>
-安全策略、组织安全、信息资产分类与控制、人员安全、符合性等
-</td>
-</tr>
-</table>
-威胁：对资产或组织可能导致负面结果的一个事件的潜在源。威胁利用管理对象自身的脆弱性，采用一定的途径和方式，对评估对象造成损害或损失，从而形成风险。
-
-<p>威胁源分三类：自然威胁、人为威胁和环境威胁。</p>
-<table>
-<thead>
-<tr>
-<th>种类</th>
-<th>描述</th>
-<th>威胁子类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>软硬件故障</td>
-<td>对业务实施或系统运行产生影响的设备硬件故障、通讯链路中断、系统本身或软件缺陷等问题</td>
-<td>设备硬件故障、传输设备故障、存储媒体故障、 系统软件故障、应用软件故障、数据库软件故障、开发环境故障等</td>
-</tr>
-<tr>
-<td>物理环境影响</td>
-<td>对信息系统正常运行造成影响的物理环境问题和自然灾害</td>
-<td>断电、静电、灰尘、潮湿、温度、洪灾、火灾、地震、暴风雨、潮汐、污染、空调设备故障、鼠蚁虫害、电磁干扰等</td>
-</tr>
-<tr>
-<td>操作失误</td>
-<td>应该执行而没有执行相应的操作，或无意执行了错误的操作</td>
-<td>维护错误、操作失误、提供错误的指南或操作信息等</td>
-</tr>
-<tr>
-<td>管理不到位</td>
-<td>安全管理无法落实或不到位，从而破坏信息系统正常有序运行</td>
-<td>管理制度和策略不完善、管理规程缺失、职责不明确、监督控管机制不健全等</td>
-</tr>
-<tr>
-<td>恶意代码</td>
-<td>故意在计算机系统上执行恶意任务的程序代码</td>
-<td>病毒、特洛伊木马、蠕虫、陷门、间谍软件、窃听软件、携带恶意软件的垃圾邮件、流氓安全软件、即时消息垃圾邮件等</td>
-</tr>
-<tr>
-<td>越权或滥用</td>
-<td>通过采用一些措施，超越自己的权限访问了本来无权访问的资源，或者滥用自己的权限，做出破坏信息系统的行为</td>
-<td>非授权访问网络资源、非授权访问系统资源、滥用权限非正常修改系统配置或数据、滥用权限泄露秘密信息、非授权使用存储介质等</td>
-</tr>
-<tr>
-<td>网络攻击</td>
-<td>利用工具和技术通过网络对信息系统进行攻击和入侵</td>
-<td>网络探测和信息采集、漏洞探测、嗅探（账号、口令、权限等）、用户身份伪造和欺骗、用户或业务数据的窃取和破坏、系统运行的控制和破坏、拒绝服务攻击、僵尸网络、隐蔽式下载、名誉劫持、网络黑客的入侵等</td>
-</tr>
-<tr>
-<td>物理攻击</td>
-<td>通过物理的接触造成对软件、硬件、数据的破坏</td>
-<td>物理接触、物理破坏、盗窃、勒索、罢工、内部员工蓄意破坏等</td>
-</tr>
-<tr>
-<td>泄密</td>
-<td>信息泄露给不应了解的他人</td>
-<td>内部信息泄露、外部信息泄露等</td>
-</tr>
-<tr>
-<td>篡改</td>
-<td>非法修改信息，破坏信息的完整性使系统的安全性降低或信息不可用</td>
-<td>篡改网络配置信息、篡改系统配置信息、篡改安全配置信息、篡改用户身份信息或业务数据信息等</td>
-</tr>
-<tr>
-<td>抵赖</td>
-<td>不承认收到的信息和所作的操作和交易</td>
-<td>原发抵赖、接受抵赖、第三方抵赖等</td>
-</tr>
-</tbody></table>
-<p>在这里可以看出威胁与攻击的区别和关系。攻击是威胁的一种类型，攻击是人为的蓄意的有计划采取的恶意破坏的行动。一般来说攻击比较容易检测到。</p>
-<p><strong>网络信息安全风险</strong>是指特定的威胁利用网络管理对象所存在的脆弱性，导致网络管理对象的价值受到损害或丢失的可能性。简单的说，网络安全风险就是网络威胁发生的概率和所造成影响的乘积。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210819/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0.png" alt="网络安全风险分析"></p>
-<p>本文整理自《信息安全工程师教程第2版》</p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<p>​</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3004,7 +2883,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">127</span>
+                  <span class="site-state-item-count">128</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3116,7 +2995,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">244.3k</span>
+    <span title="Site words total count">248.5k</span>
   
   
 <!--51la网站应用监控-->
