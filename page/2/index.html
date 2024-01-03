@@ -313,6 +313,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/135a865f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/135a865f/" itemprop="url">系统频繁崩溃，如何考虑系统的稳定性和可扩展性？</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-11-29T11:33:31+08:00">
+                2023-11-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-11-29T14:36:11+08:00">
+                2023-11-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/135a865f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/135a865f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/135a865f/" class="leancloud_visitors" data-flag-title="系统频繁崩溃，如何考虑系统的稳定性和可扩展性？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231129/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0%E7%A8%B3%E5%AE%9A%E6%80%A7.png" alt="在这里插入图片描述"></p>
+<p>最近网传互联网应用信息系统频繁崩溃，语雀崩完淘宝崩，淘宝崩完滴滴崩，随着业务的发展和技术的进步，对于信息系统的要求也越来越高。信息应用系统为了满足不断增长的用户和业务需求，提高系统的稳定性和扩展性至关重要。</p>
+<p>因为互联网应用面对的是广大的互联网用户，用户和业务需求变化非常快，所以系统既要考虑稳定性又要考虑可扩展性。</p>
+<p>系统稳定性是指系统在面临外部干扰或内部变化时，能够保持其原有状态和功能，避免出现崩溃、失控或不可预测的行为。系统扩展性是指系统在面对增长的业务需求时，能够轻松地扩展其性能、容量和功能的能力。它是一种确保系统能够适应未来发展和变化的重要属性。良好的扩展性可以为企业节省大量的时间和资源，避免在业务增长过程中出现瓶颈。</p>
+<p>系统的稳定性通常包括以下方面：</p>
+<ol>
+<li>容错性：系统在面临错误或异常情况时，能够自动检测并处理错误，避免故障扩散到整个系统。</li>
+<li>可用性：系统在任何情况下都能够提供必要的功能和服务，避免出现单点故障或瓶颈。</li>
+<li>可扩展性：系统能够根据业务需求的变化进行扩展和优化，以适应不断增长的用户数量和业务需求。</li>
+<li>可维护性：系统在运行过程中能够被有效地监控、管理和维护，以确保系统的稳定性和可靠性。</li>
+<li>安全性：系统能够抵御外部攻击和威胁，保护系统的数据和功能不受损害。</li>
+</ol>
+<h2 id="系统稳定性和可扩展性设计参考原则"><a href="#系统稳定性和可扩展性设计参考原则" class="headerlink" title="系统稳定性和可扩展性设计参考原则"></a>系统稳定性和可扩展性设计参考原则</h2><p>标准化和规范化：采用统一的开发标准和规范，确保系统的可维护性和可重用性。这可以减少系统复杂度，提高系统的可扩展性。</p>
+<ul>
+<li>分布式架构：采用分布式架构，将系统划分为多个独立的子系统，每个子系统都可以独立地处理特定的业务需求。这种架构可以提高系统的可扩展性和容错性。</li>
+<li>单一职责原则：每个服务应该只关注自己的功能领域，避免出现跨职责的耦合。这样可以降低系统的复杂性，提高系统的稳定性。</li>
+<li>高内聚、低耦合：每个服务应该高度内聚，同时尽量减少与其他服务的耦合。这样可以减少服务之间的依赖和互相影响，提高系统的稳定性。</li>
+<li>服务自治：每个服务应该具有自我管理和决策能力，以减少对其他服务的依赖。这可以提高系统的可维护性和可扩展性。</li>
+<li>负载均衡：在多个服务实例之间实现负载均衡，可以避免单个服务过载导致整个系统的瘫痪。通过负载均衡器将请求分配到不同的服务实例上，确保系统的稳定性。</li>
+<li>容错性设计：在系统设计中，应该考虑异常情况和错误处理。例如，当某个服务出现故障时，应该能够通过其他服务的备份或冗余设计来保证系统的整体稳定性。</li>
+<li>限流与熔断：在可能出现流量突增的场景中，可以通过限流和熔断机制来防止系统过载。限流可以限制请求的数量，避免系统超负荷运行；熔断则可以在某个服务出现故障时，快速地中断与其他服务的交互，避免故障扩散到整个系统。</li>
+<li>自动化监控与恢复：通过自动化监控工具实时收集和分析系统的运行数据，可以及时发现潜在的问题。同时，自动化恢复工具可以在出现问题时，快速地恢复系统的正常运行。</li>
+<li>版本控制与灰度发布：通过版本控制和灰度发布机制，可以逐步升级和优化每个服务，而不会对整个系统造成过大的影响。这有助于保持系统的稳定性。</li>
+<li>数据一致性：在分布式系统中，数据一致性是一个重要的挑战。通过使用合适的数据复制、校验和验证机制，可以确保数据在多个服务之间的一致性，从而提高系统的稳定性。</li>
+</ul>
+<p>以上这些原则是相辅相成的，需要在系统设计和开发过程中综合考虑并实施。同时，随着业务需求和技术环境的变化，也需要不断优化和改进这些原则，以适应新的挑战和需求。</p>
+<h2 id="如何提高系统的稳定性和可扩展性"><a href="#如何提高系统的稳定性和可扩展性" class="headerlink" title="如何提高系统的稳定性和可扩展性"></a>如何提高系统的稳定性和可扩展性</h2><p>提高系统的稳定性和可扩展性需要从多个方面入手，包括架构设计、技术选型、限流与熔断、数据一致性、负载均衡、自动化监控与恢复、版本控制与灰度发布以及容错性设计等。同时，也需要重视系统的可维护性和安全性，以确保系统能够长期稳定地运行并持续提供服务。<br>以下是一些常见的措施：</p>
+<ul>
+<li>架构设计：在设计系统时，应该考虑系统的整体架构和各个组件的交互方式。采用分布式架构和微服务设计可以提高系统的可扩展性和稳定性。同时，合理划分职责和边界，减少服务之间的耦合也是非常重要的。</li>
+<li>技术选型：选择合适的技术和工具可以提高系统的稳定性和可扩展性。例如，使用容器化技术（如Docker）可以快速部署和扩展服务实例。使用无状态设计和服务降级可以增强系统的容错性。使用消息队列和异步通信可以减少系统之间的依赖和阻塞。</li>
+<li>限流与熔断：在系统设计中，应该考虑限流和熔断机制，以防止流量突增或异常请求对系统造成过载。限流可以限制请求的数量，避免系统超负荷运行；熔断则可以在某个服务出现故障时，快速地中断与其他服务的交互，避免故障扩散到整个系统。</li>
+<li>数据一致性：在分布式系统中，数据一致性是一个重要的挑战。通过使用合适的数据复制、校验和验证机制，可以确保数据在多个服务之间的一致性，从而提高系统的稳定性。使用分布式事务和一致性协议（如Raft或Paxos）可以解决数据一致性问题。</li>
+<li>负载均衡：在多个服务实例之间实现负载均衡，可以避免单个服务过载导致整个系统的瘫痪。通过负载均衡器将请求分配到不同的服务实例上，确保系统的稳定性。使用动态负载均衡算法可以更好地分配负载，提高系统的性能和扩展性。</li>
+<li>自动化监控与恢复：通过自动化监控工具实时收集和分析系统的运行数据，可以及时发现潜在的问题。同时，自动化恢复工具可以在出现问题时，快速地恢复系统的正常运行。自动化监控与恢复可以提高系统的稳定性和可维护性。</li>
+<li>版本控制与灰度发布：通过版本控制和灰度发布机制，可以逐步升级和优化每个服务，而不会对整个系统造成过大的影响。这有助于保持系统的稳定性。使用版本控制工具可以方便地管理和跟踪版本的变更；使用灰度发布可以逐步部署新的版本，同时保证系统的可用性。</li>
+<li>容错性设计：在系统设计中，应该考虑异常情况和错误处理。例如，当某个服务出现故障时，应该能够通过其他服务的备份或冗余设计来保证系统的整体稳定性。使用断路器、超时设置和重试机制等容错性设计可以增强系统的鲁棒性和可用性。</li>
+<li>持续改进与优化：持续改进和优化是提高系统稳定性和可扩展性的关键。通过收集反馈、监控性能和不断改进技术栈可以提高系统的性能和可靠性。同时，不断优化数据流程、业务逻辑和算法也可以提高系统的可扩展性和响应速度。</li>
+</ul>
+<p>目前大部分大型的应用系统都会采用分布式微服务架构设计，微服务架构的系统稳定性可以通过以下几种方式来保障：</p>
+<ul>
+<li>单一职责原则：每个微服务都应该只关注自己的功能领域，并且只暴露必要的接口，以减少与其他微服务的耦合。这种设计原则可以帮助降低系统的复杂性，提高系统的稳定性。</li>
+<li>容错性设计：在微服务架构中，每个微服务都应该具备一定的容错性，以处理异常情况。例如，当某个微服务出现故障时，应该能够通过其他微服务的备份或冗余设计来保证系统的整体稳定性。</li>
+<li>负载均衡：通过在多个微服务之间实现负载均衡，可以避免某个微服务过载导致整个系统的瘫痪。负载均衡器可以分配请求到不同的微服务实例上，确保系统的稳定性。</li>
+<li>限流与熔断：对于可能出现流量突增的场景，可以通过限流和熔断机制来防止系统过载。限流可以限制请求的数量，避免系统超负荷运行；熔断则可以在某个微服务出现故障时，快速地中断与其他微服务的交互，避免故障扩散到整个系统。</li>
+<li>自动化监控与恢复：通过自动化监控工具实时收集和分析系统的运行数据，可以及时发现潜在的问题。同时，自动化恢复工具可以在出现问题时，快速地恢复系统的正常运行。</li>
+<li>版本控制与灰度发布：通过版本控制和灰度发布机制，可以逐步升级和优化每个微服务，而不会对整个系统造成过大的影响。这有助于保持系统的稳定性。</li>
+<li>数据一致性：在微服务架构中，由于数据是分散存储的，因此需要特别关注数据一致性问题。通过使用合适的数据复制、校验和验证机制，可以确保数据在多个微服务之间的一致性，从而提高系统的稳定性。</li>
+</ul>
+<p>随着云计算的发展，信息系统上云已经成为趋势，云平台的弹性扩展和自动化管理的特性，可以提高信息系统的基础平台的稳定性，实现快速扩展和容灾。</p>
+<ul>
+<li>弹性扩展：云平台能够根据业务需求提供弹性的计算资源，可以根据实际需求灵活地扩展或缩减计算资源，如计算能力、存储空间和网络带宽等。这种弹性扩展能力可以满足信息系统随着客户和业务的快速发展，不断调整需求，避免资源的浪费。</li>
+<li>自动化管理：云平台通常提供自动化管理功能，可以帮助快速地部署、配置和管理计算资源。这些自动化工具可以降低管理成本，提高效率。</li>
+<li>负载均衡：云平台可以提供负载均衡服务，将大量的用户请求分散到不同的服务器或节点上，以提高系统的吞吐量和响应速度。这种负载均衡技术可以确保系统在高负载情况下仍能保持较高的性能和可用性。</li>
+<li>容灾备份：云平台通常提供容灾和备份机制，确保系统在遇到故障或灾难时能够快速恢复和正常运行。这些备份和恢复功能可以保护企业的数据和计算资源，避免因故障导致的数据丢失或损坏。</li>
+<li>联合计算：云平台可以提供联合计算服务，将多个计算资源整合在一起，以提供更强大的计算能力。这种联合计算能力可以满足信息系统不断增长的计算需求，提高系统的性能和扩展性。</li>
+<li>安全性：云平台通常采用严格的安全措施来保护企业的数据和计算资源。这些安全措施包括数据加密、访问控制、安全审计等，可以确保信息系统的数据和计算资源不被未经授权的访问或篡改。</li>
+</ul>
+<p>综上所述，信息系统可以通过优化技术采购采用分布式微服务架构，通过云平台的可扩展性实现弹性扩展、自动化管理、负载均衡、容灾备份、联合计算和安全性等方面。使得信息系统能够更好地满足不断变化的需求，提高系统的性能和扩展性。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/756bb73f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2951,279 +3233,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dfc313ee/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/dfc313ee/" itemprop="url">Scrapy爬虫框架实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-09-12T23:00:02+08:00">
-                2023-09-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-09-12T23:15:42+08:00">
-                2023-09-12
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/dfc313ee/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/dfc313ee/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/dfc313ee/" class="leancloud_visitors" data-flag-title="Scrapy爬虫框架实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.8k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Python实现爬虫是很容易的，一般来说就是获取目标网站的页面，对目标页面的分析、解析、识别，提取有用的信息，然后该入库的入库，该下载的下载。以前写过一篇文章<a href="http://xiejava.ishareread.com/posts/eab21fe5/" target="_blank" rel="noopener">《Python爬虫获取电子书资源实战》</a>，以一个电子书的网站为例来实现python爬虫获取电子书资源。爬取整站的电子书资源，按目录保存到本地，并形成索引文件方便查找。这次介绍通过Scrapy爬虫框架来实现同样的功能。</p>
-<h2 id="一、Scrapy简介"><a href="#一、Scrapy简介" class="headerlink" title="一、Scrapy简介"></a>一、Scrapy简介</h2><p>Scrapy 是用 Python 实现的一个为了爬取网站数据、提取结构性数据而编写的应用框架。<br>Scrapy 常应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中。<br>通常我们可以很简单的通过 Scrapy 框架实现一个爬虫，抓取指定网站的内容或图片。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230912/1-scrapy%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="Scrapy爬虫框架"></p>
-<ul>
-<li>Scrapy Engine(引擎)：负责Spider、ItemPipeline、Downloader、Scheduler中间的通讯，信号、数据传递等。</li>
-<li>Scheduler(调度器)：它负责接受引擎发送过来的Request请求，并按照一定的方式进行整理排列，入队，当引擎需要时，交还给引擎。</li>
-<li>Downloader(下载器）：负责下载Scrapy Engine(引擎)发送的所有Requests请求，并将其获取到的Responses交还给Scrapy Engine(引擎)，由引擎交给Spider来处理，</li>
-<li>Spider（爬虫）：它负责处理所有Responses,从中分析提取数据，获取Item字段需要的数据，并将需要跟进的URL提交给引擎，再次进入Scheduler(调度器).</li>
-<li>Item Pipeline(管道)：它负责处理Spider中获取到的Item，并进行进行后期处理（详细分析、过滤、存储等）的地方。</li>
-<li>Downloader Middlewares（下载中间件）：可以当作是一个可以自定义扩展下载功能的组件。</li>
-<li>Spider Middlewares（Spider中间件）：可以理解为是一个可以自定扩展和操作引擎和Spider中间通信的功能组件（比如进入Spider的Responses;和从Spider出去的Requests）</li>
-</ul>
-<h2 id="二、Scrapy实战"><a href="#二、Scrapy实战" class="headerlink" title="二、Scrapy实战"></a>二、Scrapy实战</h2><p>虽然用python写一个爬虫也不是很费事，但是有了Scrapy以后让你实现爬虫更简单，更加通用，现在我们还是以《Python爬虫获取电子书资源实战》中的例子，爬取目标网站kgbook.com。也可以对比看一下通过Scrapy爬虫框架实现相同的功能有多么的方便。</p>
-<h3 id="1、Scrapy安装"><a href="#1、Scrapy安装" class="headerlink" title="1、Scrapy安装"></a>1、Scrapy安装</h3><p>首先通过 pip 安装 Scrapy 框架</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
-<h3 id="2、创建Scrapy项目工程"><a href="#2、创建Scrapy项目工程" class="headerlink" title="2、创建Scrapy项目工程"></a>2、创建Scrapy项目工程</h3><p>创建getbooks的项目</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy startproject getbooks</span><br></pre></td></tr></table></figure>
-
-<p>创建一个getkgbook的爬虫，目标网站kgbook.com</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy genspider getkgbook kgbook.com</span><br></pre></td></tr></table></figure>
-
-<p>项目的结构如下图所示</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230912/2-scrapy%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="Scrapy项目目录结构"></p>
-<h3 id="3、实现Scrapy的爬虫代码"><a href="#3、实现Scrapy的爬虫代码" class="headerlink" title="3、实现Scrapy的爬虫代码"></a>3、实现Scrapy的爬虫代码</h3><h4 id="爬数据"><a href="#爬数据" class="headerlink" title="爬数据"></a>爬数据</h4><p>主要的爬虫逻辑实现代码都在getkgbook.py中，在这里实现目录的爬取、翻页、进入到详情页，并解析详情页的数据。<br>getkgbook.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">from</span> getbooks.items <span class="keyword">import</span> KgbookItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GetkgbookSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"getkgbook"</span>  <span class="comment">#爬虫的名称</span></span><br><span class="line">    allowed_domains = [<span class="string">"kgbook.com"</span>]   <span class="comment">#爬取的网站</span></span><br><span class="line">    start_urls = [<span class="string">"https://kgbook.com"</span>]  <span class="comment">#爬取的首页</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        categorys = response.xpath(<span class="string">'//div[@id="category"]/div/ul/li/a'</span>)</span><br><span class="line">        <span class="keyword">for</span> category <span class="keyword">in</span> categorys:</span><br><span class="line">            category_url = category.xpath(<span class="string">'./@href'</span>).extract_first()</span><br><span class="line">            url=response.urljoin(category_url)</span><br><span class="line">            <span class="comment">#爬取进入到目录页</span></span><br><span class="line">            <span class="keyword">yield</span> response.follow(url, self.parse_booklist) </span><br><span class="line"></span><br><span class="line">    <span class="comment">#解析目录页</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse_booklist</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        book_list_select=response.css(<span class="string">'.channel-item h3.list-title a'</span>)</span><br><span class="line">        <span class="comment">#获取书籍列表</span></span><br><span class="line">        <span class="keyword">for</span> book_info_select <span class="keyword">in</span> book_list_select:</span><br><span class="line">            book_name=book_info_select.css(<span class="string">'::text'</span>).extract_first()</span><br><span class="line">            book_detail_url=book_info_select.css(<span class="string">'::attr(href)'</span>).extract_first()</span><br><span class="line">            book_detail_url=response.urljoin(book_detail_url)</span><br><span class="line">            print(book_name,book_detail_url)</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url=book_detail_url, callback=self.pase_bookdetail)</span><br><span class="line">        <span class="comment">#翻页</span></span><br><span class="line">        nextpage_url = response.xpath(<span class="string">'//div[@class="pagenavi"]/a[contains(text(), "下一页")]/@href'</span>).extract_first()</span><br><span class="line">        <span class="keyword">if</span> nextpage_url:</span><br><span class="line">            <span class="keyword">yield</span> response.follow(nextpage_url, self.parse_booklist)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#解析详情页</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pase_bookdetail</span><span class="params">(self,response)</span>:</span></span><br><span class="line">        navegate=response.xpath(<span class="string">'//nav[@id="location"]/a'</span>)</span><br><span class="line">        <span class="keyword">if</span> len(navegate)&gt;<span class="number">1</span>:</span><br><span class="line">            book_category=navegate[<span class="number">1</span>].xpath(<span class="string">'./text()'</span>).extract_first()</span><br><span class="line">        book_name=response.css(<span class="string">'.news_title::text'</span>).extract_first()</span><br><span class="line">        book_author=response.xpath(<span class="string">'//div[@id="news_details"]/ul/li[contains(text(),"作者")]/text()'</span>).extract_first()</span><br><span class="line">        pattern=re.compile(<span class="string">'mobi|epub|azw3|pdf'</span>,re.I) <span class="comment">#解析书籍的类型</span></span><br><span class="line">        book_download_urls=response.xpath(<span class="string">'//div[@id="introduction"]/a[@class="button"]'</span>)</span><br><span class="line">        <span class="keyword">for</span> book_download_urlinfo <span class="keyword">in</span> book_download_urls:</span><br><span class="line">            book_type=book_download_urlinfo.re(pattern)</span><br><span class="line">            <span class="keyword">if</span> book_type:</span><br><span class="line">                book_download_url=book_download_urlinfo.xpath(<span class="string">'./@href'</span>).extract_first()</span><br><span class="line">                <span class="comment">#获取要下载的书籍的名称、作者、要保存的路径、下载地址</span></span><br><span class="line">                item=KgbookItem()</span><br><span class="line">                item[<span class="string">'book_name'</span>]=book_name</span><br><span class="line">                item[<span class="string">'book_author'</span>]=book_author</span><br><span class="line">                item[<span class="string">'book_file'</span>]=os.path.join(book_category,book_name+<span class="string">"."</span>+str(book_type[<span class="number">0</span>]).lower())</span><br><span class="line">                item[<span class="string">'book_url'</span>]=book_download_url</span><br><span class="line">                print(book_name,book_author,book_download_url,item[<span class="string">'book_file'</span>])</span><br><span class="line">                <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
-
-<p>在这里我们通过xpath解析器和css解析器来解析获取网页中的有用的信息。如提取a 标签的href的信息 ，提取书籍的名称、作者、下载链接等信息。</p>
-<h4 id="保存数据"><a href="#保存数据" class="headerlink" title="保存数据"></a>保存数据</h4><p>item.py<br>在item.py中定义了KgbookItem类，Item 定义结构化数据字段，用来保存爬取到的数据，有点像 Python 中的 dict，但是提供了一些额外的保护减少错误。在这里定义了book_name、book_author、book_file、book_url这些信息都会通过爬虫提取后保存用来输出到文件或数据库等。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KgbookItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">    book_name=scrapy.Field()</span><br><span class="line">    book_author=scrapy.Field()</span><br><span class="line">    book_file=scrapy.Field()</span><br><span class="line">    book_url=scrapy.Field()</span><br></pre></td></tr></table></figure>
-
-<h4 id="下载数据"><a href="#下载数据" class="headerlink" title="下载数据"></a>下载数据</h4><p>通过pipelines定义文件下载的管道类<br>pipelines.py</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> item, Request</span><br><span class="line"><span class="keyword">from</span> scrapy.pipelines.files <span class="keyword">import</span> FilesPipeline</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KgBookFilePipeline</span><span class="params">(FilesPipeline)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_media_requests</span><span class="params">(self,item,info)</span>:</span></span><br><span class="line">        <span class="keyword">yield</span> Request(item[<span class="string">'book_url'</span>],meta=&#123;<span class="string">'book_file'</span>:item[<span class="string">'book_file'</span>]&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">file_path</span><span class="params">(self, request, response=None, info=None)</span>:</span></span><br><span class="line">        file_name=request.meta.get(<span class="string">'book_file'</span>)</span><br><span class="line">        <span class="keyword">return</span> file_name</span><br></pre></td></tr></table></figure>
-
-<p>这里实际上只做两件事，一是get_media_requests下载文件，二是组织文件要保存的路径。会通过相应的下载中间件将文件下载并保存在需要保存的目录。这里我们规划的保存目录是书籍目录\书名.类型。<br>还需要在settings.py中定义下载后保存的路径</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存书籍的路径</span></span><br><span class="line">FILES_STORE=<span class="string">'./books'</span></span><br><span class="line"><span class="comment"># 定义自定义下载的管道</span></span><br><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">   <span class="string">"getbooks.pipelines.KgBookFilePipeline"</span>: <span class="number">300</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>加入以下定义，强制爬取、下载，并忽略301,302重定向</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Obey robots.txt rules</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">MEDIA_ALLOW_REDIRECTS = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">HTTPERROR_ALLOWED_CODES = [<span class="number">301</span>,<span class="number">302</span>]</span><br></pre></td></tr></table></figure>
-
-<p>至此，就通过Scrapy爬虫框架实现了一个爬虫。<br>运行效果<br>执行 <code>scrapy crawl getkgbook -o books.json</code><br>可以看到控制台打印出来的日志，爬虫开始默默的勤勤恳恳的爬取了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230912/3-scrapy%E7%88%AC%E5%8F%96%E6%97%A5%E5%BF%97.png" alt="爬取日志"></p>
-<p>爬取的结果保存到了books.json中<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230912/4-books.json.png" alt="books.json"></p>
-<p>要下载的书籍也保存到了books下相应的目录下了<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230912/5-%E4%BF%9D%E5%AD%98%E7%9A%84%E6%96%87%E4%BB%B6.png" alt="保存的文件"></p>
-<h2 id="三、注意事项"><a href="#三、注意事项" class="headerlink" title="三、注意事项"></a>三、注意事项</h2><p>有可能在文件下载的时候并没有把文件下载下来，原因是文件下载路径有重定向。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2023</span><span class="literal">-09</span><span class="literal">-12</span> <span class="number">22</span>:<span class="number">25</span>:<span class="number">38</span> [<span class="type">scrapy.core.engine</span>] DEBUG: Crawled (<span class="number">301</span>) &lt;GET https://kgbook.com/e/DownSys/GetDown?classid=<span class="number">24</span>&amp;id=<span class="number">471</span>&amp;pathid=<span class="number">0</span>&gt; (referer: None)</span><br><span class="line"><span class="number">2023</span><span class="literal">-09</span><span class="literal">-12</span> <span class="number">22</span>:<span class="number">25</span>:<span class="number">38</span> [<span class="type">scrapy.pipelines.files</span>] WARNING: File (code: <span class="number">301</span>): Error downloading file from &lt;GET https://kgbook.com/e/DownSys/GetDown?classid=<span class="number">24</span>&amp;id=<span class="number">471</span>&amp;pathid=<span class="number">0</span>&gt; referred <span class="keyword">in</span> &lt;None&gt;</span><br><span class="line"><span class="number">2023</span><span class="literal">-09</span><span class="literal">-12</span> <span class="number">22</span>:<span class="number">25</span>:<span class="number">38</span> [<span class="type">scrapy.core.engine</span>] DEBUG: Crawled (<span class="number">301</span>) &lt;GET https://kgbook.com/e/DownSys/GetDown?classid=<span class="number">24</span>&amp;id=<span class="number">4742</span>&amp;pathid=<span class="number">0</span>&gt; (referer: None)</span><br><span class="line"><span class="number">2023</span><span class="literal">-09</span><span class="literal">-12</span> <span class="number">22</span>:<span class="number">25</span>:<span class="number">38</span> [<span class="type">scrapy.pipelines.files</span>] WARNING: File (code: <span class="number">301</span>): Error downloading file from &lt;GET https://kgbook.com/e/DownSys/GetDown?classid=<span class="number">24</span>&amp;id=<span class="number">4742</span>&amp;pathid=<span class="number">0</span>&gt; referred <span class="keyword">in</span> &lt;None&gt;</span><br></pre></td></tr></table></figure>
-
-<p>需要在settings.py中加入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_ALLOW_REDIRECTS = <span class="literal">True</span>  <span class="comment">#直接下载</span></span><br><span class="line"></span><br><span class="line">HTTPERROR_ALLOWED_CODES = [<span class="number">301</span>,<span class="number">302</span>]  <span class="comment">#忽略重定向的报错信息</span></span><br></pre></td></tr></table></figure>
-
-<p>现在我们通过一个Scrapy爬虫框架实例实现了网站的爬取，重代码量上看比python直接写少了很多，通用性也更强了。通过管道不仅仅可以将数据保持至json还可以保存到Excel、数据库等。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
- <center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3280,7 +3289,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">132</span>
+                  <span class="site-state-item-count">133</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3392,7 +3401,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">254.1k</span>
+    <span title="Site words total count">258k</span>
   
   
 <!--51la网站应用监控-->
