@@ -313,6 +313,260 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4ba25d97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/4ba25d97/" itemprop="url">CentOS7下配置Supervisor自启动的两种方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-11T14:18:19+08:00">
+                2021-11-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-28T14:22:51+08:00">
+                2023-04-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/4ba25d97/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4ba25d97/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/4ba25d97/" class="leancloud_visitors" data-flag-title="CentOS7下配置Supervisor自启动的两种方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  529
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>很多网友留言问如何配置Supervisor 自启动，现将如何在CentOS7下配置Supervisor自启动的两种方法整理如下：</p>
+<h1 id="一、方法一"><a href="#一、方法一" class="headerlink" title="一、方法一"></a>一、方法一</h1><p><strong>直接将启动命令加入到/etc/rc.d/rc.local中（简单但不推荐）</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+<p>在现有的内容后面加入supervisor的启动命令<br>supervisord -c /etc/supervisord.conf<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211111/rc.local.png" alt="/etc/rc.d/rc.local"><br>注意：一定要执行 chmod +x /etc/rc.d/rc.local</p>
+<blockquote>
+<p>chmod +x /etc/rc.d/rc.local</p>
+</blockquote>
+<p>给文件加入可执行权限<br>根据官方的提示，该方式是不被建议的，强烈建议创建自己的systemd services或udev规则来启动自已的应用，也就是方法二。</p>
+<h1 id="二、方法二"><a href="#二、方法二" class="headerlink" title="二、方法二"></a>二、方法二</h1><p><strong>通过创建systemd services来实现自启动 （推荐）</strong><br>进入到/usr/lib/systemd/system/目录</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> ~]<span class="comment"># cd /usr/lib/systemd/system/</span></span><br></pre></td></tr></table></figure>
+
+<p>找到supervisord及supervisorctl命令的路径</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># which supervisord</span></span><br><span class="line">/usr/local/bin/supervisord</span><br><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># which supervisorctl</span></span><br><span class="line">/usr/local/bin/supervisorctl</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建文件supervisord-service"><a href="#创建文件supervisord-service" class="headerlink" title="创建文件supervisord.service"></a>创建文件supervisord.service</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi supervisord.service</span><br></pre></td></tr></table></figure>
+
+<p>复制以下代码。注意：supervisord及supervisorctl命令的路径根据实际情况进行修改</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#supervisord.service</span></span><br><span class="line"></span><br><span class="line">[<span class="type">Unit</span>]</span><br><span class="line">Description=Supervisor daemon</span><br><span class="line"></span><br><span class="line">[<span class="type">Service</span>]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/local/bin/supervisord <span class="literal">-c</span> /etc/supervisord.conf</span><br><span class="line">ExecStop=/usr/local/bin/supervisorctl shutdown</span><br><span class="line">ExecReload=/usr/local/bin/supervisorctl reload</span><br><span class="line">KillMode=<span class="keyword">process</span></span><br><span class="line">Restart=on<span class="literal">-failure</span></span><br><span class="line">RestartSec=<span class="number">42</span>s</span><br><span class="line"></span><br><span class="line">[<span class="type">Install</span>]</span><br><span class="line">WantedBy=multi<span class="literal">-user</span>.target</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="启用服务"><a href="#启用服务" class="headerlink" title="启用服务"></a>启用服务</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># systemctl enable supervisord</span></span><br><span class="line">Created symlink from /etc/systemd/system/multi<span class="literal">-user</span>.target.wants/supervisord.service to /usr/lib/systemd/system/supervisord.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> ~]<span class="comment"># systemctl start supervisord</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看服务状态"><a href="#查看服务状态" class="headerlink" title="查看服务状态"></a>查看服务状态</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> ~]<span class="comment"># systemctl status supervisord</span></span><br><span class="line">● supervisord.service - Supervisor daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/supervisord.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Thu <span class="number">2021</span><span class="literal">-11</span><span class="literal">-11</span> <span class="number">11</span>:<span class="number">11</span>:<span class="number">36</span> CST; <span class="number">12</span>s ago</span><br><span class="line">  <span class="keyword">Process</span>: <span class="number">3822</span> ExecStart=/usr/local/bin/supervisord <span class="literal">-c</span> /etc/supervisord.conf (code=exited, status=<span class="number">0</span>/SUCCESS)</span><br><span class="line"> Main PID: <span class="number">3850</span> (supervisord)</span><br><span class="line">   CGroup: /system.slice/supervisord.service</span><br><span class="line">           ├─<span class="number">3850</span> /usr/local/bin/python3.<span class="number">8</span> /usr/local/bin/supervisord <span class="literal">-c</span> /etc/supervisord.conf</span><br><span class="line">           ├─<span class="number">3916</span> uwsgi -<span class="literal">-ini</span> /home/flask_web/uwsgi.ini</span><br><span class="line">           ├─<span class="number">3918</span> uwsgi -<span class="literal">-ini</span> /home/flask_web/uwsgi.ini</span><br><span class="line">           └─<span class="number">3919</span> uwsgi -<span class="literal">-ini</span> /home/flask_web/uwsgi.ini</span><br></pre></td></tr></table></figure>
+
+<h2 id="验证一下是否为开机启动"><a href="#验证一下是否为开机启动" class="headerlink" title="验证一下是否为开机启动"></a>验证一下是否为开机启动</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">localhost</span> <span class="type">system</span>]<span class="comment"># systemctl is-enabled supervisord</span></span><br><span class="line">enabled</span><br></pre></td></tr></table></figure>
+
+<p>reboot重启服务器后，可以发现supervisor随服务器启动后自动启动了。</p>
+<p><strong>至此，本文介绍了CentOS7下配置Supervisor自启动的两种方法，推荐使用第二种方式。</strong></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2c5697c0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2728,239 +2982,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6b94b28d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/6b94b28d/" itemprop="url">如何理解企业安全能力框架(IPDRR)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-17T16:49:08+08:00">
-                2021-06-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T15:27:46+08:00">
-                2023-03-19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/6b94b28d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6b94b28d/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/6b94b28d/" class="leancloud_visitors" data-flag-title="如何理解企业安全能力框架(IPDRR)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>企业安全能力框架(IPDRR)是美国国家标准与技术研究所（National Institute of Standards and Technology）的网络安全框架（简称NISTCSF )。第一个版本于2014年发布，旨在为寻求加强网咯安全防御的组织提供指导。企业可以根据自身需求加强网络安全防御。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210617/IPDRR%E6%A8%A1%E5%9E%8B.png" alt="企业网络安全系统框架"><br>企业网络安全系统框架（参考IPDRR）</p>
-<p>随着社会数字化转型的深入，网络攻击事件日益增多、破坏力逐步增强。安全方法论也正逐步从”针对威胁的安全防御”向“面向业务的安全治理”（IPDRR）等演进。</p>
-<p>IPDRR能力框架模型包括风险识别（Identify）、安全防御（Protect）、安全检测（Detect）、安全响应（Response）和安全恢复（Recovery）五大能力，从以防护为核心的模型，转向以检测和业务连续性管理的模型，变被动为主动，最终达成自适应的安全能力。</p>
-<p>IPDRR模型体现了安全保障系统化的思想，管理与技术结合来有效保障系统核心业务的安全。通过持续的安全检测来实现IPDRR的闭环安全，为用户提供完善的安全能力框架和支撑体系。</p>
-<p>具体来说IPDRR主要包含了五个部分：<br><strong>识别（Identify）</strong>：识别网络资产及风险，是指对系统、资产、数据和网络所面临的安全风险的认识及确认<br><strong>保护（Protect）</strong>：保护网络，是指制定和实施合适的安全措施，确保能够提供关键基础设施服务。<br><strong>检测（Detect）</strong>：发现攻击，在攻击产生时即时监测，同时监控业务和保护措施是否正常运行，制定和实施恰当的行动以发现网络安全事件<br><strong>响应（Respond）</strong>：响应和处理事件，指对已经发现的网络安全事件采取合适的行动。具体程序依据事件的影响程度来进行抉择，主要包括：事件调查、评估损害、收集证据、报告事件和恢复系统<br><strong>恢复（Recover）</strong>：恢复系统和修复漏洞，将系统恢复至正常状态，同时找到事件的根本原因，并进行预防和修复</p>
-<p>可以参考大家对实体财物是怎么保护的就很容易理解了。举个例子，大家如何对自己的私有财产是怎么保护的呢？<br>第一步识别（Identify）肯定是识别出有哪些资产分别都有什么风险吧，比如家里的现金、金银珠宝、贵重电器、房产证、82年的拉菲、92年的茅台等等对于我们来说都是属于我们要保护的资产，这些都有被小偷偷走，被破坏等风险。所以我们需要采取一定的措施将这些资产给保护起来。<br>比如现金、金银珠宝、房产证等放在保险柜里，82年的拉菲、92年的茅台等搞个酒窖上好锁，家里的房子装好防护门、防盗窗等，这些就是第二步保护（Protect），对需要保护的资产做好基本的防护。做到了这些够不够呢？显然是不够的，这只是做好被动防御，我们还要做好主动防御，也就是第三步检测（Detect），这时候我们可以装一些监控设备摄像头、传感器等等，看时时刻刻监控我们所要保护的资产看有没有什么情况，还可以雇佣一批保安7*24小时巡逻实时监测。响应（Respond）也就是发现了什么风吹草动，就采取响应的措施，比如如果是有人破门而入就及时的告警，制止，报警。恢复（Recover）就是对易发生的损失进行恢复，如有人破门而入把门给搞坏了，就得把门重新修好或换一个新的级别更高更安全的门。</p>
-<p>企业的网络安全也是一样的。首先要识别自己企业的网络安全资产如重要系统、服务器等都部署在哪里，有没有漏洞，基线配置有没有合规。然后需要做好基本的防护，比如在出入口部署防火墙、主机装EDR、Web服务器要在WAF的保护下、做好访问控制、部署IPS设备等等。有了基础的防护设备以后要做好检测响应比如部署NTA做好流量检测分析、部署SIEM或日志分析系统将这些基础防护设备的告警精心接入做好安全告警的检测分析。通过检测设备发现网络安全事件以后要采取响应的响应措施，比如发现漏洞要进行补洞加固等、发现攻击封堵IP等，可以通过SOAR安全编排与自动化响应平台对人、工具、流程进行协同提高对于安全事件的响应能力。最后是恢复，也就是对已经造成的破坏进行恢复至正常状态，对于失陷的主机进行离网、杀毒、重装、恢复等。</p>
-<p>本文试图对市面上常见的安全产品进行分类来映射到IPDRR的五大能力<br><strong>识别（Identify）</strong>提供识别能力的产品包括资产管理平台、资产测绘平台、基线管理平台、漏洞扫描工具等。<br><strong>保护（Protect）</strong>提供保护能力的产品包括主机防御类EDR、VPN、4A、防火墙、IPS、WAF、抗DOS等<br><strong>检测（Detect）</strong> 提供威胁检测能力的产品包括IDS、NTA、蜜罐、恶意代码检测、用户异常行为检测等。<br><strong>响应（Respond）</strong>：提供响应能力的产品包括SIEM、安全审计、态势感知、SOAR等<br><strong>恢复（Recover）</strong>：提供恢复能力的产品包括NG-SOC，NG-SOC理论上应该是覆盖了IPDRR所有的能力。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210617/IPDRR%E4%B8%8E%E4%BA%A7%E5%93%81%E6%98%A0%E5%B0%84.png" alt="IPDRR产品能力映射"></p>
-<p>当然企业安全能力不能够仅仅的依靠工具，是人、策略、流程、工具综合能力的体现。企业可以根据自身需求参考IPDRR能力框架模型加强网络安全能力建设，哪里欠缺补哪里，通过管理与技术结合来有效保障系统核心业务的安全。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3017,7 +3038,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">135</span>
+                  <span class="site-state-item-count">136</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3129,7 +3150,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">265.2k</span>
+    <span title="Site words total count">266.9k</span>
   
   
 <!--51la网站应用监控-->
