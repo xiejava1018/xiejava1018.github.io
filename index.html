@@ -313,6 +313,264 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d23a1bb5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/d23a1bb5/" itemprop="url">安全防御之可信计算技术</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-09T16:53:32+08:00">
+                2024-01-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-09T17:13:11+08:00">
+                2024-01-09
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/d23a1bb5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d23a1bb5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/d23a1bb5/" class="leancloud_visitors" data-flag-title="安全防御之可信计算技术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>可信计算技术是一种计算机安全体系结构，旨在提高计算机系统在面临各种攻击和威胁时的安全性和保密性。它通过包括硬件加密、受限访问以及计算机系统本身的完整性验证等技术手段，确保计算机系统在各种攻击和威胁下保持高度安全和保密性。</p>
+<h2 id="一、可信计算基本概念"><a href="#一、可信计算基本概念" class="headerlink" title="一、可信计算基本概念"></a>一、可信计算基本概念</h2><p>“可信”，这个概念由可信计算组织Trusted Computing Group（TCG）提出，旨在提出一种能够超越预设安全规则，执行特殊行为的运行实体。</p>
+<p>操作系统中将这个实体运行的环境称为可信计算基，是计算机系统内保护装置的总体，包括硬件、固件、软件和负责执行安全策略的组合体。可信计算基建立了一个基本的保护环境，并提供一个可信计算系统所要求的附加用户服务，以防止不可信主体的干扰和篡改。</p>
+<p>而可信计算（Trusted Computing）是在计算和通信系统中广泛使用基于硬件安全模块支持下的可信计算平台，保证系统运行环境的可信赖。可信计算平台为网络用户提供了一个更为宽广的安全环境，它从安全体系的角度来描述安全问题，确保用户的安全执行环境。</p>
+<p>可信计算技术的核心思想是可信，即只有当系统是可信的情况下，才能够保证安全。这主要体现在两个方面：一是系统本身的可信，即系统的所有组件都没有被篡改或替换，系统的运行环境和操作过程是可预测和可靠的；二是系统的行为可信，即系统的行为是按照预期的方式进行的，没有受到非法的干预或干扰。</p>
+<p>在可信计算的基础上，操作或过程的行为在任意操作条件下是可预测的，并能很好地抵抗不良代码和一定的物理干扰造成的破坏。可信计算是安全的基础，从可信根出发，解决PC机结构所引起的安全问题。</p>
+<h2 id="二、可信计算功能特征"><a href="#二、可信计算功能特征" class="headerlink" title="二、可信计算功能特征"></a>二、可信计算功能特征</h2><p>可信计算技术通过多种手段提高计算机系统的安全性，包括硬件保护、加密技术、数字签名技术、安全协议和系统完整性保护等。这些技术手段可以相互配合，形成一个完整的安全防护体系，确保计算机系统的安全性和保密性。</p>
+<ol>
+<li>硬件保护：可信计算技术使用安全芯片等硬件组件，在硬件层面对计算机进行保护，防止计算机系统被篡改或攻击。安全芯片可以验证计算机的识别序号，检测计算机是否被篡改，同时存储计算机的安全信息，保证用户、设备和数据的安全。</li>
+<li>加密技术：可信计算技术使用加密技术对计算机系统中的数据进行加密，确保数据在传输和存储过程中的机密性和完整性。加密技术可以防止不良用户在通讯过程中截获加密的信息，保证数据的保密性。</li>
+<li>数字签名技术：数字签名技术是可信计算技术的核心部分，用于在网络上进行身份验证和认证。数字签名可以验证消息的发件人是可信的，并且消息在传输过程中没有被篡改。这可以防止恶意用户伪造或篡改数据，提高系统的安全性。</li>
+<li>安全协议：可信计算技术使用安全协议，如SSL/TLS协议等，保护在开放网络上进行的通信。这些安全协议可以防止恶意攻击者窃听或篡改通信内容，保证数据传输的安全性。</li>
+<li>系统完整性保护：可信计算技术可以保护计算机系统的完整性，确保系统组件没有被篡改或替换。通过度量和验证等技术手段，可以检测系统组件的状态是否正常，及时发现并防止恶意代码的注入或攻击。</li>
+</ol>
+<p>与传统的安全技术相比，可信计算具有以下三个显著的功能特征：</p>
+<ol>
+<li>保护存储<br>保护存储一方面通过嵌入的硬件设备保护用户特定的秘密信息（如终端平台身份信息、密钥等），防止通过硬件物理窥探等手段访问密钥等信息，另一方面完成硬件保护下的密钥生成、随机数生成、HASH运算、数字签名以及加解密操作，为用户提供受保护的密码处理过程。</li>
+<li>认证启动<br>可信计算技术利用完整性测量机制完成计算机终端从加电到操作系统装载运行过程中各个执行阶段（BIOS、操作系统装载程序、操作系统等）的认证。当级别低的节点认证到高一级的节点是可信时，低级别节点会把系统的运行控制权转交给高一级节点，基于这种信任链传递机制，可以保证终端始终处于可信的运行环境中。</li>
+<li>证明<br>证明是保证信息正确性的过程。网络通信中，计算机终端基于数字证书机制可以向要通信的双方证明终端当前处于一个可信的状态，同时说明本机的配置情况。如果通信双方都能证明彼此信息的有效性，则可以继续进行通信，否则服务中断。<br>基于以上三个功能特性，可信计算技术可以对主机实施有效的安全防护，保护计算机及网络系统的安全运行，从而向用户提供一个可信的执行环境。</li>
+</ol>
+<h2 id="三、可信计算的应用"><a href="#三、可信计算的应用" class="headerlink" title="三、可信计算的应用"></a>三、可信计算的应用</h2><p>可信计算技术的应用范围非常广泛，它可以应用于各种计算机系统和网络设备中，提供从硬件到软件的各种安全保障。例如，可信计算技术可以用于保护计算机系统的关键组件，防止恶意代码篡改BIOS、操作系统和应用软件；还可以用于实现网络连接的安全控制，防止终端的安全状态伪造、接入后配置修改以及设备假冒接入等问题。此外，可信计算技术还可以用于构建等级保护的核心技术体系，对通信设备、边界设备、计算设备等保护对象进行系统引导程序、系统程序、重要配置参数等的验证。</p>
+<p>可信计算为系统运行提供了一个可信赖的环境，具体来说可在以下方面得到应用：</p>
+<ol>
+<li>云环境：云环境需要更高的安全性，可信计算技术可以帮助提供更安全、更可信赖的云服务环境。通过可信计算技术，可以保护云服务中数据的机密性和完整性，防止数据被篡改或泄露。同时，可信计算技术还可以帮助实现虚拟专用网络（VPN）的安全传输，保证远程用户访问云服务时的身份验证和数据加密。</li>
+<li>物联网：在物联网环境中，可信计算技术可以帮助保护各种设备和传感器的数据安全，以及确保数据的完整性和真实性。通过可信计算技术，可以防止物联网设备被攻击或篡改，保证设备的合法性和安全性。同时，可信计算技术还可以用于实现物联网设备的远程身份验证和授权控制，确保只有合法的设备可以接入网络并访问相应的数据。</li>
+<li>数字版权管理：可信计算技术可以用于创建安全的数字版权管理系统，以防止数字内容被非法复制和分发。通过可信计算技术，可以确保数字内容的完整性和真实性，同时防止未经授权的访问和复制。这可以保护版权所有者的合法权益，防止盗版内容的传播。</li>
+<li>金融交易：通过可信计算技术，可以保护金融交易中的数据完整性和机密性，防止交易被篡改或泄露。同时，可信计算技术还可以用于实现金融系统的远程身份验证和授权控制，保证金融交易的安全性和合法性。以网上银行为例，当用户接入到银行服务器时使用远程认证，之后如果服务器能产生正确的认证证书那么银行服务器就将只对该页面进行服务。随后用户通过该页面发送他的加密账号和PIN和一些对用户和银行都为私有的（不看见）保证信息。</li>
+<li>身份认证和访问控制：可信计算技术可以用于实现身份认证和访问控制，保证只有合法的用户可以访问相应的数据或资源。通过可信计算技术，可以验证用户的身份和权限，防止身份假冒和非法访问。这可以提高系统的安全性，保护敏感数据不被泄露或滥用。</li>
+<li>保护系统不受病毒和间谍软件危害：软件的数字签名将使得用户识别出经过第三方修改可能加入间谍软件的应用程序。例如，一个网站提供一个修改过的流行即时通讯程序版本，该程序包含间谍软件。操作系统可以发现这些版本里缺失有效的签名并通知用户该程序已经被修改，然而这也带来一个问题：谁来决定签名是否有效。</li>
+<li>保护生物识别身份验证数据：用于身份认证的生物鉴别设备可以使用可信计算技术（存储器屏蔽，安全I/O）来确保没有间谍软件安装在电脑上窃取敏感的生物识别信息。</li>
+<li>核查远程网格计算的计算结果：可信计算可以确保网格计算系统的参与者返回的结果不是伪造的。这样大型模拟运算（例如天气系统模拟）不需要繁重的冗余运算来保证结果不被伪造，从而得到想要的（正确）结论。</li>
+</ol>
+<h2 id="四、可信路径"><a href="#四、可信路径" class="headerlink" title="四、可信路径"></a>四、可信路径</h2><p>可信路径是一种安全机制，旨在确保只有经过授权和验证的实体能够访问特定的资源或数据。可信路径的实现通常依赖于可信计算技术，通过在系统中建立一条可信任的路径来保护数据的完整性和机密性。</p>
+<p>可信通信机制主要应用在用户登录或注册时，能够保证用户确实是和安全核心通信，防止不可信进程如特洛伊木马等模拟系统的登录过程而窃取口令。<br>在计算机系统中，可信路径可以用于保护操作系统的引导程序、核心程序以及系统的关键配置参数等。通过建立可信路径，可以确保只有合法的实体能够修改或破坏这些关键组件，从而防止系统被篡改或攻击。</p>
+<p>此外，在物联网环境中，可信路径可以用于确保只有经过授权的设备能够接入网络并访问相应的数据。通过建立可信路径，可以防止非法设备接入网络，从而保护物联网系统的安全性和可靠性。<br>可信路径是一种重要的安全机制，它可以建立一条可信任的路径来保护数据的完整性和机密性，防止系统被篡改或攻击。通过可信计算技术，可以有效地实现可信路径，提高计算机系统和物联网系统的安全性。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/1dad343e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +618,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-01-08T17:33:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-08T17:34:16+08:00">
                 2024-01-08
               </time>
             
@@ -2736,286 +2994,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e89ce9ea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e89ce9ea/" itemprop="url">安全运营之态势感知与监测</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-21T10:45:23+08:00">
-                2023-12-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-12-21T11:14:05+08:00">
-                2023-12-21
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e89ce9ea/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e89ce9ea/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/e89ce9ea/" class="leancloud_visitors" data-flag-title="安全运营之态势感知与监测">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>信息安全是一个动态的过程，操作系统、应用软件、中间件，还有硬件，平台的种类越来越多，技术越来越复杂，稍有不慎就会留下安全隐患和管理漏洞，依靠客户自身的IT资源无论从技术的先进性还是方案的严密性上都越来越难以应对，企业往往由于人手或技术力量的不足，无法自如的处理各种复杂的信息安全问题。针对这种情况，就需要持续对新的安全威胁、安全漏洞进行跟踪、分析和响应。</p>
-<p>安全态势感知与监测是一种基于环境的、动态、整体地洞悉安全风险的能力，它以安全大数据为基础，从全局视角提升对安全威胁的发现识别、理解分析、响应处置能力的一种方式，最终是为了决策与行动，是安全能力的落地。</p>
-<p>目前网络安全态势感知平台系统架构如下：</p>
-<ol>
-<li>海量多元异构数据的汇聚融合技术：在大规模网络中，网络安全数据和日志数据由海量设备和多个应用系统中产生，且这些安全数据和日志数据缺乏统一标准与关联，在此基础上进行数据分析，无法得到全局精准的分析结果。</li>
-<li>数据挖掘与智能分析技术：通过机器学习、大数据分析等技术，实现基于逻辑和知识的推理结果，从已知威胁推演未知威胁，实现对安全威胁事件的预测和判断。</li>
-<li>威胁情报的共享与交换技术：通过建立威胁情报共享与交换平台，实现不同安全厂商、不同组织之间的威胁情报共享与交换，提高安全态势感知的准确性和效率。</li>
-</ol>
-<p>一、安全监控</p>
-<p>安全监控应覆盖网络、安全设备、主机、数据库、应用和中间件的安全和性能监控，具体内容如下：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>内容</th>
-<th>监控方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>网络层</td>
-<td>路由器、防火墙、IPS、WAF等</td>
-<td>SNMP、syslog等</td>
-</tr>
-<tr>
-<td>主机层</td>
-<td>Windows2000/XP/2003、Solaris、AIX、HP-UX、Redhat Linux</td>
-<td>SNMP、syslog、专用数据收集代理</td>
-</tr>
-<tr>
-<td>数据库</td>
-<td>Oracle、MS SQL Server、Mysql、ES</td>
-<td>SNMP、syslog、专用数据收集代理</td>
-</tr>
-<tr>
-<td>应用中间件</td>
-<td>WebLogic、WebSphere、Jboss/Tomcat、Apache、IIS</td>
-<td>SNMP、syslog、专用数据收集代理</td>
-</tr>
-</tbody></table>
-<p>一般来说将需要监控的数据统一汇聚到安全态势感知平台，通过平台的采集、汇聚、分析、展现能力，实现对网络安全的统一监控和告警通知。</p>
-<p>二、风险感知</p>
-<p>风险感知是指部署相应的监测措施如态势感知平台，主动发现来自系统内外部的安全风险，具体措施包括数据采集、收集汇聚、特征提取、关联分析、状态感知等。</p>
-<ol>
-<li>数据采集<br>数据采集指对网络环境中各类数据进行采集，为网络异常分析、设备预测性维护等提供数据来源。</li>
-<li>收集汇聚<br>对于数据的收集汇聚主要分为两个方面。一是对网络设备系统及应用系统所产生的安全告警数据进行汇聚，包括产品全生命周期的各类数据的同步采集、管理、存储及查询，为后续过程提供数据来源。二是对全网流量进行监听，并将监听过程中采集到的数据进行汇聚。</li>
-<li>特征提取<br>特征提取是指对数据特征进行提取、筛选、分类、优先级排序、可读等处理，从而实现从数据到信息的转化过程，该过程主要是针对单个设备或单个网络的纵向数据分析。信息主要包括内容和情景两方面，内容指网络流量、告警日志信息等；情景指人员的操作指令、人员访问状态、登录事件、时长等。</li>
-<li>关联分析<br>关联分析基于大数据进行横向大数据分析和多维分析，通过将运行机理、运行环境、操作内容、外部威胁情报等有机结合，利用群体经验预测单个设备的安全情况，或根据历史状况和当前状态的差异进行关联分析，进而发现网络及系统的异常状态。</li>
-<li>状态感知<br>状态感知基于关联分析过程，实现对企业网络运行规律、异常情况、安全目标、安全态势、业务背景等的监测感知，确定安全基线，结合大数据分析等相关技术，发现潜在安全威胁、预测黑客攻击行为。</li>
-</ol>
-<p>为了提高安全态势感知与监测的能力和准确性，还需要采取以下措施：</p>
-<ol>
-<li>加强数据分析和挖掘能力：通过对海量数据进行深入分析和挖掘，发现潜在的安全威胁和漏洞。</li>
-<li>建立威胁情报共享机制：通过建立威胁情报共享机制，实现不同组织之间的信息共享和协同作战。</li>
-<li>加强技术创新和研发：通过加强技术创新和研发，不断推出新的安全防护措施和技术手段，提高安全防护能力。</li>
-<li>加强人员培训和管理：通过加强人员培训和管理，提高人员的安全意识和技能水平，减少人为因素对网络安全的影响。</li>
-</ol>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3072,7 +3050,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">138</span>
+                  <span class="site-state-item-count">139</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3184,7 +3162,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">270.2k</span>
+    <span title="Site words total count">273.4k</span>
   
   
 <!--51la网站应用监控-->
