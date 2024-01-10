@@ -313,6 +313,256 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/66779ce6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/66779ce6/" itemprop="url">Python通过matplotlib动态绘图实现中美GDP历年对比趋势动图</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-27T11:46:35+08:00">
+                2023-08-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-08-27T12:02:19+08:00">
+                2023-08-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/66779ce6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/66779ce6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/66779ce6/" class="leancloud_visitors" data-flag-title="Python通过matplotlib动态绘图实现中美GDP历年对比趋势动图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着中国的各种实力的提高，经常在各种媒体上看到中国与各个国家历年的各种指标数据的对比，为了更清楚的展示历年的发展趋势，有的还做成了动图，看到中国各种指标数据的近年的不断逆袭，心中的自豪感油然而生。今天通过Python来实现matplotlib的动态绘图，将中美两国近年的GDP做个对比，展示中国GPD对美国的追赶态势，相信不久的将来中国的GDP数据将稳超美国。</p>
+<p>效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230827/showgdp-%E8%87%AA%E5%8A%A8.gif" alt="中美GDP历年对比趋势动图"></p>
+<p>实现上面的动态绘图效果，综合用到了pandas的数据采集、数据整理、matplotlib绘图、坐标轴及数据的动态定义、定时器等知识。最终通过Python的GUI库PySide进行展示形成一个GUI的可执行程序。</p>
+<h2 id="一、数据采集和准备"><a href="#一、数据采集和准备" class="headerlink" title="一、数据采集和准备"></a>一、数据采集和准备</h2><p>中美历年的GDP数据通过百度在网上一搜一大把。我是从<a href="https://www.kylc.com/stats/global/yearly_per_country/g_gdp/chn-usa.html" target="_blank" rel="noopener">https://www.kylc.com/stats/global/yearly_per_country/g_gdp/chn-usa.html</a> 找到的数据。将数据整理成EXCEL保存至data\中国VS美国.xlsx。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230827/%E4%B8%AD%E7%BE%8EGDP%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="中国VS美国GDP数据集"></p>
+<p>有从1966年至2022年的中美GDP的数据。<br>首先对这些数据进行整理，因为获取的GDP数据是字符串类型如17.96万亿 (17,963,170,521,079)，我们需要将GDP的数据从文本中提取出来，也就是取括号中的数据。<br>这里通过正则表达式将括号中的GDP数据提取出来，并转换为亿元为单位。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> locale</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">'\((\S*)\)'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getgdpvalue</span><span class="params">(gdpstr)</span>:</span></span><br><span class="line">    re_obj=pattern.search(gdpstr)</span><br><span class="line">    gdp_value=locale.atof(re_obj.group(<span class="number">1</span>))/<span class="number">100000000</span></span><br><span class="line">    <span class="keyword">return</span> gdp_value</span><br><span class="line">    </span><br><span class="line">df_data = pd.read_excel(<span class="string">'data\中国VS美国.xlsx'</span>)</span><br><span class="line">df_data = df_data.loc[<span class="number">1</span>:len(df_data)]</span><br><span class="line">df_data[<span class="string">'china_gdp_value'</span>] = df_data[<span class="string">'中国'</span>].map(getgdpvalue)</span><br><span class="line">df_data[<span class="string">'us_gdp_value'</span>] = df_data[<span class="string">'美国'</span>].map(getgdpvalue)</span><br><span class="line">df_data = df_data.sort_values(<span class="string">'年份'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>有了数据以后就可以通过数据绘图了。</p>
+<h2 id="二、matplotlib绘图"><a href="#二、matplotlib绘图" class="headerlink" title="二、matplotlib绘图"></a>二、matplotlib绘图</h2><p>先通过matplotlib绘图看看数据的效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.figure()</span><br><span class="line">plt.plot(df_data[<span class="string">'年份'</span>],df_data[<span class="string">'china_gdp_value'</span>])</span><br><span class="line">plt.plot(df_data[<span class="string">'年份'</span>],df_data[<span class="string">'us_gdp_value'</span>])</span><br><span class="line">plt.title(<span class="string">'中美GDP对比'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'年份'</span>)</span><br><span class="line">plt.ylim(<span class="string">'GDP（亿）'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230827/%E4%B8%AD%E7%BE%8EGDP%E8%B6%8B%E5%8A%BF.png" alt="中美GDP对比趋势"></p>
+<p>可以看到中国的GDP数据在1960年至1990年都是比较平稳的，到了1990年后中国开始了爆发式的追赶模式。<br>我们要将这种趋势通过动态的方式展示出来。</p>
+<h2 id="三、数据展示与动态更新"><a href="#三、数据展示与动态更新" class="headerlink" title="三、数据展示与动态更新"></a>三、数据展示与动态更新</h2><p>首先通过QMainWindw定义QWidget组件，在QWidget中加入FigureCanvasQTAgg组件通过canvas载入matplotlib绘图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationWindow</span><span class="params">(QMainWindow)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None,org_data=None)</span>:</span></span><br><span class="line">        QMainWindow.__init__(self, parent)</span><br><span class="line">        self.axes = <span class="literal">None</span></span><br><span class="line">        self.axis_china=<span class="literal">None</span></span><br><span class="line">        self.axis_us=<span class="literal">None</span></span><br><span class="line">        self.datacount=<span class="number">10</span></span><br><span class="line">        self.org_data = org_data</span><br><span class="line">        self.auto_offset = <span class="number">0</span></span><br><span class="line">        <span class="comment"># Central widget</span></span><br><span class="line">        self._main = QWidget()</span><br><span class="line">        self.setCentralWidget(self._main)</span><br><span class="line">        <span class="comment"># Figure</span></span><br><span class="line">        self.canvas = FigureCanvasQTAgg(figure)</span><br><span class="line">        <span class="keyword">if</span> len(self.org_data) &gt; <span class="number">0</span>:</span><br><span class="line">            show_data = self.org_data[<span class="number">0</span>:self.datacount]</span><br><span class="line">            self.axes = self.canvas.figure.subplots()</span><br><span class="line">            self.axes.set_title(<span class="string">'中美GDP对比'</span>)</span><br><span class="line">            self.axis_china = self.axes.plot(show_data[<span class="string">'年份'</span>], show_data[<span class="string">'china_gdp_value'</span>], label=<span class="string">'中国GDP'</span>)</span><br><span class="line">            self.axis_us = self.axes.plot(show_data[<span class="string">'年份'</span>], show_data[<span class="string">'us_gdp_value'</span>], label=<span class="string">'美国GDP'</span>)</span><br><span class="line">            y_max = max(self.org_data[<span class="string">'us_gdp_value'</span>].max(), self.org_data[<span class="string">'china_gdp_value'</span>].max())</span><br><span class="line">            self.axes.set_ylabel(<span class="string">'GDP(亿元)'</span>)</span><br><span class="line">            self.axes.set_xlabel(<span class="string">'年份'</span>)</span><br><span class="line">            self.axes.set_ylim(<span class="number">0</span>, y_max)</span><br><span class="line">            self.axes.set_xlim(show_data[<span class="string">'年份'</span>].min(), show_data[<span class="string">'年份'</span>].max())</span><br><span class="line">            self.axes.legend(loc=<span class="string">"upper left"</span>)</span><br><span class="line">            self.axes.yaxis.set_major_locator(mticker.MultipleLocator(<span class="number">20000</span>))</span><br><span class="line">            self.axes.xaxis.set_major_locator(mticker.MultipleLocator(<span class="number">1</span>))</span><br><span class="line">            figure.tight_layout()  <span class="comment"># 自动调整子图参数，使之填充整个图像区域</span></span><br><span class="line">        <span class="comment"># 下拉框，选择模式 # ComboBox (combo_type)</span></span><br><span class="line">        self.combo_type = QComboBox()</span><br><span class="line">        self.combo_type.addItems([<span class="string">'自动播放'</span>, <span class="string">'手动播放'</span>])</span><br><span class="line">        <span class="comment"># Sliders</span></span><br><span class="line">        min_value = <span class="number">0</span></span><br><span class="line">        self.max_value = len(self.org_data)-cur_data_len</span><br><span class="line">        self.slider_update = QSlider(minimum=min_value, maximum=self.max_value, orientation=Qt.Horizontal) <span class="comment"># 滑动条</span></span><br><span class="line">        layout1 = QHBoxLayout()</span><br><span class="line">        layout1.addWidget(self.combo_type)</span><br><span class="line">        <span class="comment"># layout</span></span><br><span class="line">        layout2 = QVBoxLayout()</span><br><span class="line">        layout2.addWidget(self.canvas, <span class="number">88</span>)</span><br><span class="line">        layout2.addWidget(self.slider_update)</span><br><span class="line">        <span class="comment"># Main layout</span></span><br><span class="line">        layout = QVBoxLayout(self._main)</span><br><span class="line">        layout.addLayout(layout1)</span><br><span class="line">        layout.addLayout(layout2, <span class="number">100</span>)</span><br><span class="line">        self.canvas.draw()</span><br><span class="line">        <span class="comment"># Signal and Slots connections</span></span><br><span class="line">        self.combo_type.currentTextChanged.connect(self.selecttype)</span><br><span class="line">        self.slider_update.valueChanged.connect(self.update_frequency)</span><br><span class="line">        self.autoslider()</span><br></pre></td></tr></table></figure>
+
+<p>一种方式是通过QSlider组件，通过手动拉slider组件来实现数据的变化，一种通过QTimer组件自动让数据变化。</p>
+<h3 id="1、QSlider组件，手动方式实现动态绘图"><a href="#1、QSlider组件，手动方式实现动态绘图" class="headerlink" title="1、QSlider组件，手动方式实现动态绘图"></a>1、QSlider组件，手动方式实现动态绘图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slot()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_frequency</span><span class="params">(self, new_val)</span>:</span></span><br><span class="line">    <span class="comment"># 偏移量每次偏移1</span></span><br><span class="line">    f = int(new_val)</span><br><span class="line">    offset = f + cur_data_len  <span class="comment"># 偏移刻度</span></span><br><span class="line">    show_data = self.org_data[f: offset]</span><br><span class="line">    x = show_data[<span class="string">'年份'</span>]</span><br><span class="line">    y_china = show_data[<span class="string">'china_gdp_value'</span>]</span><br><span class="line">    y_us = show_data[<span class="string">'us_gdp_value'</span>]</span><br><span class="line">    self.axes.set_xlim(x.min(), x.max())</span><br><span class="line">    self.axis_china[<span class="number">0</span>].set_data(x, y_china)</span><br><span class="line">    self.axis_us[<span class="number">0</span>].set_data(x, y_us)</span><br><span class="line">    self.canvas.draw()</span><br></pre></td></tr></table></figure>
+
+<p>手动拉slider组件来实现数据的变化效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230827/showgdp-%E6%89%8B%E5%8A%A8.gif" alt="手动数据变化"></p>
+<h3 id="2、QTimer组件，自动动态绘图"><a href="#2、QTimer组件，自动动态绘图" class="headerlink" title="2、QTimer组件，自动动态绘图"></a>2、QTimer组件，自动动态绘图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">    self.autoslider()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoslider</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.timer = QTimer()</span><br><span class="line">    self.timer.setInterval(<span class="number">100</span>) <span class="comment"># 100毫秒更新一次数据</span></span><br><span class="line">    self.timer.timeout.connect(self.autoupdate) <span class="comment">#自动更新数据,每次更新偏移量加1，也就是跳一年的数据 </span></span><br><span class="line">    self.timer.start()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoupdate</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.update_frequency(self.auto_offset)</span><br><span class="line">    self.slider_update.setSliderPosition(self.auto_offset)</span><br><span class="line">    <span class="keyword">if</span> self.auto_offset &lt; self.max_value:</span><br><span class="line">        self.auto_offset = self.auto_offset+<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        self.auto_offset = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>效果如文章最前面所示。</p>
+<h2 id="四、完整代码"><a href="#四、完整代码" class="headerlink" title="四、完整代码"></a>四、完整代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> locale</span><br><span class="line"><span class="keyword">import</span> matplotlib.ticker <span class="keyword">as</span> mticker</span><br><span class="line"><span class="keyword">from</span> PySide6.QtCore <span class="keyword">import</span> Qt, Slot, QTimer</span><br><span class="line"><span class="keyword">from</span> PySide6.QtWidgets <span class="keyword">import</span> QMainWindow, QApplication, QVBoxLayout, QHBoxLayout, QWidget, QSlider, QComboBox</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_qtagg <span class="keyword">import</span> FigureCanvasQTAgg</span><br><span class="line"><span class="keyword">from</span> matplotlib.figure <span class="keyword">import</span> Figure</span><br><span class="line"></span><br><span class="line">figure = Figure(figsize=(<span class="number">12</span>, <span class="number">6</span>), dpi=<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">global</span> cur_data_len, cur_major_locator</span><br><span class="line">cur_data_len = <span class="number">10</span>  <span class="comment"># 当前显示的数据量（显示10年的数据）</span></span><br><span class="line">cur_major_locator = <span class="number">10</span>  <span class="comment"># 当前刻度的定位器（主刻度）</span></span><br><span class="line"></span><br><span class="line">pattern = re.compile(<span class="string">'\((\S*)\)'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getgdpvalue</span><span class="params">(gdpstr)</span>:</span></span><br><span class="line">    re_obj=pattern.search(gdpstr)</span><br><span class="line">    gdp_value=locale.atof(re_obj.group(<span class="number">1</span>))/<span class="number">100000000</span></span><br><span class="line">    <span class="keyword">return</span> gdp_value</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationWindow</span><span class="params">(QMainWindow)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, parent=None,org_data=None)</span>:</span></span><br><span class="line">        QMainWindow.__init__(self, parent)</span><br><span class="line">        self.axes = <span class="literal">None</span></span><br><span class="line">        self.axis_china=<span class="literal">None</span></span><br><span class="line">        self.axis_us=<span class="literal">None</span></span><br><span class="line">        self.datacount=<span class="number">10</span></span><br><span class="line">        self.org_data = org_data</span><br><span class="line">        self.auto_offset = <span class="number">0</span></span><br><span class="line">        <span class="comment"># Central widget</span></span><br><span class="line">        self._main = QWidget()</span><br><span class="line">        self.setCentralWidget(self._main)</span><br><span class="line">        <span class="comment"># Figure</span></span><br><span class="line">        self.canvas = FigureCanvasQTAgg(figure)</span><br><span class="line">        <span class="keyword">if</span> len(self.org_data) &gt; <span class="number">0</span>:</span><br><span class="line">            show_data = self.org_data[<span class="number">0</span>:self.datacount]</span><br><span class="line">            self.axes = self.canvas.figure.subplots()</span><br><span class="line">            self.axes.set_title(<span class="string">'中美GDP对比'</span>)</span><br><span class="line">            self.axis_china = self.axes.plot(show_data[<span class="string">'年份'</span>], show_data[<span class="string">'china_gdp_value'</span>], label=<span class="string">'中国GDP'</span>)</span><br><span class="line">            self.axis_us = self.axes.plot(show_data[<span class="string">'年份'</span>], show_data[<span class="string">'us_gdp_value'</span>], label=<span class="string">'美国GDP'</span>)</span><br><span class="line">            y_max = max(self.org_data[<span class="string">'us_gdp_value'</span>].max(), self.org_data[<span class="string">'china_gdp_value'</span>].max())</span><br><span class="line">            self.axes.set_ylabel(<span class="string">'GDP(亿元)'</span>)</span><br><span class="line">            self.axes.set_xlabel(<span class="string">'年份'</span>)</span><br><span class="line">            self.axes.set_ylim(<span class="number">0</span>, y_max)</span><br><span class="line">            self.axes.set_xlim(show_data[<span class="string">'年份'</span>].min(), show_data[<span class="string">'年份'</span>].max())</span><br><span class="line">            self.axes.legend(loc=<span class="string">"upper left"</span>)</span><br><span class="line">            self.axes.yaxis.set_major_locator(mticker.MultipleLocator(<span class="number">20000</span>))</span><br><span class="line">            self.axes.xaxis.set_major_locator(mticker.MultipleLocator(<span class="number">1</span>))</span><br><span class="line">            figure.tight_layout()  <span class="comment"># 自动调整子图参数，使之填充整个图像区域</span></span><br><span class="line">        <span class="comment"># 下拉框，选择模式 # ComboBox (combo_type)</span></span><br><span class="line">        self.combo_type = QComboBox()</span><br><span class="line">        self.combo_type.addItems([<span class="string">'自动播放'</span>, <span class="string">'手动播放'</span>])</span><br><span class="line">        <span class="comment"># Sliders</span></span><br><span class="line">        min_value = <span class="number">0</span></span><br><span class="line">        self.max_value = len(self.org_data)-cur_data_len</span><br><span class="line">        self.slider_update = QSlider(minimum=min_value, maximum=self.max_value, orientation=Qt.Horizontal) <span class="comment"># 滑动条</span></span><br><span class="line">        layout1 = QHBoxLayout()</span><br><span class="line">        layout1.addWidget(self.combo_type)</span><br><span class="line">        <span class="comment"># layout</span></span><br><span class="line">        layout2 = QVBoxLayout()</span><br><span class="line">        layout2.addWidget(self.canvas, <span class="number">88</span>)</span><br><span class="line">        layout2.addWidget(self.slider_update)</span><br><span class="line">        <span class="comment"># Main layout</span></span><br><span class="line">        layout = QVBoxLayout(self._main)</span><br><span class="line">        layout.addLayout(layout1)</span><br><span class="line">        layout.addLayout(layout2, <span class="number">100</span>)</span><br><span class="line">        self.canvas.draw()</span><br><span class="line">        <span class="comment"># Signal and Slots connections</span></span><br><span class="line">        self.combo_type.currentTextChanged.connect(self.selecttype)</span><br><span class="line">        self.slider_update.valueChanged.connect(self.update_frequency)</span><br><span class="line">        self.autoslider()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">autoslider</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.timer = QTimer()</span><br><span class="line">        self.timer.setInterval(<span class="number">100</span>) <span class="comment"># 100毫秒更新一次数据</span></span><br><span class="line">        self.timer.timeout.connect(self.autoupdate) <span class="comment">#自动更新数据,每次更新偏移量加1，也就是跳一年的数据</span></span><br><span class="line">        self.timer.start()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">autoupdate</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.update_frequency(self.auto_offset)</span><br><span class="line">        self.slider_update.setSliderPosition(self.auto_offset)</span><br><span class="line">        <span class="keyword">if</span> self.auto_offset &lt; self.max_value:</span><br><span class="line">            self.auto_offset = self.auto_offset+<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.auto_offset = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @Slot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">selecttype</span><span class="params">(self, text)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">'自动播放'</span> == text:</span><br><span class="line">            self.autoslider()</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">'手动播放'</span> == text:</span><br><span class="line">            self.timer.stop()</span><br><span class="line"></span><br><span class="line"><span class="meta">    @Slot()</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_frequency</span><span class="params">(self, new_val)</span>:</span></span><br><span class="line">        <span class="comment"># 偏移量每次偏移1</span></span><br><span class="line">        f = int(new_val)</span><br><span class="line">        offset = f + cur_data_len  <span class="comment"># 偏移刻度</span></span><br><span class="line">        show_data = self.org_data[f: offset]</span><br><span class="line">        x = show_data[<span class="string">'年份'</span>]</span><br><span class="line">        y_china = show_data[<span class="string">'china_gdp_value'</span>]</span><br><span class="line">        y_us = show_data[<span class="string">'us_gdp_value'</span>]</span><br><span class="line">        self.axes.set_xlim(x.min(), x.max())</span><br><span class="line">        self.axis_china[<span class="number">0</span>].set_data(x, y_china)</span><br><span class="line">        self.axis_us[<span class="number">0</span>].set_data(x, y_us)</span><br><span class="line">        self.canvas.draw()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    locale.setlocale(locale.LC_ALL, <span class="string">'en_US.UTF-8'</span>)</span><br><span class="line">    df_data = pd.read_excel(<span class="string">'data\中国VS美国.xlsx'</span>)</span><br><span class="line">    df_data = df_data.loc[<span class="number">1</span>:len(df_data)]</span><br><span class="line">    df_data[<span class="string">'china_gdp_value'</span>] = df_data[<span class="string">'中国'</span>].map(getgdpvalue)</span><br><span class="line">    df_data[<span class="string">'us_gdp_value'</span>] = df_data[<span class="string">'美国'</span>].map(getgdpvalue)</span><br><span class="line">    df_data = df_data.sort_values(<span class="string">'年份'</span>)</span><br><span class="line">    w = ApplicationWindow(org_data=df_data)</span><br><span class="line">    w.setFixedSize(<span class="number">1000</span>, <span class="number">500</span>)</span><br><span class="line">    w.show()</span><br><span class="line">    app.exec()</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p>Python实现matplotlib动态绘图，是非常简单和容易的，其实关键还是在数据的组织，也就是要准备好要绘图的坐标轴的x的数据和y的数据，通过set_data(x,y)来动态更新数据，要注意的是变化的数据后X轴或Y轴的显示要变化，这里可以通过轴的set_xlim()或set_ylim()方法来动态设置，刻度也可通过set_major_locator()来指定。</p>
+<p>数据集见 <a href="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230827/中国VS美国.xlsx" target="_blank" rel="noopener">https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230827/中国VS美国.xlsx</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/213c546f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3300,239 +3550,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/3918ce28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/3918ce28/" itemprop="url">Python实现简单信号滤波实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-13T15:19:26+08:00">
-                2023-03-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-13T15:24:32+08:00">
-                2023-03-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/3918ce28/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/3918ce28/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/3918ce28/" class="leancloud_visitors" data-flag-title="Python实现简单信号滤波实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在有些项目中需要对信号进行滤波处理，尤其是在医疗的设备中如心跳、脉搏等设备的采样后进行处理。滤波的目的就是除去某些频率的信号如噪声。常见的包括有低通滤波、高通滤波、带通滤波。</p>
-<p>低通滤波指的是去除高于某一阈值频率的信号；高通滤波去除低于某一频率的信号；带通滤波指的是类似低通高通的结合保留中间频率信号；带阻滤波也是低通高通的结合只是过滤掉的是中间部分。通过滤波可以过滤到一些无用的噪音，得到的比较平滑的波形，用来进行分析。</p>
-<p>scipy模块提供了常用简单的信号滤波方法包括低通滤波、高通滤波、带通滤波、带阻滤波等。</p>
-<h2 id="一、scipy信号滤波函数介绍"><a href="#一、scipy信号滤波函数介绍" class="headerlink" title="一、scipy信号滤波函数介绍"></a>一、scipy信号滤波函数介绍</h2><ol>
-<li>滤波器构造函数</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scipy.signal.butter(N, Wn, btype=<span class="string">'low'</span>, analog=<span class="literal">False</span>, output=<span class="string">'ba'</span>)</span><br></pre></td></tr></table></figure>
-<p> 输入参数：<br> N:滤波器的阶数<br> Wn：归一化截止频率。计算公式Wn=2*截止频率/采样频率。（注意：根据采样定理，采样频率要大于两倍的信号本身最大的频率，才能还原信号。截止频率一定小于信号本身最大的频率，所以Wn一定在0和1之间）。当构造带通滤波器或者带阻滤波器时，Wn为长度为2的列表。<br> btype : 滤波器类型{‘lowpass’, ‘highpass’, ‘bandpass’, ‘bandstop’},<br> output : 输出类型{‘ba’, ‘zpk’, ‘sos’},<br> 输出参数：<br> b，a: IIR滤波器的分子（b）和分母（a）多项式系数向量。output=’ba’<br> z,p,k: IIR滤波器传递函数的零点、极点和系统增益. output= ‘zpk’<br> sos: IIR滤波器的二阶截面表示。output= ‘sos’</p>
-<ol start="2">
-<li>滤波函数</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scipy.signal.filtfilt(b, a, x, axis=<span class="number">-1</span>, padtype=<span class="string">'odd'</span>, padlen=<span class="literal">None</span>, method=<span class="string">'pad'</span>, irlen=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-
-<p> 输入参数：<br> b: 滤波器的分子系数向量<br> a: 滤波器的分母系数向量<br> x: 要过滤的数据数组。（array型）<br> axis: 指定要过滤的数据数组x的轴<br> padtype: 必须是“奇数”、“偶数”、“常数”或“无”。这决定了用于过滤器应用的填充信号的扩展类型。{‘odd’, ‘even’, ‘constant’, None}<br> padlen：在应用滤波器之前在轴两端延伸X的元素数目。此值必须小于要滤波元素个数- 1。（int型或None）<br> method：确定处理信号边缘的方法。当method为“pad”时，填充信号；填充类型padtype和padlen决定，irlen被忽略。当method为“gust”时，使用古斯塔夫森方法，而忽略padtype和padlen。{“pad” ，“gust”}<br> irlen：当method为“gust”时，irlen指定滤波器的脉冲响应的长度。如果irlen是None，则脉冲响应的任何部分都被忽略。对于长信号，指定irlen可以显著改善滤波器的性能。（int型或None）<br> 输出参数：<br> y:滤波后的数据数组</p>
-<h2 id="二、代码介绍"><a href="#二、代码介绍" class="headerlink" title="二、代码介绍"></a>二、代码介绍</h2><p>scipy模块signal滤波器类型包括低通滤波、高通滤波、带通滤波、带阻滤波</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pip install scipy</span><br><span class="line"><span class="comment">#低通滤波</span></span><br><span class="line"><span class="comment">#假设采样频率为1000hz,信号本身最大的频率为500hz，要滤除400hz以上频率成分，即截至频率为400hz,则wn=2*400/1000=0.8。Wn=0.8</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.8</span>, <span class="string">'lowpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#高通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.2</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带阻滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandstop'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br></pre></td></tr></table></figure>
-<h2 id="三、信号滤波实战"><a href="#三、信号滤波实战" class="headerlink" title="三、信号滤波实战"></a>三、信号滤波实战</h2><p>这里以一个真实的心电数据为例，来实战对心电图某一段时间采样的信号数据进行高通滤波处理，对比一下原始的信号和高通滤波后的信号波形，然后输出成图片文件。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#引入包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> signal</span><br><span class="line"><span class="comment">#读取心电图数据文件</span></span><br><span class="line">bspfile=<span class="string">'data/1.txt'</span></span><br><span class="line">bsp_f = open(bspfile, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">bsp_content = bsp_f.read()</span><br><span class="line">ary=bsp_content.split(<span class="string">' '</span>)</span><br><span class="line">ary=[float(s) <span class="keyword">for</span> s <span class="keyword">in</span> bsp_content.split(<span class="string">' '</span>)]</span><br><span class="line">ary_data=ary[<span class="number">0</span>:<span class="number">10000</span>] <span class="comment">#取前10秒数据</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.3</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line"><span class="comment">#绘图</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, ary_data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br><span class="line">axes[<span class="number">0</span>].plot(ary_data)</span><br><span class="line">axes[<span class="number">0</span>].set(title=<span class="string">'Source signal'</span>)</span><br><span class="line">axes[<span class="number">1</span>].plot(filtedData)</span><br><span class="line">axes[<span class="number">1</span>].set(title=<span class="string">'highpass signal'</span>)</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">plt.savefig(<span class="string">'./signal1.png'</span>, <span class="comment"># ⽂件名：png、jpg、pdf</span></span><br><span class="line">dpi = <span class="number">80</span>, <span class="comment"># 保存图⽚像素密度</span></span><br><span class="line">bbox_inches = <span class="string">'tight'</span>)<span class="comment"># 保存图⽚完整</span></span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<p>微信公众号：fullbug  关注微信公众号，回复“信号滤波”获取全部代码+数据集</p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3589,7 +3606,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">139</span>
+                  <span class="site-state-item-count">140</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3701,7 +3718,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">273.4k</span>
+    <span title="Site words total count">276.7k</span>
   
   
 <!--51la网站应用监控-->
