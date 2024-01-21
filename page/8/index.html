@@ -313,6 +313,266 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9c723d09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9c723d09/" itemprop="url">网络安全设备-认识运维安全管理与审计系统（堡垒机）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-11T10:09:49+08:00">
+                2022-05-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T17:34:55+08:00">
+                2023-09-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9c723d09/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9c723d09/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9c723d09/" class="leancloud_visitors" data-flag-title="网络安全设备-认识运维安全管理与审计系统（堡垒机）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、什么是运维安全管理与审计系统"><a href="#一、什么是运维安全管理与审计系统" class="headerlink" title="一、什么是运维安全管理与审计系统"></a>一、什么是运维安全管理与审计系统</h2><p>运维安全管理与审计系统（俗称 “堡垒机”）：是采用新一代智能运维技术框架，基于认证、授权、访问、审计的管理流程设计理念，实现对企事业IT中心的网络设备、数据库、安全设备、主机系统、中间件等资源统一运维管理和审计；通过集中化运维管控、运维过程实时监管、运维访问合规性控制、运维过程图形化审计等功能，为企事业IT中心运维构建一套事前预防、事中监控、事后审计完善的安全管理体系。</p>
+<p>简单的说，运维安全管理与审计系统（堡垒机）就是用来控制哪些人可以登录哪些资产（事先防范和控制），以及录像记录登录资产后做了什么事情（事中监控和事后溯源）的系统。其核心是<strong>可控及审计</strong>。可控是指权限可控、行为可控。权限可控指可以方便的设置、回收运维操作人员的权限；行为可控，比如需要集中禁用某个危险命令；可审计，指有权限操作的人员对资产的所有操作都有记录，能够被监控和审计。</p>
+<h2 id="二、为什么需要运维安全管理与审计系统"><a href="#二、为什么需要运维安全管理与审计系统" class="headerlink" title="二、为什么需要运维安全管理与审计系统"></a>二、为什么需要运维安全管理与审计系统</h2><p>当企业的IT资产越来越多，当参与运维的岗位越来越多样性，运维团队达到一定的规模，不同的人员如运维人员、开发人员、第三方代维、厂商支撑人员需要控制访问不同的资产及权限，如果没有一套好的机制，就会产生混乱。无法有效的做到“哪些人允许以什么样的身份访问哪些设备”，更加没有办法知道“哪些人登录设备后做了哪些事情”，出了问题以后无法回溯。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E8%BF%90%E7%BB%B4%E6%B7%B7%E4%B9%B1.png" alt="运维混乱"></p>
+<p>运维安全管理与审计系统（堡垒机）是从跳板机（也叫前置机）的概念演变过来的。早在2000年左右，一些中大型企业为了能对运维人员的远程登录进行集中管理，会在机房部署一台跳板机。跳板机其实就是一台unix/linux/windows操作系统的服务器，所有运维人员都需要先远程登录跳板机，然后再从跳板机登录其他服务器中进行运维操作。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E8%B7%B3%E6%9D%BF%E6%9C%BA.png" alt="跳板机"></p>
+<p>跳板机解决了远程登录集中管理访问的问题，但跳板机并没有实现对运维人员操作行为的控制和审计，使用跳板机过程中还是会有误操作、违规操作导致的操作事故，一旦出现操作事故很难快速定位原因和责任人。此外，跳板机存在严重的安全风险，一旦跳板机系统被攻入，则将后端资源风险完全暴露无遗。同时，对于个别资源（如telnet）可以通过跳板机来完成一定的内控，但是对于更多更特殊的资源（ftp、rdp等）来讲就显得力不从心了。</p>
+<p>人们逐渐认识到跳板机的不足，进而需要更新、更好的安全技术理念来实现运维操作管理。需要一种能满足角色管理与授权审批、信息资源访问控制、操作记录和审计、系统变更和维护控制要求，并生成一些统计报表配合管理规范来不断提升IT内控的合规性的产品。在这些理念的指导下，2005年前后，运维安全管理与审计系统（堡垒机）开始以一个独立的产品形态被广泛部署，有效地降低了运维操作风险，使得运维操作管理变得更简单、更安全。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E5%A0%A1%E5%9E%92%E6%9C%BA.png" alt="堡垒机"></p>
+<p>运维安全管理与审计系统（堡垒机）承担了运维人员在运维过程中唯一的入口，通过精细化授权以明确“哪些人以什么身份访问了哪些设备”，从而让运维混乱变得有序起来，堡垒机不仅可以明确每一个运维人员的访问路径，还可以将每一次访问及操作过程变得可以“审计”，就像飞机中的黑匣子，汽车上的行车记录仪，能够做到针对运维人员的每次一操作均可以录像、全程审计，一但出了问题，可以追踪溯源。</p>
+<p>运维安全管理与审计系统的目标可以概括为5W，主要是为了降低运维风险。具体如下：</p>
+<ul>
+<li>审计：你做了什么？（What） </li>
+<li>授权：你能做哪些？（Which） </li>
+<li>账号：你要去哪？（Where） </li>
+<li>认证：你是谁？（Who）</li>
+<li>来源：访问时间？（When）</li>
+</ul>
+<p>运维安全管理与审计系统实现：</p>
+<ul>
+<li>事前预防：建立“自然人-资源-资源账号”关系，实现统一认证和授权 </li>
+<li>事中控制：建立“自然人-操作-资源”关系，实现操作审计和控制</li>
+<li>事后审计：建立“自然人-资源-审计日志”关系，实现事后溯源和责任界定</li>
+</ul>
+<h2 id="三、运维安全管理与审计系统原理"><a href="#三、运维安全管理与审计系统原理" class="headerlink" title="三、运维安全管理与审计系统原理"></a>三、运维安全管理与审计系统原理</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>运维安全管理与审计系统（堡垒机），主要采用4A管理模型，对IT运维操作进行访问控制和行为审计的合规性管控系统，主要用来解决企业IT运维部门账号管理混乱，身份冒用、滥用，授权控制不明确，操作行为不规范，事件责任无法定位等问题。<br><strong>4A 是指认证 Authentication、授权 Authorization、账号 Account、审计 Audit</strong>，中文名称为统一安全管理平台解决方案。即将身份认证、授权、记账和审计定义为网络安全的四大组成部分，从而确立了身份认证在整个网络安全系统中的地位与作用。<br>具体来说：</p>
+<ul>
+<li>集中认证 (authentication) 管理<br>可以根据用户应用的实际需要，为用户提供不同强度的认证方式，既可以保持原有的静态口令方式，又可以提供具有双因子认证方式的高强度认证（一次性口令、数字证书、动态口令），而且还能够集成现有其它如生物特征等新型的认证方式。不仅可以实现用户认证的统一管理，并且能够为用户提供统一的认证门户，实现企业信息资源访问的单点登录。</li>
+<li>集中权限 (authorization) 管理<br>可以对用户的资源访问权限进行集中控制。它既可以实现对 B/S、C/S 应用系统资源的访问权限控制，也可以实现对数据库、主机及网络设备的操作的权限控制，资源控制类型既包括 B/S 的 URL、C/S 的功能模块，也包括数据库的数据、记录及主机、网络设备的操作命令、IP 地址及端口。</li>
+<li>集中帐号（account）管理<br>为用户提供统一集中的帐号管理，支持管理的资源包括主流的操作系统、网络设备和应用系统；不仅能够实现被管理资源帐号的创建、删除及同步等帐号管理生命周期所包含的基本功能，而且也可以通过平台进行帐号密码策略，密码强度、生存周期的设定。</li>
+<li>集中审计 (audit) 管理<br>将用户所有的操作日志集中记录管理和分析，不仅可以对用户行为进行监控，并且可以通过集中的审计数据进行数据挖掘，以便于事后的安全事故责任的认定。</li>
+</ul>
+<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><p>实现的技术架构如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84.png" alt="堡垒机技术架构"></p>
+<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><p>主要核心功能包括：<br><strong>1、访问控制</strong><br>通过对访问资源的严格控制，堡垒机可以确保运维人员在其账号有效权限、期限内合法访问操作资源，降低操作风险，以实现安全监管目的，保障运维操作人员的安全、合法合规、可控制性。<br><strong>2、账号管理</strong><br>当运维人员在使用堡垒机时，无论是使用云主机还是局域网的主机，都可以同步导入堡垒机进行账号集中管理与密码的批量修改，并可一键批量设置SSH秘钥对等。<br><strong>3、资源授权</strong><br>支持云主机、局域网主机等多种形式的主机资源授权，并且堡垒机采用基于角色的访问控制模型，能够对用户、资源、功能作用进行细致化的授权管理，解决人员众多、权限交叉、资产繁琐、各类权限复制等众多运维人员遇到的运维难题。<br><strong>4、指令审核</strong><br>对运维人员的账号使用情况，包括登录、资源访问、资源使用等。针对敏感指令，堡垒机可以对非法操作进行阻断响应或触发审核的操作情况，审核未通过的敏感指令，堡垒机将进行拦截。<br><strong>5、审计录像</strong><br>除了可以提供安全层面外，还可以利用堡垒机的事前权限授权、事中敏感指令拦截外，以及堡垒机事后运维审计的特性。运维人员在堡垒机中所进行的运维操作均会以日志的形式记录，管理者即通过日志对微云人员的操作进行安全审计录像。<br><strong>6、身份认证</strong><br>为运维人员提供不同强度的认证方式，既可以保持原有的静态口令方式，还可以提供微信、短信等认证方式。堡垒机不仅可以实现用户认证的统一管理，还能为运维人员提供统一一致的认证门户，实现企业的信息资源访问的单点登录。<br><strong>7、操作审计</strong><br>将运维人员所有操作日志集中管理与分析，不仅可以对用户行为进行监控与拦截，还可以通过集中的安全审计数据进行数据挖掘，以便于运维人员对安全事故的操作审计认定。</p>
+<h2 id="四、运维安全管理与审计系统部署方式"><a href="#四、运维安全管理与审计系统部署方式" class="headerlink" title="四、运维安全管理与审计系统部署方式"></a>四、运维安全管理与审计系统部署方式</h2><h3 id="1、单机部署"><a href="#1、单机部署" class="headerlink" title="1、单机部署"></a>1、单机部署</h3><p>堡垒机主要都是旁路部署，旁挂在交换机旁边，只要能访问所有设备即可。<br>部署特点：<br>旁路部署，逻辑串联。<br>不影响现有网络结构。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2.png" alt="单机部署"></p>
+<h3 id="2、HA高可靠部署"><a href="#2、HA高可靠部署" class="headerlink" title="2、HA高可靠部署"></a>2、HA高可靠部署</h3><p>旁路部署两台堡垒机，中间有心跳线连接，同步数据。对外提供一个虚拟IP。用户通过堡垒机虚拟IP进行访问，堡垒机自动进行会话负载分配和数据同步、冗余存储。<br>部署特点：<br>两台硬件堡垒机，一主一备/提供VIP。<br>当主机出现故障时，备机自动接管服务。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/HA%E9%AB%98%E5%8F%AF%E9%9D%A0%E9%83%A8%E7%BD%B2.png" alt="HA高可靠部署"></p>
+<h2 id="五、常见运维安全管理与审计系统产品"><a href="#五、常见运维安全管理与审计系统产品" class="headerlink" title="五、常见运维安全管理与审计系统产品"></a>五、常见运维安全管理与审计系统产品</h2><h3 id="商用"><a href="#商用" class="headerlink" title="商用"></a>商用</h3><p>奇安信[运维安全管理与审计系统]：<a href="https://www.qianxin.com/product/detail/pid/385" target="_blank" rel="noopener">https://www.qianxin.com/product/detail/pid/385</a><br>亚信安全[信磐堡垒机]：<a href="https://www.asiainfo-sec.com/product/detail-27.html" target="_blank" rel="noopener">https://www.asiainfo-sec.com/product/detail-27.html</a><br>绿盟[绿盟运维安全管理系统]：<a href="https://www.nsfocus.com.cn/html/2019/212_0926/20.html" target="_blank" rel="noopener">https://www.nsfocus.com.cn/html/2019/212_0926/20.html</a><br>启明星辰[堡垒机]：<a href="https://www.venustech.com.cn/new_type/blj/" target="_blank" rel="noopener">https://www.venustech.com.cn/new_type/blj/</a></p>
+<h3 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h3><p>麒麟堡垒机：<a href="http://www.secvpn.com.cn/" target="_blank" rel="noopener">http://www.secvpn.com.cn/</a><br>飞致JumpServer堡垒机：<a href="https://fit2cloud.com/jumpserver/index.html" target="_blank" rel="noopener">https://fit2cloud.com/jumpserver/index.html</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/61446357/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2920,275 +3180,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e2fd4a90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e2fd4a90/" itemprop="url">网络信息安全之纵深防御</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-30T18:30:28+08:00">
-                2022-03-30
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-04-26T09:11:11+08:00">
-                2023-04-26
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e2fd4a90/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e2fd4a90/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/e2fd4a90/" class="leancloud_visitors" data-flag-title="网络信息安全之纵深防御">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>什么是“纵深防御”？很多人和资料都有不同的解释，有许多资料将“纵深防御”和“分层防护”等同起来，<br>上次文章介绍了“<a href="https://xiejava.blog.csdn.net/article/details/123794343" target="_blank" rel="noopener">分层防护</a>”，分层防护是根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理等各个层级，在每个层级实施相应的防护策略和手段。“纵深防御”与“分层防护”既有区别又有联系。</p>
-<p>“纵深防御”实际上并不是一个网络安全领域的专属名词，早在二十世纪初，前苏联元帅米·尼·图哈切夫斯基就在对第一次世界大战以及国内战争经验的基础上，提出了一种名为“大纵深作战理论”的思想。由于网络安全的本质就是黑客与开发者之间的攻防战，所以信息安全领域中的“纵深防御”概念确与战争学上的思想有着共通之处，其核心都是多点布防、以点带面、多面成体，以形成一个多层次的、立体的全方位防御体系来挫伤敌人、保障自身的整体安全。</p>
-<p>根据《信息安全工程师教程（第2版）》的描述，<strong>纵深防御模型的基本思路就是将信息网络安全防护措施有机组合起来，针对保护对象，部署合适的安全措施，形成多道保护线，各安全防护措施能够相互支持和补救，尽可能地阻断攻击者的威胁</strong>。目前，安全业界认为网络需要建立四道防线：安全保护是网络的第一道防线，能够阻止对网络的入侵和危害；安全监测是网络的第二道防线，可以及时发现入侵和破坏；实施响应是网络的第三道防线，当攻击发生时维持网络”打不垮”；恢复是网络的第四道防线，使网络在遭受攻击后能够以最快的速度“起死回升”，最大限度地降低安全事件带来的损失。看描述基本上是对应美国国防部提出的PDRR模型，即（Protection防护、Detection检测、Recovery恢复、Response响应）。PDRR改进了传统的只有防护的单一安全防御思想，强调信息安全保障的四个重要环节。<br>保护（Protection）的内容主要有加密机制、数据签名机制、访问控制机制、认证机制、信息隐藏、防火墙技术等。<br>检测（Detection）的内容主要有入侵检测、系统脆弱性检测、数据完整性检测、攻击性检测等。<br>恢复（Recovery）的内容主要有数据备份、数据修复、系统恢复等。<br>响应（Response）的内容主要有应急策略、应急机制、应急手段、入侵过程分析及安全状态评估等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220330/PDRR.png" alt="PDRR"></p>
-<p>但是PPDR模型总体还是比较局限与从技术上考虑安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木板构成的“木桶”，木桶的容量由最短的那块短板决定。在处理信息安全问题是，需要全面考虑各方面的因素。</p>
-<p>所以美国国家安全局（NSA）发布的信息安全保障技术框架IATF（Information Assurance Technical Framework）提出了纵深防御战略思想，其3个核心要素就是人、技术和操作。信息系统安全保障依赖于人、技术和操作来共同实现组织机构的职能。<br>IATF用一句话概括起来就是：<strong>一个核心思想、三个核心要素、四个焦点领域</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220330/IATF%E7%BA%B5%E6%B7%B1%E9%98%B2%E5%BE%A1.png" alt="IATF纵深防御"></p>
-<p><strong>一个核心思想</strong><br>一个核心思想就是”纵深防御”，<strong>纵深防御也被称为深度防护战略（Defense-in-Depth），是指网络安全需要采用一个多层次、纵深的安全措施来保障信息安全。因为网络信息的安全不是仅仅依靠一两种技术或简单的安全防御设施就能实现，必须在各个层次、不同技术框架区域中实施保障机制，才能最大程度地降低风险，应对攻击并保护信息系统的安全</strong>。在一个规范的信息系统网络中，我们可以看到在网络出口有防火墙，在DMZ区有防火墙，在服务器前端还有防火墙，这就是纵深防御思想的一个体现。需要在多个位置部署安全措施，看似重复，但是因其面对不同的业务、其安全策略有很大的差异。</p>
-<p><strong>三个核心要素</strong><br>三个核心要素是人、技术、操作。网络安全三分靠技术、七分靠管理，三要素中的“人”指的就是加强管理。<br>人是信息系统的主题，包括信息系统的拥有者、管理者和使用者，是信息安全保障的核心；<br>技术是重要手段，需要通过技术机制来保障各项业务的安全，是一种被动防御；<br>操作也称为运行或运营安全，是一种主动防御的体系和机制，包括风险评估、监控、审计、入侵检测等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220330/%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0.png" alt="三个核心要素"></p>
-<p><strong>四个焦点领域</strong><br>网络和基础设施、区域边界、计算环境、支撑性基础设施4个焦点领域。基于这4个焦点领域，结合IATF纵深防御的思想进行信息安全防御从而形成保障框架。</p>
-<p>1.保护网络和基础设施</p>
-<p>网络和其他基础设施是信息系统及业务的支撑，是整个信息系统安全的基础。应采取措施确保网络和基础设施能稳定可靠运行，不会因故障和外界影响导致服务的中断或数据延迟，确保在网络中进行传输的公共的、私人的信息能正确地被接收者获取，不会导致未受权的访问、更改等。保护网络和基础设施防护措施包括但并不限于以下方式。</p>
-<ul>
-<li>合理规划以确保骨干网可用性。</li>
-<li>使用安全的技 术架构，例如在使用无线网络时考虑安全的技术架构。</li>
-<li>使用冗余设备提高可用性。</li>
-<li>使用虚拟专网 ( VPN)保护通信。</li>
-</ul>
-<p>2.保护区域边界</p>
-<p>信息系统根据业务、管理方式和安全等级的不同，通常可以划分为多个区域，这些区或多或少都有与其他区域相连接的边界。保护区域边界关注的是如何对进出这此区域边界的数据流进行有效的控制与监视。要合理地将信息系统根据业务、管理方式和安全等级划分不同的安全区域，并明确定义不同网络区域间需要哪些数据传递。在此基础上采取措施对数据进行控制与监视。通常采取的措施包括但并不限于以下方式。</p>
-<ul>
-<li>在区域边界设 置身份认证和访问控制措施，例如部署防火墙对来访者进行身份认证。</li>
-<li>在区域边 界部署人侵检测系统以发现针对安全区域内的攻击行为。</li>
-<li>在区域边界部署防病毒网关以发现并过滤数据中的恶意代码。</li>
-<li>使用VPN设备以确保安全的接人。</li>
-<li>部署抗拒绝服务攻击设备以应对拒绝服务攻击。</li>
-<li>流量管理、行为管理等其他措施。</li>
-</ul>
-<p>3.保护计算环境</p>
-<p>计算环境指信息系统中的服务器、客户机及其中安装的操作系统、应用软件等。保护计算环境通常采用身份鉴别、访问控制、加密等一系列技术以确保计算环境内的数据保密性、完整性、可用性、不可否认性等。保护计算环境的措施包括但并不限于以下方式。<br>安装并使用安全的操作系统和应用软件。</p>
-<ul>
-<li>在服务 器上部署主机入侵检测系统、防病毒软件及其他安全防护软件。</li>
-<li>定期对系统进行漏洞扫描或者补丁加固，以避免系统脆弱性。</li>
-<li>定期对系统进行安全配置检查，确保最优配置。</li>
-<li>部署或配置对文件的完整性保护。</li>
-<li>定期对 系统和数据进行备份等。</li>
-</ul>
-<p>4.支撑性基础设施</p>
-<p>支撑性基础设施是提供安全服务的基础设施及与之相关的一系列活动的综合体。IATF定义了两种类型的支撑性基础设施：密钥管理基础设施( KMI) /公钥基础设施( PKI)和检测与响应。</p>
-<ul>
-<li>KMI/PKI：提供支持密钥、授权和证书管理的密码基础设施并能实现使用网络服务人员确实的身份识别。</li>
-<li>检测与响应：提供入侵检测、报告、分析、评估和响应基础设施，它能迅速检测和响应入侵、异常事件并提供运行状态的情况。</li>
-</ul>
-<p>IATF的4个技术焦点区域是一个逐层递进的关系，从而形成一种纵深防御系统。因此，以上4个方面的应用充分贯彻了纵深防御的思想，对整个信息系统的各个区域、各个层次，甚至在每一个层次内部都部署了信息安全设备和安全机制，保证访问者对每一个 系统组件进行访问时都受到保障机制的监视和检测，以实现系统全方位的充分防御，将系统遭受攻进行访问时都受到保障机制的监视和检测，以实现系统全方位的充分防御，将系统遭受攻击的风险降至最低,确保数据的安全和可靠。</p>
-<p>除了纵深防御这个核心思想之外，IATF还提出了其他一些信息安全原则，包括保护多个位置、分层防护。<br>1.保护多个位置<br>保护多个位置包括保护网络和基础设施、区域边界、计算环境等,这一原则提醒我们，仅仅在信息系统的重要敏感区域设置一些保护装置 是不够的，任意一个系统漏洞都有可能导致严重的攻击和破坏后果，所以在信息系统的各个方位布置全面的防御机制，才能将风险降至最低。<br>2.分层防御<br>如果说保护多个位置原则是横向防御，那么这一原则就是纵向防御，这也是纵深防御思想的一个具体体现。分层防御即在攻击者和目标之间部署多层防御机制，每个这样的机制必须对攻击者形成一道屏障。而且每一个这样的机制还应包括保护和检测措施，以使攻击者不得不面对被检测到的风险，迫使攻击者由于高昂的攻击代价而放弃攻击行为。</p>
-<p>可见，<strong>纵深防御是战略思想、分层防护是具体的战术实现</strong>。</p>
-<p>资料来源：<br>《信息安全工程师教程（第2版）》<br>《CISP培训教材》</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3245,7 +3236,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">144</span>
+                  <span class="site-state-item-count">145</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3357,7 +3348,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">288.7k</span>
+    <span title="Site words total count">292.9k</span>
   
   
 <!--51la网站应用监控-->

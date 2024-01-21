@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="由于网络安全威胁的不断演变和增长。随着网络技术的不断发展和普及，网络攻击的种类和数量也在不断增加，给企业和个人带来了巨大的安全风险。传统的防火墙、入侵检测防护体系等安全产品在面对这些威胁时，存在一定的局限性和不足，无法满足当前网络安全的需求。入侵防御系统(IPS)作为一种主动防御的解决方案应运而生。它可以实时检测和防御网络流量中的恶意攻击和威胁，通过串接的方式部署在网络中，对入侵行为进行实时阻断，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全产品之认识入侵防御系统">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/ff1920f8/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="由于网络安全威胁的不断演变和增长。随着网络技术的不断发展和普及，网络攻击的种类和数量也在不断增加，给企业和个人带来了巨大的安全风险。传统的防火墙、入侵检测防护体系等安全产品在面对这些威胁时，存在一定的局限性和不足，无法满足当前网络安全的需求。入侵防御系统(IPS)作为一种主动防御的解决方案应运而生。它可以实时检测和防御网络流量中的恶意攻击和威胁，通过串接的方式部署在网络中，对入侵行为进行实时阻断，">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-01-21T06:57:01.000Z">
+<meta property="article:modified_time" content="2024-01-21T06:59:20.826Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/ff1920f8/"/>
+
+
+
+
+
+  <title>网络安全产品之认识入侵防御系统 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ff1920f8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络安全产品之认识入侵防御系统</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-21T14:57:01+08:00">
+                2024-01-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-21T14:59:20+08:00">
+                2024-01-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ff1920f8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ff1920f8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ff1920f8/" class="leancloud_visitors" data-flag-title="网络安全产品之认识入侵防御系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于网络安全威胁的不断演变和增长。随着网络技术的不断发展和普及，网络攻击的种类和数量也在不断增加，给企业和个人带来了巨大的安全风险。传统的防火墙、入侵检测防护体系等安全产品在面对这些威胁时，存在一定的局限性和不足，无法满足当前网络安全的需求。入侵防御系统(IPS)作为一种主动防御的解决方案应运而生。它可以实时检测和防御网络流量中的恶意攻击和威胁，通过串接的方式部署在网络中，对入侵行为进行实时阻断，从而极大地降低了入侵的危害。入侵防御系统（IPS）的出现弥补了传统安全产品的不足，为网络安全提供了更加全面和有效的防护方案。前面介绍了入侵检测系统（IDS）《<a href="http://xiejava.ishareread.com/posts/e5ea6795/" target="_blank" rel="noopener">网络安全产品之认识入侵检测系统</a>》，本文我们来认识一下入侵防御系统（IPS）。</p>
+<h2 id="一、什么是入侵防御系统"><a href="#一、什么是入侵防御系统" class="headerlink" title="一、什么是入侵防御系统"></a>一、什么是入侵防御系统</h2><p><strong>入侵防御系统（IPS）</strong> 是一种网络安全设施，主要用于监测和防御网络或系统活动中存在的恶意攻击和威胁。IPS能够监视网络流量和系统活动，检测已知和未知的攻击行为，一旦发现威胁，会立即启动防御机制，采取相应的措施来阻止或减轻攻击的影响。IPS倾向于提供主动防护，其设计宗旨是预先对入侵活动和攻击性网络流量进行拦截，避免其造成损失，而不是简单地在恶意流量传送时或传送后才发出警报。能够在保护网络和计算机系统免受攻击方面发挥强大的作用。</p>
+<h2 id="二、入侵防御系统的主要功能"><a href="#二、入侵防御系统的主要功能" class="headerlink" title="二、入侵防御系统的主要功能"></a>二、入侵防御系统的主要功能</h2><ol>
+<li><strong>实时监测和防御</strong>：IPS能够实时监测网络流量和系统活动，一旦发现异常或恶意行为，能够立即启动防御机制，阻断恶意流量，防止攻击扩散。</li>
+<li><strong>网络入侵防护</strong>：IPS能够提供针对多种协议和层面的防护，包括网络层、应用层和系统层，全面防御各种攻击，如缓冲区溢出攻击、木马、蠕虫等。实时、主动拦截黑客攻击、蠕虫、网络病毒、后门木马、Dos等恶意流量，保护企业信息系统和网络架构免受侵害，防止操作系统和应用程序损坏或宕机。</li>
+<li><strong>深度检测和分析</strong>：IPS具备深度包检测（DPI）技术，能够对数据包进行深入分析，识别隐藏在其中的恶意代码、恶意命令或恶意流量模式等。</li>
+<li><strong>威胁情报整合</strong>：IPS能够整合威胁情报数据，了解最新的攻击手段、恶意软件、漏洞利用等信息，从而能够及时更新检测规则和防御策略。</li>
+<li><strong>自定义防护策略</strong>：用户可以根据自己的需求，通过自定义特征码进行防护，使IPS更加适应特定环境下的安全需求。</li>
+<li><strong>Web安全</strong>：基于互联网Web站点的挂马检测结果，结合URL信誉评价技术，保护用户在访问被植入木马等恶意代码的网站时不受侵害，及时、有效地第一时间拦截Web威胁。</li>
+<li><strong>流量控制和优化</strong>：阻断一切非授权用户流量，管理合法网络资源的利用，有效保证关键应用全天候畅通无阻，通过保护关键应用带宽来不断提升企业IT产出率和收益率。</li>
+<li><strong>上网行为监控</strong>：全面监测和管理IM即时通讯、P2P下载、网络游戏、在线视频，以及在线炒股等网络行为，协助企业辨识和限制非授权网络流量，更好地执行企业的安全策略。</li>
+</ol>
+<h2 id="三、入侵防御系统的工作原理"><a href="#三、入侵防御系统的工作原理" class="headerlink" title="三、入侵防御系统的工作原理"></a>三、入侵防御系统的工作原理</h2><p>入侵防御系统（IPS）的工作原理主要基于实时检测和拦截网络流量中的恶意攻击和威胁。IPS通过直接嵌入到网络流量中，对网络流量进行实时检查，对异常活动或可疑内容进行检查后，再通过其他端口将信息传送到内部系统中。如果出现问题的数据包以及其他来自同一源头的后续数据包，都能在IPS设备中预先被过滤掉，这样就可以阻止恶意攻击和威胁进入网络。IPS还可以提供主动保护，针对被明确判断为攻击行为、会对网络、数据造成危害的恶意行为提前进行检测和防御，降低或是减免使用者对异常状况的处理资源开销。</p>
+<p>入侵防御系统的工作原理主要基于以下几个关键技术：</p>
+<ol>
+<li>流量分析：IPS能够实时监控网络流量，并对流量中的数据包进行分类、标记和检测。通过分析流量的协议、端口、流向等信息，以及数据包的载荷内容，IPS能够识别出异常流量和潜在的攻击行为。</li>
+<li>威胁情报：IPS通过收集和分析威胁情报数据，了解最新的攻击手段、恶意软件、漏洞利用等信息，从而能够及时更新检测规则和防御策略。威胁情报可以来自于网络威胁情报平台、安全社区、安全研究机构等。</li>
+<li>深度包检测（DPI）：DPI技术可以对数据包进行深度内容检测，识别出数据包中的各种应用层协议和内容特征。通过DPI技术，IPS能够检测出隐藏在数据包中的恶意代码、恶意命令或恶意流量模式等。</li>
+<li>行为分析：IPS通过分析网络流量中数据包的行为模式，能够识别出异常行为和潜在的攻击行为。例如，IPS可以检测出未经授权的网络扫描、恶意扫描等行为，并采取相应的防御措施。</li>
+<li>防御规则：IPS通过预设的防御规则，能够根据不同的攻击类型和场景，采取不同的防御措施。例如，对于已知的攻击手段，IPS可以采取过滤、阻断、隔离等措施；对于未知的攻击手段，IPS可以采取动态防御、沙箱隔离等措施。</li>
+</ol>
+<p>入侵防御系统通过实时检测、分析网络流量和行为，以及采用威胁情报、深度包检测、行为分析和防御规则等技术手段，实现对网络安全的主动防护和实时防御。</p>
+<h2 id="四、入侵防御系统的分类"><a href="#四、入侵防御系统的分类" class="headerlink" title="四、入侵防御系统的分类"></a>四、入侵防御系统的分类</h2><p>入侵防御系统（IPS）有多种分类方式，以下是常见的几种分类：</p>
+<ol>
+<li>基于部署方式的分类：<br>● 串联部署：IPS串联部署在网络中，能够实时检测并阻断攻击流量，对正常的网络流量不产生影响。<br>● 并联部署：IPS并联部署不会对网络流量产生影响，不会造成数据延迟、丢包等问题。</li>
+<li>基于应用场景的分类：<br>● 网络入侵防御系统（NIPS）：普遍安装在需要保护的网段中，对网段中传输的各种数据包进行实时监视，并对这些数据包进行分析和检测。如果发现入侵行为或可疑事件，入侵防御系统就会发出警报甚至切断网络连接。<br>● 主机入侵防御系统（HIPS）：通过在主机/服务器上安装软件代理程序，防止网络攻击入侵操作系统及应用程序，保护服务器的安全弱点不被不法分子所利用。</li>
+<li>基于防护对象的分类：<br>● 应用入侵防御系统（AIPS）：专门针对应用层进行防护的入侵防御系统。<br>● 数据库入侵防御系统（DBIPS）：专门针对数据库层进行防护的入侵防御系统。</li>
+<li>基于技术原理的分类：<br>● 基于特征的入侵防御系统：通过匹配攻击特征来检测和防御攻击。<br>● 基于行为的入侵防御系统：通过分析网络流量和行为来检测和防御攻击。</li>
+<li>基于安全策略的分类：<br>● 主动防御系统：主动防御系统能够预防、检测并快速响应各种攻击，它通常包括防火墙、入侵检测系统、漏洞扫描器和其他安全组件。<br>● 被动防御系统：被动防御系统主要用于监视和记录网络流量和活动，它通常包括网络监控工具、日志分析器和审计工具等。</li>
+</ol>
+<p>以上分类方式并不是互斥的，有些IPS产品可能同时具备多种分类的特点。在实际应用中，需要根据具体需求选择适合的IPS产品。</p>
+<h2 id="五、入侵防御与防火墙的区别"><a href="#五、入侵防御与防火墙的区别" class="headerlink" title="五、入侵防御与防火墙的区别"></a>五、入侵防御与防火墙的区别</h2><p>入侵防御与防火墙是两种不同的网络安全技术，它们在保护网络安全方面各有侧重。<br>防火墙主要是通过对网络流量进行过滤和阻止，来保护网络免受未经授权的访问和攻击。它是一种被动的防御方式，根据预设的规则对进出网络的数据包进行控制，只允许符合规则的数据包通过。防火墙可以阻止大多数已知的攻击，但对于一些新的、未知的攻击手段，防火墙可能无法进行有效防御。</p>
+<p>入侵防御则是一种更深入的防护方式，它通过对网络流量进行实时监控和分析，发现和阻止潜在的网络攻击行为。与防火墙相比，入侵防御具有更强的主动性和防御能力。它不仅可以检测和防御已知的攻击手段，对于一些未知的攻击，入侵防御系统也可以通过行为分析、深度包检测等技术手段进行检测和防御。此外，入侵防御系统还可以提供实时的检测和响应功能，一旦发现异常流量或攻击行为，可以立即采取相应的防御措施，如隔离、过滤等，从而降低网络受到攻击的风险。</p>
+<p>综上所述，防火墙主要是对网络流量进行过滤和阻止，以防止未经授权的访问和攻击；而入侵防御则通过对网络流量进行实时监控和分析，发现和阻止潜在的网络攻击行为，提供更深入的防护。在实际应用中，可以将防火墙和入侵防御系统结合使用，以实现对网络安全的全面保护。</p>
+<h2 id="六、入侵防御系统的优势和局限性"><a href="#六、入侵防御系统的优势和局限性" class="headerlink" title="六、入侵防御系统的优势和局限性"></a>六、入侵防御系统的优势和局限性</h2><p>入侵防御系统（IPS）的优势主要包括：</p>
+<ol>
+<li>实时阻断攻击：设备采用直路方式部署在网络中，能够在检测到入侵时，实时对入侵活动和攻击性网络流量进行拦截，将对网络的入侵降到最低。</li>
+<li>深层防护：新型的攻击都隐藏在TCP/IP协议的应用层里，入侵防御能检测报文应用层的内容，还可以对网络数据流重组进行协议分析和检测，并根据攻击类型、策略等确定应该被拦截的流量。</li>
+<li>全方位防护：入侵防御可以提供针对蠕虫、病毒、木马、僵尸网络、间谍软件、广告软件、CGI（Common Gateway Interface）攻击、跨站脚本攻击、注入攻击、目录遍历、信息泄露、远程文件包含攻击、溢出攻击、代码执行、拒绝服务、扫描工具、后门等攻击的防护措施，全方位防御各种攻击，保护网络安全。</li>
+<li>内外兼防：入侵防御不但可以防止来自于企业外部的攻击，还可以防止发自于企业内部的攻击。系统对经过的流量都可以进行检测，既可以对服务器进行防护，也可以对客户端进行防护。</li>
+<li>可扩展性：IPS可以提供可扩展的安全性，随着网络流量的增长，IPS可以相应地扩展其能力，以满足不断增长的安全需求。</li>
+</ol>
+<p>然而，入侵防御系统也存在一些局限性：</p>
+<ol>
+<li>误报和漏报：IPS可能会误报或漏报某些正常流量或攻击流量，这可能导致正常业务流量被拦截或攻击流量被漏过。</li>
+<li>处理能力：IPS需要处理大量的网络流量，因此需要高性能的处理能力来确保实时检测和拦截攻击。</li>
+<li>部署复杂性：IPS的部署相对复杂，需要正确配置以确保其正常工作并发挥最佳效果。</li>
+<li>无法防御未知威胁：IPS主要依赖于已知的威胁特征来检测和防御攻击，对于未知威胁的防御能力有限。</li>
+</ol>
+<p>虽然入侵防御系统存在一些局限性，但在提供实时保护和深度防护方面具有显著优势。</p>
+<h2 id="七、入侵防御系统的使用方式"><a href="#七、入侵防御系统的使用方式" class="headerlink" title="七、入侵防御系统的使用方式"></a>七、入侵防御系统的使用方式</h2><p>入侵防御系统（IPS）通常通过串联部署在具有重要业务系统或内部网络安全性、保密性较高的网络出口处。</p>
+<h2 id="八、入侵防御系统与其他安全设备的集成"><a href="#八、入侵防御系统与其他安全设备的集成" class="headerlink" title="八、入侵防御系统与其他安全设备的集成"></a>八、入侵防御系统与其他安全设备的集成</h2><p>入侵防御系统通过高效的集成引擎，实现流量分析、异常或攻击行为的告警及阻断、2～7层安全防护控制等功能，并可以可视化展示用户行为和网络健康状况。与入侵检测系统（IDS）相比，IPS不仅能检测入侵的发生，更能通过一定的响应方式，实时终止入侵行为的发生和发展，实时保护信息系统不受实质性的攻击。</p>
+<p>此外，IPS还可以提供DoS/DDoS检测及预防机制，辨别合法数据包与DoS/DDoS攻击数据包，保证企业在遭受攻击时也能使用网络服务。</p>
+<p>入侵防御系统（IPS）可以与其他多种安全设备集成，以提高整个网络的安全性。以下是一些常见的集成方式：</p>
+<ol>
+<li>与防火墙集成：防火墙是网络安全的基础设施，可以控制网络流量的进出。IPS可以与防火墙集成，利用防火墙的过滤功能，将恶意流量或攻击源阻断在外，从而降低网络受到攻击的风险。</li>
+<li>与反病毒软件集成：反病毒软件可以对网络流量和文件进行病毒扫描和清除。IPS可以与反病毒软件集成，在检测到恶意流量或攻击时，及时清除其中的病毒，保护网络免受病毒的侵害。</li>
+<li>与漏洞扫描器集成：漏洞扫描器可以对网络中的主机和设备进行漏洞扫描和风险评估。IPS可以与漏洞扫描器集成，在检测到漏洞或潜在的攻击时，及时提醒或修复漏洞，提高网络的安全性。</li>
+<li>与日志分析工具集成：日志分析工具可以对网络设备、服务器和应用系统的日志进行分析和处理。IPS可以与日志分析工具集成，将检测到的异常行为和攻击记录到日志中，方便后续的分析和处理。</li>
+<li>与安全事件管理（SIEM）系统集成：SIEM系统可以对各种安全设备和系统的日志进行收集、整合和分析。IPS可以与SIEM系统集成，将检测到的安全事件上报给SIEM系统，实现统一的安全事件管理和响应。</li>
+</ol>
+<p>总的来说，入侵防御系统是一种能够防御防火墙所不能防御的深层入侵威胁的在线部署安全产品，是对防病毒软件和防火墙的补充。在实际应用中，可以根据具体需求和网络环境选择适合的集成方式，以提高整个网络的安全性。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/ff1920f8/" title="网络安全产品之认识入侵防御系统">https://xiejava.gitee.io/posts/ff1920f8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/e5ea6795/" rel="next" title="网络安全产品之认识入侵检测系统">
+                <i class="fa fa-chevron-left"></i> 网络安全产品之认识入侵检测系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">145</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是入侵防御系统"><span class="nav-number">1.</span> <span class="nav-text">一、什么是入侵防御系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、入侵防御系统的主要功能"><span class="nav-number">2.</span> <span class="nav-text">二、入侵防御系统的主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、入侵防御系统的工作原理"><span class="nav-number">3.</span> <span class="nav-text">三、入侵防御系统的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、入侵防御系统的分类"><span class="nav-number">4.</span> <span class="nav-text">四、入侵防御系统的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、入侵防御与防火墙的区别"><span class="nav-number">5.</span> <span class="nav-text">五、入侵防御与防火墙的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、入侵防御系统的优势和局限性"><span class="nav-number">6.</span> <span class="nav-text">六、入侵防御系统的优势和局限性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、入侵防御系统的使用方式"><span class="nav-number">7.</span> <span class="nav-text">七、入侵防御系统的使用方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、入侵防御系统与其他安全设备的集成"><span class="nav-number">8.</span> <span class="nav-text">八、入侵防御系统与其他安全设备的集成</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">292.9k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
