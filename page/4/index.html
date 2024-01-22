@@ -313,6 +313,238 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/1934f640/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/1934f640/" itemprop="url">告警繁杂迷人眼，多源分析见月明</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-07T19:37:30+08:00">
+                2023-10-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-10-07T19:53:30+08:00">
+                2023-10-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/1934f640/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/1934f640/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/1934f640/" class="leancloud_visitors" data-flag-title="告警繁杂迷人眼，多源分析见月明">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  946
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231007/1-%E5%91%8A%E8%AD%A6%E7%B9%81%E6%9D%82%E8%BF%B7%E4%BA%BA%E7%9C%BC.png" alt="告警繁杂迷人眼"></p>
+<p>随着数字化浪潮的蓬勃兴起，网络安全问题日趋凸显，面对指数级增长的威胁和告警，传统的安全防御往往力不从心。网内业务逻辑不规范、安全设备技术不成熟都会导致安全设备触发告警。如何在海量众多安全告警中识别出真正的网络安全攻击事件成为安全运营的痛点问题。传统的分析手段，没有从威胁来源和攻击者视角来分析问题，从黑客攻击杀伤链来看，检测点和分析手段严重不足。因此需要从<strong>多源安全信息数据融合分析，实现网络攻击精准研判和处置</strong>。</p>
+<p>从黑客攻击的视角，攻击手段多样，往往是多点突破，层层渗透。因此需要根据纵深防御的思路，在网络的出入口、在应用层、在主机层都要部署相应的安全防护检测设备。如：在企业互联网边界出口部署全流量监测设备，分析获取隐藏在流量中的恶意行为；在应用层部署WAF，分析应用层的攻击行为；在主机层面部署EDR，分析主机层面的异常行为。以攻击者的视角从网络攻击路径出发，对网络层、应用层、主机层的多源安全告警进行联动分析，精准确定安全攻击事件。</p>
+<p>具体分析方法如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231007/2-%E5%A4%9A%E6%BA%90%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88%E5%88%86%E6%9E%90%E7%A0%94%E5%88%A4%E6%80%9D%E8%B7%AF.png" alt="多源数据融合分析精准研判思路"><center>多源数据融合分析精准研判思路</center></p>
+<p><strong>1、多源数据采集</strong>。对全流量、WAF、主机安全等检测设备的告警数据进行采集，从告警数据中分析出攻击源IP、目的IP、源端口、目的端口、告警内容、告警级别、载荷信息等有效信息。并对告警数据过滤降噪，首先将源IP、目的IP、源端口、目的端口、告警内容相同的重复告警，以及告警级别为提醒的告警过滤掉。对剩下的告警进行针对性分析，针对告警级别为严重或致命的告警，根据告警内容和载荷信息筛选出潜在的针对性攻击。</p>
+<p><strong>2、多源数据关联分析</strong>。总结人工研判经验，制定分析模型。如在不同层面的安全设备告警日志中发现相同的攻击源IP和目的IP在同一个时间段都产生了安全告警，说明既在网络侧发现了攻击行为又在应用侧和主机侧发现了攻击行为，通过不同层面告警数据的关联分析和交叉验证，可以确定该攻击是属于高可信的安全攻击事件。</p>
+<p><strong>3、封堵处置，对攻击源进行封堵</strong>。为了避免错误的封堵影响业务，对源IP结合资产台账、黑白名单、情报数据等进行分析过滤，确定不会影响到业务后进行封堵处置。</p>
+<p> 安全以“检测”为始，以“处置”为终。在攻击者对目标系统造成最终损害之前，制止损害或降低损失是信息安全体系的最终防线，也是及时响应的目标。以攻击者的视角从网络攻击的路径出发，对网络层、应用层、主机层的多源安全告警进行关联分析，精准确定安全攻击事件。在实战中，可通过以数据和情报驱动，采用自适应安全架构，嵌入工具、流程和策略来对抗新一代威胁。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/994a1838/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3200,244 +3432,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a446b750/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/a446b750/" itemprop="url">安全运营之资产安全信息管理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-04-18T17:05:48+08:00">
-                2023-04-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-04-18T17:13:22+08:00">
-                2023-04-18
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/a446b750/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a446b750/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/a446b750/" class="leancloud_visitors" data-flag-title="安全运营之资产安全信息管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全风险管理的三要素分别是资产、威胁和脆弱性，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象（资产）自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。“摸清家底，认清风险”做好资产安全信息管理是安全运营的第一步也是最重要的一步。</p>
-<h2 id="资产管理范围"><a href="#资产管理范围" class="headerlink" title="资产管理范围"></a>资产管理范围</h2><p>《GBT 20984-2007信息安全技术信息安全风险评估规范》中，对于资产的定义为“对组织有价值的信息或资源，是安全策略保护的对象”。</p>
-<p>对于网络空间资产来说，这里的资产是指赛博空间中某机构所拥有的一切可能被潜在攻击者利用的设备、信息、应用等数字资产。具体对象包括但不限于硬件设备、云主机、操作系统、IP地址、端口、证书、域名、Web应用、业务应用、中间件、框架、机构公众号、小程序、App、API、源代码等。概括来说，只要是可操作的对象，不管是实体还是属性。都可以称之为“网络空间资产”。所以对于企业来说这些资产安全信息都要做好管理。参考博文《<a href="https://xiejava.blog.csdn.net/article/details/129344013" target="_blank" rel="noopener">网络安全之资产及攻击面管理</a>》</p>
-<p>在工信部《基础电信企业资产安全管理平台建设指南（试行）》稿中，提到资产安全管理平台对于IP化软硬件资产提供安全管理，其管理范围包括但不限于网络产品、安全产品、物联网设备、办公外设、企业应用、系统软件、支撑系统。资产安全信息应该覆盖到所有的IP化软硬件资产。</p>
-<p>资产安全信息一般包括资产的基本属性（如：资产名称、类型、型号、厂商、IP地址、操作系统及其版本信息、端口、服务信息、中间件及其版本信息、程序应用框架及其版本信息、应用软件及其版本信息等）、资产的安全属性（如：安全等级等与网络安全脆弱性整治和威胁监测处置有关的信息等）、资产的管理属性（如：使用单位、责任人、联系电话等）、资产的业务属性（包括所属的业务系统、承载的业务等），应对资产安全信息实施全生命周期管理。</p>
-<h2 id="资产安全全生命周期管理"><a href="#资产安全全生命周期管理" class="headerlink" title="资产安全全生命周期管理"></a>资产安全全生命周期管理</h2><p>资产的全生命周期覆盖资产上线、资产运行、资产下线，在这过程中要对资产进行定级备案、对资产的台账进行维护、对资产进行风险评估、对资产进行定期的清查。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230418/%E8%B5%84%E4%BA%A7%E5%AE%89%E5%85%A8%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png" alt="资产安全全生命周期管理"></p>
-<h3 id="资产上线"><a href="#资产上线" class="headerlink" title="资产上线"></a>资产上线</h3><p>企业应建立统一的资产安全信息管理平台。资产上线，应在资产投入使用前完成对企业信息资产纳管。主机、虚机资产安装资产采集 Agent，网络设备纳入专业网管系统管理，变更的资产信息每天向资产安全信息管理平台同步。 </p>
-<h3 id="资产运行"><a href="#资产运行" class="headerlink" title="资产运行"></a>资产运行</h3><p>资产运行环节是资产生命周期中最重要的环节。安全运营维护单位应建立所辖资产清单台账，应确保相关信息资产IP 地址和端口全量纳管，实现资产安全信息管理平台数据与资产实际情况相符。做好资产运行期的资产台账维护和更新、做好定级备案信息的维护和更新、定期开展资产的风险评估等。</p>
-<h3 id="资产下线"><a href="#资产下线" class="headerlink" title="资产下线"></a>资产下线</h3><p>资产下线意味着资产的生命周期结束，安全运营维护单位应在资产退网后一定时期内（ 如两周或15 日）内完成资产安全信息管理平台数据更新。</p>
-<h3 id="资产台账维护"><a href="#资产台账维护" class="headerlink" title="资产台账维护"></a>资产台账维护</h3><p>安全运营维护单位应在资产上线前建立好资产台账并在投产前完成对企业信息资产在资产安全信息管理平台的纳管，在资产运行期定期维护台账信息如资产信息发生变化定期更新台账，资产下线推网后完成台账的删除及资产安全信息管理平台数据更新。资产台账维护的主要目的是要保障资产安全信息管理平台数据与资产实际情况相符。</p>
-<h3 id="资产定级备案"><a href="#资产定级备案" class="headerlink" title="资产定级备案"></a>资产定级备案</h3><p>资产因为其业务属性的不一样，影响的业务也不一样。对于重点的业务系统应予以重点的关注和保护。对于大型关基企业应对资产根据其重要级别进行定级备案。根据级别的不同制定防护策略开展风险评估。一般来说由维护单位在资产的全生命周期内进行定级备案信息的维护和更新，如资产上线前进行定级备案，在系统资产发生变化或下线时进行定级备案信息的更新。安全运营支撑单位对定级备案信息开展技术复核后完成定级备案信息的提交。</p>
-<h3 id="资产风险评估"><a href="#资产风险评估" class="headerlink" title="资产风险评估"></a>资产风险评估</h3><p>在资产上线前和资产承载的业务发生变化后都应该进行资产风险评估，并根据企业自身要求定期开展风险评估。根据资产定级备案的不同如三级及以上的网络设备和系统平台每年进行一次风险评估，二级网络设备和系统平台每两年进行一次风险评估。对于存在大量个人信息且暴露于互联网的网络设备和系统平台可以请具备资质的第三方单位开展风险评估。重大活动或重要保障前，开展专项风险评估等。 </p>
-<h3 id="资产定期清查"><a href="#资产定期清查" class="headerlink" title="资产定期清查"></a>资产定期清查</h3><p>资产清查，主要是定期对一些“三无”、“七边”的管理覆盖不到位或存在管理薄弱环节的资产进行清查。识别并推进“三无”资产下线（“三无”指“无人管理、无人使用、无人防护”），对“七边”系统进行规范管理（“七边”指测试系统、试验平台、退网未离网系统、工程已上线加载业务但未正式交维系统、与合作伙伴共同运营的业务或系统、责任交接不清的系统、处于衰退期的系统）。安全运营维护单位应配合开展资产清查和纳管，在“三无”资产回收过程中进行系统保障和应急响应。 </p>
-<p>做好资产安全信息管理是需要通过“技术”+“管理”手段相结合。技术方面企业可以根据自身需求建立资产安全管理平台、攻击面管理平台、互联网暴露面测绘平台，全面覆盖内外资产和互联网暴露面的资产管理；管理方面可以根据自身情况参考资产安全信息管理的全生命周期制定符合企业的资产安全信息管理制度。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3494,7 +3488,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">145</span>
+                  <span class="site-state-item-count">146</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3606,7 +3600,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">292.9k</span>
+    <span title="Site words total count">295.7k</span>
   
   
 <!--51la网站应用监控-->
