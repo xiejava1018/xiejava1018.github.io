@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="网络安全," />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -134,19 +134,24 @@
 
 
 
-<meta name="description" content="数字化已深入千行百业。数字化将给各行各业带来巨大的变化，现实世界和虚拟世界也将联系得更加紧密。随着云计算、大数据等新技术结合企业级业务的落地，数字时代的安全面临着前所未有的新挑战。近年来，网络安全问题日益严重，在企业数字化转型中，安全需求也变得越来越重要。对于企业来说，一方面是合规要求压力大，随着法规监管的日趋完善，企业需要遵守的合规要求也越来越多，这些法规对企业的网络安全和数据保护提出了更高的要">
+<meta name="description" content="在做数据分析的时候有些数据是从图片上去获取的，这就需要去识别图片上的文字。Python有很多库可以很方便的实现OCR识别图片中的文字。这里介绍用EasyOCR库进行图片文字识别。easyocr是一个比较流行的库，支持超过80种语言，识别率高，速度也比较快。 一、图片识别文字1、导包1pip install easyocr  2、代码实现123456789101112131415import eas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络安全之了解安全托管服务（MSS）">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/756bb73f/index.html">
+<meta property="og:title" content="Python实现avif图片转jpg格式并识别图片中的文字">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/25495876/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="数字化已深入千行百业。数字化将给各行各业带来巨大的变化，现实世界和虚拟世界也将联系得更加紧密。随着云计算、大数据等新技术结合企业级业务的落地，数字时代的安全面临着前所未有的新挑战。近年来，网络安全问题日益严重，在企业数字化转型中，安全需求也变得越来越重要。对于企业来说，一方面是合规要求压力大，随着法规监管的日趋完善，企业需要遵守的合规要求也越来越多，这些法规对企业的网络安全和数据保护提出了更高的要">
+<meta property="og:description" content="在做数据分析的时候有些数据是从图片上去获取的，这就需要去识别图片上的文字。Python有很多库可以很方便的实现OCR识别图片中的文字。这里介绍用EasyOCR库进行图片文字识别。easyocr是一个比较流行的库，支持超过80种语言，识别率高，速度也比较快。 一、图片识别文字1、导包1pip install easyocr  2、代码实现123456789101112131415import eas">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/1-%E9%98%B2%E7%81%AB%E5%A2%99%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/2-avif%E6%A0%BC%E5%BC%8Focr%E8%AF%86%E5%88%AB%E6%8A%A5%E9%94%99.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/3-%E7%9C%8B%E5%9B%BE%E8%BD%AF%E4%BB%B6%E6%89%93%E5%BC%80%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/4-%E5%8F%A6%E5%AD%98%E4%B8%BAjpg%E5%90%8E%E5%8F%AF%E4%BB%A5ocr%E8%AF%86%E5%88%AB.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/5-avif%E6%96%87%E4%BB%B6%E8%BD%ACjpg%E6%96%87%E4%BB%B6.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2023-11-16T06:32:27.000Z">
-<meta property="article:modified_time" content="2023-11-16T06:35:07.886Z">
+<meta property="article:published_time" content="2024-01-31T13:09:23.000Z">
+<meta property="article:modified_time" content="2024-01-31T13:17:38.033Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/1-%E9%98%B2%E7%81%AB%E5%A2%99%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87.png">
 
 
 
@@ -176,13 +181,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/756bb73f/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/25495876/"/>
 
 
 
 
 
-  <title>网络安全之了解安全托管服务（MSS） | XieJava's blog</title>
+  <title>Python实现avif图片转jpg格式并识别图片中的文字 | XieJava's blog</title>
   
 
 
@@ -319,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/756bb73f/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/25495876/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -336,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">网络安全之了解安全托管服务（MSS）</h2>
+          <h2 class="post-title" itemprop="name headline">Python实现avif图片转jpg格式并识别图片中的文字</h2>
         
 
         <div class="post-meta">
@@ -348,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-11-16T14:32:27+08:00">
-                2023-11-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-31T21:09:23+08:00">
+                2024-01-31
               </time>
             
 
@@ -364,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-11-16T14:35:07+08:00">
-                2023-11-16
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-31T21:17:38+08:00">
+                2024-01-31
               </time>
             
           </span>
@@ -394,8 +399,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -412,8 +417,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/756bb73f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/756bb73f/" itemprop="commentCount"></span>
+                <a href="/posts/25495876/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/25495876/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -421,7 +426,7 @@
 
           
           
-             <span id="/posts/756bb73f/" class="leancloud_visitors" data-flag-title="网络安全之了解安全托管服务（MSS）">
+             <span id="/posts/25495876/" class="leancloud_visitors" data-flag-title="Python实现avif图片转jpg格式并识别图片中的文字">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -446,7 +451,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.3k
+                  935
                 </span>
               
 
@@ -462,7 +467,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  11
+                  3
                 </span>
               
             </div>
@@ -483,74 +488,45 @@
       
 
       
-        <p>数字化已深入千行百业。数字化将给各行各业带来巨大的变化，现实世界和虚拟世界也将联系得更加紧密。随着云计算、大数据等新技术结合企业级业务的落地，数字时代的安全面临着前所未有的新挑战。近年来，网络安全问题日益严重，在企业数字化转型中，安全需求也变得越来越重要。对于企业来说，一方面是合规要求压力大，随着法规监管的日趋完善，企业需要遵守的合规要求也越来越多，这些法规对企业的网络安全和数据保护提出了更高的要求；另一方面企业面临的外部威胁加剧，随着网络攻击技术的不断发展，黑客、恶意软件等外部威胁也越来越严重。为了应对这些挑战确保企业顺利完成数字化转型并保障信息安全，企业除需要部署专业的安全产品之外，同样需要技术供应商提供专业有效的安全服务。</p>
-<p>对绝大多数企事业单位来说，业务发展才是第一要务，对于安全来说，请专业的人做专业事，于是催生了安全托管运营服务。根据中商产业研究院发布的《2022-2027年中国网络安全行业发展趋势与投资格局研究报告》显示，2022年，中国托管安全服务市场规模约43亿元（6.4亿美元），同比增长16.8%，市场整体保持稳定快速发展。中商产业研究院分析师预测，2023年市场规模将达49.2亿元，2024年将达55.4亿元。</p>
-<p>那么什么是安全托管服务，一般的安全托管服务都覆盖有哪些内容，什么样的企业适合安全托管服务，企业如何通过安全托管服务来构建自身的安全体系，带着这些问题我们一起来了解安全托管服务（MSS）</p>
-<h2 id="一、什么是安全托管服务（MSS）"><a href="#一、什么是安全托管服务（MSS）" class="headerlink" title="一、什么是安全托管服务（MSS）"></a>一、什么是安全托管服务（MSS）</h2><p>安全托管服务（MSS）的产生背景可以追溯到20世纪90年代后期，当时随着互联网服务提供商（ISP）的出现，一些ISP开始为他们的用户提供防火墙设备，并管理防火墙。这是MSS的最初形态，即集成到ISP服务产品中的防火墙托管解决方案。</p>
-<p>随着时间的推移，特别是进入21世纪后，网络威胁形势和企业安全需求的发展，使得MSS服务逐渐成为全方位服务的安全提供商。这种转变的动力不仅来自于企业内部日益增长的安全需求，也来自于外部环境的变化，包括国内外政治经济形势的发展、疫情影响的经济常态化、以及国内法规监管的日趋完善。</p>
-<p>在这种情况下，计算技术与基础机构、IT建设和运维模式以及企业研发模式随之发生变革。仅通过网络安全产品和大量的人力堆叠难以应对云化场景下新的安全挑战。因此，企业需要一种新型的安全服务模式来满足这些需求。这就是安全托管服务（MSS）出现的背景。</p>
-<p>安全托管服务（Managed Security Service，MSS），是由Gartner于2011年提出，简单来讲，即网络安全厂商通过自身的安全运营服务，包括人员、工具、平台等，为其用户提供7*24小时的安全托管服务。MSS安全托管服务最直接的目的，就是解决用户自身安全能力不足的问题，将专业的事情交给专业的人来做。说白了其实就是企业将自身的安全运营外包给有能力的安全厂商，解决自身安全运营能力不足的问题。</p>
-<p>MSS服务的优势在于，它能够有效地提高企业的信息安全水平，降低安全风险，同时减少企业在信息安全方面的投入成本。通过将安全工作外包给专业的MSS服务提供商，企业可以更好地集中精力发展自身的核心业务，提高竞争力。</p>
-<h2 id="二、安全托管服务的内容"><a href="#二、安全托管服务的内容" class="headerlink" title="二、安全托管服务的内容"></a>二、安全托管服务的内容</h2><p>安全托管服务（Managed Security Services，MSS）覆盖的内容非常广泛，可以满足企业在信息安全方面的各种需求。</p>
-<p>以下是一些常见的安全托管服务内容：<br>1.安全监控和告警：提供24小时不间断的安全监控和告警服务，及时发现和处理安全事件，确保企业网络和系统的正常运行。<br>2.安全审计和评估：对企业网络和系统进行安全审计和评估，发现潜在的安全风险和漏洞，并提供相应的解决方案。<br>3.安全加固和优化：根据企业的实际需求，提供安全加固和优化建议，例如加强网络防御、优化安全策略等。<br>4.应急响应和处置：在发生安全事件时，提供应急响应和处置服务，例如进行事件分析、取证、溯源等，帮助企业快速恢复业务。<br>5.安全培训和意识提升：提供安全培训和意识提升服务，提高企业员工的安全意识和技能，增强企业的整体安全防范能力。<br>6.威胁情报和分析：通过收集和分析威胁情报，帮助企业了解最新的安全威胁和攻击趋势，为企业提供针对性的安全建议和防范措施。<br>7.云安全托管：提供云安全托管服务，包括云防火墙、云主机安全、云应用安全等，确保企业在云端的安全性和稳定性。<br>8.安全合规和风险管理：帮助企业遵守相关法律法规和标准要求，提供安全合规和风险管理服务。</p>
-<p>安全托管服务覆盖了运营初期的安全评估服务，运营中期的安全加固、安全监控和漏洞感知及监控，运营后期的应急响应服务。安全托管服务可以根据企业的实际需求定制化服务内容，从基础的安全监控到高级的安全审计和应急响应等，全方位地满足企业在信息安全方面的需求。</p>
-<p>以下是常见的安全托管服务及交付内容：</p>
-<table>
-<thead>
-<tr>
-<th>服务项</th>
-<th>服务内容</th>
-<th>交付内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>安全评估服务</td>
-<td>全面评估用户主机安全现状，发现用户主机、网络、应用及数据等方面存在的风险</td>
-<td>每季度一次：提供《安全评估报告》</td>
-</tr>
-<tr>
-<td>渗透测试服务</td>
-<td>对核心业务系统安排工程师进行渗透测试工作，人工挖掘应用漏洞，针对发现的漏洞提出整改和修复方案</td>
-<td>每季度一次：提供《渗透测试报告》</td>
-</tr>
-<tr>
-<td>漏洞扫描服务</td>
-<td>周期性漏洞扫描，人工分析扫描结果</td>
-<td>每月一次：提供《漏洞扫描报告》</td>
-</tr>
-<tr>
-<td>安全监控服务</td>
-<td>持续监视用户主机安全产品告警事件，对安全事件进行分析、响应和运营优化</td>
-<td>每周一次：提供《服务运营报告》</td>
-</tr>
-<tr>
-<td>安全加固服务</td>
-<td>针对评估、监测、检测等不同阶段发现的严重或高危级别安全事件，通知并协助用户开展处置响应</td>
-<td>提供事件详细修复方案，协助开展安全风险加固</td>
-</tr>
-<tr>
-<td>应急响应服务</td>
-<td>在业务遭受黑客攻击出现异常时，提供及时的事件响应分析和专业处置，将突发事件损失降到最低，并协助开展溯源、损失评估、加固指导，提升安全防护水平。每季度提供一次应急响应服务，可按次增加订购</td>
-<td>按季度提供《应急响应报告》</td>
-</tr>
-<tr>
-<td>安全咨询服务</td>
-<td>解答用户提出的各种安全问题，例如：安全问题诊断、排除，安全配置，安全管理等方面，并提供全方面的安全方案支持。</td>
-<td>按需提供《安全咨询方案》</td>
-</tr>
-</tbody></table>
-<h2 id="三、什么样的企业会选择安全托管服务"><a href="#三、什么样的企业会选择安全托管服务" class="headerlink" title="三、什么样的企业会选择安全托管服务"></a>三、什么样的企业会选择安全托管服务</h2><p>选择安全托管服务的企业通常包括以下几种情况：<br>1.规模较小、缺乏安全管理经验和能力的小微企业。这些企业可能没有足够的资金和人力资源来开展安全管理工作，或者缺乏专业的安全管理人员，无法有效地应对安全风险。通过选择安全托管服务，这些企业可以借助专业的安全服务机构的力量，提高自身的安全管理水平，降低安全风险。<br>2.从事高风险行业的企业。这些企业通常涉及到高度的信息安全、网络安全、物理安全等方面的风险，需要专业的安全服务机构提供全方位的安全托管服务。例如，一些互联网企业、金融企业、能源企业等。<br>3.曾经发生过安全事故的企业。这些企业可能已经经历过一些安全事故，或者存在一些安全隐患，需要专业的安全服务机构提供安全管理托管服务，帮助其加强安全管理，预防安全事故的发生。<br>4.需要进行安全管理改进的企业。这些企业可能已经有一定的安全管理基础，但是需要进行安全管理方面的改进，例如优化安全管理体系、提高安全管理效率等。通过选择安全托管服务，这些企业可以借助专业的安全服务机构的力量，进行安全管理方面的改进和提升。</p>
-<p>选择安全托管服务的企业通常是在规模、行业、历史安全事故或需要改进安全管理等方面存在一定安全风险的企业。通过选择专业的安全托管服务提供商，这些企业可以获得更高效、更专业的安全服务支持，提高自身的安全管理水平，降低安全风险。</p>
-<h2 id="四、企业如何通过安全托管服务构建安全体系"><a href="#四、企业如何通过安全托管服务构建安全体系" class="headerlink" title="四、企业如何通过安全托管服务构建安全体系"></a>四、企业如何通过安全托管服务构建安全体系</h2><p>安全托管服务（Managed Security Services，MSS）可以通过以下几个方面助力企业构建安全体系：<br>1.提供专业的安全团队和先进的技术手段：安全托管服务提供商通常具备专业的安全团队和先进的技术手段，能够提供高效、专业的安全服务，帮助企业快速发现和解决安全问题。<br>2.降低企业在信息安全方面的投入成本：通过将安全工作外包给专业的安全托管服务提供商，企业可以降低在信息安全方面的投入成本，包括人力、物力和财力等。<br>3.提高企业的信息安全水平：安全托管服务提供商可以提供全方位的安全托管服务，从基础的安全监控到高级的安全审计和应急响应等，帮助企业提高信息安全水平，降低安全风险。<br>4.满足企业不断增长的安全需求：随着企业业务的不断发展，企业面临的安全需求也在不断增长。安全托管服务提供商可以根据企业的实际情况和需求，提供定制化的安全服务方案，满足企业的个性化需求。<br>5.帮助企业建立完善的安全管理体系：安全托管服务提供商可以帮助企业建立完善的安全管理体系，包括安全策略、安全流程、安全培训等方面，提高企业的整体安全防范能力。<br>6.提供可跟踪管理的安全配置管理：安全托管服务提供商可以对托管系统的安全配置与管理全面负责，为客户提供可跟踪管理的安全配置管理，确保企业网络和系统的正常运行和安全性。<br>7.规范企业的安全管理流程：安全托管服务提供商可以帮助企业规范安全管理流程，例如进行定期的安全审计、安全培训、应急演练等，提高企业的安全管理效率和规范性。</p>
-<p>总之，安全托管服务可以为企业提供全方位的安全托管服务，帮助企业构建完善的安全体系，提高信息安全水平，降低安全风险，同时减少投入成本。</p>
+        <p>在做数据分析的时候有些数据是从图片上去获取的，这就需要去识别图片上的文字。Python有很多库可以很方便的实现OCR识别图片中的文字。这里介绍用EasyOCR库进行图片文字识别。easyocr是一个比较流行的库，支持超过80种语言，识别率高，速度也比较快。</p>
+<h2 id="一、图片识别文字"><a href="#一、图片识别文字" class="headerlink" title="一、图片识别文字"></a>一、图片识别文字</h2><h3 id="1、导包"><a href="#1、导包" class="headerlink" title="1、导包"></a>1、导包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install easyocr</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、代码实现"><a href="#2、代码实现" class="headerlink" title="2、代码实现"></a>2、代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> easyocr</span><br><span class="line"><span class="comment"># 用easyocr识别图片并提取文字</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">easyocr_pic</span><span class="params">(pic_path)</span>:</span></span><br><span class="line">    reader = easyocr.Reader([<span class="string">'ch_sim'</span>, <span class="string">'en'</span>])</span><br><span class="line">    results = reader.readtext(pic_path)</span><br><span class="line">    ocr_result_dict = &#123;&#125;</span><br><span class="line">    result_list = []</span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">        result_list.append(result[<span class="number">1</span>])</span><br><span class="line">    ocr_result_dict[<span class="string">'orc_reslut'</span>]=result_list</span><br><span class="line">    <span class="keyword">return</span> ocr_result_dict</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    orc_result = easyocr_pic(<span class="string">r'waf.png'</span>)</span><br><span class="line">    print(orc_result)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、运行效果"><a href="#3、运行效果" class="headerlink" title="3、运行效果"></a>3、运行效果</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/1-%E9%98%B2%E7%81%AB%E5%A2%99%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87.png" alt="图片OCR识别效果"></p>
+<p>可以看到图片中的中文“防火墙”和”Web应用防火墙”都正确识别出来了。</p>
+<blockquote>
+<p>注意：文件名和文件路径都不能有中文，否则会报错。如：如果将waf.png改成web应用防火墙.png就会报如下的错误。<br> [WARN:<a href="mailto:0@11.296">0@11.296</a>] global loadsave.cpp:248 cv::findDecoder imread_(‘web应用防火墙.png’): can’t open/read file: check file path/integrity</p>
+</blockquote>
+<p>在进行图片识别的时候发现如果是avif格式的也会报错。如从京东商品详情页下载的图片都是avif格式的，进行识别的时候就会报错。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/2-avif%E6%A0%BC%E5%BC%8Focr%E8%AF%86%E5%88%AB%E6%8A%A5%E9%94%99.png" alt="在OCR识别报错"></p>
+<p>但是这个图片用看图软件是可以正常显示的。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/3-%E7%9C%8B%E5%9B%BE%E8%BD%AF%E4%BB%B6%E6%89%93%E5%BC%80%E5%9B%BE%E7%89%87.png" alt="用看图软件打开图片"></p>
+<p>用画图软件另存为png或jpg格式后可以用easyocr正常识别出图片中的文字。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/4-%E5%8F%A6%E5%AD%98%E4%B8%BAjpg%E5%90%8E%E5%8F%AF%E4%BB%A5ocr%E8%AF%86%E5%88%AB.png" alt="在这里插入图片描述"></p>
+<p>注意：直接将.avif的后缀名直接改成.jpg虽然可以用看图软件可以打开，但是用easyocr识别同样会报错，所以我们需要用程序来实现将avif格式的文件转成jpg或png文件格式。</p>
+<h2 id="二、avif格式图片转jpg格式"><a href="#二、avif格式图片转jpg格式" class="headerlink" title="二、avif格式图片转jpg格式"></a>二、avif格式图片转jpg格式</h2><p>用python来实现将avif格式的文件转成jpg也很简单，但也有些注意事项。</p>
+<h3 id="1、导包-1"><a href="#1、导包-1" class="headerlink" title="1、导包"></a>1、导包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pillow-avif-plugin Pillow</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、代码实现-1"><a href="#2、代码实现-1" class="headerlink" title="2、代码实现"></a>2、代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pillow_avif  <span class="comment">#注意一定要引入pillow_avif否则会抛异常'cannot identify image file 'XXX''</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将avif文件转成jpg文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_avif_to_jpg</span><span class="params">(input_path, output_dir)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 打开AVIF图像</span></span><br><span class="line">        image = Image.open(input_path)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取输入路径的文件名及其所在目录</span></span><br><span class="line">        file_name = os.path.basename(input_path)</span><br><span class="line">        <span class="comment"># 构建输出路径</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_dir):</span><br><span class="line">            os.makedirs(output_dir)</span><br><span class="line"></span><br><span class="line">        output_path = os.path.join(output_dir, <span class="string">f"<span class="subst">&#123;os.path.splitext(file_name)[<span class="number">0</span>]&#125;</span>.jpg"</span>)</span><br><span class="line">        <span class="comment"># 保存为PNG格式</span></span><br><span class="line">        image.save(output_path, <span class="string">"JPEG"</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 调用函数进行转换</span></span><br><span class="line">    convert_avif_to_jpg(<span class="string">r'5e595ea90b71f7ae.jpg.avif'</span>, <span class="string">'avif2jpg'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、运行效果-1"><a href="#3、运行效果-1" class="headerlink" title="3、运行效果"></a>3、运行效果</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/5-avif%E6%96%87%E4%BB%B6%E8%BD%ACjpg%E6%96%87%E4%BB%B6.png" alt="在这里插入图片描述"></p>
+<p>可以看到正常将avif文件转成了jpg格式的文件。</p>
+<h3 id="4、注意事项"><a href="#4、注意事项" class="headerlink" title="4、注意事项"></a>4、注意事项</h3><blockquote>
+<p>import pillow_avif  #注意一定要引入pillow_avif否则会抛异常’cannot identify image file ‘XXX’’<br>虽然代码没有用到pillow_avif但是一定要显示的用import pillow_avif否则在运行的时候会抛异常’cannot identify image file ‘XXX’’</p>
+</blockquote>
+<h2 id="三、Python实现avif图片转jpg格式并识别文字全部代码"><a href="#三、Python实现avif图片转jpg格式并识别文字全部代码" class="headerlink" title="三、Python实现avif图片转jpg格式并识别文字全部代码"></a>三、Python实现avif图片转jpg格式并识别文字全部代码</h2><p><strong>所有代码用easyocrUtil.py实现</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> easyocr</span><br><span class="line"><span class="keyword">import</span> pillow_avif  <span class="comment">#注意一定要引入pillow_avif否则会抛异常'cannot identify image file 'XXX''</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将avif文件转成jpg文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_avif_to_jpg</span><span class="params">(input_path, output_dir)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 打开AVIF图像</span></span><br><span class="line">        image = Image.open(input_path)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取输入路径的文件名及其所在目录</span></span><br><span class="line">        file_name = os.path.basename(input_path)</span><br><span class="line">        <span class="comment"># 构建输出路径</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_dir):</span><br><span class="line">            os.makedirs(output_dir)</span><br><span class="line"></span><br><span class="line">        output_path = os.path.join(output_dir, <span class="string">f"<span class="subst">&#123;os.path.splitext(file_name)[<span class="number">0</span>]&#125;</span>.jpg"</span>)</span><br><span class="line">        <span class="comment"># 保存为PNG格式</span></span><br><span class="line">        image.save(output_path, <span class="string">"JPEG"</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用easyocr识别图片并提取文字</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">easyocr_pic</span><span class="params">(pic_path)</span>:</span></span><br><span class="line">    reader = easyocr.Reader([<span class="string">'ch_sim'</span>, <span class="string">'en'</span>])</span><br><span class="line">    results = reader.readtext(pic_path)</span><br><span class="line">    ocr_result_dict = &#123;&#125;</span><br><span class="line">    result_list = []</span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">        result_list.append(result[<span class="number">1</span>])</span><br><span class="line">    ocr_result_dict[<span class="string">'orc_reslut'</span>]=result_list</span><br><span class="line">    <span class="keyword">return</span> ocr_result_dict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 调用函数进行转换</span></span><br><span class="line">    convert_avif_to_jpg(<span class="string">r'5e595ea90b71f7ae.jpg.avif'</span>, <span class="string">'avif2jpg'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用函数识别图片并提取文字</span></span><br><span class="line">    orc_result = easyocr_pic(<span class="string">r'avif2jpg\5e595ea90b71f7ae.jpg.jpg'</span>)</span><br><span class="line">    print(orc_result)</span><br></pre></td></tr></table></figure>
+
+
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
+<p>关注微信公众号,一起学习、成长！</center></p>
 
       
     </div>
@@ -571,7 +547,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/756bb73f/" title="网络安全之了解安全托管服务（MSS）">https://xiejava.gitee.io/posts/756bb73f/</a>
+    <a href="https://xiejava.gitee.io/posts/25495876/" title="Python实现avif图片转jpg格式并识别图片中的文字">https://xiejava.gitee.io/posts/25495876/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -586,7 +562,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
         </div>
       
@@ -599,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/59886424/" rel="next" title="网络安全之认识托管威胁检测与响应（MDR）">
-                <i class="fa fa-chevron-left"></i> 网络安全之认识托管威胁检测与响应（MDR）
+              <a href="/posts/4d544f9a/" rel="next" title="网络安全产品之认识防病毒软件">
+                <i class="fa fa-chevron-left"></i> 网络安全产品之认识防病毒软件
               </a>
             
           </div>
@@ -608,10 +584,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/135a865f/" rel="prev" title="系统频繁崩溃，如何考虑系统的稳定性和可扩展性？">
-                系统频繁崩溃，如何考虑系统的稳定性和可扩展性？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -791,7 +763,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是安全托管服务（MSS）"><span class="nav-number">1.</span> <span class="nav-text">一、什么是安全托管服务（MSS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安全托管服务的内容"><span class="nav-number">2.</span> <span class="nav-text">二、安全托管服务的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、什么样的企业会选择安全托管服务"><span class="nav-number">3.</span> <span class="nav-text">三、什么样的企业会选择安全托管服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、企业如何通过安全托管服务构建安全体系"><span class="nav-number">4.</span> <span class="nav-text">四、企业如何通过安全托管服务构建安全体系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、图片识别文字"><span class="nav-number">1.</span> <span class="nav-text">一、图片识别文字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、导包"><span class="nav-number">1.1.</span> <span class="nav-text">1、导包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、代码实现"><span class="nav-number">1.2.</span> <span class="nav-text">2、代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、运行效果"><span class="nav-number">1.3.</span> <span class="nav-text">3、运行效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、avif格式图片转jpg格式"><span class="nav-number">2.</span> <span class="nav-text">二、avif格式图片转jpg格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、导包-1"><span class="nav-number">2.1.</span> <span class="nav-text">1、导包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、代码实现-1"><span class="nav-number">2.2.</span> <span class="nav-text">2、代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、运行效果-1"><span class="nav-number">2.3.</span> <span class="nav-text">3、运行效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、注意事项"><span class="nav-number">2.4.</span> <span class="nav-text">4、注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Python实现avif图片转jpg格式并识别文字全部代码"><span class="nav-number">3.</span> <span class="nav-text">三、Python实现avif图片转jpg格式并识别文字全部代码</span></a></li></ol></div>
             
 
           </div>
