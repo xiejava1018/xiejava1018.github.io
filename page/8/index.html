@@ -313,6 +313,276 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/462af16b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/462af16b/" itemprop="url">Django加入markdown编辑器及markdown上传图片不回显避坑</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-15T23:29:21+08:00">
+                2022-07-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-09-03T18:39:11+08:00">
+                2023-09-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/462af16b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/462af16b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/462af16b/" class="leancloud_visitors" data-flag-title="Django加入markdown编辑器及markdown上传图片不回显避坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一般来说一个CMS系统如博客系统都需要一个好的富文本编辑器，现在大家更多的是选择MarkDown编辑器来编辑内容。Django作为python的主流web开发框架当然少不了markdown的插件。本文介绍如何在Django框架中引入markdown编辑器及在使用markdown时的注意事项。</p>
+<p>在Django框架中引入markdown编辑器主要是通过安装引入Django-mdeditor库来实现。<br>Django-mdeditor 是基于 Editor.md 的一个 django Markdown 文本编辑插件应用。<br>其官方下载地址见 <a href="https://pypi.org/project/django-mdeditor/" target="_blank" rel="noopener">https://pypi.org/project/django-mdeditor/</a><br>根据官方指导文档</p>
+<h1 id="一、安装使用"><a href="#一、安装使用" class="headerlink" title="一、安装使用"></a>一、安装使用</h1><h2 id="1、安装django-mdeditor"><a href="#1、安装django-mdeditor" class="headerlink" title="1、安装django-mdeditor"></a>1、安装django-mdeditor</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-mdeditor</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、在-settings-配置文件-INSTALLED-APPS-中添加-mdeditor"><a href="#2、在-settings-配置文件-INSTALLED-APPS-中添加-mdeditor" class="headerlink" title="2、在 settings 配置文件 INSTALLED_APPS 中添加 mdeditor"></a>2、在 settings 配置文件 INSTALLED_APPS 中添加 mdeditor</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'django_filters'</span>,<span class="comment">#注册条件查询</span></span><br><span class="line">    <span class="comment"># 注册markdown的应用</span></span><br><span class="line">    <span class="string">'mdeditor'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、针对django3-0-修改-frame-配置"><a href="#3、针对django3-0-修改-frame-配置" class="headerlink" title="3、针对django3.0+修改 frame 配置"></a>3、针对django3.0+修改 frame 配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X_FRAME_OPTIONS = <span class="string">'SAMEORIGIN'</span>  <span class="comment"># django 3.0 + 默认为 deny</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、在-settings-中添加媒体文件的路径配置"><a href="#4、在-settings-中添加媒体文件的路径配置" class="headerlink" title="4、在 settings 中添加媒体文件的路径配置"></a>4、在 settings 中添加媒体文件的路径配置</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'uploads'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在你项目根目录下创建 uploads/editor 目录，用于存放上传的图片。</p>
+<h2 id="5、在项目的根-urls-py-中添加扩展url和媒体文件url"><a href="#5、在项目的根-urls-py-中添加扩展url和媒体文件url" class="headerlink" title="5、在项目的根 urls.py 中添加扩展url和媒体文件url:"></a>5、在项目的根 urls.py 中添加扩展url和媒体文件url:</h2><p>注意是在项目的根 urls.py 中添加扩展url和媒体文件url，而不是在其他项目应用的urls.py中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url, include</span><br><span class="line"><span class="keyword">from</span> django.conf.urls.static <span class="keyword">import</span> static</span><br><span class="line"><span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    url(<span class="string">r'mdeditor/'</span>, include(<span class="string">'mdeditor.urls'</span>))</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> settings.DEBUG:</span><br><span class="line">    <span class="comment"># static files (images, css, javascript, etc.)</span></span><br><span class="line">    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、在项目model中应用markdown"><a href="#6、在项目model中应用markdown" class="headerlink" title="6、在项目model中应用markdown"></a>6、在项目model中应用markdown</h2><p>示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot=models.BooleanField(default=<span class="literal">False</span>,verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    summary=models.CharField(max_length=<span class="number">500</span>,verbose_name=<span class="string">'内容摘要'</span>,default=<span class="string">''</span>)</span><br><span class="line">    content=MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount= models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount=models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br></pre></td></tr></table></figure>
+
+<p>见 <code>content=MDTextField(verbose_name=&#39;内容&#39;)</code> 表示博客文章的内容是MDTextField</p>
+<h2 id="7、向-admin-py-中注册model"><a href="#7、向-admin-py-中注册model" class="headerlink" title="7、向 admin.py 中注册model:"></a>7、向 admin.py 中注册model:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="meta">@admin.register(BlogPost)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPostAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'category'</span>,<span class="string">'isTop'</span>,<span class="string">'isHot'</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="8、迁移创建数据表"><a href="#8、迁移创建数据表" class="headerlink" title="8、迁移创建数据表"></a>8、迁移创建数据表</h2><p>运行 <code>python manage.py makemigrations</code> 和 <code>python manage.py migrate</code> 来创建你的model 数据库表，可以看到默认创建的content字段是longtext类型的<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/content%E5%AD%97%E6%AE%B5.png" alt="默认创建的content字段是longtext类型的"></p>
+<h2 id="9、测试验证"><a href="#9、测试验证" class="headerlink" title="9、测试验证"></a>9、测试验证</h2><p>启动应用，访问<a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a> 点击新增博客文章，可以看到内容字段是markdown编辑器输入了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/django%E6%98%BE%E7%A4%BAmarkdown.png" alt="markdown编辑器"></p>
+<p>至此django应用中就可以使用markdown编辑器了。</p>
+<h1 id="二、markdown上传图片不回显避坑"><a href="#二、markdown上传图片不回显避坑" class="headerlink" title="二、markdown上传图片不回显避坑"></a>二、markdown上传图片不回显避坑</h1><p>按照以上步骤配置django-mdeditor,markdown编辑器可以正常使用，但是这里有个大坑，就是有些浏览器在上传图片后上传的图片不回显！<br>我就碰到了这样的情况。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8%E6%83%85%E5%86%B5.png" alt="上传图片后上传的图片不回显"></p>
+<p>在添加图片界面选择本地上传图片后发现后台接口调到了 <code>/mdeditor/uploads/?guid=1657867564930</code> 接口并且返回了200，但是上传的图片地址不回显，提交报“错误：图片地址不能为空。” 这就奇了怪了。<br>打开浏览器的调试工具，发现报了一个错，<code>Uncaught SyntaxError: Unexpected token 下 in JSON at position 141</code></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87js%E6%8A%A5%E9%94%99.png" alt="浏览器的调试工具，发现报了一个错"></p>
+<p>点击详情，具体应该是获取的JSON无法解析。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87js%E6%8A%A5%E9%94%99%E8%B0%83%E8%AF%95%E4%BB%A3%E7%A0%81.png" alt="JSON无法解析"></p>
+<p>这个JSON为什么无法解析呢？开始进一步调试，这个JSON是上传时调用的后台上传方法返回的。所以来看看是不是后台上传接口返回的JSON串有什么问题。找到/mdeditor/uploads路由所对应的源码</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%B0%83%E8%AF%95%E8%B7%AF%E7%94%B1%E8%A7%86%E5%9B%BE.png" alt="/mdeditor/uploads路由所对应的源码"></p>
+<p>UploadView的源代码，就是返回一个成功的json报文</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> JsonResponse(&#123;<span class="string">'success'</span>: <span class="number">1</span>,</span><br><span class="line">                     <span class="string">'message'</span>: <span class="string">"上传成功！"</span>,</span><br><span class="line">                     <span class="string">'url'</span>: os.path.join(settings.MEDIA_URL,</span><br><span class="line">                                         MDEDITOR_CONFIGS[<span class="string">'image_folder'</span>],</span><br><span class="line">                                         file_full_name)&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>实际打断点debug也是正常返回上传成功的json报文。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%B0%83%E8%AF%95json.png" alt="打断点debug也是正常返回上传成功的json报文"></p>
+<p>这就有点奇怪了，接口返回了正常的json报文怎么就解析不了了呢？接着继续调前台js代码，看究竟是什么原因。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%B0%83%E8%AF%95json%E5%A4%9A%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2.png" alt="json串里多了几个字“下载视频”!"></p>
+<p>发现js获取的json串里多了几个字“下载视频”! 这是什么鬼？实在是没有地方有返回“下载视频”这几个字啊？看js代码是通过iframe来处理请求的，再来看看iframe的内容，发现iframe里确实有“下载视频”</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%B0%83%E8%AF%95iframe.png" alt="iframe里确实有“下载视频”"></p>
+<p>原来是有个chrome浏览器插件，擅自给加了“下载视频”的内容。再来看浏览器装了些啥插件。原来是有个迅雷插件，应该就是这个插件搞的鬼了，罪魁祸首就是它了！<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E4%B8%8D%E5%9B%9E%E6%98%BE%E9%97%AE%E9%A2%98%E5%8E%9F%E5%9B%A0%E5%A4%9A%E4%BA%86%E8%BF%85%E9%9B%B7%E6%8F%92%E4%BB%B6.png" alt="罪魁祸首迅雷插件"></p>
+<p>把这个迅雷插件删除或停用，果然一切正常！可以正常回显！！！</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%9B%9E%E6%98%BE%E6%AD%A3%E5%B8%B8.png" alt="可以正常回显"></p>
+<p>显示插入的图片</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220715/markdown%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E6%AD%A3%E5%B8%B8.png" alt="显示插入的图片"></p>
+<p>所以，碰到markdown上传图片不回显的情况，先看下自己的浏览器是不是开启了迅雷插件应用，如果开启了迅雷插件应用先停用或删除！</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/1dea176f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2651,255 +2921,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7f2622dc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/7f2622dc/" itemprop="url">网络信息安全之零信任</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-21T14:43:15+08:00">
-                2022-04-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T17:16:23+08:00">
-                2023-09-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/7f2622dc/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7f2622dc/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/7f2622dc/" class="leancloud_visitors" data-flag-title="网络信息安全之零信任">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  12
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、零信任产生的背景"><a href="#一、零信任产生的背景" class="headerlink" title="一、零信任产生的背景"></a>一、零信任产生的背景</h2><p>对于资源的访问保护，传统方式是划分安全区域，不同的安全区域有不同的安全要求。在安全区域之间就形成了网络边界，在网络边界处部署边界安全设备，包括防火墙、IPS、防毒墙、WAF等，对来自边界外部的各种攻击进行防范，以此构建企业网络安全体系，这种传统方式可称为边界安全理念。在边界安全理念中网络位置决定了信任程度，在安全区域边界外的用户默认是不可信的（不安全的），没有较多访问权限，边界外用户想要接入边界内的网络需要通过防火墙、VPN等安全机制；安全区域内的用户默认都是可信的（安全的），对边界内用户的操作不再做过多的行为监测，但是这就在每个安全区域内部存在过度信任（认为是安全的，给予的权限过大）的问题。同时由于边界安全设备部署在网络边界上，缺少来自终端侧、资源侧的数据，且相互之间缺乏联动，对威胁的安全分析是不够全面的，因此内部威胁检测和防护能力不足、安全分析覆盖度不够全面成为了边界安全理念固有的软肋。甚至很多企业只是非常粗粒度的划分了企业内网和外网（互联网），这种风险就更为明显。</p>
-<p>另外，随着云计算、物联网以及移动办公等新技术新应用的兴起，企业的业务架构和网络环境也随之发生了重大的变化，这给传统边界安全理念带来了新的挑战。比如云计算技术的普及带来了物理安全边界模糊的挑战，远程办公、多方协同办公等成为常态带来了访问需求复杂性变高和内部资源暴露面扩大的风险，各种设备（BYOD、合作伙伴设备）、各种人员接入带来了对设备、人员的管理难度和不可控安全因素增加的风险，高级威胁攻击（钓鱼攻击、水坑攻击、0day漏洞利用等）带来了边界安全防护机制被突破的风险，这些都对传统的边界安全理念和防护手段，如部署边界安全设备、仅简单认证用户身份、静态和粗粒度的访问控制等提出了挑战，亟需有更好的安全防护理念和解决思路。</p>
-<p>传统边界安全理念先天能力存在不足，新技术新应用又带来了全新的安全挑战，在这样的背景下，零信任的最早雏形源于2004年成立的耶利哥论坛（Jericho Forum ），其成立的使命正是为了定义无边界趋势下的网络安全问题并寻求解决方案，提出要限制基于网络位置的隐式信任；美国国防信息系统局（DISA）为了解决GIG（全球信息栅格，是美军信息化作战规划中极其重要且宏大的基础设施）中，如何实时、动态地对网络进行规划和重构的问题，发起了BlackCore项目，将基于边界的安全模型转换为基于单个事物安全性的模型，并提出了SDP（Software Defined Perimeter）的概念，该概念后来被云安全联盟（Cloud Security Alliance）采纳。2010年，由著名研究机构Forrester的首席分析师John Kindervag最早提出了零信任（Zero Trust）的概念，并由Google在BeyondCorp项目中率先得到了应用，很好的解决了边界安全理念难以应对的安全问题。</p>
-<h2 id="二、零信任的定义"><a href="#二、零信任的定义" class="headerlink" title="二、零信任的定义"></a>二、零信任的定义</h2><p>根据NIST《零信任架构标准》中的定义：零信任（Zero Trust，ZT）提供了一系列概念和思想，在假定网络环境已经被攻陷的前提下，当执行信息系统和服务中的每次访问请求时，降低其决策准确度的不确定性。零信任架构（ZTA）是一种企业网络安全的规划，它基于零信任理念，围绕其组件关系、工作流规划与访问策略构建而成。</p>
-<p>零信任代表了新一代的网络安全防护理念，并非指某种单一的安全技术或产品，其目标是为了降低资源访问过程中的安全风险，防止在未经授权情况下的资源访问，其关键是打破信任和网络位置的默认绑定关系。</p>
-<p>在零信任理念下，网络位置不再决定访问权限，在访问被允许之前，所有访问主体都需要经过身份认证和授权。身份认证不再仅仅针对用户，还将对终端设备、应用软件等多种身份进行多维度、关联性的识别和认证，并且在访问过程中可以根据需要多次发起身份认证。授权决策不再仅仅基于网络位置、用户角色或属性等传统静态访问控制模型，而是通过持续的安全监测和信任评估，进行动态、细粒度的授权。安全监测和信任评估结论是基于尽可能多的数据源计算出来的。</p>
-<p>零信任理念的基本假设、基本原则如下：<br>1、零信任理念的基本假设<br>a) 内部威胁不可避免；<br>b) 从空间上，资源访问的过程中涉及到的所有对象（用户、终端设备、应用、网络、资源等）默认都不信任，其安全不再由网络位置决定；<br>c) 从时间上，每个对象的安全性是动态变化的（非全时段不变的）。<br>2、零信任的基本原则<br>a）任何访问主体（人/设备/应用等），在访问被允许之前，都必须要经过身份认证和授权，避免过度的信任；<br>b）访问主体对资源的访问权限是动态的（非静止不变的）；<br>c）分配访问权限时应遵循最小权限原则；<br>d）尽可能减少资源非必要的网络暴露，以减少攻击面；<br>e）尽可能确保所有的访问主体、资源、通信链路处于最安全状态；<br>f）尽可能多的和及时的获取可能影响授权的所有信息，并根据这些信息进行持续的信任评估和安全响应。</p>
-<p>零信任在所有需要对资源访问进行安全防护的场景都可以使用，但是否采用，应根据企业可接受的安全风险水平和投入综合考虑决定。</p>
-<h2 id="三、零信任技术体系"><a href="#三、零信任技术体系" class="headerlink" title="三、零信任技术体系"></a>三、零信任技术体系</h2><p>目前零信任主要有三大技术体系，分别是<strong>SDP（软件定义安全）</strong>、<strong>IAM（增强身份管理）</strong>和<strong>MSG（微隔离）</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/SIM.png" alt="零信任三大技术体系"></p>
-<h3 id="1、软件定义安全（SDP）"><a href="#1、软件定义安全（SDP）" class="headerlink" title="1、软件定义安全（SDP）"></a>1、软件定义安全（SDP）</h3><p>SDP即“软件定义边界”,是国际云安全联盟CSA于2014年提出的基于零信任(Zero Trust)理念的新一代网络安全模型。SDP在使应用程序所有者能够在需要时部署安全边界,以便将服务与不安全的网络隔离开来。SDP将物理设备替换为在应用程序所有者控制下运行的逻辑组件。SDP仅允许在设备验证和身份验证后访问企业应用程序基础架构。SDP的体系结构由两部分组成:SDP主机和SDP控制器。SDP主机可以发起连接或接受连接。这些操作通过安全控制通道与SDP 控制器交互来管理。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/SDP.png" alt="SDP软件定义边界"></p>
-<p>SDP安全优势：<br>1.SDP最大限度地减少攻击面，降低安全风险；<br>2.SDP通过分离访问控制和数据通道来保护关键资产和基础设施，从而防止潜在的基于网络的攻击；<br>3.SDP提供了现有安全设备难以实现的整体集成安全架构。<br>4.SDP提供了一种基于连接的安全体系结构，而不是基于IP的替代方案。由于整个IT环境的爆炸式增长，云环境中缺乏边界使得基于IP的安全性变得脆弱。<br>5.SDP允许对所有连接进行预检查和控制，从这些连接可以连接设备、服务和设施，因此其整体安全性比传统架构更有利。</p>
-<h3 id="2、增强身份管理（IAM）"><a href="#2、增强身份管理（IAM）" class="headerlink" title="2、增强身份管理（IAM）"></a>2、增强身份管理（IAM）</h3><p>增强身份管理IAM是大多数组织实现安全和IT运营策略的核心。它使企业可以自动访问越来越多的技术资产,同时管理潜在的安全和合规风险。身份管理为所有用户,应用程序和数据启用并保护数字身份。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/IAM.png" alt="零信任身份与访问管理"></p>
-<p>身份管理可以帮助组织有效解决复杂业务带来的挑战，并平衡四个关键目标：<br>1.加强安全，降低风险。<br>2.提高合规性和审计绩效。<br>3.提供快速有效的业务访问。<br>4.降低运营成本。</p>
-<h3 id="3、微隔离（MSG）"><a href="#3、微隔离（MSG）" class="headerlink" title="3、微隔离（MSG）"></a>3、微隔离（MSG）</h3><p>微隔离是一种网络安全技术，它可以将数据中心在逻辑上划分为各个工作负载级别的不同安全段，然后定义安全控制并为每个唯一段提供服务。微隔离使IT人员可以使用网络虚拟化技术在数据中心内部部署灵活的安全策略,而不必安装多个物理防火墙。微隔离可用于保护每个虚拟机(VM)在具有策略驱动的应用程序级安全控制的企业网络中。微隔离技术可以大大增强企业的抵御能力。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/MSG.png" alt="威隔离MSG"></p>
-<p>微隔离是在数据中心和云部署中创建安全区域的一种方法。这种方法使企业组织能够分离工作负载并分别保护它们，从而使网络安全更加完善，从而更加有效。<br>以下是微隔离的一些优点：<br>1.减少攻击面<br>2.提高横向运动的安全性<br>3.安全关键应用<br>4.提高合规性</p>
-<h2 id="四、如何实现零信任体系"><a href="#四、如何实现零信任体系" class="headerlink" title="四、如何实现零信任体系"></a>四、如何实现零信任体系</h2><p>零信任的覆盖范围很广，根据企业的实际情况，可参考如下过程执行逐步建立零信任安全体系。</p>
-<p><strong>1、建立统一的认证平台，提升基础安全及执行能力</strong><br>建立统一的认证能力平台，为所有业务系统提供认证能力。所有业务平台对接认证能力平台以获得中级及以上认证能力，大幅降低因认证方式带来的风险。<br>可结合已经建立的 4A 系统，升级 4A 系统认证体系。使用多因素认证提高安全等级。收集并绑定设备指纹，将每台设备（PC 端或移动 端）与账户关联绑定。通过账号与设备的绑定，实现用 户、账号、设备三位一体的认证体系。建立以零信任网关为核心的控制体系，该方式将大大提高对用户访问行为的控制，弥补现有业务系统在访 控制方面的安全短板。建立采集系统，在用户使用业务系统时，采集行为和环境信息。零信任网关体系可以与 4A 系统和其它业务系统结合，通过代理技术隐藏所有被代理系统的 IP 和端口，并对用户的访问行为进行鉴权检测。</p>
-<p><strong>2、升级或部署EDR，加强终端管控和行为风险发现能力</strong><br>加强客户端监管，可通过升级资产与基线管理平台或部署EDR终端控制接入软件，对终端环境进行基线扫描和检查预警。对于不符合要求的终端，通过统一身份认证平台禁止其接入，同时，给出修复建议。<br>建立大数据处理系统，并通过该系统将上一阶段收集的用户行为信息进行统计和分析，结合电信内部管理规章制度，制定一套有针对性的基础专家规则。同时，建立规则引擎，规则引擎根据专家规则判断用户当前环境和行为风险。如果在规则中缺少必要信息指标，通过调整采集指标达到目标。<br>在基础规则基础上，根据不同的业务系统特点，深入挖掘与业务系统紧密相关的规则。结合认证方式在各个接入了认证能力平台的业务系统中实现自适应处置，使用户体会到初级智能化安全。规则引擎与身份认证系统对接，对接完成后，可以通过对用户访问各个业务系统的检测评估发现潜在风险，主要包括冒名访问和违规操作。</p>
-<p><strong>3、引入智能工具，从传统安全向智慧安全转变</strong><br>建立机器学习平台，引入齐全的人工智能模型和可视化工具，利用前期收集的用户数据，训练适配的模型，建立智能规则引擎，对用户请求的行为信息和环境信息进行自动化评估，关联前期部署的规则引擎，验证并改良智能规则和引擎。通过机器学习平台建立无感知认证模型，作为辅助认证方式进一步提高用户体验，从“有认证”升华至“无认证”。通过大数据和机器学习模型，结合深度挖掘技术建立用户画像库，识别用户行为习惯，践行“行为即指纹”理念，实现“零信任”的终极目标。</p>
-<p>参考资料来源：<br>零信任产业标准工作组《零信任实战白皮书》<br>《零信任架构的3大核心技术》<br>《零信任网络安全》<br>《零信任技术系统规范》</p>
-<hr>
-<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/9/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/">&gt;</a>
   </nav>
 
 
@@ -2951,7 +2977,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3063,7 +3089,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">305.8k</span>
+    <span title="Site words total count">309.8k</span>
   
   
 <!--51la网站应用监控-->

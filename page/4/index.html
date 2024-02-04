@@ -313,6 +313,283 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/59886424/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/59886424/" itemprop="url">网络安全之认识托管威胁检测与响应（MDR）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-11-12T17:22:27+08:00">
+                2023-11-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-11-12T17:49:46+08:00">
+                2023-11-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/59886424/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/59886424/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/59886424/" class="leancloud_visitors" data-flag-title="网络安全之认识托管威胁检测与响应（MDR）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着数字化转型加速，企业的IT环境日益复杂，面临的网络安全威胁也在不断增加。传统的防御措施已经无法有效应对新型威胁，而且很多企业缺乏专业的网络安全团队和技术手段，导致大量的安全事件未能及时被发现和处理。</p>
+<p>在这种背景下，托管威胁检测响应服务（MDR）应运而生。MDR能够利用现代安全运营中心的技术和专业人员，为客户提供全天候的安全监测和快速响应，从而缩短威胁发现和响应之间的窗口期，降低风险并减轻安全运营压力。</p>
+<p>那么什么是MDR，MDR都包含了什么？MDR又与XDR是什么关系，与MSS又有什么区别？带着这些问题我们来了解托管威胁检测与响应（MDR）</p>
+<h2 id="一、什么是MDR"><a href="#一、什么是MDR" class="headerlink" title="一、什么是MDR"></a>一、什么是MDR</h2><p>托管威胁检测与响应（Managed Detection and Response，托管检测与响应）是一种外包服务，旨在提供7x24小时的网络安全事件监测和分析，快速发现威胁并进行有效的响应。它结合了分析和人类专业知识来检测和消除网络中的威胁。大多数MDR服务通过主机层与网络层的威胁监测与分析技术，生成、收集安全事件以及上下文数据，结合安全运营平台的数据分析技术和安全运营专家的技术力量共同完成。</p>
+<p>通俗一点讲，就是一些中小企业受制于在人员、时间、技能、资金、流程等方面的缺失，将企业自身的安全威胁检测与响应的活委托给安全服务商（Managed Security Service Provider, MSSP），通过外部托管安全服务提供商(MSSP)提供专业知识并填补安全架构空白，从而解决许多企业网络安全专家短缺技能不足的问题。从趋势上看，越来越多的企业转向选择MDR，由此获得最大化的投入产出效果。</p>
+<p>倾向于采用MDR的企业的几种情形：</p>
+<ul>
+<li>没有安全运营团队，因此希望将安全监控运营外包给专门从事该领域的第三方；</li>
+<li>安全运营团队人数有限，但通过MDR提供商，就能确保团队不必承担大多数一线工作负担以及众多其他安全运营工作任务，而是能够更加专注于服务输出；</li>
+<li>有安全运营团队，可以自己进行全天候监控。尽管如此，他们仍希望将一线威胁检测工作转交给专门从事这项工作的公司。</li>
+</ul>
+<h2 id="二、MDR都包含了些什么"><a href="#二、MDR都包含了些什么" class="headerlink" title="二、MDR都包含了些什么"></a>二、MDR都包含了些什么</h2><p>Gartner将托管威胁检测与响应（MDR）其描述为通过7x24小时全天候不间断的监控和覆盖，建立起快速威胁检测与有效响应的服务。绝大多数MDR服务是通过主机层与网络层的技术生成、收集安全事件以及上下文数据，支持威胁检测与事件分析。</p>
+<p>MDR服务一般包含以下内容：</p>
+<ul>
+<li>实时威胁检测：MDR服务提供实时监控和分析网络流量、系统日志以及其他安全事件的能力。</li>
+<li>威胁狩猎：威胁狩猎力图在威胁访问关键数据之前发现威胁，通过使用先进的威胁情报和分析工具，识别潜在的安全威胁，包括已知的和未知的威胁。</li>
+<li>威胁情报分析：情报是了解攻击者及其攻击方式的关键。安全团队通过威胁情报可以更好地了解特定的攻击者及其常用的战术、技术和流程 (TTP)，从而更有效地防御威胁；</li>
+<li>事件响应：MDR服务不仅仅是关于检测威胁，还包括对安全事件的响应。一旦检测到潜在威胁，MDR团队会采取相应的措施，可能包括隔离受感染的系统、清除恶意代码，以及协助客户制定恢复计划。</li>
+<li>全覆盖范围：MDR提供24/7/365持续服务，分析师可以在白天或晚上的任何时间做出响应；</li>
+<li>专业知识：MDR不仅提供基于用户安全工具产生的日志的检测服务，还提供专业的安全人员对相关事件进行快速调查和响应；</li>
+<li>实时可见性：MDR产品需要精细的实时端点可见性来捕捉和阻止攻击者。</li>
+</ul>
+<p>MDR充分利用客户侧已部署的终端、边界、流量等防护设备，通过行为分析、流量分析、威胁情报以及与多级专家的组合，为客户提供更加快速和全面的威胁监视、检测和响应服务。MDR服务具有现代安全运营中心远程交付的能力，专注于精准检测、调查分析、积极遏制事件，旨在通过持续运营以减少威胁发现和威胁响应之间的时间。</p>
+<p>MDR服务不仅限于更强的检测和响应能力，它还可以为不堪重负的安全团队提供主动防御情报和高级威胁洞察。企业还可以使用MDR服务来应对合规挑战，因为它提供有关各种法规和标准的完整报告和日志保留。</p>
+<h2 id="三、MDR与XDR的关系"><a href="#三、MDR与XDR的关系" class="headerlink" title="三、MDR与XDR的关系"></a>三、MDR与XDR的关系</h2><p>XDR全名是Extended Detection and Response（扩展检测和响应）Gartner给出的XDR定义为：XDR是一种基于SaaS的、绑定于特定供应商的安全威胁检测和事件响应工具，它将多个安全产品集成到一个统一了所有许可安全组件的内聚安全运营系统中。</p>
+<p>通常情况下，可以认为XDR是一个融合了多种安全检测、响应能力的平台框架，只要是为了解决威胁检测与响应的问题能力模块，都可以往里装。特别的强调<strong>X</strong>的概念，也就是可以 扩展（<strong>Extended</strong>）的检测与响应。大家都知道在数学里通常用X表示变量，这里X覆盖了云、网、端、威胁情报等，EDR和NDR及其他的检测设备都可以作为XDR的能力模块作为X为XDR提供数据来源和检测手段。实际在威胁检测与响应的过程中人也是重要的环节，除了EDR、NDR，MDR中的M也可以认为是X的一种。</p>
+<p>MDR是一种托管检测和响应服务，通过外部托管安全服务提供商（MSSP）提供专业知识并填补安全架构空白，解决许多企业网络安全专家短缺的问题。MDR帮助公司保持监控状态，预测并防止潜在的网络攻击。</p>
+<p>XDR是一种更强大的网络安全解决方案，可从多个来源收集和分析数据，以预防、检测和响应网络攻击。XDR是端点检测和响应（EDR）的演进版本，通过以标准格式汇集历史和实时事件数据来提高安全团队的效率和生产力。XDR超越了EDR，具有跨网络的检测和缓解功能，可有效保护企业的整个数字环境，包括网络、云存储、应用程序和端点。XDR提供多种类型的检测，特别适合那些现有解决方案无法覆盖所有攻击面的的企业。XDR支持可扩展的高性能存储、快速索引搜索和自动化驱动的威胁响应，经常以软件即服务（SaaS）的形式提供，使企业更容易使用该技术。</p>
+<p>总的来说，MDR和XDR都是用于检测和响应网络安全威胁的解决方案，但XDR概念更大，是一个覆盖了所有能够解决威胁检测与响应的框架，而MDR托管检测和响应服务更加强调的是人和服务。MDR是通过使用各种XDR的工具和模块如EDR、NDR或其他工具和手段来实现威胁的检测和响应服务。</p>
+<h2 id="四、MDR与MSS的区别"><a href="#四、MDR与MSS的区别" class="headerlink" title="四、MDR与MSS的区别"></a>四、MDR与MSS的区别</h2><p>Garter将MDR服务描述为：为客户提供远程交付的现代安全运营中心(MSOC)功能，通过提供24/7连续监测来在建立和改进有效的早期威胁检测和响应。</p>
+<p>MSS（Managed Security Service，托管安全服务）由来已久，主要是由托管安全服务商（ MSSP）对企业的安全设备及系统进行外包的监控和管理，常见的服务包括托管防火墙、入侵检测、虚拟专用网络、漏洞扫描以及反病毒服务。</p>
+<p>MDR（托管威胁检测与响应）和MSS（托管安全服务）是两种不同的安全服务，虽然它们的目标都是帮助组织提高安全性，但在实现方式和关注点上还是存在一些区别。以下是它们的主要区别：<br>1.关注点不同：</p>
+<ul>
+<li>MDR： MDR的主要关注点是在网络和系统中主动检测和应对威胁。它强调实时监控、威胁检测和迅速的响应。MDR通常更加注重对威胁的深度分析和处理。</li>
+<li>MSS： MSS关注的范围更广泛，包括安全信息与事件管理（SIEM）、日志管理、设备管理、合规性管理等。MSS的目标是提供一种全面的、托管的安全解决方案。</li>
+</ul>
+<p>2.响应方式不同：</p>
+<ul>
+<li>MDR： MDR强调对安全事件的主动响应。一旦检测到威胁，MDR服务提供商通常会采取行动，协助客户隔离受影响的系统、清除恶意代码，并支持恢复操作。</li>
+<li>MSS： MSS更侧重于对事件的收集、监控和报告，而不一定强调实时响应。它通常提供日志管理、合规性报告等功能，用于长期的威胁分析和合规性要求。</li>
+</ul>
+<p>3.服务深度不同：</p>
+<ul>
+<li>MDR：MDR服务通常更深度地涉及威胁检测和响应，可能包括使用先进的威胁情报、行为分析、终端检测与响应（EDR）等技术。 </li>
+<li>MSS：MSS更广泛地覆盖了安全服务的多个方面，包括日志管理、漏洞管理、合规性管理等。它可能更注重对整个安全生态系统的全面管理。</li>
+</ul>
+<p>4.技术要求不同：</p>
+<ul>
+<li>MDR： MDR通常需要使用更先进的威胁检测技术，可能包括机器学习、行为分析、沙箱技术等，以及对安全事件的实时响应能力。</li>
+<li>MSS： MSS可能更注重于传统的安全技术，如防火墙、入侵检测系统（IDS）、反病毒软件等，同时也包括SIEM等辅助工具。</li>
+</ul>
+<p>总体而言，MDR更注重在发生安全事件时的实时响应和深度分析，而MSS则更广泛地提供安全服务，包括对整个安全基础设施的管理和监控；MSS主要关注预防，而MDR则更注重检测和响应；MSS的服务宽且浅，MDR的服务窄且深。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231112/MSSP%E4%B8%8EMDR%E7%9A%84%E5%8C%BA%E5%88%AB.png" alt="MSSP与MDR的区别"></p>
+<p>Gartner认为MSS和MDR是交集的关系，MSS尚不会完全覆盖MDR服务。两者之间最大的区别在于，MSS服务在发现威胁或告警的时候，会通知企业自行处置，而MDR则会利用自身的技术去完成对威胁的检测，帮助企业完成响应和处置的工作。不过，随着托管安全服务的发展，这两种服务之间的界限越来越模糊，很多MSS厂商也开始提供MDR服务。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f9fbc895/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2944,268 +3221,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/cd0f90f9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/cd0f90f9/" itemprop="url">Python进行数据相关性分析实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-08-31T18:10:01+08:00">
-                2023-08-31
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-08-31T18:21:21+08:00">
-                2023-08-31
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/cd0f90f9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/cd0f90f9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/cd0f90f9/" class="leancloud_visitors" data-flag-title="Python进行数据相关性分析实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>平时在做数据分析的时候，会要对特征进行相关性分析，分析某些特征之间是否存在相关性。本文将通过一个实例来对数据进行相关性分析与展示。</p>
-<h2 id="一、数据集介绍"><a href="#一、数据集介绍" class="headerlink" title="一、数据集介绍"></a>一、数据集介绍</h2><p>本次分析的是企业合作研发模式效果分析，企业的合作研发大致分为 企企合作、企学合作、企研合作、企学研合作，也就是企业与企业合作研发、企业与大学合作研发、企业与研究所合作研法、企业联合学校、研究所共同合作研发。现在就是想通过数据分析来看看那种合作研发模式的效果最好，产出最佳。</p>
-<p>数据集是从公开网站获取的公开的专利信息，包括专利的公告日期、专利评分、专利估值，这些指标说明了专利的价值。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E4%B8%93%E5%88%A9%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="专利数据集"></p>
-<h2 id="二、数据整理和探索"><a href="#二、数据整理和探索" class="headerlink" title="二、数据整理和探索"></a>二、数据整理和探索</h2><p>有了数据后先对数据进行整理，在这里我们用II表示企企合作、IU表示企学合作、IR表示企研合作、IUR表示企学研合作。<br>先导入python数据分析三大件numpy、pandas、matplotlib</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.rcParams[<span class="string">"font.sans-serif"</span>]=[<span class="string">"SimHei"</span>] <span class="comment">#设置字体</span></span><br><span class="line">plt.rcParams[<span class="string">"axes.unicode_minus"</span>]=<span class="literal">False</span> <span class="comment">#该语句解决图像中的“-”负号的乱码问题</span></span><br></pre></td></tr></table></figure>
-
-<p>对数据进行整理，将“有效”的数据检索出来，将合作研发的模式标识出来</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">II_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企企合作申报总数据_21578_2023-03-11.xlsx'</span>) <span class="comment">#企企合作</span></span><br><span class="line">IU_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企学合作申报总数据_6451_2023-03-11.xlsx'</span>)  <span class="comment">#企学合作</span></span><br><span class="line">IR_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企研合作申报总数据_1706_2023-03-11.xlsx'</span>)  <span class="comment">#企研合作</span></span><br><span class="line">IUR_data_original=pd.read_excel(<span class="string">r'./data/绿色低碳专利企学研合作申报总数据_241_2023-03-11.xlsx'</span>)  <span class="comment">#企学研合作</span></span><br><span class="line">II_data_original[<span class="string">'class_type'</span>]=<span class="string">'II'</span></span><br><span class="line">IU_data_original[<span class="string">'class_type'</span>]=<span class="string">'IU'</span></span><br><span class="line">IR_data_original[<span class="string">'class_type'</span>]=<span class="string">'IR'</span></span><br><span class="line">IUR_data_original[<span class="string">'class_type'</span>]=<span class="string">'IUR'</span></span><br><span class="line">data_original=II_data_original.append([IU_data_original,IR_data_original,IUR_data_original])</span><br><span class="line">data_original=data_original[(data_original.法律有效性==<span class="string">'有效'</span>)]</span><br><span class="line">data_original</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%A0%94%E5%8F%91%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E6%A0%87%E7%AD%BE.png" alt="合作研发的模式标识"><br>对日期进行处理，我们以年度为单位来分析每年各企业合作研发模式的数据，所以将日期处理成“年”为单位。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#处理日期</span></span><br><span class="line">data_original[<span class="string">'date'</span>]=pd.to_datetime(data_original[<span class="string">'公开(公告)日'</span>],format=<span class="string">"%Y%m%d"</span>)</span><br><span class="line">data_original[<span class="string">'year'</span>]=data_original[<span class="string">'date'</span>].dt.strftime(<span class="string">'%Y'</span>)</span><br><span class="line">data_original</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%B9%B4%E4%BB%BD%E6%A0%87%E7%AD%BE.png" alt="年份标签"></p>
-<p>我们只需要分析相应的专利质量的指标，这里与专利质量相关的指标大致为引文数量、专利估值、专利评分。然后以年度为单位来看看数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data_group=data_original.groupby([<span class="string">'year'</span>,<span class="string">'class_type'</span>]).size()</span><br><span class="line">df_data_group=data_group.unstack()</span><br><span class="line">data_group_count=data_original.groupby([<span class="string">'year'</span>]).size()</span><br><span class="line">data_group_quotecount=data_original[[<span class="string">'year'</span>,<span class="string">'引文数量总计'</span>]].groupby([<span class="string">'year'</span>]).sum()  <span class="comment">#引文数量</span></span><br><span class="line">data_group_value=data_original[[<span class="string">'year'</span>,<span class="string">'专利估值'</span>]].groupby([<span class="string">'year'</span>]).mean() <span class="comment">#专利估值</span></span><br><span class="line">data_group_grade=data_original[[<span class="string">'year'</span>,<span class="string">'专利评分'</span>]].groupby([<span class="string">'year'</span>]).mean() <span class="comment">#专利评分grade</span></span><br><span class="line">df_data_group[<span class="string">'count'</span>]=data_group_count</span><br><span class="line">df_data_group[<span class="string">'quotecount'</span>]=data_group_quotecount</span><br><span class="line">df_data_group[<span class="string">'value'</span>]=data_group_value</span><br><span class="line">df_data_group[<span class="string">'grade'</span>]=data_group_grade</span><br><span class="line">df_data_group</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E7%A0%94%E5%8F%91%E6%95%B0%E6%8D%AE.png" alt="合作研发数据"></p>
-<p>历年（2004-2022年）专利的合作模式的专利数量增长趋势</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data_group.plot.bar(y=[<span class="string">'II'</span>,<span class="string">'IR'</span>,<span class="string">'IU'</span>,<span class="string">'IUR'</span>],figsize=(<span class="number">32</span>,<span class="number">4</span>),stacked=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%93%E5%88%A9%E6%95%B0%E9%87%8F%E5%A2%9E%E9%95%BF%E8%B6%8B%E5%8A%BF.png" alt="合作模式的专利数量增长趋势"></p>
-<p>历年（2015-2022年）的合作模式的专利数量对比情况</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data_group[<span class="string">'2015'</span>:<span class="string">'2022'</span>].plot.bar(y=[<span class="string">'II'</span>, <span class="string">'IR'</span>, <span class="string">'IU'</span>, <span class="string">'IUR'</span>], figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%90%88%E4%BD%9C%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%93%E5%88%A9%E6%95%B0%E9%87%8F%E5%AF%B9%E6%AF%94%E6%83%85%E5%86%B5.png" alt="合作模式的专利数量对比情况"></p>
-<p>从数据上可以看出，从2004年-2021年前些年，企业的研发模式是比较单一的，2004-2008年大部分都是企企合作的研发模式，其他研发模式先对比较少。从2004年-2021年，随着我国企业对研发的投入力度也来越大，专利的数量是逐年递增的，研发模式也逐步的多样化起来，但还是以企企合作和企学合作为主。</p>
-<h2 id="三、数据相关性分析与展示"><a href="#三、数据相关性分析与展示" class="headerlink" title="三、数据相关性分析与展示"></a>三、数据相关性分析与展示</h2><p>因为从数据上看，从2015年以后各种研发模式逐步的多样化起来，所以我们来看一下2015年以后研发模式与研发质量各项指标的相关性。<br>通过numpyde的corrcoef()方法可以很方便的计算出各个特征之间的相关性系数，得出相关性矩阵。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ruslut=np.corrcoef(df_data_group[<span class="string">'2015'</span>:<span class="string">'2022'</span>],rowvar=<span class="literal">False</span>)</span><br><span class="line">ruslut</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5.png" alt="相关性矩阵"></p>
-<p>看数据肯定没有看图形直观，所以我们将这个相关性矩阵进行可视化的展示。这里用seaborn来做数据的图形化展示。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">figure, ax = plt.subplots(figsize=(<span class="number">12</span>, <span class="number">12</span>))</span><br><span class="line">df=df_data_group[<span class="string">'2015'</span>:<span class="string">'2022'</span>]</span><br><span class="line">sns.heatmap(df.corr(), square=<span class="literal">True</span>, annot=<span class="literal">True</span>, ax=ax)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%9B%BE.png" alt="相关性矩阵图形化展示"></p>
-<p>这里可以看出企企合作和企学合作的数量相关性比较高，而企研合作value和grade具有相关性，说明企研合作模式的研发质量相对来说比较好。</p>
-<p>最后，我们来看一下专利TOP20的单位研发类型分布、估值TOP20的专利的研发类型分布、评分TOP20的专利、研发类型的分布。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">data_countbyComp=data_original[[<span class="string">'第一申请人-原文'</span>,<span class="string">'class_type'</span>]].groupby([<span class="string">'第一申请人-原文'</span>]).size()</span><br><span class="line">df_data_countbyComp=pd.DataFrame(data_countbyComp,columns=[<span class="string">'counts'</span>])</span><br><span class="line">df_data_countbyCompTOP=df_data_countbyComp.sort_values(<span class="string">'counts'</span>,ascending=<span class="literal">False</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">count_top=data_original[(data_original[<span class="string">'第一申请人-原文'</span>].isin(df_data_countbyCompTOP.index.values))]</span><br><span class="line">value_top=data_original.sort_values(<span class="string">'专利估值'</span>,ascending=<span class="literal">False</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">grade_top=data_original.sort_values(<span class="string">'专利评分'</span>,ascending=<span class="literal">False</span>)[<span class="number">0</span>:<span class="number">10</span>]</span><br><span class="line">count_top_show=count_top.groupby([<span class="string">'class_type'</span>]).size()</span><br><span class="line">value_top_show=value_top.groupby([<span class="string">'class_type'</span>]).size()</span><br><span class="line">grade_top_show=grade_top.groupby([<span class="string">'class_type'</span>]).size()</span><br><span class="line">grade_top_show.index.values</span><br><span class="line">fig, axs = plt.subplots(<span class="number">1</span>, <span class="number">3</span>,figsize=(<span class="number">18</span>, <span class="number">18</span>))</span><br><span class="line">axs[<span class="number">0</span>].pie(count_top_show,labels=count_top_show.index.values,autopct=<span class="string">'%.2f%%'</span>,explode=(<span class="number">0.05</span>,<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">axs[<span class="number">0</span>].set(title=<span class="string">'数量TOP20的单位,研发类型分布'</span>)</span><br><span class="line">axs[<span class="number">1</span>].pie(value_top_show,labels=value_top_show.index.values,autopct=<span class="string">'%.2f%%'</span>,explode=(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.05</span>))</span><br><span class="line">axs[<span class="number">1</span>].set(title=<span class="string">'估值TOP20的专利,研发类型分布'</span>)</span><br><span class="line">axs[<span class="number">2</span>].pie(grade_top_show,labels=grade_top_show.index.values,autopct=<span class="string">'%.2f%%'</span>,explode=(<span class="number">0.05</span>, <span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">axs[<span class="number">2</span>].set(title=<span class="string">'评分TOP20的专利,研发类型分布'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230831/%E5%88%86%E5%B8%83%E5%9B%BE.png" alt="分布图"></p>
-<p>这里可以看出数量上还是以企企合作研发的模式最多，但是从专利的估值评分来看企学的专利估值占比最高。说明从 企企合作、企学合作、企研合作、企学研合作的这些企业合作研发模式看，企企合作研发数量最多，企学合作研发的质量相对较高。</p>
-<p>至此，本文通过一个实例介绍了用python通过数据分析三件套numpy、pandas、matplotlib进行数据相关性分析的过程。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/5/">&gt;</a>
   </nav>
 
 
@@ -3257,7 +3277,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3369,7 +3389,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">305.8k</span>
+    <span title="Site words total count">309.8k</span>
   
   
 <!--51la网站应用监控-->
