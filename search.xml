@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Selenium安装与配置</title>
+      <link href="/posts/8370b2b6/"/>
+      <url>/posts/8370b2b6/</url>
+      
+        <content type="html"><![CDATA[<p>Selenium是一个用于Web应用程序测试的自动化工具。它直接运行在浏览器中，模拟真实用户的操作。Selenium支持多种主流浏览器，如IE、Mozilla Firefox、Safari、Google Chrome、Opera和Edge等。在爬取数据的时候对于需要登录后才能爬取的情况往往可以利用Selenium来进行模拟登录，登录后进行数据的获取。这里先介绍Selenium的安装与配置，实现通过python来驱动浏览器进行操作。</p><h2 id="一、selenium安装"><a href="#一、selenium安装" class="headerlink" title="一、selenium安装"></a>一、selenium安装</h2><p>要安装Selenium，首先需要具备Python开发环境。以下是安装Selenium的步骤：</p><h3 id="1-Python环境准备："><a href="#1-Python环境准备：" class="headerlink" title="1. Python环境准备："></a>1. Python环境准备：</h3><ul><li><p>打开Python官网：<a href="https://www.python.org/downloads/，下载适合你操作系统的Python版本。" target="_blank" rel="noopener">https://www.python.org/downloads/，下载适合你操作系统的Python版本。</a></p></li><li><p>安装Python。在window下安装python环境非常简单，直接下一步下一步就可以安装完成。安装过程中，确保将Python添加到环境变量中，以便在命令行中运行Python命令。</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240223/python%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="在这里插入图片描述"></p></li><li><p>安装完成后，可以在命令行中输入<code>python --version</code>来验证Python是否安装成功，并查看版本号。</p></li></ul><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240223/%E6%9F%A5%E7%9C%8Bpython%E7%89%88%E6%9C%AC%E5%8F%B7.png" alt="在这里插入图片描述"></p><h3 id="2-安装Selenium："><a href="#2-安装Selenium：" class="headerlink" title="2. 安装Selenium："></a>2. 安装Selenium：</h3><ul><li>在命令行中，使用pip（Python的包管理工具）来安装Selenium。输入以下命令并按回车键执行：</li><li>如果你的系统有多个Python版本，可能需要使用pip3代替pip。</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure><h3 id="3-浏览器驱动安装："><a href="#3-浏览器驱动安装：" class="headerlink" title="3. 浏览器驱动安装："></a>3. 浏览器驱动安装：</h3><ul><li>Selenium支持多种浏览器，但每种浏览器都需要相应的驱动程序。例如，对于Chrome浏览器，你需要下载ChromeDriver。<br>○ 访问ChromeDriver的下载页面：<a href="https://sites.google.com/a/chromium.org/chromedriver/，选择与你的Chrome浏览器版本相对应的ChromeDriver版本。" target="_blank" rel="noopener">https://sites.google.com/a/chromium.org/chromedriver/，选择与你的Chrome浏览器版本相对应的ChromeDriver版本。</a><br>○ 国内镜像下载站点 <a href="https://registry.npmmirror.com/binary.html?path=chromedriver/" target="_blank" rel="noopener">https://registry.npmmirror.com/binary.html?path=chromedriver/</a><br> 高版本的ChromeDriver可以在<a href="https://chromedriver.com/download" target="_blank" rel="noopener">https://chromedriver.com/download</a> 下载</li><li>下载后，解压（如果需要的话），并将ChromeDriver的路径添加到系统环境变量中，或者将其放在你的项目目录中。比如我的是放到 C:\python\Scripts 并将C:\python\Scripts配置到了系统环境变量中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240223/%E5%B0%86ChromeDriver%E6%94%BE%E5%85%A5%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="在这里插入图片描述"></li></ul><h3 id="4-验证安装："><a href="#4-验证安装：" class="headerlink" title="4. 验证安装："></a>4. 验证安装：</h3><p> 参考selenium的官方文档，创建一个简单的Python脚本，使用Selenium打开浏览器并访问一个网页。<br>  运行这个脚本。如果一切顺利，它会打开Chrome浏览器并导航到指定的URL，然后关闭浏览器。<br><strong>代码如下：</strong></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"></span><br><span class="line">driver.get(<span class="string">"https://www.selenium.dev/selenium/web/web-form.html"</span>)</span><br><span class="line"></span><br><span class="line">title = driver.title</span><br><span class="line"></span><br><span class="line">driver.implicitly_wait(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">text_box = driver.find_element(by=By.NAME, value=<span class="string">"my-text"</span>)</span><br><span class="line">submit_button = driver.find_element(by=By.CSS_SELECTOR, value=<span class="string">"button"</span>)</span><br><span class="line"></span><br><span class="line">text_box.send_keys(<span class="string">"Selenium"</span>)</span><br><span class="line">submit_button.click()</span><br><span class="line"></span><br><span class="line">message = driver.find_element(by=By.ID, value=<span class="string">"message"</span>)</span><br><span class="line">text = message.text</span><br><span class="line"></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure><p><strong>效果如下：</strong><br>打开一个浏览器，访问<a href="https://www.selenium.dev/selenium/web/web-form.html" target="_blank" rel="noopener">https://www.selenium.dev/selenium/web/web-form.html</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240223/%E9%80%9A%E8%BF%87selenium%E9%A9%B1%E5%8A%A8%E6%89%93%E5%BC%80%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="在这里插入图片描述"></p><p>对浏览器中的元素进行操作，最后关闭浏览器。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240223/%E9%80%9A%E8%BF%87selenium%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%85%83%E7%B4%A0%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C.png" alt="在这里插入图片描述"></p><blockquote><p>请注意，由于Selenium和浏览器驱动程序可能会定期更新，因此在安装和配置过程中，最好参考最新的官方文档和指南。</p></blockquote><h2 id="二、常见问题"><a href="#二、常见问题" class="headerlink" title="二、常见问题"></a>二、常见问题</h2><p>在安装Selenium的过程中，可能会遇到一些常见的问题</p><h3 id="1-Selenium版本与浏览器驱动程序不兼容："><a href="#1-Selenium版本与浏览器驱动程序不兼容：" class="headerlink" title="1. Selenium版本与浏览器驱动程序不兼容："></a>1. Selenium版本与浏览器驱动程序不兼容：</h3><ul><li>问题：安装的Selenium版本与浏览器驱动程序版本不兼容。</li><li>解决方案：检查Selenium和浏览器驱动程序的版本，确保它们相互兼容。通常，Selenium的最新版本会支持最新的浏览器驱动程序。如果需要，可以降级或升级Selenium或浏览器驱动程序以确保兼容性。<h3 id="2-浏览器驱动程序路径未正确设置："><a href="#2-浏览器驱动程序路径未正确设置：" class="headerlink" title="2. 浏览器驱动程序路径未正确设置："></a>2. 浏览器驱动程序路径未正确设置：</h3></li><li>问题：浏览器驱动程序的路径未正确设置，导致Selenium无法找到驱动程序。</li><li>解决方案：确保将浏览器驱动程序的路径添加到系统环境变量中，或者在Selenium代码中明确指定驱动程序的路径。例如，对于ChromeDriver，可以在代码中这样设置：</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver  </span><br><span class="line">driver = webdriver.Chrome(executable_path=<span class="string">'/path/to/chromedriver'</span>)</span><br></pre></td></tr></table></figure><p>后续我们将实战通过selenium来实现登录到淘宝并获取淘宝的商品信息。</p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据安全之认识数据库审计系统</title>
       <link href="/posts/3264b908/"/>
       <url>/posts/3264b908/</url>
@@ -3211,6 +3240,8 @@
         <tags>
             
             <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       

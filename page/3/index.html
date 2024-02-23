@@ -313,6 +313,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a57e826e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/a57e826e/" itemprop="url">安全防御之漏洞扫描技术</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-08T11:08:49+08:00">
+                2024-01-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-08T11:12:38+08:00">
+                2024-01-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/a57e826e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a57e826e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/a57e826e/" class="leancloud_visitors" data-flag-title="安全防御之漏洞扫描技术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>每年都有数以千计的网络安全漏洞被发现和公布，加上攻击者手段的不断变化，网络安全状况也在随着安全漏洞的增加变得日益严峻。寻根溯源，绝大多数用户缺乏一套完整、有效的漏洞管理工作流程，未能落实定期评估与漏洞修补工作。只有比攻击者更早掌握自己网络安全漏洞并且做好预防工作，才能够有效地避免由于攻击所造成的损失。</p>
+<p>什么是漏洞及漏洞的管理参见博客《<a href="http://xiejava.ishareread.com/posts/a937cbf5/" target="_blank" rel="noopener">安全运营之漏洞管理</a>》，本文介绍安全防御中的漏洞扫描技术来发现漏洞。</p>
+<p>安全防御中的漏洞扫描技术是网络安全防护体系中一项核心的预防性措施，用于自动检测网络、系统和服务中的潜在弱点和已知安全漏洞。这项技术帮助企业、组织和个人识别出可能被攻击者利用的风险点，并采取相应的补救措施以强化其整体安全态势。</p>
+<p>漏洞扫描通过针对常见黑客攻击手法的检查策略，定期对网络系统进行扫描分析，及时发现问题、给出相关安全措施和建议并进行相应的修补和配置，这项技术的具体实现就是安全扫描程序，在很短的时间内查出现存的安全脆弱点。</p>
+<p>安全漏洞扫描技术可以分为被动和主动两种方式。被动扫描是指在不影响系统正常运行的情况下，通过分析系统的网络流量、系统日志和配置信息等，来发现潜在的安全漏洞。主动扫描则是通过模拟攻击的方式，对系统进行深入的探测和漏洞发现。</p>
+<p>被动扫描和主动扫描它们各有优缺点。</p>
+<ol>
+<li>被动扫描是指在不影响系统正常运行的情况下，通过分析系统的网络流量、系统日志和配置信息等，来发现潜在的安全漏洞。被动扫描的优点在于不会对目标系统造成干扰或损害，可以避免触发恶意软件或警报器。同时，被动扫描可以实时监测系统的安全状况，及时发现新的漏洞和攻击。然而，被动扫描的缺点在于无法发现未知的漏洞和攻击，因为它是基于已知的安全漏洞库和规则进行扫描的。</li>
+<li>主动扫描则是通过模拟攻击的方式，对系统进行深入的探测和漏洞发现。主动扫描可以发现未知的漏洞和攻击，因为它是通过模拟攻击来发现系统中的弱点。主动扫描的优点在于可以更加深入地探测系统中的安全漏洞，包括缓冲区溢出、SQL注入等。同时，主动扫描还可以评估系统的防御策略和应急响应措施的有效性。然而，主动扫描的缺点在于可能会对目标系统造成干扰或损害，需要谨慎操作，避免对系统造成不必要的风险。</li>
+</ol>
+<p>被动扫描和主动扫描各有优缺点，需要根据实际情况选择使用。在某些情况下，可能需要结合使用被动扫描和主动扫描，以提高系统的安全性。<br>安全漏洞扫描技术可以自动化进行，也可以手动执行。自动化扫描工具可以根据预定义的漏洞库和扫描规则，自动对目标系统进行扫描和漏洞发现。手动扫描则需要专业的安全人员对系统进行逐一检查和分析。</p>
+<p>常见漏洞扫描工具的特点：</p>
+<ul>
+<li>智能识别：能够对扫描结果数据进行在线分析，能够根据端口、漏洞、BANNER信息、IP地址等关键字对主机信息进行查询并能将查询结果保存。</li>
+<li>高效快捷：支持高级数据分析，能够进行历史数据查询、汇总查看、对比分析等，方便进行多个扫描任务或多个IP风险对比，能够在多个历史任务中，很快的检索到需要关注的资产IP点。</li>
+<li>脚本依赖：扫描模块会自动根据其逻辑依赖关系执行而不是无目的盲目执行，从而提高了扫描准确性。</li>
+<li>信息输出：漏洞分析报告应提供在线浏览报告和离线打印报告;离线报表提供针对不同角色的默认模板，允许用户定制报告的内容、报告的格式等。</li>
+<li>断点恢复：在扫描程序运行到一半的时候如果系统意外掉电等，可以通过查看扫描状态进行重新扫描或者继续扫描，如果选择继续扫描的话，前面扫描到的结果会保留下来和后面的结果一起合并生成结果文件。</li>
+</ul>
+<p>安全漏洞扫描技术可以针对不同的层次进行扫描，例如网络层、操作系统层和应用层等。网络层扫描主要是检查网络设备和通信线路的安全性，操作系统层扫描主要检查操作系统的配置和漏洞，应用层扫描则针对具体的软件应用程序进行安全检查。基于网络的安全扫描主要扫描设定网络内的服务器、路由器、网桥、变换机、访问服务器、防火墙等设备的安全漏洞，并可设定模拟攻击，以测试系统的防御能力。通常该类扫描器限制使用范围（IP地址或路由器跳数）。</p>
+<p>安全漏洞扫描技术是一类重要的网络安全技术。它和防火墙、入侵检测系统互相配合，能够有效提高网络的安全性。通过对网络的扫描，网络管理员能了解网络的安全设置和运行的应用服务，及时发现安全漏洞，客观评估网络风险等级。网络管理员能根据扫描的结果更正网络安全漏洞和系统中的错误设置，在黑客攻击前进行防范。如果防火墙和网络监视系统是被动的防御手段，那么安全扫描就是一种主动的防范措施，能有效避免黑客攻击行为，做到防患于未然。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f2bbe1ed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2817,252 +3062,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c6e7113b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/c6e7113b/" itemprop="url">安全运营之安全检查和测试</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-19T09:28:06+08:00">
-                2023-12-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-12-19T09:32:47+08:00">
-                2023-12-19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/c6e7113b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c6e7113b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/c6e7113b/" class="leancloud_visitors" data-flag-title="安全运营之安全检查和测试">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全运营是一个将技术、流程和人有机结合的复杂系统工程，通过对已有安全产品、工具和服务产出的数据进行有效的分析，持续输出价值，解决安全问题，以确保网络安全为最终目标。</p>
-<p>安全检查和测试是确保系统、设备或环境安全的重要手段，是安全运营基础工作的一部分。</p>
-<p>安全检查主要通过定期或不定期地对系统、设备或环境进行全面的检查，以发现潜在的安全风险和漏洞。检查的内容可能包括各级人员安全责任制的落实情况、安全活动开展的贯彻落实情况、安全规章制度和措施的落实情况、现场安全管理情况、员工的遵章守纪情况以及员工安全操作规程及安全常识掌握情况等。</p>
-<p>安全测试则是一种通过模拟攻击者的行为，测试系统的安全性，并发现潜在的弱点和漏洞的过程。这可以包括网络渗透测试、应用程序渗透测试等。</p>
-<p>安全检查和测试包括日常的安全扫描、安全检查和针对信息系统的渗透测试。</p>
-<h2 id="一、安全扫描"><a href="#一、安全扫描" class="headerlink" title="一、安全扫描"></a>一、安全扫描</h2><p>通过按照计算机信息系统安全的国家标准、相关行业标准设计、编写、制造的安全扫描工具，分析并指出有关网络的安全漏洞及被测系统的薄弱环节，给出详细的检测报告，并针对检测到的网络安全隐患给出相应的修补措施和安全建议。</p>
-<p>安全扫描目的是提高内部网络安全防护性能和抗破坏能力，检测评估已运行网络的安全性能，为网络系统管理员提供实时安全建议。安全扫描作为一种积极主动的安全防护技术，提供了对内部攻击、外部攻击和误操作的实时保护，在网络系统受到危害之前可以提供安全防护解决方案。</p>
-<p>安全扫描是一种快速有效的安全评估手段，可以发现系统可能存在的部分安全问题，一般会采用安全扫描工具进行安全扫描，漏扫工具会根据目前安全行业漏洞发掘情况，对扫描系统漏洞库不断进行更新。使在扫描过程中，可以发现系统更多的安全问题。</p>
-<p>在安全扫描过程中严格遵守以下原则：</p>
-<p>1）服务不能影响目标系统所承载的业务运行；</p>
-<p>2）服务不能严重影响目标系统的自身性能；</p>
-<p>3）操作时间选择在系统业务量最小，业务临时中断对外影响最小的时候。</p>
-<h2 id="二、安全检查"><a href="#二、安全检查" class="headerlink" title="二、安全检查"></a>二、安全检查</h2><p>安全检查是指安全专家登录主机，网络设备，根据检查列表对可能存在的安全漏洞进行逐项检查，根据检查结果提供详细的漏洞描述和修补方案。人工检查作为人工实施的安全评估手段可以有效弥补由于在防火墙策略或者其他安全设备的防护措施下，安全扫描工具无法扫描发现系统内部特定区域的缺陷。通过安全专家在主机、网络等设备上的实际操作，可以更深程度地发现系统存在的问题及需要安全增强的脆弱点。</p>
-<p>安全检查是信息系统脆弱性发掘的一种有效措施，可以发现系统内部帐号策略、权限管理、日志审核、网络服务等诸多问题。对服务器及网络系统来说人工检查是安全加固的必要步骤。</p>
-<h2 id="三、渗透测试"><a href="#三、渗透测试" class="headerlink" title="三、渗透测试"></a>三、渗透测试</h2><p>渗透测试（penetration test）是通过模拟恶意攻击的方法，来评估系统是否存在安全风险的一种评估方法。这个过程包括对系统的任何弱点、技术缺陷或漏洞的主动分析，安全渗透测试工程师以攻击者的视角从一个攻击者可能存在的位置来进行的，并且从这个位置有条件主动利用安全漏洞。渗透测试还具有的两个显著特点是：渗透测试是一个渐进的并且逐步深入的过程。渗透测试是选择不影响业务系统正常运行的攻击方法进行的测试。</p>
-<p>1、渗透测试方法</p>
-<p>黑盒渗透测试：是为了证明信息系统在网络孤岛的情况下面对 APT 攻击的危险性，系统安全防御是否按照预期计划正常运行而提供的一种测试方案。</p>
-<p>测试过程中，会综合采用各种手段和途径，包括端口扫描，漏洞扫描，密码猜测， 密码破解，数据窃听，伪装欺骗等技术方式。最终目的就是为了检验该网络各个环节的安全性。</p>
-<p>2、模拟渗透测试技术</p>
-<p>模拟渗透入侵测试，是指为了对一个目标网络的安全性进行实际检查，进行不带攻击行为的全面安全检测；是一个在评估目标主机、网络、嵌入式设备的安 全性，模仿黑客特定攻击行为的过程。</p>
-<p>详细地说，是指测试工程师尽可能完整的收集相关信息，利用收集到的信息进行靶场搭建，完整的模拟黑客使用的漏洞发现技术和攻击手段，对目标网络的安全性作完整攻击复现的过程。</p>
-<p>通过安全检查和测试，可以及时发现并解决潜在的安全问题，提高系统的安全性，确保系统、设备或环境的安全稳定运行。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3119,7 +3118,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">156</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3141,7 +3140,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3231,7 +3230,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">325.9k</span>
+    <span title="Site words total count">327k</span>
   
   
 <!--51la网站应用监控-->
