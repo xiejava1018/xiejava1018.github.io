@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,爬虫," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="现在很多网站要获取数据都得要先登录。Selenium是一个用于Web应用程序测试的自动化工具。它直接运行在浏览器中，模拟真实用户的操作。本文介绍如何通过Selenium来登录淘宝并自动爬取商品信息。关于Selenium的安装与配置请参考博文《Selenium安装与配置》 一、通过Selenium模拟登录淘宝现在要获取淘宝的商品信息需要先登录淘宝。我们先来分析淘宝的登录页面。 1、分析淘宝登录页面淘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium实战-模拟登录淘宝并爬取商品信息">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/6e762a1a/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="现在很多网站要获取数据都得要先登录。Selenium是一个用于Web应用程序测试的自动化工具。它直接运行在浏览器中，模拟真实用户的操作。本文介绍如何通过Selenium来登录淘宝并自动爬取商品信息。关于Selenium的安装与配置请参考博文《Selenium安装与配置》 一、通过Selenium模拟登录淘宝现在要获取淘宝的商品信息需要先登录淘宝。我们先来分析淘宝的登录页面。 1、分析淘宝登录页面淘">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/1-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/2-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E9%9C%80%E8%A6%81%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/3-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/4-%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/5-%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E5%88%B0%E6%88%91%E7%9A%84%E6%B7%98%E5%AE%9D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/6-%E5%88%86%E6%9E%90%E6%B7%98%E5%AE%9D%E5%88%97%E8%A1%A8%E9%A1%B5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/7-%E5%88%86%E6%9E%90%E6%B7%98%E5%AE%9D%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%8C%89%E9%92%AE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/8-Selenium%E5%90%8E%E5%8F%B0%E6%97%A5%E5%BF%97.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-02-26T06:07:55.000Z">
+<meta property="article:modified_time" content="2024-02-26T06:19:24.382Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/1-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2%E5%88%86%E6%9E%90.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/6e762a1a/"/>
+
+
+
+
+
+  <title>Selenium实战-模拟登录淘宝并爬取商品信息 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6e762a1a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Selenium实战-模拟登录淘宝并爬取商品信息</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-26T14:07:55+08:00">
+                2024-02-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-02-26T14:19:24+08:00">
+                2024-02-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6e762a1a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6e762a1a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/6e762a1a/" class="leancloud_visitors" data-flag-title="Selenium实战-模拟登录淘宝并爬取商品信息">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在很多网站要获取数据都得要先登录。Selenium是一个用于Web应用程序测试的自动化工具。它直接运行在浏览器中，模拟真实用户的操作。本文介绍如何通过Selenium来登录淘宝并自动爬取商品信息。<br>关于Selenium的安装与配置请参考博文《<a href="http://xiejava.ishareread.com/posts/8370b2b6/" target="_blank" rel="noopener">Selenium安装与配置</a>》</p>
+<h2 id="一、通过Selenium模拟登录淘宝"><a href="#一、通过Selenium模拟登录淘宝" class="headerlink" title="一、通过Selenium模拟登录淘宝"></a>一、通过Selenium模拟登录淘宝</h2><p>现在要获取淘宝的商品信息需要先登录淘宝。我们先来分析淘宝的登录页面。</p>
+<h3 id="1、分析淘宝登录页面"><a href="#1、分析淘宝登录页面" class="headerlink" title="1、分析淘宝登录页面"></a>1、分析淘宝登录页面</h3><p>淘宝登录页面为<a href="https://login.taobao.com/member/login.jhtml，支持扫描登录和用户名、密码验证登录。我们模拟用户名、密码登录。" target="_blank" rel="noopener">https://login.taobao.com/member/login.jhtml，支持扫描登录和用户名、密码验证登录。我们模拟用户名、密码登录。</a><br>通过Chrome浏览器输入淘宝登录页面链接F12打开开发者工具，分析淘宝登录页的源代码，找到登录账号、登录密码和登录按钮的相关控件的源代码<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/1-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2%E5%88%86%E6%9E%90.png" alt="分析淘宝登录页面"></p>
+<p>在这里可以看到<br>账号名的输入框控件代码:<code>&lt;input name=&quot;fm-login-id&quot; type=&quot;text&quot; class=&quot;fm-text&quot; id=&quot;fm-login-id&quot; tabindex=&quot;1&quot; aria-label=&quot;账号名/邮箱/手机号&quot; placeholder=&quot;账号名/邮箱/手机号&quot; autocapitalize=&quot;off&quot; data-spm-anchor-id=&quot;a2107.1.0.i1.3e3e11d9pGQKXf&quot;&gt;</code><br>登录密码的输入框控件代码：<code>&lt;input name=&quot;fm-login-password&quot; type=&quot;password&quot; class=&quot;fm-text&quot; id=&quot;fm-login-password&quot; tabindex=&quot;2&quot; aria-label=&quot;请输入登录密码&quot; placeholder=&quot;请输入登录密码&quot; maxlength=&quot;40&quot; autocapitalize=&quot;off&quot; data-spm-anchor-id=&quot;a2107.1.0.i2.3e3e11d9pGQKXf&quot;&gt;</code><br>登录按钮的控件代码：<code>&lt;button type=&quot;submit&quot; tabindex=&quot;3&quot; class=&quot;fm-button fm-submit password-login&quot; data-spm-anchor-id=&quot;a2107.1.0.i3.3e3e11d9pGQKXf&quot;&gt;登录&lt;/button&gt;</code><br>找到登录需要用的的这几个关键控件代码都就可以开始编码来控制这些控件进行模拟操作了。</p>
+<h3 id="2、通过Selenium实现模拟登录代码"><a href="#2、通过Selenium实现模拟登录代码" class="headerlink" title="2、通过Selenium实现模拟登录代码"></a>2、通过Selenium实现模拟登录代码</h3><p>具体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException</span><br><span class="line"></span><br><span class="line">driver=Chrome()</span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>) <span class="comment"># 用你自己的淘宝账号替换</span></span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>) <span class="comment"># 用你自己的密码替换</span></span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line">            </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>运行代码后可以看到程序自动的调起了一个Chrome浏览器并访问了淘宝的登录页面，自动的输入了用户淘宝账号和密码，自动的点击了登录按钮，但出现了一个滑动验证的控件，要求滑动验证。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/2-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E9%9C%80%E8%A6%81%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81.png" alt="淘宝登录需要滑动验证"></p>
+<p>人工拖动滑动验证控件，显示验证失败。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/3-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5.png" alt="淘宝滑动验证失败"></p>
+<p>这是因为淘宝有一套反爬机制识别是否是机器自动在登录。如果是人工打开浏览器，手工输入账号密码登录就不会弹出滑动验证控件进行验证。在网上有很多办法，如可以通过代理修改chormdriver的识别码，这里介绍通过Selenium如何接管已经运行的Chrome浏览器来实现规避淘宝的验证。</p>
+<h3 id="3、Selenium接管已经运行的Chrome浏览器"><a href="#3、Selenium接管已经运行的Chrome浏览器" class="headerlink" title="3、Selenium接管已经运行的Chrome浏览器"></a>3、Selenium接管已经运行的Chrome浏览器</h3><h4 id="1）启动Chrome的远程调试模式"><a href="#1）启动Chrome的远程调试模式" class="headerlink" title="1）启动Chrome的远程调试模式"></a>1）启动Chrome的远程调试模式</h4><p>通过<br><code>chrome.exe --remote-debugging-port=9222 --user-data-dir=&#39;某个存在的文件夹地址&#39;</code>  启动Chrome的远程调试模式，启动一个Chrome浏览器。<br>找到chrome的安装目录，找到chrome.exe ，通过cmd命令行执行上面的命令。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/4-%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="启动Chrome远程调试模式"></p>
+<p>运行上面命令后，就会弹出一个chrome浏览器，这个浏览器是可以被Selenium来接管操作的。</p>
+<h4 id="2）代码中实现接管已经运行的Chrome浏览器"><a href="#2）代码中实现接管已经运行的Chrome浏览器" class="headerlink" title="2）代码中实现接管已经运行的Chrome浏览器"></a>2）代码中实现接管已经运行的Chrome浏览器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException</span><br><span class="line"></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">"debuggerAddress"</span>, <span class="string">"localhost:9222"</span>) <span class="comment">#此处端口保持和命令行启动的端口一致</span></span><br><span class="line">driver = Chrome(options=chrome_options)</span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>) <span class="comment"># 用你自己的淘宝账号替换</span></span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>) <span class="comment"># 用你自己的密码替换</span></span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、运行效果"><a href="#4、运行效果" class="headerlink" title="4、运行效果"></a>4、运行效果</h3><p>运行上述代码就可以看到，Selenium接管了这个通过Chrome的远程调试模式启动的浏览器，并自动输入用户名和密码，自动登录成功，跳转到我的淘宝界面。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/5-%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E5%88%B0%E6%88%91%E7%9A%84%E6%B7%98%E5%AE%9D.png" alt="自动登录到我的淘宝"></p>
+<h2 id="二、通过Selenium自动爬取淘宝商品信息"><a href="#二、通过Selenium自动爬取淘宝商品信息" class="headerlink" title="二、通过Selenium自动爬取淘宝商品信息"></a>二、通过Selenium自动爬取淘宝商品信息</h2><h3 id="1、分析商品页面"><a href="#1、分析商品页面" class="headerlink" title="1、分析商品页面"></a>1、分析商品页面</h3><p><a href="https://s.taobao.com/search?page=1&amp;q=ipad&amp;tab=all" target="_blank" rel="noopener">https://s.taobao.com/search?page=1&amp;q=ipad&amp;tab=all</a><br>通过Chrome浏览器输入淘宝搜索商品页面链接F12打开开发者工具，分析淘宝搜索商品列表页的源代码，找到商品展示相关源代码包括商品的title、价格、详情页、购买情况等。我们需要通过解析这些源代码获取相应的商品信息。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/6-%E5%88%86%E6%9E%90%E6%B7%98%E5%AE%9D%E5%88%97%E8%A1%A8%E9%A1%B5.png" alt="分析商品页面"></p>
+<p>找到下一页翻页的按钮，我们需要控制下一页翻页的按钮来实现自动翻页。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/7-%E5%88%86%E6%9E%90%E6%B7%98%E5%AE%9D%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%8C%89%E9%92%AE.png" alt="分析淘宝下一页"></p>
+<h3 id="2、实现商品获取代码"><a href="#2、实现商品获取代码" class="headerlink" title="2、实现商品获取代码"></a>2、实现商品获取代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">            <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">            <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">            <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">            <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">            <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动获取商品信息并自动翻页</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(url,cur_page,max_page)</span>:</span></span><br><span class="line">    print(<span class="string">' 正在爬取：'</span>+url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        driver.get(url)</span><br><span class="line">        get_products()</span><br><span class="line">        next_page_btn = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">'//button/span[contains(text(),"下一页")]'</span>)))</span><br><span class="line">        next_page_btn.click()</span><br><span class="line">        do_change = wait.until(EC.url_changes(url))</span><br><span class="line">        <span class="keyword">if</span> do_change <span class="keyword">and</span> cur_page&lt;max_page:</span><br><span class="line">            new_url=driver.current_url</span><br><span class="line">            cur_page = cur_page + <span class="number">1</span></span><br><span class="line">            index_page(new_url,cur_page,max_page)</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'---index_page TimeoutException---'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、实现效果"><a href="#3、实现效果" class="headerlink" title="3、实现效果"></a>3、实现效果</h3><p>从浏览器看，Selenium自动访问淘宝登录页，当切到用户名密码登录界面时，Selenium自动输入用户名、密码点击登录。登录成功后，自动访问商品搜索页搜索ipad,进行商信息获取，自动翻下一页。<br>从后台打印的日志看，显示“开始登录”、“已经登录”，正在爬取的链接和该链接下的商品信息。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240226/8-Selenium%E5%90%8E%E5%8F%B0%E6%97%A5%E5%BF%97.png" alt="Selenium后台日志"></p>
+<p>至此，通过Selenium来代码实现模拟登录淘宝并自动爬取商品信息，进行了Selenium的实战。<br>要注意的是：</p>
+<blockquote>
+<p>1、在Selenium打开登录页面后淘宝默认的是扫码登录，需要人为接入切换用户密码模式。这时也可以让Selenium自动去切到用户密码模式登录。代码如下：<br>change_type=wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ‘.iconfont.icon-password’)))<br>change_type.click() #切换到用户密码模式登录<br>2、在运行启动Chrome的远程调试模式，启动Chrome浏览器后，要关闭其他的Chrome浏览器，保留远程调试模式启动的浏览器就好了。如果是存在多个Chrome浏览器Selenium会不知道要接管哪一个。</p>
+</blockquote>
+<h2 id="附上全部完整代码："><a href="#附上全部完整代码：" class="headerlink" title="附上全部完整代码："></a>附上全部完整代码：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> quote</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">"debuggerAddress"</span>, <span class="string">"localhost:9222"</span>) <span class="comment">#此处端口保持和命令行启动的端口一致</span></span><br><span class="line">driver = Chrome(options=chrome_options)</span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        change_type=wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, <span class="string">'.iconfont.icon-password'</span>)))</span><br><span class="line">        change_type.click() <span class="comment">#切换到用户密码模式登录</span></span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>) <span class="comment"># 用你自己的淘宝账号替换</span></span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>) <span class="comment"># 用你自己的密码替换</span></span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">            <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">            <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">            <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">            <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">            <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动获取商品信息并自动翻页</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(url,cur_page,max_page)</span>:</span></span><br><span class="line">    print(<span class="string">' 正在爬取：'</span>+url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        driver.get(url)</span><br><span class="line">        get_products()</span><br><span class="line">        next_page_btn = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">'//button/span[contains(text(),"下一页")]'</span>)))</span><br><span class="line">        next_page_btn.click()</span><br><span class="line">        do_change = wait.until(EC.url_changes(url))</span><br><span class="line">        <span class="keyword">if</span> do_change <span class="keyword">and</span> cur_page&lt;max_page:</span><br><span class="line">            new_url=driver.current_url</span><br><span class="line">            cur_page = cur_page + <span class="number">1</span></span><br><span class="line">            index_page(new_url,cur_page,max_page)</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'---index_page TimeoutException---'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br><span class="line">        KEYWORD = <span class="string">'iPad'</span></span><br><span class="line">        url = <span class="string">'https://s.taobao.com/search?page=1&amp;q='</span> + quote(KEYWORD) + <span class="string">'&amp;tab=all'</span></span><br><span class="line">        max_page=<span class="number">10</span></span><br><span class="line">        index_page(url,<span class="number">1</span>,max_page)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/6e762a1a/" title="Selenium实战-模拟登录淘宝并爬取商品信息">https://xiejava.gitee.io/posts/6e762a1a/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/8370b2b6/" rel="next" title="Selenium安装与配置">
+                <i class="fa fa-chevron-left"></i> Selenium安装与配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、通过Selenium模拟登录淘宝"><span class="nav-number">1.</span> <span class="nav-text">一、通过Selenium模拟登录淘宝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、分析淘宝登录页面"><span class="nav-number">1.1.</span> <span class="nav-text">1、分析淘宝登录页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、通过Selenium实现模拟登录代码"><span class="nav-number">1.2.</span> <span class="nav-text">2、通过Selenium实现模拟登录代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Selenium接管已经运行的Chrome浏览器"><span class="nav-number">1.3.</span> <span class="nav-text">3、Selenium接管已经运行的Chrome浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）启动Chrome的远程调试模式"><span class="nav-number">1.3.1.</span> <span class="nav-text">1）启动Chrome的远程调试模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）代码中实现接管已经运行的Chrome浏览器"><span class="nav-number">1.3.2.</span> <span class="nav-text">2）代码中实现接管已经运行的Chrome浏览器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、运行效果"><span class="nav-number">1.4.</span> <span class="nav-text">4、运行效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、通过Selenium自动爬取淘宝商品信息"><span class="nav-number">2.</span> <span class="nav-text">二、通过Selenium自动爬取淘宝商品信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、分析商品页面"><span class="nav-number">2.1.</span> <span class="nav-text">1、分析商品页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、实现商品获取代码"><span class="nav-number">2.2.</span> <span class="nav-text">2、实现商品获取代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、实现效果"><span class="nav-number">2.3.</span> <span class="nav-text">3、实现效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附上全部完整代码："><span class="nav-number">3.</span> <span class="nav-text">附上全部完整代码：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">329.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
