@@ -313,6 +313,374 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/531458d5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/531458d5/" itemprop="url">pandas数据结构(Series和DataFrame)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-23T21:07:57+08:00">
+                2022-01-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-05-25T09:08:10+08:00">
+                2023-05-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/531458d5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/531458d5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/531458d5/" class="leancloud_visitors" data-flag-title="pandas数据结构(Series和DataFrame)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>无可非议，pandas是Python最强大的数据分析和探索工具之一，因金融数据分析工具而开发，支持类似于SQL语句的模型，可以对数据进行增删改查等操作，支持时间序列分析，也能够灵活的处理缺失的数据。它含有使数据分析工作变得更快更简单的高级数据结构和操作工具。pandas是基于NumPy构建的，让以NumPy为中心的应用变得更加简单。</p>
+<p>这里所说的让pandas变得更快更简单的高级数据结构就是Series和DataFrame。要熟练使用pandas，首先得要熟悉它的这两个主要的数据结构：<strong>Series</strong>和<strong>DateFrame</strong>。</p>
+<p>本文将针对Series和DateFrame，介绍Series和DataFrame数据对象的创建及基于数据对象的基础上对数据进行选择、增加、删除等数据操作。</p>
+<h1 id="一、Series"><a href="#一、Series" class="headerlink" title="一、Series"></a>一、Series</h1><p>Series是一种类似于一维数组对象，它是由一组的数据值value（各种NumPy数据类型）以及一组与之相关的数据标签index（即索引）组成，其中标签与数据值之间是一一对应的关系。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">obj = pd.Series([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>,<span class="string">'孙八'</span>,<span class="string">'何九'</span>,<span class="string">'顾十'</span>])</span><br><span class="line">obj</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>    陈一</span><br><span class="line"><span class="number">1</span>    周二</span><br><span class="line"><span class="number">2</span>    张三</span><br><span class="line"><span class="number">3</span>    李四</span><br><span class="line"><span class="number">4</span>    王五</span><br><span class="line"><span class="number">5</span>    赵六</span><br><span class="line"><span class="number">6</span>    钱七</span><br><span class="line"><span class="number">7</span>    孙八</span><br><span class="line"><span class="number">8</span>    何九</span><br><span class="line"><span class="number">9</span>    顾十</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<p>Series的字符串表现形式为：索引在左边，值在右边。由于没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/Series%E7%BB%93%E6%9E%84.png" alt="Serires数据结构"></p>
+<p>可以通过Series的values和index属性获取其数组表示形式和索引对象。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E8%8E%B7%E5%8F%96Serires%E7%9A%84values%E5%92%8Cindex%E5%B1%9E%E6%80%A7.png" alt="通过Series的values和index属性获取其数组表示形式和索引对象"></p>
+<p><strong>可以将Series看成一个定长的有序字典，因为它是索引值到数据值的一个映射。</strong></p>
+<h2 id="1、Series对象创建"><a href="#1、Series对象创建" class="headerlink" title="1、Series对象创建"></a>1、Series对象创建</h2><p>pandas 使用 Series()  函数来创建 Series 对象，通过这个对象可以调用相应的方法和属性，从而达到处理数据的目的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">obj=pd.Series( data, index, dtype, copy)</span><br></pre></td></tr></table></figure>
+
+
+<p>参数说明如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>data</td>
+<td>输入的数据，可以是列表、常量、ndarray 数组等。</td>
+</tr>
+<tr>
+<td>index</td>
+<td>索引值必须是惟一的，如果没有传递索引，则默认为 np.arrange(n)。</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>dtype表示数据类型，如果没有提供，则会自动判断得出。</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>表示对 data 进行拷贝，默认为 False。</td>
+</tr>
+</tbody></table>
+<p>data可以是列表、常量、ndarray数组等，如果数据被存放在一个Python字典dict中，也可以直接通过这个dict来创建Series，如果没有传入索引时会按照字典的键来构造索引；反之，当传递了索引时需要将索引标签与字典中的值一一对应。<br>前面的列子是通过列表来创建的Series，接下来看下通过ndarray和dic来创建Series。</p>
+<h3 id="通过ndarray创建Series"><a href="#通过ndarray创建Series" class="headerlink" title="通过ndarray创建Series"></a>通过ndarray创建Series</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ndarray创建Series</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.array([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>,<span class="string">'孙八'</span>,<span class="string">'何九'</span>,<span class="string">'顾十'</span>])</span><br><span class="line">obj= pd.Series(data)</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>    陈一</span><br><span class="line"><span class="number">1</span>    周二</span><br><span class="line"><span class="number">2</span>    张三</span><br><span class="line"><span class="number">3</span>    李四</span><br><span class="line"><span class="number">4</span>    王五</span><br><span class="line"><span class="number">5</span>    赵六</span><br><span class="line"><span class="number">6</span>    钱七</span><br><span class="line"><span class="number">7</span>    孙八</span><br><span class="line"><span class="number">8</span>    何九</span><br><span class="line"><span class="number">9</span>    顾十</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过dict创建Series"><a href="#通过dict创建Series" class="headerlink" title="通过dict创建Series"></a>通过dict创建Series</h3><p>#通过dict创建Series,没有设置indx</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;<span class="string">'1'</span> :<span class="string">'张三'</span>, <span class="string">'2'</span> :<span class="string">'李四'</span>, <span class="string">'3'</span> : <span class="string">'王五'</span>&#125;</span><br><span class="line">obj=pd.Series(data)</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>    张三</span><br><span class="line"><span class="number">2</span>    李四</span><br><span class="line"><span class="number">3</span>    王五</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<p>当传递的索引值无法找到与其对应的值时，使用 NaN（非数字）填充。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过dict创建Series,设置indx</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;<span class="string">'1'</span> :<span class="string">'张三'</span>, <span class="string">'2'</span> :<span class="string">'李四'</span>, <span class="string">'3'</span> : <span class="string">'王五'</span>&#125;</span><br><span class="line">obj=pd.Series(data,index=[<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'4'</span>])</span><br><span class="line"><span class="comment">#索引4没有在dict的对应的key，所以使用NaN（非数字）填充</span></span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>     张三</span><br><span class="line"><span class="number">2</span>     李四</span><br><span class="line"><span class="number">4</span>    NaN</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、Series操作"><a href="#2、Series操作" class="headerlink" title="2、Series操作"></a>2、Series操作</h2><h3 id="Series数据访问"><a href="#Series数据访问" class="headerlink" title="Series数据访问"></a>Series数据访问</h3><p>Series提供了多种数据访问的方式，可以通过位置下标及索引来访问数据，可以访问单个数据也可以访问多个数据。</p>
+<h4 id="通过位置下标及索引来访问数据"><a href="#通过位置下标及索引来访问数据" class="headerlink" title="通过位置下标及索引来访问数据"></a>通过位置下标及索引来访问数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.array([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>])</span><br><span class="line">obj= pd.Series(data,index=[<span class="string">'一'</span>,<span class="string">'二'</span>,<span class="string">'三'</span>,<span class="string">'四'</span>,<span class="string">'五'</span>,<span class="string">'六'</span>])</span><br><span class="line">print(<span class="string">'obj的Series数据'</span>)</span><br><span class="line">print(obj)</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#位置下标访问</span></span><br><span class="line">print(<span class="string">'位置下标访问:obj[0]'</span>)</span><br><span class="line">print(obj[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#切片访问</span></span><br><span class="line">print(<span class="string">'位置切片访问多个元素值:obj[1:3]'</span>)</span><br><span class="line">print(obj[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#索引访问</span></span><br><span class="line">print(<span class="string">'索引访问:obj[obj.index==\'三\']'</span>)</span><br><span class="line">print(obj[obj.index==<span class="string">'三'</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#索引访问</span></span><br><span class="line">print(<span class="string">'索引访问:obj[\'一\']'</span>)</span><br><span class="line">print(obj[<span class="string">'一'</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#索引列表访问</span></span><br><span class="line">print(<span class="string">'索引列表访问多个元素值:obj[[\'二\',\'三\']]'</span>)</span><br><span class="line">print(obj[[<span class="string">'二'</span>,<span class="string">'三'</span>]])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">obj的Series数据</span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">四    李四</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">位置下标访问:obj[<span class="number">0</span>]</span><br><span class="line">陈一</span><br><span class="line"></span><br><span class="line">位置切片访问多个元素值:obj[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">索引访问:obj[obj.index==<span class="string">'三'</span>]</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">索引访问:obj[<span class="string">'一'</span>]</span><br><span class="line">陈一</span><br><span class="line"></span><br><span class="line">索引列表访问多个元素值:obj[[<span class="string">'二'</span>,<span class="string">'三'</span>]]</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h4 id="head-amp-tail-查看数据"><a href="#head-amp-tail-查看数据" class="headerlink" title="head()&amp;tail()查看数据"></a>head()&amp;tail()查看数据</h4><p>如果想要查看 Series 的某一部分数据，可以使用 head() 或者 tail() 方法。其中 head() 返回前 n 行数据，默认显示前 5 行数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.array([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>])</span><br><span class="line">obj= pd.Series(data,index=[<span class="string">'一'</span>,<span class="string">'二'</span>,<span class="string">'三'</span>,<span class="string">'四'</span>,<span class="string">'五'</span>,<span class="string">'六'</span>])</span><br><span class="line"><span class="comment">#输出前三行数据</span></span><br><span class="line">print(<span class="string">'输出前三行数据'</span>)</span><br><span class="line">print(obj.head(<span class="number">3</span>))</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#输出后两行数据</span></span><br><span class="line">print(<span class="string">'输出后两行数据'</span>)</span><br><span class="line">print(obj.tail(<span class="number">2</span>))</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输出前三行数据</span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">输出后两行数据</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+<h3 id="Series数据增加"><a href="#Series数据增加" class="headerlink" title="Series数据增加"></a>Series数据增加</h3><h4 id="1-直接通过索引增加"><a href="#1-直接通过索引增加" class="headerlink" title="1.直接通过索引增加"></a>1.直接通过索引增加</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过索引增加数据</span></span><br><span class="line">obj[<span class="string">'十一'</span>]=<span class="string">'肖十一'</span></span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十一    肖十一</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+<h4 id="2-通过append-增加"><a href="#2-通过append-增加" class="headerlink" title="2.通过append()增加"></a>2.通过append()增加</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过append()增加多个数据</span></span><br><span class="line">obj2=pd.Series([<span class="string">'郭芙蓉'</span>,<span class="string">'杨过'</span>],index=[<span class="string">'十二'</span>,<span class="string">'十三'</span>])</span><br><span class="line">obj=obj.append(obj2)</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十一    肖十一</span><br><span class="line">十二    郭芙蓉</span><br><span class="line">十三     杨过</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h3 id="Series数据修改"><a href="#Series数据修改" class="headerlink" title="Series数据修改"></a>Series数据修改</h3><p>Series数据可以通过制定索引直接修改<br>如：修改索引为十一的数据，直接obj[‘十一’]=’肖XX’，就可以进行修改。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改Series数据</span></span><br><span class="line">obj[<span class="string">'十一'</span>]=<span class="string">'肖XX'</span></span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十一    肖XX</span><br><span class="line">十二    郭芙蓉</span><br><span class="line">十三     杨过</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h3 id="Series数据删除"><a href="#Series数据删除" class="headerlink" title="Series数据删除"></a>Series数据删除</h3><p>通过drop()删除，<code>注意如果没有带inplace=True，会返回一个新的Series对象。如果要修改本对象，注意要带上inplace=True</code>。</p>
+<h4 id="1-删除单个数据"><a href="#1-删除单个数据" class="headerlink" title="1.删除单个数据"></a>1.删除单个数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">obj.drop(<span class="string">'十一'</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十二    郭芙蓉</span><br><span class="line">十三     杨过</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-删除多个数据"><a href="#2-删除多个数据" class="headerlink" title="2.删除多个数据"></a>2.删除多个数据</h4><p>参数为索引列表，即可以删除索引为列表中的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">obj.drop([<span class="string">'十二'</span>,<span class="string">'十三'</span>],inplace=<span class="literal">True</span>)</span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">四    李四</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、DataFrame"><a href="#二、DataFrame" class="headerlink" title="二、DataFrame"></a>二、DataFrame</h1><p>DataFrame 是 Pandas 的重要数据结构之一，也是在使用 Pandas 进行数据分析过程中最常用的结构之一。DataFrame 一个表格型的数据结构，既有行标签（index），又有列标签（columns），它也被称异构数据表，所谓异构，指的是表格中每列的数据类型可以不同，比如可以是字符串、整型或者浮点型等。DataFrame 的每一行数据都可以看成一个 Series 结构，只不过，DataFrame 为这些行中每个数据值增加了一个列标签。因此 DataFrame 其实是从 Series 的基础上演变而来。<strong>可以把DataFrame看做是关系型数据库里或Excel里的一张表格来理解</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/DataFrame%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="DataFrame数据结构"><br><strong>DataFrame 数据结构的特点：</strong><br>DataFrame 每一列的标签值允许使用不同的数据类型；<br>DataFrame 是表格型的数据结构，具有行和列；<br>DataFrame 中的每个数据值都可以被修改。<br>DataFrame 结构的行数、列数允许增加或者删除；<br>DataFrame 有两个方向的标签轴，分别是行标签和列标签；<br>DataFrame 可以对行和列执行算术运算。</p>
+<h2 id="1、DataFrame对象的创建"><a href="#1、DataFrame对象的创建" class="headerlink" title="1、DataFrame对象的创建"></a>1、DataFrame对象的创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df=pd.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
+<p>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>data</td>
+<td>输入的数据，可以是 ndarray，series，list，dict，标量以及一个 DataFrame。</td>
+</tr>
+<tr>
+<td>index</td>
+<td>行标签，如果没有传递 index 值，则默认行标签是 np.arange(n)，n 代表 data 的元素个数。</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>列标签，如果没有传递 columns 值，则默认列标签是 np.arange(n)。</td>
+</tr>
+<tr>
+<td>dtype</td>
+<td>dtype表示每一列的数据类型。</td>
+</tr>
+<tr>
+<td>copy</td>
+<td>默认为 False，表示复制数据 data。</td>
+</tr>
+</tbody></table>
+<p>Pandas 提供了多种创建 DataFrame 对象的方式可以看data的参数说明，包括列表、ndarray、series、dict等。<br>平时在数据分析过程中用得最多的应该是从其他数据源文件如cvs、excel、数据库、WEBAPI等方式加载数据到DataFrame中。<br>如：从Excel中加载数据。更多的数据加载方式见：<a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/4864590d/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/staff_excel%E5%AF%BC%E5%85%A5.png" alt="staff数据集"></p>
+<h2 id="2、DataFrame数据操作"><a href="#2、DataFrame数据操作" class="headerlink" title="2、DataFrame数据操作"></a>2、DataFrame数据操作</h2><p>DataFrame 可以使用行索引(index )来选取 DataFrame 中的数据并进行操作。也可以使用列索（columns ）引来完成数据的选取、添加和删除操作。</p>
+<h3 id="1-行索引操作DataFrame"><a href="#1-行索引操作DataFrame" class="headerlink" title="1) 行索引操作DataFrame"></a>1) 行索引操作DataFrame</h3><h4 id="选取数据"><a href="#选取数据" class="headerlink" title="选取数据"></a>选取数据</h4><p>行标签选取数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选取行标签为2的行</span></span><br><span class="line">df.loc[[<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE1.png" alt="选取行标签为2的行"><br>注意：如果是df.loc[2]，同样是选择行标签为2的行，但现实效果为<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE2.png" alt="选取行标签为2的行"><br>因为df.loc[2]返回是Series对象，而df.loc[[2]]返回的是DataFrame对象</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(df.iloc[<span class="number">2</span>])</span><br><span class="line">pandas.core.series.Series</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(df.loc[[<span class="number">2</span>]])</span><br><span class="line">pandas.core.frame.DataFrame</span><br></pre></td></tr></table></figure>
+
+
+<p>切片选取数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切片选取数据（左闭右开）</span></span><br><span class="line">df[<span class="number">2</span>:<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E5%88%87%E7%89%87%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE.png" alt="切片选取数据"></p>
+<h4 id="增加行"><a href="#增加行" class="headerlink" title="增加行"></a>增加行</h4><p> 添加数据行，使用 append() 函数，可以将新的数据行添加到 DataFrame 中，该函数会在行末追加数据行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],index=[<span class="number">11</span>,<span class="number">12</span>],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C.png" alt=" 添加数据行"></p>
+<p>注意新增加的DataFrame如果没有指定行索引，将会默认从0开始，添加数据行后将会有行重复的行索引。如没有指定index=[11,12]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C%E9%87%8D%E5%A4%8Did.png" alt="添加数据行有重复行索引"></p>
+<h4 id="删除行"><a href="#删除行" class="headerlink" title="删除行"></a>删除行</h4><p>可以使用行索引标签，从 DataFrame 中删除某一行数据。如果索引标签存在重复，那么它们将被一起删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.drop(<span class="number">0</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+
+<p>可以看到到行索引为0的两条记录被一起删除了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E5%88%A0%E9%99%A4.png" alt="删除"></p>
+<h3 id="2-列索引操作DataFrame"><a href="#2-列索引操作DataFrame" class="headerlink" title="2) 列索引操作DataFrame"></a>2) 列索引操作DataFrame</h3><h4 id="列索引选取数据列"><a href="#列索引选取数据列" class="headerlink" title="列索引选取数据列"></a>列索引选取数据列</h4><p>通过指定列索引来选取数据列，如选择只显示staff_id,staff_name,staff_gender三列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df2=df[[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]]</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E9%80%89%E5%8F%96%E5%88%97.png" alt="列索引选取数据列"></p>
+<h4 id="列索引添加数据列"><a href="#列索引添加数据列" class="headerlink" title="列索引添加数据列"></a>列索引添加数据列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df3=df[<span class="string">'staff_salary'</span>]+<span class="number">500</span></span><br><span class="line"><span class="comment">#在df的基础上增加append_cloume列，新增的append_cloume列为df['staff_salary']+500，即薪水加了500的列</span></span><br><span class="line">df[<span class="string">'append_cloume'</span>]=df3</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引添加数据列"></p>
+<h4 id="列索引删除数据列"><a href="#列索引删除数据列" class="headerlink" title="列索引删除数据列"></a>列索引删除数据列</h4><p>通过del 来删除指定的数据列，如删除staff_depatment_id列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> df[<span class="string">'staff_depatment_id'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引删除数据列"></p>
+<p>本文介绍了pandas的两大核心数据结构Series和DataFrame，分别介绍了Series和DataFrame数据对象的创建及基于数据对象的基础上对数据进行选择、增加、删除等数据操作，可以加深对Series和DataFrame的理解，并可以将创建，增、删、改、查等应用于实际的数据处理应用中。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4864590d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2684,280 +3052,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/fa820ec9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/fa820ec9/" itemprop="url">Python快速实现一个域名、IP信息聚合网站</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-21T14:18:19+08:00">
-                2021-11-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-04-14T10:11:20+08:00">
-                2023-04-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/fa820ec9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/fa820ec9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/fa820ec9/" class="leancloud_visitors" data-flag-title="Python快速实现一个域名、IP信息聚合网站">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>域名和IP地址信息是非常基础的情报信息，目前网上有很多网站都提供了域名信息的查询、IP地址及归属地的查询。本文通过Python Flask实现域名及IP情报信息的聚合网站。</p>
-<p>因为域名和IP地址信息会有变化，为了减少接口压力，做了本地数据库的存储，新鲜度保存一周，每次查询先从本地数据库获取信息，如果本地库信息有并且没有超过一个星期就从本地库取，没有就从其他网站获取，并更新到本地库。</p>
-<h1 id="一、获取域名WHOIS信息"><a href="#一、获取域名WHOIS信息" class="headerlink" title="一、获取域名WHOIS信息"></a>一、获取域名WHOIS信息</h1><p>网上提供域名WHOIS信息查询的网站有很多，这里以<a href="http://whois.chinafu.com" target="_blank" rel="noopener">http://whois.chinafu.com</a> 为例实现WHOIS信息的查询和解析。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getwhoisinfobychinafu</span><span class="params">(domain)</span>:</span></span><br><span class="line">    ret_result = &#123;&#125;</span><br><span class="line">    result=getWhoisInfoFromDB(domain)</span><br><span class="line">    <span class="keyword">if</span> len(result)==<span class="number">0</span>:</span><br><span class="line">        whois_service_url = <span class="string">'http://whois.chinafu.com/whois.php'</span></span><br><span class="line">        post_data=&#123;<span class="string">"domain"</span>:domain&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            post_result=requests.post(whois_service_url,post_data)</span><br><span class="line">            <span class="keyword">if</span> post_result.status_code == <span class="number">200</span>:</span><br><span class="line">                ret_str = post_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">                soup = BeautifulSoup(ret_str, <span class="string">'lxml'</span>)</span><br><span class="line">                items_tr =soup.find(name=<span class="string">'table'</span>,attrs=&#123;<span class="string">'class'</span>:<span class="string">'listtable'</span>&#125;).find_all(name=<span class="string">'tr'</span>)</span><br><span class="line">                <span class="keyword">for</span> item_tr <span class="keyword">in</span> items_tr:</span><br><span class="line">                    td_item=item_tr.find(name=<span class="string">'td'</span>)</span><br><span class="line">                    <span class="keyword">if</span> <span class="string">'colspan'</span> <span class="keyword">in</span> td_item.attrs:</span><br><span class="line">                        key_name=<span class="string">'详情'</span></span><br><span class="line">                        key_value=td_item.find(name=<span class="string">'div'</span>,id=<span class="string">'tab1'</span>).text</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        key_name=item_tr.find(name=<span class="string">'th'</span>).text</span><br><span class="line">                        key_value=item_tr.find(name=<span class="string">'td'</span>).text</span><br><span class="line">                    ret_result[key_name]=key_value</span><br><span class="line">                addchinafuWhoisInfo2DB(ret_result)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> r:</span><br><span class="line">            print(<span class="string">'未知错误 %s'</span> % (r))</span><br><span class="line">    <span class="comment">#ret_result = json.dumps(ret_result, ensure_ascii=False)</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ret_result=result[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> ret_result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getWhoisInfoFromDB</span><span class="params">(domainname)</span>:</span></span><br><span class="line">    whoisInfos=db.session.execute(<span class="string">'select * from whoisinfo where domain_name="%s" and updated_time &gt; DATE_SUB(CURDATE(), INTERVAL 1 WEEK)'</span> % domainname).fetchall()</span><br><span class="line">    whoisInfo_dics=[]</span><br><span class="line">    <span class="keyword">for</span> whoisInfo <span class="keyword">in</span> whoisInfos:</span><br><span class="line">        chinafuwhoisinfo_dic=chinafuwhoisinfo2dic(whoisInfo)</span><br><span class="line">        whoisInfo_dics.append(chinafuwhoisinfo_dic)</span><br><span class="line">    <span class="keyword">return</span> whoisInfo_dics</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addchinafuWhoisInfo2DB</span><span class="params">(chinafuWhoisInfo_dic)</span>:</span></span><br><span class="line">    chinafuWhois=WhoisInfo()</span><br><span class="line">    chinafuWhois.domain_name=chinafuWhoisInfo_dic.get(<span class="string">'域名DomainName'</span>)</span><br><span class="line">    chinafuWhois.domain_status=chinafuWhoisInfo_dic.get(<span class="string">'域名状态Domain Status'</span>,<span class="string">''</span>)</span><br><span class="line">    chinafuWhois.registrar=chinafuWhoisInfo_dic.get(<span class="string">'注册商Sponsoring Registrar'</span>,<span class="string">''</span>)</span><br><span class="line">    chinafuWhois.name_server=chinafuWhoisInfo_dic.get(<span class="string">'DNS 服务器Name Server'</span>,<span class="string">''</span>)</span><br><span class="line">    chinafuWhois.registrar_creation_date=chinafuWhoisInfo_dic.get(<span class="string">'注册日期Registration Date'</span>,<span class="string">''</span>)</span><br><span class="line">    chinafuWhois.registrar_updated_date = chinafuWhoisInfo_dic.get(<span class="string">'更新日期Update Date'</span>, <span class="string">''</span>)</span><br><span class="line">    chinafuWhois.registrar_expiry_date = chinafuWhoisInfo_dic.get(<span class="string">'到期日期Expiration Date'</span>, <span class="string">''</span>)</span><br><span class="line">    chinafuWhois.detail=chinafuWhoisInfo_dic.get(<span class="string">'详情'</span>, <span class="string">''</span>)[<span class="number">0</span>:<span class="number">10000</span>]</span><br><span class="line">    chinafuWhois.source = <span class="string">'中国福网'</span></span><br><span class="line">    db.session.execute(<span class="string">'delete from whoisinfo where domain_name="%s" and source="%s"'</span> % (chinafuWhoisInfo_dic.get(<span class="string">'域名DomainName'</span>), chinafuWhois.source))</span><br><span class="line">    db.session.add(chinafuWhois)</span><br><span class="line">    db.session.commit()</span><br></pre></td></tr></table></figure>
-<p>这里为了减少直接从其他网站获取WHOIS信息的压力，做了本地数据库的存储，每次先从本地数据库取WHOIS的信息，如果本地库信息有并且没有超过一个星期就从本地库取，没有就从其他网站获取，并更新到本地库。这里getWhoisInfoFromDB实现了取新鲜度为1周的数据，addchinafuWhoisInfo2DB实现将获取的信息保存到本地数据库。</p>
-<h1 id="二、根据域名解析出IP"><a href="#二、根据域名解析出IP" class="headerlink" title="二、根据域名解析出IP"></a>二、根据域名解析出IP</h1><p>根据域名解析出IP代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getIPbyDomain</span><span class="params">(domain)</span>:</span></span><br><span class="line">    addr=<span class="string">''</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        myaddr = socket.getaddrinfo(domain, <span class="string">'http'</span>)</span><br><span class="line">        addr=myaddr[<span class="number">0</span>][<span class="number">4</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">    <span class="keyword">return</span> addr</span><br></pre></td></tr></table></figure>
-
-<h1 id="三、获取IP信息"><a href="#三、获取IP信息" class="headerlink" title="三、获取IP信息"></a>三、获取IP信息</h1><p>获取IP信息的API接口也有很多，有淘宝的 <a href="https://ip.taobao.com/outGetIpInfo" target="_blank" rel="noopener">https://ip.taobao.com/outGetIpInfo</a>  、IPINFO <a href="http://ipinfo.io/、IPAPI" target="_blank" rel="noopener">http://ipinfo.io/、IPAPI</a> <a href="http://ip-api.com/" target="_blank" rel="noopener">http://ip-api.com/</a>  以及GeoLite2离线库等。</p>
-<h2 id="从淘宝IP获取IP信息"><a href="#从淘宝IP获取IP信息" class="headerlink" title="从淘宝IP获取IP信息"></a>从淘宝IP获取IP信息</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getipinfobytaobao</span><span class="params">(ip)</span>:</span></span><br><span class="line">    taobaoIp_url = <span class="string">'https://ip.taobao.com/outGetIpInfo'</span></span><br><span class="line">    post_data=&#123;<span class="string">"ip"</span>:ip,<span class="string">"accessKey"</span>:<span class="string">"alibaba-inc"</span>&#125;</span><br><span class="line">    ret_ipinfo= &#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        return_data=requests.post(taobaoIp_url,post_data)</span><br><span class="line">        <span class="comment">#其中返回数据中code的值的含义为，0：成功，1：服务器异常，2：请求参数异常，3：服务器繁忙，4：个人qps超出</span></span><br><span class="line">        return_json=json.loads(return_data.text)</span><br><span class="line">        <span class="keyword">if</span> return_json[<span class="string">'code'</span>]==<span class="number">0</span>:</span><br><span class="line">            ret_ipinfo[<span class="string">'ip'</span>]=return_json[<span class="string">'data'</span>][<span class="string">'ip'</span>]</span><br><span class="line">            ret_ipinfo[<span class="string">'country'</span>]=return_json[<span class="string">'data'</span>][<span class="string">'country'</span>]</span><br><span class="line">            ret_ipinfo[<span class="string">'region'</span>]=return_json[<span class="string">'data'</span>][<span class="string">'region'</span>]</span><br><span class="line">            ret_ipinfo[<span class="string">'org'</span>]=<span class="string">''</span></span><br><span class="line">            ret_ipinfo[<span class="string">'city'</span>] = return_json[<span class="string">'data'</span>][<span class="string">'city'</span>]</span><br><span class="line">            ret_ipinfo[<span class="string">'isp'</span>]=return_json[<span class="string">'data'</span>][<span class="string">'isp'</span>]</span><br><span class="line">            ret_ipinfo[<span class="string">'loc'</span>] = <span class="string">''</span></span><br><span class="line">            ret_ipinfo[<span class="string">'timezone'</span>] = <span class="string">''</span></span><br><span class="line">            ret_ipinfo[<span class="string">'source'</span>]=<span class="string">'淘宝IP'</span></span><br><span class="line">            addIPInfo2DB(ret_ipinfo)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">'未知错误 %s'</span> % (e))</span><br><span class="line">    <span class="keyword">return</span> ret_ipinfo</span><br></pre></td></tr></table></figure>
-
-<h2 id="从ipinfo-io获取IP信息"><a href="#从ipinfo-io获取IP信息" class="headerlink" title="从ipinfo.io获取IP信息"></a>从ipinfo.io获取IP信息</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getipinfobyipinfo</span><span class="params">(ip)</span>:</span></span><br><span class="line">    api_url=<span class="string">'http://ipinfo.io/'</span>+ip</span><br><span class="line">    ipinfo = &#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        req_return = requests.get(api_url)</span><br><span class="line">        <span class="keyword">if</span> req_return.status_code == <span class="number">200</span>:</span><br><span class="line">            ipinfo = json.loads(req_return.text)</span><br><span class="line">            ipinfo[<span class="string">'source'</span>]=<span class="string">'ipinfo.io'</span></span><br><span class="line">            addIPInfo2DB(ipinfo)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">'未知错误 %s'</span> % (e))</span><br><span class="line">    <span class="keyword">return</span> ipinfo</span><br></pre></td></tr></table></figure>
-
-<h2 id="从ip-api-com获取IP信息"><a href="#从ip-api-com获取IP信息" class="headerlink" title="从ip-api.com获取IP信息"></a>从ip-api.com获取IP信息</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getipinfobyipapi</span><span class="params">(ip)</span>:</span></span><br><span class="line">    api_url=<span class="string">'http://ip-api.com/json/'</span>+ip</span><br><span class="line">    ipinfo=&#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        req_return=requests.get(api_url)</span><br><span class="line">        <span class="keyword">if</span> req_return.status_code==<span class="number">200</span>:</span><br><span class="line">            ipinfo=json.loads(req_return.text)</span><br><span class="line">            ipinfo[<span class="string">'ip'</span>] = ip</span><br><span class="line">            ipinfo[<span class="string">'source'</span>] = <span class="string">'ip-api.com'</span></span><br><span class="line">            ipinfo[<span class="string">'loc'</span>] = str(ipinfo[<span class="string">'lat'</span>])+<span class="string">','</span>+str(ipinfo[<span class="string">'lon'</span>])</span><br><span class="line">            addIPInfo2DB(ipinfo)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">'未知错误 %s'</span> % (e))</span><br><span class="line">    <span class="keyword">return</span> ipinfo</span><br></pre></td></tr></table></figure>
-
-<h2 id="从GeoLite离线库获取IP信息"><a href="#从GeoLite离线库获取IP信息" class="headerlink" title="从GeoLite离线库获取IP信息"></a>从GeoLite离线库获取IP信息</h2><p>如何获取GeoLite离线库及如何读取，详见：<a href="http://xiejava.ishareread.com/posts/2c5697c0/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/2c5697c0/</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getipinfobygeoip2</span><span class="params">(ip)</span>:</span></span><br><span class="line">    ipinfo=&#123;&#125;</span><br><span class="line">    dbdir=Config.geoLiteDBdir</span><br><span class="line">    <span class="keyword">with</span> geoip2.database.Reader(dbdir) <span class="keyword">as</span> reader:</span><br><span class="line">        response = reader.city(ip)</span><br><span class="line">        ipinfo[<span class="string">'ip'</span>] =ip</span><br><span class="line">        ipinfo[<span class="string">'country'</span>] = response.country.names[<span class="string">'zh-CN'</span>]</span><br><span class="line">        ipinfo[<span class="string">'region'</span>] =<span class="string">''</span></span><br><span class="line">        ipinfo[<span class="string">'city'</span>]=response.city.name</span><br><span class="line">        ipinfo[<span class="string">'org'</span>] =<span class="string">''</span></span><br><span class="line">        ipinfo[<span class="string">'loc'</span>] = str(response.location.latitude)+<span class="string">','</span>+str(response.location.longitude)</span><br><span class="line">        ipinfo[<span class="string">'timezone'</span>] = response.location.time_zone</span><br><span class="line">        ipinfo[<span class="string">'source'</span>] = <span class="string">'GeoIP'</span></span><br><span class="line">        addIPInfo2DB(ipinfo)</span><br><span class="line">    <span class="keyword">return</span> ipinfo</span><br></pre></td></tr></table></figure>
-
-<h1 id="四、搭建一个FLASK-Web应用来查询聚合的域名、IP情报信息"><a href="#四、搭建一个FLASK-Web应用来查询聚合的域名、IP情报信息" class="headerlink" title="四、搭建一个FLASK Web应用来查询聚合的域名、IP情报信息"></a>四、搭建一个FLASK Web应用来查询聚合的域名、IP情报信息</h1><h2 id="1、FLASK-Web应用的工程组织"><a href="#1、FLASK-Web应用的工程组织" class="headerlink" title="1、FLASK Web应用的工程组织"></a>1、FLASK Web应用的工程组织</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211121/infocollect%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87.png" alt="工程组织"></p>
-<h2 id="2、配置数据及读取配置数据"><a href="#2、配置数据及读取配置数据" class="headerlink" title="2、配置数据及读取配置数据"></a>2、配置数据及读取配置数据</h2><h3 id="1）配置数据"><a href="#1）配置数据" class="headerlink" title="1）配置数据"></a>1）配置数据</h3><p>配置数据分别放在.env及.flaskenv中，其中<code>.env</code>放的是工程中用到的数据库链接等比较私密的配置信息。<code>.flaskenv</code>放的是Flask运行环境的信息<br>.env的配置信息参考如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DEV_DATABASE_URI = <span class="string">'mysql+pymysql://dbuser:yourpassword@127.0.0.1:3306/infocol_db_dev?charset=utf8'</span></span><br><span class="line">TEST_DATABASE_URI = <span class="string">'mysql+pymysql://dbuser:yourpassword@127.0.0.1:3306/infocol_db_test?charset=utf8'</span></span><br><span class="line">PROD_DATABASE_URI = <span class="string">'mysql+pymysql://dbuser:yourpassword@127.0.0.1:3306/infocol_db?charset=utf8'</span></span><br><span class="line"></span><br><span class="line">SQLALCHEMY_TRACK_MODIFICATIONS = <span class="literal">True</span></span><br><span class="line">SECRET_KEY=your secret key</span><br></pre></td></tr></table></figure>
-
-<p>.falskenv配置信息参考如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLASK_ENV=development</span><br></pre></td></tr></table></figure>
-
-<h3 id="2）实现读取配置数据"><a href="#2）实现读取配置数据" class="headerlink" title="2）实现读取配置数据"></a>2）实现读取配置数据</h3><p>通过config.py实现配置数据的读取及管理</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line">basedir=os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">flaskenv_path=os.path.join(basedir,<span class="string">'.flaskenv'</span>)</span><br><span class="line">env_path=os.path.join(basedir,<span class="string">'.env'</span>)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(flaskenv_path):</span><br><span class="line">    load_dotenv(flaskenv_path)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(env_path):</span><br><span class="line">    load_dotenv(env_path)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span>:</span></span><br><span class="line">    geoLiteDBdir=os.path.join(basedir,<span class="string">'GeoLite2\GeoLite2-City.mmdb'</span>)</span><br><span class="line">    flaskenv = os.getenv(<span class="string">'FLASK_ENV'</span>,<span class="string">'development'</span>)</span><br><span class="line">    SECRET_KEY=os.getenv(<span class="string">'SECRET_KEY'</span>,<span class="string">'123!@#'</span>)</span><br><span class="line">    SQLALCHEMY_TRACK_MODIFICATIONS=os.getenv(<span class="string">'SQLALCHEMY_TRACK_MODIFICATIONS'</span>)</span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'DEV_DATABASE_URI'</span>)</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_app</span><span class="params">(app)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DevelopmentConfig</span><span class="params">(Config)</span>:</span></span><br><span class="line">    DEBUG=<span class="literal">True</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'DEV_DATABASE_URI'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestingConfig</span><span class="params">(Config)</span>:</span></span><br><span class="line">    TESTING=<span class="literal">True</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'TEST_DATABASE_URI'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionConfig</span><span class="params">(Config)</span>:</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'PROD_DATABASE_URI'</span>)</span><br><span class="line"></span><br><span class="line">config=&#123;</span><br><span class="line">    <span class="string">'development'</span>:DevelopmentConfig,</span><br><span class="line">    <span class="string">'testing'</span>:TestingConfig,</span><br><span class="line">    <span class="string">'production'</span>:ProductionConfig,</span><br><span class="line">    <span class="string">'default'</span>:DevelopmentConfig</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、界面及路由"><a href="#3、界面及路由" class="headerlink" title="3、界面及路由"></a>3、界面及路由</h2><p>界面很简单就一个域名/IP的输入框，输入域名或IP后去查询相应的域名信息或IP信息显示到界面上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211121/index%E7%95%8C%E9%9D%A2.png" alt="index界面"></p>
-<p>界面用jinjia2的模板<br>index.html代码如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends "bootstrap/base.html" %&#125;</span><br><span class="line">&#123;% block title %&#125;InfoCol&#123;% endblock %&#125;</span><br><span class="line">&#123;% block head %&#125;</span><br><span class="line">    &#123;&#123; super() &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line">&#123;% block body %&#125;</span><br><span class="line">    &#123;% block navbar %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar navbar-inverse"</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-header"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"navbar-toggle"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span> <span class="attr">data-target</span>=<span class="string">".navbar-collapse"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>Toggle navigation<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"navbar-brand"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>InfoCol<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-collapse collapse"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav navbar-nav"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endblock %&#125;</span><br><span class="line">    &#123;% block content %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page-header "</span> &gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">class</span>=<span class="string">"center-block"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"center-block"</span> <span class="attr">style</span>=<span class="string">"text-align:center"</span>&gt;</span></span><br><span class="line">                &#123;&#123; form.hidden_tag() &#125;&#125;</span><br><span class="line">                &#123;&#123; form.name.label &#125;&#125;&#123;&#123; form.name() &#125;&#125;</span><br><span class="line">                &#123;&#123; form.submit() &#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                &#123;% if whois_info %&#125;</span><br><span class="line">                  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>&#123;&#123; name &#125;&#125;的Whois信息<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                    &#123;% for item in whois_info %&#125;</span><br><span class="line">                        &#123;% if item!='详情' %&#125;</span><br><span class="line">                        <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 20%"</span>&gt;</span>&#123;&#123; item &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 80%"</span>&gt;</span>&#123;&#123; whois_info[item] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                        &#123;% else %&#125;</span><br><span class="line">                        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 20%"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">a</span> <span class="attr">role</span>=<span class="string">"button"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span> <span class="attr">href</span>=<span class="string">"#collapseExample"</span> <span class="attr">aria-expanded</span>=<span class="string">"false"</span> <span class="attr">aria-controls</span>=<span class="string">"collapseExample"</span>&gt;</span></span><br><span class="line">                               &#123;&#123; item &#125;&#125;</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 80%"</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"collapse"</span> <span class="attr">id</span>=<span class="string">"collapseExample"</span>&gt;</span></span><br><span class="line">                                  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"well"</span>&gt;</span></span><br><span class="line">                                    &#123;&#123; whois_info[item] &#125;&#125;</span><br><span class="line">                                  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                        &#123;% endif %&#125;</span><br><span class="line">                    &#123;% endfor %&#125;</span><br><span class="line">                  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">                &#123;% endif %&#125;</span><br><span class="line">                &#123;% if ipinfos|length&gt;0 %&#125;</span><br><span class="line">                  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>IP<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>国家/地区<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>省份<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>城市<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>机构<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>ISP<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>经纬度<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>来源<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                      &#123;% for ipinfo in ipinfos %&#125;</span><br><span class="line">                      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['ip'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['country'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['region'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['city'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['org'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['isp'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['loc'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                              &#123;% if ipinfo['source']=='ipinfo.io' %&#125;</span><br><span class="line">                                  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://ipinfo.io/&#123;&#123; ipinfo['ip'] &#125;&#125;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>&#123;&#123; ipinfo['source'] &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                              &#123;% elif ipinfo['source']=='ip-api.com'%&#125;</span><br><span class="line">                                  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://ip-api.com/json/&#123;&#123; ipinfo['ip'] &#125;&#125;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>&#123;&#123; ipinfo['source'] &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                              &#123;% else %&#125;</span><br><span class="line">                                  &#123;&#123; ipinfo['source'] &#125;&#125;</span><br><span class="line">                              &#123;% endif %&#125;</span><br><span class="line">                          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                      &#123;% endfor %&#125;</span><br><span class="line">                  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">                &#123;% endif %&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endblock %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>路由配置处理中实现了获取表单中的信息，并判断是域名还是IP如果是域名者获取whois信息，并根据域名获取IP信息。如果输入的是IP则获取IP信息，并反馈到页面上。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@index_bp.route('/',methods=['GET','POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">''</span></span><br><span class="line">    ipinfos = []</span><br><span class="line">    whois_info = <span class="string">''</span></span><br><span class="line">    form = InputForm()</span><br><span class="line">    <span class="keyword">if</span> form.validate_on_submit():</span><br><span class="line">        name = form.name.data</span><br><span class="line">        <span class="keyword">if</span> checkip(name):</span><br><span class="line">            ipinfos = getipinfo(name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            whois_info = getwhoisinfo(name)</span><br><span class="line">            whois_ip = getIPbyDomain(name)</span><br><span class="line">            <span class="keyword">if</span> checkip(whois_ip):</span><br><span class="line">                ipinfos = getipinfo(whois_ip)</span><br><span class="line">        form.name.data = <span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'index.html'</span>,form=form, name=name, ipinfos=ipinfos, whois_info=whois_info)</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、最终实现效果"><a href="#4、最终实现效果" class="headerlink" title="4、最终实现效果"></a>4、最终实现效果</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211121/%E7%95%8C%E9%9D%A2%E6%9F%A5%E8%AF%A2%E6%95%88%E6%9E%9C.png" alt="界面查询效果"></p>
-<p><strong>至此通过Python快速实现了一个简单的域名、IP信息聚合网站</strong></p>
-<hr>
-<p>全部源代码：<a href="https://github.com/xiejava1018/infocollect" target="_blank" rel="noopener">https://github.com/xiejava1018/infocollect</a></p>
-<p>演示地址：<a href="http://test.ishareread.com/" target="_blank" rel="noopener">http://test.ishareread.com/</a></p>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3014,7 +3108,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">158</span>
+                  <span class="site-state-item-count">159</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3126,7 +3220,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">329.3k</span>
+    <span title="Site words total count">330.3k</span>
   
   
 <!--51la网站应用监控-->
