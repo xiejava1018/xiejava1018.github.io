@@ -313,6 +313,252 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d101efba/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/d101efba/" itemprop="url">解决Anaconda报The channel is not accessible源通道不可用问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-26T15:53:22+08:00">
+                2021-11-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-07T17:13:14+08:00">
+                2023-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/d101efba/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d101efba/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/d101efba/" class="leancloud_visitors" data-flag-title="解决Anaconda报The channel is not accessible源通道不可用问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  675
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在通过pycharm开发python程序，引用anaconda环境建立虚拟环境时报错，报UnavailableInvalidChannel: The channel is not accessible or is invalid.应该是镜像源访问通道无法访问或无效。现将解决办法记录如下：</p>
+<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：win10<br>安装有anaconda 4.10.3<br>pycharm2021.2</p>
+<h1 id="报错现象："><a href="#报错现象：" class="headerlink" title="报错现象："></a>报错现象：</h1><p>在pycharm中新建python项目，引用anaconda建立虚拟环境时报错<br>报“UnavailableInvalidChannel: The channel is not accessible or is invalid.”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E6%8A%A5%E9%94%99.png" alt="建立虚拟环境报错"></p>
+<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><h2 id="1、找到anaconda的源配置文件"><a href="#1、找到anaconda的源配置文件" class="headerlink" title="1、找到anaconda的源配置文件"></a>1、找到anaconda的源配置文件</h2><p>根据报错的建议提示：</p>
+<blockquote>
+<p>You will need to ajust your conda configuration to proceed.<br>Use ‘cona config –show channels’ to view your configuration’s current state,<br>and use ‘conda config –show-sources’ to view config file location.</p>
+</blockquote>
+<p>意思是建议你需要调整conda的配置来处理，可以通过<code>cona config --show channels</code>命令来查看你当前的配置状态，可以用<code>conda config --show-sources</code>看查看本地的配置文件。<br>根据这个建议，打开anaconda的命令行控制台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/AnacondaPowershell.png" alt="Anaconda Powershell"></p>
+<p>敲入“conda config –show-sources”命令，显示当前的通道为<a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a>  报错就是说这个通道无法访问或无效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show channels</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<p>通过“conda config –show-sources” 查看配置文件的路径。配置文件为用户目录下的<code>.condarc</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E6%89%BE%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="在这里插入图片描述"></p>
+<h2 id="2、修改为清华的镜像源"><a href="#2、修改为清华的镜像源" class="headerlink" title="2、修改为清华的镜像源"></a>2、修改为清华的镜像源</h2><p>将找到的.condarc文件打开。<br>拷贝以下清华的镜像源到该文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
+
+<p>然后再次运行<code>conda config --show-sources</code>，确认配置文件内容已经修改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><p>再打开pycharm引用Conda Enviroment新建新的虚拟环境。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E5%BB%BA%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="新建新的虚拟环境"><br>这时不报错可以正常创建Conda虚拟环境了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E5%88%9B%E5%BB%BACondaEnvironment.png" alt="创建Conda Environment"></p>
+<p>至此，修改成清华镜像源解决了Anaconda报The channel is not accessible源通道不可用的问题。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/fa820ec9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2657,225 +2903,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7626e526/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/7626e526/" itemprop="url">都2021了，我为什么还在用博客这种古老的方式在记录</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-20T21:53:09+08:00">
-                2021-08-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-08-31T08:53:59+08:00">
-                2023-08-31
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/7626e526/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7626e526/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/7626e526/" class="leancloud_visitors" data-flag-title="都2021了，我为什么还在用博客这种古老的方式在记录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  903
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210820/blog.png" alt="BLOG"></p>
-<p>都2021了，在这个移动互联网异常发达，自媒体泛滥的时代，博客这个古老的在互联网时代记录自己的工具似乎是不合时宜要被大众所遗忘被历史所淘汰。而我却还在用博客这种古老的方式生活在移动互联网时代记录工作，学习，生活。</p>
-<p><strong>一、为什么要记录</strong><br>正如我的博客标题，记录最好的自己。最朴实的想法就是想记录自己的所学、所见、所闻、所思、所想。记录使人进步。吴军老师的《全球科技通史》中提到，促进人类文明发展的是两条主线，一条是能源，一条是信息。文字的发明，信息的记录，让人类的文明得以延续和发展。是一代一代人通过信息的记载和积累促进科技的发展，让信息不管是从记录方式还是传播速度都得到了跨越式的发展，进入到了现在信息爆炸的时代。书中提到，为什么在近代早期西方的科学技术进步的速度要明显的快于中国，一个重要的原因就西方对于科学技术的研究及传播方式。西方的研究方式是通过不断的实验大量的记录进行定量研究，后人可以基于前人记录的信息研究成果进行研究和传播，大大加快的科学技术的进步。而那时候中国可能还是定性方式的研究，口口相传的传播方式，导致原来很多技术到现在都失传了。</p>
-<p>对于个人来说，我想应该也是一样的，要想更快进步和发展，将自己生活、学习、工作过程中的所学、所见、所闻、所思、所想记录下来定期的回顾和思考应该会有所促进吧。而且随着时间的推移回头看看自己以前记录的东西应该也是一种乐趣。或许，有人看到我所记录的东西以此为鉴少走一点弯路。</p>
-<p>不在乎文笔，不限于内容，仅仅只是记录，希望记录能够成就最好的自己。</p>
-<p><strong>二、为什么是博客这种方式</strong><br>记录信息的手段很多，尤其是自媒体时代，微博、微信、头条、抖音、小红书啥的，平台很多。为什么还要用博客这种古老的方式呢？如果自是记录给自己看映象笔记、网易云笔记都是很好的，私密性太强，不够开放。微博、微信社交属性太强关注的都是些熟人。头条、抖音、小红书，功利性太强，为了收益去强迫自己去写也不是自己的初衷。想来想去还只有博客这种古老的方式比较合适，安安静静的自己想记录什么就记录什么。也不用去担心什么流量，不用去关注什么人关注了你。以前几个大的通用的博客平台都不提供服务了如新浪博客、网易博客等，而CSDN、cnblog主要是技术类的博客，想记录点乱七八糟的事情似乎也不太适合。所以只好自己来搭建博客咯。</p>
-<p>自己搭建的博客<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a> 已经快两年了。记录的东西不是太多，说明见识不多，思考太少。</p>
-<hr>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2932,7 +2959,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">160</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3044,7 +3071,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">330.3k</span>
+    <span title="Site words total count">331.7k</span>
   
   
 <!--51la网站应用监控-->
