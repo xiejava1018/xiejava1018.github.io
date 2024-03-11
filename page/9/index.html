@@ -313,6 +313,233 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7435f815/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/7435f815/" itemprop="url">Python3.9环境安装mysqlclient报python setup.py egg_info did not run successfully错避坑</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-16T11:07:00+08:00">
+                2022-07-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-03-28T09:45:54+08:00">
+                2023-03-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/7435f815/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7435f815/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/7435f815/" class="leancloud_visitors" data-flag-title="Python3.9环境安装mysqlclient报python setup.py egg_info did not run successfully错避坑">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  434
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>MySQL是常用的开源数据库，Python环境下django框架连接MySQL数据库用的是mysqlclient库，今天在用pip安装mysqlclient库时报错，特记录一下，避免后续继续踩坑。</p>
+<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：CentOS Linux 7.2<br>Python版本：Python 3.9.13<br>pip版本：pip 22.1.2</p>
+<h1 id="报错信息："><a href="#报错信息：" class="headerlink" title="报错信息："></a>报错信息：</h1><p>执行<code>pip3 install mysqlclient==2.1.1</code> 报错<br>报错信息如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">Using cached http://mirrors.aliyun.com/pypi/packages/50/5f/eac919b88b9df39bbe4a855f136d58f80d191cfea34a3dcf96bf5d8ace0a/mysqlclient-2.1.1.tar.gz (88 kB)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line">  </span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ <span class="built_in">exit</span> code: 1</span><br><span class="line">  ╰─&gt; [16 lines of output]</span><br><span class="line">      /bin/sh: mysql_config: <span class="built_in">command</span> not found</span><br><span class="line">      /bin/sh: mariadb_config: <span class="built_in">command</span> not found</span><br><span class="line">      /bin/sh: mysql_config: <span class="built_in">command</span> not found</span><br><span class="line">      Traceback (most recent call last):</span><br><span class="line">        File <span class="string">"&lt;string&gt;"</span>, line 2, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">        File <span class="string">"&lt;pip-setuptools-caller&gt;"</span>, line 34, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">        File <span class="string">"/tmp/pip-install-i1nt_asj/mysqlclient_1b92535d58cd440b8797686ac8bc9882/setup.py"</span>, line 15, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">          metadata, options = get_config()</span><br><span class="line">        File <span class="string">"/tmp/pip-install-i1nt_asj/mysqlclient_1b92535d58cd440b8797686ac8bc9882/setup_posix.py"</span>, line 70, <span class="keyword">in</span> get_config</span><br><span class="line">          libs = mysql_config(<span class="string">"libs"</span>)</span><br><span class="line">        File <span class="string">"/tmp/pip-install-i1nt_asj/mysqlclient_1b92535d58cd440b8797686ac8bc9882/setup_posix.py"</span>, line 31, <span class="keyword">in</span> mysql_config</span><br><span class="line">          raise OSError(<span class="string">"&#123;&#125; not found"</span>.format(_mysql_config_path))</span><br><span class="line">      OSError: mysql_config not found</span><br><span class="line">      mysql_config --version</span><br><span class="line">      mariadb_config --version</span><br><span class="line">      mysql_config --libs</span><br><span class="line">      [end of output]</span><br><span class="line">  </span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error <span class="keyword">while</span> generating package metadata.</span><br><span class="line">╰─&gt; See above <span class="keyword">for</span> output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220716/mysqlclient%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99.png" alt="mysqlclient报错"></p>
+<h1 id="避坑："><a href="#避坑：" class="headerlink" title="避坑："></a>避坑：</h1><p><strong>从报错信息看是找不到mysql_config</strong><br>通过<code>whereis mysql_config</code>命令查看mysql_config<br>发现mysql_confg没有<br><strong>执行<code>yum install mysql-devel</code> 安装mysql-devel</strong><br>执行whereis mysql_config命令查看mysql_config这时mysql_config有了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_config: /usr/bin/mysql_config /usr/share/man/man1/mysql_config.1.gz</span><br></pre></td></tr></table></figure>
+
+<p>再次执行pip安装命令安装成功！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pip3 install mysqlclient==2.1.1</span><br><span class="line"></span><br><span class="line">Looking <span class="keyword">in</span> indexes: http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">Collecting mysqlclient==2.1.1</span><br><span class="line">  Using cached http://mirrors.aliyun.com/pypi/packages/50/5f/eac919b88b9df39bbe4a855f136d58f80d191cfea34a3dcf96bf5d8ace0a/mysqlclient-2.1.1.tar.gz (88 kB)</span><br><span class="line">  Preparing metadata (setup.py) ... <span class="keyword">done</span></span><br><span class="line">Using legacy <span class="string">'setup.py install'</span> <span class="keyword">for</span> mysqlclient, since package <span class="string">'wheel'</span> is not installed.</span><br><span class="line">Installing collected packages: mysqlclient</span><br><span class="line">  Running setup.py install <span class="keyword">for</span> mysqlclient ... <span class="keyword">done</span></span><br><span class="line">Successfully installed mysqlclient-2.1.1</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/462af16b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2652,275 +2879,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5156b28b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/5156b28b/" itemprop="url">网络信息安全之基于时间的安全模型（PDR和PPDR模型）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-23T10:18:07+08:00">
-                2022-04-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-09-01T17:22:40+08:00">
-                2023-09-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/5156b28b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5156b28b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/5156b28b/" class="leancloud_visitors" data-flag-title="网络信息安全之基于时间的安全模型（PDR和PPDR模型）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>基于时间的安全模型是基于”<strong>任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的</strong>“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。</p>
-<p>基于时间的安全模型主要包括PDR和后来改进的PPDR模型，PDR模型是源自美国国际互联网安全系统公司ISS提出的自适应网络安全模型ANSM（AdaptiveNetwork Security Model），是一个可量化、可数学证明、基于时间的安全模型。美国ISS公司（后被IBM收购）提出的。PPDR模型是PDR的模型上发展起来的，也称P2DR，加入的P是Policy策略。</p>
-<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PDR.png" alt="PDR模型"></p>
-<p>P-protection，保护就是采用一切可能的措施来保护网络、系统以及信息的安全。通常采用的技术及方法主要包括加密、认证、访问控制、防火墙及防病毒等。</p>
-<p>D-detect，检测可以了解和评估网络和系统的安全状态，为安全防护和安全响应提供依据。常用的检测技术主要包括入侵检测、漏洞检测及网络扫描等技术。</p>
-<p> R-response，应急响应在安全模型中占有重要地位，是解决安全问题的最有效办法。解决安全问题就是解决紧急响应和异常处理问题，因此，建立应急响应机制，形成快速安全响应的能力，对网络和系统至关重要。</p>
-<p>PDR模型直观、实用，建立了一个所谓的基于时间的可证明的安全模型，定义了防护时间Pt(攻击者发起攻击时，保护系统不被攻破的时间)、检测时间Dt(从发起攻击到检测到攻击的时间)和响应时间Rt(从发现攻击到做出有效响应的时间)3个概念，并给出了评定系统安全的计算方式，<strong>当Pt&gt;Dt+Rt时，即认为系统是安全的</strong>，也就是说，如果在攻击者攻破系统之前发现并阻止了攻击的行为，那么系统就是安全的。</p>
-<p>局限性：系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明-一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化。</p>
-<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PPDR.png" alt="PPDR模型"></p>
-<p>策略（Policy）：模型的核心，所有的防护、检测和响应都是依据安全策略实施的。安全策略一般由总体安全策略和具体安全策略两部分组成。<br>保护（Protection）：保护是根据系统可能出现的安全问题而采取的预防措施，这些措施通过传统的静态安全技术实现。采用的防护技术通常包括数据加密、身份认证、访问控制、授权和虚拟专用网(VPN)技术、防火墙、安全扫描和数据备份等。<br>检测（Detection）：当攻击者穿透防护系统时，检测功能就发挥作用，与防护系统形成互补。检测是动态响应的依据。<br>响应（Response）：系统一旦检测到人侵，响应系统就开始工作，进行事件处理。响应包括应急响应和恢复处理，恢复处理又包括系统恢复和信息恢复。</p>
-<p>PPDR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等)的同时，利用检测工具(如漏洞评估、人侵检测等)了解和评估系统的安全状态，通过适当的反应将系统调整到“最安全”和“风险最低”的状态。保护、检测和响应组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
-<p>该理论的最基本原理就是信息安全相关的所有活动，不管是攻击行为、防护行为、检测行为和响应行为等都要消耗时间,因此可以用时间来衡量一个体系的安全性和安全能力。假设系统的防护、检测和反应时间分别是Pt、Dt和Rt。系统被对手成功攻击后的时间为暴露时间(Et)，那么PPDR模型就可以用典型的数学公式来表达安全的要求：如果Pt&gt;Dt+Rt,那么系统是安全的。</p>
-<p>P2DR模型中的数学法则：<br>假设S系统的防护、检测和反应的时间分别是<br>• Pt（防护时间、有效防御攻击的时间）<br>• Dt（检测时间、发起攻击到检测到的时间）<br>• Rt（反应时间、检测到攻击到处理完成时间）<br> 假设系统被对手成功攻击后的时间为<br>• Et（暴露时间）<br>则该系统防护、检测和反应的时间关系如下：<br>• 如果Pt＞Dt＋Rt，那么S是安全的；<br>• 如果Pt＜Dt＋Rt，那么Et＝（Dt＋Rt）－Pt。</p>
-<p>PPDR给出了安全的全新定义：“<strong>及时的检测和响应就是安全</strong>”，”<strong>及时的检测和恢复就是安全</strong>”。这样的定义给出了解决安全问题的明确方向:提高系统的防护时间Pt，降低检测时间Dt和响应时间Rt。</p>
-<p>与PDR模型相比，PPDR模型更强调控制和对抗，即强调系统安全的动态性，并且以安全检测、漏洞监测和自适应填充“安全间隙”为循环来提高网络安全。值得指出的是，在PPDR模型中，考虑了管理因素,它强调安全管理的持续性、安全策略的动态性，以实时监视网络活动、发现威胁和弱点来调整和填补网络漏洞。另外，该模型强调检测的重要性，通过经常对信息系统的评估把握系统风险点，及时弱化甚至消除系统的安全漏洞。但该模型忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>PDR</th>
-<th>PPDR</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>意义</td>
-<td>最早体现主动防御思想的一种网络安全模型</td>
-<td>是动态网络是安全体系的代表模型，动态安全模型的雏形。</td>
-</tr>
-<tr>
-<td>组成</td>
-<td>保护-检测-响应( Protection-Detection-Response, PDR )</td>
-<td>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )</td>
-</tr>
-<tr>
-<td>特点</td>
-<td>PDR模型建立了一个所谓的基于时间的可证明的安全模型，定义了:防护时间Pt (黑客发起攻击时，保护系统不被攻破的时间)、检测时间Dt (从发起攻击到检测到攻击的时间)和响应时间Rt (从发现攻击到作出有效响应的时间)。当Pt&gt;Dt+Rt时，即认为系统是安全的，也就是说，如果在黑客攻破系统之前发现并阻止了黑客的行为，那么系统就是安全的。</td>
-<td>给出了安全一个全新的定义：“及时的检测和响应就是安全”，“及时的检测和恢复就是安全”。而且，这样的定义为安全问题的解决给出了明确的方向：提高系统的防护时间Pt，降低检测时间.Dt和响应时间Rt。</td>
-</tr>
-<tr>
-<td>局限性</td>
-<td>系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化</td>
-<td>忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</td>
-</tr>
-</tbody></table>
-<p>不管是PDR还是PPDR，总体来说还是局限于从技术上考虑信息安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木块构成的“木桶”，木桶的容量由最短的那块板决定。在处理信息安全问题时，必须全面考虑各方面的因素，任何一个方面的遗漏都有可能形成“短板”。</p>
-<hr>
-<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2977,7 +2935,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">161</span>
+                  <span class="site-state-item-count">162</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3089,7 +3047,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">336.7k</span>
+    <span title="Site words total count">338k</span>
   
   
 <!--51la网站应用监控-->
