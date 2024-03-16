@@ -313,6 +313,277 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dbe7a5ab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/dbe7a5ab/" itemprop="url">OpenResty+OpenWAF的WEB防护实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-04-07T16:38:57+08:00">
+                2023-04-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2023-04-07T16:54:38+08:00">
+                2023-04-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/dbe7a5ab/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/dbe7a5ab/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/dbe7a5ab/" class="leancloud_visitors" data-flag-title="OpenResty+OpenWAF的WEB防护实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>OpenResty是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。本文介绍通过OpenResty+OpenWAF来搭建软WAF的应用，用来防护DVWA的靶机，然后我们通过攻击DVWA的靶机来看一下OpenWAF的防护效果。</p>
+<h2 id="一、OpenResty-OpenWAF安装"><a href="#一、OpenResty-OpenWAF安装" class="headerlink" title="一、OpenResty+OpenWAF安装"></a>一、OpenResty+OpenWAF安装</h2><h3 id="1、安装依赖"><a href="#1、安装依赖" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc gcc-c++ wget GeoIP-devel git swig make perl perl-ExtUtils-Embed readline-devel zlib-devel -y</span><br></pre></td></tr></table></figure>
+
+<p>安装libcidr</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">wget http://www.over-yonder.net/~fullermd/projects/libcidr/libcidr-1.2.3.tar.xz</span><br><span class="line">tar -xvf libcidr-1.2.3.tar.xz</span><br><span class="line"><span class="built_in">cd</span> /opt/libcidr-1.2.3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>升级openssl版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">wget -c http://www.openssl.org/<span class="built_in">source</span>/openssl-1.1.1d.tar.gz --no-check-certificat</span><br><span class="line">tar -zxvf openssl-1.1.1d.tar.gz</span><br><span class="line"><span class="built_in">cd</span> openssl-1.1.1d/</span><br><span class="line">./config</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>下载pcre-jit<br>并解压pcre-jit，后面安装OpenResty的时候引入并安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://udomain.dl.sourceforge.net/project/pcre/pcre/8.45/pcre-8.45.tar.gz --no-check-certificate</span><br><span class="line">tar -zxvf pcre-8.45.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、安装OpenWAF"><a href="#2、安装OpenWAF" class="headerlink" title="2、安装OpenWAF"></a>2、安装OpenWAF</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/titansec/OpenWAF.git</span><br><span class="line">mv /opt/OpenWAF/lib/openresty/ngx_openwaf.conf /etc</span><br><span class="line">mv /opt/OpenWAF/lib/openresty/configure /opt/openresty-1.19.3.1</span><br><span class="line">cp -RP /opt/OpenWAF/lib/openresty/* /opt/openresty-1.19.9.1/bundle/</span><br><span class="line"><span class="built_in">cd</span> /opt/OpenWAF/</span><br><span class="line">make clean</span><br><span class="line">make install</span><br><span class="line">ln -s /usr/<span class="built_in">local</span>/lib/libcidr.so /opt/OpenWAF/lib/resty/libcidr.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、安装OpenResty"><a href="#3、安装OpenResty" class="headerlink" title="3、安装OpenResty"></a>3、安装OpenResty</h3><p>OpenResty官网的下载地址 <a href="https://openresty.org/en/download.html" target="_blank" rel="noopener">https://openresty.org/en/download.html</a><br>目前最新版本是1.21.4.1</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">wget https://openresty.org/download/openresty-1.21.4.1.tar.gz</span><br><span class="line">tar -zxvf openresty-1.21.4.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> /opt/openresty-1.21.4.1/</span><br><span class="line">./configure --with-pcre-jit --with-ipv6 --with-http_stub_status_module --with-http_ssl_module --with-http_realip_module --with-http_sub_module --with-http_geoip_module --with-openssl=/opt/openssl-1.1.1d --with-pcre=/opt/pcre-8.45</span><br><span class="line">gmake &amp;&amp; gmake install</span><br></pre></td></tr></table></figure>
+
+<p>设置nginx开机自启动服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vim /lib/systemd/system/nginx.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=nginx</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx</span><br><span class="line">ExecReload=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx -s reload</span><br><span class="line">ExecStop=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx -s quit</span><br><span class="line">PrivateTmp=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> nginx</span><br><span class="line"><span class="comment"># 查看服务当前状态</span></span><br><span class="line">systemctl status nginx</span><br><span class="line"><span class="comment"># 启动nginx服务</span></span><br><span class="line">systemctl start nginx</span><br><span class="line"><span class="comment"># 停止nginx服务</span></span><br><span class="line">systemctl stop nginx</span><br><span class="line"><span class="comment"># 重启nginx服务</span></span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+<p>当我们启动nginx的时候发现启动失败了，原因是因为原来安装了apache端口是80，nginx的端口也是80，端口冲突了。解决方案要不是改nginx端口，要不就是改apache的端口。这里将apache的端口改成8080。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost OpenWAF]<span class="comment"># systemctl start nginx</span></span><br><span class="line">Job <span class="keyword">for</span> nginx.service failed because the control process exited with error code. See <span class="string">"systemctl status nginx.service"</span> and <span class="string">"journalctl -xe"</span> <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
+<p>查看nginx启动状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost OpenWAF]<span class="comment"># systemctl status nginx</span></span><br><span class="line">● nginx.service - nginx</span><br><span class="line">Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)</span><br><span class="line">Active: failed (Result: <span class="built_in">exit</span>-code) since Tue 2023-04-04 04:00:44 PDT; 19s ago</span><br><span class="line">Process: 42096 ExecStart=/usr/<span class="built_in">local</span>/openresty/nginx/sbin/nginx (code=exited, status=1/FAILURE)</span><br><span class="line">Apr 04 04:00:42 localhost.localdomain nginx[42096]: nginx: [emerg] <span class="built_in">bind</span>() to 0.0.0.0:80 failed (98: Address already <span class="keyword">in</span> use)</span><br><span class="line">Apr 04 04:00:42 localhost.localdomain nginx[42096]: nginx: [emerg] <span class="built_in">bind</span>() to 0.0.0.0:80 failed (98: Address already <span class="keyword">in</span> use)</span><br><span class="line">Apr 04 04:00:43 localhost.localdomain nginx[42096]: nginx: [emerg] <span class="built_in">bind</span>() to 0.0.0.0:80 failed (98: Address already <span class="keyword">in</span> use)</span><br><span class="line">Apr 04 04:00:43 localhost.localdomain nginx[42096]: nginx: [emerg] <span class="built_in">bind</span>() to 0.0.0.0:80 failed (98: Address already <span class="keyword">in</span> use)</span><br><span class="line">Apr 04 04:00:44 localhost.localdomain nginx[42096]: nginx: [emerg] <span class="built_in">bind</span>() to 0.0.0.0:80 failed (98: Address already <span class="keyword">in</span> use)</span><br><span class="line">Apr 04 04:00:44 localhost.localdomain nginx[42096]: nginx: [emerg] still could not <span class="built_in">bind</span>()</span><br></pre></td></tr></table></figure>
+
+<p>修改apache的端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf</span><br><span class="line">Listen 8080</span><br><span class="line">systemctl restart httpd</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/1-apache%E7%AB%AF%E5%8F%A3.png" alt="修改apache端口的效果"></p>
+<p>将apache的端口改成8080后，再次启动nginx就可以看到OpenResty成功启动了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/2-%E6%88%90%E5%8A%9F%E5%90%AF%E5%8A%A8OpenResty.png" alt="OpenResty成功启动了"></p>
+<h2 id="二、配置OpenWAF的web防护"><a href="#二、配置OpenWAF的web防护" class="headerlink" title="二、配置OpenWAF的web防护"></a>二、配置OpenWAF的web防护</h2><p>这边DVWA靶机的地址是<a href="http://192.168.1.24:8080/DVWA/" target="_blank" rel="noopener">http://192.168.1.24:8080/DVWA/</a>  DVWA靶机的安装见另一篇博文《<a href="https://blog.csdn.net/fullbug/article/details/129879670" target="_blank" rel="noopener">CentOS7+LAMP+DVWA靶机搭建</a>》<a href="https://blog.csdn.net/fullbug/article/details/129879670" target="_blank" rel="noopener">https://blog.csdn.net/fullbug/article/details/129879670</a><br>我们需要配置OpenResty+OpenWAF来对192.168.1.24:8080进行WEB防护<br>参考《<a href="https://github.com/titansec/OpenWAF/blob/master/doc/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%ACOpenWAF%E4%B9%8B%E5%85%A5%E9%97%A8%E7%AF%87.md" target="_blank" rel="noopener">轻松玩转OpenWAF之入门篇</a>》及 《<a href="https://github.com/titansec/OpenWAF/blob/master/doc/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6OpenWAF%E4%B9%8Bnginx%E9%85%8D%E7%BD%AE.md" target="_blank" rel="noopener">深入研究OpenWAF之nginx配置</a>》</p>
+<h3 id="1、nginx配置修改"><a href="#1、nginx配置修改" class="headerlink" title="1、nginx配置修改"></a>1、nginx配置修改</h3><p>在 nginx 的 http 级别添加如下两行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include /opt/OpenWAF/conf/twaf_main.conf;</span><br><span class="line">include /opt/OpenWAF/conf/twaf_api.conf;</span><br></pre></td></tr></table></figure>
+
+<p>要防护的 server 或 location 级别添加如下一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include /opt/OpenWAF/conf/twaf_server.conf;</span><br></pre></td></tr></table></figure>
+
+<p>OpenResty的nginx的配置文件在 /usr/local/openresty/nginx/conf/nginx.conf</p>
+<p>具体配置参考下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/3-OpenResty%E7%9A%84nginx%E9%85%8D%E7%BD%AE.png" alt="nginx.conf相关配置"></p>
+<h3 id="2、OpenWAF接入规则修改"><a href="#2、OpenWAF接入规则修改" class="headerlink" title="2、OpenWAF接入规则修改"></a>2、OpenWAF接入规则修改</h3><p>修改/opt/OpenWAF/conf/twaf_access_rule.json文件<br>具体配置参考下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/4-OpenWAF%E7%9A%84twaf_access_rule.json%E7%9A%84%E9%85%8D%E7%BD%AE.png" alt="twaf_access_rule.json文件的配置"></p>
+<h3 id="3、测试验证"><a href="#3、测试验证" class="headerlink" title="3、测试验证"></a>3、测试验证</h3><p>这时候我们访问<a href="http://192.168.1.24/DVWA/" target="_blank" rel="noopener">http://192.168.1.24/DVWA/</a>  ，注意是没有带8080端口的，因为是通过OpenResty+OpenWAF来反向代理了127.0.0.1的8080端口，访问<a href="http://192.168.1.24/DVWA/" target="_blank" rel="noopener">http://192.168.1.24/DVWA/</a>  是经过了OpenWAF防护的。<br>这时候我们开始通过SQL注入对DVWA的靶机进行SQL注入的攻击。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/5-SQL%E6%B3%A8%E5%85%A5.png" alt="SQL注意"></p>
+<p>防护效果：<br>可以看到OpenWAF提示标识为攻击并记录，提示是有次SQL注入的攻击，并进行了防护。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/5-SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E6%8A%A4%E6%95%88%E6%9E%9C.png" alt="SQL注入防护效果"></p>
+<p>接下来我们进行一次XSS的攻击<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/6-XSS%E6%94%BB%E5%87%BB.png" alt="在这里插入图片描述"></p>
+<p>同样OpenWAF给出了XSS的攻击提示，并进行了防护。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/6-XSS%E9%98%B2%E6%8A%A4%E6%95%88%E6%9E%9C.png" alt="XSS的防护效果"></p>
+<p>至此，本文介绍了OpenResty+OpenWAF的安装，并通过配置对DVWA的靶机进行了WEB防护，通过SQL注入及XSS的攻击，验证了OpenWAF的效果。OpenResty+OpenWAF是开源的软WAF解决方案，安装和配置相对简单，对于中小企业的web防护来说不失为一个低成本的解决方案。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4405dad8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2962,308 +3233,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2f88a4b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/2f88a4b/" itemprop="url">网络安全之认识挖矿木马</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-02-22T09:33:44+08:00">
-                2023-02-22
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-10T17:28:28+08:00">
-                2023-03-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/2f88a4b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/2f88a4b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/2f88a4b/" class="leancloud_visitors" data-flag-title="网络安全之认识挖矿木马">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、什么是挖矿木马？"><a href="#一、什么是挖矿木马？" class="headerlink" title="一、什么是挖矿木马？"></a>一、什么是挖矿木马？</h2><p>比特币是以区块链技术为基础的虚拟加密货币，比特币具有匿名性和难以追踪的特点，经过十余年的发展，已成为网络黑产最爱使用的交易媒介。大多数勒索病毒在加密受害者数据后，会勒索代价高昂的比特币。比特币在2021年曾达到1枚6.4万美元的天价，比特币的获得需要高性能计算机（又称矿机，一般配置顶级CPU和GPU）按特定算法计算，计算的过程被形象的称为“挖矿”。</p>
-<p>矿机价格昂贵，为生产比特币，有人不惜重金购置大量矿机组成网络集群挖矿。挖矿又非常耗电，因此矿场往往会寻找偏僻地区的小水电、小火电而建，因为电费便宜，有人为节约成本偷电挖矿。</p>
-<p>当数字加密币市值暴涨时，挖矿业务会水涨船高，高端CPU、GPU、高端显卡、大容量硬盘被炒上天价还卖断货。目前，我国政府宣布要实现碳达峰碳中和的目标，严重耗能的虚拟加密币相关生产、交易被认定为非法，我国境内所有（生产加密货币的）矿场必须关闭。</p>
-<p>因挖矿需要大量财力投入，从一开始，就有人想到利用木马控制他人的计算机组建僵尸网络集群挖矿的办法，这就是所谓“挖矿木马”。</p>
-<p>不法分子通过各种非法手段将矿机程序植入受害者的计算机中，利用受害者计算机的运算能力进行挖矿活动，从而获取非法收益。这类非法侵入用户计算机的矿机程序被称作挖矿木马病毒。</p>
-<h2 id="二、挖矿木马的主要入侵方式"><a href="#二、挖矿木马的主要入侵方式" class="headerlink" title="二、挖矿木马的主要入侵方式"></a>二、挖矿木马的主要入侵方式</h2><p>挖矿木马常见的攻击方式及攻击后果可以参考下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230222/%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E5%85%A5%E4%BE%B5%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="挖矿木马的主要入侵方式"></p>
-<h3 id="1、漏洞攻击"><a href="#1、漏洞攻击" class="headerlink" title="1、漏洞攻击"></a>1、漏洞攻击</h3><p>利用系统漏洞快速获取相关服务器权限，植入挖矿木马是目前最为普遍的传播方式之一。常见的漏洞包括Windows系统漏洞、服务器组件插件漏洞、中间件漏洞、Web漏洞等。例如传播较广的WannaMine挖矿家族，利用了永恒之蓝漏洞在内网蠕虫式传播，给不少公司和机构带来巨大损失。</p>
-<h3 id="2、弱口令爆破"><a href="#2、弱口令爆破" class="headerlink" title="2、弱口令爆破"></a>2、弱口令爆破</h3><p>弱口令指的是仅包含简单口令、有规律的键盘组合或历次泄漏过的密码，攻击者通常会针对redis、ssh、3389、mssql、IPC$等服务进行爆破弱口令攻击。爆破成功后，尝试获取系统权限，植入挖矿木马并设置持久化。</p>
-<h3 id="3、伪装正常软件"><a href="#3、伪装正常软件" class="headerlink" title="3、伪装正常软件"></a>3、伪装正常软件</h3><p>攻击者将挖矿木马伪装为游戏软件、娱乐社交软件、安全软件、游戏外挂等进行传播，欺骗用户下载并执行。由于多数游戏对显卡、CPU等硬件性能要求较高，故挖矿木马通常伪装成游戏辅助外挂，通过社交群、网盘等渠道传播，感染大量机器。</p>
-<h2 id="三、挖矿木马的安全危害"><a href="#三、挖矿木马的安全危害" class="headerlink" title="三、挖矿木马的安全危害"></a>三、挖矿木马的安全危害</h2><p>挖矿木马攻击，就是发生率较高，极可能造成业务系统中断的威胁事件，挖矿木马最明显的影响是大量消耗系统资源，使系统其他软件或服务运行缓慢，性能变差。主要安全危害包括业务故障、资源损耗及其他的安全威胁。</p>
-<h3 id="1、业务故障"><a href="#1、业务故障" class="headerlink" title="1、业务故障"></a>1、业务故障</h3><p>挖矿木马会占用CPU进行超频运算，从而占用主机大量的CPU资源，导致设备性能不足，业务访问缓慢，设备过载宕机重启，异常网络链接等问题，严重影响服务器上的其他应用的正常运行，最终会影响业务系统工作运行。</p>
-<h3 id="2、资源损耗"><a href="#2、资源损耗" class="headerlink" title="2、资源损耗"></a>2、资源损耗</h3><p>挖矿木马的挖矿活动会使设备各器件高速运行，产生大量热能，增加电能消耗，加速设备器件老化等问题，造成资源损耗浪费。</p>
-<h3 id="3、安全威胁"><a href="#3、安全威胁" class="headerlink" title="3、安全威胁"></a>3、安全威胁</h3><p>挖矿木马作为一款应用程序，在服务器中运行，其拥有服务器权限，对服务器主机产生安全威胁。部分挖矿木马还具备蠕虫化的特点，在主机被成功入侵之后，挖矿木马还会向内网渗透，并在被入侵的服务器上持久化驻留以获取最大收益。</p>
-<h2 id="四、挖矿木马的检测手段"><a href="#四、挖矿木马的检测手段" class="headerlink" title="四、挖矿木马的检测手段"></a>四、挖矿木马的检测手段</h2><h3 id="1、挖矿主机指纹识别"><a href="#1、挖矿主机指纹识别" class="headerlink" title="1、挖矿主机指纹识别"></a>1、挖矿主机指纹识别</h3><p>通过主机探测平台内置指纹知识库，如：Body特征、Header特征，对挖矿木马指纹进行识别，进而发现感染挖矿木马主机资产。</p>
-<h3 id="2、挖矿主机端口识别"><a href="#2、挖矿主机端口识别" class="headerlink" title="2、挖矿主机端口识别"></a>2、挖矿主机端口识别</h3><p>通过研究分析目前主流的挖矿木马类型存在的通信端口，感染主机的标记端口等，形成挖矿木马常用端口知识库，并对资产开放端口进行聚合分析，探测这些端口的指纹信息进行识别和确认。</p>
-<h3 id="3、挖矿主机协议检测"><a href="#3、挖矿主机协议检测" class="headerlink" title="3、挖矿主机协议检测"></a>3、挖矿主机协议检测</h3><p>通过挖矿木马的通信协议特征，对比分析网络资产开放的服务协议，定位存在挖矿木马感染风险的资产主机。</p>
-<h3 id="4、IOC威胁情报关联检测"><a href="#4、IOC威胁情报关联检测" class="headerlink" title="4、IOC威胁情报关联检测"></a>4、IOC威胁情报关联检测</h3><p>通过大数据威胁情报，实时更新最新的挖矿木马情报。包括挖矿木马家族使用的C&amp;C域名、恶意文件hash、矿池域名和IP、挖矿木马使用的加密货币钱包地址等进行挖矿木马流量检测告警。</p>
-<h3 id="5、挖矿木马行为特征检测"><a href="#5、挖矿木马行为特征检测" class="headerlink" title="5、挖矿木马行为特征检测"></a>5、挖矿木马行为特征检测</h3><p>通过网络流量检测分析引擎，对其挖矿木马通信的端口、协议、内容、行为特征、恶意文件检测等挖矿木马流量特征进行检测分析，定位出存在恶意挖矿行为的终端及主机。</p>
-<h3 id="6、DNS流量检测挖矿域名"><a href="#6、DNS流量检测挖矿域名" class="headerlink" title="6、DNS流量检测挖矿域名"></a>6、DNS流量检测挖矿域名</h3><p>通过DNS威胁流量检测，基于域名分析算法结合威胁情报系统对C&amp;C域名、挖矿网站域名、DNS解析IP等进行聚类分析，进而发现内网存在的恶意挖矿行为。</p>
-<h2 id="五、挖矿木马的清理"><a href="#五、挖矿木马的清理" class="headerlink" title="五、挖矿木马的清理"></a>五、挖矿木马的清理</h2><p>参考网上给出的腾讯安全专家撰写的《挖矿木马自助清理手册》的挖矿木马清理步骤和方法：</p>
-<h3 id="1、及时隔离主机"><a href="#1、及时隔离主机" class="headerlink" title="1、及时隔离主机"></a>1、及时隔离主机</h3><p>部分带有蠕虫功能的挖矿木马在取得主机的控制权后，会继续对公网的其他主机，或者以当前主机作为跳板机对同一局域网内的其他主机进行横向渗透，所以在发现主机被植入挖矿木马后，在不影响业务正常运行的前提下，应该及时隔离受感染的主机，然后进行下一步分析和清除工作。</p>
-<h3 id="2、阻断异常网络通信"><a href="#2、阻断异常网络通信" class="headerlink" title="2、阻断异常网络通信"></a>2、阻断异常网络通信</h3><p>挖矿木马不仅会连接矿池，还有可能会连接黑客的C2服务器，接收并执行C2指令、投递其他恶意木马，所以需要及时进行网络阻断。<br>（1）检查主机防火墙当前生效的iptables规则中是否存在业务范围之外的可疑地址和端口，它们可能是挖矿木马的矿池或C2地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure>
-
-<p>（2）从iptables规则中清除可疑地址和端口</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br></pre></td></tr></table></figure>
-
-<p>（3）阻断挖矿木马的网络通信</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -s 可疑地址 -j DROP</span><br><span class="line">iptables -A OUTPUT -d 可疑地址 -j DROP</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、清除计划任务"><a href="#3、清除计划任务" class="headerlink" title="3、清除计划任务"></a>3、清除计划任务</h3><p>大部分挖矿木马会通过在受感染主机中写入计划任务实现持久化，如果仅仅只是清除挖矿进程，无法将其根除，到了预设的时间点，系统会通过计划任务从黑客的C2服务器重新下载并执行挖矿木马。<br>可以通过执行如下命令查看是否存在可疑定时任务，若有，则先保存相关记录用于后续分析，再进行删除：<br>查看系统当前用户的计划任务：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -l</span><br></pre></td></tr></table></figure>
-
-<p>查看系统特定用户的计划任务：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -u username -l</span><br></pre></td></tr></table></figure>
-
-<p>查看其他计划任务文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/crontabcat /var/spool/croncat /etc/anacrontabcat /etc/cron.d/cat /etc/cron.daily/cat /etc/cron.hourly/cat /etc/cron.weekly/cat /etc/cron.monthly/cat /var/spool/cron/</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、清除启动项"><a href="#4、清除启动项" class="headerlink" title="4、清除启动项"></a>4、清除启动项</h3><p>除了计划任务，挖矿木马通过添加启动项同样能实现持久化。可以使用如下命令查看开机启动项中是否有异常的启动服务。<br>CentOS7以下版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig –list</span><br></pre></td></tr></table></figure>
-
-<p>CentOS7及以上版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl list-unit-files</span><br></pre></td></tr></table></figure>
-
-<p>如果发现有恶意启动项，可以通过如下命令进行关闭：<br>CentOS7以下版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig 服务名 off</span><br></pre></td></tr></table></figure>
-
-<p>CentOS7及以上版本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> 服务名</span><br></pre></td></tr></table></figure>
-
-<p>另外，还需要仔细排查以下目录及文件，及时删除可疑的启动项：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/systemd/system</span><br><span class="line">/usr/lib/systemd/system/multi-user.target.wants</span><br><span class="line">/etc/rc.local</span><br><span class="line">/etc/inittab</span><br><span class="line">/etc/rc0.d/</span><br><span class="line">/etc/rc1.d/</span><br><span class="line">/etc/rc2.d/</span><br><span class="line">/etc/rc3.d/</span><br><span class="line">/etc/rc4.d/</span><br><span class="line">/etc/rc5.d/</span><br><span class="line">/etc/rc6.d/</span><br><span class="line">/etc/rc.d/</span><br></pre></td></tr></table></figure>
-
-<p>排查的时候，可以按照文件修改时间来排序，重点排查近期被创建服务项。</p>
-<h3 id="5、清除预加载so"><a href="#5、清除预加载so" class="headerlink" title="5、清除预加载so"></a>5、清除预加载so</h3><p>通过配置/etc/ld.so.preload，可以自定义程序运行前优先加载的动态链接库，部分木马通过修改该文件，添加恶意so文件，从而实现挖矿进程的隐藏等恶意功能。<br>检查/etc/ld.so.preload（该文件默认为空），清除异常的动态链接库。</p>
-<h3 id="6、清除SSH公钥"><a href="#6、清除SSH公钥" class="headerlink" title="6、清除SSH公钥"></a>6、清除SSH公钥</h3><p>挖矿木马通常还会在  ~/.ssh/authoruzed_keys 文件中写入黑客的SSH公钥，这样子就算用户将挖矿木马清除得一干二净，黑客还是可以免密登陆该主机，这也是常见的保持服务器控制权的手段。<br>排查 ~/.ssh/authorized_keys文件 ，如果发现可疑的SSH公钥，直接删除。</p>
-<h3 id="7、清除挖矿木马"><a href="#7、清除挖矿木马" class="headerlink" title="7、清除挖矿木马"></a>7、清除挖矿木马</h3><p>（1）清除挖矿进程<br>挖矿木马最大的特点就是会在用户不知情的情况下，利用主机的算力进行挖矿，从而消耗主机大量的CPU资源，所以，通过执行如下命令排查系统中占用大量CPU资源的进程。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -cps -ef</span><br></pre></td></tr></table></figure>
-
-<p>确认相关进程为挖矿进程后，按照如下步骤将其清除：<br>获取并记录挖矿进程的文件路径：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l /proc/<span class="variable">$PID</span>/exe</span><br></pre></td></tr></table></figure>
-
-<p>杀死挖矿进程：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 <span class="variable">$PID</span></span><br></pre></td></tr></table></figure>
-
-<p>删除挖矿进程对应的文件<br>（2）清除其它相关恶意进程<br>恶意进程与外部的C2服务器进行通信时，往往会开启端口进行监听。执行如下命令，查看服务器是否有未被授权的端口被监听。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -antp</span><br></pre></td></tr></table></figure>
-
-<p>若有未授权进程，按照如下步骤将其清除：<br>获取并记录未授权进程的文件路径：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l /proc/<span class="variable">$PID</span>/exe</span><br></pre></td></tr></table></figure>
-
-<p>杀死未授权进程：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 <span class="variable">$PID</span></span><br></pre></td></tr></table></figure>
-
-<p>删除未授权进程对应的文件<br>还可以通过如下命令排查近期新增的文件，清除相关木马</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -ctime -2 （这里指定目录为/etc，获取近2天内的新增文件）lsof</span><br></pre></td></tr></table></figure>
-
-<h3 id="8、风险排查、安全加固"><a href="#8、风险排查、安全加固" class="headerlink" title="8、风险排查、安全加固"></a>8、风险排查、安全加固</h3><p>对系统进行风险排查和安全加固，避免挖矿木马卷土重来。</p>
-<hr>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3320,7 +3289,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">163</span>
+                  <span class="site-state-item-count">164</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3432,7 +3401,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">340.8k</span>
+    <span title="Site words total count">342.9k</span>
   
   
 <!--51la网站应用监控-->
