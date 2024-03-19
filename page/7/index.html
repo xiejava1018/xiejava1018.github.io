@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-04-07T16:54:38+08:00">
-                2023-04-07
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -509,10 +509,10 @@
 
 <p>修改apache的端口</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/httpd/conf/httpd.conf</span><br><span class="line">Listen 8080</span><br><span class="line">systemctl restart httpd</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/1-apache%E7%AB%AF%E5%8F%A3.png" alt="修改apache端口的效果"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/1-apache%E7%AB%AF%E5%8F%A3.png" alt="修改apache端口的效果"></p>
 <p>将apache的端口改成8080后，再次启动nginx就可以看到OpenResty成功启动了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/2-%E6%88%90%E5%8A%9F%E5%90%AF%E5%8A%A8OpenResty.png" alt="OpenResty成功启动了"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/2-%E6%88%90%E5%8A%9F%E5%90%AF%E5%8A%A8OpenResty.png" alt="OpenResty成功启动了"></p>
 <h2 id="二、配置OpenWAF的web防护"><a href="#二、配置OpenWAF的web防护" class="headerlink" title="二、配置OpenWAF的web防护"></a>二、配置OpenWAF的web防护</h2><p>这边DVWA靶机的地址是<a href="http://192.168.1.24:8080/DVWA/" target="_blank" rel="noopener">http://192.168.1.24:8080/DVWA/</a>  DVWA靶机的安装见另一篇博文《<a href="https://blog.csdn.net/fullbug/article/details/129879670" target="_blank" rel="noopener">CentOS7+LAMP+DVWA靶机搭建</a>》<a href="https://blog.csdn.net/fullbug/article/details/129879670" target="_blank" rel="noopener">https://blog.csdn.net/fullbug/article/details/129879670</a><br>我们需要配置OpenResty+OpenWAF来对192.168.1.24:8080进行WEB防护<br>参考《<a href="https://github.com/titansec/OpenWAF/blob/master/doc/%E8%BD%BB%E6%9D%BE%E7%8E%A9%E8%BD%ACOpenWAF%E4%B9%8B%E5%85%A5%E9%97%A8%E7%AF%87.md" target="_blank" rel="noopener">轻松玩转OpenWAF之入门篇</a>》及 《<a href="https://github.com/titansec/OpenWAF/blob/master/doc/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6OpenWAF%E4%B9%8Bnginx%E9%85%8D%E7%BD%AE.md" target="_blank" rel="noopener">深入研究OpenWAF之nginx配置</a>》</p>
 <h3 id="1、nginx配置修改"><a href="#1、nginx配置修改" class="headerlink" title="1、nginx配置修改"></a>1、nginx配置修改</h3><p>在 nginx 的 http 级别添加如下两行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include /opt/OpenWAF/conf/twaf_main.conf;</span><br><span class="line">include /opt/OpenWAF/conf/twaf_api.conf;</span><br></pre></td></tr></table></figure>
@@ -521,12 +521,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include /opt/OpenWAF/conf/twaf_server.conf;</span><br></pre></td></tr></table></figure>
 
 <p>OpenResty的nginx的配置文件在 /usr/local/openresty/nginx/conf/nginx.conf</p>
-<p>具体配置参考下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/3-OpenResty%E7%9A%84nginx%E9%85%8D%E7%BD%AE.png" alt="nginx.conf相关配置"></p>
-<h3 id="2、OpenWAF接入规则修改"><a href="#2、OpenWAF接入规则修改" class="headerlink" title="2、OpenWAF接入规则修改"></a>2、OpenWAF接入规则修改</h3><p>修改/opt/OpenWAF/conf/twaf_access_rule.json文件<br>具体配置参考下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/4-OpenWAF%E7%9A%84twaf_access_rule.json%E7%9A%84%E9%85%8D%E7%BD%AE.png" alt="twaf_access_rule.json文件的配置"></p>
-<h3 id="3、测试验证"><a href="#3、测试验证" class="headerlink" title="3、测试验证"></a>3、测试验证</h3><p>这时候我们访问<a href="http://192.168.1.24/DVWA/" target="_blank" rel="noopener">http://192.168.1.24/DVWA/</a>  ，注意是没有带8080端口的，因为是通过OpenResty+OpenWAF来反向代理了127.0.0.1的8080端口，访问<a href="http://192.168.1.24/DVWA/" target="_blank" rel="noopener">http://192.168.1.24/DVWA/</a>  是经过了OpenWAF防护的。<br>这时候我们开始通过SQL注入对DVWA的靶机进行SQL注入的攻击。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/5-SQL%E6%B3%A8%E5%85%A5.png" alt="SQL注意"></p>
-<p>防护效果：<br>可以看到OpenWAF提示标识为攻击并记录，提示是有次SQL注入的攻击，并进行了防护。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/5-SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E6%8A%A4%E6%95%88%E6%9E%9C.png" alt="SQL注入防护效果"></p>
-<p>接下来我们进行一次XSS的攻击<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/6-XSS%E6%94%BB%E5%87%BB.png" alt="在这里插入图片描述"></p>
-<p>同样OpenWAF给出了XSS的攻击提示，并进行了防护。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230407/6-XSS%E9%98%B2%E6%8A%A4%E6%95%88%E6%9E%9C.png" alt="XSS的防护效果"></p>
+<p>具体配置参考下图：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/3-OpenResty%E7%9A%84nginx%E9%85%8D%E7%BD%AE.png" alt="nginx.conf相关配置"></p>
+<h3 id="2、OpenWAF接入规则修改"><a href="#2、OpenWAF接入规则修改" class="headerlink" title="2、OpenWAF接入规则修改"></a>2、OpenWAF接入规则修改</h3><p>修改/opt/OpenWAF/conf/twaf_access_rule.json文件<br>具体配置参考下图：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/4-OpenWAF%E7%9A%84twaf_access_rule.json%E7%9A%84%E9%85%8D%E7%BD%AE.png" alt="twaf_access_rule.json文件的配置"></p>
+<h3 id="3、测试验证"><a href="#3、测试验证" class="headerlink" title="3、测试验证"></a>3、测试验证</h3><p>这时候我们访问<a href="http://192.168.1.24/DVWA/" target="_blank" rel="noopener">http://192.168.1.24/DVWA/</a>  ，注意是没有带8080端口的，因为是通过OpenResty+OpenWAF来反向代理了127.0.0.1的8080端口，访问<a href="http://192.168.1.24/DVWA/" target="_blank" rel="noopener">http://192.168.1.24/DVWA/</a>  是经过了OpenWAF防护的。<br>这时候我们开始通过SQL注入对DVWA的靶机进行SQL注入的攻击。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/5-SQL%E6%B3%A8%E5%85%A5.png" alt="SQL注意"></p>
+<p>防护效果：<br>可以看到OpenWAF提示标识为攻击并记录，提示是有次SQL注入的攻击，并进行了防护。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/5-SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E6%8A%A4%E6%95%88%E6%9E%9C.png" alt="SQL注入防护效果"></p>
+<p>接下来我们进行一次XSS的攻击<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/6-XSS%E6%94%BB%E5%87%BB.png" alt="在这里插入图片描述"></p>
+<p>同样OpenWAF给出了XSS的攻击提示，并进行了防护。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230407/6-XSS%E9%98%B2%E6%8A%A4%E6%95%88%E6%9E%9C.png" alt="XSS的防护效果"></p>
 <p>至此，本文介绍了OpenResty+OpenWAF的安装，并通过配置对DVWA的靶机进行了WEB防护，通过SQL注入及XSS的攻击，验证了OpenWAF的效果。OpenResty+OpenWAF是开源的软WAF解决方案，安装和配置相对简单，对于中小企业的web防护来说不失为一个低成本的解决方案。</p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -534,7 +534,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -631,8 +631,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-31T16:03:55+08:00">
-                2023-03-31
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -764,7 +764,7 @@
 <p>就是依赖于LAMP环境，可以参考官方文档一个依赖包手工安装也可以通过下载lamp统一安装脚本一键安装。<br>安装 - LAMP一键安装包<br>运行 <code>wget -c http://soft.vpser.net/lnmp/lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lamp</code> 一路回车选择默认项，稍等片刻，即可完成安装<br>如果是手工安装：<code>yum install -y httpd php php-mysql php-gd mariadb-server mariadb</code></p>
 <h2 id="三、安装DVWA"><a href="#三、安装DVWA" class="headerlink" title="三、安装DVWA"></a>三、安装DVWA</h2><h3 id="1、下载DVWA的软件包"><a href="#1、下载DVWA的软件包" class="headerlink" title="1、下载DVWA的软件包"></a>1、下载DVWA的软件包</h3><p>进入到默认的web发布目录</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/digininja/DVWA.git</span><br></pre></td></tr></table></figure>
-<p>直接通过地址访问DVWA<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E8%AE%BF%E9%97%AEDVWA.png" alt="访问DVWA"><br>他会提示需要将config/config.inc.php.dist复制成config/config.inc.php并配置环境</p>
+<p>直接通过地址访问DVWA<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/%E8%AE%BF%E9%97%AEDVWA.png" alt="访问DVWA"><br>他会提示需要将config/config.inc.php.dist复制成config/config.inc.php并配置环境</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp config.inc.php.dist config.inc.php</span><br></pre></td></tr></table></figure>
 
 <h3 id="2、配置数据库"><a href="#2、配置数据库" class="headerlink" title="2、配置数据库"></a>2、配置数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config.ini.php</span><br></pre></td></tr></table></figure>
@@ -774,27 +774,27 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all on dvwa.* to <span class="string">'dvwa'</span>@<span class="string">'localhost'</span> identified by <span class="string">'p@ssw0rd'</span> with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 <p>登录数据库查看</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u dvwa -p</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/showdatabases.png" alt="show databases"></p>
-<h3 id="3、修改php-ini的配置"><a href="#3、修改php-ini的配置" class="headerlink" title="3、修改php.ini的配置"></a>3、修改php.ini的配置</h3><p>再次访问DVWA<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/setupcheck.png" alt="在这里插入图片描述"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/showdatabases.png" alt="show databases"></p>
+<h3 id="3、修改php-ini的配置"><a href="#3、修改php-ini的配置" class="headerlink" title="3、修改php.ini的配置"></a>3、修改php.ini的配置</h3><p>再次访问DVWA<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/setupcheck.png" alt="在这里插入图片描述"></p>
 <p>这里提示要修改php.ini的配置将 <code>allow_url_fopen=On</code> 和<code>allow_url_include=On</code>。</p>
 <p>找到环境的php.ini我这里是在/etc/php.ini进行修改，不要修改/var/www/html/DVWA/php.ini中的配置了。<br>配置好后重启apache </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd</span><br></pre></td></tr></table></figure>
 
-<p>刷新浏览器，可以看到红色的Disabled告警消失了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E6%A3%80%E6%9F%A5check.png" alt="红色告警消失了"></p>
+<p>刷新浏览器，可以看到红色的Disabled告警消失了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/%E6%A3%80%E6%9F%A5check.png" alt="红色告警消失了"></p>
 <p>reCAPTCHA key: Missing 这个告警是因为reCAPTCHA没有配置，这个需要去谷歌的网站申请公钥和私钥。可以不用管</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ReCAPTCHA settings</span></span><br><span class="line"><span class="comment">#   Used for the 'Insecure CAPTCHA' module</span></span><br><span class="line"><span class="comment">#   You'll need to generate your own keys at: https://www.google.com/recaptcha/admin</span></span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'recaptcha_public_key'</span> ]  = <span class="string">''</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'recaptcha_private_key'</span> ] = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 -R hackable</span><br><span class="line">chmod 777 -R config</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/%E4%BF%AE%E5%A4%8D%E7%BB%93%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/%E4%BF%AE%E5%A4%8D%E7%BB%93%E6%9E%9C.png" alt="在这里插入图片描述"></p>
 <h3 id="4、创建数据"><a href="#4、创建数据" class="headerlink" title="4、创建数据"></a>4、创建数据</h3><p>配置完后点击“Create/Reset Database”</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/createdatabase.png" alt="成功创建数据库"></p>
-<h3 id="5、登录靶机"><a href="#5、登录靶机" class="headerlink" title="5、登录靶机"></a>5、登录靶机</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/dvwa%E7%99%BB%E5%BD%95.png" alt="在这里插入图片描述"><br>DVWA的默认用户名和密码是admin /password<br>登录成功后就可以开始进行靶机的实验了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230331/DVWA%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png" alt="在这里插入图片描述"><br>后续我们将通过Open-WAF来搭建一个WAF来防护这个靶机感受一下软waf的防护情况。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/createdatabase.png" alt="成功创建数据库"></p>
+<h3 id="5、登录靶机"><a href="#5、登录靶机" class="headerlink" title="5、登录靶机"></a>5、登录靶机</h3><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/dvwa%E7%99%BB%E5%BD%95.png" alt="在这里插入图片描述"><br>DVWA的默认用户名和密码是admin /password<br>登录成功后就可以开始进行靶机的实验了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/DVWA%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png" alt="在这里插入图片描述"><br>后续我们将通过Open-WAF来搭建一个WAF来防护这个靶机感受一下软waf的防护情况。</p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -891,8 +891,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-09-14T16:45:41+08:00">
-                2023-09-14
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -1012,7 +1012,7 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92.png" alt="勒索病毒"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92.png" alt="勒索病毒"></p>
 <h2 id="一、什么是勒索病毒"><a href="#一、什么是勒索病毒" class="headerlink" title="一、什么是勒索病毒"></a>一、什么是勒索病毒</h2><p>勒索病毒，是一种新型电脑病毒，伴随数字货币兴起，主要以邮件、程序木马、网页挂马、服务器入侵、捆绑软件等多种形式进行传播，一旦感染将给用户带来无法估量的损失。如果遭受勒索病毒攻击，将会使绝大多数文件被加密算法加密，并添加一个特殊的后缀，用户无法读取原文件内容，被感染者一般无法解密，必须拿到解密的私钥才有可能无损还原被加密文件。而拿到解密的私钥，通常需要向攻击者支付高昂的赎金，这些赎金必须是通过数字货币支付，一般无法溯源，因此极易造成严重损失。</p>
 <p>一般被勒索病毒感染后，将导致重要文件无法读取、关键数据被损坏、计算机被锁死无法正常使用等情况；为了指引被感染者缴纳赎金，勒索病毒还会在桌面等明显位置生成勒索提示文件，被感染者需要通过缴纳高额赎金才能获取解密密钥恢复计算机系统和数据文件的正常使用，多数情况即使缴纳了高额的赎金也未必能正常恢复数据。因此，勒索病毒具有数据恢复代价大和数据恢复可能性极低的特点。</p>
 <h2 id="二、勒索病毒传播路径"><a href="#二、勒索病毒传播路径" class="headerlink" title="二、勒索病毒传播路径"></a>二、勒索病毒传播路径</h2><p>常见勒索病毒传播途径包括：</p>
@@ -1023,7 +1023,7 @@
 <li>捆绑传播。攻击者将勒索病毒与其他软件尤其是盗版软件、非法破解软件、激活工具进行捆绑，从而诱导用户点击下载安装，并随着宿主文件的捆绑安装进而感染用户的计算机系统。</li>
 <li>介质传播。攻击者通过提前植入或通过交叉使用感染等方式将携有勒索病毒的U盘、光盘等介质进行勒索病毒的移动式传播。此种传播途径往往发生在文印店、公共办公区域等高频交叉使用可移动存储介质的场所，也可能通过广告活动派发、街区丢弃等方式实现诱导用户使用携带勒索病毒的U盘、光盘。携带勒索病毒的光盘、U盘一旦接入计算机，勒索病毒即可能随着其自动运行或用户点击运行导致计算机被感染。</li>
 </ol>
-<h2 id="三、勒索病毒防护难点"><a href="#三、勒索病毒防护难点" class="headerlink" title="三、勒索病毒防护难点"></a>三、勒索病毒防护难点</h2><p>教育、企业、制造业、医疗、政府等行业由于数据重要性和较好的经济能力，已经成为勒索团队的重点攻击目标。以下是勒索病毒常见的攻击行为。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA.png" alt="勒索病毒攻击行为"></p>
+<h2 id="三、勒索病毒防护难点"><a href="#三、勒索病毒防护难点" class="headerlink" title="三、勒索病毒防护难点"></a>三、勒索病毒防护难点</h2><p>教育、企业、制造业、医疗、政府等行业由于数据重要性和较好的经济能力，已经成为勒索团队的重点攻击目标。以下是勒索病毒常见的攻击行为。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA.png" alt="勒索病毒攻击行为"></p>
 <p>从勒索病毒的攻击行为来看，勒索病毒的防护存以下几个主要难点：</p>
 <ul>
 <li>勒索病毒变种多样 ：对程序 / 脚本的加壳、混淆操作，已经有一套相当成熟的自动化流程，能够快速对病毒进行变种，从而绕过传统静态防护。</li>
@@ -1108,7 +1108,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1205,8 +1205,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-19T14:52:17+08:00">
-                2023-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -1404,16 +1404,16 @@
 <li>筛选器（Filter）：提供了更细粒度的功能，用于确定要输出的日志记录。 </li>
 <li>格式器（Formatter）：程序在最终输出日志记录的内容格式。</li>
 </ul>
-<p>logging的工作流程：以记录器Logger为对象，设置合适的处理器Handler，辅助以筛选器Filter、格式器Formatter，设置日志级别以及常用的方法，最终输出理想的日志记录给到指定目标<br>一个Logger可以包含多个Handler；<br>每个Handler可以设置自己的Filter和Formatter；<br>记录器和处理器中的日志事件信息流程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/1_logging%E6%B5%81%E7%A8%8B.png" alt="日志事件信息流程"></p>
+<p>logging的工作流程：以记录器Logger为对象，设置合适的处理器Handler，辅助以筛选器Filter、格式器Formatter，设置日志级别以及常用的方法，最终输出理想的日志记录给到指定目标<br>一个Logger可以包含多个Handler；<br>每个Handler可以设置自己的Filter和Formatter；<br>记录器和处理器中的日志事件信息流程如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/1_logging%E6%B5%81%E7%A8%8B.png" alt="日志事件信息流程"></p>
 <p>接下来我们通过几个简单的应用场景来进行日志记录实战</p>
 <h3 id="1、最简单的日志记录"><a href="#1、最简单的日志记录" class="headerlink" title="1、最简单的日志记录"></a>1、最简单的日志记录</h3><p><strong>main.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hi</span><span class="params">(name)</span>:</span></span><br><span class="line">    logging.debug(<span class="string">'this is print_hi debug'</span>)</span><br><span class="line">    logging.info(<span class="string">'this is print_hi info'</span>)</span><br><span class="line">    logging.warning(<span class="string">'this is print_hi warning'</span>)</span><br><span class="line">    logging.error(<span class="string">'this is print_hi error'</span>)</span><br><span class="line">    logging.critical(<span class="string">'this is print_hi critical'</span>)</span><br><span class="line">    print(<span class="string">f'Hi print_hi, <span class="subst">&#123;name&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print_hi(<span class="string">'XieJava'</span>)</span><br></pre></td></tr></table></figure>
 
-<p>结果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/2_%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E7%BB%93%E6%9E%9C.png" alt="最简单的日志记录结果"></p>
+<p>结果如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/2_%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E7%BB%93%E6%9E%9C.png" alt="最简单的日志记录结果"></p>
 <p>这里体现了两个问题：<br>1.通过print()在控制台打印的日志，比logging打印的日志提前打印显示，说明日志记录是多线程的。在平时日志调试跟踪的时候注意这一点，print()的信息有时会打印在logging前有时会在logging后。</p>
 <p>2.debug和info的日志没有打印出来，说明logging默认的日志级别是waring。<br>如果要设置改变默认的日志级别可以通过配置来设置日志级别如：level=logging.DEBUG</p>
 <h3 id="2、设置日志级别"><a href="#2、设置日志级别" class="headerlink" title="2、设置日志级别"></a>2、设置日志级别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(level=logging.DEBUG) <span class="comment">#设置日志级别</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hi</span><span class="params">(name)</span>:</span></span><br><span class="line">    logging.debug(<span class="string">'this is print_hi debug'</span>)</span><br><span class="line">    logging.info(<span class="string">'this is print_hi info'</span>)</span><br><span class="line">    logging.warning(<span class="string">'this is print_hi warning'</span>)</span><br><span class="line">    logging.error(<span class="string">'this is print_hi error'</span>)</span><br><span class="line">    logging.critical(<span class="string">'this is print_hi critical'</span>)</span><br><span class="line">    print(<span class="string">f'Hi print_hi, <span class="subst">&#123;name&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print_hi(<span class="string">'XieJava'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/3_%E8%AE%BE%E7%BD%AE%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E7%9A%84%E7%BB%93%E6%9E%9C.png" alt="设置日志级别结果"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/3_%E8%AE%BE%E7%BD%AE%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E7%9A%84%E7%BB%93%E6%9E%9C.png" alt="设置日志级别结果"></p>
 <p>这下从DEBUG到CRITICAL级别的都打印出来了。</p>
 <h3 id="3、设置日志显示格式"><a href="#3、设置日志显示格式" class="headerlink" title="3、设置日志显示格式"></a>3、设置日志显示格式</h3><p>默认的日志打印显示的格式是， 日志级别：logger实例名称（默认是root）：日志消息内容<br>如这里显示的是：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DEBUG:root:this is print_hi debug</span><br><span class="line">INFO:root:this is print_hi info</span><br><span class="line">WARNING:root:this is print_hi warning</span><br><span class="line">ERROR:root:this is print_hi error</span><br><span class="line">CRITICAL:root:this is print_hi critical</span><br></pre></td></tr></table></figure>
@@ -1421,7 +1421,7 @@
 <p>在真实使用的场景下，一般都要显示日志的时间，我们可以通过设置日志显示格式来调整我们需要显示的日志格式和内容。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LOG_FORMAT = <span class="string">"%(asctime)s - %(levelname)s %(name)s %(filename)s [line:%(lineno)d] - %(message)s"</span></span><br><span class="line">logging.basicConfig(format=LOG_FORMAT,level=logging.DEBUG)</span><br></pre></td></tr></table></figure>
 
-<p>这里设置了日志发生时间、日志级别、logger实例名称、日志发生的文件名、日志发生所在的行、日志消息内容。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/4_%E8%AE%BE%E7%BD%AE%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F.png" alt="设置日志格式"></p>
+<p>这里设置了日志发生时间、日志级别、logger实例名称、日志发生的文件名、日志发生所在的行、日志消息内容。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/4_%E8%AE%BE%E7%BD%AE%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F.png" alt="设置日志格式"></p>
 <p>更多的logRecord属性如下：</p>
 <table>
 <thead>
@@ -1539,14 +1539,14 @@
 </tbody></table>
 <h3 id="4、记录日志到日志文件"><a href="#4、记录日志到日志文件" class="headerlink" title="4、记录日志到日志文件"></a>4、记录日志到日志文件</h3><p>logging默认是显示在控制台，在真实生产环境肯定时需要将日志记录到日志文件的。logging也是可以通过配置很方便的将日志记录到日志文件。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LOG_FORMAT = <span class="string">"%(asctime)s - %(levelname)s %(name)s %(filename)s [line:%(lineno)d] - %(message)s"</span></span><br><span class="line">logging.basicConfig(filename=<span class="string">'log.log'</span>,format=LOG_FORMAT,level=logging.DEBUG)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/5_%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%E5%88%B0%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.png" alt="输出到日志文件中"><br>输出到日志文件<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/6_%E8%BE%93%E5%87%BA%E5%88%B0%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%95%88%E6%9E%9C.png" alt="输出到日志文件效果"><br>将日志输出到日志文件，如果是日志量非常大，在实际生产环境经常碰到的是要对日志文件进行分隔，根据日志文件的大小或日期来分割生成多个日志文件。<br>这里介绍通过日志文件大小分割和通过日期来分割日志文件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/5_%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0%E5%88%B0%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.png" alt="输出到日志文件中"><br>输出到日志文件<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/6_%E8%BE%93%E5%87%BA%E5%88%B0%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%95%88%E6%9E%9C.png" alt="输出到日志文件效果"><br>将日志输出到日志文件，如果是日志量非常大，在实际生产环境经常碰到的是要对日志文件进行分隔，根据日志文件的大小或日期来分割生成多个日志文件。<br>这里介绍通过日志文件大小分割和通过日期来分割日志文件。</p>
 <h4 id="1-通过日志文件大小分割"><a href="#1-通过日志文件大小分割" class="headerlink" title="1.通过日志文件大小分割"></a>1.通过日志文件大小分割</h4><p>RotatingFileHandler<br>日志记录到文件中，且支持指定日志文件大小，备份文件数量</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.handlers.RotatingFileHandler(filename, mode=<span class="string">'a'</span>, maxBytes=<span class="number">0</span>, backupCount=<span class="number">0</span>, encoding=<span class="literal">None</span>, delay=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 
 <p>maxBytes：日志文件大小，单位为字节<br>backupCount：备份文件数量</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOG_FORMAT = <span class="string">"%(asctime)s - %(levelname)s %(name)s %(filename)s [line:%(lineno)d] - %(message)s"</span></span><br><span class="line">rfh=logging.handlers.RotatingFileHandler(filename=<span class="string">'log.log'</span>,encoding=<span class="string">'UTF-8'</span>, maxBytes=<span class="number">1024</span>, backupCount=<span class="number">2</span>)</span><br><span class="line">logging.basicConfig(format=LOG_FORMAT,level=logging.DEBUG,handlers=[rfh])</span><br></pre></td></tr></table></figure>
 
-<p>这里设置的是当文件超过1024bytes就会对文件进行分割，备份文件数量为2，得到log.log.1、log.log.2，当log.log.2写满时又回循环写到log.log中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/7_%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%BE%AA%E7%8E%AF%E5%88%87%E5%89%B2%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.png" alt="根据日志文件大小循环切割生成日志文件"></p>
+<p>这里设置的是当文件超过1024bytes就会对文件进行分割，备份文件数量为2，得到log.log.1、log.log.2，当log.log.2写满时又回循环写到log.log中。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/7_%E6%A0%B9%E6%8D%AE%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E5%BE%AA%E7%8E%AF%E5%88%87%E5%89%B2%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.png" alt="根据日志文件大小循环切割生成日志文件"></p>
 <h4 id="2-通过日期来分割日志文件"><a href="#2-通过日期来分割日志文件" class="headerlink" title="2.通过日期来分割日志文件"></a>2.通过日期来分割日志文件</h4><p>TimedRotatingFileHandler<br>日志记录到文件中，支持按时间间隔来更新日志</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.handlers.TimedRotatingFileHandler(filename, when=<span class="string">'h'</span>, interval=<span class="number">1</span>, backupCount=<span class="number">0</span>, encoding=<span class="literal">None</span>, delay=<span class="literal">False</span>, utc=<span class="literal">False</span>, atTime=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 
@@ -1592,19 +1592,19 @@
 </tbody></table>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> logging.handlers <span class="keyword">import</span> RotatingFileHandler</span><br><span class="line"></span><br><span class="line">LOG_FORMAT = <span class="string">"%(asctime)s - %(levelname)s %(name)s %(filename)s [line:%(lineno)d] - %(message)s"</span></span><br><span class="line">tfh=logging.handlers.TimedRotatingFileHandler(<span class="string">'tfh_log.log'</span>, when=<span class="string">'S'</span>, interval=<span class="number">1.5</span>, backupCount=<span class="number">2</span>, encoding=<span class="string">'UTF-8'</span>, delay=<span class="literal">False</span>, utc=<span class="literal">False</span>, atTime=time)</span><br><span class="line">rfh=logging.handlers.RotatingFileHandler(filename=<span class="string">'log.log'</span>,encoding=<span class="string">'UTF-8'</span>, maxBytes=<span class="number">1024</span>, backupCount=<span class="number">2</span>)</span><br><span class="line">logging.basicConfig(format=LOG_FORMAT,level=logging.DEBUG,handlers=[rfh,tfh])</span><br></pre></td></tr></table></figure>
 
-<p>为了演示方便，这里when=’S’, interval=1.5 即1.5秒循环生成一个日志文件。在实际生产环境一般根据日志量的大小，可以配置成每天生成一个日志文件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/8_%E6%A0%B9%E6%8D%AE%E6%97%A5%E6%9C%9F%E5%88%87%E5%89%B2%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.png" alt="通过日期来分割日志文件"></p>
+<p>为了演示方便，这里when=’S’, interval=1.5 即1.5秒循环生成一个日志文件。在实际生产环境一般根据日志量的大小，可以配置成每天生成一个日志文件。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/8_%E6%A0%B9%E6%8D%AE%E6%97%A5%E6%9C%9F%E5%88%87%E5%89%B2%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6.png" alt="通过日期来分割日志文件"></p>
 <h3 id="5、既生成日志文件又在控制台打印日志"><a href="#5、既生成日志文件又在控制台打印日志" class="headerlink" title="5、既生成日志文件又在控制台打印日志"></a>5、既生成日志文件又在控制台打印日志</h3><p>有时候为了调试方便，还是想在控制台打印日志。能不能既生成日志文件又在控制台打印日志呢？通过配置logging的StreamHandler也是可以做到的。<br>StreamHandler<br>StreamHandler 类位于核心 logging 包，它可将日志记录输出发送到数据流例如 sys.stdout, sys.stderr 或任何文件类对象（或者更精确地说，任何支持 write() 和 flush() 方法的对象）。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh=logging.StreamHandler()</span><br><span class="line">logging.basicConfig(format=LOG_FORMAT,level=logging.DEBUG,handlers=[rfh,tfh,sh])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/9_%E6%97%A2%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8F%88%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97.png" alt="既生成日志文件又在控制台打印日志"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/9_%E6%97%A2%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E5%8F%88%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97.png" alt="既生成日志文件又在控制台打印日志"></p>
 <h3 id="6、多个模块中记录日志"><a href="#6、多个模块中记录日志" class="headerlink" title="6、多个模块中记录日志"></a>6、多个模块中记录日志</h3><p>在实际项目使用过程中，一个好的实践是将日志配置的模块封装好成为一个通用的日志模块组件，可以给项目中所有的模块使用。<br>这里我们将配置好的日志logging从main.py中抽出来形成一个logutils.py的通用模块，其他模块就可以使用了<br><strong>logutils.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> logging.handlers <span class="keyword">import</span> RotatingFileHandler</span><br><span class="line"></span><br><span class="line">LOG_FORMAT = <span class="string">"%(asctime)s - %(levelname)s %(name)s %(filename)s [line:%(lineno)d] - %(message)s"</span></span><br><span class="line">tfh=logging.handlers.TimedRotatingFileHandler(<span class="string">'tfh_log.log'</span>, when=<span class="string">'S'</span>, interval=<span class="number">1.5</span>, backupCount=<span class="number">2</span>, encoding=<span class="string">'UTF-8'</span>, delay=<span class="literal">False</span>, utc=<span class="literal">False</span>, atTime=time)</span><br><span class="line">rfh=logging.handlers.RotatingFileHandler(filename=<span class="string">'log.log'</span>,encoding=<span class="string">'UTF-8'</span>, maxBytes=<span class="number">1024</span>, backupCount=<span class="number">2</span>)</span><br><span class="line">sh=logging.StreamHandler()</span><br><span class="line">logging.basicConfig(format=LOG_FORMAT,level=logging.DEBUG,handlers=[rfh,tfh,sh])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/10_logutils.png" alt="公共日志模块"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/10_logutils.png" alt="公共日志模块"></p>
 <p>如在othermodule.py中使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> logutils <span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestModule</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_log</span><span class="params">(self)</span>:</span></span><br><span class="line">        logging.info(<span class="string">'this is TestModule.print_log() info'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_log_staic</span><span class="params">()</span>:</span></span><br><span class="line">        logging.info(<span class="string">'this is TestModule.print_log_staic info'</span>)</span><br></pre></td></tr></table></figure>
 
 <p>在main.py中使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> logutils <span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> othermodule <span class="keyword">import</span> TestModule</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hi</span><span class="params">(name)</span>:</span></span><br><span class="line">    logging.debug(<span class="string">'this is print_hi debug'</span>)</span><br><span class="line">    logging.info(<span class="string">'this is print_hi info'</span>)</span><br><span class="line">    logging.warning(<span class="string">'this is print_hi warning'</span>)</span><br><span class="line">    logging.error(<span class="string">'this is print_hi error'</span>)</span><br><span class="line">    logging.critical(<span class="string">'this is print_hi critical'</span>)</span><br><span class="line">    print(<span class="string">f'Hi print_hi, <span class="subst">&#123;name&#125;</span>'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print_hi(<span class="string">'XieJava'</span>)</span><br><span class="line">    TestModule.print_log_staic() <span class="comment">#类方法中打印日志</span></span><br><span class="line">    testModule=TestModule()</span><br><span class="line">    testModule.print_log()  <span class="comment">#实例方法中打印日志</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/11_%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%97%A5%E5%BF%97.png" alt="其他模块中显示日志"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/11_%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9D%97%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%97%A5%E5%BF%97.png" alt="其他模块中显示日志"></p>
 <p>项目工程中所有的模块只要通过 <code>from logutils import logging</code> 引入logging就可以使用配置好的logging记录日志了。</p>
 <h3 id="7、每个不同的模块使用不同的日志记录器记录日志"><a href="#7、每个不同的模块使用不同的日志记录器记录日志" class="headerlink" title="7、每个不同的模块使用不同的日志记录器记录日志"></a>7、每个不同的模块使用不同的日志记录器记录日志</h3><p>现在我们在所有的模块中都是用的默认的root记录器来记录的日志，实际上也可以让每个不同的模块使用不同的日志记录器记录日志。<br>日志事件信息在 LogRecord 实例中的记录器、处理器、过滤器和格式器之间传递。<br>通过调用 Logger 类（以下称为 loggers ， 记录器）的实例来执行日志记录。<br>在命名记录器时使用的一个好习惯是在每个使用日志记录的模块中使用模块级记录器，命名如下:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger = logging.getLogger(__name__)</span><br></pre></td></tr></table></figure>
@@ -1614,22 +1614,22 @@
 
 <p><strong>othermodule.py</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> logutils <span class="keyword">import</span> logging</span><br><span class="line">logger=logging.getLogger(__name__) <span class="comment">#定义模块日志记录器</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestModule</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_log</span><span class="params">(self)</span>:</span></span><br><span class="line">        logger.info(<span class="string">'this is TestModule.print_log() info'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_log_staic</span><span class="params">()</span>:</span></span><br><span class="line">        logger.info(<span class="string">'this is TestModule.print_log_staic info'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/12_%E6%AF%8F%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97.png" alt="每个不同的模块使用不同的日志记录器记录日志"><br>可以看到模块日志记录器打印出来的日志中模块名不再是默认的root，而是各自的模块名。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/12_%E6%AF%8F%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97.png" alt="每个不同的模块使用不同的日志记录器记录日志"><br>可以看到模块日志记录器打印出来的日志中模块名不再是默认的root，而是各自的模块名。</p>
 <h3 id="8、通过配置文件配置日志记录器"><a href="#8、通过配置文件配置日志记录器" class="headerlink" title="8、通过配置文件配置日志记录器"></a>8、通过配置文件配置日志记录器</h3><p>在实际项目应用的过程中，通常通过配置文件来配置日志记录器的各种配置，这样的好处就是改变日志记录的配置不需要修改代码，直接修改配置文件就可以了。<br>接下来介绍如何通过配置文件配置logging日志记录器<br>新建 logging.conf 配置文件，通过如下配置将前面代码中的处理器，日志记录器，通过配置文件的方式配置好。<br> <strong>logging.conf</strong> </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[loggers]</span><br><span class="line">keys=root,logger01</span><br><span class="line"></span><br><span class="line">[logger_root]</span><br><span class="line">level=DEBUG</span><br><span class="line">handlers=sh</span><br><span class="line"></span><br><span class="line">[logger_logger01]</span><br><span class="line">level=DEBUG</span><br><span class="line">handlers=sh,tfh,rfh</span><br><span class="line">qualname=logger01</span><br><span class="line">propagate=<span class="number">0</span></span><br><span class="line"></span><br><span class="line">[handlers]</span><br><span class="line">keys=sh,tfh,rfh</span><br><span class="line"></span><br><span class="line">[handler_sh]</span><br><span class="line">class=StreamHandler</span><br><span class="line">level=DEBUG</span><br><span class="line">formatter=form01</span><br><span class="line">args=(sys.stderr,)</span><br><span class="line"></span><br><span class="line">[handler_tfh]</span><br><span class="line">class=handlers.TimedRotatingFileHandler</span><br><span class="line">level=DEBUG</span><br><span class="line">formatter=form01</span><br><span class="line">args=(<span class="string">'tfh_log.log'</span>,<span class="string">'S'</span>,<span class="number">1.5</span>,<span class="number">2</span>,)</span><br><span class="line"></span><br><span class="line">[handler_rfh]</span><br><span class="line">class=handlers.RotatingFileHandler</span><br><span class="line">level=DEBUG</span><br><span class="line">formatter=form01</span><br><span class="line">args=(<span class="string">'log.log'</span>,<span class="string">'a'</span>,<span class="number">1024</span>,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">[formatters]</span><br><span class="line">keys=form01</span><br><span class="line"></span><br><span class="line">[formatter_form01]</span><br><span class="line">format=%(asctime)s - %(levelname)s %(name)s %(filename)s [line:%(lineno)d] - %(message)s</span><br></pre></td></tr></table></figure>
 
 <p>在logutils.py中应用配置文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging.config</span><br><span class="line">logging.config.fileConfig(<span class="string">"logging.conf"</span>)</span><br></pre></td></tr></table></figure>
 
-<p>logutils.py中的代码就异常简单了，应为原来通过代码实现的配置，都写到了logging.conf配置文件中了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/12_%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AE%9E%E7%8E%B0%E4%BA%86%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%B8%80%E6%A0%B7%E7%9A%84%E5%8A%9F%E8%83%BD.png" alt="配置文件实现了日志代码中的功能"></p>
+<p>logutils.py中的代码就异常简单了，应为原来通过代码实现的配置，都写到了logging.conf配置文件中了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/12_%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AE%9E%E7%8E%B0%E4%BA%86%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%B8%80%E6%A0%B7%E7%9A%84%E5%8A%9F%E8%83%BD.png" alt="配置文件实现了日志代码中的功能"></p>
 <p>这里要注意的是，在应用日志记录器的时候，需要引用配置文件中配置的记录器，如配置文件中配置了root和logger01，在应用的时候可以引用这两个记录器，当然也可以在配置文件中配置更多的记录器。<br>在mian.py和othermodule.py中应用日志记录器的时候，需要注意记录器用要配置文件中定义的记录器，这里是logger01。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger=logging.getLogger(<span class="string">'logger01'</span>)  <span class="comment">#定义模块日志记录器</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/13_%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%BC%95%E7%94%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8.png" alt="定义模块日志记录器"></p>
-<h3 id="8、日志中中文显示"><a href="#8、日志中中文显示" class="headerlink" title="8、日志中中文显示"></a>8、日志中中文显示</h3><p>当日志信息中有中文的时候，在控制台输出会自动的转码，但有时在文件输出的时候会出现乱码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/14_%E4%B8%AD%E6%96%87%E4%BF%A1%E6%81%AF%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA%E6%B2%A1%E9%97%AE%E9%A2%98.png" alt="中文信息控制台输出没有问题"></p>
-<p>控制台输出中文，但日志文件中是乱码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/15_%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E4%B8%AD%E4%B9%B1%E7%A0%81.png" alt="日志文件中是乱码"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/13_%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%95%88%E6%9E%9C%E5%BC%95%E7%94%A8%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8.png" alt="定义模块日志记录器"></p>
+<h3 id="8、日志中中文显示"><a href="#8、日志中中文显示" class="headerlink" title="8、日志中中文显示"></a>8、日志中中文显示</h3><p>当日志信息中有中文的时候，在控制台输出会自动的转码，但有时在文件输出的时候会出现乱码。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/14_%E4%B8%AD%E6%96%87%E4%BF%A1%E6%81%AF%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA%E6%B2%A1%E9%97%AE%E9%A2%98.png" alt="中文信息控制台输出没有问题"></p>
+<p>控制台输出中文，但日志文件中是乱码。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/15_%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E4%B8%AD%E4%B9%B1%E7%A0%81.png" alt="日志文件中是乱码"></p>
 <p>对照python官方说明文档设置编码，设置处理器的编码为UTF-8</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[handler_tfh]</span><br><span class="line">class=handlers.TimedRotatingFileHandler</span><br><span class="line">level=DEBUG</span><br><span class="line">formatter=form01</span><br><span class="line">args=(<span class="string">'tfh_log.log'</span>,<span class="string">'S'</span>,<span class="number">1.5</span>,<span class="number">2</span>,<span class="string">'UTF-8'</span>)</span><br><span class="line"></span><br><span class="line">[handler_rfh]</span><br><span class="line">class=handlers.RotatingFileHandler</span><br><span class="line">level=DEBUG</span><br><span class="line">formatter=form01</span><br><span class="line">args=(<span class="string">'log.log'</span>,<span class="string">'a'</span>,<span class="number">1024</span>,<span class="number">2</span>,<span class="string">'UTF-8'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/16_%E8%AE%BE%E7%BD%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0.png" alt="配置文件的参数"><br>现在重新执行main.py，可以看到日志文件中可以正常显示中文。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230319/17_%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87.png" alt="日志文件显示中文"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/16_%E8%AE%BE%E7%BD%AE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0.png" alt="配置文件的参数"><br>现在重新执行main.py，可以看到日志文件中可以正常显示中文。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230319/17_%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E6%98%BE%E7%A4%BA%E4%B8%AD%E6%96%87.png" alt="日志文件显示中文"></p>
 <p>至此，我们从一个简单的日志记录实战，一步一步实现了自定义日志格式、写日志文件、抽出公共日志模块让其他模块用、同时写多个日志文件并进行日志文件切割、通过配置文件实现日志参数的定义、解决日志中文显示问题。基本覆盖了真实应用场景日志的使用。</p>
 <hr>
 <p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -1637,7 +1637,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1734,8 +1734,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-13T15:24:32+08:00">
-                2023-03-13
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -1862,7 +1862,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pip install scipy</span><br><span class="line"><span class="comment">#低通滤波</span></span><br><span class="line"><span class="comment">#假设采样频率为1000hz,信号本身最大的频率为500hz，要滤除400hz以上频率成分，即截至频率为400hz,则wn=2*400/1000=0.8。Wn=0.8</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.8</span>, <span class="string">'lowpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#高通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.2</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带阻滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandstop'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br></pre></td></tr></table></figure>
 <h2 id="三、信号滤波实战"><a href="#三、信号滤波实战" class="headerlink" title="三、信号滤波实战"></a>三、信号滤波实战</h2><p>这里以一个真实的心电数据为例，来实战对心电图某一段时间采样的信号数据进行高通滤波处理，对比一下原始的信号和高通滤波后的信号波形，然后输出成图片文件。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#引入包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> signal</span><br><span class="line"><span class="comment">#读取心电图数据文件</span></span><br><span class="line">bspfile=<span class="string">'data/1.txt'</span></span><br><span class="line">bsp_f = open(bspfile, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">bsp_content = bsp_f.read()</span><br><span class="line">ary=bsp_content.split(<span class="string">' '</span>)</span><br><span class="line">ary=[float(s) <span class="keyword">for</span> s <span class="keyword">in</span> bsp_content.split(<span class="string">' '</span>)]</span><br><span class="line">ary_data=ary[<span class="number">0</span>:<span class="number">10000</span>] <span class="comment">#取前10秒数据</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.3</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line"><span class="comment">#绘图</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, ary_data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br><span class="line">axes[<span class="number">0</span>].plot(ary_data)</span><br><span class="line">axes[<span class="number">0</span>].set(title=<span class="string">'Source signal'</span>)</span><br><span class="line">axes[<span class="number">1</span>].plot(filtedData)</span><br><span class="line">axes[<span class="number">1</span>].set(title=<span class="string">'highpass signal'</span>)</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">plt.savefig(<span class="string">'./signal1.png'</span>, <span class="comment"># ⽂件名：png、jpg、pdf</span></span><br><span class="line">dpi = <span class="number">80</span>, <span class="comment"># 保存图⽚像素密度</span></span><br><span class="line">bbox_inches = <span class="string">'tight'</span>)<span class="comment"># 保存图⽚完整</span></span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
+<p>效果：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
 <hr>
 <p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <p>微信公众号：fullbug  关注微信公众号，回复“信号滤波”获取全部代码+数据集</p>
@@ -1870,7 +1870,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1967,8 +1967,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-10T17:26:08+08:00">
-                2023-03-10
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -2111,7 +2111,7 @@
 <li>日志数据无法关联，分析困难<br>当威胁产生时无法关联其他日志进行溯源分析，无法找到问题的源头从根本上解决问题。</li>
 </ol>
 <h2 id="四、日志采集分析审计系统的主要核心功能"><a href="#四、日志采集分析审计系统的主要核心功能" class="headerlink" title="四、日志采集分析审计系统的主要核心功能"></a>四、日志采集分析审计系统的主要核心功能</h2><p>对于前面的日志分析审计现状带来的挑战，很多企业购买或自建了日志采集分析审计系统。一方面满足合规要求，另一方面满足自身业务系统安全管理的要求。</p>
-<p>日志采集分析审计系统，通过海量日志采集、异构设备日志范式化、安全事件关联分析等技术，<strong>实现日志全生命周期管理</strong>。协助运维人员从事前（发现安全风险）、事中（分析溯源）及事后（调查取证）等多个维度监控网络安全事件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230310/%E6%97%A5%E5%BF%97%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png" alt="日志全生命周期管理"></p>
+<p>日志采集分析审计系统，通过海量日志采集、异构设备日志范式化、安全事件关联分析等技术，<strong>实现日志全生命周期管理</strong>。协助运维人员从事前（发现安全风险）、事中（分析溯源）及事后（调查取证）等多个维度监控网络安全事件。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230310/%E6%97%A5%E5%BF%97%E5%85%A8%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86.png" alt="日志全生命周期管理"></p>
 <p>一般来说日志采集分析审计系统核心功能包括日志采集、日志存储、日志分析、日志查询、日志监控、日志事件告警、统计展示。</p>
 <h3 id="1、日志采集"><a href="#1、日志采集" class="headerlink" title="1、日志采集"></a>1、日志采集</h3><p>系统应提供全面的日志采集能力：支持网络安全设备、网络设备、数据库、windows/linux主机日志、web服务器日志、虚拟化平台日志以及自定义等日志；<br>提供多种的数据源管理功能：支持数据源的信息展示与管理、采集器的信息展示与管理以及agent的信息展示与管理；提供分布式外置采集器、Agent等多种日志采集方式；支持IPv4、IPv6日志采集、分析以及检索查询；</p>
 <h3 id="2、日志存储"><a href="#2、日志存储" class="headerlink" title="2、日志存储"></a>2、日志存储</h3><p>提供原始日志、范式化日志的存储，可自定义存储周期，支持FTP日志备份以及NFS网络文件共享存储等多种存储扩展方式。一般来说支持大数据技术的存储方式如ES等，日志数据存储需要满足不少于六个月。</p>
@@ -2134,7 +2134,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2231,8 +2231,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-10T17:21:50+08:00">
-                2023-03-10
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -2354,7 +2354,7 @@
           
             <p>“摸清家底，认清风险”做好资产管理是安全运营的第一步。那么什么是资产，资产管理的难点痛点是什么，如何做好资产管理，认清风险。带着这些问题我们来认识一下资产及攻击面管理。</p>
 <h2 id="一、资产的定义"><a href="#一、资产的定义" class="headerlink" title="一、资产的定义"></a>一、资产的定义</h2><p>《GBT 20984-2007信息安全技术信息安全风险评估规范》中，对于资产的定义为“<strong>对组织有价值的信息或资源，是安全策略保护的对象</strong>”。</p>
-<p>对于网络空间资产来说，这里的资产是指赛博空间中某机构所拥有的一切可能被潜在攻击者利用的设备、信息、应用等数字资产。具体对象包括但不限于硬件设备、云主机、操作系统、IP地址、端口、证书、域名、Web应用、业务应用、中间件、框架、机构公众号、小程序、App、API、源代码等。概括来说，<strong>只要是可操作的对象，不管是实体还是属性。都可以称之为“网络空间资产”</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230305/%E8%B5%84%E4%BA%A7%E5%85%A8%E8%A7%86%E5%9B%BE.png" alt="安全资产视图"></p>
+<p>对于网络空间资产来说，这里的资产是指赛博空间中某机构所拥有的一切可能被潜在攻击者利用的设备、信息、应用等数字资产。具体对象包括但不限于硬件设备、云主机、操作系统、IP地址、端口、证书、域名、Web应用、业务应用、中间件、框架、机构公众号、小程序、App、API、源代码等。概括来说，<strong>只要是可操作的对象，不管是实体还是属性。都可以称之为“网络空间资产”</strong>。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230305/%E8%B5%84%E4%BA%A7%E5%85%A8%E8%A7%86%E5%9B%BE.png" alt="安全资产视图"></p>
 <p>借用“魔方安全”的图，一切可操作对象和属性，都是资产。</p>
 <h2 id="二、资产管理的挑战"><a href="#二、资产管理的挑战" class="headerlink" title="二、资产管理的挑战"></a>二、资产管理的挑战</h2><p>通过上面的定义和图示，可以看到其实网络空间资产，所涉及的覆盖面特别广，给企业资产管理安全运营带来的巨大的挑战：<br>1、对象多<br>按数字资产类型划分如网站、IP、域名、移动门户和云服务等一切可能被潜在攻击者利用的设备、信息、应用等都是网络空间资产。所以资产管理需要纳管的类型多，且随着业务的互联网化、社交化，导致资产及暴露面快速增长。<br>2、分布广<br>随着数字化应用的深入，资产分布在多个数据中心、私有云、公有云、混合云、边缘计算和物联网等各种基础设施环境中，照成了资产信息割裂碎片化，给资产的统一管理带来了困难。<br>3、变化快<br>随着数字化转型业务发展和新型IT技术应用，为快速响应市场和业务需求，互联网暴露资产无时无刻都在跟着生产运营动态变化。<br>4、更隐蔽<br>影子资产的存在，包括钓鱼欺诈网站、暗网交易数据、用户信息泄露、代码仓库等外部隐藏的企业资产，给企业经济或商誉上带来更大的伤害。</p>
 <h2 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h2><p>一切可能被潜在攻击者利用的设备、信息、应用等都是网络空间资产。你永远都无法知道攻击者如何利用这些网络空间资产进行攻击。</p>
@@ -2408,7 +2408,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2505,8 +2505,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-02T19:10:00+08:00">
-                2023-03-02
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -2615,13 +2615,13 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230302/LearnEnglish.png" alt="English" title="English"><br>今天在豆瓣上翻到我在2020年4月发的一篇文章《<a href="https://book.douban.com/review/12481861/" target="_blank" rel="noopener">看完全套149本《书虫》是种什么样的体验</a>》。有豆友留言在问“现在英语怎么样了”？顿时感觉脸上火辣辣的，被啪啪打脸！</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230302/%E8%B1%86%E7%93%A3%E5%9B%9E%E5%A4%8D.png" alt="豆瓣回复" title="豆瓣回复"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230302/LearnEnglish.png" alt="English" title="English"><br>今天在豆瓣上翻到我在2020年4月发的一篇文章《<a href="https://book.douban.com/review/12481861/" target="_blank" rel="noopener">看完全套149本《书虫》是种什么样的体验</a>》。有豆友留言在问“现在英语怎么样了”？顿时感觉脸上火辣辣的，被啪啪打脸！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230302/%E8%B1%86%E7%93%A3%E5%9B%9E%E5%A4%8D.png" alt="豆瓣回复" title="豆瓣回复"></p>
 <p>到今天2023年3月了，快三年了，自己的英语又回到了原点。在我学习英语的生涯中又添加了一次英语学习失败的经历。陷入了第N+1轮的从坚持到放弃，从放弃到开始的魔咒。</p>
 <p>终究还是把英语学习看得太轻了！对于英语的学习，我经历过《<a href="https://book.douban.com/review/10294018/" target="_blank" rel="noopener">坚持了330天，我终于放弃了背单词</a>》、《<a href="https://book.douban.com/review/12481861/" target="_blank" rel="noopener">看完全套149本《书虫》是种什么样的体验</a>》、《<a href="https://book.douban.com/review/12484676/" target="_blank" rel="noopener">英语学渣的我是如何撸完这本英文原著的</a>》。经历了1年的背单词的过程，半年的看完全套书虫，半年撸完10本英文原著（见豆列《<a href="https://www.douban.com/doulist/118432400/" target="_blank" rel="noopener">我读过的英文读本</a>》）。</p>
 <p>关于学习英语这件事，大家都知道需要“长期”的坚持，“大量”的阅读应用。那么你认为长期的坚持是多长，大量的阅读是多少呢？我前前后后花了两年的时间，完成了149本书虫，看完了上十本英文原著，我觉得我已经很努力了，很能坚持了。当我试图在网上寻找这个答案时，发现自己认为花了两年的时间很长，人家已经坚持了七八上十年了；自己嘚瑟看完了全套书虫，人家不但晒完了全套书虫还晒完了哈利波特系列、床头灯系列后每年还坚持撸完二三十本原著。你所谓的“坚持”和“大量”，在人家眼里那只能是渣渣！学英语的路上，总能遇到比你厉害的人却还比你更努力！</p>
 <p>学习这件事，真的没有捷径，谁更用功谁功夫深。好在已经有大量的人已经验证过，英语这个技能是可以通过“长期”的坚持和“大量”的应用可以习得的，我们应该笃信这个事情。<strong>“长期”的坚持是多长，”大量”的阅读是多少，最终只能通过效果来验证</strong>。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230302/%E5%AD%A6%E4%B9%A0%E6%8B%90%E7%82%B9.png" alt="学习拐点" title="学习拐点"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230302/%E5%AD%A6%E4%B9%A0%E6%8B%90%E7%82%B9.png" alt="学习拐点" title="学习拐点"></p>
 <p>知识和能力的习得与积累是有复利效应的。所以，应该要相信自己能够通过“长期”和“大量”的积累和复利获得成功和成长，实现自己的英语应用的自由。有人通过自己的长期坚持和大量的积累成功的突破了拐点，实现了自己的目标。自己还没有成功，说明坚持得不久，积累得不够，在拐点到来之前就慢慢的放弃了，如果继续放弃那以前花费的时间精力只能是变成沉默成本不会有任何效果了。实现英语阅读自由只能是梦想了。</p>
 <p><strong>革命尚未成功，同志仍需努力！梦想还是要有的，现在开始继续坚持英语学习吧！</strong></p>
 <hr>
@@ -2629,7 +2629,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2726,8 +2726,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-05T13:04:29+08:00">
-                2023-03-05
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -2977,7 +2977,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -3074,8 +3074,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2023-03-10T17:24:26+08:00">
-                2023-03-10
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:20+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -3184,7 +3184,7 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230228/%E8%87%B4%E6%9C%AA%E6%9D%A5.png" alt="致未来"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230228/%E8%87%B4%E6%9C%AA%E6%9D%A5.png" alt="致未来"></p>
 <p>2025年的我应该是实现了架子鼓演奏自由，可以轻松的驾驭并享受架子鼓演奏带来的愉悦和快乐。可以很自信的在抖音或B站上上传自己平时很惬意的架子鼓日常练习，不用再担心有人说”节奏不稳、勉强还行”了。技巧应该很熟了，什么重轻音、滚奏、双踩都不在话下了，16分节奏型速度在120以上那都是小case，可以挑战一些有难度的歌曲了。可以很有底气的说我会打架子鼓！要不要来表演一段？</p>
 <p>2025年的我应该是实现了英语阅读的自由，可以享受在英语文献中获取知识带来的快乐，可以不带字幕的看懂大部分的美剧大片了。不用再忍受看一页原版英语小说还要不停的翻英汉字典，搞得阅读兴趣全无了。应该可以畅快的看懂英文的计算机相关的技术文档了，可以尝试翻译英文技术文档了。</p>
 <p>2025年的我技术能力水平应该更高了，心智更加成熟，思考更加有深度了，更加乐意写技术文章做技术分享了。CSDN账号的粉丝应该是到了10W，可以小小的嘚瑟一下了！</p>
@@ -3196,7 +3196,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           

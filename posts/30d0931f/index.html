@@ -140,16 +140,16 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/30d0931f/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="随着B&#x2F;S架构的广泛应用，Web应用的功能越来越丰富，蕴含着越来越有价值的信息，应用程序漏洞被恶意利用的可能性越来越大，因此成为了黑客主要的攻击目标。传统防火墙无法解析HTTP应用层的细节，对规则的过滤过于死板，无法为Web应用提供足够的防护。为了解决上述问题，WAF应运而生。它通过执行一系列针对HTTP、HTTPS的安全策略，专门对Web应用提供保护。 一、什么是WEB应用防火墙Web应用防火墙">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2024-01-15T11:53:56.000Z">
-<meta property="article:modified_time" content="2024-01-15T12:43:22.179Z">
+<meta property="article:modified_time" content="2024-03-19T03:32:21.236Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
 
 
 
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-01-15T20:43:22+08:00">
-                2024-01-15
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:21+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -514,19 +514,19 @@
 <ol>
 <li>透明网桥模式</li>
 </ol>
-<p>透明网桥模式指在两台运行的设备中间插入WEB应用防火墙，但是对流量并不产生任何影响。在透明网桥模式下，Web应用防火墙阻断Wb应用层攻击，而让其他的流量通过。透明网桥模式是部署最为简便的方式。透明网桥模式是透明的，所以不会干预任何网络中的设备，如图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙透明网桥模式部署"></p>
+<p>透明网桥模式指在两台运行的设备中间插入WEB应用防火墙，但是对流量并不产生任何影响。在透明网桥模式下，Web应用防火墙阻断Wb应用层攻击，而让其他的流量通过。透明网桥模式是部署最为简便的方式。透明网桥模式是透明的，所以不会干预任何网络中的设备，如图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙透明网桥模式部署"></p>
 <center>WEB应用防火墙透明网桥模式部署</center>
 
 <ol start="2">
 <li>单机模式</li>
 </ol>
-<p>单机模式下，Web应用防火墙只要串入Web服务器的前端即可进行防护，同时并不影响Web服务器的其他应用，如图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙单机模式部署"></p>
+<p>单机模式下，Web应用防火墙只要串入Web服务器的前端即可进行防护，同时并不影响Web服务器的其他应用，如图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙单机模式部署"></p>
 <center>WEB应用防火墙单机模式部署</center>
 
 <ol start="3">
 <li>旁路反向代理模式</li>
 </ol>
-<p>旁路反向代理模式，可以将Web应用防火墙与Wb服务器置于内网的交换机下，访问Web服务器的所有请求都通过Web应用防火墙流入流出。WAF采用反向代理模式以旁路的方式接入到网络环境中，需要更改网络防火墙的目的映射表，网络防火墙映射WAF的业务口地址，将服务器的IP地址进行隐藏。然而，这种模式下，Web服务器无法获取访问者的真实IP，需要借助HTTP报文中设置相应的字段来表示访问者IP，这样需要修改原有的HTTP报文。如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙旁路反向代理模式部署"></p>
+<p>旁路反向代理模式，可以将Web应用防火墙与Wb服务器置于内网的交换机下，访问Web服务器的所有请求都通过Web应用防火墙流入流出。WAF采用反向代理模式以旁路的方式接入到网络环境中，需要更改网络防火墙的目的映射表，网络防火墙映射WAF的业务口地址，将服务器的IP地址进行隐藏。然而，这种模式下，Web服务器无法获取访问者的真实IP，需要借助HTTP报文中设置相应的字段来表示访问者IP，这样需要修改原有的HTTP报文。如下图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙旁路反向代理模式部署"></p>
 <center>WEB应用防火墙旁路反向代理模式部署</center>
 
 <h2 id="五、防火墙和WAF的关系和区别"><a href="#五、防火墙和WAF的关系和区别" class="headerlink" title="五、防火墙和WAF的关系和区别"></a>五、防火墙和WAF的关系和区别</h2><p>防火墙和Web应用防火墙（WAF）都是网络安全产品，但它们的功能和用途有所不同。</p>
@@ -546,7 +546,7 @@
 <center> 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

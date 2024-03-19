@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-22T11:07:59+08:00">
-                2021-08-22
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -574,8 +574,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-05T16:41:34+08:00">
-                2020-01-05
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -696,10 +696,10 @@
         
           
             <p>今年的计划之一是搭建一个博客，开始写博客。于是在网上找了一些博客程序发现用Hexo在gitHub上搭建自己的个人博客是比较简单而且易于维护的做法。<br>在网上找了一些教程后开始搭建，用自己比较中意的hexo-theme-next模板，发现搭建成功后导航栏链接不对，出现了URL乱码的问题。在网上搜索了一把发现有些网友也碰到了类似的问题不过都还没有解决。<br>我是从 <a href="https://github.com/Doublemine/hexo-theme-next.git" target="_blank" rel="noopener">https://github.com/Doublemine/hexo-theme-next.git</a> 这里Fork下来的。仔细看了一下Fork下来的hexo-theme-next模板代码,尝试自己解决。</p>
-<h2 id="问题现象："><a href="#问题现象：" class="headerlink" title="问题现象："></a>问题现象：</h2><p>URL乱码出现在两个地方，一个是上面的导航栏，一个是右边栏的“日志”菜单部分。<br>导航栏链接乱码问题<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/blogerror1.png" alt="乱码" title="导航栏链接乱码问题"><br>右边栏的“日志”菜单部分链接乱码问题<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/blogerror3.png" alt="乱码" title="右边栏的“日志”菜单部分"><br>发现链接后面都有乱码<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/blogerror2.png" alt="乱码" title="链接乱码"></p>
+<h2 id="问题现象："><a href="#问题现象：" class="headerlink" title="问题现象："></a>问题现象：</h2><p>URL乱码出现在两个地方，一个是上面的导航栏，一个是右边栏的“日志”菜单部分。<br>导航栏链接乱码问题<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/blogerror1.png" alt="乱码" title="导航栏链接乱码问题"><br>右边栏的“日志”菜单部分链接乱码问题<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/blogerror3.png" alt="乱码" title="右边栏的“日志”菜单部分"><br>发现链接后面都有乱码<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/blogerror2.png" alt="乱码" title="链接乱码"></p>
 <h2 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h2><h3 id="1-解决导航栏URL乱码"><a href="#1-解决导航栏URL乱码" class="headerlink" title="1.解决导航栏URL乱码"></a>1.解决导航栏URL乱码</h3><p>查看themes\hexo-theme-next\layout_partials 下面的 header.swig 代码和模板的配置文件 \themes\hexo-theme-next_config.yml，发现导航栏链接乱码是因为菜单配置是有空格造成的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;li class&#x3D;&quot;menu-item menu-item-&#123;&#123; itemName | replace(&#39; &#39;, &#39;-&#39;) &#125;&#125;&quot;&gt;</span><br><span class="line">  &lt;a href&#x3D;&quot;&#123;&#123; url_for(path.split(&#39;||&#39;)[0]) | trim &#125;&#125;&quot; rel&#x3D;&quot;section&quot;&gt;</span><br><span class="line">	&#123;% if theme.menu_icons.enable %&#125;</span><br><span class="line">	  &lt;i class&#x3D;&quot;menu-item-icon fa fa-fw fa-&#123;&#123; path.split(&#39;||&#39;)[1] | trim | default(&#39;question-circle&#39;) &#125;&#125;&quot;&gt;&lt;&#x2F;i&gt; &lt;br &#x2F;&gt;</span><br><span class="line">	&#123;% endif %&#125;</span><br><span class="line">	&#123;&#123; __(&#39;menu.&#39; + name) | replace(&#39;menu.&#39;, &#39;&#39;) &#125;&#125;</span><br><span class="line">  &lt;&#x2F;a&gt;</span><br><span class="line">&lt;&#x2F;li&gt;</span><br></pre></td></tr></table></figure>
-<p>因为url_for函数会将字符串转码，碰到空格或其他特殊字符会进行转意，就会出现乱码。<br>解决的办法是修改模板的配置文件 \themes\hexo-theme-next_config.yml文件去掉空格就是的。<br>原始配置文件配置如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/codeblock1.png" alt="原始配置文件" title="原始配置文件"><br>去掉链接字符串的空格<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/codeblock2.png" alt="去掉空格后的配置文件" title="去掉空格后的配置文件"></p>
+<p>因为url_for函数会将字符串转码，碰到空格或其他特殊字符会进行转意，就会出现乱码。<br>解决的办法是修改模板的配置文件 \themes\hexo-theme-next_config.yml文件去掉空格就是的。<br>原始配置文件配置如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/codeblock1.png" alt="原始配置文件" title="原始配置文件"><br>去掉链接字符串的空格<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/codeblock2.png" alt="去掉空格后的配置文件" title="去掉空格后的配置文件"></p>
 <h3 id="2-解决右边栏的“日志”菜单部分URL的乱码"><a href="#2-解决右边栏的“日志”菜单部分URL的乱码" class="headerlink" title="2.解决右边栏的“日志”菜单部分URL的乱码"></a>2.解决右边栏的“日志”菜单部分URL的乱码</h3><p>在 themes\hexo-theme-next\layout_macro 找到sidebar.swig 文件 找到如下代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if config.archive_dir !&#x3D; &#39;&#x2F;&#39; and site.posts.length &gt; 0 %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;site-state-item site-state-posts&quot;&gt;</span><br><span class="line">  &#123;% if theme.menu.archives %&#125;</span><br><span class="line">	&lt;a href&#x3D;&quot;&#123;&#123; url_for(theme.menu.archives).split(&#39;||&#39;)[0] | trim &#125;&#125;&quot;&gt;</span><br><span class="line">  &#123;% else %&#125;</span><br><span class="line">	&lt;a href&#x3D;&quot;&#123;&#123; url_for(config.archive_dir) &#125;&#125;&quot;&gt;</span><br><span class="line">  &#123;% endif %&#125;</span><br><span class="line">	  &lt;span class&#x3D;&quot;site-state-item-count&quot;&gt;&#123;&#123; site.posts.length &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">	  &lt;span class&#x3D;&quot;site-state-item-name&quot;&gt;&#123;&#123; __(&#39;state.posts&#39;) &#125;&#125;&lt;&#x2F;span&gt;</span><br><span class="line">	&lt;&#x2F;a&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <p>将</p>
@@ -802,8 +802,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-14T15:43:54+08:00">
-                2020-02-14
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
+                2024-03-19
               </time>
             
           </span>
@@ -912,11 +912,11 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/dream1.png" alt="2020是时候开启最棒的一年了！" title="2020是时候开启最棒的一年了！"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/dream1.png" alt="2020是时候开启最棒的一年了！" title="2020是时候开启最棒的一年了！"></p>
 <p>2019已经过去，回首过去你是否懊恼？本来计划要坚持每天跑步健身的，结果买好了装备坚持了几天后半途而废。雄心勃勃的每天阅读的计划也无疾而终。想把英语学好，却总是停留在书的前几页。我想成为最好的自己、想减肥健康、想多存钱少花钱、想学习新技能、想开创自己的事业……有很多美好的想法，但是事到如今只是美好的想法，回首往事时后悔不已，后悔没有正确的做出决定，后悔没有开始，后悔没有坚持。然而后悔又有什么用呢？岁月还是这样无情的流逝了，你还是原来的那个你。2020年，是时候开启最棒的一年了！</p>
 <p>今年是突破之年！是很多人发自内心的渴望。人们都喜欢在新年制定目标。但是在实现目标的过程中，一开始我们斗志昂扬，大步向前，信心满满。但之后要么计划被打乱，要么最终不了了之。然后大多数人开始以一种失落和懊悔的心情诉说自己的遭遇的一次次挫折和失败。大部分的人都曾经在某些年份制定过新年目标。但是人人都制定目标，并不意味着总是有效。今年是突破之年吗？能够突破制定计划-失败-懊恼-制定计划的怪圈吗？能够真正的突破成就最好的自己吗？</p>
 <p>今年必须是突破的一年！来自全球知名高效能专家迈克尔·海亚特的这本《规划最好的一年》。写给无力改变现状的你，让你从个人、职业、财富、人际关系等全面升级。如果你想摆脱失意与迷茫，走向自信与明朗，获得成功一年的力量。相信《规划最好的一年》一书中有你想要的答案。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/book1.png" alt="《规划最好的一年》" title="《规划最好的一年》"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/book1.png" alt="《规划最好的一年》" title="《规划最好的一年》"></p>
 <p>作者迈克尔·海亚特（Michael Hyatt），是全球知名高效能专家，《纽约时报》畅销书作家。全球极具魅力的传媒领袖、平台应用大师、自媒体营销泰斗。曾任美国最大的出版公司之一托马斯·纳尔逊出版公司董事会主席、CEO。他创作过《生命向前》（与丹尼尔·哈卡维合著）以及《平台：从喧闹世界脱颖而出》，荣登过《华尔街日报》《福布斯》《快公司》《企业家》的封面人物。迈克尔·海亚特在美国开设有“5天即达最棒的一年”线上及线下课程，改变了逾千万美国年轻人的命运。</p>
 <p>相信无论你有过什么好的或是不好的经历，即使是在你曾经深度受挫的领域，今年都绝对有可能成为你最有意义的一年。因为这本书告诉了你改变自己具体的做法。是时候开始最棒的一年了。</p>
 <h2 id="STEP-1-相信可能"><a href="#STEP-1-相信可能" class="headerlink" title="STEP 1 相信可能"></a>STEP 1 相信可能</h2><p>要创造最好的一年，首先就要升级观念，树立自我开放性观念，相信一切皆有可能。</p>
@@ -955,10 +955,10 @@
 <p>顺其自然不会本来非凡的成就随波逐流，不能达到想去的终点。我们只能有意识的去思考自己想要什么，为什么想要并根据目标制定行动方案，这一步在帮助我们清理自己的需要创造理想的生活，这也是乐趣的开始。</p>
 <p><em>具体行动计划：</em></p>
 <h3 id="1-设立目标"><a href="#1-设立目标" class="headerlink" title="1.设立目标"></a>1.设立目标</h3><p>每年设立7~10个目标，目标要满足smarter原则:明确性，可衡量性，可行性风险性，定时性，激励性，相关性，根据不同的生活领域制定相应的目标，将目标分散到各个季度，以保证注意力集中以及全年节奏稳定。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/smart1.png" alt="SMART法则" title="SMART法则"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/smart1.png" alt="SMART法则" title="SMART法则"></p>
 <h3 id="2-成就型与习惯性目标合理结合"><a href="#2-成就型与习惯性目标合理结合" class="headerlink" title="2.成就型与习惯性目标合理结合"></a>2.成就型与习惯性目标合理结合</h3><p>成就型目标代表一次完成的成就；习惯型目标代表持续且规律的行动。习惯型目标还可以是成就型目标的实现方式。两种类型的目标都对规划最好的一年有所帮助，但是我们要根据个人需求来平衡这两种目标。对我们有用的组合就是正确的组合。</p>
 <h3 id="3-在不适区设立目标"><a href="#3-在不适区设立目标" class="headerlink" title="3.在不适区设立目标"></a>3.在不适区设立目标</h3><p>一个有意义的目标必须让我们提升自己。这就意味着我们必须离开舒适区。如果你明确知道一个目标应该怎么实现，那说明这个目标还太简单了。人生中所有重要的事都发生在舒适区之外。有意义的目标一定是处在不适区的。不适区的目标给我们带来挑战，让我们最大的发挥自己的能力。而恐慌区的目标可能导致失败，带来沮丧和失望。通常的做法是设立一个接近恐慌区的目标，然后再把它稍稍拖回来一些，处在学习区的目标是比较合适的。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200105/blogimage/comfortzone.png" alt="舒适区三圈理论" title="舒适区三圈理论"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/20200105/blogimage/comfortzone.png" alt="舒适区三圈理论" title="舒适区三圈理论"></p>
 <p>最好的是往往发生在我们不得不成长的时候。这在我们对未来一年的规划中是绝对真理，但这违反了我们规避风险的本能，以下4点将有助于我们克服阻力:</p>
 <p>承认走出舒适区的价值。首先转变思维，只要你接受了挑战区的价值，接下来的事就简单多了。</p>
 <p>直面痛苦。大多数阻碍来自我们的内心，但转变思维还不够，通过直面痛苦，我们改变的还有我们的意愿。</p>
@@ -1088,8 +1088,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-05T17:18:52+08:00">
-                2020-01-05
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
+                2024-03-19
               </time>
             
           </span>
