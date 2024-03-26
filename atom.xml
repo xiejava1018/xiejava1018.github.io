@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2024-03-20T09:16:50.974Z</updated>
+  <updated>2024-03-26T03:00:42.537Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python爬虫如何快速入门</title>
+    <link href="https://xiejava.gitee.io/posts/ce59d1e6/"/>
+    <id>https://xiejava.gitee.io/posts/ce59d1e6/</id>
+    <published>2024-03-26T02:33:23.000Z</published>
+    <updated>2024-03-26T03:00:42.537Z</updated>
+    
+    <content type="html"><![CDATA[<p>写了几篇网络爬虫的博文后，有网友留言问Python爬虫如何入门？今天就来了解一下什么是爬虫，如何快速的上手Python爬虫。</p><h2 id="一、什么是网络爬虫"><a href="#一、什么是网络爬虫" class="headerlink" title="一、什么是网络爬虫"></a>一、什么是网络爬虫</h2><p>网络爬虫，英文名称为Web Crawler或Spider，是一种通过程序在互联网上自动获取信息的技术。它根据指定的规则，从互联网上下载网页、图片、视频等内容，并抽取其中的有用信息进行处理。简单来说，网络爬虫可以看作是在互联网上自动“爬行”的程序，它们从某个或某些初始网页开始，读取网页内容，找到其中的链接地址，然后通过这些链接地址寻找下一个网页，这样不断循环，直到按照某种策略抓取完所需的网页为止。</p><p>网络爬虫的应用场景非常广泛，包括搜索引擎中的网页抓取、数据挖掘、网站监测等领域。例如，搜索引擎通过爬虫技术抓取互联网上的网页信息，建立索引数据库，以便用户进行关键词搜索时能够快速找到相关信息。同时，网络爬虫也需要注意遵守相关法律法规和网站的使用协议，避免对网站造成不必要的负担或侵犯用户隐私。</p><h2 id="二、网络爬虫的工作原理"><a href="#二、网络爬虫的工作原理" class="headerlink" title="二、网络爬虫的工作原理"></a>二、网络爬虫的工作原理</h2><p>网络爬虫（Web Crawler）是一种自动化程序，用于在互联网上按照一定规则和算法自动获取网页信息。网络爬虫通过访问网站的URL，并根据预设的规则抓取页面内容，然后将抓取到的数据保存、分析或用于其他用途。<br>网络爬虫的主要工作步骤包括以下几个方面：<br><strong>确定爬取目标–&gt;抓取网页内容–&gt;解析网页–&gt;处理数据</strong></p><ol><li>确定爬取目标：网络爬虫会从一个或多个起始URL开始，然后根据链接关系逐步发现更多的网页。它可以通过遍历网页的超链接、Sitemap、RSS订阅等方式来发现新的网页。</li><li>抓取网页内容：一旦网络爬虫发现了目标网页，它会向服务器发送HTTP请求，获取网页的HTML代码或其他相关资源（如图片、视频等）。获取到的网页内容将会被保存到本地或内存中。</li><li>解析网页：网络爬虫通常会对抓取到的网页进行解析，提取其中的结构化数据，例如标题、正文、链接、图片等内容。这通常需要使用HTML解析器来处理网页内容。</li><li>处理数据：抓取到的数据可以被进一步处理、分析、过滤、清洗或存储。这些数据可以用于搜索引擎的索引、数据分析、信息检索、机器学习等各种用途。<center> </li></ol><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240326/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB%E5%B7%A5%E4%BD%9C%E6%AD%A5%E9%AA%A4.png" alt="网络爬虫工作步骤"></p></center><h2 id="三、学习爬虫需要哪些前置知识"><a href="#三、学习爬虫需要哪些前置知识" class="headerlink" title="三、学习爬虫需要哪些前置知识"></a>三、学习爬虫需要哪些前置知识</h2><p>了解到网络爬虫的工作原理后，就知道了爬虫需要哪些前置知识了。</p><ol><li><strong>需要具备基础的网络基础知识</strong><br>  需要理解HTTP请求与响应的基本原理，包括请求方法（GET、POST等）、请求头、请求体以及响应状态码等。</li><li><strong>需要了解熟悉HTML和CSS基础知识</strong><br>  需要了解HTML的基本结构和常用标签，如标题、段落、链接、图片等<br>  需要熟悉CSS选择器的基本语法和用法，以便在解析网页时能够定位并提取所需内容。</li><li><strong>最好需要熟悉正则表达式</strong><br>  学习正则表达式的语法和用法，以便在爬虫中用于匹配和提取特定格式的文本信息。</li><li><strong>了解基本的数据库知识</strong><br> 因为最终爬取的数据需要存储到数据库中，那么需要了解一些基本的数据库知识如常用的关系型数据库mysql或非关系型数据库MongoDB</li></ol><h2 id="四、Python实现网络爬虫有什么优势"><a href="#四、Python实现网络爬虫有什么优势" class="headerlink" title="四、Python实现网络爬虫有什么优势"></a>四、Python实现网络爬虫有什么优势</h2><p>要实现网络爬虫需要编写代码来实现，Python实现网络爬虫具有许多优势，使其成为首选的爬虫开发语言之一。</p><ol><li><strong>易学易用</strong>：Python具有简洁、清晰的语法，易于学习和上手。它的语法类似于伪代码，使得编写爬虫代码变得简单直观。</li><li><strong>丰富的爬虫库和工具</strong>：Python拥有丰富的第三方爬虫库和工具，如Beautiful Soup、Scrapy、Requests、Selenium等，这些库提供了丰富的功能和灵活的选项，可以满足不同场景下的爬虫需求。</li><li><strong>强大的数据处理能力</strong>：Python在数据处理和分析方面有着强大的支持，如Pandas、NumPy、Matplotlib等库，可以轻松地对爬取到的数据进行处理、分析和可视化。</li><li><strong>活跃的社区支持</strong>：Python拥有庞大而活跃的社区，你可以轻松地找到大量的教程、文档、示例代码以及问答社区，解决遇到的问题并不断提升技能。</li><li><strong>跨平台性</strong>：Python是一种跨平台的语言，可以在Windows、Linux、Mac等操作系统上运行，因此可以轻松地部署和运行爬虫程序。</li><li><strong>广泛的应用领域</strong>：Python不仅在网络爬虫领域广泛应用，还在数据科学、人工智能、Web开发等领域有着广泛的应用。因此学习Python不仅有助于网络爬虫开发，还能为未来的职业发展打下良好基础。</li></ol><p>Python实现网络爬虫具有易学易用、丰富的库和工具、强大的数据处理能力、活跃的社区支持、跨平台性和广泛的应用领域等优势，使其成为开发网络爬虫的首选语言之一。</p><h2 id="五、如何快速入门Python爬虫"><a href="#五、如何快速入门Python爬虫" class="headerlink" title="五、如何快速入门Python爬虫"></a>五、如何快速入门Python爬虫</h2><p>以下是一些建议的步骤和资源，帮助开始Python爬虫的学习之旅：</p><ol><li><strong>学习Python基础：</strong><br>● 如果你还没有学习Python，首先需要掌握Python的基础知识，包括变量、数据类型、控制流、函数、模块等。<br>● 推荐资源：官方Python教程、菜鸟教程、W3Schools等。</li><li><strong>了解网络基础知识</strong>：<br>● 学习HTTP协议、URL结构、请求方法（GET、POST等）和响应状态码等网络基础知识。<br>● 推荐资源：W3Schools等。</li><li><strong>使用requests库发送HTTP请求</strong>：<br>● requests是Python中非常流行的HTTP库，用于发送HTTP请求。requests 库提供了便捷的方式来发送HTTP请求，处理响应内容，包括cookies、headers等细节。<br>● 安装：pip install requests<br>● 学习如何发送GET和POST请求，处理响应，以及设置请求头等。</li><li><strong>解析网页内容</strong>：<br>● 学习使用BeautifulSoup或lxml等库来解析HTML内容，提取所需数据。BeautifulSoup, lxml 等库提供了强大的网页解析功能，能够轻松解析HTML和XML文档结构。<br>● 安装：pip install beautifulsoup4 和 pip install lxml<br>● 掌握选择器语法，如CSS选择器和XPath。<br>● 学习基础的正则表达式。参考《<a href="http://xiejava.ishareread.com/posts/994a1838/" target="_blank" rel="noopener">Python与正则表达式</a>》</li><li><strong>处理JavaScript动态加载的内容</strong>：<br>● 有些网页内容是通过JavaScript动态加载的，直接请求HTML可能无法获取到完整内容。<br>● 学习使用Selenium库来模拟浏览器行为，获取动态加载的内容。Selenium 可以用来驱动真实的浏览器进行动态页面的爬取和交互。<br>● 安装：pip install selenium，并下载对应的浏览器驱动。参考《<a href="http://xiejava.ishareread.com/posts/8370b2b6/" target="_blank" rel="noopener">selenium安装与配置</a>》</li><li><strong>使用代理和应对反爬虫机制</strong>：<br>● 学习如何使用代理IP来避免被封禁，以及如何应对常见的反爬虫机制，如验证码、用户登录等。<br>● 学习和使用mitmproxy代理工具来抓包进行数据爬取。参考《<a href="http://xiejava.ishareread.com/posts/699b1506/" target="_blank" rel="noopener">mitmproxy安装与配置</a>》</li><li><strong>存储和处理数据</strong>：<br>● 学习将数据存储到文件（如CSV、JSON等）或数据库（如MySQL、MongoDB等）中。<br>● 掌握使用Python进行数据清洗和处理的技巧。pandas是做数据清洗、处理、分析的利器，可以参考《<a href="http://xiejava.ishareread.com/posts/17215b2c/" target="_blank" rel="noopener">pandas快速入门指南</a>》</li><li><strong>高效与可扩展</strong>：<br>● 学习Scrapy框架，Scrapy框架支持分布式爬虫，允许大规模数据采集。可以参考《<a href="http://xiejava.ishareread.com/posts/dfc313ee/" target="_blank" rel="noopener">Scrapy爬虫框架实战</a>》</li><li><strong>实践项目</strong>：<br>● 通过实践项目来巩固所学知识，例如爬取某个网站的新闻、商品信息等。<br>可以参考《<a href="http://xiejava.ishareread.com/posts/eab21fe5/" target="_blank" rel="noopener">Python爬虫获取电子书资源实战</a>》、《<a href="http://xiejava.ishareread.com/posts/6e762a1a/" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》、《<a href="http://xiejava.ishareread.com/posts/81e07ee2/" target="_blank" rel="noopener">mitmproxy实战-通过mitmdump爬取京东金榜排行数据</a>》、《<a href="http://xiejava.ishareread.com/posts/db2fbb43/" target="_blank" rel="noopener">Python爬取京东商品评价信息实战</a>》、《<a href="http://xiejava.ishareread.com/posts/913ab5e4/" target="_blank" rel="noopener">Python爬取淘宝商品评价信息实战</a>》</li><li><strong>学习资源和社区</strong>：<br>● 推荐资源：官方文档、博客文章、GitHub上的开源项目等。<br>● 加入Python和爬虫相关的社区和论坛，与其他开发者交流学习经验。</li></ol><p>最后，请注意在爬虫开发过程中要遵守法律法规和道德准则，不要对目标网站造成不必要的负担或侵犯他人隐私。</p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注微信公众号,一起学习、成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;写了几篇网络爬虫的博文后，有网友留言问Python爬虫如何入门？今天就来了解一下什么是爬虫，如何快速的上手Python爬虫。&lt;/p&gt;
+&lt;h2 id=&quot;一、什么是网络爬虫&quot;&gt;&lt;a href=&quot;#一、什么是网络爬虫&quot; class=&quot;headerlink&quot; title=&quot;一、什么
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
+    
+      <category term="爬虫" scheme="https://xiejava.gitee.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>通过jsDelivr实现Github图床CDN加速</title>
@@ -559,34 +590,6 @@
       
       
         &lt;p&gt;漏洞是指在硬件、软件、协议的具体实现或系统安全策略上存在的缺陷，从而使攻击者能够在未授权的情况下访问或破坏系统。关于什么是漏洞及如何管理漏洞请参考《&lt;a href=&quot;http://xiejava.ishareread.com/posts/a937cbf5/&quot; target=
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网络安全产品之认识防毒墙</title>
-    <link href="https://xiejava.gitee.io/posts/974e9e0f/"/>
-    <id>https://xiejava.gitee.io/posts/974e9e0f/</id>
-    <published>2024-01-22T13:46:40.000Z</published>
-    <updated>2024-03-19T03:32:21.313Z</updated>
-    
-    <content type="html"><![CDATA[<p>在互联网发展的初期，网络结构相对简单，病毒通常利用操作系统和软件程序的漏洞发起攻击，厂商们针对这些漏洞发布补丁程序。然而，并不是所有终端都能及时更新这些补丁，随着网络安全威胁的不断升级和互联网的普及，病毒往往能够轻易地感染大量计算机。在这样的背景下，防毒墙应运而生。<br>接下来让我们认识一下防毒墙。</p><h2 id="一、什么是防毒墙"><a href="#一、什么是防毒墙" class="headerlink" title="一、什么是防毒墙"></a>一、什么是防毒墙</h2><p>防毒墙是一种网络安全设备，通常部署在网络的入口处，用于对网络传输中的病毒进行过滤。通俗地说，防毒墙可以部署在企业局域网和互联网交界的地方，阻止病毒从互联网侵入内网。防毒墙通过多种技术手段来检测和过滤病毒，包括启发式分析、特征码匹配、行为分析、人工智能等。它能够识别和阻止各种类型的病毒，包括文件病毒、宏病毒、蠕虫病毒、木马病毒等。防毒墙主要体现在病毒杀除的功能，同时部分设备也具有关键字过滤（如色情、反动）、垃圾邮件阻止和一定防火墙的功能。</p><h2 id="二、防毒墙主要功能"><a href="#二、防毒墙主要功能" class="headerlink" title="二、防毒墙主要功能"></a>二、防毒墙主要功能</h2><p>1、专注病毒过滤，阻断病毒传输，工作协议层为ISO的2-7层，分析数据包中的传输数据内容，运用病毒分析技术处理病毒体，具有防火墙访问控制功能模块<br>2、基于网络层过滤病毒，主动防御病毒于网络之外；网关设备配置病毒过滤策略，方便、扼守咽喉；过滤出入网关的数据；与杀毒软件联动建立多层次反病毒体系。<br>3、内容过滤，防毒墙可以对网络流量中的内容进行过滤，如禁止不适当的网站、阻止恶意邮件等。<br>4、部分设备也具有一定防火墙，能够检测进出网络内部的数据，对http、ftp、SMTP、IMAP和POP3五种协议的数据进行病毒扫描，一旦发现病毒就会采取相应的手段进行隔离或查杀，在防护病毒方面起到了非常大的作用。</p><h2 id="三、防毒墙的工作原理"><a href="#三、防毒墙的工作原理" class="headerlink" title="三、防毒墙的工作原理"></a>三、防毒墙的工作原理</h2><p>防毒墙是一种专门设计用于检测和阻止网络传输中的病毒和其他恶意软件的网络安全设备。它的工作原理主要涉及以下几个步骤：</p><ol><li>智能感知引擎：防毒墙首先通过智能感知引擎对网络流量进行深层分析，识别出流量对应的协议类型和文件传输的方向。这一步是为了判断文件传输所使用的协议和文件传输的方向是否支持病毒检测。</li><li>特征提取与匹配：一旦流量被识别并经过初步筛选，防毒墙会进行特征提取。提取后的特征与防毒墙中的病毒特征库进行匹配。如果匹配成功，则认为该文件为病毒文件，并按照配置文件中的响应动作进行处理。</li><li>白名单机制：为了提高反病毒的检测效率，防毒墙支持白名单机制。管理员可以为信任的域名、URL、IP地址或IP地址段配置白名单规则。对于命中白名单的流量，防毒墙将不会对其进行病毒检测。</li><li>联动检测功能：为了增强病毒检测的准确性，对于未命中病毒特征库的文件，防毒墙具备联动检测功能。通过将文件送入沙箱进行深度检测，进一步提高对未知病毒的防范能力。</li><li>日志系统：防毒墙还提供日志系统，用于定位感染源。通过分析日志数据，管理员可以追踪病毒的来源，及时发现并处理安全威胁。</li></ol><p>防毒墙通过上述步骤对网络流量进行实时检测和过滤，旨在阻止病毒和其他恶意软件的传播，保护企业网络的安全。</p><h2 id="四、防毒墙的查杀方式"><a href="#四、防毒墙的查杀方式" class="headerlink" title="四、防毒墙的查杀方式"></a>四、防毒墙的查杀方式</h2><p>防毒墙的查杀方式主要包括特征码技术和行为查杀技术两种。</p><ol><li>特征码技术：防毒墙通过病毒特征库来识别病毒，特征库包含了各种病毒的特征码。当防毒墙扫描到被检测信息与特征库中的特征码匹配时，就认为该被检测信息为病毒。特征码技术是传统的病毒查杀方式，准确率高，但是对新病毒的应对能力较差。</li><li>行为查杀技术：当病毒在运行的时候会有各种行为特征，比如会在系统里增加有特殊后缀的文件，监控用户行为等。防毒墙通过监控病毒的行为特征，当检测到某被检测信息有这些特征行为时，则认为该被检测信息为病毒。行为查杀技术对新病毒的应对能力强，但是误报率较高。</li></ol><p>在实际应用中，防毒墙通常会结合使用这两种技术，以提高病毒的查杀效果。同时，防毒墙也会不断更新病毒库和升级引擎，以应对不断变化的病毒威胁。</p><p>防毒墙通过多种技术手段来识别高危险性的安全漏洞。以下是一些常用的技术：</p><ol><li>漏洞扫描：防毒墙具备漏洞扫描功能，可以定期或实时地对网络中的终端设备进行漏洞扫描，检查操作系统、应用程序等是否存在已知的漏洞。一旦发现漏洞，防毒墙会立即发出警报，并采取相应的措施进行修复或隔离。</li><li>威胁情报：防毒墙通过收集和分析威胁情报数据，了解最新的病毒、恶意软件、黑客组织等信息，从而发现高危险性的安全漏洞。防毒墙会将这些情报数据与网络流量进行比对，一旦发现异常行为或可疑数据，就会立即进行拦截和清除。</li><li>行为分析：防毒墙通过监控网络流量中病毒的行为特征，可以识别出高危险性的安全漏洞。例如，某些病毒会在系统里增加有特殊后缀的文件、监控用户行为等。防毒墙通过分析这些行为特征，一旦发现可疑行为，就会立即采取相应的措施进行处置。</li><li>人工智能技术：防毒墙采用人工智能技术，通过机器学习和深度学习算法，不断学习和分析网络流量中的数据特征，从而识别出高危险性的安全漏洞。人工智能技术可以自动识别未知病毒、恶意软件等威胁，并采取相应的措施进行拦截和清除。</li></ol><h2 id="五、防毒墙的使用方式"><a href="#五、防毒墙的使用方式" class="headerlink" title="五、防毒墙的使用方式"></a>五、防毒墙的使用方式</h2><p>1、透明模式：串联接入网络出口处，部署简单。<br>2、旁路代理模式：强制客户端的流量经过防病毒网关，防病毒网关仅仅需要处理要检测的相关协议，不需要处理其他协议的转发，可以较好的提高设备性能。<br>3、旁路模式：与旁路代理模式部署的拓扑一样，不同的是，旁路模式只能起到检测作用，对于已检测到的病毒无法做到清除。</p><h2 id="六、防毒墙的应用场景"><a href="#六、防毒墙的应用场景" class="headerlink" title="六、防毒墙的应用场景"></a>六、防毒墙的应用场景</h2><p>防毒墙的应用场景主要包括以下几个方面：</p><ol><li>保护内部终端免受来自互联网的病毒攻击：对于无法保证内网所用终端全部安装杀毒软件或存在安全漏洞的企业，防毒墙可以部署在网关处，阻挡病毒从互联网进入内网，保护内网终端的安全。</li><li>控制病毒在网络之间爆发传播：大型网络中可能存在多个单位网络互联的情况，一个单位的病毒爆发可能会引发整个大网络的病毒传播。防毒墙可以部署在各单位网络边缘，严格控制病毒在网络之间的传播，防止大规模的病毒爆发。</li><li>保护重点服务器：随着服务器的广泛应用，防毒墙可以部署在网络出口处及接在重点服务器前，保护企业上网和服务器不受病毒入侵。</li><li>隔离外来不安全终端：当外来人员在企业内网进行访问互联网时，可能会携带病毒。在隔离区出口处部署防毒墙可以保护内部终端安全。</li><li>U盘感染终端控制：U盘是病毒传播的重要途径之一。使用防毒墙可以帮助企业建立U盘安全区，当U盘安全使用区计算机含有病毒访问企业内部资源时，防毒墙进行病毒的过滤。</li><li>阻止内网终端对外部不良资源的滥用：防毒墙可以对网络流量中的内容进行过滤，如禁止不适当的网站、阻止恶意邮件等，从而防止内部用户滥用外部不良资源。</li></ol><p>防毒墙适用于各种复杂的网络拓扑环境，可以根据用户的不同需要，具备针对HTTP、FTP、SMTP和POP3协议内容检查、清除病毒的能力，同时通过实施安全策略可以在网络环境中的内外网之间建立一道功能强大的防火墙体系。</p><h2 id="七、防毒墙与防火墙"><a href="#七、防毒墙与防火墙" class="headerlink" title="七、防毒墙与防火墙"></a>七、防毒墙与防火墙</h2><p>防毒墙与防火墙虽然只有一个字不同，但是他们是两种不同的网络安全产品，主要区别在于防护的侧重点和功能。<br>防火墙主要关注网络层的安全，通过IP地址、端口号等网络层面信息来判断是否允许数据包通过，从而防止非法访问和攻击。防火墙通常部署在网络的入口处，对所有进出的网络流量进行过滤和防护。</p><p>防毒墙则主要关注应用层的安全，通过对网络流量中的数据进行深度检测和过滤，来防止计算机病毒、蠕虫、特洛伊木马等恶意软件的传播。防毒墙通常部署在网络出口处，对所有进出的网络流量进行实时检测和过滤。</p><p>防火墙和防毒墙都是非常重要的网络安全产品，在实际应用中可以根据具体情况选择部署。同时，为了确保网络安全，还需要结合其他安全措施，如加密技术、身份认证等，来提高整个网络的安全性。</p><hr><p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在互联网发展的初期，网络结构相对简单，病毒通常利用操作系统和软件程序的漏洞发起攻击，厂商们针对这些漏洞发布补丁程序。然而，并不是所有终端都能及时更新这些补丁，随着网络安全威胁的不断升级和互联网的普及，病毒往往能够轻易地感染大量计算机。在这样的背景下，防毒墙应运而生。&lt;br&gt;
       
     
     </summary>
