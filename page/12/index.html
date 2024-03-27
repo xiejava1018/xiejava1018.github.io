@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -482,32 +482,32 @@
         
           
             <p>在数据分析过程中，经常会需要根据某一列或多列把数据划分为不同的组别，然后再对其进行数据分析。本文将介绍pandas的数据分组及分组后的应用如对数据进行聚合、转换和过滤。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E5%88%86%E7%BB%84%E8%81%9A%E5%90%88.png" alt="分组聚合"></p>
-<p>在关系型数据库中我们常用SQL的GROUP BY操作进行分组分析计算。在pandas中要完成数据的分组操作同样可用groupby()函数，然后再在划分出来的组（group）上应用一些统计函数，从而达到数据分析的目的，比如对分组数据进行聚合、转换或者过滤。这个过程主要包含以下三步：<strong>拆分(split)-应用(apply)-合并(combine）</strong><br>例如，DataFrame可以在列(axis=1)或行(axis=0)上进行分组(split)，然后将一个函数应用(apply)到各个分组并产生一个新值，最后所有这些函数的执行结果会被合并(combine)到最终的结果对象中。<br>一个简单的分组聚合的过程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E5%88%86%E7%BB%84-%E5%BA%94%E7%94%A8-%E5%90%88%E5%B9%B6.png" alt="拆分(split)-应用(apply)-合并(combine）"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E5%88%86%E7%BB%84%E8%81%9A%E5%90%88.png" alt="分组聚合"></p>
+<p>在关系型数据库中我们常用SQL的GROUP BY操作进行分组分析计算。在pandas中要完成数据的分组操作同样可用groupby()函数，然后再在划分出来的组（group）上应用一些统计函数，从而达到数据分析的目的，比如对分组数据进行聚合、转换或者过滤。这个过程主要包含以下三步：<strong>拆分(split)-应用(apply)-合并(combine）</strong><br>例如，DataFrame可以在列(axis=1)或行(axis=0)上进行分组(split)，然后将一个函数应用(apply)到各个分组并产生一个新值，最后所有这些函数的执行结果会被合并(combine)到最终的结果对象中。<br>一个简单的分组聚合的过程如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E5%88%86%E7%BB%84-%E5%BA%94%E7%94%A8-%E5%90%88%E5%B9%B6.png" alt="拆分(split)-应用(apply)-合并(combine）"></p>
 <p>我们来构造图中所示的DataFrame数据集，看看pandas的分组聚合是怎么做的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df=pd.DataFrame(&#123;<span class="string">'key'</span>:[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>],<span class="string">'data'</span>:[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grouped=df.groupby([<span class="string">'key'</span>]) <span class="comment">#通过key分组</span></span><br><span class="line"><span class="comment">#查看分组情况</span></span><br><span class="line"><span class="keyword">for</span> dtype,group <span class="keyword">in</span> grouped:</span><br><span class="line">    print(dtype)</span><br><span class="line">grouped.sum() <span class="comment">#对每个分组应用sum函数，并最后组合成结果</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupby.png" alt="对df的key进行用groupby()进行分组"><br>通过对df的key进行用groupby()进行分组，这里可看到，将数据分成了A、B、C三组，然后对这三组分别应用sum()函数求和，再组合成最终的结果。<br>对于分组聚合一般来说实际上是分两步：一是创建分组对象进行分组，二是对分组进行相应处理如（对组应用聚合函数、对组进行转换、对组的数据进行过滤）。不过实际在具体写的时候可以通过链式调用一个语句就可以实现如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupby.png" alt="对df的key进行用groupby()进行分组"><br>通过对df的key进行用groupby()进行分组，这里可看到，将数据分成了A、B、C三组，然后对这三组分别应用sum()函数求和，再组合成最终的结果。<br>对于分组聚合一般来说实际上是分两步：一是创建分组对象进行分组，二是对分组进行相应处理如（对组应用聚合函数、对组进行转换、对组的数据进行过滤）。不过实际在具体写的时候可以通过链式调用一个语句就可以实现如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby([<span class="string">'key'</span>]).sum() <span class="comment">#链式调用先分组再用聚合函数聚合</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupby%E5%8D%95key.png" alt="链式调用先分组再用聚合函数聚合"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupby%E5%8D%95key.png" alt="链式调用先分组再用聚合函数聚合"></p>
 <h1 id="一、创建分组对象进行分组"><a href="#一、创建分组对象进行分组" class="headerlink" title="一、创建分组对象进行分组"></a>一、创建分组对象进行分组</h1><p>groupby可以把分组时指定的键（key）作为每组的组名。groupby对象支持迭代，可以遍历每个分组的具体数据。<br>如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看分组情况</span></span><br><span class="line"><span class="keyword">for</span> name,group <span class="keyword">in</span> grouped:</span><br><span class="line">    print(name)</span><br><span class="line">    print(group)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%88%86%E7%BB%84%E6%83%85%E5%86%B5.png" alt="查看分组情况"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%88%86%E7%BB%84%E6%83%85%E5%86%B5.png" alt="查看分组情况"></p>
 <h2 id="1、根据多列进行分组"><a href="#1、根据多列进行分组" class="headerlink" title="1、根据多列进行分组"></a>1、根据多列进行分组</h2><p>groupby可以通过传入需要分组的参数实现对数据的分组，参数可以是单列，也可以是多列，多列以列表的方式传入。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grouped=df.groupby([<span class="string">'key1'</span>,<span class="string">'key2'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupby%E5%A4%9A%E5%88%97%E5%88%86%E7%BB%84.png" alt="多列进行分组"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupby%E5%A4%9A%E5%88%97%E5%88%86%E7%BB%84.png" alt="多列进行分组"></p>
 <h2 id="2、通过字典或Series进行分组"><a href="#2、通过字典或Series进行分组" class="headerlink" title="2、通过字典或Series进行分组"></a>2、通过字典或Series进行分组</h2><p>除数组以外，分组信息还可以其他形式存在。如可以定义字典或Series进行分组。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">people=pd.DataFrame(np.random.randn(<span class="number">5</span>,<span class="number">5</span>),</span><br><span class="line">                   columns=[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>],</span><br><span class="line">                   index=[<span class="string">'Joe'</span>,<span class="string">'Steve'</span>,<span class="string">'Wes'</span>,<span class="string">'Jim'</span>,<span class="string">'Bob'</span>])</span><br><span class="line">people</span><br><span class="line">mapping=&#123;<span class="string">'a'</span>:<span class="string">'red'</span>,<span class="string">'b'</span>:<span class="string">'red'</span>,<span class="string">'c'</span>:<span class="string">'blue'</span>,<span class="string">'d'</span>:<span class="string">'blue'</span>,<span class="string">'e'</span>:<span class="string">'red'</span>&#125;<span class="comment">#定义分组字典</span></span><br><span class="line">by_column=people.groupby(mapping,axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#查看分组情况</span></span><br><span class="line"><span class="keyword">for</span> group_name,group_data <span class="keyword">in</span> by_column:</span><br><span class="line">    print(group_name)</span><br><span class="line">    print(group_data)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupbyserise%E5%88%86%E7%BB%84.png" alt="字典分组"></p>
-<p>在字典中我们定义了<code>mapping={&#39;a&#39;:&#39;red&#39;,&#39;b&#39;:&#39;red&#39;,&#39;c&#39;:&#39;blue&#39;,&#39;d&#39;:&#39;blue&#39;,&#39;e&#39;:&#39;red&#39;}#定义分组字典</code><br>a、b、e对应“red”，c、d对应“blue”所以将blue和red分成了两组。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E5%AD%97%E5%85%B8%E5%88%86%E7%BB%84%E5%90%8E%E7%9A%84sum()%E8%81%9A%E5%90%88.png" alt="sum聚合"></p>
-<p>应用sum()求和函数，可以看到分别对blue和red的分组进行了求和。<br>类似的，Series也是一样的，我们将map转换成Series，可以看到分组结果和map分组一样的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupbyserise%E5%88%86%E7%BB%84.png" alt="Series分组"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupbyserise%E5%88%86%E7%BB%84.png" alt="字典分组"></p>
+<p>在字典中我们定义了<code>mapping={&#39;a&#39;:&#39;red&#39;,&#39;b&#39;:&#39;red&#39;,&#39;c&#39;:&#39;blue&#39;,&#39;d&#39;:&#39;blue&#39;,&#39;e&#39;:&#39;red&#39;}#定义分组字典</code><br>a、b、e对应“red”，c、d对应“blue”所以将blue和red分成了两组。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E5%AD%97%E5%85%B8%E5%88%86%E7%BB%84%E5%90%8E%E7%9A%84sum()%E8%81%9A%E5%90%88.png" alt="sum聚合"></p>
+<p>应用sum()求和函数，可以看到分别对blue和red的分组进行了求和。<br>类似的，Series也是一样的，我们将map转换成Series，可以看到分组结果和map分组一样的。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupbyserise%E5%88%86%E7%BB%84.png" alt="Series分组"></p>
 <h2 id="3、通过函数进行分组"><a href="#3、通过函数进行分组" class="headerlink" title="3、通过函数进行分组"></a>3、通过函数进行分组</h2><p>比起使用字典或Series,使用Python函数是一种更原生的方法定义分组映射，。任何被当做分组键的函数都会在各个索引值上被调用一次，其返回值就会被用作分组名称。<br>如上面的people数据集，将姓名索引的长度进行分组。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">by_len=people.groupby(len)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupby%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0%E5%88%86%E7%BB%84.png" alt="by_len"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupby%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0%E5%88%86%E7%BB%84.png" alt="by_len"></p>
 <p>可以看到将姓名长度相同的3分成一组，长度为5的数据分成了一组<br>更加通用的是可以自定义函数进行分组，如要将索引&gt;5的和小于5的分别分组，可以自定义函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据集</span></span><br><span class="line">df=pd.DataFrame(&#123;<span class="string">'key'</span>:[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>],</span><br><span class="line">                 <span class="string">'data'</span>:[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>]&#125;,</span><br><span class="line">                index=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>])</span><br><span class="line">df</span><br><span class="line"><span class="comment">#自定义函数区分大于5和小于5的数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">big5</span><span class="params">(x)</span>:</span>  </span><br><span class="line">    result=<span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">5</span>:</span><br><span class="line">        result=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">by_big5=df.groupby(big5)  <span class="comment">#根据索引是否大于5进行分组</span></span><br><span class="line"><span class="comment">#查看分组情况</span></span><br><span class="line"><span class="keyword">for</span> group_name,group_data <span class="keyword">in</span> by_big5:</span><br><span class="line">    print(group_name)</span><br><span class="line">    print(group_data)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/groupby%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%86%E7%BB%84.png" alt="自定义函数分组"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/groupby%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%86%E7%BB%84.png" alt="自定义函数分组"></p>
 <h1 id="二、对分组后的数据进行应用"><a href="#二、对分组后的数据进行应用" class="headerlink" title="二、对分组后的数据进行应用"></a>二、对分组后的数据进行应用</h1><p>前面通过分组将数据集根据条件分组后，可以对分组后的数据进行各种处理包括聚合、转换、过滤等操作。</p>
 <h2 id="1、对分组数据用聚合函数进行聚合"><a href="#1、对分组数据用聚合函数进行聚合" class="headerlink" title="1、对分组数据用聚合函数进行聚合"></a>1、对分组数据用聚合函数进行聚合</h2><h3 id="a-使用pandas聚合函数"><a href="#a-使用pandas聚合函数" class="headerlink" title="a) 使用pandas聚合函数"></a>a) 使用pandas聚合函数</h3><p>前面第一部分的例子中对数据分组后进行了sum()求和聚合操作，类似的聚合函数还有很多如：</p>
 <table>
@@ -550,23 +550,23 @@
 <td>非NA值的第一个,最后一个</td>
 </tr>
 </tbody></table>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png" alt="聚合函数"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png" alt="聚合函数"></p>
 <h3 id="b-使用自定义聚合函数"><a href="#b-使用自定义聚合函数" class="headerlink" title="b) 使用自定义聚合函数"></a>b) 使用自定义聚合函数</h3><p>pandas的groupby分组对象还可以用自定义的聚合函数可以通过groupby分组对象，将你自己的聚合函数，传入aggregate或agg方法即可</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=pd.DataFrame(&#123;<span class="string">'key'</span>:[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>],<span class="string">'data'</span>:[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grouped=df.groupby([<span class="string">'key'</span>])</span><br><span class="line"><span class="comment">#查看分组情况</span></span><br><span class="line"><span class="keyword">for</span> group_name,group_data <span class="keyword">in</span> grouped:</span><br><span class="line">    print(group_name)</span><br><span class="line">    print(group_data)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%88%86%E7%BB%84%E6%83%85%E5%86%B5.png" alt="分组情况"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%9B%86%E6%9F%A5%E7%9C%8B%E5%88%86%E7%BB%84%E6%83%85%E5%86%B5.png" alt="分组情况"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">peak_to_peak</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> arr.max() - arr.min()</span><br><span class="line"></span><br><span class="line">grouped.agg(peak_to_peak)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%86%E7%BB%84.png" alt="自定义函数分组"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%88%86%E7%BB%84.png" alt="自定义函数分组"></p>
 <h2 id="2、根据分组数据进行转换"><a href="#2、根据分组数据进行转换" class="headerlink" title="2、根据分组数据进行转换"></a>2、根据分组数据进行转换</h2><p>根据分组数据进行数据转换或其他操作，可以在分组的基础上用apply函数进行数据的转换。<br>如数据集</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">df=pd.DataFrame(&#123;<span class="string">'key'</span>:[<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>],</span><br><span class="line">                 <span class="string">'data'</span>:[<span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df</span><br><span class="line">根据key分组</span><br><span class="line">grouped=df.groupby([<span class="string">'key'</span>])</span><br><span class="line"><span class="comment">#查看分组情况</span></span><br><span class="line"><span class="keyword">for</span> group_name,group_data <span class="keyword">in</span> grouped:</span><br><span class="line">    print(group_name)</span><br><span class="line">    print(group_data)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <p>现在我们要对data求和后小于25的分组数据都加1<br>那么我们可以定义函数，然后再对分数数据进行应用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add1</span><span class="params">(df)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> df[:][<span class="string">'data'</span>].sum()&lt;<span class="number">25</span>:</span><br><span class="line">        <span class="keyword">return</span> df[:][[<span class="string">'data'</span>]]+<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> df[:][[<span class="string">'data'</span>]]</span><br><span class="line">grouped.apply(add1)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2.png" alt="数据转换"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2.png" alt="数据转换"></p>
 <h2 id="3、根据分组数据进行过滤"><a href="#3、根据分组数据进行过滤" class="headerlink" title="3、根据分组数据进行过滤"></a>3、根据分组数据进行过滤</h2><p>通过 filter() 函数可以实现数据的筛选，该函数根据定义的条件过滤数据并返回一个新的数据集。<br>如当我们要过滤掉分组后data求和小于25的数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#过滤掉sum()求和小于25的数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filtersum25</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x[<span class="string">'data'</span>].sum()&gt;<span class="number">25</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">grouped.filter(filtersum25)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E8%BF%87%E6%BB%A4.png" alt="数据过滤"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220212/%E6%95%B0%E6%8D%AE%E8%BF%87%E6%BB%A4.png" alt="数据过滤"></p>
 <p>至此，本文通过实例介绍了pandas的数据分组及分组后的应用如对数据进行聚合、转换和过滤。数据的分组和聚合是数据分析中常用的分析手段，转换和过滤是数据处理中可用到的方法。</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
@@ -575,7 +575,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -672,7 +672,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -794,7 +794,7 @@
         
           
             <p>在许多应用中，数据可能来自不同的渠道，在数据处理的过程中常常需要将这些数据集进行组合合并拼接，形成更加丰富的数据集。pandas提供了多种方法完全可以满足数据处理的常用需求。具体来说包括有join、merge、concat、append等。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png" alt="合并与拼接"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png" alt="合并与拼接"></p>
 <p>一般来说</p>
 <table>
 <thead>
@@ -829,27 +829,27 @@
 </tr>
 </tbody></table>
 <p>下面就来逐一介绍每个方法</p>
-<h1 id="一、join"><a href="#一、join" class="headerlink" title="一、join"></a>一、join</h1><p>join主要用于基于索引的横向合并拼接<br>在介绍pandas的join之前我们来看一下SQL对数据集join的几种模式。如果大家对SQL比较熟悉的话应该对SQL操作数据集进行各种合并拼接印象深刻。SQL中各种JOIN的方法如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/SQL-JOIN.png" alt="SQL-JOIN"></p>
+<h1 id="一、join"><a href="#一、join" class="headerlink" title="一、join"></a>一、join</h1><p>join主要用于基于索引的横向合并拼接<br>在介绍pandas的join之前我们来看一下SQL对数据集join的几种模式。如果大家对SQL比较熟悉的话应该对SQL操作数据集进行各种合并拼接印象深刻。SQL中各种JOIN的方法如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/SQL-JOIN.png" alt="SQL-JOIN"></p>
 <p>pandas的join实现了<strong>left join、right jion、inner join、out jion</strong>常用的4中join方法<br>来自官网的参数说明：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dataframe.join(other,  <span class="comment"># 待合并的另一个数据集</span></span><br><span class="line">                   on=<span class="literal">None</span>,  <span class="comment"># 连接的键</span></span><br><span class="line">                   how=<span class="string">'left'</span>,   <span class="comment"># 连接方式：‘left’, ‘right’, ‘outer’, ‘inner’ 默认是left</span></span><br><span class="line">                   lsuffix=<span class="string">''</span>,  <span class="comment"># 左边（第一个）数据集相同键的后缀</span></span><br><span class="line">                   rsuffix=<span class="string">''</span>,  <span class="comment"># 第二个数据集的键的后缀</span></span><br><span class="line">                   sort=<span class="literal">False</span>)  <span class="comment"># 是否根据连接的键进行排序；默认False</span></span><br></pre></td></tr></table></figure>
 
 <p>我们来看下实例，有两个数据集一个是人员姓名，一个是人员的工资</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left=pd.DataFrame([<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>], index=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>],columns=[<span class="string">'姓名'</span>])</span><br><span class="line">right=pd.DataFrame([<span class="number">13000</span>,<span class="number">15000</span>,<span class="number">9000</span>,<span class="number">8600</span>,<span class="number">10000</span>], index=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>],columns=[<span class="string">'工资'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <blockquote>
 <p>注意，left和right的数据集分别都指定了index，因为join主要用于基于索引的横向合并拼接。</p>
 </blockquote>
 <h2 id="1、left-join"><a href="#1、left-join" class="headerlink" title="1、left join"></a>1、left join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right)  <span class="comment">#默认how='left'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(left).png" alt="left join"></p>
-<p>jion操作默认是left jion的操作，可以看到left索引为7姓名为钱七，在right中没有索引为7的对应所以显示left的姓名但right的工资为NaN，right中索引为8的数据在left中没有索引为8的，所以没有显示。left join合并left的数据<br>left join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/left-join.png" alt="left join"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(left).png" alt="left join"></p>
+<p>jion操作默认是left jion的操作，可以看到left索引为7姓名为钱七，在right中没有索引为7的对应所以显示left的姓名但right的工资为NaN，right中索引为8的数据在left中没有索引为8的，所以没有显示。left join合并left的数据<br>left join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/left-join.png" alt="left join"></p>
 <h2 id="2、right-join"><a href="#2、right-join" class="headerlink" title="2、right join"></a>2、right join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'right'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(right).png" alt="right join"></p>
-<p>右链接合并时可以看到，left的数据集没有索引为8的项，所以索引为8的项显示right数据集的工资数据但姓名为NaN，在left中索引为7的项因为right中不存在，所以没有显示。right join合并right的数据<br>right join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/right-join.png" alt="right join"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(right).png" alt="right join"></p>
+<p>右链接合并时可以看到，left的数据集没有索引为8的项，所以索引为8的项显示right数据集的工资数据但姓名为NaN，在left中索引为7的项因为right中不存在，所以没有显示。right join合并right的数据<br>right join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/right-join.png" alt="right join"></p>
 <h2 id="3、inner-join"><a href="#3、inner-join" class="headerlink" title="3、inner join"></a>3、inner join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(inner).png" alt="inner join"></p>
-<p>内链接合并时，可以看到left数据集中的索引为7姓名为钱七因为在right数据集中找不到对应的索引，right数据集中索引为8的在left找不到对应的索引所以内连接合并时索引7和8都没有进行合并，inner join只合并两个数据集共有的数据<br>inner join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/inner-join.png" alt="inner join"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(inner).png" alt="inner join"></p>
+<p>内链接合并时，可以看到left数据集中的索引为7姓名为钱七因为在right数据集中找不到对应的索引，right数据集中索引为8的在left找不到对应的索引所以内连接合并时索引7和8都没有进行合并，inner join只合并两个数据集共有的数据<br>inner join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/inner-join.png" alt="inner join"></p>
 <h2 id="4、out-join"><a href="#4、out-join" class="headerlink" title="4、out join"></a>4、out join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'outer'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(outer).png" alt="out join"><br>外链接合并时，可以看到不管是left中的数据还是right中的数据都进行了合并。right join合并两个数据集中所有的数据。<br>outer join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/out-join.png" alt="outer join"><br>join很简单，但是它有局限性，因为它只能根据索引来合并。不能指定键来进行合并。比如我要根据编号和姓名来合并，join就比较难办了。但是pandas提供了merge的方法，可以指定列来进行合并拼接。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(outer).png" alt="out join"><br>外链接合并时，可以看到不管是left中的数据还是right中的数据都进行了合并。right join合并两个数据集中所有的数据。<br>outer join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/out-join.png" alt="outer join"><br>join很简单，但是它有局限性，因为它只能根据索引来合并。不能指定键来进行合并。比如我要根据编号和姓名来合并，join就比较难办了。但是pandas提供了merge的方法，可以指定列来进行合并拼接。</p>
 <h1 id="二、merge"><a href="#二、merge" class="headerlink" title="二、merge"></a>二、merge</h1><p>merge最常用，主要用户基于指定列和横向合并拼接，语法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, how=<span class="string">'inner'</span>, on=<span class="literal">None</span>, left_on=<span class="literal">None</span>, right_on=<span class="literal">None</span>,</span><br><span class="line">left_index=<span class="literal">False</span>, right_index=<span class="literal">False</span>, sort=<span class="literal">True</span>,suffixes=(<span class="string">'_x'</span>, <span class="string">'_y'</span>), copy=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
@@ -903,18 +903,18 @@
 </tbody></table>
 <p>我们来看下面的数据集，在上面的数据集中left数据集加入了员工的编号，right数据集加入了编号及姓名。索引就按默认的索引。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">left=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>],[<span class="number">4</span>,<span class="string">'李四'</span>],[<span class="number">5</span>,<span class="string">'王五'</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>],[<span class="number">7</span>,<span class="string">'钱七'</span>]],</span><br><span class="line">columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br><span class="line"></span><br><span class="line">right=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>,<span class="number">13000</span>],[<span class="number">4</span>,<span class="string">'李四'</span>,<span class="number">15000</span>],[<span class="number">5</span>,<span class="string">'王五'</span>,<span class="number">9000</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>,<span class="number">8600</span>],[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>]],</span><br><span class="line">columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/merge%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="merge数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/merge%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="merge数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge.png" alt="pd.merge(left,right)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge.png" alt="pd.merge(left,right)"></p>
 <p>没有指定连接键，默认用重叠列名，没有指定连接方式，默认inner内连接（取left和right编号和姓名的交集）<br>和join一样通过how来指定连接方式如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right,how=<span class="string">'left'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge(left).png" alt="pd.merge(left,right,how=&#39;left&#39;)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge(left).png" alt="pd.merge(left,right,how=&#39;left&#39;)"></p>
 <p>how的连接方式和join一样支持left、right、inner、outer<br>merge还可以指定多个列进行合并链接，也就是和SQL一样设置多个关联的列。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right,how=<span class="string">'outer'</span>,on=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge(outer).png" alt="merge-out"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge(outer).png" alt="merge-out"></p>
 <p>如果两个对象的列名不同，可以使用<code>left_on</code>，<code>right_on</code>分别指定，如我们把right数据集的“编码”列标签改成“ID”后如果需要left数据集的”编号”和right数据集的”ID”进行关联</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">right=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>,<span class="number">13000</span>],[<span class="number">4</span>,<span class="string">'李四'</span>,<span class="number">15000</span>],[<span class="number">5</span>,<span class="string">'王五'</span>,<span class="number">9000</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>,<span class="number">8600</span>],[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>]],columns=[<span class="string">'ID'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br><span class="line"></span><br><span class="line">pd.merge(left,right,how=<span class="string">'outer'</span>,left_on=<span class="string">'编号'</span>,right_on=<span class="string">'ID'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge%E6%8C%87%E5%AE%9A%E5%88%97%E5%90%8D%E5%85%B3%E8%81%94.png" alt="指定列名关联"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge%E6%8C%87%E5%AE%9A%E5%88%97%E5%90%8D%E5%85%B3%E8%81%94.png" alt="指定列名关联"></p>
 <p>虽然说merge已经很强大了，但是pandas愿意给你更多，它提供了concat，可以实现横向和纵向的合并与拼接。也就是说不但实现了SQL中的join还实现了union</p>
 <h1 id="三、concat"><a href="#三、concat" class="headerlink" title="三、concat"></a>三、concat</h1><p>concat() 函数用于沿某个特定的轴执行连接操作，语法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat(objs,axis=<span class="number">0</span>,join=<span class="string">'outer'</span>,join_axes=<span class="literal">None</span>,ignore_index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
@@ -949,18 +949,18 @@
 </tbody></table>
 <p>来看具体的例子</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left2=pd.DataFrame([[<span class="number">1</span>,<span class="string">'陈一'</span>],[<span class="number">2</span>,<span class="string">'周二'</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <h2 id="1、纵向合并"><a href="#1、纵向合并" class="headerlink" title="1、纵向合并"></a>1、纵向合并</h2><p>concat默认纵向拼接，我们要在left1数据集的基础上把left2数据集给合并上去，很简单用concat直接就可以合并。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df=pd.concat([left,left2])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E7%BA%B5%E5%90%91%E5%90%88%E5%B9%B6.png" alt="纵向合并"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E7%BA%B5%E5%90%91%E5%90%88%E5%B9%B6.png" alt="纵向合并"></p>
 <h2 id="2、横向合并"><a href="#2、横向合并" class="headerlink" title="2、横向合并"></a>2、横向合并</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_outer=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'outer'</span>)<span class="comment">#外链接</span></span><br><span class="line">df_inner=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)<span class="comment">#内链接</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6.png" alt="横向合并"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6.png" alt="横向合并"></p>
 <blockquote>
 <p>注意：因为concat的链接和join一样是通过索引来链接合并，并不能指定通过某个特定的列来链接进行合并，所以看到的合并后的数据集left和right的编号和姓名是错位的。</p>
 </blockquote>
 <p>如果要根据编号来关联可以指定编号作为索引再进行横向合并，这样就没有问题了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">left.index=left[<span class="string">'编号'</span>].values</span><br><span class="line">right.index=right[<span class="string">'编号'</span>].values</span><br><span class="line">df_outer=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'outer'</span>)</span><br><span class="line">df_inner=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B62.png" alt="横向合并"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B62.png" alt="横向合并"></p>
 <h1 id="四、append"><a href="#四、append" class="headerlink" title="四、append"></a>四、append</h1><p>df.append 可以将其他行附加到调用方的末尾，并返回一个新对象。它是最简单常用的数据合并方式。语法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.append(self, other, ignore_index=<span class="literal">False</span>,verify_integrity=<span class="literal">False</span>, sort=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 
@@ -974,27 +974,27 @@
 <p>来看下面的例子：</p>
 <h2 id="1、同结构数据追加"><a href="#1、同结构数据追加" class="headerlink" title="1、同结构数据追加"></a>1、同结构数据追加</h2><p>将同结构的数据追加在原数据后面，在left数据集后面追加left2数据集，left2的数据集内容如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left2=pd.DataFrame([[<span class="number">1</span>,<span class="string">'陈一'</span>],[<span class="number">2</span>,<span class="string">'周二'</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br><span class="line">left2</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/append%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="append数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/append%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="append数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append(left2)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-append.png" alt="append"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-append.png" alt="append"></p>
 <h2 id="2、不同结构数据追加"><a href="#2、不同结构数据追加" class="headerlink" title="2、不同结构数据追加"></a>2、不同结构数据追加</h2><p>不同结构数据追加，原数据没有的列会增加，没有对应内容的会为空NaN。<br>如：left3的数据集列有”编号”、”姓名”、”工资”</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left3=pd.DataFrame([[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>],[<span class="number">9</span>,<span class="string">'何九'</span>,<span class="number">15000</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br><span class="line">left3</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A0.png" alt="left3的数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A0.png" alt="left3的数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append(left3)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A02.png" alt="不同结构数据追加"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A02.png" alt="不同结构数据追加"></p>
 <p>当left后追加left3后的数据集会增加“工资列”，没有对应内容的会为空。</p>
 <h2 id="3、追加合并多个数据集"><a href="#3、追加合并多个数据集" class="headerlink" title="3、追加合并多个数据集"></a>3、追加合并多个数据集</h2><p>append参数可带数据集列表，可以将多个数据集追加到原数据集<br>如我们将left2和left3都追加到left</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append([left2,left3])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E8%BF%BD%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="追加合并多个数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E8%BF%BD%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="追加合并多个数据集"></p>
 <h1 id="五、combine-first"><a href="#五、combine-first" class="headerlink" title="五、combine_first"></a>五、combine_first</h1><p>combine_first可用于合并重复数据，用其他数据集填充没有的数据。如一个DataFrame数据集中出现了缺失数据，就可以用其他DataFrame数据集中的数据进行填充。语法格式如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">combine_first(other) <span class="comment">#只有一个参数other，该参数用于接收填充缺失值的DataFrame对象。</span></span><br></pre></td></tr></table></figure>
 
 <p>如left数据集中没有”工资”的数据，我们可以用right数据集有的数据去填充left数据集中的数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.combine_first(right) <span class="comment">#用right去填充left</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/combine_first.png" alt="combine_first"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/combine_first.png" alt="combine_first"></p>
 <h1 id="六、update"><a href="#六、update" class="headerlink" title="六、update"></a>六、update</h1><p>update和combine_first比较类似，区别在于：<br>1、填充合并方式稍有差异<br>combine_first：如果s1中c的值为空，用s2的值替换，否则保留s1的值<br>update：如果s2中的值不为空，那么替换s1，否则保留s1的值<br>2、update是更新原数据，combine_first会返回一个填充后的新数据集，对原数据不做更新。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.update(right) <span class="comment">#用right的数据更新left中的数据。</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/update.png" alt="update"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/update.png" alt="update"></p>
 <p>至此，本文介绍了pandas的多种数据合并与拼接方法，并介绍了每种方法的异同，通过pandas的数据处理可以应付日常数据处理中大部分的数据处理工作。</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
@@ -1003,7 +1003,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1100,7 +1100,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -1222,7 +1222,7 @@
         
           
             <p>对于数据分析来说，在构造或载入数据后最基本的操作应该就是对数据的访问了。看一看数据的结构、组成、分布等，根据需要从数据集中检索提取出相应的数据。pandas作为数据分析的利器，当然提供了多种查看和检索数据的方法。本文就来捋一捋pandas基本的数据访问。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.png" alt="数据访问"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.png" alt="数据访问"></p>
 <h1 id="一、查看数据"><a href="#一、查看数据" class="headerlink" title="一、查看数据"></a>一、查看数据</h1><p>当我们拿到数据集后，第一步可能就是查看数据了，一方面是了解拿到的数据集的数据结构，另一方面随机检查一下数据的质量问题。<br>不管是Series还是DataFrame的数据集pandas常用的数据查看方法有：</p>
 <table>
 <thead>
@@ -1255,25 +1255,25 @@
 </tbody></table>
 <p>以下就以一个DataFrame数据集为例来看看这些查看数据的方法。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="studend数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="studend数据集"></p>
 <h2 id="1、查看头部-head-n"><a href="#1、查看头部-head-n" class="headerlink" title="1、查看头部 head(n)"></a>1、查看头部 head(n)</h2><p>head()方法如果不带参数，默认返回前5条记录，带了参数n就返回前n条记录。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.head() <span class="comment">#默认查看前5条记录</span></span><br><span class="line">df.head(<span class="number">8</span>) <span class="comment">#指定查看前8条记录</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/head.png" alt="查看头部 head(n)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/head.png" alt="查看头部 head(n)"></p>
 <h2 id="2、查看尾部-tail-n"><a href="#2、查看尾部-tail-n" class="headerlink" title="2、查看尾部 tail(n)"></a>2、查看尾部 tail(n)</h2><p>同样tail()方法如果不带参数，默认返回后面5条记录，带了参数n就返回后面n条记录。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.tail() <span class="comment">#默认查看后面5条记录</span></span><br><span class="line">df.tail(<span class="number">4</span>) <span class="comment">#指定查看后面4条记录</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/tail.png" alt="查看尾部 tail(n)"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/tail.png" alt="查看尾部 tail(n)"></p>
 <h2 id="3、随机查看样本-sample-n"><a href="#3、随机查看样本-sample-n" class="headerlink" title="3、随机查看样本 sample(n)"></a>3、随机查看样本 sample(n)</h2><p>sample() 不带参数会随机返回一条样本数据，带了参数n就会随机返回n条记录。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.sample() <span class="comment">#随机查看一条记录</span></span><br><span class="line">df.sample(<span class="number">4</span>) <span class="comment">#随机查看4条记录</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/sample.png" alt="随机查看样本 sample(n)"></p>
-<h2 id="4、查看统计摘要"><a href="#4、查看统计摘要" class="headerlink" title="4、查看统计摘要"></a>4、查看统计摘要</h2><p><code>df.describe()</code> 返回所有数字列的统计摘要。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/describe1.png" alt="查看统计摘要"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/sample.png" alt="随机查看样本 sample(n)"></p>
+<h2 id="4、查看统计摘要"><a href="#4、查看统计摘要" class="headerlink" title="4、查看统计摘要"></a>4、查看统计摘要</h2><p><code>df.describe()</code> 返回所有数字列的统计摘要。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/describe1.png" alt="查看统计摘要"></p>
 <p>这里连staff_id的统计摘要就显示出来了，因为它是数字列。如果只看某一列的统计摘要</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[[<span class="string">'staff_salary'</span>]].describe()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/describe2.png" alt="只看某一列的统计摘要"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/describe2.png" alt="只看某一列的统计摘要"></p>
 <h1 id="二、检索数据"><a href="#二、检索数据" class="headerlink" title="二、检索数据"></a>二、检索数据</h1><p>在数据分析过程中，很多时候需要从数据表中提取出相应的数据，而这么做的前提是需要先“检索”出这一部分数据。虽然通过 Python 提供的索引操作符”[]”和属性操作符”.”可以访问 Series 或者 DataFrame 中的数据，但这种方式只适应与少量的数据，为了解决这一问题，pandas 提供了多种类型的索引方式来实现数据的访问。包括[]、loc\iloc、at\iat、布尔索引<br>一般的:<br>df[‘name’] #会返回本列的Series<br>df.name   #也会返回本列的Series</p>
 <blockquote>
 <p>但是要注意，name应该是一个合法的python变量时才可以直接作为属性来使用。</p>
 </blockquote>
-<p>如：<br><strong>df[‘1级别’]可以正常返回索引列为“1级别”的数据，而df.1级别会报错，因为”1级别”不是一个合法的python变量。</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%97%E7%B4%A2%E5%BC%95%E6%A3%80%E7%B4%A2.png" alt="列索引检索"><br>以下通过DataFrame数据集来说明常用检索数据的方法。对于DataFrame的数据集来说要检索数据通常是确定数据所在的行和列。而确定行和列也有两种方式，一是通过<strong>标签索引</strong>来确定，二是通过数据<strong>所在的位置</strong>来确定。<br>一般的：</p>
+<p>如：<br><strong>df[‘1级别’]可以正常返回索引列为“1级别”的数据，而df.1级别会报错，因为”1级别”不是一个合法的python变量。</strong><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%97%E7%B4%A2%E5%BC%95%E6%A3%80%E7%B4%A2.png" alt="列索引检索"><br>以下通过DataFrame数据集来说明常用检索数据的方法。对于DataFrame的数据集来说要检索数据通常是确定数据所在的行和列。而确定行和列也有两种方式，一是通过<strong>标签索引</strong>来确定，二是通过数据<strong>所在的位置</strong>来确定。<br>一般的：</p>
 <table>
 <thead>
 <tr>
@@ -1310,11 +1310,11 @@
 </tbody></table>
 <h2 id="1、切片"><a href="#1、切片" class="headerlink" title="1、切片[]"></a>1、切片[]</h2><p>通过[]进行检索，这将会对行进行切片</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">0</span>:<span class="number">3</span>] <span class="comment">#通过切片检索行数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%87.png" alt="在这里插入图片描述"></p>
-<p>切片并不对列有效，如果是<code>df[0:3][1:2]</code>，会检索出0-3行，再在这三行切片的基础上切片中检索出第二行。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%872.png" alt="df[0:3][1:2]"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%87.png" alt="在这里插入图片描述"></p>
+<p>切片并不对列有效，如果是<code>df[0:3][1:2]</code>，会检索出0-3行，再在这三行切片的基础上切片中检索出第二行。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%872.png" alt="df[0:3][1:2]"></p>
 <p>如果要在切片检索的结果上再选择列，则可以通过列标签索引列表来选择</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">0</span>:<span class="number">3</span>][[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]] <span class="comment">#通过列标签索引列表检索列数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%873.png" alt="通过列标签索引列表来选择"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%873.png" alt="通过列标签索引列表来选择"></p>
 <h2 id="2、loc-iloc"><a href="#2、loc-iloc" class="headerlink" title="2、loc\iloc"></a>2、loc\iloc</h2><h3 id="loc"><a href="#loc" class="headerlink" title="loc"></a>loc</h3><p>df.loc[] 只能使用标签索引，不能使用位置索引。当通过标签索引的切片方式来筛选数据时，它的取值前闭后闭，也就是只包括边界值标签（开始和结束）<br>.loc[] 具有多种访问方法，如下所示：</p>
 <ul>
 <li>一个标量标签 </li>
@@ -1322,8 +1322,8 @@
 <li>切片对象</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="number">1</span>] <span class="comment">#标量标签，返回该行标签的Series数据</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">3</span>]] <span class="comment">#标签列表，返回标签列表的行DataFrame数据</span></span><br><span class="line">df.loc[<span class="number">0</span>:<span class="number">3</span>] <span class="comment">#切片对象，返回切片的行DataFrame数据</span></span><br><span class="line">df.loc[<span class="number">0</span>:<span class="number">3</span>,<span class="string">'staff_id'</span>:<span class="string">'staff_salary'</span>]  <span class="comment">#根据行切片，列切片检索数据</span></span><br><span class="line">df.loc[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>]] <span class="comment">#根据行标签列表，列标签列表检索数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc.png" alt="loc"></p>
-<p>.loc[] 除了标量标签，标签列表和切片对象都接受两个参数，并以’,’分隔。第一个位置表示行检索，第二个位置表示列检索<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc2.png" alt="loc2"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/loc.png" alt="loc"></p>
+<p>.loc[] 除了标量标签，标签列表和切片对象都接受两个参数，并以’,’分隔。第一个位置表示行检索，第二个位置表示列检索<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/loc2.png" alt="loc2"></p>
 <h3 id="iloc"><a href="#iloc" class="headerlink" title="iloc"></a>iloc</h3><p>df.iloc[] 只能使用位置索引(用整数表示所在行或列的位置如第几行第几列)，不能使用标签索引，通过整数索引切片选择数据时，前闭后开(不包含边界结束值)。同 Python 和 NumPy 一样，它们的<strong>索引都是从 0 开始</strong><br>.iloc[] 提供了以下方式来选择数据：</p>
 <ul>
 <li>整数索引   </li>
@@ -1332,21 +1332,21 @@
 </ul>
 <p>为了说明方便，我们把数据集的行索引重名为字母</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.rename(index=&#123;<span class="number">0</span>:<span class="string">'A'</span>,<span class="number">1</span>:<span class="string">'B'</span>,<span class="number">2</span>:<span class="string">'C'</span>,<span class="number">3</span>:<span class="string">'D'</span>,<span class="number">4</span>:<span class="string">'E'</span>,<span class="number">5</span>:<span class="string">'F'</span>,<span class="number">6</span>:<span class="string">'G'</span>,<span class="number">7</span>:<span class="string">'H'</span>,<span class="number">8</span>:<span class="string">'I'</span>,<span class="number">9</span>:<span class="string">'J'</span>&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/rename.png" alt="reanme"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/rename.png" alt="reanme"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">1</span>]  <span class="comment">#整数标量选择，数据从0开始，为1的就是第二行的数据，返回的是Series</span></span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">3</span>]] <span class="comment">#整数列表选择，选择位置为1和3的数据，返回的是DataFrame</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">3</span>] <span class="comment">#切片选择，选择位置1至2的数据，不包含边界结束值，也就是不包含3的位置</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">3</span>,<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#切片选择位置为1至3的行和1至4的列不含位置为3的行和位置为4的列</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/iloc.png" alt="iloc"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/iloc.png" alt="iloc"></p>
 <h2 id="3、at-iat"><a href="#3、at-iat" class="headerlink" title="3、at\iat"></a>3、at\iat</h2><p>at和iat和loc和iloc类似，不同的是at和iat仅取一个具体的值，结构为 at[&lt;索引&gt;,&lt;列名&gt;]，iat[&lt;行位置&gt;,&lt;列位置&gt;]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.at[<span class="string">'A'</span>,<span class="string">'staff_name'</span>]  <span class="comment">#检索第“A”行的列标签为"staff_name"的数据</span></span><br><span class="line">df.iat[<span class="number">0</span>,<span class="number">1</span>]  <span class="comment">#检索第1行第2列的数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/at.png" alt="at\iat"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/at.png" alt="at\iat"></p>
 <h2 id="4、布尔条件检索"><a href="#4、布尔条件检索" class="headerlink" title="4、布尔条件检索"></a>4、布尔条件检索</h2><h3 id="1、-里用布尔条件进行检索"><a href="#1、-里用布尔条件进行检索" class="headerlink" title="1、[] 里用布尔条件进行检索"></a>1、[] 里用布尔条件进行检索</h3><p>如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df.staff_salary&gt;<span class="number">10000</span>)&amp;(df.staff_age&lt;<span class="number">40</span>)]  <span class="comment">#检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%5B%5D%E6%9D%A1%E4%BB%B6.png" alt="[] 里用布尔条件进行检索"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%5B%5D%E6%9D%A1%E4%BB%B6.png" alt="[] 里用布尔条件进行检索"></p>
 <h3 id="2、loc索引部分用布尔条件检索"><a href="#2、loc索引部分用布尔条件检索" class="headerlink" title="2、loc索引部分用布尔条件检索"></a>2、loc索引部分用布尔条件检索</h3><p>如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[(df.staff_salary&gt;<span class="number">10000</span>)&amp;(df.staff_age&lt;<span class="number">40</span>)]  <span class="comment">#检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc%E6%9D%A1%E4%BB%B6.png" alt="loc索引部分用布尔条件检索"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/loc%E6%9D%A1%E4%BB%B6.png" alt="loc索引部分用布尔条件检索"></p>
 <h3 id="3、query函数布尔条件检索"><a href="#3、query函数布尔条件检索" class="headerlink" title="3、query函数布尔条件检索"></a>3、query函数布尔条件检索</h3><p>如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.query(<span class="string">'staff_salary&gt;10000 &amp; staff_age&lt;40'</span>) <span class="comment">#通过函数检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%87%BD%E6%95%B0.png" alt="query函数布尔条件检索"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%87%BD%E6%95%B0.png" alt="query函数布尔条件检索"></p>
 <p>至此，本文介绍了pandas常用的数据访问操作通过head()、tail()、sample()、describe()查看数据，通过[]、loc\iloc、at\iat、及布尔条件检索数据。通过灵活运用pandas的各种数据访问方法可以很方便的根据需要查看和检索数据。</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
@@ -1355,7 +1355,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1452,7 +1452,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -1586,27 +1586,27 @@
 </ul>
 <p>下面通过实例来说明pandas的map()的使用，演示的student数据集如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"></p>
 <h2 id="1、通过数据字典映射"><a href="#1、通过数据字典映射" class="headerlink" title="1、通过数据字典映射"></a>1、通过数据字典映射</h2><p>map()方法接受数据字典参数，通过数据字典将数据进行映射。如我们需要将“性别”列的1和2替换成“男”和“女”，定义一个数据字典{1:’男’,2:’女’}，将1映射成“男”，将2映射成“女”。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gender_map=&#123;<span class="number">1</span>:<span class="string">'男'</span>,<span class="number">2</span>:<span class="string">'女'</span>&#125;</span><br><span class="line">df[<span class="string">'性别'</span>]=df[<span class="string">'性别'</span>].map(gender_map)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/map%E5%AD%97%E5%85%B8%E6%98%A0%E5%B0%84.png" alt="数据字典映射"><br>可以看到通过map()将需要转换的列的值进行的转换，具体的转换过程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/map%E8%BF%87%E7%A8%8B.png" alt="map转换过程"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/map%E5%AD%97%E5%85%B8%E6%98%A0%E5%B0%84.png" alt="数据字典映射"><br>可以看到通过map()将需要转换的列的值进行的转换，具体的转换过程如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/map%E8%BF%87%E7%A8%8B.png" alt="map转换过程"></p>
 <h2 id="2、lambda函数映射"><a href="#2、lambda函数映射" class="headerlink" title="2、lambda函数映射"></a>2、lambda函数映射</h2><p>map()方法还接受lambda函数的方式进行值的映射，如我们现在要把数学分数为95分以上的映射数学等级为“优秀”，95及以下的映射为“良好”。可以通过lambda函数进行映射。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'数学等级'</span>]=df[<span class="string">'5-数学'</span>].map(<span class="keyword">lambda</span> x:<span class="string">'优秀'</span> <span class="keyword">if</span> x&gt;<span class="number">95</span> <span class="keyword">else</span> <span class="string">'良好'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/lambda%E6%98%A0%E5%B0%84.png" alt="lambda函数映射"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/lambda%E6%98%A0%E5%B0%84.png" alt="lambda函数映射"></p>
 <h2 id="3、通用函数映射"><a href="#3、通用函数映射" class="headerlink" title="3、通用函数映射"></a>3、通用函数映射</h2><p>map()方法可以接收自定义通用的函数进行值的映射，如我们现在要把语文分数为95以上的映射为语文等级为“优秀”，95及以下的映射为“良好”，也可以通过自定义函数来实现映射。<br>先定义一个函数score(x)用于接收需要映射的值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(x)</span>:</span></span><br><span class="line">    score_class=<span class="string">'良好'</span></span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">95</span>:</span><br><span class="line">        score_class=<span class="string">'优秀'</span></span><br><span class="line">    <span class="keyword">return</span> score_class</span><br><span class="line">    </span><br><span class="line">df[<span class="string">'语文等级'</span>]=df[<span class="string">'4-语文'</span>].map(score)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E5%87%BD%E6%95%B0%E6%98%A0%E5%B0%84.png" alt="函数映射"></p>
-<h1 id="二、替换-replace"><a href="#二、替换-replace" class="headerlink" title="二、替换 replace()"></a>二、替换 replace()</h1><p>如果要对全DataFrame数据集中的数据进行某种替换，map()可能需要对数据集中的每个列都进行map()操作才可以，但是通过pandas的替换方法replace可以一次性替换掉DataFrame中所有的数据。如：我们现在要将数据集中所有的“良好”替换成“良”，所有的“优秀”替换成“优”<br>可以直接通过 <code>df.replace([&#39;优秀&#39;,&#39;良好&#39;],[&#39;优&#39;,&#39;良&#39;])</code> 一句代码搞定。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/replace%E8%BF%87%E7%A8%8B.png" alt="替换"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/%E5%87%BD%E6%95%B0%E6%98%A0%E5%B0%84.png" alt="函数映射"></p>
+<h1 id="二、替换-replace"><a href="#二、替换-replace" class="headerlink" title="二、替换 replace()"></a>二、替换 replace()</h1><p>如果要对全DataFrame数据集中的数据进行某种替换，map()可能需要对数据集中的每个列都进行map()操作才可以，但是通过pandas的替换方法replace可以一次性替换掉DataFrame中所有的数据。如：我们现在要将数据集中所有的“良好”替换成“良”，所有的“优秀”替换成“优”<br>可以直接通过 <code>df.replace([&#39;优秀&#39;,&#39;良好&#39;],[&#39;优&#39;,&#39;良&#39;])</code> 一句代码搞定。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/replace%E8%BF%87%E7%A8%8B.png" alt="替换"></p>
 <p>以前文章中介绍了处理缺失值用fillna的方式来填充缺失值，用replace则提供了一种更加简单、灵活的处理缺失值或异常值的方式。<br>如在数据集中有一个数据列“是否接种”，这里的值有“已”、“是”、“否”、NaN，实际是在收集统计表格的时候大家填的数据不一致，不标准。现在需要将“已”的全部改成“是”，NaN没有填的改成“否”</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.replace([<span class="string">'已'</span>,np.nan],[<span class="string">'是'</span>,<span class="string">'否'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/replace%E7%A9%BA%E5%80%BC.png" alt="填充缺失值"></p>
-<h1 id="三、重命名-rename"><a href="#三、重命名-rename" class="headerlink" title="三、重命名 rename()"></a>三、重命名 rename()</h1><p>在数据处理的过程有时候需要对列索引进行重命名，一个典型的例子就是对于数据的检索或其他操作df[column]对于任意列名均有效，但是df.column只在列名是有效的Python变量名时才有效。<br>我们在检索英语大于95分的数据时可以用<code>df[df[&#39;6-英语&#39;]&gt;95]</code><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1.png" alt="英语大于95分的数据"></p>
-<p> 但是用<code>df.query(&#39;6-英语 &gt;95&#39;)</code> 就会报列名没有定义的错，因为’6-英语’列名不是有效的Python变量名。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/query%E6%8A%A5%E9%94%99.png" alt="报列名没有定义的错"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/replace%E7%A9%BA%E5%80%BC.png" alt="填充缺失值"></p>
+<h1 id="三、重命名-rename"><a href="#三、重命名-rename" class="headerlink" title="三、重命名 rename()"></a>三、重命名 rename()</h1><p>在数据处理的过程有时候需要对列索引进行重命名，一个典型的例子就是对于数据的检索或其他操作df[column]对于任意列名均有效，但是df.column只在列名是有效的Python变量名时才有效。<br>我们在检索英语大于95分的数据时可以用<code>df[df[&#39;6-英语&#39;]&gt;95]</code><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1.png" alt="英语大于95分的数据"></p>
+<p> 但是用<code>df.query(&#39;6-英语 &gt;95&#39;)</code> 就会报列名没有定义的错，因为’6-英语’列名不是有效的Python变量名。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/query%E6%8A%A5%E9%94%99.png" alt="报列名没有定义的错"></p>
 <p>这时候就需要将列名重命名为有效的Python变量名，有效的Python变量名应该是只能_，数字，字母组成，不可以是空格或者特殊字符(!@#$%^&amp;*~)，不能是数字开头，不能有中文。我们将“6-英语”的列名重命名为“english”。注意带上inplace=True参数用于更新作用于本数据集，而不是返回一个新的数据集。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.rename(columns=&#123;<span class="string">'6-英语'</span>:<span class="string">'english'</span>&#125;,inplace=<span class="literal">True</span>)</span><br><span class="line">df.query(<span class="string">'english &gt; 95'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1%E5%88%97.png" alt="重命名"><br>可以看到“6-英语”列名改成了“english”，并且df.query(‘english &gt; 95’)不报错，可以正常检索出数据了。<br>更多的，如果要重命名多个列，可以传入一个需要重命名的多个字典值，进行多个列的重命名。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D1%E5%88%97.png" alt="重命名"><br>可以看到“6-英语”列名改成了“english”，并且df.query(‘english &gt; 95’)不报错，可以正常检索出数据了。<br>更多的，如果要重命名多个列，可以传入一个需要重命名的多个字典值，进行多个列的重命名。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'3-年龄'</span>]].rename(columns=&#123;<span class="string">'1-学号'</span>:<span class="string">'ID'</span>,<span class="string">'2-姓名'</span>:<span class="string">'name'</span>,<span class="string">'3-年龄'</span>:<span class="string">'age'</span>&#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D%E5%A4%9A%E5%88%97.png" alt="多个列重命名"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220204/%E9%87%8D%E5%91%BD%E5%90%8D%E5%A4%9A%E5%88%97.png" alt="多个列重命名"></p>
 <p>如果需要重命名行索引，可以通过df.rename(index={‘原索引’:’重命名索引’})的方式进行重命名。</p>
 <p>至此，本文通过几个实例介绍了pandas常用的数据转换工具映射map()、替换replace()、重命名rename()</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
@@ -1616,7 +1616,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1713,7 +1713,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -1837,33 +1837,33 @@
             <p>数据分析离不开数据运算，在介绍完pandas的数据加载、排序和排名、数据清洗之后，本文通过实例来介绍pandas的常用数据运算，包括逻辑运算、算术运算、统计运算及自定义运算。</p>
 <h1 id="一、逻辑运算"><a href="#一、逻辑运算" class="headerlink" title="一、逻辑运算"></a>一、逻辑运算</h1><p>逻辑运算是程序代码中经常用到的一种运算。pandas的逻辑运算与Python基础语法中的逻辑运算存在一些差异。pandas的逻辑运算主要用于条件过滤根据条件逻辑运算得出的结果过滤检索出相应的数据。<br>我们来看一些例子：<br>数据集为学生数据集</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="学生数据集"><br>我们要过滤检索出语文成绩大于95分的数据，通过<code>df[&#39;4-语文&#39;]&gt;95</code>的条件语句，可以得到一个结果为bool值的Series，True表示满足语文成绩&gt;95分的，False表示不满足语文成绩&gt;95的。<br>在pandas中，将Series与数值进行比较，会得到一个与自身形状相同且全为布尔值的Series，每个位置的布尔值对应该位置的比较结果。<br>这种进行比较的代码，返回值是布尔值，是一种布尔表达式，也可以被称为逻辑语句，只要代码返回的结果是布尔值，都可以把代码当成逻辑语句。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97.png" alt="语文大于95的逻辑运算"><br>根据逻辑语句的布尔值，可以用来对数据进行筛选，按我们的需要从大量数据中过滤出目标数据。如我们要过滤出语文成绩大于95的数据，就可以用上述逻辑语句的布尔值进行筛选。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="学生数据集"><br>我们要过滤检索出语文成绩大于95分的数据，通过<code>df[&#39;4-语文&#39;]&gt;95</code>的条件语句，可以得到一个结果为bool值的Series，True表示满足语文成绩&gt;95分的，False表示不满足语文成绩&gt;95的。<br>在pandas中，将Series与数值进行比较，会得到一个与自身形状相同且全为布尔值的Series，每个位置的布尔值对应该位置的比较结果。<br>这种进行比较的代码，返回值是布尔值，是一种布尔表达式，也可以被称为逻辑语句，只要代码返回的结果是布尔值，都可以把代码当成逻辑语句。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97.png" alt="语文大于95的逻辑运算"><br>根据逻辑语句的布尔值，可以用来对数据进行筛选，按我们的需要从大量数据中过滤出目标数据。如我们要过滤出语文成绩大于95的数据，就可以用上述逻辑语句的布尔值进行筛选。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'4-语文'</span>]&gt;<span class="number">95</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C.png" alt="语文大于95的结果"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C.png" alt="语文大于95的结果"></p>
 <p>除了直接的比较，pandas中有很多函数都会返回布尔值，如all()，any()，isna()等对整个DataFrame或Series的判断结果，eq()，ne()，lt()，gt()等比较函数的结果，都是布尔值。<br>逻辑语句是为逻辑运算服务的，可以直接作为判断条件。在复杂的逻辑关系中，需要使用复合逻辑运算，用逻辑运算符来连接多个逻辑语句，复合逻辑运算包含：逻辑与&amp;、逻辑或|、逻辑非~。</p>
-<h2 id="逻辑与-amp"><a href="#逻辑与-amp" class="headerlink" title="逻辑与&amp;"></a>逻辑与&amp;</h2><p>pandas中用符号 &amp; 表示逻辑与，连接两个逻辑语句，同时为真才为真。在Python基本语法中，使用 and 表示逻辑与，但是Pandas中只能用 &amp; ，不能用and，会报模糊错误。<br>如我们要检索出一班并且语文成绩大于95的数据。可以用 <code>df[(df[&#39;4-语文&#39;]&gt;95) &amp; (df[&#39;班级&#39;]==&#39;一班&#39;)]</code><br>注意两个条件逻辑语句要分别用()括起来然后再用逻辑运算符进行运算。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E4%B8%94%E4%B8%BA%E4%B8%80%E7%8F%AD%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="逻辑与&amp;"></p>
+<h2 id="逻辑与-amp"><a href="#逻辑与-amp" class="headerlink" title="逻辑与&amp;"></a>逻辑与&amp;</h2><p>pandas中用符号 &amp; 表示逻辑与，连接两个逻辑语句，同时为真才为真。在Python基本语法中，使用 and 表示逻辑与，但是Pandas中只能用 &amp; ，不能用and，会报模糊错误。<br>如我们要检索出一班并且语文成绩大于95的数据。可以用 <code>df[(df[&#39;4-语文&#39;]&gt;95) &amp; (df[&#39;班级&#39;]==&#39;一班&#39;)]</code><br>注意两个条件逻辑语句要分别用()括起来然后再用逻辑运算符进行运算。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E4%B8%94%E4%B8%BA%E4%B8%80%E7%8F%AD%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="逻辑与&amp;"></p>
 <h2 id="逻辑或"><a href="#逻辑或" class="headerlink" title="逻辑或|"></a>逻辑或|</h2><p>pandas中用符号 | 表示逻辑或，连接两个逻辑语句，只要其中一个为真就为真。<br>在Python基本语法中，使用 or 表示逻辑或，但是Pandas中只能用 | ，不能用or。<br>如我们要检索出语文成绩大于95或英语成绩大于96的数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'4-语文'</span>]&gt;<span class="number">95</span>)|(df[<span class="string">'6-英语'</span>]&gt;<span class="number">96</span>)]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E6%88%96%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BA%8E96%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="逻辑或|"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E6%88%96%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BA%8E96%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="逻辑或|"></p>
 <h2 id="逻辑非"><a href="#逻辑非" class="headerlink" title="逻辑非~"></a>逻辑非~</h2><p>pandas中用符号 ~ 表示逻辑非，对逻辑语句取反。<br>在Python基本语法中，使用 not 表示逻辑非，但是Pandas中只能用 ~ ，不能用not。<br>如我们要检索出数据成绩&gt;98并且不是一班的同学</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'5-数学'</span>]&gt;<span class="number">98</span>) &amp; ~(df[<span class="string">'班级'</span>]==<span class="string">'一班'</span>)]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E9%80%BB%E8%BE%91%E9%9D%9E%E8%BF%90%E7%AE%97.png" alt="逻辑非~"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E9%80%BB%E8%BE%91%E9%9D%9E%E8%BF%90%E7%AE%97.png" alt="逻辑非~"></p>
 <p>当然也可以用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'5-数学'</span>]&gt;<span class="number">98</span>) &amp; (df[<span class="string">'班级'</span>]!=<span class="string">'一班'</span>)]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E9%80%BB%E8%BE%91%E4%B8%8D%E7%AD%89%E4%BA%8E%E8%BF%90%E7%AE%97.png" alt="逻辑不等于"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E9%80%BB%E8%BE%91%E4%B8%8D%E7%AD%89%E4%BA%8E%E8%BF%90%E7%AE%97.png" alt="逻辑不等于"></p>
 <h1 id="二、算术运算"><a href="#二、算术运算" class="headerlink" title="二、算术运算"></a>二、算术运算</h1><p>pandas最重要的一个功能是，它可以对不同索引的对象进行算术运算也就是（+、-、*、\）。<br>常见的算术云算是加法+运算，如果相加的对象是标量，则数据对象通过广播机制，每个数据值都+标量。如果相加的对象是数据对象则按索引进行算术运算。<br>通过一个数据集来看一下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data1=pd.DataFrame(np.arange(<span class="number">16</span>).reshape((<span class="number">4</span>,<span class="number">4</span>)),columns=[<span class="string">'列1'</span>,<span class="string">'列2'</span>,<span class="string">'列3'</span>,<span class="string">'列4'</span>])</span><br><span class="line">data1</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据运算数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据运算数据集"></p>
 <h2 id="1、使用算术运算符"><a href="#1、使用算术运算符" class="headerlink" title="1、使用算术运算符"></a>1、使用算术运算符</h2><p>和标量计算，标量运算会在算术运算过程中传播。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data2=data1+<span class="number">1</span></span><br><span class="line">data2</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/+%E8%BF%90%E7%AE%97.png" alt="加标量"><br>可以看到数据集中每个值都+1了<br>和索引相同的数据对象运算，对每个数据值进行算术运算</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/+%E8%BF%90%E7%AE%97.png" alt="加标量"><br>可以看到数据集中每个值都+1了<br>和索引相同的数据对象运算，对每个数据值进行算术运算</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data3=pd.DataFrame(np.arange(<span class="number">16</span>).reshape((<span class="number">4</span>,<span class="number">4</span>)),columns=[<span class="string">'列1'</span>,<span class="string">'列2'</span>,<span class="string">'列3'</span>,<span class="string">'列4'</span>])</span><br><span class="line">data4=data2+data3</span><br><span class="line">data4</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/dataframe%E7%9B%B8%E5%8A%A0.png" alt="DataFrame相加"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/dataframe%E7%9B%B8%E5%8A%A0.png" alt="DataFrame相加"></p>
 <p>在将对象相加时，如果存在不同的索引就是该索引对的并集。自动的数据对齐操作在不重叠的索引引入NA值。缺失值会在算术运算过程中传播。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data5=pd.DataFrame(np.ones([<span class="number">3</span>,<span class="number">3</span>]),columns=[<span class="string">'列1'</span>,<span class="string">'列2'</span>,<span class="string">'列3'</span>])</span><br><span class="line">data5</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E5%85%A8%E4%B8%BA1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="全为1的数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E5%85%A8%E4%B8%BA1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="全为1的数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data6=data4+data5</span><br><span class="line">data6</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E5%BD%A2%E7%8A%B6%E4%B8%8D%E7%9B%B8%E5%90%8C%E7%9A%84%E4%B8%A4%E4%B8%AAdataframe%E7%9B%B8%E5%8A%A0.png" alt="形状不同的数据集相加"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E5%BD%A2%E7%8A%B6%E4%B8%8D%E7%9B%B8%E5%90%8C%E7%9A%84%E4%B8%A4%E4%B8%AAdataframe%E7%9B%B8%E5%8A%A0.png" alt="形状不同的数据集相加"></p>
 <h2 id="2、使用算数运算函数"><a href="#2、使用算数运算函数" class="headerlink" title="2、使用算数运算函数"></a>2、使用算数运算函数</h2><p>算数运算函数包括add、sub、div、mul等对应于算术运算符如下：</p>
 <table>
 <thead>
@@ -1897,41 +1897,41 @@
 <td>用于指数（**）的方法</td>
 </tr>
 </tbody></table>
-<h3 id="加法："><a href="#加法：" class="headerlink" title="加法："></a>加法：</h3><p>在对不同索引的对象进行算术运算时，如果希望当一个对象中某个轴标签在另一个对象中找不到时填充一个特殊值比如0，可以通过算术方法进行填充，然后再相加。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/add%E5%87%BD%E6%95%B0.png" alt="加法函数"><br>上面的例子展示了，因为data5的行索引为3和列索引为列4用0填充后再相加所以行索引为3和列索引为列4的值是data4的值+0</p>
+<h3 id="加法："><a href="#加法：" class="headerlink" title="加法："></a>加法：</h3><p>在对不同索引的对象进行算术运算时，如果希望当一个对象中某个轴标签在另一个对象中找不到时填充一个特殊值比如0，可以通过算术方法进行填充，然后再相加。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/add%E5%87%BD%E6%95%B0.png" alt="加法函数"><br>上面的例子展示了，因为data5的行索引为3和列索引为列4用0填充后再相加所以行索引为3和列索引为列4的值是data4的值+0</p>
 <h3 id="减法："><a href="#减法：" class="headerlink" title="减法："></a>减法：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data4.sub(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/sub%E5%87%BD%E6%95%B0.png" alt="sub函数"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/sub%E5%87%BD%E6%95%B0.png" alt="sub函数"></p>
 <h3 id="乘法："><a href="#乘法：" class="headerlink" title="乘法："></a>乘法：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data4.mul(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/mul%E5%87%BD%E6%95%B0.png" alt="mul函数"></p>
-<h3 id="除法："><a href="#除法：" class="headerlink" title="除法："></a>除法：</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/div%E5%87%BD%E6%95%B0.png" alt="div函数"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/mul%E5%87%BD%E6%95%B0.png" alt="mul函数"></p>
+<h3 id="除法："><a href="#除法：" class="headerlink" title="除法："></a>除法：</h3><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/div%E5%87%BD%E6%95%B0.png" alt="div函数"></p>
 <h1 id="三、统计运算"><a href="#三、统计运算" class="headerlink" title="三、统计运算"></a>三、统计运算</h1><p>统计运算就是我们常用的数据集的求和、算平均值、最大值、最小值、绝对值、标准差等统计数据。在pandas中提供了丰富的统计函数可以方便的进行统计运算。</p>
 <h2 id="1、describe汇总描述统计"><a href="#1、describe汇总描述统计" class="headerlink" title="1、describe汇总描述统计"></a>1、describe汇总描述统计</h2><p>通过np.random.randn(1000,4)生成1000个正态分布的随机数据集看一下describe的汇总描叙统计。<br>包含了数据个数count、均值mean、标准差std、最小值min、最大值等。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1000个正态分布的随机数统计信息</span></span><br><span class="line">data=pd.DataFrame(np.random.randn(<span class="number">1000</span>,<span class="number">4</span>))</span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E8%AE%A1%E7%AE%97%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="describe汇总描述统计"></p>
-<h2 id="2、统计函数"><a href="#2、统计函数" class="headerlink" title="2、统计函数"></a>2、统计函数</h2><p>pandas常用统计函数如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="常用统计函数"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E8%AE%A1%E7%AE%97%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="describe汇总描述统计"></p>
+<h2 id="2、统计函数"><a href="#2、统计函数" class="headerlink" title="2、统计函数"></a>2、统计函数</h2><p>pandas常用统计函数如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="常用统计函数"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.max()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/max%E5%87%BD%E6%95%B0.png" alt="max函数"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/max%E5%87%BD%E6%95%B0.png" alt="max函数"></p>
 <p>可以算出DataFrame中每一列的最大值</p>
 <p>如果只需要计算某一列的最大值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="number">1</span>].max()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E4%B8%80%E5%88%97%E7%9A%84max.png" alt="计算某一列的最大值"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E4%B8%80%E5%88%97%E7%9A%84max.png" alt="计算某一列的最大值"></p>
 <p>对单个函数进行统计的时候，坐标轴还是按照这些默认为columns(axis=0, default)，如果要对index进行统计，则要指明(axis=1) 这里的axis取值与axis=0对应index，axis=1对应columns不同</p>
 <ul>
 <li>使用0值表示沿着每一列或行标签\索引值向下执行方法</li>
-<li>使用1值表示沿着每一行或者列标签模向执行对应的方法<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84max.png" alt="axis=1"></li>
+<li>使用1值表示沿着每一行或者列标签模向执行对应的方法<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84max.png" alt="axis=1"></li>
 </ul>
-<p>如果要计算某一行的最大值<br>用<code>data.loc[0].max()</code>，通过loc[]检索出需要统计的行，再用统计函数进行统计<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E6%9F%90%E4%B8%80%E8%A1%8C%E7%9A%84max.png" alt="计算某一行的最大值"><br>累计统计cumsum,计算前n个数的和<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E7%B4%AF%E8%AE%A1%E5%92%8C.png" alt="计算前n个数的和"></p>
+<p>如果要计算某一行的最大值<br>用<code>data.loc[0].max()</code>，通过loc[]检索出需要统计的行，再用统计函数进行统计<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E6%9F%90%E4%B8%80%E8%A1%8C%E7%9A%84max.png" alt="计算某一行的最大值"><br>累计统计cumsum,计算前n个数的和<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E7%B4%AF%E8%AE%A1%E5%92%8C.png" alt="计算前n个数的和"></p>
 <h1 id="四、自定义运算"><a href="#四、自定义运算" class="headerlink" title="四、自定义运算"></a>四、自定义运算</h1><p>如果常用的统计运算还不能满足，pandas提供了方法可以进行自定义运算。</p>
 <p> apply(func, axis=0)</p>
 <ul>
 <li>func – 自定义函数 axis=0 – 默认是列（按行标签方向执行方法）</li>
 <li>axis=1为对行进行运算（按列标签方向执行方法）</li>
 </ul>
-<p>如：自定义一个对列求max-min的函数<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/head.png" alt="head()"><br>通过lambda匿名函数</p>
+<p>如：自定义一个对列求max-min的函数<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/head.png" alt="head()"><br>通过lambda匿名函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.apply(<span class="keyword">lambda</span> x: x.max() - x.min()) <span class="comment"># lambda为匿名函数，x为自变量，冒号后面为函数表达式</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/lambda%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="lambda匿名函数"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/lambda%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="lambda匿名函数"></p>
 <p>通过自定义函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#自定义函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxdivmin</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x.max()-x.min()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0.png" alt="自定义函数"><br>至此，本文通过实例简单介绍了pandas数据分析的数据运算包括逻辑运算、算术运算、统计运算、自定义运算，也是平时在实际应用中常用的运算。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220203/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0.png" alt="自定义函数"><br>至此，本文通过实例简单介绍了pandas数据分析的数据运算包括逻辑运算、算术运算、统计运算、自定义运算，也是平时在实际应用中常用的运算。</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -1939,7 +1939,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2036,7 +2036,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -2158,49 +2158,49 @@
         
           
             <p>在数据分析和建模的过程中，有相当多的时间要用在数据准备上：加载、清理、转换以及重塑。这些工作会占到分析师时间的80%或更多。幸运的是pandas和内置的Python标准库提供了高效、灵活的工具可以帮助我们轻松的做这些事情。</p>
-<p>本文重点介绍通过pandas进行数据的清洗。数据处理中的清洗工作主要包括对需要分析的数据集中的缺失值（空值）、重复值、异常值的处理。对于数据清洗一般也是分两个步骤，第一步就是要很方便快速的找到需要处理的数据，如何快速找到数据中的缺失值（空值）、重复数据或异常的数据，第二步是对找到的数据根据自己的实际使用需求进行处理，如删除还是替换成其他的数据。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.png" alt="pandas数据清洗"></p>
+<p>本文重点介绍通过pandas进行数据的清洗。数据处理中的清洗工作主要包括对需要分析的数据集中的缺失值（空值）、重复值、异常值的处理。对于数据清洗一般也是分两个步骤，第一步就是要很方便快速的找到需要处理的数据，如何快速找到数据中的缺失值（空值）、重复数据或异常的数据，第二步是对找到的数据根据自己的实际使用需求进行处理，如删除还是替换成其他的数据。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.png" alt="pandas数据清洗"></p>
 <h1 id="一、处理缺失值"><a href="#一、处理缺失值" class="headerlink" title="一、处理缺失值"></a>一、处理缺失值</h1><p>在许多数据分析工作过程中，由于对数据质量问题，缺失数据是经常发生的。对于数值数据，pandas使用浮点值NaN(Not a Number)表示缺失数据。在pandas中，还采用了R语言中惯用的缺失值表示法NA，它表示不可用not available。在统计应用中，NA数据可能是不存在的数据或虽然存在但是看不到。进行数据清洗对缺失数据进行分析，以判断数据采集的问题或缺失数据导致的偏差。</p>
 <h2 id="1、判断缺失值（空值）"><a href="#1、判断缺失值（空值）" class="headerlink" title="1、判断缺失值（空值）"></a>1、判断缺失值（空值）</h2><p>在pandas中通过isna()或isnull()方法判断空值，二者等价，用于判断一个series或dataframe各元素值是否为空的bool结果。需注意对空值的界定：即None或numpy.nan才算空值，而空字符串、空列表等则不属于空值；类似地，notna()和notnull()则用于判断是否非空。<br>看下实例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">stud_data=pd.Series([<span class="string">'张三'</span>,<span class="string">'李四'</span>,np.nan,[],<span class="string">''</span>,<span class="literal">None</span>,<span class="string">'王五'</span>])</span><br><span class="line">stud_data</span><br></pre></td></tr></table></figure>
 
-<p>通过stud_data.isnull()和stud_data.isna()分别来判断空值<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD.png" alt="判断空值"></p>
-<p>类似地，notna()和notnull()则用于判断是否非空<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E9%9D%9E%E7%A9%BA.png" alt="判断是否非空"><br>同样的对于DataFrame中的缺失数据判断也是一样的。<br>构建DataFrame</p>
+<p>通过stud_data.isnull()和stud_data.isna()分别来判断空值<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD.png" alt="判断空值"></p>
+<p>类似地，notna()和notnull()则用于判断是否非空<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E9%9D%9E%E7%A9%BA.png" alt="判断是否非空"><br>同样的对于DataFrame中的缺失数据判断也是一样的。<br>构建DataFrame</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stud_df=pd.DataFrame(stud_data,columns=[<span class="string">'student_name'</span>])</span><br><span class="line">stud_df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandasDataFrame%E9%9D%9E%E7%A9%BA%E5%88%A4%E6%96%AD.png" alt="DataFrame中的缺失数据判断"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandasDataFrame%E9%9D%9E%E7%A9%BA%E5%88%A4%E6%96%AD.png" alt="DataFrame中的缺失数据判断"></p>
 <p>对于缺失值的处理有两种常用的方式，一是用按一定的策略对空值进行填充，二是对于缺失值干脆进行删除。</p>
 <h2 id="2、填充缺失值（空值）"><a href="#2、填充缺失值（空值）" class="headerlink" title="2、填充缺失值（空值）"></a>2、填充缺失值（空值）</h2><p>pandas中用户填充缺失值的方法是fillna()，可以按一定的策略对空值进行填充，如常数填充、向前/向后填充等，也可通过inplace参数确定是否本地更改。</p>
 <h3 id="1-常量填充"><a href="#1-常量填充" class="headerlink" title="1.常量填充"></a>1.常量填充</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stud_df[[<span class="string">'student_name'</span>]].fillna(<span class="string">'某某'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BA.png" alt="常量填充"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BA.png" alt="常量填充"></p>
 <p>可以看到判断为缺失值的地方都填充了”某某”，因为空字符串和空列表都不是缺失值，所以没有填充。</p>
 <h3 id="2-向前和向后填充NA"><a href="#2-向前和向后填充NA" class="headerlink" title="2.向前和向后填充NA"></a>2.向前和向后填充NA</h3><p>通过fillna(mathod=’ffill’)，mathod=’ffill’ 向前填充和 mathod=’bfill’ 向后填充，也就是说用前面的值来填充NA或用后面的值来填充NA<br>我们来增加一列性别列gender来看一下。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stud_gender_data=pd.Series([<span class="number">1</span>,<span class="number">0</span>,np.nan,<span class="string">'女'</span>,<span class="number">1</span>,<span class="literal">None</span>,<span class="string">'男'</span>])</span><br><span class="line">stud_df[<span class="string">'gender'</span>]=stud_gender_data</span><br><span class="line">stud_df</span><br><span class="line">stud_df[[<span class="string">'gender'</span>]].fillna(method=<span class="string">'ffill'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BAffill.png" alt="向前和向后填充NA"></p>
-<p>可以看到通过method=’ffill’，将NaN和None前面的值填充端到了NaN和None。<br>用fillna()进行填充会返回一个填充好的数据集的副本，并没有对原始数据进行操作，如果要修改原始数据可以通过inplace参数确定是否本地更改。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BAffill-inplace=True.png" alt="通过inplace参数确定是否本地更改"></p>
-<h2 id="3、删除缺失值（空值）"><a href="#3、删除缺失值（空值）" class="headerlink" title="3、删除缺失值（空值）"></a>3、删除缺失值（空值）</h2><p>如果想删除缺失值，那么使用 dropna() 函数与参数 axis 可以实现。在默认情况下，按照 axis=0 来按行处理，这意味着如果某一行中存在 NaN 值将会删除整行数据。如果在dropna()中传入<code>how=&#39;all&#39;</code>将只会删除全为NA或NaN的行。示例如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E7%A9%BA%E5%80%BC.png" alt="删除缺失值（空值）"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BAffill.png" alt="向前和向后填充NA"></p>
+<p>可以看到通过method=’ffill’，将NaN和None前面的值填充端到了NaN和None。<br>用fillna()进行填充会返回一个填充好的数据集的副本，并没有对原始数据进行操作，如果要修改原始数据可以通过inplace参数确定是否本地更改。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BAffill-inplace=True.png" alt="通过inplace参数确定是否本地更改"></p>
+<h2 id="3、删除缺失值（空值）"><a href="#3、删除缺失值（空值）" class="headerlink" title="3、删除缺失值（空值）"></a>3、删除缺失值（空值）</h2><p>如果想删除缺失值，那么使用 dropna() 函数与参数 axis 可以实现。在默认情况下，按照 axis=0 来按行处理，这意味着如果某一行中存在 NaN 值将会删除整行数据。如果在dropna()中传入<code>how=&#39;all&#39;</code>将只会删除全为NA或NaN的行。示例如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E7%A9%BA%E5%80%BC.png" alt="删除缺失值（空值）"></p>
 <h1 id="二、处理重复值"><a href="#二、处理重复值" class="headerlink" title="二、处理重复值"></a>二、处理重复值</h1><p>重复数据也是在实际数据处理过程中碰到比较多的，处理重复数据就是在数据集中找出重复数据然后将其删除保留一个唯一不重复的数据。</p>
 <h2 id="1、检测重复值"><a href="#1、检测重复值" class="headerlink" title="1、检测重复值"></a>1、检测重复值</h2><p>pandas通过duplicated()方法检测各行是否重复，返回一个行索引的bool结果，可通过keep参数设置保留第一行、最后一行、无保留，例如keep=first意味着在存在重复的多行时，首行被认为是合法的而可以保留。<br>构造一个DataFrame来看一个实例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data=pd.DataFrame(&#123;<span class="string">'key1'</span>:[<span class="string">'A'</span>,<span class="string">'B'</span>]*<span class="number">3</span>+[<span class="string">'B'</span>],<span class="string">'key2'</span>:[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>]&#125;)</span><br><span class="line">data</span><br><span class="line">data.duplicated()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%A3%80%E6%B5%8B%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="检测重复值"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E6%A3%80%E6%B5%8B%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="检测重复值"></p>
 <h2 id="2、删除重复值"><a href="#2、删除重复值" class="headerlink" title="2、删除重复值"></a>2、删除重复值</h2><p>pandas通过drop_duplicates()方法按行检测并删除重复的记录，也可通过keep参数设置保留项。由于该方法默认是按行进行检测，如果存在某个需要需要按列删除，则可以先转置再执行该方法。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.drop_duplicates()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="删除重复值"><br>可以看到第7行也就是index为6的重复行被删除了。<br>当带了<code>keep=&#39;last&#39;</code>参数时，保留最后一个重复项，前面的重复项将被丢弃。可以看到保留的是索引为6的，索引为5的重复项被丢弃了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9-keeplast.png" alt="保留最后一个重复项"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="删除重复值"><br>可以看到第7行也就是index为6的重复行被删除了。<br>当带了<code>keep=&#39;last&#39;</code>参数时，保留最后一个重复项，前面的重复项将被丢弃。可以看到保留的是索引为6的，索引为5的重复项被丢弃了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9-keeplast.png" alt="保留最后一个重复项"></p>
 <h1 id="三、处理异常值"><a href="#三、处理异常值" class="headerlink" title="三、处理异常值"></a>三、处理异常值</h1><h2 id="1、判断异常值"><a href="#1、判断异常值" class="headerlink" title="1、判断异常值"></a>1、判断异常值</h2><p>判断异常值的标准依赖具体分析数据，如大于或小于某个基线范围的值。<br>我们来看一个含有正态分布的DataFrame数据集</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=pd.DataFrame(np.random.randn(<span class="number">1000</span>,<span class="number">4</span>))</span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="含有正态分布的DataFrame数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/pandas%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="含有正态分布的DataFrame数据集"></p>
 <p>假设我们认为某列中绝对值大小超过3的是异常值，那么判断异常值就是要找出某列中大小超过3的值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[np.abs(col)&gt;<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E5%80%BC2.png" alt="找出某列中大小超过3的值"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E5%80%BC2.png" alt="找出某列中大小超过3的值"></p>
 <p>要选出全部含有绝对值大小超过3的行，可以在布尔型DataFrame中使用any()方法。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[(np.abs(data)&gt;<span class="number">3</span>).any(<span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8any%E6%96%B9%E6%B3%95.png" alt="全部含有绝对值大小超过3的行"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8any%E6%96%B9%E6%B3%95.png" alt="全部含有绝对值大小超过3的行"></p>
 <h2 id="2、替换异常值"><a href="#2、替换异常值" class="headerlink" title="2、替换异常值"></a>2、替换异常值</h2><p>对于异常值，可以直接替换。<br>如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[np.abs(data)&gt;<span class="number">3</span>]=np.sign(data)*<span class="number">3</span></span><br></pre></td></tr></table></figure>
 
-<p>这样就可以将异常值替换为绝对值不大于3的<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%9B%BF%E6%8D%A2%E5%BC%82%E5%B8%B8%E5%80%BC.png" alt="替换异常值"></p>
+<p>这样就可以将异常值替换为绝对值不大于3的<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/%E6%9B%BF%E6%8D%A2%E5%BC%82%E5%B8%B8%E5%80%BC.png" alt="替换异常值"></p>
 <h2 id="3、删除异常值"><a href="#3、删除异常值" class="headerlink" title="3、删除异常值"></a>3、删除异常值</h2><p>删除异常值，可以用pandas的drop()方法，接受参数在特定轴线执行删除一条或多条记录，可通过axis参数设置是按行删除还是按列删除<br>如删除第3列，列索引为2的列中绝对值&gt;3的行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">col=data[<span class="number">2</span>]</span><br><span class="line">data.drop(data[np.abs(col)&gt;<span class="number">3</span>].index,inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8%E5%80%BC.png" alt="删除异常值"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220201/%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8%E5%80%BC.png" alt="删除异常值"></p>
 <p>可以看到本来有1000行的，删除了3行，再用data[np.abs(col)&gt;3]验证，已经找不到数据了。</p>
 <p>至此，本文通过实例介绍了pandas进行数据清洗包括缺失值、重复值及异常值的处理。数据清洗是数据分析前面的准备工作，数据质量的好坏将直接影响数据分析的结果。</p>
 <hr>
@@ -2209,7 +2209,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2306,7 +2306,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -2430,25 +2430,25 @@
             <p>对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。</p>
 <p>本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。<br>数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"><br>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"><br>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <h1 id="一、排序"><a href="#一、排序" class="headerlink" title="一、排序"></a>一、排序</h1><p>对数据集进行排序是是常用的数据分析需求之一。pandas提供了按 索引标签排序sort_index()和按值排序sort_values()两种排序方法。对于DataFrame，可以根据任意一个轴上的索引标签进行排序。默认顺序排序，也可以设置按倒序排序。</p>
 <h2 id="1、按标签排序"><a href="#1、按标签排序" class="headerlink" title="1、按标签排序"></a>1、按标签排序</h2><h3 id="1）按行标签索引排序"><a href="#1）按行标签索引排序" class="headerlink" title="1）按行标签索引排序"></a>1）按行标签索引排序</h3><p>pandas默认按行标签索引顺序排序</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引排序</span></span><br><span class="line">df.sort_index()</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按行索引排序"><br>可以通过设置<code>ascending=False</code>参数进行倒序排序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按行索引排序"><br>可以通过设置<code>ascending=False</code>参数进行倒序排序</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引倒序排序</span></span><br><span class="line">df.sort_index(ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按行索引倒序排序"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按行索引倒序排序"></p>
 <h3 id="2）按列标签索引排序"><a href="#2）按列标签索引排序" class="headerlink" title="2）按列标签索引排序"></a>2）按列标签索引排序</h3><p>通过给 axis 轴参数传递 0 或 1，可以对列标签进行排序。默认情况下，axis=0 表示按行排序；而 axis=1 则表示按列排序。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按列索引排序"><br>同样可以设置ascending=False参数进行倒序排序</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按列索引排序"><br>同样可以设置ascending=False参数进行倒序排序</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引倒序排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按列索引倒序排序"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按列索引倒序排序"></p>
 <h2 id="2、按值排序"><a href="#2、按值排序" class="headerlink" title="2、按值排序"></a>2、按值排序</h2><p>在实际应用中用得最多的应该是根据某一列的值进行排序。在pandas中可以通过sort_value()，在sort_value中可以设定按某个列排序，也可以通过sort_value(by=[])，通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。</p>
 <h3 id="1）对单个列的值排序"><a href="#1）对单个列的值排序" class="headerlink" title="1）对单个列的值排序"></a>1）对单个列的值排序</h3><p>如在数据集中对语文成绩进行排序。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩排序</span></span><br><span class="line">df.sort_values(<span class="string">'4-语文'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对语文成绩进行排序"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对语文成绩进行排序"></p>
 <h3 id="2）对多个列的值进行排序"><a href="#2）对多个列的值进行排序" class="headerlink" title="2）对多个列的值进行排序"></a>2）对多个列的值进行排序</h3><p>通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。<br>如对数据集中的语文和数学进行排序</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%A4%9A%E4%B8%AA%E5%88%97%E7%9A%84%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对数据集中的语文和数学进行排序"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E5%A4%9A%E4%B8%AA%E5%88%97%E7%9A%84%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对数据集中的语文和数学进行排序"></p>
 <h2 id="3、排序算法"><a href="#3、排序算法" class="headerlink" title="3、排序算法"></a>3、排序算法</h2><p>sort_values() 提供了参数kind用来指定排序算法。这里有三种排序算法：</p>
 <ul>
 <li>mergesort（归并排序） </li>
@@ -2457,7 +2457,7 @@
 </ul>
 <p>默认为 quicksort(快速排序) ，其中 mergesort归并排序是最稳定的算法。<br>具体用法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学用mergesort归并排序算法排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>],kind=<span class="string">'mergesort'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt="排序算法"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt="排序算法"></p>
 <h1 id="二、排名"><a href="#二、排名" class="headerlink" title="二、排名"></a>二、排名</h1><p>排名和排序的区别在于排序一定是有顺序，而排名分先后并列。如在现实生活中相同的分数存在排名并列的情况。<br>在《使用python进行数据分析》一书中对rank排名的描述为：排名是指对数组从1到有效数据点总数分配名次的操作。Series和DataFrame的rank方法是实现排名的方法，默认情况下，rank是通过“为各组分配一个平均排名”的方式破坏平级关系。这段话讲得是什么鬼？其实就是在存在并列排名的时候采用一定的策略来打破这种关系。<br>排名中的平级关系打破方法有如下几种：</p>
 <table>
 <thead>
@@ -2490,21 +2490,21 @@
 <p><strong>rank()函数原型：</strong><code>rank(axis=0, method: str = &#39;average&#39;, numeric_only: Union[bool, NoneType] = None, na_option: str = &#39;keep&#39;, ascending: bool = True, pct: bool = False)</code><br>这里method取值可以为’average’，’first’，’min’， ‘max’，’dense’，用来打破排名中的平级关系的。<br>光看这些说明还是比较难理解。下面通过实例来说明：</p>
 <h2 id="1、默认average-排名"><a href="#1、默认average-排名" class="headerlink" title="1、默认average 排名"></a>1、默认average 排名</h2><p>在数据集中我们只取“学号”、“姓名”、“语文”，然后取“语文”的排名，默认average</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_rank=df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>]].copy()</span><br><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E6%8E%92%E5%90%8D.png" alt="默认average 排名"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/rank%E6%8E%92%E5%90%8D.png" alt="默认average 排名"></p>
 <p>这个排名很奇怪，97分排名第一没有问题，居然没有第二名，三个96分排名均为3，还有两个90分排名为9.5。这是什么鬼？<br>原来这就是默认的“average”规则,成绩相同时，取顺序排名中所有名次之和除以该成绩的个数，如两个90分的名次为最后两名分别为9名和10名，即(9+10)/2=9.5，三个96分的名次分别为2、3、4 那么排名为（2+3+4)/3=9/3=3</p>
 <h2 id="2、mothod-’min’的排名"><a href="#2、mothod-’min’的排名" class="headerlink" title="2、mothod=’min’的排名"></a>2、mothod=’min’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-min%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行min排名"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/rank-min%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行min排名"></p>
 <p>在这个排名中看到有3个并列为2的排名，但没有排名为3、4的，有两个排名为9的，但没有排名为10的。可以看出当method=“min”时，成绩相同的同学，取在顺序排名中最小的那个排名作为该值的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。因为有了三个2名，接下来就从5名开始，5、6、7、8，到了第9名又有两个同分数的取9、10的最小排名为9，所以有两个9名。</p>
 <h2 id="3、mothod-’max’的排名"><a href="#3、mothod-’max’的排名" class="headerlink" title="3、mothod=’max’的排名"></a>3、mothod=’max’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-max%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行max排名"><br>与min相反，成绩相同的同学，排名相同取顺序最大的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。当method为max时，取最大的4作为96分的整体排名，同理90分的取10为90分的整体排名。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/rank-max%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行max排名"><br>与min相反，成绩相同的同学，排名相同取顺序最大的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。当method为max时，取最大的4作为96分的整体排名，同理90分的取10为90分的整体排名。</p>
 <h2 id="4、mothod-’first’的排名"><a href="#4、mothod-’first’的排名" class="headerlink" title="4、mothod=’first’的排名"></a>4、mothod=’first’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-first%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行first排名"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/rank-first%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行first排名"></p>
 <p>first排名很好理解了，有点先到先得的意思，成绩相同，谁的索引排前，谁的排名就靠前，比如张三、王五、顾十 这三个同学都是96分，按理应该是并列第2，但张三的索引比王五和顾十的都靠前，王五的索引比顾十靠前，所以他们的顺序分别为2、3、4，同理陈一、钱七的分数都是90分，但陈一的索引比钱七靠前所以陈一排名为9、钱七排名第10</p>
 <h2 id="5、mothod-’dense’的排名"><a href="#5、mothod-’dense’的排名" class="headerlink" title="5、mothod=’dense’的排名"></a>5、mothod=’dense’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-dense%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行dense排名"><br>“dense”: 是密集的意思，也比较好理解，即相同成绩的同学排名相同，其他依次加1即可。可以看到张三、王五、顾十这三位同学都是96分，并列排名第2，后面的加1，即比他们分数稍低的赵六95分排名第3，后面依次。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/rank-dense%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行dense排名"><br>“dense”: 是密集的意思，也比较好理解，即相同成绩的同学排名相同，其他依次加1即可。可以看到张三、王五、顾十这三位同学都是96分，并列排名第2，后面的加1，即比他们分数稍低的赵六95分排名第3，后面依次。</p>
 <h2 id="6、不同method的排名对比"><a href="#6、不同method的排名对比" class="headerlink" title="6、不同method的排名对比"></a>6、不同method的排名对比</h2><p>最后不同method的排名对比：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-average'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-min'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-max'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-first'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-dense'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'4-语文'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E4%B8%8D%E5%90%8Cmethod%E6%8E%92%E5%90%8D%E5%AF%B9%E6%AF%94.png" alt="按语文成绩进行rank的默认排名"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220130/rank%E4%B8%8D%E5%90%8Cmethod%E6%8E%92%E5%90%8D%E5%AF%B9%E6%AF%94.png" alt="按语文成绩进行rank的默认排名"></p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -2512,7 +2512,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2609,7 +2609,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -2738,8 +2738,8 @@
 <p>结果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>    陈一</span><br><span class="line"><span class="number">1</span>    周二</span><br><span class="line"><span class="number">2</span>    张三</span><br><span class="line"><span class="number">3</span>    李四</span><br><span class="line"><span class="number">4</span>    王五</span><br><span class="line"><span class="number">5</span>    赵六</span><br><span class="line"><span class="number">6</span>    钱七</span><br><span class="line"><span class="number">7</span>    孙八</span><br><span class="line"><span class="number">8</span>    何九</span><br><span class="line"><span class="number">9</span>    顾十</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
 
-<p>Series的字符串表现形式为：索引在左边，值在右边。由于没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/Series%E7%BB%93%E6%9E%84.png" alt="Serires数据结构"></p>
-<p>可以通过Series的values和index属性获取其数组表示形式和索引对象。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E8%8E%B7%E5%8F%96Serires%E7%9A%84values%E5%92%8Cindex%E5%B1%9E%E6%80%A7.png" alt="通过Series的values和index属性获取其数组表示形式和索引对象"></p>
+<p>Series的字符串表现形式为：索引在左边，值在右边。由于没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/Series%E7%BB%93%E6%9E%84.png" alt="Serires数据结构"></p>
+<p>可以通过Series的values和index属性获取其数组表示形式和索引对象。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/%E8%8E%B7%E5%8F%96Serires%E7%9A%84values%E5%92%8Cindex%E5%B1%9E%E6%80%A7.png" alt="通过Series的values和index属性获取其数组表示形式和索引对象"></p>
 <p><strong>可以将Series看成一个定长的有序字典，因为它是索引值到数据值的一个映射。</strong></p>
 <h2 id="1、Series对象创建"><a href="#1、Series对象创建" class="headerlink" title="1、Series对象创建"></a>1、Series对象创建</h2><p>pandas 使用 Series()  函数来创建 Series 对象，通过这个对象可以调用相应的方法和属性，从而达到处理数据的目的：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">obj=pd.Series( data, index, dtype, copy)</span><br></pre></td></tr></table></figure>
@@ -2808,7 +2808,7 @@
 <h4 id="2-删除多个数据"><a href="#2-删除多个数据" class="headerlink" title="2.删除多个数据"></a>2.删除多个数据</h4><p>参数为索引列表，即可以删除索引为列表中的数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">obj.drop([<span class="string">'十二'</span>,<span class="string">'十三'</span>],inplace=<span class="literal">True</span>)</span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">四    李四</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
 
-<h1 id="二、DataFrame"><a href="#二、DataFrame" class="headerlink" title="二、DataFrame"></a>二、DataFrame</h1><p>DataFrame 是 Pandas 的重要数据结构之一，也是在使用 Pandas 进行数据分析过程中最常用的结构之一。DataFrame 一个表格型的数据结构，既有行标签（index），又有列标签（columns），它也被称异构数据表，所谓异构，指的是表格中每列的数据类型可以不同，比如可以是字符串、整型或者浮点型等。DataFrame 的每一行数据都可以看成一个 Series 结构，只不过，DataFrame 为这些行中每个数据值增加了一个列标签。因此 DataFrame 其实是从 Series 的基础上演变而来。<strong>可以把DataFrame看做是关系型数据库里或Excel里的一张表格来理解</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/DataFrame%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="DataFrame数据结构"><br><strong>DataFrame 数据结构的特点：</strong><br>DataFrame 每一列的标签值允许使用不同的数据类型；<br>DataFrame 是表格型的数据结构，具有行和列；<br>DataFrame 中的每个数据值都可以被修改。<br>DataFrame 结构的行数、列数允许增加或者删除；<br>DataFrame 有两个方向的标签轴，分别是行标签和列标签；<br>DataFrame 可以对行和列执行算术运算。</p>
+<h1 id="二、DataFrame"><a href="#二、DataFrame" class="headerlink" title="二、DataFrame"></a>二、DataFrame</h1><p>DataFrame 是 Pandas 的重要数据结构之一，也是在使用 Pandas 进行数据分析过程中最常用的结构之一。DataFrame 一个表格型的数据结构，既有行标签（index），又有列标签（columns），它也被称异构数据表，所谓异构，指的是表格中每列的数据类型可以不同，比如可以是字符串、整型或者浮点型等。DataFrame 的每一行数据都可以看成一个 Series 结构，只不过，DataFrame 为这些行中每个数据值增加了一个列标签。因此 DataFrame 其实是从 Series 的基础上演变而来。<strong>可以把DataFrame看做是关系型数据库里或Excel里的一张表格来理解</strong>。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/DataFrame%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="DataFrame数据结构"><br><strong>DataFrame 数据结构的特点：</strong><br>DataFrame 每一列的标签值允许使用不同的数据类型；<br>DataFrame 是表格型的数据结构，具有行和列；<br>DataFrame 中的每个数据值都可以被修改。<br>DataFrame 结构的行数、列数允许增加或者删除；<br>DataFrame 有两个方向的标签轴，分别是行标签和列标签；<br>DataFrame 可以对行和列执行算术运算。</p>
 <h2 id="1、DataFrame对象的创建"><a href="#1、DataFrame对象的创建" class="headerlink" title="1、DataFrame对象的创建"></a>1、DataFrame对象的创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df=pd.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
 <p>参数说明：</p>
 <table>
@@ -2841,11 +2841,11 @@
 </tbody></table>
 <p>Pandas 提供了多种创建 DataFrame 对象的方式可以看data的参数说明，包括列表、ndarray、series、dict等。<br>平时在数据分析过程中用得最多的应该是从其他数据源文件如cvs、excel、数据库、WEBAPI等方式加载数据到DataFrame中。<br>如：从Excel中加载数据。更多的数据加载方式见：<a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/4864590d/</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/staff_excel%E5%AF%BC%E5%85%A5.png" alt="staff数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/staff_excel%E5%AF%BC%E5%85%A5.png" alt="staff数据集"></p>
 <h2 id="2、DataFrame数据操作"><a href="#2、DataFrame数据操作" class="headerlink" title="2、DataFrame数据操作"></a>2、DataFrame数据操作</h2><p>DataFrame 可以使用行索引(index )来选取 DataFrame 中的数据并进行操作。也可以使用列索（columns ）引来完成数据的选取、添加和删除操作。</p>
 <h3 id="1-行索引操作DataFrame"><a href="#1-行索引操作DataFrame" class="headerlink" title="1) 行索引操作DataFrame"></a>1) 行索引操作DataFrame</h3><h4 id="选取数据"><a href="#选取数据" class="headerlink" title="选取数据"></a>选取数据</h4><p>行标签选取数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选取行标签为2的行</span></span><br><span class="line">df.loc[[<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE1.png" alt="选取行标签为2的行"><br>注意：如果是df.loc[2]，同样是选择行标签为2的行，但现实效果为<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE2.png" alt="选取行标签为2的行"><br>因为df.loc[2]返回是Series对象，而df.loc[[2]]返回的是DataFrame对象</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE1.png" alt="选取行标签为2的行"><br>注意：如果是df.loc[2]，同样是选择行标签为2的行，但现实效果为<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE2.png" alt="选取行标签为2的行"><br>因为df.loc[2]返回是Series对象，而df.loc[[2]]返回的是DataFrame对象</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(df.iloc[<span class="number">2</span>])</span><br><span class="line">pandas.core.series.Series</span><br></pre></td></tr></table></figure>
 
 
@@ -2854,25 +2854,25 @@
 
 <p>切片选取数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切片选取数据（左闭右开）</span></span><br><span class="line">df[<span class="number">2</span>:<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E5%88%87%E7%89%87%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE.png" alt="切片选取数据"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/%E5%88%87%E7%89%87%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE.png" alt="切片选取数据"></p>
 <h4 id="增加行"><a href="#增加行" class="headerlink" title="增加行"></a>增加行</h4><p> 添加数据行，使用 append() 函数，可以将新的数据行添加到 DataFrame 中，该函数会在行末追加数据行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],index=[<span class="number">11</span>,<span class="number">12</span>],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C.png" alt=" 添加数据行"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C.png" alt=" 添加数据行"></p>
 <p>注意新增加的DataFrame如果没有指定行索引，将会默认从0开始，添加数据行后将会有行重复的行索引。如没有指定index=[11,12]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C%E9%87%8D%E5%A4%8Did.png" alt="添加数据行有重复行索引"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C%E9%87%8D%E5%A4%8Did.png" alt="添加数据行有重复行索引"></p>
 <h4 id="删除行"><a href="#删除行" class="headerlink" title="删除行"></a>删除行</h4><p>可以使用行索引标签，从 DataFrame 中删除某一行数据。如果索引标签存在重复，那么它们将被一起删除</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.drop(<span class="number">0</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
 
-<p>可以看到到行索引为0的两条记录被一起删除了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E5%88%A0%E9%99%A4.png" alt="删除"></p>
+<p>可以看到到行索引为0的两条记录被一起删除了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E5%88%A0%E9%99%A4.png" alt="删除"></p>
 <h3 id="2-列索引操作DataFrame"><a href="#2-列索引操作DataFrame" class="headerlink" title="2) 列索引操作DataFrame"></a>2) 列索引操作DataFrame</h3><h4 id="列索引选取数据列"><a href="#列索引选取数据列" class="headerlink" title="列索引选取数据列"></a>列索引选取数据列</h4><p>通过指定列索引来选取数据列，如选择只显示staff_id,staff_name,staff_gender三列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df2=df[[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]]</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E9%80%89%E5%8F%96%E5%88%97.png" alt="列索引选取数据列"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df-%E9%80%89%E5%8F%96%E5%88%97.png" alt="列索引选取数据列"></p>
 <h4 id="列索引添加数据列"><a href="#列索引添加数据列" class="headerlink" title="列索引添加数据列"></a>列索引添加数据列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df3=df[<span class="string">'staff_salary'</span>]+<span class="number">500</span></span><br><span class="line"><span class="comment">#在df的基础上增加append_cloume列，新增的append_cloume列为df['staff_salary']+500，即薪水加了500的列</span></span><br><span class="line">df[<span class="string">'append_cloume'</span>]=df3</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引添加数据列"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引添加数据列"></p>
 <h4 id="列索引删除数据列"><a href="#列索引删除数据列" class="headerlink" title="列索引删除数据列"></a>列索引删除数据列</h4><p>通过del 来删除指定的数据列，如删除staff_depatment_id列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> df[<span class="string">'staff_depatment_id'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引删除数据列"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引删除数据列"></p>
 <p>本文介绍了pandas的两大核心数据结构Series和DataFrame，分别介绍了Series和DataFrame数据对象的创建及基于数据对象的基础上对数据进行选择、增加、删除等数据操作，可以加深对Series和DataFrame的理解，并可以将创建，增、删、改、查等应用于实际的数据处理应用中。</p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -2880,7 +2880,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2977,7 +2977,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -3098,8 +3098,8 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/pandas.png" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
-<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas.png" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
+<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
 <table>
 <thead>
 <tr>
@@ -3206,19 +3206,19 @@
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"staff_id"</span>,<span class="string">"staff_name"</span>,<span class="string">"staff_age"</span>,<span class="string">"staff_gender"</span>,<span class="string">"staff_salary"</span>,<span class="string">"staff_depatment_id"</span></span><br><span class="line"><span class="string">"1"</span>,<span class="string">"陈一"</span>,<span class="string">"30"</span>,<span class="string">"男"</span>,<span class="string">"7000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"2"</span>,<span class="string">"周二"</span>,<span class="string">"31"</span>,<span class="string">"男"</span>,<span class="string">"12000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"3"</span>,<span class="string">"张三"</span>,<span class="string">"30"</span>,<span class="string">"女"</span>,<span class="string">"13000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"4"</span>,<span class="string">"李四"</span>,<span class="string">"29"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"5"</span>,<span class="string">"王五"</span>,<span class="string">"29"</span>,<span class="string">"男"</span>,<span class="string">"9000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"6"</span>,<span class="string">"赵六"</span>,<span class="string">"35"</span>,<span class="string">"男"</span>,<span class="string">"8600"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"7"</span>,<span class="string">"钱七"</span>,<span class="string">"36"</span>,<span class="string">"女"</span>,<span class="string">"9700"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"8"</span>,<span class="string">"孙八"</span>,<span class="string">"40"</span>,<span class="string">"女"</span>,<span class="string">"10000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"9"</span>,<span class="string">"何九"</span>,<span class="string">"40"</span>,<span class="string">"男"</span>,<span class="string">"11000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"10"</span>,<span class="string">"顾十"</span>,<span class="string">"37"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"2"</span></span><br></pre></td></tr></table></figure>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/excel%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE.png" alt="通过csv加载"></p>
-<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/staff_excel.png" alt="staff.xlsx"><br>代码如下：</p>
+<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/excel%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE.png" alt="通过csv加载"></p>
+<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_excel.png" alt="staff.xlsx"><br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDcsv.png" alt="通过Excel加载数据"></p>
+<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDcsv.png" alt="通过Excel加载数据"></p>
 <h1 id="三、读取MySQL数据库表"><a href="#三、读取MySQL数据库表" class="headerlink" title="三、读取MySQL数据库表"></a>三、读取MySQL数据库表</h1><p>在许多应用中，数据很少取自文本文件，因为这种方式存储数据量有限且比较低效。最常见的是基于SQL的关系型数据库如MySQL、MS-SQL、PostgreSQL等。pandas将关系型数据库加载到DataFrame的过程很简单，通过read_sql_query()方法就可以快速的将数据加载。<br>同样是staff的数据集，在mysql中的表结构如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`staff`</span> (</span><br><span class="line">  <span class="string">`staff_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_age`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`staff_gender`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'性别'</span>,</span><br><span class="line">  <span class="string">`staff_salary`</span> <span class="keyword">double</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪水'</span>,</span><br><span class="line">  <span class="string">`staff_depatment_id`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'部门ID'</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
 
-<p>数据如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/staff_mysql.png" alt="staff数据集MySQL记录"><br>代码如下：</p>
+<p>数据如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_mysql.png" alt="staff数据集MySQL记录"><br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:yourpassword@localhost:3306/pandastest'</span>)</span><br><span class="line">sql_query_staff = <span class="string">'select * from staff;'</span></span><br><span class="line">df_staff = pd.read_sql_query(sql_query_staff, engine)</span><br><span class="line">df_staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDMySQL%E6%95%B0%E6%8D%AE.png" alt="加载mysql数据"></p>
-<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/staff_webapi.png" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
+<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDMySQL%E6%95%B0%E6%8D%AE.png" alt="加载mysql数据"></p>
+<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_webapi.png" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">url=<span class="string">'http://127.0.0.1:5000/getstaff'</span></span><br><span class="line">resp=requests.get(url)</span><br><span class="line">data=json.loads(resp.text)</span><br><span class="line">staff=pd.DataFrame(data)</span><br><span class="line">staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDwebAPI%E6%95%B0%E6%8D%AE.png" alt="加载WEBAPI数据"></p>
+<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDwebAPI%E6%95%B0%E6%8D%AE.png" alt="加载WEBAPI数据"></p>
 <p>至此，通过staff测试数据集介绍了pandas的常用多种类型数据源的加载，包括csv、excel、mysql、web API。可以看出pandas对于数据加载非常的方便高效。</p>
 <p>全部数据集及源代码：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
@@ -3227,7 +3227,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -3324,7 +3324,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -3446,7 +3446,7 @@
         
           
             <p>快过年了，又到了公司年底评级的时候了。今年的评级和往常一下，每个人都要填写公司的民主评议表，给各个同事进行评价打分，然后部门收集起来根据收集上来的评价表进行汇总统计。想想要收集几十号人的评价表，并根据每个人的评价表又要填到Excel中进行汇总计算统计给出每个人的评价，就头大。虽然不是个什么难事，但是是个无脑的细致活。几十个人的评价也得要花大半天的时间来弄，而且搞多了还容易搞错。如是就想起干脆用Python写个小程序自动来处理这些脏活累活，评级年年都要评，每年都可以用。</p>
-<p>要做的事情就是读放到某个文件夹中的word文档中的评价表格，根据表格内容进行处理，然后汇总所有的表格数据，根据计算规则，算出每个人的评分，在根据评分计算每个人的评价。汇总后写入Excel中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220120/word2excle.png" alt="处理Word解析、汇总、统计写入Excel"></p>
+<p>要做的事情就是读放到某个文件夹中的word文档中的评价表格，根据表格内容进行处理，然后汇总所有的表格数据，根据计算规则，算出每个人的评分，在根据评分计算每个人的评价。汇总后写入Excel中。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220120/word2excle.png" alt="处理Word解析、汇总、统计写入Excel"></p>
 <p>不可否认用Python来实现这样的事情真的是太方便了，人生苦短我用Python。<br>我是用的python的docx包来处理word，用pandas来处理数据并写入excel</p>
 <h1 id="一、首先导入包"><a href="#一、首先导入包" class="headerlink" title="一、首先导入包"></a>一、首先导入包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install docx</span><br><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
 <p>pandas写excel依赖openpyxl包所以也到导入</p>
@@ -3475,7 +3475,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           

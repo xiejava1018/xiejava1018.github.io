@@ -140,22 +140,22 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/73474fe7/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。 一、Django邮件配置用Django发送邮件需要告诉你的邮件服务器">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/2_%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/3_%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/4_QQ%E9%82%AE%E7%AE%B1%E8%AE%BE%E7%BD%AESMTP%E6%9C%8D%E5%8A%A1.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/5_QQ%E9%82%AE%E7%AE%B1%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/6_QQ%E9%82%AE%E7%AE%B1%E7%94%9F%E6%88%90%E6%8E%88%E6%9D%83%E7%A0%81.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/7_QQ%E9%82%AE%E7%AE%B1%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/8_%E5%8F%91%E9%80%81%E9%82%AE%E7%AE%B1%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/2_%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/3_%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/4_QQ%E9%82%AE%E7%AE%B1%E8%AE%BE%E7%BD%AESMTP%E6%9C%8D%E5%8A%A1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/5_QQ%E9%82%AE%E7%AE%B1%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/6_QQ%E9%82%AE%E7%AE%B1%E7%94%9F%E6%88%90%E6%8E%88%E6%9D%83%E7%A0%81.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/7_QQ%E9%82%AE%E7%AE%B1%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/8_%E5%8F%91%E9%80%81%E9%82%AE%E7%AE%B1%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-12-30T06:57:46.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:46:31.422Z">
+<meta property="article:modified_time" content="2024-03-27T06:54:36.870Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png">
 
 
 
@@ -373,7 +373,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -489,20 +489,20 @@
 <blockquote>
 <p> <code>注意EMAIL_HOST_PASSWORD这里不能用你邮箱账号的密码，而要用申请的设备授权码。</code></p>
 </blockquote>
-<h3 id="126邮箱"><a href="#126邮箱" class="headerlink" title="126邮箱"></a>126邮箱</h3><p>进入到邮箱配置界面，点击“POP3/SMTP/IMAP”，注意要开启SMTP。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png" alt="126邮箱配置界面"></p>
-<p>授权码是用于登录第三方邮件客户端的专用密码，点击”新增授权密码”，降会弹出一个账号安全验证，扫描后可以快速的发短信。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/2_%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png" alt="账号安全验证界面"></p>
-<p>用你的注册手机发完短信后点击”我已发送”就会弹出一个授权码的窗口，要把这个授权码记下来，这个窗口只显示一次。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/3_%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83.png" alt="授权码显示界面"></p>
+<h3 id="126邮箱"><a href="#126邮箱" class="headerlink" title="126邮箱"></a>126邮箱</h3><p>进入到邮箱配置界面，点击“POP3/SMTP/IMAP”，注意要开启SMTP。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png" alt="126邮箱配置界面"></p>
+<p>授权码是用于登录第三方邮件客户端的专用密码，点击”新增授权密码”，降会弹出一个账号安全验证，扫描后可以快速的发短信。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/2_%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png" alt="账号安全验证界面"></p>
+<p>用你的注册手机发完短信后点击”我已发送”就会弹出一个授权码的窗口，要把这个授权码记下来，这个窗口只显示一次。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/3_%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83.png" alt="授权码显示界面"></p>
 <h3 id="QQ邮箱"><a href="#QQ邮箱" class="headerlink" title="QQ邮箱"></a>QQ邮箱</h3><p>进入到QQ邮箱WEB界面后点击“设置”，点击“邮件设置”的“账户”页签拉到“账户安全”处就可以看到相关的SMTP服务信息</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/4_QQ%E9%82%AE%E7%AE%B1%E8%AE%BE%E7%BD%AESMTP%E6%9C%8D%E5%8A%A1.png" alt="QQ邮箱配置界面"></p>
-<p>点击“生成授权码”，将弹出验证密保的界面。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/5_QQ%E9%82%AE%E7%AE%B1%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png" alt="验证密保界面"></p>
-<p>根据提示发送短信后，点击我已发送，将会弹出生成授权码的界面显示授权码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/6_QQ%E9%82%AE%E7%AE%B1%E7%94%9F%E6%88%90%E6%8E%88%E6%9D%83%E7%A0%81.png" alt="授权码生成界面"></p>
-<p>如果需要SSL加密方式，可以进一步查看服务商的SMTP服务说明<br>如QQ邮箱的服务说明 <a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331" target="_blank" rel="noopener">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=331</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/7_QQ%E9%82%AE%E7%AE%B1%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png" alt="服务说明界面"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/4_QQ%E9%82%AE%E7%AE%B1%E8%AE%BE%E7%BD%AESMTP%E6%9C%8D%E5%8A%A1.png" alt="QQ邮箱配置界面"></p>
+<p>点击“生成授权码”，将弹出验证密保的界面。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/5_QQ%E9%82%AE%E7%AE%B1%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png" alt="验证密保界面"></p>
+<p>根据提示发送短信后，点击我已发送，将会弹出生成授权码的界面显示授权码。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/6_QQ%E9%82%AE%E7%AE%B1%E7%94%9F%E6%88%90%E6%8E%88%E6%9D%83%E7%A0%81.png" alt="授权码生成界面"></p>
+<p>如果需要SSL加密方式，可以进一步查看服务商的SMTP服务说明<br>如QQ邮箱的服务说明 <a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331" target="_blank" rel="noopener">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=331</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/7_QQ%E9%82%AE%E7%AE%B1%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png" alt="服务说明界面"></p>
 <p>看到使用SSL，端口号是465或587</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment">#QQ邮箱的smtp服务器</span></span><br><span class="line">EMAIL_PORT = <span class="number">465</span>           <span class="comment">#端口为465或587</span></span><br><span class="line">EMAIL_USE_SSL = <span class="literal">True</span>    <span class="comment">#SSL加密方式设置为True</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@qq.com'</span>     <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="二、测试发送邮件"><a href="#二、测试发送邮件" class="headerlink" title="二、测试发送邮件"></a>二、测试发送邮件</h2><p>可以用django的环境在shell中测试。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">from django.core.mail import send_mail</span><br><span class="line">send_mail(<span class="string">'test'</span>,<span class="string">'this is test mail'</span>,<span class="string">'yourmail@qq.com'</span>,[<span class="string">'yourmail@126.com'</span>,<span class="string">'yormail@qq.com'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/8_%E5%8F%91%E9%80%81%E9%82%AE%E7%AE%B1%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20221230/8_%E5%8F%91%E9%80%81%E9%82%AE%E7%AE%B1%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
 <p>如果反回1就表示发送成功了, 查收邮件到达。</p>
 <p>如果发送不成功，请仔细核对邮箱服务的相关配置，一般来说与django无关。</p>
 <hr>
@@ -511,7 +511,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

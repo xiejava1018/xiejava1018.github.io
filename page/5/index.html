@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -483,23 +483,23 @@
           
             <p>做数据分析很大一部分工作量都是在对数据处理，因为数据来源的质量问题，不能保证所有的数据都是正常的。对于数据分析和处理来说pandas无疑是常用的利器。下面通过一个实例来用pandas对波形异常数据进行实战处理。</p>
 <h2 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">df_data=pd.read_csv(<span class="string">'data\HRTrend测试波形.csv'</span>)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231218/1_%E5%8E%9F%E5%A7%8B%E6%B3%A2%E5%BD%A2%E6%95%B0%E6%8D%AE.png" alt="原始波形数据"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231218/1_%E5%8E%9F%E5%A7%8B%E6%B3%A2%E5%BD%A2%E6%95%B0%E6%8D%AE.png" alt="原始波形数据"></p>
 <p>从csv导入的数据是文本字符串类型的，用《<a href="http://xiejava.ishareread.com/posts/9d6f73eb/" target="_blank" rel="noopener">Python将列表中的数据写入csv并正确读取解析</a>》中介绍的方法将文本数据转成列表。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str2list</span><span class="params">(str)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> np.fromstring(str[<span class="number">1</span>:<span class="number">-1</span>], sep=<span class="string">' '</span>)</span><br><span class="line"></span><br><span class="line">df_data[<span class="string">'HRTrend'</span>]=df_data[<span class="string">'HRTrend'</span>].apply(str2list)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231218/2_%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AClist%E5%90%8E%E7%9A%84%E6%B3%A2%E5%BD%A2%E6%95%B0%E6%8D%AE.png" alt="文本字符串转list后的波形数据"><br>用plt查看图形</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231218/2_%E6%96%87%E6%9C%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AClist%E5%90%8E%E7%9A%84%E6%B3%A2%E5%BD%A2%E6%95%B0%E6%8D%AE.png" alt="文本字符串转list后的波形数据"><br>用plt查看图形</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig,axes = plt.subplots(<span class="number">3</span>,<span class="number">4</span>,figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        axes[x,y].plot(df_data[<span class="string">'HRTrend'</span>][i])</span><br><span class="line">        i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231218/3_%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%B3%A2%E5%BD%A2.png" alt="异常数据波形"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231218/3_%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%B3%A2%E5%BD%A2.png" alt="异常数据波形"></p>
 <p>从图形上看出现了异常。我们抽一个数据进行查看，发现前后有很多空值，并且在数据中也存在缺失值。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df_data[<span class="string">'HRTrend'</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231218/4_%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E5%AE%9E%E4%BE%8B.png" alt="异常数据实例"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231218/4_%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E5%AE%9E%E4%BE%8B.png" alt="异常数据实例"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(df_data[<span class="string">'HRTrend'</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231218/5_%E5%BC%82%E5%B8%B8%E5%9B%BE%E5%BD%A2%E5%AE%9E%E4%BE%8B.png" alt="异常图形实例"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231218/5_%E5%BC%82%E5%B8%B8%E5%9B%BE%E5%BD%A2%E5%AE%9E%E4%BE%8B.png" alt="异常图形实例"></p>
 <p>用plt画出图形，可以看到因为有缺失值所以图形并不连续。</p>
 <h2 id="异常数据处理"><a href="#异常数据处理" class="headerlink" title="异常数据处理"></a>异常数据处理</h2><p>为了更好的展示图像，为以后的数据分析准备数据，我们需要将前后的空值去掉，对于中间存在的异常值我们可以用前值或后值进行填充。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义一个方法，先将空值用0填充，然后去首尾的0，再将中间存在异常的值用前值填充。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ruledata</span><span class="params">(df_cloumn)</span>:</span></span><br><span class="line">    ps=pd.Series(df_cloumn).fillna(<span class="number">0</span>) <span class="comment">#先将为空值用0填充</span></span><br><span class="line">    values=pd.Series(np.trim_zeros(ps)).replace(to_replace=<span class="number">0</span>, method=<span class="string">'ffill'</span>).values <span class="comment">#去首尾0,然后用异常值填充</span></span><br><span class="line">    <span class="keyword">return</span> values</span><br><span class="line">df_data[<span class="string">'rule_HRTrend'</span>]=df_data[<span class="string">'HRTrend'</span>].apply(ruledata) <span class="comment">#将异常数据处理的方法进行应用处理异常值</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig,axes = plt.subplots(<span class="number">3</span>,<span class="number">4</span>,figsize=(<span class="number">12</span>,<span class="number">4</span>))</span><br><span class="line">i=<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        axes[x,y].plot(df_data[<span class="string">'rule_HRTrend'</span>][i])</span><br><span class="line">        i=i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231218/6_%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E6%AD%A3%E5%B8%B8%E5%9B%BE%E5%BD%A2.png" alt="异常数据处理后的正常图形"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231218/6_%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%90%8E%E7%9A%84%E6%AD%A3%E5%B8%B8%E5%9B%BE%E5%BD%A2.png" alt="异常数据处理后的正常图形"></p>
 <p>最后可以发现经过异常值修复后图形变得正常连续了。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -507,7 +507,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -604,7 +604,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -730,26 +730,26 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>]]]</span><br></pre></td></tr></table></figure>
 
 <h2 id="通过pandas将数据写入csv"><a href="#通过pandas将数据写入csv" class="headerlink" title="通过pandas将数据写入csv"></a>通过pandas将数据写入csv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">filename = <span class="string">'data\pd_data.csv'</span></span><br><span class="line">df.to_csv(filename, index=<span class="literal">False</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p>
 <p>我们对原始的数据中的分数Score字段进行求和统计总分TotalScore</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'TotalScore'</span>]=df[<span class="string">'Score'</span>].apply(sum)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p>
 <h2 id="通过pandas将csv文件中的数据读出"><a href="#通过pandas将csv文件中的数据读出" class="headerlink" title="通过pandas将csv文件中的数据读出"></a>通过pandas将csv文件中的数据读出</h2><p>用pandas将csv文件将数据读出也是非常方便的一行代码就可以搞定</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_read_csv=pd.read_csv(filename)</span><br><span class="line">df_read_csv</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p>
 <p>但是会发现从csv文件中读出数据后形成的dataframe数据集对数据中的分数Score字段进行求和统计总分TotalScore会报错！</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_read_csv[<span class="string">'TotalScore'</span>]=df_read_csv[<span class="string">'Score'</span>].app</span><br><span class="line"></span><br><span class="line">TypeError: unsupported operand type(s) <span class="keyword">for</span> +: <span class="string">'int'</span> <span class="keyword">and</span> <span class="string">'str'</span></span><br></pre></td></tr></table></figure>
 
 <p>原因是原数据中Score字段中的数据是list但是报错至文件读出来后这个字段变成了字符串，字符串不能求和。</p>
 <p><strong>解决方案</strong><br>将字段中为字符串的值进行转换，转换成list，numpy提供了string转list的方法，当然也可以自己写。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeArray</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="comment">#return [int(item) for item in text[1:-1].split(',')]  #将字串转换成列表</span></span><br><span class="line">    <span class="keyword">return</span> np.fromstring(text[<span class="number">1</span>:<span class="number">-1</span>], sep=<span class="string">','</span>)  <span class="comment">#用numpy提供的方法将字串转换成列表</span></span><br><span class="line"></span><br><span class="line">df_read_csv[<span class="string">'Score'</span>]=df_read_csv[<span class="string">'Score'</span>].apply(makeArray) <span class="comment">#将Score由字符串转成列表</span></span><br><span class="line">df_read_csv[<span class="string">'TotalScore'</span>]=df_read_csv[<span class="string">'Score'</span>].apply(sum)</span><br><span class="line">df_read_csv</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p>
 <p>可以看到这下Score字段可以正常的进行求和统计总分TotalScore了。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a><br> <center> </p>
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -846,7 +846,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -958,7 +958,7 @@
           
             <p>随着社会的进步和技术的发展，以互联网产业化、人工智能等为代表的第四次工业革命席转全球，人工智能技术如火如荼，将整个世界推入了智能化时代。有人说石油是现在工业的血液，那么芯片就是现代工业的大脑。芯片作为现代工业的大脑，它们被广泛应用于各种电子设备、通信、计算机、人工智能等领域。在现代电子设备中发挥着核心的作用。芯片可以控制和操作各种电子设备，执行复杂的运算和数据处理任务，实现各种智能化的功能。随着科技的进步和数字化转型的加速，芯片在各个领域的应用越来越广泛，从计算机、手机、汽车到航空航天、医疗、国防等各个领域，都离不开芯片的支持和推动，半导体芯片在现代技术和工业中的重要性无法被低估。</p>
 <p>近年来在中美贸易战中，芯片起到了关键的战略性作用。在中美贸易战期间，半导体芯片成为了贸易争端的一个焦点和核心议题。2018年4月开始，美国政府针对我国发动了一场以芯片为核心的科技战，我们可以把之称为芯片战争。</p>
-<p>《芯片战争》是一部从企业竞争和国力较量的角度讲述全球芯片产业发展历程的书籍。全书分上部全球芯风云和下部中国芯势力，上部主要讲述了全球芯片产业的发展史和芯片产业链的变迁，下部主要讲述了中国芯片的崛起与芯片产业发展的最新动态。作者余盛是国内战略咨询专家、消费品营销专家及财经作家。这本书是作者继《手机战争》之后关于信息产业领域的第二部力作，目前豆瓣评分是8.6分。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231202/%E8%8A%AF%E7%89%87%E6%88%98%E4%BA%89.png" alt="在这里插入图片描述"></p>
+<p>《芯片战争》是一部从企业竞争和国力较量的角度讲述全球芯片产业发展历程的书籍。全书分上部全球芯风云和下部中国芯势力，上部主要讲述了全球芯片产业的发展史和芯片产业链的变迁，下部主要讲述了中国芯片的崛起与芯片产业发展的最新动态。作者余盛是国内战略咨询专家、消费品营销专家及财经作家。这本书是作者继《手机战争》之后关于信息产业领域的第二部力作，目前豆瓣评分是8.6分。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231202/%E8%8A%AF%E7%89%87%E6%88%98%E4%BA%89.png" alt="在这里插入图片描述"></p>
 <h2 id="什么是芯片"><a href="#什么是芯片" class="headerlink" title="什么是芯片"></a>什么是芯片</h2><p>芯片，也被称为集成电路（Integrated Circuit，IC）或微芯片，是一种将多个电子元件（如晶体管、电阻、电容等）集成到一个小而紧凑的半导体片上的技术和产品。现代芯片可以包含数十亿个这样的元件，它们通过复杂的制造过程被制作在一块硅晶圆上。这个过程包括设计、掩模制作、光刻、蚀刻、沉积和测试等多个步骤。最终得到的芯片具有各种功能，例如处理数据（如CPU）、存储信息（如RAM、ROM）、或者进行信号放大和转换（如运算放大器、ADC/DAC）。芯片的应用非常广泛，涵盖了几乎所有的电子设备，从计算机和手机到家用电器、汽车、医疗设备甚至军事装备。由于其体积小、耗电少、成本低、速度快等特点，芯片对于推动科技进步和现代化生活起到了至关重要的作用。</p>
 <h2 id="芯片的发展历程"><a href="#芯片的发展历程" class="headerlink" title="芯片的发展历程"></a>芯片的发展历程</h2><p>集成电路（芯片）在其早期发展阶段受到了美国国防工业的支持和推动。20世纪中叶，随着冷战的升温，美国政府和军方对于新技术的需求增加，特别是对于更小型化、更高效和更可靠的电子设备和计算机系统的需求。集成电路的发展为解决这些需求提供了重要支持。在这一时期，美国国防部和一些政府机构积极支持了集成电路技术的研究和发展。例如，1958年美国国家航空航天局（NASA）成立时，其推动了一系列技术创新，并且在航天器和计算机系统中广泛采用了集成电路。此外，军方对于集成电路在军事通信、导航系统和计算机技术中的应用也给予了关注和资金支持。<br>芯片的发展历程可以追溯到20世纪中叶，经历了几个阶段的演变。以下是芯片发展的主要历史阶段：</p>
 <ul>
@@ -1012,7 +1012,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1109,7 +1109,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -1230,7 +1230,7 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231129/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0%E7%A8%B3%E5%AE%9A%E6%80%A7.png" alt="在这里插入图片描述"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231129/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0%E7%A8%B3%E5%AE%9A%E6%80%A7.png" alt="在这里插入图片描述"></p>
 <p>最近网传互联网应用信息系统频繁崩溃，语雀崩完淘宝崩，淘宝崩完滴滴崩，随着业务的发展和技术的进步，对于信息系统的要求也越来越高。信息应用系统为了满足不断增长的用户和业务需求，提高系统的稳定性和扩展性至关重要。</p>
 <p>因为互联网应用面对的是广大的互联网用户，用户和业务需求变化非常快，所以系统既要考虑稳定性又要考虑可扩展性。</p>
 <p>系统稳定性是指系统在面临外部干扰或内部变化时，能够保持其原有状态和功能，避免出现崩溃、失控或不可预测的行为。系统扩展性是指系统在面对增长的业务需求时，能够轻松地扩展其性能、容量和功能的能力。它是一种确保系统能够适应未来发展和变化的重要属性。良好的扩展性可以为企业节省大量的时间和资源，避免在业务增长过程中出现瓶颈。</p>
@@ -1294,7 +1294,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1391,7 +1391,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -1578,7 +1578,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1675,7 +1675,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -1847,7 +1847,7 @@
 <li>MDR： MDR通常需要使用更先进的威胁检测技术，可能包括机器学习、行为分析、沙箱技术等，以及对安全事件的实时响应能力。</li>
 <li>MSS： MSS可能更注重于传统的安全技术，如防火墙、入侵检测系统（IDS）、反病毒软件等，同时也包括SIEM等辅助工具。</li>
 </ul>
-<p>总体而言，MDR更注重在发生安全事件时的实时响应和深度分析，而MSS则更广泛地提供安全服务，包括对整个安全基础设施的管理和监控；MSS主要关注预防，而MDR则更注重检测和响应；MSS的服务宽且浅，MDR的服务窄且深。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231112/MSSP%E4%B8%8EMDR%E7%9A%84%E5%8C%BA%E5%88%AB.png" alt="MSSP与MDR的区别"></p>
+<p>总体而言，MDR更注重在发生安全事件时的实时响应和深度分析，而MSS则更广泛地提供安全服务，包括对整个安全基础设施的管理和监控；MSS主要关注预防，而MDR则更注重检测和响应；MSS的服务宽且浅，MDR的服务窄且深。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231112/MSSP%E4%B8%8EMDR%E7%9A%84%E5%8C%BA%E5%88%AB.png" alt="MSSP与MDR的区别"></p>
 <p>Gartner认为MSS和MDR是交集的关系，MSS尚不会完全覆盖MDR服务。两者之间最大的区别在于，MSS服务在发现威胁或告警的时候，会通知企业自行处置，而MDR则会利用自身的技术去完成对威胁的检测，帮助企业完成响应和处置的工作。不过，随着托管安全服务的发展，这两种服务之间的界限越来越模糊，很多MSS厂商也开始提供MDR服务。</p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -1855,7 +1855,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1952,7 +1952,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -2074,7 +2074,7 @@
         
           
             <p>在当今数字化的世界中，软件开发行业正经历着前所未有的繁荣。从移动应用到大型企业系统，软件构建了现代社会的基础。在IT行业中，文档是一种非常重要的沟通工具。它可以帮助程序员和客户及团队成员之间进行有效的沟通和协作，提高工作效率和项目成功率。然而，许多程序员往往忽视了文档的重要性，认为只要代码写得很好就可以了。但实际上，一个优秀的程序员不仅需要精通编码，还需要具备良好的文档编写能力。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231107/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%80%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%9B%9B%E4%BB%B6%E4%BA%8B.png" alt="程序员最讨厌的四件事"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231107/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%9C%80%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%9B%9B%E4%BB%B6%E4%BA%8B.png" alt="程序员最讨厌的四件事"></p>
 <p>大家都知道文档实际上是软件项目交付物中很重要的一部分，但部分的程序员不愿意写文档，或是应付式的写文档，导致输出的文档质量很差。主要原因包括，有些程序员可能没有意识到文档的价值；一些程序员可能更偏向于技术，对文档编写感到不感兴趣，认为编写文档不如编写代码来得具有挑战性或令人满足；编写文档通常需要额外的时间和精力，程序员可能面临紧迫的项目期限，导致他们倾向于专注于编写代码，而不愿意分配时间来编写文档；有时程序员可能不清楚文档的受众需求，因此不知道要写什么内容，往往输出的文档质量不高。</p>
 <h2 id="一、程序员为什么要写文档"><a href="#一、程序员为什么要写文档" class="headerlink" title="一、程序员为什么要写文档"></a>一、程序员为什么要写文档</h2><ol>
 <li>提高沟通和合作能力</li>
@@ -2139,7 +2139,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2236,7 +2236,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -2358,7 +2358,7 @@
         
           
             <p>5W2H分析法又叫七问分析法，创于二战中美国陆军兵器修理部。发明者用五个以W开头的英语单词和两个以H开头的英语单词进行设问，发现解决问题的线索，寻找发明思路，进行设计构思，从而搞出新的发明项目。5W2H简单、方便，易于理解，实用，富有启发意义，广泛用于企业管理和技术活动，对于决策和执行性的活动措施也非常有帮助，也有助于弥补考虑问题的疏漏。</p>
-<p>这种方法的核心思想是将问题或任务分解为七个关键方面的问题，以确保全面思考和计划。下面是这些关键方面的解释：<br>1.<strong>What (做什么)</strong>: 这个问题涉及明确任务或目标的性质，需要完成什么工作。它帮助定义任务的本质。<br>2.<strong>Why (为什么)</strong>: 这个问题涉及理解为什么需要完成这项任务或目标，它的动机和目的是什么。它帮助明确任务的意义和价值。<br>3.<strong>Who (何人做)</strong>: 这个问题涉及确定谁将执行任务或项目，涉及到相关的利益相关者或责任人。<br>4.<strong>When (何时做)</strong>: 这个问题涉及确定任务或项目的时间表，包括起始时间、截止时间和任何关键时间点。<br>5.<strong>Where (何处做)</strong>: 这个问题涉及确定任务或项目在哪里完成，涉及到地点或地理位置。<br>6.<strong>How (怎么做)</strong>: 这个问题涉及确定任务或项目如何完成，包括所需的方法、工具和流程。<br>7.<strong>How much (多少)</strong>: 这个问题涉及确定任务或项目的成本、资源需求和预算。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231104/5W2H.png" alt="5W2H"></p>
+<p>这种方法的核心思想是将问题或任务分解为七个关键方面的问题，以确保全面思考和计划。下面是这些关键方面的解释：<br>1.<strong>What (做什么)</strong>: 这个问题涉及明确任务或目标的性质，需要完成什么工作。它帮助定义任务的本质。<br>2.<strong>Why (为什么)</strong>: 这个问题涉及理解为什么需要完成这项任务或目标，它的动机和目的是什么。它帮助明确任务的意义和价值。<br>3.<strong>Who (何人做)</strong>: 这个问题涉及确定谁将执行任务或项目，涉及到相关的利益相关者或责任人。<br>4.<strong>When (何时做)</strong>: 这个问题涉及确定任务或项目的时间表，包括起始时间、截止时间和任何关键时间点。<br>5.<strong>Where (何处做)</strong>: 这个问题涉及确定任务或项目在哪里完成，涉及到地点或地理位置。<br>6.<strong>How (怎么做)</strong>: 这个问题涉及确定任务或项目如何完成，包括所需的方法、工具和流程。<br>7.<strong>How much (多少)</strong>: 这个问题涉及确定任务或项目的成本、资源需求和预算。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231104/5W2H.png" alt="5W2H"></p>
 <p>5W2H分析法被广泛用于项目管理、决策分析、计划制定以及解决各种实际问题。这个方法有助于组织和个人更好地理解任务的各个方面，并有效地进行规划和执行。同时，5W2H分析法也可以应用于个人工作和生活中，帮助人们更好地解决问题和做出决策。<br>在项目管理中，5W2H分析法可以应用于以下几个方面：</p>
 <p>1.项目计划制定：在项目计划制定阶段，可以使用5W2H分析法来确保计划的全面性和具体性。例如，可以回答以下问题：</p>
 <ul>
@@ -2444,7 +2444,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2541,7 +2541,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
                 2024-03-27
               </time>
             
@@ -2651,14 +2651,14 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231028/ChatGPTlogo.png" alt="ChatGPT"></p>
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231028/ChatGPTlogo.png" alt="ChatGPT"></p>
 <p>最近大模型通用智能应用持续发酵，各大科技公司都陆续推出了基于通用大模型的智能应用产品，典型的如OpenAI的ChatGPT、微软的BingChat、百度的文心一言、360的智脑、阿里的通义千问等。当然最火的要属于ChatGPT了，从去年年底推出到现在已经有很多人体验了，并惊叹于如今的人工智能已经发展到无所不知、无所不能的程度了。</p>
 <p>市面上推出了很多介绍ChatGPT的书，覆盖了包括使用指南、原理说明、应用介绍等等各个方面。如果从一个以前从没了解过AI技术的小白想去初步了解ChatGPT不妨去看看《ChatGPT：人类新纪元》这本书。这本书是“搜狗输入法之父”，美团顾问，现任美团光年产品经理，被王兴称为“美团光年首席AGI布道师”马占凯马老师所著。虽然目前豆瓣评分6.8不算高，但是我个人认为作为ChatGPT的科普读物，包含了深入浅出的常识性的普及，以及对人工智能相关历史的概述和推演等，高度概括，其中还有很多有趣的故事，很好读，挺有价值的。这本书的定位就是科普，我觉得已经做到了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231028/ChatGPT%E4%BA%BA%E7%B1%BB%E6%96%B0%E7%BA%AA%E5%85%83.png" alt="ChatGPT:人类新纪元"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231028/ChatGPT%E4%BA%BA%E7%B1%BB%E6%96%B0%E7%BA%AA%E5%85%83.png" alt="ChatGPT:人类新纪元"></p>
 <p>经过一段时间对ChatGPT的使用，我逐步认同书中对“ChatGPT：人类新纪元”的提法。ChatGPT，如同人类历史上的单向门——火、文字、造纸、蒸汽机、电和计算机一样，ChatGPT的横空出世让大家看到了通用人工智能达到了崭新新的高度，标志着人类科技进步的又一重大里程碑，预示着我们正步入通用人工智能的新纪元。就像2007年乔布斯发布划时代的苹果智能手机iphone后，各种互联网移动应用蜂拥而至，大家再也离不开智能手机了，从此开始了移动互联的新纪元。</p>
-<h2 id="一、ChatGPT之初体验"><a href="#一、ChatGPT之初体验" class="headerlink" title="一、ChatGPT之初体验"></a>一、ChatGPT之初体验</h2><p>对于一个码农，初接触ChatGPT时就想验证一下ChatGPT的编程功底，最近正好在研究用机器学习来识别心电图。如是问了一下ChatGPT如何用Python写一段心电图识别波形的代码。<br>看一下ChatGPT给我的答案：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231028/ChatGPT-%E4%BB%A3%E7%A0%81.png" alt="ChatGPT代码"></p>
+<h2 id="一、ChatGPT之初体验"><a href="#一、ChatGPT之初体验" class="headerlink" title="一、ChatGPT之初体验"></a>一、ChatGPT之初体验</h2><p>对于一个码农，初接触ChatGPT时就想验证一下ChatGPT的编程功底，最近正好在研究用机器学习来识别心电图。如是问了一下ChatGPT如何用Python写一段心电图识别波形的代码。<br>看一下ChatGPT给我的答案：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231028/ChatGPT-%E4%BB%A3%E7%A0%81.png" alt="ChatGPT代码"></p>
 <p>关键是这段代码稍作调整就可以运行起来。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231028/ChatGPT%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt="chatGPT代码运行结果"><br>看上去效果还不错！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231028/ChatGPT%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C.png" alt="chatGPT代码运行结果"><br>看上去效果还不错！</p>
 <p>这可不是向搜素引擎一样搜出一堆的结果给出一堆的选项让我来选，而是真正的根据我的题意自己生成了一段可以执行的代码！这就有点牛逼了。</p>
 <p>原来一直以为码农毕竟还是干技术活的，不会像那些从事简单重复劳动的活一样被AI所替代。但是看到ChatGPT给我的答案，又更进一步的加深了我的焦虑。本来就很卷的IT行业，还要和通用人工智能卷，估计用不了多久码农这个职业就会要消失了。</p>
 <h2 id="二、ChatGPT与搜索引擎"><a href="#二、ChatGPT与搜索引擎" class="headerlink" title="二、ChatGPT与搜索引擎"></a>二、ChatGPT与搜索引擎</h2><p>有人认为ChatGPT就是搜索引擎的升级版，输入一些信息机器就给你反馈一些经过精细过滤后的信息。ChatGPT与搜索引擎完全是两类不同的东西。差别就和智能手机与以前的功能手机一样大。</p>
@@ -2666,7 +2666,7 @@
 <p>与传统的AI相比，生成式AI的主要区别在于其学习方式和能力。传统的AI通常依赖于专家知识或编程指令来执行特定的任务。例如，一个图像识别系统可能被训练成只识别特定的图像类型，如猫或狗。然而，一旦这个系统遇到它从未见过的图像，它就无法做出正确的判断。</p>
 <p>相反，生成式AI可以通过自我学习和适应来提高其性能。即使它从未见过某种类型的数据，它也可以通过分析大量的类似数据来学习如何处理这种数据。例如，ChatGPT通过海量的数据学习可以自动生成给出符合题意的答案。</p>
 <p>而搜索引擎甚至连传统的AI都算不上，只是通过大数据的搜索算法将符合搜索条件的信息查询后返回到你，你还要根据自己的判断去识别和删选有用的信息。尤其是有了竞价模型后，可能搜索引擎给你的数据排名前几的都是对你来说没有什么用的，只是出价高的几个。</p>
-<h2 id="三、机器学习与人类学习"><a href="#三、机器学习与人类学习" class="headerlink" title="三、机器学习与人类学习"></a>三、机器学习与人类学习</h2><p>机器学习其实是和人类学习是一样的。基本原理如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231028/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B.png" alt="学习模型"></p>
+<h2 id="三、机器学习与人类学习"><a href="#三、机器学习与人类学习" class="headerlink" title="三、机器学习与人类学习"></a>三、机器学习与人类学习</h2><p>机器学习其实是和人类学习是一样的。基本原理如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231028/%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B.png" alt="学习模型"></p>
 <p>机器学习的输入是海量的数据，通过模型的训练从数据中学习，生成并输出新的数据，根据输出的效果的进行评估和反馈来调整模型参数使模型的学习效果达到最优。</p>
 <p>人类学习也是一样的，平时我们努力大量的看书、看视频、看其他资料、与人交流，其实都是在获取信息，将信息输入至大脑后，大脑经过思考输出结果，结果是对世界的认知、对人生的看法、对专业知识的领悟、输出一篇论文、输出一次演讲等等。也是对自己输出的结果进行评估和反馈来强化学习效果。</p>
 <p>比如：学生通过大量的阅读和做题作为输入来学习知识，通过考试来评估学习效果，根据考试评估的结果来调整自己的学习方法策略来取得更好的学习成绩。</p>
@@ -2674,7 +2674,7 @@
 <h2 id="四、智能涌现与从量变到质变"><a href="#四、智能涌现与从量变到质变" class="headerlink" title="四、智能涌现与从量变到质变"></a>四、智能涌现与从量变到质变</h2><p>“智能涌现” 是一个涵盖广泛领域的概念，它描述了在复杂系统中，智能行为或性能如何从简单组件或个体之间的互动中产生或 “涌现” 出来。在机器学习中，神经网络和深度学习模型可以通过大量的神经元之间的互连来实现智能任务。</p>
 <p>在ChatGPT惊人的智能表现背后，就发生了智能涌现的现象。涌现现象是极为复杂的，因为复杂性科学就是复杂的，复杂是其基本特征。通俗的将就是当数据和模型参数达到一定的数量级后模型涌现出了新的完成任务的能力。</p>
 <p>目前，在大模型的智能涌现方面，有三个结论。<br>第一，我们不知道什么时候会涌现某种新能力；<br>第二，我们不知道到一定规模时会涌现哪一种新的能力。<br>第三，我们唯一知道的是，只要数据量足够大，训练得足够深，一定会有涌现发生。</p>
-<p>于是，我不禁又要拿出这张图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231028/%E4%BB%8E%E9%87%8F%E5%8F%98%E5%88%B0%E8%B4%A8%E5%8F%98.png" alt="在这里插入图片描述"></p>
+<p>于是，我不禁又要拿出这张图：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231028/%E4%BB%8E%E9%87%8F%E5%8F%98%E5%88%B0%E8%B4%A8%E5%8F%98.png" alt="在这里插入图片描述"></p>
 <p>这张图可以理解为从量变到质变的过程。在人类学习的过程中，学任何东西，如：学习英语，只要输入足够多通过<strong>大量的听说读写（数据量足够大）</strong>，<strong>投入的时间精力够多（训练得足够深）</strong>，一定会有拐点（涌现）发生，<strong>一定会成功</strong>，就像顿悟后开了挂一样。</p>
 <p><strong>既然基于大模型的通用人工智能不可避免的来了，就让我们一起拥抱吧！</strong></p>
 <hr>
@@ -2683,7 +2683,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2780,7 +2780,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -2909,18 +2909,18 @@
 <p><strong>1. 实现多场景剧本编排能力</strong><br>安全编排功能实现自动化响应处置，核心能力是要实现多场景的剧本灵活编排能力，通过可视化拖拽编排方式快速创建剧本，为安全处置提供上下文，避免传统运维要在不同页面间进行跳转切换，降低安全事件处置复杂度。剧本一旦创建成功启用，后续触发剧本的事件即可通过自动化方式进行处置，降低了不同部门间协同沟通、流程流转消耗的成本。解决现有安全事件处置依靠电话、邮件进行信息传递，依靠人工进行威胁处置慢的问题。</p>
 <p><strong>2.具备灵活的设备对接能力</strong><br>打通告警、事件与安全处置设备之间已有的壁垒，消除异构环境下异构设备无法协同、联动的问题，提供标准化的处置派单接口，实现设备的处置联动。具备低代码开发和编排能力使安全设备快速的融入到剧本流程进行灵活调度。解决异构安全设备间集成、联动处置的问题，实现多源异构安全设备的联动处置能力提升。</p>
 <p><strong>3. 基于实际运营的知识积累</strong><br>实现在安全运营过程的统一的数字化、标准化的安全运营管理流程，在实际的运营过程中将经验固化成剧本流程，以应对繁杂和重复的工作，降低安全事件处置管理成本，降低安全人员工作强度和工作经验能力等的高要求；记录安全事件数据，以可视化的形成评估处理结果，减少人员差异带来的不可控性，并减少对新安全运维分析人员的培训成本。</p>
-<h2 id="三、SOAR的核心能力"><a href="#三、SOAR的核心能力" class="headerlink" title="三、SOAR的核心能力"></a>三、SOAR的核心能力</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231018/SOAR%E6%9E%B6%E6%9E%84.png" alt="SOAR整体架构"></p>
+<h2 id="三、SOAR的核心能力"><a href="#三、SOAR的核心能力" class="headerlink" title="三、SOAR的核心能力"></a>三、SOAR的核心能力</h2><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231018/SOAR%E6%9E%B6%E6%9E%84.png" alt="SOAR整体架构"></p>
 <p>安全事件处置通过安全编排与自动化响应SOAR模块实现，SOAR对接安全大数据分析引擎分析的产生的安全事件或其他如态势感知、日志系统等安全设备的安全事件，通过灵活的剧本编排实现自动的派发工单、自动化分析处置、联动设备响应，实现数据交互与业务同步，促进人、工具、流程的协同，进一步推动自动化安全运营能力落地。SOAR应该具备三大核心能力，编排、自动化、响应，参见<a href="https://blog.csdn.net/fullbug/article/details/121089374" target="_blank" rel="noopener">《认识SOAR-安全事件编排自动化响应》</a></p>
 <h3 id="编排"><a href="#编排" class="headerlink" title="编排"></a>编排</h3><p>SOAR中的关键词是编排，这是在使用自动化和响应之前必须构建的关键组件。SOAR的编排体现的是一种协调和决策的能力，针对复杂性的安全事件，通过编排将分析过程中各种复杂性分析流程和处理平台进行组合。分析涉及多种数据或平台，如SIEM分析平台、漏洞管理平台、情报数据、资产数据等。处置响应的编排也涉及到很多平台或设备，如EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙等。仅仅以技术为中心的安全保障已不再能满足现状，将人员和流程的编排才能保证安全流程真正高效的运行。SOAR的终极目标就是实现技术、流程、人员的无缝编排。</p>
 <h3 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h3><p>SOAR的自动化体现在三个方面，面对需要处理的安全事件能够根据策略自动选择编排的剧本、自动执行剧本的操作流程、根据决策结果自动联动设备进行防护阻断等行动策略。它允许剧本（常称为Playbooks）在安全流程的部分或全部内容上执行多个任务，将线性剧本串联起来。虽然线性剧本可能更容易创建，但只适用于处理决策需求较少的工作流。编排和自动化比线性剧本的最大优势就是其灵活性，为支持全自动化和半自动化的决策，需要更加灵活的工作流和执行剧本。SOAR能够识别这些决策模式，并基于以往事件中的执行操作，自动推荐新事件的剧本、执行剧本操作流程，自动化分析决策，根据决策结果自动下发防护阻断的行动策略。</p>
 <h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><p>安全事件响应包括告警管理、工单管理、案件管理等功能。告警管理的核心不仅是对告警安全事件的收集、展示和响应，更强调告警分诊和告警调查。只有通过告警分诊和告警调查才能提升告警的质量，减少告警的数量。工单管理适用于中大型的安全运维团队协同化、流程化地进行告警处置与响应，并且确保响应过程可记录、可度量、可考核。案件管理是现代安全事件响应管理的核心能力。案件管理帮助用户对一组相关的告警进行流程化、持续化的调查分析与响应处置，并不断积累该案件相关的痕迹物证 (IOC) 和攻击者的战技过程指标信息 (TTP)。多个案件并行执行，从而持续化地对一系列安全事件进行追踪处置。</p>
-<h2 id="四、SOAR的安全运营实战"><a href="#四、SOAR的安全运营实战" class="headerlink" title="四、SOAR的安全运营实战"></a>四、SOAR的安全运营实战</h2><p>SOAR的安全运营实战，是通过编排好的安全剧本实现人员、流程、工具与知识的贯穿，实现跨区域、跨组织、跨业务、跨设备（系统）安全事件高效运营。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231018/SOAR%E6%B5%81%E7%A8%8B.png" alt="整体流程"></p>
+<h2 id="四、SOAR的安全运营实战"><a href="#四、SOAR的安全运营实战" class="headerlink" title="四、SOAR的安全运营实战"></a>四、SOAR的安全运营实战</h2><p>SOAR的安全运营实战，是通过编排好的安全剧本实现人员、流程、工具与知识的贯穿，实现跨区域、跨组织、跨业务、跨设备（系统）安全事件高效运营。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231018/SOAR%E6%B5%81%E7%A8%8B.png" alt="整体流程"></p>
 <p>在HW及日常安全运营工作中，针对安全设备的统一监控处置、员工办公电脑的安全告警处置、HW重保安全事件处置等典型场景已得到充分实战化应用，通过安全事件的统一管理，从防护、检测、响应、处置等维度，提高了处置效率。可以在实际的安全运营过程中不断的丰富和优化剧本流程。有效支撑网络安全事件运营工作持续向前发展。</p>
 <h3 id="场景1：员工电脑中毒安全事件场景"><a href="#场景1：员工电脑中毒安全事件场景" class="headerlink" title="场景1：员工电脑中毒安全事件场景"></a>场景1：员工电脑中毒安全事件场景</h3><p>员工电脑中毒安全事件主要是由员工办公终端电脑EDR检测出的病毒、木马后门等恶意软件，SOAR平台对EDR的告警数据进行统一的采集分析，形成场景化事件后通过SOAR进行告警通知，敦促员工对办公电脑进行杀毒处置。</p>
 <ul>
 <li>业务流程<br>该流程为自动化的流程，SOAR平台接收到员工中毒的安全事件信息后，自动发邮件或发短信通知员工，员工收到告警通知信息后对自己的办公终端电脑进行杀毒处理。如果三天内还没有处理，将继续发邮件或短信进行通知告警。</li>
 </ul>
-<p>具体实战剧本流程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231018/%E5%8A%9E%E5%85%AC%E7%94%B5%E8%84%91%E4%B8%AD%E6%AF%92%E5%A4%84%E7%BD%AE%E6%B5%81%E7%A8%8B.png" alt="员工电脑中毒安全事件"></p>
+<p>具体实战剧本流程如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231018/%E5%8A%9E%E5%85%AC%E7%94%B5%E8%84%91%E4%B8%AD%E6%AF%92%E5%A4%84%E7%BD%AE%E6%B5%81%E7%A8%8B.png" alt="员工电脑中毒安全事件"></p>
 <ul>
 <li>人员配置</li>
 </ul>
@@ -2945,7 +2945,7 @@
 <ul>
 <li>业务流程<br>1）一线监控人员发现在SOC平台上有触发的安全事件后，根据事件携带的原始安全日志信息进行初步研判分析；<br>2）如一线人员研判该事件为误报事件，则直接处置完成，同时记录事件相关的攻击特征值，进一步完善白名单；<br>3）如一线人员研判该事件为高风险事件，则将攻击IP地址报送至网络安全运营部安全员，由安全员进行IP地址封堵操作；<br>4）当网络安全运营部处置完毕后，通知一线监控人员结束该业务流程，最终形成闭环机制；<br>5）如一线人员无法研判该事件严重程度，则上升二线安全分析人员进行深入研判，二线安全分析人员将研判最终结果反馈至一线监控人员，再由一线监控人员根据实际情况选择下一步处置动作。</li>
 </ul>
-<p>具体实战剧本流程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231018/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E4%BA%8B%E4%BB%B6%E7%9B%91%E6%8E%A7%E5%89%A7%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="安全事件监控处置"></p>
+<p>具体实战剧本流程如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231018/%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E4%BA%8B%E4%BB%B6%E7%9B%91%E6%8E%A7%E5%89%A7%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="安全事件监控处置"></p>
 <ul>
 <li>人员配置</li>
 </ul>
@@ -2982,7 +2982,7 @@
 <ul>
 <li>业务流程<br>1）监控人员发现安全事件后，根据事件携带的原始安全日志信息进行初步研判分析；<br>2）如研判组通过溯源研判该事件为误报事件，则直接处置完成，同时记录事件相关的攻击特征值，进一步完善白名单；<br>3）如研判组研判该事件为高风险事件，则转处置组进行处置，由处置人员进行确定通过插件自动化实现IP地址封堵操作；<br>4）处置组处置完成后进行封堵IP入库，避免被封堵IP的重复告警。</li>
 </ul>
-<p>具体实战剧本流程如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231018/HW%E9%87%8D%E4%BF%9D%E5%AE%89%E5%85%A8%E5%A4%84%E7%BD%AE%E5%89%A7%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="重保HW事件处置流程"></p>
+<p>具体实战剧本流程如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231018/HW%E9%87%8D%E4%BF%9D%E5%AE%89%E5%85%A8%E5%A4%84%E7%BD%AE%E5%89%A7%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="重保HW事件处置流程"></p>
 <ul>
 <li>人员配置</li>
 </ul>
@@ -3026,7 +3026,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           

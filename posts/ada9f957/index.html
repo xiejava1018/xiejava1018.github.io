@@ -140,16 +140,16 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/ada9f957/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。 在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念： 主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/CWPP.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/EDR.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-04-16T06:34:04.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:46:30.297Z">
+<meta property="article:modified_time" content="2024-03-27T06:54:36.779Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
 
 
 
@@ -367,7 +367,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:30+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
                 2024-03-27
               </time>
             
@@ -489,10 +489,10 @@
         <p>随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。</p>
 <p>在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念：</p>
 <p>主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连接到网络的计算机或其他设备，而服务器是提供服务的软件或硬件设备，日常所说的服务器一般是指提供服务的主机。由此可见，主机安全并不是一个产品，而是对应一个需要被保护的位置，主机安全即主机侧的安全保护。</p>
-<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
+<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
 <p>对于一般的应用系统来说，服务器就是提供服务的主机如提供WEB、FTP、数据库等服务的服务器，终端就是访问服务的工作站、个人PC等。</p>
 <h2 id="一、CWPP的定义"><a href="#一、CWPP的定义" class="headerlink" title="一、CWPP的定义"></a>一、CWPP的定义</h2><p> 现代数据中心支持运行在物理设备、虚拟机（VM）、容器以及私有云基础架构中的各种工作负载，并且几乎总是涉及一些在一个或多个公有云基础设施即服务（IaaS）提供商中运行的工作负载。<br><strong>云工作保护平台(Cloud Workload Protection Platform)简称CWPP</strong>，市场定义为基于主机的解决方案，主要满足现代混合数据中心架构中，服务器工作负载的保护要求。它为信息安全领导者提供了一种集成的方式，通过使用单个管理控制台和单一方式表达安全策略来保护这些工作负载，而不用考虑工作负载运行的位置。<br>可以理解成为基于代理（Agent）的底层技术方案，和传统部署在网络边界上的安全产品不一样，CWPP部署在操作系统层，因此可以横跨物理机、公有云、私有云、混合云等多种数据中心环境，部署方式更加灵活、防护层面更加丰富。采用服务端agent+远程控制台的部署模式，agent支持云、物理、混合环境部署，能有效安全加固服务器、抵御黑客攻击和恶意代码。</p>
-<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png" alt="CWPP"></p>
+<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/CWPP.png" alt="CWPP"></p>
 <p>CWPP的核心能力：</p>
 <ul>
 <li>Congurationand  vulnerability management 配置和漏洞管理<br>1.配置，即服务器优化，通过对操作系统进行合理配置，提升操作系统的安全性和抗攻击能力。<br>2.漏洞管理，分为操作系统漏洞管理和应用漏洞管理。目前网络攻击主要是通过web服务器或者web应用漏洞发起，因此CWPP产品要能提供标准化、同时支持制定自定义的web应用漏洞防护策略。</li>
@@ -503,7 +503,7 @@
 <li>Log management and monitoring日志管理和监测<br>要求CWPP产品能提供完整的日志，同时当安全事件发生后，CWPP产品需要关联相关日志最终形成事件IOC，帮助用户回溯攻击过程，快速定位风险点。</li>
 </ul>
 <h2 id="二、EDR的定义"><a href="#二、EDR的定义" class="headerlink" title="二、EDR的定义"></a>二、EDR的定义</h2><p>根据Gartner的定义，<strong>EDR端点检测与响应（Endpoint Detection and Response）简称EDR</strong>是一种集成的终端安全解决方案，它将终端数据的实时连续监控和收集与基于规则的自动响应和分析功能相结合。该术语由Gartner的Anton Chuvakin提出，用于描述新兴的安全系统，用于检测和调查终端上的可疑活动，采用高度自动化使安全团队能够快速识别和响应威胁。完全不同于以往的端点被动防护思路，而是通过云端威胁情报、机器学习、异常行为分析、攻击指示器等方式，主动发现来自外部或内部的安全威胁，并进行自动化的阻止、取证、补救和溯源，从而有效对端点进行防护。</p>
-<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png" alt="EDR"></p>
+<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220416/EDR.png" alt="EDR"></p>
 <ul>
 <li>资产发现：定期通过主动扫描、被动发现、手工录入和人工排查等多种方法收集当前网络中所有软硬件资产，包括全网所有的端点资产和在用的软件名称、版本，确保整个网络中没有安全盲点。</li>
 <li>系统加固：定期进行漏洞扫描、补丁修复、安全策略设置和更新端点软件清单，通过软件白名单限制未经授权的软件运行，通过主机防火墙限制未经授权的服务端口开放，并定期检查和清理内部人员的账号和授权信息。</li>
@@ -577,7 +577,7 @@
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
       
