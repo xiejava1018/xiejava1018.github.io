@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="数据库作为计算机信息系统的核心组成部分，在整个信息系统的构建中起着关键的作用。自20世纪60年代起，数据库技术经过短短几十年的飞速发展，现已成为整个信息系统的核心内容，并得到了广泛的应用。然而，随着数据库系统集中处理大量数据信息的任务日益繁重，其安全问题也日渐突出。 信息安全的关键在于数据的安全，而数据的安全则主要通过数据加密技术来实现。随着网上购物等电子商务的兴起和繁荣，以数据库为代表的信息安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据安全之认识数据库加密系统">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/dc1cceb8/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="数据库作为计算机信息系统的核心组成部分，在整个信息系统的构建中起着关键的作用。自20世纪60年代起，数据库技术经过短短几十年的飞速发展，现已成为整个信息系统的核心内容，并得到了广泛的应用。然而，随着数据库系统集中处理大量数据信息的任务日益繁重，其安全问题也日渐突出。 信息安全的关键在于数据的安全，而数据的安全则主要通过数据加密技术来实现。随着网上购物等电子商务的兴起和繁荣，以数据库为代表的信息安全">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%E4%B8%B2%E8%81%94%E9%83%A8%E7%BD%B2%E5%9B%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%E6%97%81%E8%B7%AF%E4%BB%A3%E7%90%86%E9%83%A8%E7%BD%B2%E5%9B%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-03-15T02:45:24.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:35.369Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="数据安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/dc1cceb8/"/>
+
+
+
+
+
+  <title>数据安全之认识数据库加密系统 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dc1cceb8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据安全之认识数据库加密系统</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-15T10:45:24+08:00">
+                2024-03-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:35+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/dc1cceb8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/dc1cceb8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/dc1cceb8/" class="leancloud_visitors" data-flag-title="数据安全之认识数据库加密系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据库作为计算机信息系统的核心组成部分，在整个信息系统的构建中起着关键的作用。自20世纪60年代起，数据库技术经过短短几十年的飞速发展，现已成为整个信息系统的核心内容，并得到了广泛的应用。然而，随着数据库系统集中处理大量数据信息的任务日益繁重，其安全问题也日渐突出。</p>
+<p>信息安全的关键在于数据的安全，而数据的安全则主要通过数据加密技术来实现。随着网上购物等电子商务的兴起和繁荣，以数据库为代表的信息安全已成为很多企业的共识。越来越多的企业和机构开始重视数据库的数据安全问题，因为一旦数据泄露或遭到非法访问，将可能导致严重的经济损失和声誉损害。</p>
+<p>为了增强普通关系数据库管理系统的安全性，数据库加密系统应运而生。其目的是为了提供一个安全适用的数据库加密平台，对通信和数据库存储的内容实施有效保护。通过采用先进的加密技术和严格的密钥管理策略，数据库加密系统可以确保数据在存储和传输过程中的机密性、完整性和可用性，从而有效地防止数据泄露和非法访问。</p>
+<p>本文让我们一起来认识数据库加密系统</p>
+<h2 id="一、什么是数据库加密系统"><a href="#一、什么是数据库加密系统" class="headerlink" title="一、什么是数据库加密系统"></a>一、什么是数据库加密系统</h2><p>数据库加密系统是一款基于透明加密技术和主动防御机制的数据库防泄漏系统。<br>它主要实现对数据库中的敏感数据加密存储、访问控制增强、应用访问安全、安全审计以及三权分立等功能。通过使用特定的加密算法和密钥管理技术，数据库加密系统能够确保数据在存储和传输过程中的安全性，有效防止明文存储引起的数据泄密、外部黑客攻击以及内部高权限用户的数据窃取。数据库加密系统旨在从根本上解决数据库敏感数据泄漏问题，实现数据的高度安全和应用的完全透明。</p>
+<h2 id="二、数据库加密系统的工作原理"><a href="#二、数据库加密系统的工作原理" class="headerlink" title="二、数据库加密系统的工作原理"></a>二、数据库加密系统的工作原理</h2><p>数据库加密系统的原理主要基于加密技术和密钥管理。其核心目的是确保数据库中存储的敏感数据不被未经授权的人员或程序读取或篡改。以下是数据库加密系统原理的详细解释：</p>
+<ol>
+<li>数据加密<br>数据加密是数据库加密系统的核心功能。它使用特定的加密算法，将数据库中的明文数据（即原始数据）转换成密文数据。这个转换过程依赖于一个或多个密钥，这些密钥是加密算法的输入参数，用于控制加密的强度和复杂性。通过这种方式，即使数据被非法获取，没有正确的密钥也无法解密和读取原始数据。</li>
+<li>密钥管理<br>密钥管理是数据库加密系统中至关重要的环节。它涉及到密钥的生成、存储、分发、更新和销毁等过程。密钥的安全性直接关系到整个加密系统的安全性。因此，密钥管理通常采用多种安全措施，如使用硬件安全模块（HSM）存储密钥、实施密钥的定期更换和备份、以及使用强密码保护密钥文件等。</li>
+<li>透明加密<br>透明加密是数据库加密系统的一个重要特性。它允许应用程序在不需要修改的情况下，对数据库中的敏感数据进行加密和解密操作。这意味着应用程序无需关心数据的加密细节，只需像处理普通数据一样处理加密数据。这种透明性大大简化了加密系统的部署和维护过程。</li>
+<li>访问控制<br>除了数据加密外，数据库加密系统还通常实施严格的访问控制策略。这些策略通过身份验证、授权和审计等手段，确保只有经过授权的用户才能访问和操作数据库中的敏感数据。这有助于防止内部人员滥用权限或外部攻击者入侵数据库。</li>
+</ol>
+<p>数据库加密示意图如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="数据库加密示意图"></p>
+<center>数据库加密示意图</center>
+
+<p>数据库加密系统的原理基于数据加密、密钥管理、透明加密和访问控制等多个方面。这些技术和策略共同确保数据库中的敏感数据得到充分的保护，防止未经授权的访问和泄露。</p>
+<h2 id="三、数据库加密系统的核心功能"><a href="#三、数据库加密系统的核心功能" class="headerlink" title="三、数据库加密系统的核心功能"></a>三、数据库加密系统的核心功能</h2><p>数据库加密系统核心功能包括数据加密、数据解密、权限控制、审计跟踪。</p>
+<ol>
+<li>数据加密：通过对数据库中的敏感数据进行加密，使得即使数据被非法获取，也无法直接读取其内容。</li>
+<li>数据解密：对经过加密的数据进行解密，使其能够被正常访问和使用。通常，只有具有特定权限的用户才能进行解密操作。</li>
+<li>权限管理：增强对数据库访问的控制，确保只有经过授权的用户才能访问特定的数据。</li>
+<li>审计跟踪：记录和跟踪数据库的所有操作，包括谁在何时访问了哪些数据，进行了哪些操作，以便在发生安全问题时进行追溯和审计。</li>
+</ol>
+<h2 id="四、数据库加密系统的特点和优势"><a href="#四、数据库加密系统的特点和优势" class="headerlink" title="四、数据库加密系统的特点和优势"></a>四、数据库加密系统的特点和优势</h2><p>数据库加密系统具有以下特点和优势：</p>
+<ol>
+<li>数据安全性增强：通过数据加密技术，数据库加密系统能够确保敏感数据在存储和传输过程中的安全性。即使数据被非法获取，攻击者也无法直接读取其明文内容，从而防止数据泄露和滥用。</li>
+<li>透明性：数据库加密系统通常设计为对最终用户透明，管理员可以根据需要进行明文和密文的转换工作。这使得用户无需改变原有的操作习惯，同时也降低了系统部署和维护的复杂性。</li>
+<li>独立性：加密系统独立于数据库应用系统，这意味着无需改动数据库应用系统就能实现数据加密功能。这种独立性使得数据库加密系统能够灵活地集成到现有的信息系统中。</li>
+<li>性能影响较小：数据库加密系统通常采用高效的加解密算法和优化的处理流程，以确保在加密数据的同时不会对数据库服务器的性能产生显著影响。这使得系统能够在实际应用中保持较高的响应速度和吞吐量。</li>
+<li>灵活的加密方式：数据库加密系统支持多种加密方式，如字段级加密、记录级加密等，以满足不同场景下的安全需求。此外，系统还可以根据业务需求灵活调整加密策略，以适应数据的变化和新的安全威胁。</li>
+<li>完善的密钥管理：密钥是数据加密和解密的关键。数据库加密系统通常具备完善的密钥管理功能，包括密钥的生成、存储、分发、更新和销毁等。这确保了密钥的安全性和可用性，从而提高了整个加密系统的安全性。</li>
+<li>合规性支持：随着数据保护法规的日益严格，数据库加密系统能够帮助企业满足相关的合规性要求。通过实施数据加密和访问控制等安全措施，系统能够确保数据的合规性存储和使用，避免因违反法规而面临的经济和法律风险。</li>
+</ol>
+<p>数据库加密系统通过增强数据安全性、提供透明性、独立性、较小的性能影响、灵活的加密方式、完善的密钥管理以及合规性支持等特点和优势，为企业和机构提供了一个安全、可靠的数据库环境。</p>
+<h2 id="五、数据库加密系统的部署方式"><a href="#五、数据库加密系统的部署方式" class="headerlink" title="五、数据库加密系统的部署方式"></a>五、数据库加密系统的部署方式</h2><h3 id="1、在线透明部署"><a href="#1、在线透明部署" class="headerlink" title="1、在线透明部署"></a>1、在线透明部署</h3><p>通过在线透明的部署方式将数据库加密系统串接在数据库前，对数据库进行透明加密，提高数据库服务的可用性，部署如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%E4%B8%B2%E8%81%94%E9%83%A8%E7%BD%B2%E5%9B%BE.png" alt="数据库加密系统串联部署图"></p>
+<center>数据库加密系统串联部署图</center>
+
+<h3 id="2、旁路代理模式"><a href="#2、旁路代理模式" class="headerlink" title="2、旁路代理模式"></a>2、旁路代理模式</h3><p>通过旁路部署的方式将数据库透明加密接入到数据库所在网络中，数据库透明加密采用反向代理模式，部署如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%E6%97%81%E8%B7%AF%E4%BB%A3%E7%90%86%E9%83%A8%E7%BD%B2%E5%9B%BE.png" alt="数据库加密系统旁路代理部署图"></p>
+<center>数据库加密系统旁路代理部署图</center>
+
+<h2 id="六、数据库加密系统的应用场景"><a href="#六、数据库加密系统的应用场景" class="headerlink" title="六、数据库加密系统的应用场景"></a>六、数据库加密系统的应用场景</h2><p>数据库加密系统有着广泛的应用场景，主要用于保护敏感数据的安全性和完整性，防止数据泄露和非法访问。以下是一些常见的应用场景：</p>
+<ol>
+<li>金融行业：银行、证券、保险等金融机构在处理客户数据时，涉及大量敏感信息，如个人身份信息、账户信息、交易记录等。数据库加密系统能够确保这些敏感数据在存储和传输过程中的安全，防止被非法获取或篡改。</li>
+<li>医疗领域：医疗机构存储着大量的患者个人信息、病历记录、检查结果等敏感数据。数据库加密系统可以保护这些数据的安全，防止数据泄露和滥用，维护患者的隐私权益。</li>
+<li>政府机构：政府部门在政务处理、人口管理、税务征收等方面积累了大量的公民个人信息和敏感数据。通过数据库加密系统，政府可以确保这些数据的安全存储和合法使用，防止数据被非法获取或滥用。</li>
+<li>电子商务：电商平台涉及大量用户信息、交易数据等敏感信息。数据库加密系统可以保护这些数据的安全，防止黑客攻击和数据泄露，维护电商平台的声誉和用户的信任。</li>
+<li>教育行业：学校和教育机构存储着学生的个人信息、成绩记录、学籍资料等敏感数据。数据库加密系统可以保护这些数据的安全，防止数据被非法访问或篡改，维护教育公平和信息安全。</li>
+</ol>
+<p>数据库加密系统适用于需要保护敏感数据安全的各个领域，确保数据在存储、传输和使用过程中的完整性和机密性。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/dc1cceb8/" title="数据安全之认识数据库加密系统">https://xiejava.gitee.io/posts/dc1cceb8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/" rel="tag"># 数据安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/db2fbb43/" rel="next" title="Python爬取京东商品评价信息实战">
+                <i class="fa fa-chevron-left"></i> Python爬取京东商品评价信息实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/913ab5e4/" rel="prev" title="Python爬取淘宝商品评价信息实战">
+                Python爬取淘宝商品评价信息实战 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是数据库加密系统"><span class="nav-number">1.</span> <span class="nav-text">一、什么是数据库加密系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、数据库加密系统的工作原理"><span class="nav-number">2.</span> <span class="nav-text">二、数据库加密系统的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、数据库加密系统的核心功能"><span class="nav-number">3.</span> <span class="nav-text">三、数据库加密系统的核心功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、数据库加密系统的特点和优势"><span class="nav-number">4.</span> <span class="nav-text">四、数据库加密系统的特点和优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、数据库加密系统的部署方式"><span class="nav-number">5.</span> <span class="nav-text">五、数据库加密系统的部署方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、在线透明部署"><span class="nav-number">5.1.</span> <span class="nav-text">1、在线透明部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、旁路代理模式"><span class="nav-number">5.2.</span> <span class="nav-text">2、旁路代理模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、数据库加密系统的应用场景"><span class="nav-number">6.</span> <span class="nav-text">六、数据库加密系统的应用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

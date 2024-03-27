@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="随着B&#x2F;S架构的广泛应用，Web应用的功能越来越丰富，蕴含着越来越有价值的信息，应用程序漏洞被恶意利用的可能性越来越大，因此成为了黑客主要的攻击目标。传统防火墙无法解析HTTP应用层的细节，对规则的过滤过于死板，无法为Web应用提供足够的防护。为了解决上述问题，WAF应运而生。它通过执行一系列针对HTTP、HTTPS的安全策略，专门对Web应用提供保护。 一、什么是WEB应用防火墙Web应用防火墙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全产品之认识WEB应用防火墙">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/30d0931f/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="随着B&#x2F;S架构的广泛应用，Web应用的功能越来越丰富，蕴含着越来越有价值的信息，应用程序漏洞被恶意利用的可能性越来越大，因此成为了黑客主要的攻击目标。传统防火墙无法解析HTTP应用层的细节，对规则的过滤过于死板，无法为Web应用提供足够的防护。为了解决上述问题，WAF应运而生。它通过执行一系列针对HTTP、HTTPS的安全策略，专门对Web应用提供保护。 一、什么是WEB应用防火墙Web应用防火墙">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-01-15T11:53:56.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:34.652Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/30d0931f/"/>
+
+
+
+
+
+  <title>网络安全产品之认识WEB应用防火墙 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/30d0931f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络安全产品之认识WEB应用防火墙</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-15T19:53:56+08:00">
+                2024-01-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:34+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/30d0931f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/30d0931f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/30d0931f/" class="leancloud_visitors" data-flag-title="网络安全产品之认识WEB应用防火墙">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着B/S架构的广泛应用，Web应用的功能越来越丰富，蕴含着越来越有价值的信息，应用程序漏洞被恶意利用的可能性越来越大，因此成为了黑客主要的攻击目标。传统防火墙无法解析HTTP应用层的细节，对规则的过滤过于死板，无法为Web应用提供足够的防护。为了解决上述问题，WAF应运而生。它通过执行一系列针对HTTP、HTTPS的安全策略，专门对Web应用提供保护。</p>
+<h2 id="一、什么是WEB应用防火墙"><a href="#一、什么是WEB应用防火墙" class="headerlink" title="一、什么是WEB应用防火墙"></a>一、什么是WEB应用防火墙</h2><p>Web应用防火墙（Web Application Firewall，简称WAF）是一种网络安全产品，主要用于增强对Web应用程序的控制和保护。是通过执行一系列针对HTTP/HTTPS的安全策略来专门为Web应用提供保护的一种设备。与传统防火墙不同，WAF工作在应用层，因此对Web应用防护具有先天的技术优势。基于对Web应用业务和逻辑的深刻理解，WAF对来自Web应用程序客户端的各类请求进行内容检测和验证，确保其安全性与合法性，对非法的请求予以实时阻断，从而对各类网站站点进行有效防护。</p>
+<h2 id="二、WEB应用防火墙的主要功能"><a href="#二、WEB应用防火墙的主要功能" class="headerlink" title="二、WEB应用防火墙的主要功能"></a>二、WEB应用防火墙的主要功能</h2><p>Web应用防火墙的主要功能：</p>
+<ol>
+<li>防止常见的Web漏洞：WAF可以防止常见的Web漏洞，如SQL注入、跨站脚本攻击（XSS）、文件包含漏洞等。通过检查HTTP请求和响应，WAF能够识别并阻止针对这些漏洞的攻击。</li>
+<li>防止恶意输入：WAF能够检测并过滤掉恶意输入，从而防止应用程序受到攻击。它还可以对用户输入进行验证和过滤，以确保只有合法的输入被接受。</li>
+<li>防止会话劫持：WAF可以防止会话劫持攻击，通过验证HTTP请求中的会话令牌来确保请求来自合法的用户。</li>
+<li>防止DDoS攻击：WAF可以防止分布式拒绝服务（DDoS）攻击，这种攻击通过大量合法的请求来拥塞Web服务器，从而使其无法处理正常的请求。WAF可以通过限制来自同一IP地址的请求数量或识别异常流量模式来阻止DDoS攻击。</li>
+<li>自定义规则：WAF通常提供自定义规则的功能，允许管理员根据自己的需求配置防火墙的行为。这使得管理员可以更加精确地控制Web应用程序的访问和行为。</li>
+<li>日志和监控：WAF提供详细的日志记录功能，记录所有通过防火墙的请求和响应。管理员可以监控这些日志以检测异常行为或攻击，并采取适当的措施。</li>
+<li>与其他安全产品集成：WAF可以与其他网络安全产品集成，如入侵检测系统（IDS/IPS）、反病毒软件等。这种集成可以提供更全面的安全防护，应对各种不同的威胁。</li>
+</ol>
+<h2 id="三、WEB应用防火墙的产品特点"><a href="#三、WEB应用防火墙的产品特点" class="headerlink" title="三、WEB应用防火墙的产品特点"></a>三、WEB应用防火墙的产品特点</h2><p>WAF（Web应用防火墙）产品的特点主要包括以下几个方面:</p>
+<ol>
+<li>异常检测和防御：WAF会对HTTP的请求进行异常检测，拒绝不符合HTTP标准的请求。并且，它也可以只允许HTTP协议的部分选项通过，从而减少攻击的影响范围。甚至，一些Web应用防火墙还可以严格限定HTTP协议中那些过于松散或未被完全制定的选项。</li>
+<li>输入验证：WAF可以增强输入验证，有效防止网页篡改、信息泄露、木马植入等恶意网络入侵行为，减小Web服务器被攻击的可能性。</li>
+<li>安全规则库：WAF建立安全规则库，严格的控制输入验证，以安全规则来判断应用数据是否异常，如有异常直接阻断。以此来有效的防止网页篡改的可能性。</li>
+<li>用户行为分析：WAF运用技术判断用户是否是第一次请求访问的，同时将请求重定向到默认的登陆页面并且记录该事件。以此来检测识别用户的操作是否存在异常，并且对达到阈值，触发规则的访问进行处理。</li>
+<li>防御机制：WAF防御机制可以用来隐藏表单域保护，响应监控信息泄露或者被攻击时的提示，也可以规避入侵，爬虫等技术。</li>
+<li>部署方式多样：WAF可以以硬件设备、软件产品、云服务等不同形式部署在网络中，以满足不同场景和需求。</li>
+<li>高可用性和高性能：WAF可以提供高性能和低延迟，适用于高流量的Web应用程序。同时，它可以提供全球分布的节点，从而提高Web应用程序的可用性和性能。</li>
+<li>弹性扩展和自动升级：云WAF通常具有弹性扩展、自动升级等优点，适用于高可用性和高性能的Web应用程序。</li>
+<li>高安全性：WAF可以作为安全保障措施对各类网站站点进行有效的防护。</li>
+</ol>
+<h2 id="四、WEB应用防火墙的部署方式"><a href="#四、WEB应用防火墙的部署方式" class="headerlink" title="四、WEB应用防火墙的部署方式"></a>四、WEB应用防火墙的部署方式</h2><p>与IPS设备部署方式类似，可以串联部署在web服务器等关键设备的网络出口处。主要有3种部署模式。</p>
+<ol>
+<li>透明网桥模式</li>
+</ol>
+<p>透明网桥模式指在两台运行的设备中间插入WEB应用防火墙，但是对流量并不产生任何影响。在透明网桥模式下，Web应用防火墙阻断Wb应用层攻击，而让其他的流量通过。透明网桥模式是部署最为简便的方式。透明网桥模式是透明的，所以不会干预任何网络中的设备，如图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙透明网桥模式部署"></p>
+<center>WEB应用防火墙透明网桥模式部署</center>
+
+<ol start="2">
+<li>单机模式</li>
+</ol>
+<p>单机模式下，Web应用防火墙只要串入Web服务器的前端即可进行防护，同时并不影响Web服务器的其他应用，如图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙单机模式部署"></p>
+<center>WEB应用防火墙单机模式部署</center>
+
+<ol start="3">
+<li>旁路反向代理模式</li>
+</ol>
+<p>旁路反向代理模式，可以将Web应用防火墙与Wb服务器置于内网的交换机下，访问Web服务器的所有请求都通过Web应用防火墙流入流出。WAF采用反向代理模式以旁路的方式接入到网络环境中，需要更改网络防火墙的目的映射表，网络防火墙映射WAF的业务口地址，将服务器的IP地址进行隐藏。然而，这种模式下，Web服务器无法获取访问者的真实IP，需要借助HTTP报文中设置相应的字段来表示访问者IP，这样需要修改原有的HTTP报文。如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙旁路反向代理模式部署"></p>
+<center>WEB应用防火墙旁路反向代理模式部署</center>
+
+<h2 id="五、防火墙和WAF的关系和区别"><a href="#五、防火墙和WAF的关系和区别" class="headerlink" title="五、防火墙和WAF的关系和区别"></a>五、防火墙和WAF的关系和区别</h2><p>防火墙和Web应用防火墙（WAF）都是网络安全产品，但它们的功能和用途有所不同。</p>
+<p>防火墙的主要作用是过滤网络流量，防止未经授权的访问和数据泄漏。它位于网络入口处，对所有进出的数据包进行检测，并根据预设的安全规则来允许或拒绝数据包通过。防火墙可以阻止恶意软件的传播、防止未经授权的访问和数据泄漏，从而保护网络资源的安全。</p>
+<p>而WAF是一种专门针对Web应用程序的防火墙，它部署在Web应用程序的前端，对所有进出的HTTP/HTTPS流量进行深度检测和防护。WAF能够识别并防御常见的Web漏洞和攻击，例如SQL注入、跨站脚本攻击（XSS）、文件包含漏洞等。它还可以防止常见的Web应用程序威胁，如恶意文件上传、远程命令执行等。WAF通过在应用程序层检测和过滤数据，为Web应用程序提供了更具体和针对性的保护。</p>
+<p>具体差异主要体现在以下几个方面：</p>
+<ol>
+<li>定位和部署：防火墙通常位于网络的入口处，用于保护整个网络的安全。它可以过滤网络流量，防止未经授权的访问和数据泄漏。而WAF通常部署在Web应用程序的前端，专门针对Web应用程序进行保护。</li>
+<li>数据检测方式：防火墙主要在网络层检测数据包，并根据预设的安全规则来允许或拒绝数据包通过。而WAF则是在应用程序层检测HTTP/HTTPS流量，可以识别并防御常见的Web漏洞和攻击。</li>
+<li>防御范围：防火墙可以防御各种网络威胁，包括恶意软件、未经授权的访问和数据泄漏等。而WAF则专注于保护Web应用程序的安全，防御常见的Web漏洞和攻击，如SQL注入、跨站脚本攻击（XSS）、文件包含漏洞等。</li>
+<li>定制化和灵活性：WAF通常提供更具体的定制化和灵活性，允许管理员根据实际需求配置和设置规则，更加精准地控制Web应用程序的访问和行为。而防火墙通常有固定的安全规则和配置选项。</li>
+<li>安全漏洞防御：WAF能够防御常见的Web安全漏洞和攻击，这些漏洞可能被黑客利用来攻击Web应用程序。而传统的防火墙可能无法识别和防御这些针对应用层的攻击。</li>
+</ol>
+<p>防火墙和WAF都是网络安全的重要组成部分，但它们的定位和使用范围有所不同。防火墙主要用于保护整个网络的安全，而WAF则专注于保护Web应用程序的安全。在实际应用中，两者可以配合使用，共同增强网络的整体安全性。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/30d0931f/" title="网络安全产品之认识WEB应用防火墙">https://xiejava.gitee.io/posts/30d0931f/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/a0c94fff/" rel="next" title="颜值与实力并存-领克08提车和用车感受">
+                <i class="fa fa-chevron-left"></i> 颜值与实力并存-领克08提车和用车感受
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/e5ea6795/" rel="prev" title="网络安全产品之认识入侵检测系统">
+                网络安全产品之认识入侵检测系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是WEB应用防火墙"><span class="nav-number">1.</span> <span class="nav-text">一、什么是WEB应用防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、WEB应用防火墙的主要功能"><span class="nav-number">2.</span> <span class="nav-text">二、WEB应用防火墙的主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、WEB应用防火墙的产品特点"><span class="nav-number">3.</span> <span class="nav-text">三、WEB应用防火墙的产品特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、WEB应用防火墙的部署方式"><span class="nav-number">4.</span> <span class="nav-text">四、WEB应用防火墙的部署方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、防火墙和WAF的关系和区别"><span class="nav-number">5.</span> <span class="nav-text">五、防火墙和WAF的关系和区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

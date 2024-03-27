@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。 本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩： 1234import pandas as pdimport nump">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas数据分析之排序和排名(sort和rank)">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/16c9fc17/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。 本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩： 1234import pandas as pdimport nump">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%80%BC%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%A4%9A%E4%B8%AA%E5%88%97%E7%9A%84%E5%80%BC%E6%8E%92%E5%BA%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E6%8E%92%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-min%E6%8E%92%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-max%E6%8E%92%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-first%E6%8E%92%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-dense%E6%8E%92%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E4%B8%8D%E5%90%8Cmethod%E6%8E%92%E5%90%8D%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2022-01-30T01:14:37.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:29.419Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/16c9fc17/"/>
+
+
+
+
+
+  <title>pandas数据分析之排序和排名(sort和rank) | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/16c9fc17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">pandas数据分析之排序和排名(sort和rank)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-30T09:14:37+08:00">
+                2022-01-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/16c9fc17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/16c9fc17/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/16c9fc17/" class="leancloud_visitors" data-flag-title="pandas数据分析之排序和排名(sort和rank)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。</p>
+<p>本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。<br>数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"><br>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<h1 id="一、排序"><a href="#一、排序" class="headerlink" title="一、排序"></a>一、排序</h1><p>对数据集进行排序是是常用的数据分析需求之一。pandas提供了按 索引标签排序sort_index()和按值排序sort_values()两种排序方法。对于DataFrame，可以根据任意一个轴上的索引标签进行排序。默认顺序排序，也可以设置按倒序排序。</p>
+<h2 id="1、按标签排序"><a href="#1、按标签排序" class="headerlink" title="1、按标签排序"></a>1、按标签排序</h2><h3 id="1）按行标签索引排序"><a href="#1）按行标签索引排序" class="headerlink" title="1）按行标签索引排序"></a>1）按行标签索引排序</h3><p>pandas默认按行标签索引顺序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引排序</span></span><br><span class="line">df.sort_index()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按行索引排序"><br>可以通过设置<code>ascending=False</code>参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引倒序排序</span></span><br><span class="line">df.sort_index(ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按行索引倒序排序"></p>
+<h3 id="2）按列标签索引排序"><a href="#2）按列标签索引排序" class="headerlink" title="2）按列标签索引排序"></a>2）按列标签索引排序</h3><p>通过给 axis 轴参数传递 0 或 1，可以对列标签进行排序。默认情况下，axis=0 表示按行排序；而 axis=1 则表示按列排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按列索引排序"><br>同样可以设置ascending=False参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引倒序排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按列索引倒序排序"></p>
+<h2 id="2、按值排序"><a href="#2、按值排序" class="headerlink" title="2、按值排序"></a>2、按值排序</h2><p>在实际应用中用得最多的应该是根据某一列的值进行排序。在pandas中可以通过sort_value()，在sort_value中可以设定按某个列排序，也可以通过sort_value(by=[])，通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。</p>
+<h3 id="1）对单个列的值排序"><a href="#1）对单个列的值排序" class="headerlink" title="1）对单个列的值排序"></a>1）对单个列的值排序</h3><p>如在数据集中对语文成绩进行排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩排序</span></span><br><span class="line">df.sort_values(<span class="string">'4-语文'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对语文成绩进行排序"></p>
+<h3 id="2）对多个列的值进行排序"><a href="#2）对多个列的值进行排序" class="headerlink" title="2）对多个列的值进行排序"></a>2）对多个列的值进行排序</h3><p>通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。<br>如对数据集中的语文和数学进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%A4%9A%E4%B8%AA%E5%88%97%E7%9A%84%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对数据集中的语文和数学进行排序"></p>
+<h2 id="3、排序算法"><a href="#3、排序算法" class="headerlink" title="3、排序算法"></a>3、排序算法</h2><p>sort_values() 提供了参数kind用来指定排序算法。这里有三种排序算法：</p>
+<ul>
+<li>mergesort（归并排序） </li>
+<li>heapsort（堆排序） </li>
+<li>quicksort（快速排序）</li>
+</ul>
+<p>默认为 quicksort(快速排序) ，其中 mergesort归并排序是最稳定的算法。<br>具体用法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学用mergesort归并排序算法排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>],kind=<span class="string">'mergesort'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt="排序算法"></p>
+<h1 id="二、排名"><a href="#二、排名" class="headerlink" title="二、排名"></a>二、排名</h1><p>排名和排序的区别在于排序一定是有顺序，而排名分先后并列。如在现实生活中相同的分数存在排名并列的情况。<br>在《使用python进行数据分析》一书中对rank排名的描述为：排名是指对数组从1到有效数据点总数分配名次的操作。Series和DataFrame的rank方法是实现排名的方法，默认情况下，rank是通过“为各组分配一个平均排名”的方式破坏平级关系。这段话讲得是什么鬼？其实就是在存在并列排名的时候采用一定的策略来打破这种关系。<br>排名中的平级关系打破方法有如下几种：</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>average</td>
+<td>默认：在每个组中分配平均排名</td>
+</tr>
+<tr>
+<td>min</td>
+<td>对整个组使用最小排名</td>
+</tr>
+<tr>
+<td>max</td>
+<td>对整个组使用最大排名</td>
+</tr>
+<tr>
+<td>first</td>
+<td>按照值在数据中出现的次序分配排名</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>类似于method=’min’,但组件排名总是加1，而不是一个组中的相等元素的数量</td>
+</tr>
+</tbody></table>
+<p><strong>rank()函数原型：</strong><code>rank(axis=0, method: str = &#39;average&#39;, numeric_only: Union[bool, NoneType] = None, na_option: str = &#39;keep&#39;, ascending: bool = True, pct: bool = False)</code><br>这里method取值可以为’average’，’first’，’min’， ‘max’，’dense’，用来打破排名中的平级关系的。<br>光看这些说明还是比较难理解。下面通过实例来说明：</p>
+<h2 id="1、默认average-排名"><a href="#1、默认average-排名" class="headerlink" title="1、默认average 排名"></a>1、默认average 排名</h2><p>在数据集中我们只取“学号”、“姓名”、“语文”，然后取“语文”的排名，默认average</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_rank=df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>]].copy()</span><br><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E6%8E%92%E5%90%8D.png" alt="默认average 排名"></p>
+<p>这个排名很奇怪，97分排名第一没有问题，居然没有第二名，三个96分排名均为3，还有两个90分排名为9.5。这是什么鬼？<br>原来这就是默认的“average”规则,成绩相同时，取顺序排名中所有名次之和除以该成绩的个数，如两个90分的名次为最后两名分别为9名和10名，即(9+10)/2=9.5，三个96分的名次分别为2、3、4 那么排名为（2+3+4)/3=9/3=3</p>
+<h2 id="2、mothod-’min’的排名"><a href="#2、mothod-’min’的排名" class="headerlink" title="2、mothod=’min’的排名"></a>2、mothod=’min’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-min%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行min排名"></p>
+<p>在这个排名中看到有3个并列为2的排名，但没有排名为3、4的，有两个排名为9的，但没有排名为10的。可以看出当method=“min”时，成绩相同的同学，取在顺序排名中最小的那个排名作为该值的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。因为有了三个2名，接下来就从5名开始，5、6、7、8，到了第9名又有两个同分数的取9、10的最小排名为9，所以有两个9名。</p>
+<h2 id="3、mothod-’max’的排名"><a href="#3、mothod-’max’的排名" class="headerlink" title="3、mothod=’max’的排名"></a>3、mothod=’max’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-max%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行max排名"><br>与min相反，成绩相同的同学，排名相同取顺序最大的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。当method为max时，取最大的4作为96分的整体排名，同理90分的取10为90分的整体排名。</p>
+<h2 id="4、mothod-’first’的排名"><a href="#4、mothod-’first’的排名" class="headerlink" title="4、mothod=’first’的排名"></a>4、mothod=’first’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-first%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行first排名"></p>
+<p>first排名很好理解了，有点先到先得的意思，成绩相同，谁的索引排前，谁的排名就靠前，比如张三、王五、顾十 这三个同学都是96分，按理应该是并列第2，但张三的索引比王五和顾十的都靠前，王五的索引比顾十靠前，所以他们的顺序分别为2、3、4，同理陈一、钱七的分数都是90分，但陈一的索引比钱七靠前所以陈一排名为9、钱七排名第10</p>
+<h2 id="5、mothod-’dense’的排名"><a href="#5、mothod-’dense’的排名" class="headerlink" title="5、mothod=’dense’的排名"></a>5、mothod=’dense’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-dense%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行dense排名"><br>“dense”: 是密集的意思，也比较好理解，即相同成绩的同学排名相同，其他依次加1即可。可以看到张三、王五、顾十这三位同学都是96分，并列排名第2，后面的加1，即比他们分数稍低的赵六95分排名第3，后面依次。</p>
+<h2 id="6、不同method的排名对比"><a href="#6、不同method的排名对比" class="headerlink" title="6、不同method的排名对比"></a>6、不同method的排名对比</h2><p>最后不同method的排名对比：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-average'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-min'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-max'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-first'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-dense'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'4-语文'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E4%B8%8D%E5%90%8Cmethod%E6%8E%92%E5%90%8D%E5%AF%B9%E6%AF%94.png" alt="按语文成绩进行rank的默认排名"></p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/16c9fc17/" title="pandas数据分析之排序和排名(sort和rank)">https://xiejava.gitee.io/posts/16c9fc17/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/531458d5/" rel="next" title="pandas数据结构(Series和DataFrame)">
+                <i class="fa fa-chevron-left"></i> pandas数据结构(Series和DataFrame)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/a87a78e2/" rel="prev" title="pandas数据清洗之处理缺失、重复、异常数据">
+                pandas数据清洗之处理缺失、重复、异常数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、排序"><span class="nav-number">1.</span> <span class="nav-text">一、排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、按标签排序"><span class="nav-number">1.1.</span> <span class="nav-text">1、按标签排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）按行标签索引排序"><span class="nav-number">1.1.1.</span> <span class="nav-text">1）按行标签索引排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）按列标签索引排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">2）按列标签索引排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、按值排序"><span class="nav-number">1.2.</span> <span class="nav-text">2、按值排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）对单个列的值排序"><span class="nav-number">1.2.1.</span> <span class="nav-text">1）对单个列的值排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）对多个列的值进行排序"><span class="nav-number">1.2.2.</span> <span class="nav-text">2）对多个列的值进行排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、排序算法"><span class="nav-number">1.3.</span> <span class="nav-text">3、排序算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、排名"><span class="nav-number">2.</span> <span class="nav-text">二、排名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、默认average-排名"><span class="nav-number">2.1.</span> <span class="nav-text">1、默认average 排名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、mothod-’min’的排名"><span class="nav-number">2.2.</span> <span class="nav-text">2、mothod&#x3D;’min’的排名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、mothod-’max’的排名"><span class="nav-number">2.3.</span> <span class="nav-text">3、mothod&#x3D;’max’的排名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、mothod-’first’的排名"><span class="nav-number">2.4.</span> <span class="nav-text">4、mothod&#x3D;’first’的排名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、mothod-’dense’的排名"><span class="nav-number">2.5.</span> <span class="nav-text">5、mothod&#x3D;’dense’的排名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、不同method的排名对比"><span class="nav-number">2.6.</span> <span class="nav-text">6、不同method的排名对比</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

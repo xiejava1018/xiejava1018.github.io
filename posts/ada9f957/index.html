@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。 在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念： 主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CWPP与EDR的定义与区别">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/ada9f957/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。 在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念： 主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2022-04-16T06:34:04.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:30.297Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/ada9f957/"/>
+
+
+
+
+
+  <title>CWPP与EDR的定义与区别 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ada9f957/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CWPP与EDR的定义与区别</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-16T14:34:04+08:00">
+                2022-04-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:30+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ada9f957/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ada9f957/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ada9f957/" class="leancloud_visitors" data-flag-title="CWPP与EDR的定义与区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。</p>
+<p>在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念：</p>
+<p>主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连接到网络的计算机或其他设备，而服务器是提供服务的软件或硬件设备，日常所说的服务器一般是指提供服务的主机。由此可见，主机安全并不是一个产品，而是对应一个需要被保护的位置，主机安全即主机侧的安全保护。</p>
+<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
+<p>对于一般的应用系统来说，服务器就是提供服务的主机如提供WEB、FTP、数据库等服务的服务器，终端就是访问服务的工作站、个人PC等。</p>
+<h2 id="一、CWPP的定义"><a href="#一、CWPP的定义" class="headerlink" title="一、CWPP的定义"></a>一、CWPP的定义</h2><p> 现代数据中心支持运行在物理设备、虚拟机（VM）、容器以及私有云基础架构中的各种工作负载，并且几乎总是涉及一些在一个或多个公有云基础设施即服务（IaaS）提供商中运行的工作负载。<br><strong>云工作保护平台(Cloud Workload Protection Platform)简称CWPP</strong>，市场定义为基于主机的解决方案，主要满足现代混合数据中心架构中，服务器工作负载的保护要求。它为信息安全领导者提供了一种集成的方式，通过使用单个管理控制台和单一方式表达安全策略来保护这些工作负载，而不用考虑工作负载运行的位置。<br>可以理解成为基于代理（Agent）的底层技术方案，和传统部署在网络边界上的安全产品不一样，CWPP部署在操作系统层，因此可以横跨物理机、公有云、私有云、混合云等多种数据中心环境，部署方式更加灵活、防护层面更加丰富。采用服务端agent+远程控制台的部署模式，agent支持云、物理、混合环境部署，能有效安全加固服务器、抵御黑客攻击和恶意代码。</p>
+<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png" alt="CWPP"></p>
+<p>CWPP的核心能力：</p>
+<ul>
+<li>Congurationand  vulnerability management 配置和漏洞管理<br>1.配置，即服务器优化，通过对操作系统进行合理配置，提升操作系统的安全性和抗攻击能力。<br>2.漏洞管理，分为操作系统漏洞管理和应用漏洞管理。目前网络攻击主要是通过web服务器或者web应用漏洞发起，因此CWPP产品要能提供标准化、同时支持制定自定义的web应用漏洞防护策略。</li>
+<li>Networksegmentation, isolation and traffic visibility 网络隔离与流可视<br>要求CWPP产品首先能图形化管理用户的主机业务资产，并且可以跨物理、虚拟架构、网络定于基于角色的访问策略（微隔离）；对于主机之间的访问关系，可以图形化的展示和控制（流可视化）。</li>
+<li>Systemintegrity measurement， attestation and monitoring 系统完整性检测、认证和监测<br>可以保护系统文件或者指定目录、文件不被恶意修改，提供监控模式和防护模式。</li>
+<li>Application control应用防护<br>CWPP产品需要能识别到主机上运行的应用，并对不同的应用提供相应的防护策略，如云锁对web应用提供waf防护，对于sshd、remotedesktop提供防暴力破解防护等。</li>
+<li>Capabilities that augment/verify foundational operational controls 增强及验证基础运维能力<br>CWPP产品要求不能单纯依靠服务器账号、密码来验证管理员，而需要引入账号密码外的第二套验证机制。比如云锁的登陆防护功能，可以限制登陆服务的用户名、IP范围、登陆时间、登陆服务器使用的PC名称，如果不满足限制条件，即使拿到服务器的管理员账号密码也无法登陆服务器。</li>
+<li>Log management and monitoring日志管理和监测<br>要求CWPP产品能提供完整的日志，同时当安全事件发生后，CWPP产品需要关联相关日志最终形成事件IOC，帮助用户回溯攻击过程，快速定位风险点。</li>
+</ul>
+<h2 id="二、EDR的定义"><a href="#二、EDR的定义" class="headerlink" title="二、EDR的定义"></a>二、EDR的定义</h2><p>根据Gartner的定义，<strong>EDR端点检测与响应（Endpoint Detection and Response）简称EDR</strong>是一种集成的终端安全解决方案，它将终端数据的实时连续监控和收集与基于规则的自动响应和分析功能相结合。该术语由Gartner的Anton Chuvakin提出，用于描述新兴的安全系统，用于检测和调查终端上的可疑活动，采用高度自动化使安全团队能够快速识别和响应威胁。完全不同于以往的端点被动防护思路，而是通过云端威胁情报、机器学习、异常行为分析、攻击指示器等方式，主动发现来自外部或内部的安全威胁，并进行自动化的阻止、取证、补救和溯源，从而有效对端点进行防护。</p>
+<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png" alt="EDR"></p>
+<ul>
+<li>资产发现：定期通过主动扫描、被动发现、手工录入和人工排查等多种方法收集当前网络中所有软硬件资产，包括全网所有的端点资产和在用的软件名称、版本，确保整个网络中没有安全盲点。</li>
+<li>系统加固：定期进行漏洞扫描、补丁修复、安全策略设置和更新端点软件清单，通过软件白名单限制未经授权的软件运行，通过主机防火墙限制未经授权的服务端口开放，并定期检查和清理内部人员的账号和授权信息。</li>
+<li>威胁检测：通过端点本地的主机入侵检测和借助云端威胁情报、异常行为分析、攻击指示器等方式，针对各类安全威胁，在其发生前、发生中、发生后进行相应的安全检测动作。</li>
+<li>响应取证：针对全网的安全威胁进行可视化展示，能够针对安全威胁自动化地进行隔离、修复和补救，自动完成安全威胁的调查、分析和取证工作，降低事件响应和取证分析的技术门槛，不需要依赖于外部专家即可完成快速响应和取证分析。</li>
+</ul>
+<h2 id="三、CWPP与EDR的关系与区别"><a href="#三、CWPP与EDR的关系与区别" class="headerlink" title="三、CWPP与EDR的关系与区别"></a>三、CWPP与EDR的关系与区别</h2><p>EDR与CWPP主机安全属于网络安全领域两个不同的方向，前者聚焦于常规的终端侧，后者聚焦于主机侧，两者作用于完全不同的位置。EDR的基因是根植于PC等常规终端的，它天然不适配于主机侧。</p>
+<table>
+<thead>
+<tr>
+<th>需求场景</th>
+<th>需求求相同点</th>
+<th>需求不同点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>终端侧安全</td>
+<td>资产梳理清点<br>统一集中管理<br>风险防护</td>
+<td>安全需求&gt;稳定需求，注重安全防护能力，重防御；<br>关注用户实体行为分析（UEBA），防止PC端成为威胁内网安全的导火索，防止敏感数据歪斜；<br>高危动作或安全风险尽可能自动化完成阻断动作，无需人工介入，确保整体网络的安全可靠。</td>
+</tr>
+<tr>
+<td>主机侧安全</td>
+<td>资产梳理清点<br>统一集中管理<br>风险防护</td>
+<td>稳定需求&gt;安全需求，注重安全检测能力，重检测；<br>更加关注主机上承载的业务应用和数据安全；<br>因业务连续性需要，安全加固工作需人工介入，要在确保业务连续稳定运行的基础上进行加固。</td>
+</tr>
+</tbody></table>
+<p>在安全的需求上，PC类的终端侧与主机侧的安全诉求差别很大。所以，面向终端的EDR产品与面向服务器/工作负载的主机安全产品CWPP，这两者之间有本质的区别，并不能混为一谈。主机侧的安全产品实现不了终端侧的安全防护，EDR也不能实现CWPP的防护效果。<br>两种产品的区别如下：</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>CWPP</th>
+<th>EDR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>产品定位</td>
+<td>主机安全防护</td>
+<td>终端安全防护</td>
+</tr>
+<tr>
+<td>产品部署</td>
+<td>Agent不在内核安装驱动，稳定性高</td>
+<td>Agent安装需要在内核安装驱动，稳定性差，影响业务</td>
+</tr>
+<tr>
+<td>资产清点</td>
+<td>资产清点能力更全面，支持对业务层资产精准识别和动态感知</td>
+<td>资产信息相对比较少，不够全面</td>
+</tr>
+<tr>
+<td>风险发现</td>
+<td>提供全面的风险检查，包括漏洞风险、弱密码、系统风险、应用风险、账号风险检查</td>
+<td>支持漏洞风险检查，不具备其他风险检查能力</td>
+</tr>
+<tr>
+<td>入侵检测与病毒查杀</td>
+<td>不依赖特征库的检测方式，基于行为以及结合威胁情报、大数据、机器学习等方法，提供实时精准的入侵检测和响应能力</td>
+<td>主要功能是病毒查杀，基于特征库或结合威胁情报，能够查杀绝大部分病毒，但仍属于被动防护</td>
+</tr>
+<tr>
+<td>基线合规检查</td>
+<td>提供等保或CIS国标标准的检查基线，支持对系统、应用、数据进行基线合规检查</td>
+<td>通常不具备合基线合规检查能力，或提供少量的基线检查标准。</td>
+</tr>
+</tbody></table>
+<p>CWPP与EDR，一个面向服务器端的防护（CWPP），一个是面向常规终端PC端的防护（EDR）但是对于企业的整体安全防护来说，CWPP和EDR相互作为补充构建企业的云、端防护能力。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/ada9f957/" title="CWPP与EDR的定义与区别">https://xiejava.gitee.io/posts/ada9f957/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/25e5f55a/" rel="next" title="网络信息安全之APT攻击">
+                <i class="fa fa-chevron-left"></i> 网络信息安全之APT攻击
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/88375ea1/" rel="prev" title="网络信息安全之安全风险管理">
+                网络信息安全之安全风险管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、CWPP的定义"><span class="nav-number">1.</span> <span class="nav-text">一、CWPP的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、EDR的定义"><span class="nav-number">2.</span> <span class="nav-text">二、EDR的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、CWPP与EDR的关系与区别"><span class="nav-number">3.</span> <span class="nav-text">三、CWPP与EDR的关系与区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

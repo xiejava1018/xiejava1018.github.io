@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在应用机器学习的过程中，很大一部分工作都是在做数据的处理，一个非常常见的场景就是将一个list序列的特征数据拆成多个单独的特征数据。 比如数据集如下所示： 12345data &#x3D; [[&#39;John&#39;, &#39;25&#39;, &#39;Male&#39;,[99,100,98]],        [&#39;Emily&#39;, &#39;22&#39;, &#39;Female&#39;,[97,99,98]],        [&#39;Michael&#39;, &#39;30&#39;, &#39;Ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas将dataframe列中的list转换为多列">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/d97c8b95/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="在应用机器学习的过程中，很大一部分工作都是在做数据的处理，一个非常常见的场景就是将一个list序列的特征数据拆成多个单独的特征数据。 比如数据集如下所示： 12345data &#x3D; [[&#39;John&#39;, &#39;25&#39;, &#39;Male&#39;,[99,100,98]],        [&#39;Emily&#39;, &#39;22&#39;, &#39;Female&#39;,[97,99,98]],        [&#39;Michael&#39;, &#39;30&#39;, &#39;Ma">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2023-12-26T09:06:29.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:34.243Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/d97c8b95/"/>
+
+
+
+
+
+  <title>pandas将dataframe列中的list转换为多列 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d97c8b95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">pandas将dataframe列中的list转换为多列</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-26T17:06:29+08:00">
+                2023-12-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:34+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/d97c8b95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d97c8b95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/d97c8b95/" class="leancloud_visitors" data-flag-title="pandas将dataframe列中的list转换为多列">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  524
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在应用机器学习的过程中，很大一部分工作都是在做数据的处理，一个非常常见的场景就是将一个list序列的特征数据拆成多个单独的特征数据。</p>
+<p>比如数据集如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="在这里插入图片描述"></p>
+<p>很多场景是需要将类似于Score的list序列特征，拆成多个特征值如这里的语、数、外的分数。</p>
+<p>下面通过几个实例来将dataframe列中的list序列转换为多列。</p>
+<h3 id="1、一维序列拆成多列"><a href="#1、一维序列拆成多列" class="headerlink" title="1、一维序列拆成多列"></a>1、一维序列拆成多列</h3><p>可以通过在列上应用Series来进行拆分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p>可以看到将Score的数组，拆分成了English、Math、Chinese三个特征字段了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_data=df_data.join(df_score)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png" alt="在这里插入图片描述"></p>
+<h3 id="2、二维序列拆成多列"><a href="#2、二维序列拆成多列" class="headerlink" title="2、二维序列拆成多列"></a>2、二维序列拆成多列</h3><p>用同样的思路也可以将二维序列的特征列拆成多列<br>如特征列是二维序列，序列里还有多个序列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>],[<span class="number">89</span>,<span class="number">70</span>]]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>],[<span class="number">99</span>,<span class="number">96</span>]]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>],[<span class="number">87</span>,<span class="number">99</span>]]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series)</span><br><span class="line">df_score_1=df_score[<span class="number">0</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>&#125;)</span><br><span class="line">df_score_2=df_score[<span class="number">1</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'Biology'</span>,<span class="number">1</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score=df_score_1.join(df_score_2)</span><br><span class="line">df_data=df_data.join(df_score_1).join(df_score_2)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p>另外一种情况就是序列里面只有一个序列的二维序列，数据如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>,<span class="number">89</span>,<span class="number">70</span>]]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">96</span>]]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">87</span>,<span class="number">99</span>]]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<p>这样也可以通过多次应用Series来进行拆分，也可以先explode()再应用Series来进行拆分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series)[<span class="number">0</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>,<span class="number">3</span>:<span class="string">'Biology'</span>,<span class="number">4</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].explode().apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>,<span class="number">3</span>:<span class="string">'Biology'</span>,<span class="number">4</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p>两者效果是一样的。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/d97c8b95/" title="pandas将dataframe列中的list转换为多列">https://xiejava.gitee.io/posts/d97c8b95/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/68430272/" rel="next" title="安全运营之团队人员组织建议">
+                <i class="fa fa-chevron-left"></i> 安全运营之团队人员组织建议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/84445f0e/" rel="prev" title="安全防御之身份鉴别技术">
+                安全防御之身份鉴别技术 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、一维序列拆成多列"><span class="nav-number">1.</span> <span class="nav-text">1、一维序列拆成多列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、二维序列拆成多列"><span class="nav-number">2.</span> <span class="nav-text">2、二维序列拆成多列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

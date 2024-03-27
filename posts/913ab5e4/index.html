@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,爬虫," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前期出了一个《爬取京东商品评价信息实战》的教程，最近又有网友提到要出一个爬淘宝商品评论的教程。说实话淘宝的反爬机制做得比京东要严，所以用爬取京东商品评价信息的方式取爬取淘宝商品评价不太可行。本文还是介绍通过Selenium模拟登录后来进行淘宝商品评价信息的爬取。Selenium安装与配置及如何模拟登录淘宝见《Selenium安装与配置》及《Selenium实战-模拟登录淘宝并爬取商品信息》 一、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬取淘宝商品评价信息实战">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/913ab5e4/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="前期出了一个《爬取京东商品评价信息实战》的教程，最近又有网友提到要出一个爬淘宝商品评论的教程。说实话淘宝的反爬机制做得比京东要严，所以用爬取京东商品评价信息的方式取爬取淘宝商品评价不太可行。本文还是介绍通过Selenium模拟登录后来进行淘宝商品评价信息的爬取。Selenium安装与配置及如何模拟登录淘宝见《Selenium安装与配置》及《Selenium实战-模拟登录淘宝并爬取商品信息》 一、">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/0-python%E7%88%AC%E8%99%AB.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/1-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/2-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%88%86%E6%9E%901.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/3-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%88%86%E6%9E%902.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/4-selenium%E7%88%AC%E5%8F%96%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/5-mintproxy%E6%8A%93%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%901.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/6-mitmproxy%E6%8A%93%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%902.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/7-mitmproxy%E6%8A%93%E5%8F%96%E6%B7%98%E5%AE%9D%E8%AF%84%E4%BB%B7%E6%95%B0%E6%8D%AE%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-03-16T11:05:58.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:35.404Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/0-python%E7%88%AC%E8%99%AB.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/913ab5e4/"/>
+
+
+
+
+
+  <title>Python爬取淘宝商品评价信息实战 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/913ab5e4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python爬取淘宝商品评价信息实战</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-16T19:05:58+08:00">
+                2024-03-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:35+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/913ab5e4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/913ab5e4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/913ab5e4/" class="leancloud_visitors" data-flag-title="Python爬取淘宝商品评价信息实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/0-python%E7%88%AC%E8%99%AB.png" alt="Python爬虫"></p>
+<p>前期出了一个《<a href="http://xiejava.ishareread.com/posts/db2fbb43/" target="_blank" rel="noopener">爬取京东商品评价信息实战</a>》的教程，最近又有网友提到要出一个爬淘宝商品评论的教程。说实话淘宝的反爬机制做得比京东要严，所以用爬取京东商品评价信息的方式取爬取淘宝商品评价不太可行。本文还是介绍通过Selenium模拟登录后来进行淘宝商品评价信息的爬取。<br>Selenium安装与配置及如何模拟登录淘宝见《<a href="http://xiejava.ishareread.com/posts/699b1506/" target="_blank" rel="noopener">Selenium安装与配置</a>》及《<a href="http://xiejava.ishareread.com/posts/6e762a1a/" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》</p>
+<h2 id="一、分析需要爬取的页面"><a href="#一、分析需要爬取的页面" class="headerlink" title="一、分析需要爬取的页面"></a>一、分析需要爬取的页面</h2><p>淘宝的商品评价信息在商品详情页面，需要登录淘宝后，访问到商品详情页，并且需要点击“宝贝评价”才能看到相应的商品评价信息。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/1-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90.png" alt="淘宝商品评价页面分析"></p>
+<p>我们还是要通过chrome浏览器的调试模式来分析需要点击哪个页面元素才能看到具体的评价信息。通过分析可以得知要点击&lt;<code>div class=&quot;Tabs--title--1Ov7S5f Tabs--active--2TTlc9s&quot;&gt;&lt;span data-spm-anchor-id=&quot;pc_detail.27183998/evo365560b447259.202205.i0.65b87dd6RabS41&quot;&gt;宝贝评价&lt;/span&gt;&lt;div class=&quot;Tabs--line--1ibdRMv&quot;&gt;&lt;/div&gt;&lt;/div&gt;</code> 这个元素才能进行切换到宝贝评价。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/2-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%88%86%E6%9E%901.png" alt="页面元素分"></p>
+<p>具体的评价信息是在<code>&lt;div class=&quot;Comment--content--15w7fKj&quot; data-spm-anchor-id=&quot;pc_detail.27183998/evo365560b447259.202207.i0.65b87dd6RabS41&quot;&gt;很好很喜欢下次还会买的，之前在这店买过iPhone12    Air pos pro   iPad Air3   距离上个平板时隔三年又买了iPad Air5 物流也很快，唯一的不足就是要花我自己的钱买😂哈哈哈非常推荐 &lt;/div&gt;</code> 这些<code>&lt;div class=&quot;Comment--content--15w7fKj&quot;&gt;......&lt;/div&gt;</code>元素里。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/3-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%88%86%E6%9E%902.png" alt="页面元素分"></p>
+<p>分析完页面后，就可以开始思考如何编码了。</p>
+<h2 id="二、实现爬取商品评价信息的代码"><a href="#二、实现爬取商品评价信息的代码" class="headerlink" title="二、实现爬取商品评价信息的代码"></a>二、实现爬取商品评价信息的代码</h2><p>通过上面的分析，我们要获取商品评价信息，需要让Selenium进行模拟登录-&gt;访问商品列表页面-&gt;访问商品详情页面-&gt;点击“宝贝评价”-&gt;获取并解析商品评价信息。<br>前面让Selenium进行模拟登录-&gt;访问商品列表页面在《<a href="http://xiejava.ishareread.com/posts/6e762a1a/" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》已有介绍。这里主要介绍后面的部分，访问商品详情页面-&gt;点击“宝贝评价”-&gt;获取并解析商品评价信息。<br>获取并解析商品评价信息有两种方式，一种是通过解析显示评价信息的元素获取，一种是通过mitmproxy代理进行流量抓包获取。</p>
+<h3 id="1、通过解析显示评价信息的元素获取商品评价信息"><a href="#1、通过解析显示评价信息的元素获取商品评价信息" class="headerlink" title="1、通过解析显示评价信息的元素获取商品评价信息"></a>1、通过解析显示评价信息的元素获取商品评价信息</h3><p>selenium_taobao.py的部分代码参考如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">                   <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">                   <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">                   <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">                   <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">                   <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line">        item_href=item.attr(<span class="string">'href'</span>) <span class="comment"># 得到商品的详情访问页面</span></span><br><span class="line">        <span class="keyword">if</span> item_href.find(<span class="string">'https:'</span>)&gt;=<span class="number">0</span>:</span><br><span class="line">            item_url =item_href</span><br><span class="line">            print(item_url)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            item_url = <span class="string">"https:"</span> + item.attr(<span class="string">'href'</span>)</span><br><span class="line">            <span class="comment"># 爬取商品评价</span></span><br><span class="line">            get_prod_comments(item_url)</span><br><span class="line">            time.sleep(sleeptime)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 爬取商品评价</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_prod_comments</span><span class="params">(item_url)</span>:</span></span><br><span class="line">    driver.get(item_url)</span><br><span class="line">    print(<span class="string">'跳转至详情页.......'</span>+item_url)</span><br><span class="line">    ele = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">"//div[@class='Tabs--title--1Ov7S5f ']/span"</span>)))</span><br><span class="line">    time.sleep(sleeptime)</span><br><span class="line">    <span class="comment"># 向下滚动至目标元素可见</span></span><br><span class="line">    js = <span class="string">"arguments[0].scrollIntoView();"</span></span><br><span class="line">    driver.execute_script(js, ele)</span><br><span class="line">    print(<span class="string">'向下滚动至-宝贝评价-元素可见.......'</span>)</span><br><span class="line">    driver.execute_script(<span class="string">"arguments[0].click();"</span>, ele)</span><br><span class="line">    print(<span class="string">'点击-宝贝评价.......'</span>)</span><br><span class="line">    ele_comments=driver.find_elements(By.CSS_SELECTOR,<span class="string">".Comment--content--15w7fKj"</span>)</span><br><span class="line">    print(<span class="string">'提取宝贝评价信息.......'</span>)</span><br><span class="line">    <span class="keyword">for</span> ele_comment <span class="keyword">in</span> ele_comments:</span><br><span class="line">        print(ele_comment.text)</span><br></pre></td></tr></table></figure>
+
+<p>在解析获取商品信息的方法中通过item_href=item.attr(‘href’) # 得到商品的详情访问页面<br>在爬取商品评价get_prod_comments(item_url)的方法中，通过driver.get(item_url)跳转到了商品详情页面。通过ele = wait.until(EC.element_to_be_clickable((By.XPATH, “//div[@class=’Tabs–title–1Ov7S5f ‘]/span”)))定位到“宝贝评价”的点击按钮，通过driver.execute_script(“arguments[0].click();”, ele)进行点击事件，然后通过ele_comments=driver.find_elements(By.CSS_SELECTOR,”.Comment–content–15w7fKj”)找到显示评价信息的元素，循环后解析具体的评价文本信息。<br>效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/4-selenium%E7%88%AC%E5%8F%96%E6%95%88%E6%9E%9C.png" alt="解析获取商品信息"></p>
+<h3 id="2、通过mitmproxy代理进行流量抓包获取商品评价信息"><a href="#2、通过mitmproxy代理进行流量抓包获取商品评价信息" class="headerlink" title="2、通过mitmproxy代理进行流量抓包获取商品评价信息"></a>2、通过mitmproxy代理进行流量抓包获取商品评价信息</h3><p>既然通过Selenium进行模拟点击“宝贝评价”访问了商品评价信息，也可通过流量抓包的方式来获取商品评价信息。<br>同样chrome浏览器的调试模式来分析商品评价是从哪些接口返回的数据，这里可以看到宝贝评价是通过<code>https://h5api.m.taobao.com/h5/mtop.alibaba.review.list.for.new.pc.detail/1.0/....</code>接口返回的数据。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/5-mintproxy%E6%8A%93%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%901.png" alt="调试模式来分析商品评价"></p>
+<p>切换到Response，可以看到接口返回的宝贝评价JSON串。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/6-mitmproxy%E6%8A%93%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%902.png" alt="宝贝评价JSON串"></p>
+<p>有了这些信息后，就可以写mitmproxy代理抓包的代码了。<br>taobao_scripts.py代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抓取淘宝商品评价信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">response</span><span class="params">(flow)</span>:</span></span><br><span class="line">    url = <span class="string">'https://h5api.m.taobao.com/h5/mtop.alibaba.review.list.for.new.pc.detail'</span></span><br><span class="line">    <span class="keyword">if</span> flow.request.url.startswith(url):</span><br><span class="line">        text = flow.response.text</span><br><span class="line">        json_data = json.loads(text)</span><br><span class="line">        print(json_data)</span><br></pre></td></tr></table></figure>
+
+<p>在控制台运行 mitmdump -s taobao_scripts.py 启动mitmproxy代理服务。具体参考《<a href="https://xiejava.blog.csdn.net/article/details/136296522" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》设置好chrome浏览器的mitmproxy代理。然后运行selenium_taobao.py通过Selenium驱动浏览器，进行自动模拟登录-&gt;访问商品列表页面-&gt;访问商品详情页面-&gt;点击“宝贝评价”。<br>在运行mitmdump的控制台可以看到通过抓包获取的淘宝商品评价的数据信息。<br>效果如下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/7-mitmproxy%E6%8A%93%E5%8F%96%E6%B7%98%E5%AE%9D%E8%AF%84%E4%BB%B7%E6%95%B0%E6%8D%AE%E6%95%88%E6%9E%9C.png" alt="抓包获取的淘宝商品评价的数据信息效果"></p>
+<h2 id="三、附-完整代码"><a href="#三、附-完整代码" class="headerlink" title="三、附-完整代码"></a>三、附-完整代码</h2><p>selenium_taobao.py完整代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException, NoSuchElementException</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> quote</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">sleeptime=<span class="number">5</span></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">"debuggerAddress"</span>, <span class="string">"localhost:9222"</span>) <span class="comment">#此处端口保持和命令行启动的端口一致</span></span><br><span class="line">driver = Chrome(options=chrome_options)</span><br><span class="line">driver.implicitly_wait(<span class="number">5</span>)  <span class="comment"># 隐式等待</span></span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)  <span class="comment"># 显示等待</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        check_login_type()</span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>)</span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断登录模式，如果是扫描登录则切换到用户名密码登录模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_login_type</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'判断登录模式'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        change_type = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, <span class="string">'.iconfont.icon-password'</span>)))</span><br><span class="line">        change_type.click()  <span class="comment"># 切换到用户密码模式登录</span></span><br><span class="line">        print(<span class="string">'切换到用户密码模式登录...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">                   <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">                   <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">                   <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">                   <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">                   <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line">        item_href=item.attr(<span class="string">'href'</span>) <span class="comment"># 得到商品的详情访问页面</span></span><br><span class="line">        <span class="keyword">if</span> item_href.find(<span class="string">'https:'</span>)&gt;=<span class="number">0</span>:</span><br><span class="line">            item_url =item_href</span><br><span class="line">            print(item_url)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            item_url = <span class="string">"https:"</span> + item.attr(<span class="string">'href'</span>)</span><br><span class="line">            <span class="comment"># 爬取商品评价</span></span><br><span class="line">            get_prod_comments(item_url)</span><br><span class="line">            time.sleep(sleeptime)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 爬取商品评价</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_prod_comments</span><span class="params">(item_url)</span>:</span></span><br><span class="line">    driver.get(item_url)</span><br><span class="line">    print(<span class="string">'跳转至详情页.......'</span>+item_url)</span><br><span class="line">    ele = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">"//div[@class='Tabs--title--1Ov7S5f ']/span"</span>)))</span><br><span class="line">    time.sleep(sleeptime)</span><br><span class="line">    <span class="comment"># 向下滚动至目标元素可见</span></span><br><span class="line">    js = <span class="string">"arguments[0].scrollIntoView();"</span></span><br><span class="line">    driver.execute_script(js, ele)</span><br><span class="line">    print(<span class="string">'向下滚动至-宝贝评价-元素可见.......'</span>)</span><br><span class="line">    driver.execute_script(<span class="string">"arguments[0].click();"</span>, ele)</span><br><span class="line">    print(<span class="string">'点击-宝贝评价.......'</span>)</span><br><span class="line">    ele_comments=driver.find_elements(By.CSS_SELECTOR,<span class="string">".Comment--content--15w7fKj"</span>)</span><br><span class="line">    print(<span class="string">'提取宝贝评价信息.......'</span>)</span><br><span class="line">    <span class="keyword">for</span> ele_comment <span class="keyword">in</span> ele_comments:</span><br><span class="line">        print(ele_comment.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动获取商品信息并自动翻页</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(url,cur_page,max_page)</span>:</span></span><br><span class="line">    print(<span class="string">' 正在爬取：'</span>+url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        driver.get(url)</span><br><span class="line">        get_products()</span><br><span class="line">        next_page_btn = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">'//button/span[contains(text(),"下一页")]'</span>)))</span><br><span class="line">        next_page_btn.click()</span><br><span class="line">        do_change = wait.until(EC.url_changes(url))</span><br><span class="line">        <span class="keyword">if</span> do_change <span class="keyword">and</span> cur_page&lt;max_page:</span><br><span class="line">            new_url=driver.current_url</span><br><span class="line">            cur_page = cur_page + <span class="number">1</span></span><br><span class="line">            index_page(new_url,cur_page,max_page)</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'---index_page TimeoutException---'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br><span class="line">        KEYWORD = <span class="string">'iPad'</span></span><br><span class="line">        url = <span class="string">'https://s.taobao.com/search?page=1&amp;q='</span> + quote(KEYWORD) + <span class="string">'&amp;tab=all'</span></span><br><span class="line">        max_page=<span class="number">1</span></span><br><span class="line">        index_page(url,<span class="number">1</span>,max_page)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/913ab5e4/" title="Python爬取淘宝商品评价信息实战">https://xiejava.gitee.io/posts/913ab5e4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/dc1cceb8/" rel="next" title="数据安全之认识数据库加密系统">
+                <i class="fa fa-chevron-left"></i> 数据安全之认识数据库加密系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/a0bac159/" rel="prev" title="通过jsDelivr实现Github图床CDN加速">
+                通过jsDelivr实现Github图床CDN加速 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、分析需要爬取的页面"><span class="nav-number">1.</span> <span class="nav-text">一、分析需要爬取的页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、实现爬取商品评价信息的代码"><span class="nav-number">2.</span> <span class="nav-text">二、实现爬取商品评价信息的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、通过解析显示评价信息的元素获取商品评价信息"><span class="nav-number">2.1.</span> <span class="nav-text">1、通过解析显示评价信息的元素获取商品评价信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、通过mitmproxy代理进行流量抓包获取商品评价信息"><span class="nav-number">2.2.</span> <span class="nav-text">2、通过mitmproxy代理进行流量抓包获取商品评价信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、附-完整代码"><span class="nav-number">3.</span> <span class="nav-text">三、附-完整代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

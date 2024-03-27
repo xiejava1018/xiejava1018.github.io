@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。 作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。 本文介绍互联网暴露资产端口的定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全之互联网暴露资产端口">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/ff84f2fb/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。 作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。 本文介绍互联网暴露资产端口的定义">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2023-05-15T06:22:32.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:32.677Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/ff84f2fb/"/>
+
+
+
+
+
+  <title>网络安全之互联网暴露资产端口 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ff84f2fb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络安全之互联网暴露资产端口</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-05-15T14:22:32+08:00">
+                2023-05-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:32+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ff84f2fb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ff84f2fb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ff84f2fb/" class="leancloud_visitors" data-flag-title="网络安全之互联网暴露资产端口">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。</p>
+<p>作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。</p>
+<p>本文介绍互联网暴露资产端口的定义、分类及管理。</p>
+<h2 id="互联网暴露资产端口定义"><a href="#互联网暴露资产端口定义" class="headerlink" title="互联网暴露资产端口定义"></a>互联网暴露资产端口定义</h2><p>互联网暴露端口指信息系统资产、网络设备或终端设备面向互联网开放服务或开放协议的端口（含 NAT 映射端口），该端口可被其他互联网的资产进行主动探测、访问或连接。当某资产至少具备一个互联网暴露端口时，则认定该资产为互联网暴露资产；当某信息系统内部至少具备一台互联网暴露资产时，则认定该信息系统为互联网暴露信息系统。<br>当互联网暴露资产同时面向内网（或私网）开放服务或开放协议时，相关端口不属于互联网暴露端口，不纳入互联网暴露端口管控范围；当某资产通过互联网主动发起单向通信时，因该资产用于通信服务的端口并未暴露于互联网，也无法被其他互联网资产主动探测、访问或连接，则认定该资产不属于互联网暴露资产，且不具备互联网暴露端口。<br>互联网暴露端口的判定，与该端口是否已执行访问控制策略不相关。</p>
+<h2 id="互联网暴露资产端口分类"><a href="#互联网暴露资产端口分类" class="headerlink" title="互联网暴露资产端口分类"></a>互联网暴露资产端口分类</h2><p>互联网暴露资产（含信息系统、网络设备、终端）端口按照其功能用途，可分为业务类端口及管理类端口两大类：<br>1）业务类端口。具体可细分为以下三类：</p>
+<ul>
+<li>用户访问端口：主要指各类与用户侧交互的，支撑用户访问服务的端口，如 WEB 访问端口、视频流端口等。</li>
+<li>平台交互端口：系统内外部服务器间的接口交互、数据交互等服务端口。</li>
+<li>路由协议端口：常见于路由设备，用于配置路由协议而开放的端口服务，如 BGP边界网关协议端口、OSPF 开放式最短路径优先协议端口等。</li>
+</ul>
+<p>2）管理类端口。主要包含实现远程操控管理、后台访问运维、用户数据收集及用户终端主动管控等服务的端口。</p>
+<h2 id="互联网暴露资产端口管理"><a href="#互联网暴露资产端口管理" class="headerlink" title="互联网暴露资产端口管理"></a>互联网暴露资产端口管理</h2><ul>
+<li>尽量缩减收敛减少暴露面，基于最小使用原则，对于高危风险端口应严禁对互联网开放，尤其是管理类端口如数据库、运维管理等端口。如mysql的3306端口、Redis的6379端口等。对于必须要暴露的资产端口进行有效管控，如：制定合理的访问控制策略、加强鉴权等。</li>
+<li>应该建立互联网暴露资产台账，规范的流程严控互联网暴露端口的审批，动态维护好互联网暴露资产台账。</li>
+<li>对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对没有没纳管的暴露面资产进行纳管加强管控或下线，及时维护台账。</li>
+</ul>
+<h3 id="常见的高危风险端口"><a href="#常见的高危风险端口" class="headerlink" title="常见的高危风险端口"></a>常见的高危风险端口</h3><table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>22（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>SSH （Secure Shell），安全外壳协议</td>
+</tr>
+<tr>
+<td>应用场景或应用组件</td>
+<td>远程登录、SSH 端口转发</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>SSH 协议的服务连接端口，可用于进行远程操作维护</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>23（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Telnet （ 远程终端协议）</td>
+</tr>
+<tr>
+<td>应用场景或应用组件</td>
+<td>远程登录</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>Telnet 协议的服务连接端口，可用于进行远程操作维护</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>161（UDP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>SNMP（Simple Network Management Protocol，简单网络管理协议）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>可用于对网络设备进行远程信息读取、管理和配置</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>爆破默认团队字符串，导致信息泄漏</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>111（TCP/UDP）、2049（TCP/UDP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>NFS（Network File System），网络文件系统</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>用于远程文件传输</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>业务类端口（用户访问端口、平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>权限配置不当</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>3306（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>MySQL（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>MySQL 是一款开源关系数据库管理系统。该端口端口用于数据库远程管理和连接</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>6379（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Redis（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>Redis 默认管理和服务端口</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>可能会存在未授权访问，或者进行弱口令爆破；获得访问权限后，可能存在任意文件写入导致获取系统远程控制权限。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>27017（TCP）、27018（TCP）、27019（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>MongoDB（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>用于 MongoDB 数据库的远程管理和服务，以及集群间通信</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>爆破，未授权访问</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>1433（TCP）、1434（UDP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>SQLServer（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>SQL Server 是 Microsoft 公司推出的关系型数据库管理系统。<br>1433（默认）端口用于数据库远程管理和连接，1434（默认）用于命名服务</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>提权，弱口令，爆破；早期版本还存在远程命令执行漏洞</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>1521（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Oracle（甲骨文数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>Oracle 是甲骨文公司的一款关系数据库管理系统。该端口端口用于数据库远程管理和连接</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>5432（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>PostgreSQL（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>PostgreSQL 是一款开源关系数据库管理系统。该端口用于数据库远程管理和连接</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>3389（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Windows RDP（远程桌面协议）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>用于访问服务器的远程桌面服务，提供基于图形界面的远程操作维护功能。</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解，远程控制</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>5800（TCP），5900（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>VNC（Virtual Network Console），虚拟网络控制台</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>VNC 是一款远程桌面和远程控制软件，5800 和 5900（默认）端口均为 VNC 服务启动端口或远端控制端口</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解，远程控制</td>
+</tr>
+</tbody></table>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/ff84f2fb/" title="网络安全之互联网暴露资产端口">https://xiejava.gitee.io/posts/ff84f2fb/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/d2f9b6e7/" rel="next" title="网络安全入行？来了解下网络安全从业人员类别及其工作任务">
+                <i class="fa fa-chevron-left"></i> 网络安全入行？来了解下网络安全从业人员类别及其工作任务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/213c546f/" rel="prev" title="Python三行代码实现json转Excel">
+                Python三行代码实现json转Excel <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网暴露资产端口定义"><span class="nav-number">1.</span> <span class="nav-text">互联网暴露资产端口定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网暴露资产端口分类"><span class="nav-number">2.</span> <span class="nav-text">互联网暴露资产端口分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互联网暴露资产端口管理"><span class="nav-number">3.</span> <span class="nav-text">互联网暴露资产端口管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的高危风险端口"><span class="nav-number">3.1.</span> <span class="nav-text">常见的高危风险端口</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

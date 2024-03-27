@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="对于数据分析来说，在构造或载入数据后最基本的操作应该就是对数据的访问了。看一看数据的结构、组成、分布等，根据需要从数据集中检索提取出相应的数据。pandas作为数据分析的利器，当然提供了多种查看和检索数据的方法。本文就来捋一捋pandas基本的数据访问。  一、查看数据当我们拿到数据集后，第一步可能就是查看数据了，一方面是了解拿到的数据集的数据结构，另一方面随机检查一下数据的质量问题。不管是Ser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas基本操作之数据访问(查看与检索)">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/808d8fe8/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="对于数据分析来说，在构造或载入数据后最基本的操作应该就是对数据的访问了。看一看数据的结构、组成、分布等，根据需要从数据集中检索提取出相应的数据。pandas作为数据分析的利器，当然提供了多种查看和检索数据的方法。本文就来捋一捋pandas基本的数据访问。  一、查看数据当我们拿到数据集后，第一步可能就是查看数据了，一方面是了解拿到的数据集的数据结构，另一方面随机检查一下数据的质量问题。不管是Ser">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/student%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/head.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/tail.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/sample.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/describe1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/describe2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%97%E7%B4%A2%E5%BC%95%E6%A3%80%E7%B4%A2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%87.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%872.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%873.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/rename.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/iloc.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/at.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%5B%5D%E6%9D%A1%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc%E6%9D%A1%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2022-02-07T15:40:32.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:29.727Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/808d8fe8/"/>
+
+
+
+
+
+  <title>pandas基本操作之数据访问(查看与检索) | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/808d8fe8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">pandas基本操作之数据访问(查看与检索)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T23:40:32+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:29+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/808d8fe8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/808d8fe8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/808d8fe8/" class="leancloud_visitors" data-flag-title="pandas基本操作之数据访问(查看与检索)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对于数据分析来说，在构造或载入数据后最基本的操作应该就是对数据的访问了。看一看数据的结构、组成、分布等，根据需要从数据集中检索提取出相应的数据。pandas作为数据分析的利器，当然提供了多种查看和检索数据的方法。本文就来捋一捋pandas基本的数据访问。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.png" alt="数据访问"></p>
+<h1 id="一、查看数据"><a href="#一、查看数据" class="headerlink" title="一、查看数据"></a>一、查看数据</h1><p>当我们拿到数据集后，第一步可能就是查看数据了，一方面是了解拿到的数据集的数据结构，另一方面随机检查一下数据的质量问题。<br>不管是Series还是DataFrame的数据集pandas常用的数据查看方法有：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>操作</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>head(n)</td>
+<td>查看数据集对象的前n行</td>
+<td>Series或DataFrame</td>
+</tr>
+<tr>
+<td>tail(n)</td>
+<td>查看数据集的最后n行</td>
+<td>Series或DataFrame</td>
+</tr>
+<tr>
+<td>sample(n)</td>
+<td>随机查看n个样本</td>
+<td>Series或DataFrame</td>
+</tr>
+<tr>
+<td>describe()</td>
+<td>数据集的统计摘要</td>
+<td>Series</td>
+</tr>
+</tbody></table>
+<p>以下就以一个DataFrame数据集为例来看看这些查看数据的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="studend数据集"></p>
+<h2 id="1、查看头部-head-n"><a href="#1、查看头部-head-n" class="headerlink" title="1、查看头部 head(n)"></a>1、查看头部 head(n)</h2><p>head()方法如果不带参数，默认返回前5条记录，带了参数n就返回前n条记录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.head() <span class="comment">#默认查看前5条记录</span></span><br><span class="line">df.head(<span class="number">8</span>) <span class="comment">#指定查看前8条记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/head.png" alt="查看头部 head(n)"></p>
+<h2 id="2、查看尾部-tail-n"><a href="#2、查看尾部-tail-n" class="headerlink" title="2、查看尾部 tail(n)"></a>2、查看尾部 tail(n)</h2><p>同样tail()方法如果不带参数，默认返回后面5条记录，带了参数n就返回后面n条记录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.tail() <span class="comment">#默认查看后面5条记录</span></span><br><span class="line">df.tail(<span class="number">4</span>) <span class="comment">#指定查看后面4条记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/tail.png" alt="查看尾部 tail(n)"></p>
+<h2 id="3、随机查看样本-sample-n"><a href="#3、随机查看样本-sample-n" class="headerlink" title="3、随机查看样本 sample(n)"></a>3、随机查看样本 sample(n)</h2><p>sample() 不带参数会随机返回一条样本数据，带了参数n就会随机返回n条记录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.sample() <span class="comment">#随机查看一条记录</span></span><br><span class="line">df.sample(<span class="number">4</span>) <span class="comment">#随机查看4条记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/sample.png" alt="随机查看样本 sample(n)"></p>
+<h2 id="4、查看统计摘要"><a href="#4、查看统计摘要" class="headerlink" title="4、查看统计摘要"></a>4、查看统计摘要</h2><p><code>df.describe()</code> 返回所有数字列的统计摘要。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/describe1.png" alt="查看统计摘要"></p>
+<p>这里连staff_id的统计摘要就显示出来了，因为它是数字列。如果只看某一列的统计摘要</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[[<span class="string">'staff_salary'</span>]].describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/describe2.png" alt="只看某一列的统计摘要"></p>
+<h1 id="二、检索数据"><a href="#二、检索数据" class="headerlink" title="二、检索数据"></a>二、检索数据</h1><p>在数据分析过程中，很多时候需要从数据表中提取出相应的数据，而这么做的前提是需要先“检索”出这一部分数据。虽然通过 Python 提供的索引操作符”[]”和属性操作符”.”可以访问 Series 或者 DataFrame 中的数据，但这种方式只适应与少量的数据，为了解决这一问题，pandas 提供了多种类型的索引方式来实现数据的访问。包括[]、loc\iloc、at\iat、布尔索引<br>一般的:<br>df[‘name’] #会返回本列的Series<br>df.name   #也会返回本列的Series</p>
+<blockquote>
+<p>但是要注意，name应该是一个合法的python变量时才可以直接作为属性来使用。</p>
+</blockquote>
+<p>如：<br><strong>df[‘1级别’]可以正常返回索引列为“1级别”的数据，而df.1级别会报错，因为”1级别”不是一个合法的python变量。</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%97%E7%B4%A2%E5%BC%95%E6%A3%80%E7%B4%A2.png" alt="列索引检索"><br>以下通过DataFrame数据集来说明常用检索数据的方法。对于DataFrame的数据集来说要检索数据通常是确定数据所在的行和列。而确定行和列也有两种方式，一是通过<strong>标签索引</strong>来确定，二是通过数据<strong>所在的位置</strong>来确定。<br>一般的：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>语法</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>选择列</td>
+<td>df[col]</td>
+<td>Series</td>
+</tr>
+<tr>
+<td>按索引选择行</td>
+<td>df.loc[label]</td>
+<td>Series</td>
+</tr>
+<tr>
+<td>按位置选择行</td>
+<td>df.iloc[loc]</td>
+<td>Series</td>
+</tr>
+<tr>
+<td>使用切片选择行</td>
+<td>df[2:5]</td>
+<td>DataFrame</td>
+</tr>
+<tr>
+<td>用表达式筛选行</td>
+<td>df[bool]</td>
+<td>DataFrame</td>
+</tr>
+</tbody></table>
+<h2 id="1、切片"><a href="#1、切片" class="headerlink" title="1、切片[]"></a>1、切片[]</h2><p>通过[]进行检索，这将会对行进行切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">0</span>:<span class="number">3</span>] <span class="comment">#通过切片检索行数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%87.png" alt="在这里插入图片描述"></p>
+<p>切片并不对列有效，如果是<code>df[0:3][1:2]</code>，会检索出0-3行，再在这三行切片的基础上切片中检索出第二行。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%872.png" alt="df[0:3][1:2]"></p>
+<p>如果要在切片检索的结果上再选择列，则可以通过列标签索引列表来选择</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">0</span>:<span class="number">3</span>][[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]] <span class="comment">#通过列标签索引列表检索列数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%873.png" alt="通过列标签索引列表来选择"></p>
+<h2 id="2、loc-iloc"><a href="#2、loc-iloc" class="headerlink" title="2、loc\iloc"></a>2、loc\iloc</h2><h3 id="loc"><a href="#loc" class="headerlink" title="loc"></a>loc</h3><p>df.loc[] 只能使用标签索引，不能使用位置索引。当通过标签索引的切片方式来筛选数据时，它的取值前闭后闭，也就是只包括边界值标签（开始和结束）<br>.loc[] 具有多种访问方法，如下所示：</p>
+<ul>
+<li>一个标量标签 </li>
+<li>标签列表 </li>
+<li>切片对象</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="number">1</span>] <span class="comment">#标量标签，返回该行标签的Series数据</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">3</span>]] <span class="comment">#标签列表，返回标签列表的行DataFrame数据</span></span><br><span class="line">df.loc[<span class="number">0</span>:<span class="number">3</span>] <span class="comment">#切片对象，返回切片的行DataFrame数据</span></span><br><span class="line">df.loc[<span class="number">0</span>:<span class="number">3</span>,<span class="string">'staff_id'</span>:<span class="string">'staff_salary'</span>]  <span class="comment">#根据行切片，列切片检索数据</span></span><br><span class="line">df.loc[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>]] <span class="comment">#根据行标签列表，列标签列表检索数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc.png" alt="loc"></p>
+<p>.loc[] 除了标量标签，标签列表和切片对象都接受两个参数，并以’,’分隔。第一个位置表示行检索，第二个位置表示列检索<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc2.png" alt="loc2"></p>
+<h3 id="iloc"><a href="#iloc" class="headerlink" title="iloc"></a>iloc</h3><p>df.iloc[] 只能使用位置索引(用整数表示所在行或列的位置如第几行第几列)，不能使用标签索引，通过整数索引切片选择数据时，前闭后开(不包含边界结束值)。同 Python 和 NumPy 一样，它们的<strong>索引都是从 0 开始</strong><br>.iloc[] 提供了以下方式来选择数据：</p>
+<ul>
+<li>整数索引   </li>
+<li>整数列表  </li>
+<li>数值范围</li>
+</ul>
+<p>为了说明方便，我们把数据集的行索引重名为字母</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.rename(index=&#123;<span class="number">0</span>:<span class="string">'A'</span>,<span class="number">1</span>:<span class="string">'B'</span>,<span class="number">2</span>:<span class="string">'C'</span>,<span class="number">3</span>:<span class="string">'D'</span>,<span class="number">4</span>:<span class="string">'E'</span>,<span class="number">5</span>:<span class="string">'F'</span>,<span class="number">6</span>:<span class="string">'G'</span>,<span class="number">7</span>:<span class="string">'H'</span>,<span class="number">8</span>:<span class="string">'I'</span>,<span class="number">9</span>:<span class="string">'J'</span>&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/rename.png" alt="reanme"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">1</span>]  <span class="comment">#整数标量选择，数据从0开始，为1的就是第二行的数据，返回的是Series</span></span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">3</span>]] <span class="comment">#整数列表选择，选择位置为1和3的数据，返回的是DataFrame</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">3</span>] <span class="comment">#切片选择，选择位置1至2的数据，不包含边界结束值，也就是不包含3的位置</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">3</span>,<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#切片选择位置为1至3的行和1至4的列不含位置为3的行和位置为4的列</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/iloc.png" alt="iloc"></p>
+<h2 id="3、at-iat"><a href="#3、at-iat" class="headerlink" title="3、at\iat"></a>3、at\iat</h2><p>at和iat和loc和iloc类似，不同的是at和iat仅取一个具体的值，结构为 at[&lt;索引&gt;,&lt;列名&gt;]，iat[&lt;行位置&gt;,&lt;列位置&gt;]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.at[<span class="string">'A'</span>,<span class="string">'staff_name'</span>]  <span class="comment">#检索第“A”行的列标签为"staff_name"的数据</span></span><br><span class="line">df.iat[<span class="number">0</span>,<span class="number">1</span>]  <span class="comment">#检索第1行第2列的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/at.png" alt="at\iat"></p>
+<h2 id="4、布尔条件检索"><a href="#4、布尔条件检索" class="headerlink" title="4、布尔条件检索"></a>4、布尔条件检索</h2><h3 id="1、-里用布尔条件进行检索"><a href="#1、-里用布尔条件进行检索" class="headerlink" title="1、[] 里用布尔条件进行检索"></a>1、[] 里用布尔条件进行检索</h3><p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df.staff_salary&gt;<span class="number">10000</span>)&amp;(df.staff_age&lt;<span class="number">40</span>)]  <span class="comment">#检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%5B%5D%E6%9D%A1%E4%BB%B6.png" alt="[] 里用布尔条件进行检索"></p>
+<h3 id="2、loc索引部分用布尔条件检索"><a href="#2、loc索引部分用布尔条件检索" class="headerlink" title="2、loc索引部分用布尔条件检索"></a>2、loc索引部分用布尔条件检索</h3><p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[(df.staff_salary&gt;<span class="number">10000</span>)&amp;(df.staff_age&lt;<span class="number">40</span>)]  <span class="comment">#检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/loc%E6%9D%A1%E4%BB%B6.png" alt="loc索引部分用布尔条件检索"></p>
+<h3 id="3、query函数布尔条件检索"><a href="#3、query函数布尔条件检索" class="headerlink" title="3、query函数布尔条件检索"></a>3、query函数布尔条件检索</h3><p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.query(<span class="string">'staff_salary&gt;10000 &amp; staff_age&lt;40'</span>) <span class="comment">#通过函数检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220207/%E5%87%BD%E6%95%B0.png" alt="query函数布尔条件检索"></p>
+<p>至此，本文介绍了pandas常用的数据访问操作通过head()、tail()、sample()、describe()查看数据，通过[]、loc\iloc、at\iat、及布尔条件检索数据。通过灵活运用pandas的各种数据访问方法可以很方便的根据需要查看和检索数据。</p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/808d8fe8/" title="pandas基本操作之数据访问(查看与检索)">https://xiejava.gitee.io/posts/808d8fe8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/2c80aac2/" rel="next" title="pandas数据处理之数据转换(映射map、替换replace、重命名rename)">
+                <i class="fa fa-chevron-left"></i> pandas数据处理之数据转换(映射map、替换replace、重命名rename)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/e7d4d6e1/" rel="prev" title="pandas数据处理之合并与拼接">
+                pandas数据处理之合并与拼接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、查看数据"><span class="nav-number">1.</span> <span class="nav-text">一、查看数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、查看头部-head-n"><span class="nav-number">1.1.</span> <span class="nav-text">1、查看头部 head(n)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、查看尾部-tail-n"><span class="nav-number">1.2.</span> <span class="nav-text">2、查看尾部 tail(n)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、随机查看样本-sample-n"><span class="nav-number">1.3.</span> <span class="nav-text">3、随机查看样本 sample(n)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、查看统计摘要"><span class="nav-number">1.4.</span> <span class="nav-text">4、查看统计摘要</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、检索数据"><span class="nav-number">2.</span> <span class="nav-text">二、检索数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、切片"><span class="nav-number">2.1.</span> <span class="nav-text">1、切片[]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、loc-iloc"><span class="nav-number">2.2.</span> <span class="nav-text">2、loc\iloc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#loc"><span class="nav-number">2.2.1.</span> <span class="nav-text">loc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iloc"><span class="nav-number">2.2.2.</span> <span class="nav-text">iloc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、at-iat"><span class="nav-number">2.3.</span> <span class="nav-text">3、at\iat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、布尔条件检索"><span class="nav-number">2.4.</span> <span class="nav-text">4、布尔条件检索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-里用布尔条件进行检索"><span class="nav-number">2.4.1.</span> <span class="nav-text">1、[] 里用布尔条件进行检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、loc索引部分用布尔条件检索"><span class="nav-number">2.4.2.</span> <span class="nav-text">2、loc索引部分用布尔条件检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、query函数布尔条件检索"><span class="nav-number">2.4.3.</span> <span class="nav-text">3、query函数布尔条件检索</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

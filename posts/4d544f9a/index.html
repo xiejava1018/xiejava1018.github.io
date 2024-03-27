@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="随着计算机技术的不断发展，防病毒软件已成为企业和个人计算机系统中不可或缺的一部分。防病毒软件是网络安全产品中的一种，主要用于检测、清除计算机病毒，以及预防病毒的传播。本文我们一起来认识一下防病毒软件。 一、什么是计算机病毒计算机病毒（Computer Virus）是一种在计算机系统内进行破坏、传播和自我复制的恶意软件。是恶意代码中的一种，详见《网络安全之恶意代码》。它通常通过电子邮件附件、网络共享">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全产品之认识防病毒软件">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/4d544f9a/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="随着计算机技术的不断发展，防病毒软件已成为企业和个人计算机系统中不可或缺的一部分。防病毒软件是网络安全产品中的一种，主要用于检测、清除计算机病毒，以及预防病毒的传播。本文我们一起来认识一下防病毒软件。 一、什么是计算机病毒计算机病毒（Computer Virus）是一种在计算机系统内进行破坏、传播和自我复制的恶意软件。是恶意代码中的一种，详见《网络安全之恶意代码》。它通常通过电子邮件附件、网络共享">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-01-30T04:07:15.000Z">
+<meta property="article:modified_time" content="2024-03-27T06:46:34.879Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/4d544f9a/"/>
+
+
+
+
+
+  <title>网络安全产品之认识防病毒软件 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4d544f9a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络安全产品之认识防病毒软件</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-30T12:07:15+08:00">
+                2024-01-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:46:34+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/4d544f9a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4d544f9a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/4d544f9a/" class="leancloud_visitors" data-flag-title="网络安全产品之认识防病毒软件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着计算机技术的不断发展，防病毒软件已成为企业和个人计算机系统中不可或缺的一部分。防病毒软件是网络安全产品中的一种，主要用于检测、清除计算机病毒，以及预防病毒的传播。本文我们一起来认识一下防病毒软件。</p>
+<h2 id="一、什么是计算机病毒"><a href="#一、什么是计算机病毒" class="headerlink" title="一、什么是计算机病毒"></a>一、什么是计算机病毒</h2><p>计算机病毒（Computer Virus）是一种在计算机系统内进行破坏、传播和自我复制的恶意软件。是恶意代码中的一种，详见《<a href="http://xiejava.ishareread.com/posts/72d6b06f/" target="_blank" rel="noopener">网络安全之恶意代码</a>》。它通常通过电子邮件附件、网络共享、软件下载等方式传播，能够破坏计算机的操作系统、数据文件和应用程序，导致计算机系统出现各种问题。计算机病毒是人为故意编写的，其目的是为了窃取个人信息、破坏计算机系统或者制造混乱等。<br>为了保护计算机系统的安全，用户需要采取一些措施来预防和清除计算机病毒。这些措施包括安装可靠的防病毒软件、定期更新防病毒软件和操作系统、不随意打开未知来源的邮件和链接、谨慎下载和安装软件等。</p>
+<h2 id="二、什么是防病毒软件"><a href="#二、什么是防病毒软件" class="headerlink" title="二、什么是防病毒软件"></a>二、什么是防病毒软件</h2><p>防病毒软件也称反病毒软件，是用于消除电脑病毒、特洛伊木马和恶意软件、保护电脑安全、安全安全的一类软件的总称。杀毒软件通常集成监控识别、病毒扫描和清除和自动升级等功能，有的杀毒软件还带有数据恢复等功能。<br>防病毒软件最初是为了检测和删除计算机病毒而开发的，因此得名。但是，随着其他种类恶意软件的泛滥，防病毒软件开始提供针对其他计算机威胁的防护。特别是，现代的防病毒软件可以保护用户免受：恶意浏览器帮助对象（BHO）、浏览器劫持者、勒索软件、键盘记录程序、后门程序、rootkit、特洛伊木马、蠕虫、恶意LSP、拨号程序、欺诈工具、广告软件和间谍软件。</p>
+<h2 id="三、防病毒软件的作用"><a href="#三、防病毒软件的作用" class="headerlink" title="三、防病毒软件的作用"></a>三、防病毒软件的作用</h2><p>一个好的防病毒软件的作用主要包括以下几点：</p>
+<ol>
+<li>实时监控和防护：防病毒软件可以实时监控计算机系统的运行状况，一旦发现可疑行为或病毒威胁，能够及时拦截和清除。</li>
+<li>病毒查杀和清除：防病毒软件能够检测和清除已知的各类病毒、木马、蠕虫等恶意程序，确保计算机系统的安全。</li>
+<li>未知病毒的检测和清除：现代的防病毒软件采用了多种技术手段，包括启发式扫描、行为监控、云安全等，能够检测和清除未知的病毒威胁，提高对未知病毒的防护能力。</li>
+<li>系统保护和恢复：防病毒软件能够对计算机系统的关键位置进行保护，防止恶意程序的篡改和破坏。同时，提供系统恢复功能，帮助用户快速恢复受病毒影响的系统。</li>
+<li>网络安全防护：防病毒软件通常集成了防火墙、网络监控等网络安全防护功能，能够全面保护计算机系统的网络安全。</li>
+<li>智能升级和更新：防病毒软件能够智能检测和升级病毒库，确保用户始终拥有最新的病毒防护策略。</li>
+<li>自定义设置：用户可以根据自己的需求对防病毒软件进行自定义设置，包括扫描范围、防护级别等，以满足不同场景下的安全需求。</li>
+</ol>
+<p>一个好的防病毒软件能够提供全面、高效的计算机系统保护，帮助用户避免各类病毒威胁的侵害。用户选择一款可靠、易用的防病毒软件并正确配置和使用，可以大大提高计算机系统的安全性和稳定性。</p>
+<h2 id="四、防病毒软件的工作原理"><a href="#四、防病毒软件的工作原理" class="headerlink" title="四、防病毒软件的工作原理"></a>四、防病毒软件的工作原理</h2><p>防病毒软件检测病毒的方法有：特征码法、校验和法、行为检测法、软件模拟法。防病毒软件大致上是根据以下几个方式辨别病毒：</p>
+<ol>
+<li>病毒检测的方法<br>在与病毒的对抗中，及早发现病毒很重要。早发现，早处置，可以减少损失。检测病毒方法有：特征代码法、校验和法、行为监测法、软件模拟法。</li>
+<li>特征代码法<br>特征代码法被早期应用于SCAN、CPAV等著名病毒检测工具中。国外专家认为特征代码法是检测已知病毒的最简单、开销最小的方法。</li>
+</ol>
+<p>具体来说，防病毒软件通过以下步骤实现对病毒的查杀：</p>
+<ol>
+<li>病毒库的建立：防病毒软件会建立一个包含已知病毒特征的病毒库，这些特征包括病毒的二进制代码、文件头信息、长度等信息。</li>
+<li>文件的扫描：当防病毒软件运行时，它会扫描计算机中的文件，并将每个文件与病毒库中的特征进行比对。</li>
+<li>特征匹配：如果某个文件的特征与病毒库中的某个病毒特征相匹配，防病毒软件就会判定该文件为病毒。</li>
+<li>清除病毒：一旦发现病毒，防病毒软件就会采取相应的措施清除病毒，例如删除病毒文件、隔离可疑文件、清除注册表中的恶意项等。</li>
+</ol>
+<p>除了基于特征的扫描外，现代的防病毒软件还采用了启发式扫描、行为监控等技术来提高对未知病毒和变种病毒的检测和清除能力。</p>
+<h2 id="五、防病毒软件的核心技术"><a href="#五、防病毒软件的核心技术" class="headerlink" title="五、防病毒软件的核心技术"></a>五、防病毒软件的核心技术</h2><p>防病毒软件主要通过两种方式来保护计算机系统：实时监控和手动扫描。实时监控是指在系统运行时，软件会持续地检查文件和内存，一旦发现病毒或可疑行为，就会立即采取措施清除病毒或阻止其传播。而手动扫描则是根据用户的需求，对指定的文件或文件夹进行全面的病毒检查。<br>防病毒软件的核心技术包括：</p>
+<ol>
+<li>静态扫描技术：通过对文件进行逐一的比对，检测是否存在病毒代码。</li>
+<li>动态监控技术：实时监控系统的运行状况，对异常行为进行及时检测和拦截。</li>
+<li>启发式扫描技术：基于行为和特征分析的扫描方式，可以检测未知病毒和变种病毒。</li>
+<li>沙箱技术：将可能存在病毒的文件或程序在隔离的环境中运行，避免对系统造成实质性的伤害。</li>
+<li>云安全技术：利用云端的数据和智能分析能力，提高病毒的检测率和响应速度。</li>
+</ol>
+<p>除了上述核心技术外，一款优秀的防病毒软件还需要具备以下特点：</p>
+<ol>
+<li>兼容性：能够与各种操作系统、应用程序和硬件设备兼容。</li>
+<li>可靠性：能够准确地检测和清除病毒，避免误报和误杀。</li>
+<li>易用性：界面友好，操作简单，易于使用和管理。</li>
+<li>实时更新：能够及时更新病毒库和防护策略，以应对新出现的病毒威胁。</li>
+<li>智能防护：能够根据系统的运行状况和病毒威胁的情况，自动调整防护策略，提高防护效果。</li>
+</ol>
+<p>防病毒软件是保护计算机系统免受病毒威胁的重要工具。选择一款优秀的防病毒软件并正确配置和使用，可以有效地提高计算机系统的安全性和稳定性。</p>
+<h2 id="六、防病毒软件的使用方式"><a href="#六、防病毒软件的使用方式" class="headerlink" title="六、防病毒软件的使用方式"></a>六、防病毒软件的使用方式</h2><p>防病毒软件会扫描计算机文件和内存以查找表明可能存在恶意代码的模式。防病毒软件的使用方式主要包括以下几个步骤：</p>
+<ol>
+<li>安装防病毒软件：首先需要从正规渠道下载和安装防病毒软件，并按照提示进行操作。在安装过程中，需要注意选择需要保护的区域和功能，以及设置软件自动更新和升级等选项。</li>
+<li>定期更新病毒库：防病毒软件的核心是其病毒库，只有不断更新病毒库才能更好地检测和清除病毒。用户需要定期更新防病毒软件，以确保拥有最新的病毒库。</li>
+<li>定期扫描计算机：防病毒软件需要定期扫描计算机系统，以检测和清除病毒。用户可以根据自己的需求设置扫描的范围和频率，以及自定义扫描计划等。</li>
+<li>手动扫描：如果用户怀疑某个文件或文件夹可能存在病毒，可以使用手动扫描功能对它们进行扫描和清除。在防病毒软件的界面上选择“手动扫描”功能，然后选择需要扫描的文件或文件夹即可。</li>
+<li>实时监控：防病毒软件应该开启实时监控功能，对计算机系统的运行状况进行实时监测。一旦发现可疑行为或病毒威胁，能够及时拦截和清除。</li>
+<li>隔离和清除：如果防病毒软件检测到恶意软件的存在，可以将其隔离或清除。根据软件的提示进行操作即可。</li>
+<li>自定义设置：用户可以根据自己的需求对防病毒软件进行自定义设置，包括扫描范围、防护级别等，以满足不同场景下的安全需求。</li>
+</ol>
+<p>正确配置和使用防病毒软件是保护计算机系统免受病毒威胁的重要措施。用户需要注意软件的安装、更新、配置和使用，以最大限度地发挥其保护作用。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/4d544f9a/" title="网络安全产品之认识防病毒软件">https://xiejava.gitee.io/posts/4d544f9a/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/c420c582/" rel="next" title="网络安全产品之认识安全隔离网闸">
+                <i class="fa fa-chevron-left"></i> 网络安全产品之认识安全隔离网闸
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/25495876/" rel="prev" title="Python实现avif图片转jpg格式并识别图片中的文字">
+                Python实现avif图片转jpg格式并识别图片中的文字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">166</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是计算机病毒"><span class="nav-number">1.</span> <span class="nav-text">一、什么是计算机病毒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、什么是防病毒软件"><span class="nav-number">2.</span> <span class="nav-text">二、什么是防病毒软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、防病毒软件的作用"><span class="nav-number">3.</span> <span class="nav-text">三、防病毒软件的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、防病毒软件的工作原理"><span class="nav-number">4.</span> <span class="nav-text">四、防病毒软件的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、防病毒软件的核心技术"><span class="nav-number">5.</span> <span class="nav-text">五、防病毒软件的核心技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、防病毒软件的使用方式"><span class="nav-number">6.</span> <span class="nav-text">六、防病毒软件的使用方式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">346.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
