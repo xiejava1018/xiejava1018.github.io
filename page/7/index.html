@@ -313,6 +313,542 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ff84f2fb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ff84f2fb/" itemprop="url">网络安全之互联网暴露资产端口</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-05-15T14:22:32+08:00">
+                2023-05-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ff84f2fb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ff84f2fb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ff84f2fb/" class="leancloud_visitors" data-flag-title="网络安全之互联网暴露资产端口">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>互联网暴露资产因直接向公众互联网开放，极易遭受来自外部组织或人员的入侵与攻击，是风险管控的高危区域。</p>
+<p>作为企业的安全管理，互联网暴露资产的管理是非常重要的一环。应该建立规范的流程严控互联网暴露端口的审批，对互联网暴露出口应尽量缩减收敛减少暴露面，对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对因为业务需要必须要暴露的资产端口进行有效的访问控制策略等。</p>
+<p>本文介绍互联网暴露资产端口的定义、分类及管理。</p>
+<h2 id="互联网暴露资产端口定义"><a href="#互联网暴露资产端口定义" class="headerlink" title="互联网暴露资产端口定义"></a>互联网暴露资产端口定义</h2><p>互联网暴露端口指信息系统资产、网络设备或终端设备面向互联网开放服务或开放协议的端口（含 NAT 映射端口），该端口可被其他互联网的资产进行主动探测、访问或连接。当某资产至少具备一个互联网暴露端口时，则认定该资产为互联网暴露资产；当某信息系统内部至少具备一台互联网暴露资产时，则认定该信息系统为互联网暴露信息系统。<br>当互联网暴露资产同时面向内网（或私网）开放服务或开放协议时，相关端口不属于互联网暴露端口，不纳入互联网暴露端口管控范围；当某资产通过互联网主动发起单向通信时，因该资产用于通信服务的端口并未暴露于互联网，也无法被其他互联网资产主动探测、访问或连接，则认定该资产不属于互联网暴露资产，且不具备互联网暴露端口。<br>互联网暴露端口的判定，与该端口是否已执行访问控制策略不相关。</p>
+<h2 id="互联网暴露资产端口分类"><a href="#互联网暴露资产端口分类" class="headerlink" title="互联网暴露资产端口分类"></a>互联网暴露资产端口分类</h2><p>互联网暴露资产（含信息系统、网络设备、终端）端口按照其功能用途，可分为业务类端口及管理类端口两大类：<br>1）业务类端口。具体可细分为以下三类：</p>
+<ul>
+<li>用户访问端口：主要指各类与用户侧交互的，支撑用户访问服务的端口，如 WEB 访问端口、视频流端口等。</li>
+<li>平台交互端口：系统内外部服务器间的接口交互、数据交互等服务端口。</li>
+<li>路由协议端口：常见于路由设备，用于配置路由协议而开放的端口服务，如 BGP边界网关协议端口、OSPF 开放式最短路径优先协议端口等。</li>
+</ul>
+<p>2）管理类端口。主要包含实现远程操控管理、后台访问运维、用户数据收集及用户终端主动管控等服务的端口。</p>
+<h2 id="互联网暴露资产端口管理"><a href="#互联网暴露资产端口管理" class="headerlink" title="互联网暴露资产端口管理"></a>互联网暴露资产端口管理</h2><ul>
+<li>尽量缩减收敛减少暴露面，基于最小使用原则，对于高危风险端口应严禁对互联网开放，尤其是管理类端口如数据库、运维管理等端口。如mysql的3306端口、Redis的6379端口等。对于必须要暴露的资产端口进行有效管控，如：制定合理的访问控制策略、加强鉴权等。</li>
+<li>应该建立互联网暴露资产台账，规范的流程严控互联网暴露端口的审批，动态维护好互联网暴露资产台账。</li>
+<li>对互联网暴露面进行定期的探测及时发现没有被纳管的暴露面资产，对没有没纳管的暴露面资产进行纳管加强管控或下线，及时维护台账。</li>
+</ul>
+<h3 id="常见的高危风险端口"><a href="#常见的高危风险端口" class="headerlink" title="常见的高危风险端口"></a>常见的高危风险端口</h3><table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>22（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>SSH （Secure Shell），安全外壳协议</td>
+</tr>
+<tr>
+<td>应用场景或应用组件</td>
+<td>远程登录、SSH 端口转发</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>SSH 协议的服务连接端口，可用于进行远程操作维护</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>23（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Telnet （ 远程终端协议）</td>
+</tr>
+<tr>
+<td>应用场景或应用组件</td>
+<td>远程登录</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>Telnet 协议的服务连接端口，可用于进行远程操作维护</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>弱口令、未授权访问、暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>161（UDP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>SNMP（Simple Network Management Protocol，简单网络管理协议）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>可用于对网络设备进行远程信息读取、管理和配置</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>爆破默认团队字符串，导致信息泄漏</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>111（TCP/UDP）、2049（TCP/UDP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>NFS（Network File System），网络文件系统</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>用于远程文件传输</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>业务类端口（用户访问端口、平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>权限配置不当</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>3306（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>MySQL（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>MySQL 是一款开源关系数据库管理系统。该端口端口用于数据库远程管理和连接</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>6379（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Redis（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>Redis 默认管理和服务端口</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>可能会存在未授权访问，或者进行弱口令爆破；获得访问权限后，可能存在任意文件写入导致获取系统远程控制权限。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>27017（TCP）、27018（TCP）、27019（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>MongoDB（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>用于 MongoDB 数据库的远程管理和服务，以及集群间通信</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>爆破，未授权访问</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>1433（TCP）、1434（UDP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>SQLServer（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>SQL Server 是 Microsoft 公司推出的关系型数据库管理系统。<br>1433（默认）端口用于数据库远程管理和连接，1434（默认）用于命名服务</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>提权，弱口令，爆破；早期版本还存在远程命令执行漏洞</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>1521（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Oracle（甲骨文数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>Oracle 是甲骨文公司的一款关系数据库管理系统。该端口端口用于数据库远程管理和连接</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>5432（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>PostgreSQL（数据库）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>PostgreSQL 是一款开源关系数据库管理系统。该端口用于数据库远程管理和连接</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口、业务类端口（平台交互端口）</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解、信息泄漏、远程命令执行</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>3389（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>Windows RDP（远程桌面协议）</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>用于访问服务器的远程桌面服务，提供基于图形界面的远程操作维护功能。</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解，远程控制</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>高危端口号（默认）</th>
+<th>5800（TCP），5900（TCP）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议或服务</td>
+<td>VNC（Virtual Network Console），虚拟网络控制台</td>
+</tr>
+<tr>
+<td>端口用途说明</td>
+<td>VNC 是一款远程桌面和远程控制软件，5800 和 5900（默认）端口均为 VNC 服务启动端口或远端控制端口</td>
+</tr>
+<tr>
+<td>端口类别</td>
+<td>管理类端口</td>
+</tr>
+<tr>
+<td>风险描述</td>
+<td>暴力破解，远程控制</td>
+</tr>
+</tbody></table>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d2f9b6e7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3018,280 +3554,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dc7085dc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/dc7085dc/" itemprop="url">网络安全之资产及攻击面管理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-05T12:54:30+08:00">
-                2023-03-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/dc7085dc/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/dc7085dc/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/dc7085dc/" class="leancloud_visitors" data-flag-title="网络安全之资产及攻击面管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>“摸清家底，认清风险”做好资产管理是安全运营的第一步。那么什么是资产，资产管理的难点痛点是什么，如何做好资产管理，认清风险。带着这些问题我们来认识一下资产及攻击面管理。</p>
-<h2 id="一、资产的定义"><a href="#一、资产的定义" class="headerlink" title="一、资产的定义"></a>一、资产的定义</h2><p>《GBT 20984-2007信息安全技术信息安全风险评估规范》中，对于资产的定义为“<strong>对组织有价值的信息或资源，是安全策略保护的对象</strong>”。</p>
-<p>对于网络空间资产来说，这里的资产是指赛博空间中某机构所拥有的一切可能被潜在攻击者利用的设备、信息、应用等数字资产。具体对象包括但不限于硬件设备、云主机、操作系统、IP地址、端口、证书、域名、Web应用、业务应用、中间件、框架、机构公众号、小程序、App、API、源代码等。概括来说，<strong>只要是可操作的对象，不管是实体还是属性。都可以称之为“网络空间资产”</strong>。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230305/%E8%B5%84%E4%BA%A7%E5%85%A8%E8%A7%86%E5%9B%BE.png" alt="安全资产视图"></p>
-<p>借用“魔方安全”的图，一切可操作对象和属性，都是资产。</p>
-<h2 id="二、资产管理的挑战"><a href="#二、资产管理的挑战" class="headerlink" title="二、资产管理的挑战"></a>二、资产管理的挑战</h2><p>通过上面的定义和图示，可以看到其实网络空间资产，所涉及的覆盖面特别广，给企业资产管理安全运营带来的巨大的挑战：<br>1、对象多<br>按数字资产类型划分如网站、IP、域名、移动门户和云服务等一切可能被潜在攻击者利用的设备、信息、应用等都是网络空间资产。所以资产管理需要纳管的类型多，且随着业务的互联网化、社交化，导致资产及暴露面快速增长。<br>2、分布广<br>随着数字化应用的深入，资产分布在多个数据中心、私有云、公有云、混合云、边缘计算和物联网等各种基础设施环境中，照成了资产信息割裂碎片化，给资产的统一管理带来了困难。<br>3、变化快<br>随着数字化转型业务发展和新型IT技术应用，为快速响应市场和业务需求，互联网暴露资产无时无刻都在跟着生产运营动态变化。<br>4、更隐蔽<br>影子资产的存在，包括钓鱼欺诈网站、暗网交易数据、用户信息泄露、代码仓库等外部隐藏的企业资产，给企业经济或商誉上带来更大的伤害。</p>
-<h2 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h2><p>一切可能被潜在攻击者利用的设备、信息、应用等都是网络空间资产。你永远都无法知道攻击者如何利用这些网络空间资产进行攻击。</p>
-<p>所以摸清家底是第一步，要搞清楚自己的资产都有哪些，分布在那里，有哪些漏洞风险。这里互联网暴露资产及影子资产尤为关键。影子IT(shadow it)：指那些不在企业和组织IT部门掌控下的IT设备、软件及服务。影子资产就是影子IT中资产。互联网暴露面是网络攻击的入口，是网络安全运营的第一道防线；影子资产的存在更是让安全运营人员防不胜防，因为“你无法保护你看不见的东西”。为了解决这些问题业界推出了攻击面管理的概念。</p>
-<p><strong>攻击面管理</strong>以保护组织数字资产安全为出发点，聚焦在<strong>攻击者视角</strong>去审视网络空间内不同形态种类的资产所组成的攻击暴露面，同时特别强调“可观测性”、“可运营”,这意味着资产的全面性可度量、风险可度量、响应处置可度量。</p>
-<p>攻击面管理的包括暴露面资产全面发现、资产脆弱性风险识别、多源数据融合分析、专项暴露面收敛。</p>
-<h3 id="1、暴露面的全面发现"><a href="#1、暴露面的全面发现" class="headerlink" title="1、暴露面的全面发现"></a>1、暴露面的全面发现</h3><p>暴露面的发现主要以攻击者视角为主，涵盖外部信息、网络资产等维度。</p>
-<p>外部信息包括攻击者能够收集到的机构信息、在开源代码共享平台上的代码、外部接口等。</p>
-<ul>
-<li>机构信息收集</li>
-</ul>
-<p>潜在攻击者首先会搜集用户的机构信息，搜集维度包括但不限于总部及分支机构名称、品牌、安全管理制度、业务运行时间、集团行政架构、各分支机构间的关系等等；针对高权限的IT管理人员，重点搜集姓名、邮箱、手机号、VPN账户、昵称、社会关系等等;搜集渠道主要有各大搜索引擎、天眼查类平台、网盘文库、官网、公众号、钉钉群、微信群、代码共享平台等。因此，安全团队可以通过外部攻击面发现平台，对此类信息做持续周期性的发现。先于攻击者发现此类资产，为响应收敛争取时间。</p>
-<ul>
-<li>源代码发现与收敛</li>
-</ul>
-<p>代码共享平台存在隐匿的攻击暴露面，例如管理后台URL、VPN账户密码等，开发运维人员因缺乏安全意识，无意中将此类敏感信息上传至GitHub、Gitee等代码共享平台，为信息安全事故埋下导火索。攻击者主要是以用户机构的业务关键字、品牌名称、公司名称、IT人员的个人GitHub账户等渠道搜集这类信息，因此安全团队应以技术监测手段与内部行政管理相结合的方式，对此类攻击暴露面进行持续发现、收敛。</p>
-<ul>
-<li>外部接口管理</li>
-</ul>
-<p>除了代码平台，还有一类常被忽视的攻击暴露面是外部接口，如与合作伙伴或第三方平台的API数据接口，与微信公众号菜单对接的URL、小程序或H5中隐含的数据接口等。这类外部接口，开发测试使用过后，即随着项目结束而被遗忘，极易成为潜在的攻击暴露面。同代码平台监测一样，安全团队应当以“技术+管理”相结合的方式，对此进行持续发现、收敛。</p>
-<ul>
-<li>网络资产攻击面覆盖</li>
-</ul>
-<p>通过扫描探测、流量监听、主机代理、特征匹配、其他CMDB系统对接等多种方式，持续动态的发现、汇集资产数据，建立与业务之间的关联关系，安全责任落实责任人，做到摸清家底，解决资产掌握的“不准”、“不全”问题。建立统一的资产台账，对台账数据进行定期自动化探测稽核以及持续动态监测，发现未能了解或掌握暴露于网络空间的资产攻击面，对未申报的遗漏暴露面资产（影子资产）进行自动发现并预警，解决“大海捞针”的工作困扰。</p>
-<h3 id="2、脆弱性风险识别"><a href="#2、脆弱性风险识别" class="headerlink" title="2、脆弱性风险识别"></a>2、脆弱性风险识别</h3><p>脆弱性风险识别包括弱口令识别、漏洞发现、安全配置不合规项的检查识别</p>
-<ul>
-<li>弱口令识别</li>
-</ul>
-<p>弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。近年来，账户密码的不断泄露导致暗网的密码数据库不断增加，日益开放的网络环境降低了边界的可防御性，远程设备的迅速涌入使互联网络上的用户和终端身份的安全管理更加复杂。可以说，金融行业的弱口令攻击面仍然是在不断扩大的。因此，攻击面发现能力中，对攻击面脆弱性的评估，首先还是要关注弱口令。<br>弱口令的发现方式相对也并不复杂，在发现管理后台页面、口令认证接口等类型资产时，相关产品或工具能够进一步辅以口令字典进行测试即可。这里的字典要支持用户上传进行自定义，同时针对不同的资产发现场景和任务，修改不同级别的弱口令测试强度，不影响业务。</p>
-<ul>
-<li>漏洞发现</li>
-</ul>
-<p>作为攻击者，往往依赖于新爆出的0day或1day漏洞。这就决定了在新的漏洞威胁出现后，安全团队需要抢在攻击者之前，更快、更全、更准地定位潜在受漏洞威胁的风险资产。攻击面管理首先要做到在漏洞爆发之前，就对资产台账中的所有资产信息按照业务优先级进行标记，同时对所使用的系统、应用、中间件及资产的版本号等关键信息做到精细管理、持续更新。如此一来，在漏洞爆发时，才能第一时间做到资产快速筛选、PoC快速分发、漏洞精准匹配、虚拟补丁临时修复等快速检测与响应，赶在攻击者行动之前完成风险收敛。</p>
-<ul>
-<li>安全配置合规检查</li>
-</ul>
-<p>安全配置通常都是由于人为的疏忽造成主要包括了账号、口令、授权、日志、IP通信等方面内容，反映了系统自身的安全脆弱性。攻击者往往利用主机、中间件的如脆弱的访问控制配置漏洞进行渗透。安全配置基线合规管控方案是能够有效保障网络设备、信息系统安全的手段之一，其内容主要涉及：登录配置、远程管理保护、访问控制、安全日志、安全协议等多方面内容，只有实现及时自动的采集和核查发现安全配置不合规项并进行整改，才能更好的保障网络资产的安全。</p>
-<h3 id="3、多源数据融合分析"><a href="#3、多源数据融合分析" class="headerlink" title="3、多源数据融合分析"></a>3、多源数据融合分析</h3><p>随着数字化应用的深入，资产分布在多个数据中心、私有云、公有云、混合云、边缘计算和物联网等各种基础设施环境中，无论用户的单独一个部门亦或是单独某一家供应商，不可能覆盖所有资产，因此，统一的攻击面管理一定要具备“多源资产数据的接入并融合分析”的能力。主要解决统一可视化管理的问题，包括资产的可视化、资产与资产之间的关系可视化、风险可视化、业务影响可视化、责任可视化。这都要求具备统一的资产及攻击面管理平台实现多源资产数据的统一接入汇聚，多源数据的融合与分析。</p>
-<ul>
-<li>多源资产数据接入</li>
-</ul>
-<p>应能对接的多源资产数据，包括但不限于CMDB、终端管理平台、AD域等运维数据，以及NDR、EDR、HDR(含HIDS)等具备资产发现能力的安全产品及解决方案。接入范围应该覆盖企业数据中心、私有云、公有云、混合云、边缘计算和物联网等各种基础设施环境中的所有的数据资产数据。</p>
-<ul>
-<li>数据融合与分析</li>
-</ul>
-<p>多源资产数据接入汇总后，并非简单的叠加，而是要进行持续的交叉验证、去重/扩充、属性补全、标记等操作。需要结合业务数据流、网络流量、访问拓扑等多个维度，综合描绘出资产之间的关系链，建立“人-地-网”进行深度的关联和立体化模型，对地理、资产、事件、情报等大数据进行融合分析，结合可视化呈现技术，实现企业整体统一全面的资产地图，让网络资产“看得到、看得清、管得好”，到对于攻击能够“防的住”。</p>
-<h3 id="4、专项暴露面收敛"><a href="#4、专项暴露面收敛" class="headerlink" title="4、专项暴露面收敛"></a>4、专项暴露面收敛</h3><p>通过前面的暴露面资产发现、脆弱性设别筛选定位出所有潜在威胁的风险资产，然后根据资产的业务优先级、所属部门，下发不同的响应策略。在不影响业务连续性的前提下，确定漏洞修复方案前，对部分资产做临时下线处理。对于一小部分受业务连续性要求，既不能下线又不能修复的资产，则通过“虚拟补丁/透明补丁”的方式临时加固，待将来允许时，再行修复。</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3348,7 +3610,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">167</span>
+                  <span class="site-state-item-count">168</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3460,7 +3722,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">349.2k</span>
+    <span title="Site words total count">352.9k</span>
   
   
 <!--51la网站应用监控-->

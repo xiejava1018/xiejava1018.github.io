@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="随着信息技术的快速发展，数据库已成为企业信息化建设的核心组成部分，存储着大量的关键业务数据和敏感信息。与此同时，数据库也面临着来自内部和外部的各种安全威胁和攻击，如SQL注入、未授权访问、数据泄露等。为了保护数据库的安全性和完整性，传统的安全措施如防火墙、入侵检测系统等在一定程度上起到了作用。然而，这些措施往往只关注于网络层面的安全防护，而缺乏对数据库应用层面的深入保护。因此，针对数据库的安全防护">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据安全之认识数据库防火墙">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/f9e58e22/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="随着信息技术的快速发展，数据库已成为企业信息化建设的核心组成部分，存储着大量的关键业务数据和敏感信息。与此同时，数据库也面临着来自内部和外部的各种安全威胁和攻击，如SQL注入、未授权访问、数据泄露等。为了保护数据库的安全性和完整性，传统的安全措施如防火墙、入侵检测系统等在一定程度上起到了作用。然而，这些措施往往只关注于网络层面的安全防护，而缺乏对数据库应用层面的深入保护。因此，针对数据库的安全防护">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240403/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%98%B2%E7%81%AB%E5%A2%99%E9%83%A8%E7%BD%B2%E5%9B%BE.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-04-03T02:08:13.000Z">
+<meta property="article:modified_time" content="2024-04-03T02:25:25.657Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240403/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%98%B2%E7%81%AB%E5%A2%99%E9%83%A8%E7%BD%B2%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/f9e58e22/"/>
+
+
+
+
+
+  <title>数据安全之认识数据库防火墙 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f9e58e22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">数据安全之认识数据库防火墙</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-03T10:08:13+08:00">
+                2024-04-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-04-03T10:25:25+08:00">
+                2024-04-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f9e58e22/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f9e58e22/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/f9e58e22/" class="leancloud_visitors" data-flag-title="数据安全之认识数据库防火墙">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着信息技术的快速发展，数据库已成为企业信息化建设的核心组成部分，存储着大量的关键业务数据和敏感信息。与此同时，数据库也面临着来自内部和外部的各种安全威胁和攻击，如SQL注入、未授权访问、数据泄露等。为了保护数据库的安全性和完整性，传统的安全措施如防火墙、入侵检测系统等在一定程度上起到了作用。然而，这些措施往往只关注于网络层面的安全防护，而缺乏对数据库应用层面的深入保护。因此，针对数据库的安全防护需求，数据库防火墙应运而生。</p>
+<h2 id="一、什么是数据库防火墙"><a href="#一、什么是数据库防火墙" class="headerlink" title="一、什么是数据库防火墙"></a>一、什么是数据库防火墙</h2><p>数据库防火墙是一种基于数据库协议分析与控制技术的安全防护系统，它串联部署在数据库服务器之前，解决数据库应用侧和运维侧两方面的问题。通过实时监控和分析数据库的访问行为，数据库防火墙能够识别并阻断恶意攻击和未经授权的访问，保护数据库的敏感数据和业务逻辑不被篡改和泄露。它可以有效防护数据库免受各种安全威胁和攻击，如SQL注入攻击等。通过主动防御机制，确保数据库的安全性和完整性，防止数据泄露和非法访问等风险。</p>
+<h2 id="二、数据库防火墙的主要功能"><a href="#二、数据库防火墙的主要功能" class="headerlink" title="二、数据库防火墙的主要功能"></a>二、数据库防火墙的主要功能</h2><p>数据库防火墙具备多种功能，旨在保护数据库免受各种潜在的安全威胁和攻击。以下是数据库防火墙的主要功能：</p>
+<ol>
+<li>访问控制：数据库防火墙能够识别并控制对数据库的访问行为。通过设定精细化的访问控制策略，防火墙可以限制只有经过授权的用户或应用程序才能访问数据库，从而防止未经授权的访问和数据泄露。</li>
+<li>SQL注入防护：数据库防火墙具备强大的SQL注入防护能力。通过对输入数据进行验证和过滤，防火墙能够识别和阻止包含恶意SQL代码的输入，从而防止攻击者利用SQL注入漏洞对数据库进行攻击。</li>
+<li>威胁检测和告警：数据库防火墙能够实时监控数据库的访问行为，并检测任何可疑或异常的活动。一旦发现潜在的威胁或攻击行为，防火墙会立即触发告警，通知管理员采取相应的安全措施，从而及时应对安全风险。</li>
+<li>数据泄露防护：数据库防火墙可以监控和审计数据库的敏感数据访问行为，防止敏感数据被非法获取或滥用。通过设定敏感数据保护策略，防火墙能够限制对敏感数据的访问权限，并记录相关访问行为，确保数据的安全性和隐私性。</li>
+<li>虚拟补丁功能：对于已知的数据库漏洞，数据库防火墙能够提供虚拟补丁功能。即使在实际的物理补丁发布之前，防火墙也可以通过配置规则来模拟补丁的效果，从而及时修补漏洞，提高数据库的安全性。</li>
+<li>审计和日志记录：数据库防火墙能够记录所有的数据库访问行为和事件，包括正常的访问请求、异常活动以及安全事件等。这些日志记录可以用于后续的审计和安全分析，帮助管理员识别潜在的安全风险、追踪攻击来源，并为安全事件调查提供证据。</li>
+</ol>
+<p>数据库防火墙具备访问控制、SQL注入防护、威胁检测和告警、数据泄露防护、虚拟补丁功能以及审计和日志记录等多种功能，能够全面提升数据库的安全性，保护数据库免受各种安全威胁和攻击。</p>
+<h2 id="三、数据库防火墙的工作原理"><a href="#三、数据库防火墙的工作原理" class="headerlink" title="三、数据库防火墙的工作原理"></a>三、数据库防火墙的工作原理</h2><p>数据库防火墙的工作原理主要是基于一系列复杂的技术和策略，旨在确保数据库的安全性和完整性。其主要工作原理：</p>
+<ol>
+<li>流量监控与分析：数据库防火墙首先会对进入数据库的流量进行实时监控和分析。这包括识别SQL语句，检查它们的来源、目的地以及内容。防火墙会分析这些SQL语句，以判断它们是否可能是恶意攻击的一部分。</li>
+<li>访问控制：基于流量分析结果，防火墙会实施访问控制策略。这意味着它会根据预设的规则来决定是否允许某个特定的用户或应用程序访问数据库。只有符合特定条件的请求才会被允许通过。</li>
+<li>恶意代码与攻击检测：防火墙会检测SQL流量中是否存在恶意代码或攻击模式。这包括常见的SQL注入攻击、缓冲区溢出攻击等。一旦检测到这些恶意行为，防火墙会立即采取措施，如阻断攻击者的访问或触发告警。</li>
+<li>虚拟补丁功能：针对已知的数据库漏洞，防火墙提供了虚拟补丁功能。这意味着即使在实际的物理补丁发布之前，防火墙也可以通过配置规则来模拟补丁的效果，从而保护数据库免受利用这些漏洞的攻击。</li>
+<li>审计与日志记录：防火墙会记录所有与数据库相关的访问行为和事件。这些日志记录包括成功和失败的访问尝试、异常行为、告警触发等。这些日志对于后续的审计和安全分析至关重要，可以帮助管理员了解数据库的安全状况，及时发现潜在的安全风险。</li>
+<li>实时告警与响应：一旦防火墙检测到潜在的安全威胁或攻击行为，它会立即触发告警通知管理员。管理员可以根据告警信息采取相应的响应措施，如调查攻击来源、封锁攻击者的IP地址等。</li>
+</ol>
+<p>总的来说，数据库防火墙通过实时监控、分析、控制和审计数据库的访问行为，为数据库提供了一道坚固的安全屏障。它结合了多种安全技术和策略，确保数据库免受各种恶意攻击和未经授权的访问。</p>
+<h2 id="四、数据库防火墙如何防护数据库免受SQL注入攻击"><a href="#四、数据库防火墙如何防护数据库免受SQL注入攻击" class="headerlink" title="四、数据库防火墙如何防护数据库免受SQL注入攻击"></a>四、数据库防火墙如何防护数据库免受SQL注入攻击</h2><p>数据库防火墙通过一系列的技术和策略，可以有效地防护数据库免受SQL注入攻击。以下是数据库防火墙如何防护数据库免受SQL注入攻击的主要方法：</p>
+<ol>
+<li>访问行为控制：数据库防火墙能够识别并控制对数据库的访问行为。通过设定规则，防火墙可以限制只有经过授权的用户或应用程序才能访问数据库，从而阻止潜在的恶意用户或应用程序尝试进行SQL注入攻击。</li>
+<li>输入验证和过滤：数据库防火墙能够对输入到数据库中的数据进行验证和过滤，防止恶意用户通过输入恶意的SQL代码来实施注入攻击。防火墙会检查输入数据的有效性，过滤掉可能包含恶意SQL语句的输入，确保只有合法的数据才能被传递给数据库。</li>
+<li>威胁检测和响应：数据库防火墙具备威胁检测和响应能力，能够实时监控数据库的访问行为，并检测任何可疑或异常的活动。一旦发现SQL注入攻击的迹象，防火墙会立即采取相应措施，如阻断攻击者的访问、记录攻击行为、触发警报等，从而防止攻击者进一步利用SQL注入漏洞对数据库进行破坏。</li>
+<li>虚拟补丁功能：对于已知的数据库漏洞，数据库防火墙提供虚拟补丁功能。即使在实际的物理补丁发布之前，防火墙也可以通过配置规则来模拟补丁的效果，从而防止攻击者利用这些漏洞进行SQL注入攻击。</li>
+<li>审计和日志记录：数据库防火墙还能够记录所有的数据库访问行为和事件，包括可能的SQL注入攻击尝试。这些日志记录可以用于后续的审计和安全分析，帮助管理员识别潜在的安全风险并采取相应的措施。</li>
+</ol>
+<p>数据库防火墙通过访问行为控制、输入验证和过滤、威胁检测和响应、虚拟补丁功能以及审计和日志记录等多种手段，可以有效地防护数据库免受SQL注入攻击。</p>
+<h2 id="五、数据库防火墙的部署方式"><a href="#五、数据库防火墙的部署方式" class="headerlink" title="五、数据库防火墙的部署方式"></a>五、数据库防火墙的部署方式</h2><p>数据库防火墙技术是针对关系型数据库保护需求应运而生的一种数据库安全主动防御技术。它部署于应用服务器和数据库之间，用户必须通过该系统才能对数据库进行访问或管理。这种主动防御技术能够主动监测和防护数据库的安全。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240403/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%98%B2%E7%81%AB%E5%A2%99%E9%83%A8%E7%BD%B2%E5%9B%BE.png" alt="数据库防火墙部署图"></p>
+<center>数据库防火墙部署图</center>
+
+<p>数据库防火墙支持多种部署模式，包括透明网桥模式、代理接入模式、旁路部署模式以及虚拟化部署等，以适应不同的网络环境和安全需求。</p>
+<h2 id="六、数据库防火墙与网络防火墙的关系与区别"><a href="#六、数据库防火墙与网络防火墙的关系与区别" class="headerlink" title="六、数据库防火墙与网络防火墙的关系与区别"></a>六、数据库防火墙与网络防火墙的关系与区别</h2><p>数据库防火墙与网络防火墙在网络安全领域各自扮演着重要的角色，但它们的目标、部署位置、防护对象以及功能等方面存在显著的区别。</p>
+<p>首先，从目标和防护对象来看，网络防火墙主要关注的是网络层面的安全防护，防止未经授权的访问和恶意攻击从外部网络进入内部网络。它部署在网络边界，对所有流入流出的网络通信进行扫描和过滤，以阻止潜在的攻击。而数据库防火墙则更专注于数据库层面的安全防护，它部署在数据库服务器前端，对SQL流量进行实时监控和分析，以检测和防止对数据库的恶意攻击和未经授权的访问。数据库防火墙的目标是保护数据库的完整性和安全性，防止数据泄露、篡改等风险。</p>
+<p>其次，在功能方面，网络防火墙主要通过过滤网络通信、关闭不使用的端口、禁止特定端口的流出通信、封锁木马以及禁止来自特定站点的访问等方式来加强网络安全。而数据库防火墙则具备更细粒度的控制功能，它能够对数据库流量进行详细的分析，并根据预设的规则对SQL语句进行检测与过滤，避免SQL注入攻击等威胁。此外，数据库防火墙还提供安全性/合规性支持，进行完整的安全审计跟踪，并支持多种合规性标准。</p>
+<p>此外，数据库防火墙还具有数据脱敏功能，可以对敏感数据进行处理，避免直接泄露。而网络防火墙则不具备这样的功能。</p>
+<p>由此可以看出，网络防火墙和数据库防火墙在网络安全领域各自发挥着不可替代的作用。网络防火墙是网络安全的第一道防线，而数据库防火墙则是对数据库安全进行深度防护的关键手段。在实际应用中，两者可以相互配合，共同构建一个更加安全、可靠的网络环境。</p>
+<h2 id="七、数据库防火墙的应用场景"><a href="#七、数据库防火墙的应用场景" class="headerlink" title="七、数据库防火墙的应用场景"></a>七、数据库防火墙的应用场景</h2><p>数据库防火墙的应用场景相当广泛，主要涉及到数据库的安全防护和风险管理。关键的应用场景包括：</p>
+<ol>
+<li>数据库入侵防御：数据库防火墙部署在应用服务器和数据库服务器之间，防止外部黑客通过SQL注入、未授权访问等手段入侵数据库。它能够对进入数据库的流量进行实时监控和分析，识别和阻断恶意攻击，保护数据库的完整性和安全性。</li>
+<li>数据库运维管控：数据库防火墙可以作为内部数据库运维的接口，对运维人员的操作进行细粒度的权限控制。通过设定精确的权限策略，防止运维人员执行高危操作、敏感数据泄漏或越权访问，降低因误操作引发的安全风险。</li>
+<li>内外网隔离：数据库防火墙可以作为唯一的内网接入通道，替代传统的防火墙、IDS和IPS产品，实现安全的数据库通讯。它能够有效隔离内外网，阻止未经授权的访问和恶意攻击，确保数据在传输过程中的安全性。</li>
+<li>合规性要求满足：数据库防火墙在多个方面，如漏洞和风险管理、资产管理、网络和系统安全管理、访问控制、个人信息保护等，都符合公安部等保和各行业规范的安全合规要求。它能够帮助企业发现违规的数据库操作，如批量导出数据引发的数据泄露等，并提供有效的风险安全防护。</li>
+</ol>
+<p>除此之外，数据库防火墙还可以应用于非授权人员通过应用系统非法登录数据库的场景，通过对其操作进行监控和阻断，防止敏感数据的篡改或盗取。数据库防火墙在保护数据库安全、防止数据泄露和满足合规性要求等方面发挥着重要作用，是企业信息化建设中不可或缺的安全防护手段。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/f9e58e22/" title="数据安全之认识数据库防火墙">https://xiejava.gitee.io/posts/f9e58e22/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/8e13284d/" rel="next" title="网络安全产品之认识4A统一安全管理平台">
+                <i class="fa fa-chevron-left"></i> 网络安全产品之认识4A统一安全管理平台
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">168</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是数据库防火墙"><span class="nav-number">1.</span> <span class="nav-text">一、什么是数据库防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、数据库防火墙的主要功能"><span class="nav-number">2.</span> <span class="nav-text">二、数据库防火墙的主要功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、数据库防火墙的工作原理"><span class="nav-number">3.</span> <span class="nav-text">三、数据库防火墙的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、数据库防火墙如何防护数据库免受SQL注入攻击"><span class="nav-number">4.</span> <span class="nav-text">四、数据库防火墙如何防护数据库免受SQL注入攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、数据库防火墙的部署方式"><span class="nav-number">5.</span> <span class="nav-text">五、数据库防火墙的部署方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、数据库防火墙与网络防火墙的关系与区别"><span class="nav-number">6.</span> <span class="nav-text">六、数据库防火墙与网络防火墙的关系与区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、数据库防火墙的应用场景"><span class="nav-number">7.</span> <span class="nav-text">七、数据库防火墙的应用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">352.9k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

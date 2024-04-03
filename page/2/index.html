@@ -313,6 +313,257 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6e762a1a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/6e762a1a/" itemprop="url">Selenium实战-模拟登录淘宝并爬取商品信息</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-26T14:07:55+08:00">
+                2024-02-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6e762a1a/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6e762a1a/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/6e762a1a/" class="leancloud_visitors" data-flag-title="Selenium实战-模拟登录淘宝并爬取商品信息">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>现在很多网站要获取数据都得要先登录。Selenium是一个用于Web应用程序测试的自动化工具。它直接运行在浏览器中，模拟真实用户的操作。本文介绍如何通过Selenium来登录淘宝并自动爬取商品信息。<br>关于Selenium的安装与配置请参考博文《<a href="http://xiejava.ishareread.com/posts/8370b2b6/" target="_blank" rel="noopener">Selenium安装与配置</a>》</p>
+<h2 id="一、通过Selenium模拟登录淘宝"><a href="#一、通过Selenium模拟登录淘宝" class="headerlink" title="一、通过Selenium模拟登录淘宝"></a>一、通过Selenium模拟登录淘宝</h2><p>现在要获取淘宝的商品信息需要先登录淘宝。我们先来分析淘宝的登录页面。</p>
+<h3 id="1、分析淘宝登录页面"><a href="#1、分析淘宝登录页面" class="headerlink" title="1、分析淘宝登录页面"></a>1、分析淘宝登录页面</h3><p>淘宝登录页面为<a href="https://login.taobao.com/member/login.jhtml，支持扫描登录和用户名、密码验证登录。我们模拟用户名、密码登录。" target="_blank" rel="noopener">https://login.taobao.com/member/login.jhtml，支持扫描登录和用户名、密码验证登录。我们模拟用户名、密码登录。</a><br>通过Chrome浏览器输入淘宝登录页面链接F12打开开发者工具，分析淘宝登录页的源代码，找到登录账号、登录密码和登录按钮的相关控件的源代码<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/1-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2%E5%88%86%E6%9E%90.png" alt="分析淘宝登录页面"></p>
+<p>在这里可以看到<br>账号名的输入框控件代码:<code>&lt;input name=&quot;fm-login-id&quot; type=&quot;text&quot; class=&quot;fm-text&quot; id=&quot;fm-login-id&quot; tabindex=&quot;1&quot; aria-label=&quot;账号名/邮箱/手机号&quot; placeholder=&quot;账号名/邮箱/手机号&quot; autocapitalize=&quot;off&quot; data-spm-anchor-id=&quot;a2107.1.0.i1.3e3e11d9pGQKXf&quot;&gt;</code><br>登录密码的输入框控件代码：<code>&lt;input name=&quot;fm-login-password&quot; type=&quot;password&quot; class=&quot;fm-text&quot; id=&quot;fm-login-password&quot; tabindex=&quot;2&quot; aria-label=&quot;请输入登录密码&quot; placeholder=&quot;请输入登录密码&quot; maxlength=&quot;40&quot; autocapitalize=&quot;off&quot; data-spm-anchor-id=&quot;a2107.1.0.i2.3e3e11d9pGQKXf&quot;&gt;</code><br>登录按钮的控件代码：<code>&lt;button type=&quot;submit&quot; tabindex=&quot;3&quot; class=&quot;fm-button fm-submit password-login&quot; data-spm-anchor-id=&quot;a2107.1.0.i3.3e3e11d9pGQKXf&quot;&gt;登录&lt;/button&gt;</code><br>找到登录需要用的的这几个关键控件代码都就可以开始编码来控制这些控件进行模拟操作了。</p>
+<h3 id="2、通过Selenium实现模拟登录代码"><a href="#2、通过Selenium实现模拟登录代码" class="headerlink" title="2、通过Selenium实现模拟登录代码"></a>2、通过Selenium实现模拟登录代码</h3><p>具体代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException</span><br><span class="line"></span><br><span class="line">driver=Chrome()</span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>) <span class="comment"># 用你自己的淘宝账号替换</span></span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>) <span class="comment"># 用你自己的密码替换</span></span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line">            </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>运行代码后可以看到程序自动的调起了一个Chrome浏览器并访问了淘宝的登录页面，自动的输入了用户淘宝账号和密码，自动的点击了登录按钮，但出现了一个滑动验证的控件，要求滑动验证。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/2-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E9%9C%80%E8%A6%81%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81.png" alt="淘宝登录需要滑动验证"></p>
+<p>人工拖动滑动验证控件，显示验证失败。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/3-%E6%B7%98%E5%AE%9D%E7%99%BB%E5%BD%95%E6%BB%91%E5%8A%A8%E9%AA%8C%E8%AF%81%E5%A4%B1%E8%B4%A5.png" alt="淘宝滑动验证失败"></p>
+<p>这是因为淘宝有一套反爬机制识别是否是机器自动在登录。如果是人工打开浏览器，手工输入账号密码登录就不会弹出滑动验证控件进行验证。在网上有很多办法，如可以通过代理修改chormdriver的识别码，这里介绍通过Selenium如何接管已经运行的Chrome浏览器来实现规避淘宝的验证。</p>
+<h3 id="3、Selenium接管已经运行的Chrome浏览器"><a href="#3、Selenium接管已经运行的Chrome浏览器" class="headerlink" title="3、Selenium接管已经运行的Chrome浏览器"></a>3、Selenium接管已经运行的Chrome浏览器</h3><h4 id="1）启动Chrome的远程调试模式"><a href="#1）启动Chrome的远程调试模式" class="headerlink" title="1）启动Chrome的远程调试模式"></a>1）启动Chrome的远程调试模式</h4><p>通过<br><code>chrome.exe --remote-debugging-port=9222 --user-data-dir=&#39;某个存在的文件夹地址&#39;</code>  启动Chrome的远程调试模式，启动一个Chrome浏览器。<br>找到chrome的安装目录，找到chrome.exe ，通过cmd命令行执行上面的命令。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/4-%E9%80%9A%E8%BF%87%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8.png" alt="启动Chrome远程调试模式"></p>
+<p>运行上面命令后，就会弹出一个chrome浏览器，这个浏览器是可以被Selenium来接管操作的。</p>
+<h4 id="2）代码中实现接管已经运行的Chrome浏览器"><a href="#2）代码中实现接管已经运行的Chrome浏览器" class="headerlink" title="2）代码中实现接管已经运行的Chrome浏览器"></a>2）代码中实现接管已经运行的Chrome浏览器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException</span><br><span class="line"></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">"debuggerAddress"</span>, <span class="string">"localhost:9222"</span>) <span class="comment">#此处端口保持和命令行启动的端口一致</span></span><br><span class="line">driver = Chrome(options=chrome_options)</span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>) <span class="comment"># 用你自己的淘宝账号替换</span></span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>) <span class="comment"># 用你自己的密码替换</span></span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、运行效果"><a href="#4、运行效果" class="headerlink" title="4、运行效果"></a>4、运行效果</h3><p>运行上述代码就可以看到，Selenium接管了这个通过Chrome的远程调试模式启动的浏览器，并自动输入用户名和密码，自动登录成功，跳转到我的淘宝界面。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/5-%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E5%88%B0%E6%88%91%E7%9A%84%E6%B7%98%E5%AE%9D.png" alt="自动登录到我的淘宝"></p>
+<h2 id="二、通过Selenium自动爬取淘宝商品信息"><a href="#二、通过Selenium自动爬取淘宝商品信息" class="headerlink" title="二、通过Selenium自动爬取淘宝商品信息"></a>二、通过Selenium自动爬取淘宝商品信息</h2><h3 id="1、分析商品页面"><a href="#1、分析商品页面" class="headerlink" title="1、分析商品页面"></a>1、分析商品页面</h3><p><a href="https://s.taobao.com/search?page=1&amp;q=ipad&amp;tab=all" target="_blank" rel="noopener">https://s.taobao.com/search?page=1&amp;q=ipad&amp;tab=all</a><br>通过Chrome浏览器输入淘宝搜索商品页面链接F12打开开发者工具，分析淘宝搜索商品列表页的源代码，找到商品展示相关源代码包括商品的title、价格、详情页、购买情况等。我们需要通过解析这些源代码获取相应的商品信息。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/6-%E5%88%86%E6%9E%90%E6%B7%98%E5%AE%9D%E5%88%97%E8%A1%A8%E9%A1%B5.png" alt="分析商品页面"></p>
+<p>找到下一页翻页的按钮，我们需要控制下一页翻页的按钮来实现自动翻页。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/7-%E5%88%86%E6%9E%90%E6%B7%98%E5%AE%9D%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%8C%89%E9%92%AE.png" alt="分析淘宝下一页"></p>
+<h3 id="2、实现商品获取代码"><a href="#2、实现商品获取代码" class="headerlink" title="2、实现商品获取代码"></a>2、实现商品获取代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">            <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">            <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">            <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">            <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">            <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动获取商品信息并自动翻页</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(url,cur_page,max_page)</span>:</span></span><br><span class="line">    print(<span class="string">' 正在爬取：'</span>+url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        driver.get(url)</span><br><span class="line">        get_products()</span><br><span class="line">        next_page_btn = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">'//button/span[contains(text(),"下一页")]'</span>)))</span><br><span class="line">        next_page_btn.click()</span><br><span class="line">        do_change = wait.until(EC.url_changes(url))</span><br><span class="line">        <span class="keyword">if</span> do_change <span class="keyword">and</span> cur_page&lt;max_page:</span><br><span class="line">            new_url=driver.current_url</span><br><span class="line">            cur_page = cur_page + <span class="number">1</span></span><br><span class="line">            index_page(new_url,cur_page,max_page)</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'---index_page TimeoutException---'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、实现效果"><a href="#3、实现效果" class="headerlink" title="3、实现效果"></a>3、实现效果</h3><p>从浏览器看，Selenium自动访问淘宝登录页，当切到用户名密码登录界面时，Selenium自动输入用户名、密码点击登录。登录成功后，自动访问商品搜索页搜索ipad,进行商信息获取，自动翻下一页。<br>从后台打印的日志看，显示“开始登录”、“已经登录”，正在爬取的链接和该链接下的商品信息。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240226/8-Selenium%E5%90%8E%E5%8F%B0%E6%97%A5%E5%BF%97.png" alt="Selenium后台日志"></p>
+<p>至此，通过Selenium来代码实现模拟登录淘宝并自动爬取商品信息，进行了Selenium的实战。<br>要注意的是：</p>
+<blockquote>
+<p>1、在Selenium打开登录页面后淘宝默认的是扫码登录，需要人为接入切换用户密码模式。这时也可以让Selenium自动去切到用户密码模式登录。代码如下：<br>change_type=wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, ‘.iconfont.icon-password’)))<br>change_type.click() #切换到用户密码模式登录<br>2、在运行启动Chrome的远程调试模式，启动Chrome浏览器后，要关闭其他的Chrome浏览器，保留远程调试模式启动的浏览器就好了。如果是存在多个Chrome浏览器Selenium会不知道要接管哪一个。</p>
+</blockquote>
+<h2 id="附上全部完整代码："><a href="#附上全部完整代码：" class="headerlink" title="附上全部完整代码："></a>附上全部完整代码：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> quote</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">"debuggerAddress"</span>, <span class="string">"localhost:9222"</span>) <span class="comment">#此处端口保持和命令行启动的端口一致</span></span><br><span class="line">driver = Chrome(options=chrome_options)</span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        change_type=wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, <span class="string">'.iconfont.icon-password'</span>)))</span><br><span class="line">        change_type.click() <span class="comment">#切换到用户密码模式登录</span></span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>) <span class="comment"># 用你自己的淘宝账号替换</span></span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>) <span class="comment"># 用你自己的密码替换</span></span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">            <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">            <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">            <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">            <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">            <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动获取商品信息并自动翻页</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(url,cur_page,max_page)</span>:</span></span><br><span class="line">    print(<span class="string">' 正在爬取：'</span>+url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        driver.get(url)</span><br><span class="line">        get_products()</span><br><span class="line">        next_page_btn = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">'//button/span[contains(text(),"下一页")]'</span>)))</span><br><span class="line">        next_page_btn.click()</span><br><span class="line">        do_change = wait.until(EC.url_changes(url))</span><br><span class="line">        <span class="keyword">if</span> do_change <span class="keyword">and</span> cur_page&lt;max_page:</span><br><span class="line">            new_url=driver.current_url</span><br><span class="line">            cur_page = cur_page + <span class="number">1</span></span><br><span class="line">            index_page(new_url,cur_page,max_page)</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'---index_page TimeoutException---'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br><span class="line">        KEYWORD = <span class="string">'iPad'</span></span><br><span class="line">        url = <span class="string">'https://s.taobao.com/search?page=1&amp;q='</span> + quote(KEYWORD) + <span class="string">'&amp;tab=all'</span></span><br><span class="line">        max_page=<span class="number">10</span></span><br><span class="line">        index_page(url,<span class="number">1</span>,max_page)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8370b2b6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2716,264 +2967,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c420c582/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/c420c582/" itemprop="url">网络安全产品之认识安全隔离网闸</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-27T20:26:46+08:00">
-                2024-01-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/c420c582/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c420c582/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/c420c582/" class="leancloud_visitors" data-flag-title="网络安全产品之认识安全隔离网闸">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>随着互联网的发展，网络攻击和病毒传播的方式越来越复杂，对网络安全的要求也越来越高。传统的防火墙设备在面对一些高级的网络攻击时，往往难以做到全面的防护，因此需要一种更加有效的网络安全设备来提高网络的安全性。此外，随着信息技术的不断发展，各个行业对信息系统的依赖程度也越来越高，一旦信息系统遭受攻击或入侵，可能会导致数据泄露、系统瘫痪等严重后果。因此，对于一些高安全级别的网络环境，如政府、军队、公安、银行等，需要一种更加可靠的安全设备来保证网络的安全性。在这样的背景下，安全隔离网闸作为一种新型的网络安全设备应运而生。本文让我们一起来认识安全隔离网闸。</p>
-<h2 id="一、什么是安全隔离网闸"><a href="#一、什么是安全隔离网闸" class="headerlink" title="一、什么是安全隔离网闸"></a>一、什么是安全隔离网闸</h2><p>安全隔离网闸，又名“网闸”、“物理隔离网闸”，是一种网络安全设备，用于实现不同安全级别网络之间的安全隔离，并提供适度可控的数据交换。安全隔离网闸是使用带有多种控制功能的固态开关读写介质连接两个独立网络系统的信息安全设备。物理隔离网闸从物理上隔离、阻断了具有潜在攻击可能的一切连接，使“黑客”无法入侵、无法攻击、无法破坏，实现了真正的安全，安全隔离闸门的功能模块有：安全隔离、内核防护、协议转换、病毒查杀、访问控制、安全审计、身份认证。</p>
-<h2 id="二、安全隔离网闸的主要功能"><a href="#二、安全隔离网闸的主要功能" class="headerlink" title="二、安全隔离网闸的主要功能"></a>二、安全隔离网闸的主要功能</h2><p>安全隔离网闸是一种网络安全设备，旨在实现不同安全级别网络之间的安全隔离和数据交换。其主要功能包括：</p>
-<ol>
-<li>安全隔离：安全隔离网闸能够切断内网和外网之间的直接连接，通过专用硬件和软件实现内外网的物理隔离，确保内网的安全。</li>
-<li>数据交换：安全隔离网闸可以实现不同安全域之间的适度可控的数据交换，通过专用协议进行数据传输和交换，同时对数据进行剥离、解密、校验等处理，保证数据的安全性和完整性。</li>
-<li>协议转换：安全隔离网闸可以进行不同网络协议之间的转换，如将非通用的私有协议转换为通用的网络协议，或者将通用的网络协议转换为其他协议，以满足不同网络环境的需求。</li>
-<li>病毒查杀：安全隔离网闸可以对交换的数据进行病毒检查，通过内置的病毒查杀功能模块对数据进行过滤和处理，防止病毒的传播和感染。</li>
-<li>访问控制：安全隔离网闸可以进行访问控制，通过配置访问控制策略来限制不同用户或用户组对内网的访问权限，确保只有经过授权的用户可以访问内网资源。</li>
-<li>安全审计：安全隔离网闸可以进行安全审计，对内外网之间的数据交换和访问行为进行记录和分析，帮助管理员进行安全监控和日志管理。</li>
-<li>身份认证：安全隔离网闸可以进行身份认证，通过用户名、密码、数字证书等方式对用户进行身份验证，确保只有经过身份认证的用户可以访问内网资源。</li>
-</ol>
-<p>安全隔离网闸可以有效地保护网络免受潜在的安全威胁，确保数据的安全性和完整性。</p>
-<h2 id="三、安全隔离网闸的工作原理"><a href="#三、安全隔离网闸的工作原理" class="headerlink" title="三、安全隔离网闸的工作原理"></a>三、安全隔离网闸的工作原理</h2><p>其工作原理是通过专用硬件在电路上切断网络之间的链路层连接，形成物理隔离，从而能够在网络间进行安全适度的应用数据交换。安全隔离网闸通常由三个基本部分组成：内网处理单元、外网处理单元和隔离与交换控制单元（隔离硬件）。其中，内网处理单元负责处理内网的数据，外网处理单元负责处理外网的数据，而隔离与交换控制单元则负责在内外网之间建立一个安全的数据交换通道，以实现数据的传输和交换。</p>
-<p><strong>1、内网处理单元</strong><br>内网处理单元包括内网接口单元与内网数据缓冲区。接口部分负责与内网的连接，并终止内网用户的网络连接，对数据进行病毒检测、防火墙、入侵防护等安全检测后剥离出“纯数据”，作好交换的准备，也完成来自内网对用户身份的确认，确保数据的安全通道；数据缓冲区是存放并调度剥离后的数据，负责与隔离交换单元的数据交换。</p>
-<p><strong>2、外网处理单元</strong><br>外网处理单元与内网处理单元功能相同，但处理的是外网连接。</p>
-<p><strong>3、隔离与交换控制单元（隔离硬件）</strong><br>隔离与交换控制单元（隔离硬件）是网闸隔离控制的摆渡控制，控制交换通道的开启与关闭。控制单元中包含一个数据交换区，就是数据交换中的摆渡船。对交换通道的控制的方式目前有两种技术，摆渡开关与通道控制。摆渡开关是电子倒换开关，让数据交换区与内外网在任意时刻的不同时连接，形成空间间隔GAP，实现物理隔离。通道方式是在内外网之间改变通讯模式，中断了内外网的直接连接，采用私密的通讯手段形成内外网的物理隔离。该单元中有一个数据交换区，作为交换数据的中转。 </p>
-<p>其中，三个单元都要求其软件的操作系统是安全的，也就是采用非通用的操作系统，或改造后的专用操作系统。一般为Unix BSD或Linux的经安全精简版本，或者其他是嵌入式操作系统等，但都要对底层不需要的协议、服务删除，使用的协议优化改造，增加安全特性，同时提高效率。</p>
-<p>如果针对网络七层协议，安全隔离网闸是在硬件链路层上断开。</p>
-<p>安全隔离网闸的部署方式一般是在两套网络之间，它可以实现物理隔离，阻断网络中的TCP等协议，使用私有协议进行数据交换。在对网络要求稍微高一些的单位，如政府、军队、公安、银行等，通常会用到安全隔离网闸来确保网络安全。</p>
-<h2 id="四、安全隔离网闸的分类"><a href="#四、安全隔离网闸的分类" class="headerlink" title="四、安全隔离网闸的分类"></a>四、安全隔离网闸的分类</h2><p>隔离网闸的主要类型包括硬件隔离网闸和软件隔离网闸。<br><strong>硬件隔离网</strong>闸通常是一种独立的设备，它通过物理隔离的方式对网络进行安全保护，具有较高的安全性和稳定性。这种网闸通过专用安全隔离切换装置（数据暂存区）、内部处理单元和外部处理单元等硬件组成部分，在任一时刻仅连通内部或外部处理单元，从而实现内外网的安全隔离。<br>而<strong>软件隔离网闸</strong>则是一种基于软件的安全隔离技术，它可以通过虚拟化、隔离容器等技术对网络进行安全隔离，具有较高的灵活性和可控性。这种网闸通常不需要额外的硬件设备，而是在现有的计算机系统中通过软件实现网络隔离和数据交换。</p>
-<p>此外，根据应用场景和需求的不同，隔离网闸还可以分为不同的类型，例如单向隔离网闸和双向隔离网闸。<br><strong>单向隔离网闸</strong>的数据流是单向的，也就是说，数据只能从一个方向流动，不能从另一个方向流动。这通常是为了确保网络的安全性，防止潜在的安全威胁和数据泄露。<br>而<strong>双向隔离网</strong>闸则是双向可流动的，也就是说，数据可以从内网流向外网，也可以从外网流向内网。这种类型的网闸通常用于需要频繁进行数据交换的场景，例如政府部门、金融行业等。</p>
-<h2 id="五、安全隔离网闸与防火墙的区别"><a href="#五、安全隔离网闸与防火墙的区别" class="headerlink" title="五、安全隔离网闸与防火墙的区别"></a>五、安全隔离网闸与防火墙的区别</h2><p>安全隔离网闸与防火墙是两种不同的网络安全设备，它们的主要区别在于应用场景、硬件架构和功能等方面。<br>首先，应用场景方面，防火墙主要用于保护内部网络免受外部网络的攻击和入侵，它通常部署在内部网络和外部网络之间，确保内网的安全性。而安全隔离网闸则主要用于实现不同安全域之间的安全隔离和数据交换，它通常部署在两个或多个安全域之间，确保不同安全域之间的数据传输和交换的安全性。</p>
-<p>其次，硬件架构方面，防火墙是单主机架构，通过软件来实现安全功能，早期的防火墙采用包过滤技术，现代的防火墙则采用更高级的技术如代理技术和UTM等。而安全隔离网闸则是双主机架构，通过硬件和软件结合的方式实现安全功能，它包括内网处理单元、外网处理单元和隔离与交换控制单元等部分。</p>
-<p>此外，功能方面，防火墙主要用于过滤和监测网络流量，识别和防御各种网络威胁，保证网络通信的安全性。而安全隔离网闸则除了可以过滤和监测网络流量外，还可以实现不同安全域之间的安全隔离和数据交换，保证不同安全域之间数据传输的安全性和可控性。</p>
-<p>防火墙和安全隔离网闸是两种不同的网络安全设备，它们在应用场景、硬件架构和功能等方面存在明显的区别。在实际应用中，可以根据具体的需求选择适合的网络安全设备来实现网络安全防护。</p>
-<h2 id="四、安全隔离网闸的应用场景"><a href="#四、安全隔离网闸的应用场景" class="headerlink" title="四、安全隔离网闸的应用场景"></a>四、安全隔离网闸的应用场景</h2><p>安全隔离网闸的应用场景主要包括以下几个方面：</p>
-<ol>
-<li>涉密网络与非涉密网络之间：安全隔离网闸能够实现涉密网络与非涉密网络之间的物理隔离，确保涉密信息的安全。这种应用场景在政府、军队、公安等需要处理敏感信息的机构中非常常见。</li>
-<li>局域网与互联网之间（内网与外网之间）：对于一些局域网络，特别是政府办公网络，有时需要与互联网在物理上断开，以保证网络的安全性。安全隔离网闸可以在需要时连接内外网，实现数据的安全交换。</li>
-<li>办公网与业务网之间：由于办公网络与业务网络的信息敏感程度不同，例如银行的办公网络和银行业务网络。为了提高工作效率，办公网络有时需要与业务网络交换信息。安全隔离网闸可以实现两类网络的物理隔离，保证业务网络的安全。</li>
-<li>电子政务的内网与专网之间：在电子政务系统建设中，要求政府内网与外网之间用逻辑隔离，而在政府专网与内网之间用物理隔离。安全隔离网闸是实现这种物理隔离的常用设备。</li>
-<li>业务网与互联网之间：例如电子商务网络一边连接着业务网络服务器，一边通过互联网连接着广大民众。安全隔离网闸可以在业务网与互联网之间建立一道安全屏障，防止来自互联网的潜在威胁。</li>
-</ol>
-<p>此外，安全隔离网闸还可用来隔离保护主机服务器或专门隔离保护数据库服务器。在需要保证高安全级别的网络环境中，如政府、军队、公安、银行、工商、航空、电力和电子商务等，安全隔离网闸都有着广泛的应用。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3030,7 +3023,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">167</span>
+                  <span class="site-state-item-count">168</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3142,7 +3135,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">349.2k</span>
+    <span title="Site words total count">352.9k</span>
   
   
 <!--51la网站应用监控-->

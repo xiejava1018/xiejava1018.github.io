@@ -313,6 +313,242 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/1dad343e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/1dad343e/" itemprop="url">安全防御之密码技术</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-08T16:44:37+08:00">
+                2024-01-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/1dad343e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/1dad343e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/1dad343e/" class="leancloud_visitors" data-flag-title="安全防御之密码技术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>密码学是信息安全的基础技术之一，是达到信息系统安全等级保护要求的核心技术支持，在身份验证、访问控制、文件加密、数据加密和安全传输中都得到广泛应用。其核心目标是保证信息的机密性、完整性和可用性。<br>密码学包括加密和解密两个部分。一般过程是：发送方通过加密算法，将可读的文件（明文）变换成不可理解的乱码，即密文，然后传输给接收方；接收方接收密文之后，通过解密算法进行解密，获得明文。密码技术的实施过程，支持等级保护在机密性、完整性、认证性和非否认性等方面的要求。</p>
+<h2 id="一、加密技术分类"><a href="#一、加密技术分类" class="headerlink" title="一、加密技术分类"></a>一、加密技术分类</h2><p>按照密钥的特点可将密码学分为两类：对称密码算法和非对称密码算法。相应地，对数据加密的技术分为两类，即对称加密技术和非对称加密技术。</p>
+<h3 id="1、对称加密技术"><a href="#1、对称加密技术" class="headerlink" title="1、对称加密技术"></a>1、对称加密技术</h3><p>对称加密技术的基本特征是加密密钥和解密密钥相同，典型代表是数据加密标准（DES）、国际数据加密算法（IDEA）。实施过程如下：<br>（1）发送方发送明文消息前，首先获得一个密钥，该密钥可以由发送方生成并通过安全的渠道送到接收方，或者由可信的第三方生成，分发给发送方和接收方；<br>（2）发送方使用密钥将要发送的消息加密并传输给接收方；<br>（3）接收方接收密文，使用密钥进行解密获得明文。<br>对称加密算法使用起来简单快捷，加密、解密处理速度快、保密度高，适合对数据量比较大的文件进行加密。但是在密钥管理与分发、数字签名等方面存在较为明显的问题：<br>（1）会话双方密钥难以统一；在多人通信时，同时产生的密钥数量庞大，难以管理。<br>（2）密钥必须妥善安全地发送到接收方，分发过程十分复杂，花费代价高。<br>（3）密钥不具有唯一性，易于伪造。<br>国产对称加密算法包括SM1、SM4等。<br>SM1是国家密码管理局公布的分组密码，主要应用于SSL/TLS握手过程中的DH密钥交换，也可用于数据加密和数字签名。<br>SM4是一种分组密码，其分组长度为128位，密钥长度为128位、192位或256位。SM4算法基于Feistel结构，具有较高的安全性。</p>
+<h3 id="2、非对称加密技术"><a href="#2、非对称加密技术" class="headerlink" title="2、非对称加密技术"></a>2、非对称加密技术</h3><p>非对称加密技术的原理是加密密钥和解密密钥不同，其中一个密钥用来加密，另一个密钥用来解密，典型代表是RSA算法。非对称加密技术通过特定的算法生成一个密钥对，一个密钥不能公开，叫做私钥，另一个可以公开，叫做公钥。同时，非对称加密技术的加密算法和解密算法是公开的，具体实施过程如下：<br>（1）发送方通过私钥和加密算法对发送的消息进行加密，然后传输；<br>（2）接收方接收密文，使用发送方公开的公钥和解密算法进行解密，获得明文。<br>非对称加密体制相对对称加密体制而言，具有以下优势：<br>（1）消除了会话用户双方交换密钥的需要。<br>（2）每个用户拥有特定的密钥，密钥数量少，便于管理，同时实现了身份认证。<br>但是非对称加密体制加密和解密花费时间长、速度慢，不适合对数据量比较大的文件加密，更适用于对少量数据进行加密。<br>国产非对称加密算法主要包括SM2和SM9。<br>SM2算法是一种基于椭圆曲线密码的公钥密码算法标准，其安全性相较于RSA算法更高，且具有更高的运算速度，适用于数字签名、密钥协商和加密等场景。SM2算法已成为我国无线局域网国家标准的商用密码算法，并被应用于WAPI无线网络中。<br>SM9算法则是一种基于标识的密码算法，将用户的身份标识作为公钥，从而省去了证书管理的复杂性。SM9算法包括数字签名、密钥交换和密钥封装等协议，可以应用于多种安全场景，如网络安全、移动支付等。</p>
+<h2 id="二、密码技术在安全防御中的作用"><a href="#二、密码技术在安全防御中的作用" class="headerlink" title="二、密码技术在安全防御中的作用"></a>二、密码技术在安全防御中的作用</h2><p>在安全防御中，密码技术的主要作用如下：</p>
+<ol>
+<li>信息加密：通过加密算法将明文信息转换为密文信息，保证信息在传输过程中不被窃取或篡改。常见的加密算法包括对称加密算法（如AES、DES、SM1、SM4）和非对称加密算法（如RSA、ECC、SM2、SM9）。</li>
+<li>数字签名：利用密码技术对数据进行签名，验证数据的完整性和来源。数字签名可以防止数据被篡改或伪造，广泛应用于身份认证、电子签章等领域。</li>
+<li>身份认证：通过密码技术对用户进行身份验证，确保只有合法用户能够访问敏感数据或资源。常见的身份认证方式包括用户名/密码认证、动态令牌认证、多因素认证等。</li>
+<li>访问控制：利用密码技术对访问者进行权限控制，确保只有授权用户能够访问特定资源。访问控制通常与身份认证相结合，实现基于角色的访问控制（RBAC）。</li>
+<li>安全审计：通过密码技术记录和审计安全事件，及时发现和应对安全威胁。安全审计可以帮助组织机构了解其安全状况，发现潜在的安全风险，并及时采取措施进行防范。</li>
+</ol>
+<p>密码技术在安全防御中扮演着至关重要的角色。通过合理应用密码技术，可以有效提高组织机构的信息安全水平，保护敏感数据和资源的安全。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a57e826e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2780,288 +3016,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/880de541/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/880de541/" itemprop="url">安全运营之安全加固和运维</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-19T14:06:03+08:00">
-                2023-12-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/880de541/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/880de541/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/880de541/" class="leancloud_visitors" data-flag-title="安全运营之安全加固和运维">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全运营是一个将技术、流程和人有机结合的复杂系统工程，通过对已有安全产品、工具和服务产出的数据进行有效的分析，持续输出价值，解决安全问题，以确保网络安全为最终目标。</p>
-<p>安全加固和运维是网络安全运营中的两个重要方面。<br>安全加固是指通过采取一系列措施，提高网络、系统和应用程序的安全性，以防止或减少未经授权的访问、数据泄露或系统损坏。这包括对网络设备、服务器、数据库和其他关键组件进行安全配置和加固，以防止潜在的攻击。<br>运维是指对网络、系统和应用程序的日常管理和维护，以确保其正常运行和性能。这包括监控系统的状态、维护和更新软件、管理网络设备、解决故障等。</p>
-<p>在安全加固方面，一些常见的措施包括：</p>
-<ol>
-<li>更新和修补操作系统、应用程序和网络设备的漏洞。</li>
-<li>配置强密码和多因素身份验证。</li>
-<li>限制不必要的网络端口和服务。</li>
-<li>实施访问控制和权限管理。</li>
-<li>定期备份数据和配置信息。</li>
-</ol>
-<p>在运维方面，一些常见的任务包括：</p>
-<ol>
-<li>监控系统的性能和状态。</li>
-<li>维护和更新软件和操作系统。</li>
-<li>管理网络设备和网络连接。</li>
-<li>解决系统和应用程序故障。</li>
-<li>管理和优化数据库。</li>
-</ol>
-<p>以下从补丁管理、安全加固、日志的监控分析、日常安全运维几个方面来一窥安全加固和运维。</p>
-<h2 id="一、补丁管理"><a href="#一、补丁管理" class="headerlink" title="一、补丁管理"></a>一、补丁管理</h2><p>伴随着软件大小的不断膨胀，潜在的BUG 也不断增加。据估计，1992年发布的Windows3.1 有3 百万行代码。然而，估计它存在15000 到60000处潜在的BUG。1999 年发布的Windows2000 保守估计有三千五百万行代码，也就是说可能存在175,000 到700,000 个潜在的BUG。<br>安全相关的BUG 通常是在大量用户使用，以及黑客或者软件测试者企图进行渗透时才会发现的。一旦BUG 被发现，软件厂商通常会发布一段软件修正这个BUG。这种软件一般称为补丁(patch)、hotfix，或者Service pack。<br>与以往不同的是，只有时刻对出现的漏洞及时做出反应才能够有效地保护系统的有效性、保密性和完整性。几乎每天都会有厂商发布新的补丁，即使有经验的系统管理员也很难保证能够及时使用所有最新的补丁修补系统。<br>补丁管理是指一个区域的系统管理，包括获得、测试和安装多个补丁（代码改变）到一个执行的计算机系统。补丁管理可被看作变动管理的部分。<br>补丁管理任务包括：维持当前的可用补丁的知识；决定对于特定的系统什么样的补丁是合适的；确保补丁正确安装；安装后测试系统；证明所有相关的程序，例如所需的特殊的配置等。<br>在网络环境中，组织通常尝试维护计算机之间的软件版本一致性，并且通常执行集中式补丁管理，而不是允许每台计算机下载自己的补丁。集中式补丁管理使用中央服务器检查网络硬件是否有缺失的补丁、下载缺失的补丁并根据组织的补丁管理策略将其分发到网络上的计算机和其他设备。集中式补丁管理服务器的作用不仅仅是自动化补丁管理；它还使组织能够对补丁管理流程进行一定程度的控制。例如，如果确定某个特定补丁有问题，组织可以配置其补丁管理软件以阻止部署该补丁。集中式补丁管理的另一个优点是它有助于节省互联网带宽。从带宽的角度来看，允许组织中的每台计算机下载完全相同的补丁是没有意义的。相反，补丁管理服务器可以下载补丁一次并将其分发到指定接收它的所有计算机。</p>
-<h2 id="二、安全加固"><a href="#二、安全加固" class="headerlink" title="二、安全加固"></a>二、安全加固</h2><h3 id="1、安全加固作用"><a href="#1、安全加固作用" class="headerlink" title="1、安全加固作用"></a>1、安全加固作用</h3><p>各类网络设备、主机系统、数据库系统、应用系统等的安全状况是动态变化的，对于安全问题的发现及安全加固优化配置等操作都需要非常专业的安全技能，需要进行周期性的安全评估、审计、加固等工作，才能够保障整体安全水平的持续提高。<br>安全加固主要是解决以下安全问题：<br>（1）安装、配置不符合安全需求；<br>（2）使用、维护不符合安全需求；<br>（3）系统完整性被破坏；<br>（4）被植入木马程序；<br>（5）帐户、口令策略问题；<br>（6）安全漏洞没有及时修补；<br>（7）应用服务和应用程序滥用；</p>
-<h3 id="2、安全加固流程"><a href="#2、安全加固流程" class="headerlink" title="2、安全加固流程"></a>2、安全加固流程</h3><p>安全加固是根据专业安全评估结果，制定相应的系统加固方案，针对不同目标系统，通过打补丁、修改安全配置、增加安全机制等方法，合理进行安全性加强。加固的流程和范围如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png" alt="安全加固流程"></p>
-<h3 id="3、安全加固内容"><a href="#3、安全加固内容" class="headerlink" title="3、安全加固内容"></a>3、安全加固内容</h3><p>系统安全加固是指通过一定的技术手段，提高操作系统或网络设备安全性和抗攻击能力。内容包括主机加固、数据库加固、中间件加固、网络设备加固等。</p>
-<h4 id="（1）主机加固"><a href="#（1）主机加固" class="headerlink" title="（1）主机加固"></a>（1）主机加固</h4><p>Windows设备安全加固内容：账号、口令、授权、日志配置操作、日志保护配置、共享文件夹及访问权限、Windows服务、防病毒管理、自动播放、屏幕保护、远程登录控制、补丁管理、IP协议安全配置操作、时间同步服务。<br>Linux操作系统安全加固内容：账号、口令、文件权限、IP协议安全、日志审计、关闭不必要的服务、资源控制。<br>AIX操作系统安全加固内容：账号、口令、授权、日志配置、IP协议安全、路由协议安全、补丁管理、内核调整、服务进程和启动、AIX可被利用的漏洞。</p>
-<h4 id="（2）数据库加固"><a href="#（2）数据库加固" class="headerlink" title="（2）数据库加固"></a>（2）数据库加固</h4><p>加固的内容包括：身份鉴别、访问控制、安全审计、资源控制等安全项加固。加固方法包括：对数据库安全策略、服务等进行安全加固；加强对敏感存储过程的管理，尤其是能执行操作系统命令的存储过程。<br>Oracle数据库安全加固内容：账号、口令、授权、日志审计、远程操作连接。<br>Linux版MySQL数据库安全加固内容：认证授权（以非root用户启动MySQL、口令策略、共享帐号、最小权限、IP地址限制、删除无关帐号）、日志审计、安全文件权限配置、连接数限制。<br>Windows版MySQL安全加固内容：认证授权（以普通用户权限运行MySQL、口令策略、共享帐号、最小权限、IP地址限制、删除无关帐号）、日志审计、安全文件权限配置、连接数限制。<br>SQL Server数据库安全加固内容：账号、口令、授权、日志审计、通信协议、补丁、停用不必要的存储过程。</p>
-<h4 id="（3）中间件加固"><a href="#（3）中间件加固" class="headerlink" title="（3）中间件加固"></a>（3）中间件加固</h4><p>IIS中间件安全加固内容：账号、口令、授权、日志配置操作、日志保护配置、文件系统及访问权限、IIS服务组件、隐藏IIS版本号及敏感信息、版本和补丁管理、IP协议安全配置操作、连接数限制。<br>Linux版Apache安全加固内容:认证授权设置、以非root用户启动Apache、目录安全配置、限制IP地址访问、日志审计设置、配置错误日志、配置访问日志、其他安全设置、隐藏Apache版本号、关闭目录浏览功能（必选）、禁用Apache的执行功能、防御拒绝服务攻击、自定义错误页面、升级使用最新版Apache。<br>Windows版Apache安全加固内容：认证授权设置、以普通用户权限运行Apache、目录安全配置、限制IP地址访问、日志审计设置、配置错误日志、配置访问日志、其他安全设置、隐藏Apache版本号、关闭目录浏览功能（必选）、禁用Apache的执行功能、防御拒绝服务攻击、自定义错误页面。<br>Tomcat中间件安全加固内容：账号、口令、授权、日志配置操作、定时登出、错误页面处理、目录列表访问限制。<br>Weblogic中间件安全加固内容：账号、口令、授权、日志、审计、其他安全配置、定时登出、错误页面处理、禁用Send Server header。</p>
-<h4 id="（4）网络设备加固"><a href="#（4）网络设备加固" class="headerlink" title="（4）网络设备加固"></a>（4）网络设备加固</h4><p>对二层交换设备、三层交换设备、路由器、防火墙等网络设备进行加固，加固内容包括：访问控制、安全审计、网络设备防护等安全项加固。<br>CISCO网络设备安全加固内容：账号、口令、密码复杂度、加固CON端口的登录、加固AUX端口的管理、对网络设备的管理员登录地址进行限制、HTTP登录安全加固、设置登录超时时间、用户权限分配、限制具备管理员权限的用户远程登录、日志配置、日志安全要求、远程日志功能、防止地址欺骗、SNMP服务器配置、使用ssh加密传输、禁用空闲端口、端口级的访问控制策略。<br>HUAWEI网络设备安全加固内容：用户帐号分配、限制具备管理员权限的用户远程登录、无效账户清理、静态口令复杂度、静态口令加密、密码重试、加固CON端口的登录、加固AUX端口的管理、对网络设备的管理员登录地址进行限制、远程登录加密传输、设置登录超时时间、用户权限分配、配置日志功能、对用户操作进行记录、对用户登录进行记录、开启NTP服务保证记录的时间的准确性、远程日志功能、ACL配置、防止地址欺骗、SNMP服务器配置、配置SNMPV2或以上版本、修改SNMP的Community默认通行字、动态路由协议口令要求配置MD5加密、禁止发布或接收不安全的路由信息、MPLS安全、禁用空闲端口、关闭不必要的服务。<br>H3C网络设备安全加固内容：账号、设备特权口令、密码复杂度、设置特权口令(推荐)、关闭未使用的端口、账号口令、Console口密码保护、禁止无关账号、日志配置操作、审核登录、VTY端口防护策略、远程主机IP地址段限制、远程管理通信安全、更改SNMP 服务读写权限管理、修改SNMP默认的Community字符串、Community字符串加密、IP/MAC地址绑定、ARP攻击防御、ARP防止IP报文攻击、关闭设备FTP服务、防源地址欺骗攻击、端口隔离、启用端口安全功能。</p>
-<h4 id="（5）漏洞修复"><a href="#（5）漏洞修复" class="headerlink" title="（5）漏洞修复"></a>（5）漏洞修复</h4><p>漏洞指的是计算机系统(操作系统和应用程序)的缺陷，攻击者可以通过这些缺陷进行非法入侵，实施恶意行为。漏洞修复对这些缺陷进行修补，以减少系统漏洞的暴露。在安全事件发生前防患于未然，包括主机漏洞修复、第三方产品漏洞和应用漏洞，主机漏洞修复主要通过补丁升级、版本升级来修复，第三方产品漏洞需厂商配合，应用漏洞需开发商对软件源码进行修复。</p>
-<h4 id="（6）安全设备调优"><a href="#（6）安全设备调优" class="headerlink" title="（6）安全设备调优"></a>（6）安全设备调优</h4><p>根据信息系统的安全情况和风险情况逐步调整已有的防火墙、堡垒机、安全监控平台、日志审计平台、IPS、WAF等安全设备策略配置，达到最佳的安全防护效果。</p>
-<h2 id="三、日志监控分析"><a href="#三、日志监控分析" class="headerlink" title="三、日志监控分析"></a>三、日志监控分析</h2><p>日志监控分析是从应用系统各结点获得日志文件，采取人工+工具的分析分析方法，形成日志分析报告。该报告与定期评估结果、定期策略分析结果进行综合分析，找到当前的系统及网络设备中存在的问题和隐患，并给信息系统运维提供专业的增强建议。</p>
-<h3 id="1、日志分析流程"><a href="#1、日志分析流程" class="headerlink" title="1、日志分析流程"></a>1、日志分析流程</h3><p>日志分析服务遵循以下流程：<br>（1）日志服务器搭建。将路由器、交换机通过syslog 协议，将Windows 系统的日志通过eventlog 的方式集中转存到搭建的日志服务器上。<br>（2）分析日志。分析关键服务器、防火墙、路由器、交换机等设备的日志, 采取人工加工具的审计分析方法对日志信息进行综合分析,找到当前的系统及网络设备中存在的隐患和被攻击痕迹。<br>（3）生成报告。根据日志分析内容，结合企业信息系统网络的构成及业务流程等，生成专业又极具可读性的报告，并针对日志分析出的各项问题，提出修补建议，使发现的问题能尽可能早的得到解决，避免引起更大范围的影响和损失。<br>（4）其它支持。企业根据报告的内容对系统进行检查和修补，并寻求专业公司帮助和指导。</p>
-<h3 id="2、日志分析内容"><a href="#2、日志分析内容" class="headerlink" title="2、日志分析内容"></a>2、日志分析内容</h3><p>日志分析的内容主要包括：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>内容</th>
-<th>方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>网络层</td>
-<td>网络设备日志</td>
-<td>工具、手工</td>
-</tr>
-<tr>
-<td>主机层</td>
-<td>通用的windows 和unix 系统日志，包括：应用程序日志、系统日志、安全日志等。</td>
-<td>工具、手工</td>
-</tr>
-<tr>
-<td>应用</td>
-<td>Web 系统，包括：IIS、Apache；数据库等</td>
-<td>工具、手工</td>
-</tr>
-</tbody></table>
-<h2 id="四、日常安全运维"><a href="#四、日常安全运维" class="headerlink" title="四、日常安全运维"></a>四、日常安全运维</h2><p>日常安全运维是确保网络和系统安全的重要环节。以下是一些日常安全运维的常见任务和注意事项：<br>1、监控网络和系统状态：通过使用各种工具和技术，监控网络和系统的状态，包括流量、设备性能、安全事件等，以便及时发现潜在的安全威胁和问题。<br>2、更新和修补漏洞：定期更新系统和应用程序的补丁和安全更新，以修复已知的安全漏洞。确保及时应用这些更新，以减少被攻击的风险。<br>3、访问控制和权限管理：实施严格的访问控制策略，确保只有授权人员能够访问敏感数据和系统资源。同时，管理用户的权限，确保他们只能访问他们需要的功能和数据。<br>4、入侵检测和防御：部署入侵检测系统和防御措施，以监控和识别潜在的攻击行为。及时响应和处理安全事件，防止攻击者进一步渗透网络和系统。<br>5、日志管理和分析：收集和分析系统日志，以监控和分析潜在的安全威胁和异常行为。通过日志分析，可以及时发现潜在的安全问题并采取相应的措施。<br>5、安全审计和监控：定期进行安全审计和监控，以确保安全策略和措施的有效性。通过审计和监控，可以发现潜在的安全漏洞和问题，并及时采取相应的措施。<br>7、备份和恢复计划：制定备份和恢复计划，以确保在发生安全事件或灾难时能够迅速恢复系统和数据。定期测试备份和恢复计划，以确保其有效性。<br>8、培训和管理：对运维人员进行安全培训和管理，提高他们的安全意识和技能水平。同时，建立完善的安全管理制度，确保运维人员遵守安全规定和操作流程。</p>
-<p>安全加固和运维是相互关联的，因为一个安全的系统需要运维来维护和管理，而运维也需要安全加固来确保系统的安全性。因此，在网络安全领域中，安全加固和运维是密不可分的。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3118,7 +3072,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">167</span>
+                  <span class="site-state-item-count">168</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3230,7 +3184,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">349.2k</span>
+    <span title="Site words total count">352.9k</span>
   
   
 <!--51la网站应用监控-->
