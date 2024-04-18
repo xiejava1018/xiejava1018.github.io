@@ -313,6 +313,320 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8510060b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/8510060b/" itemprop="url">网络安全之认识勒索病毒</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-23T16:36:27+08:00">
+                2023-03-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/8510060b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8510060b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/8510060b/" class="leancloud_visitors" data-flag-title="网络安全之认识勒索病毒">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92.png" alt="勒索病毒"></p>
+<h2 id="一、什么是勒索病毒"><a href="#一、什么是勒索病毒" class="headerlink" title="一、什么是勒索病毒"></a>一、什么是勒索病毒</h2><p>勒索病毒，是一种新型电脑病毒，伴随数字货币兴起，主要以邮件、程序木马、网页挂马、服务器入侵、捆绑软件等多种形式进行传播，一旦感染将给用户带来无法估量的损失。如果遭受勒索病毒攻击，将会使绝大多数文件被加密算法加密，并添加一个特殊的后缀，用户无法读取原文件内容，被感染者一般无法解密，必须拿到解密的私钥才有可能无损还原被加密文件。而拿到解密的私钥，通常需要向攻击者支付高昂的赎金，这些赎金必须是通过数字货币支付，一般无法溯源，因此极易造成严重损失。</p>
+<p>一般被勒索病毒感染后，将导致重要文件无法读取、关键数据被损坏、计算机被锁死无法正常使用等情况；为了指引被感染者缴纳赎金，勒索病毒还会在桌面等明显位置生成勒索提示文件，被感染者需要通过缴纳高额赎金才能获取解密密钥恢复计算机系统和数据文件的正常使用，多数情况即使缴纳了高额的赎金也未必能正常恢复数据。因此，勒索病毒具有数据恢复代价大和数据恢复可能性极低的特点。</p>
+<h2 id="二、勒索病毒传播路径"><a href="#二、勒索病毒传播路径" class="headerlink" title="二、勒索病毒传播路径"></a>二、勒索病毒传播路径</h2><p>常见勒索病毒传播途径包括：</p>
+<ol>
+<li>网站挂马。用户浏览挂有木马病毒的网站，上网终端计算机系统极可能被植入木马并感染上勒索病毒。</li>
+<li>邮件传播。邮件传播是目前互联网上常见的病毒传播方式。攻击者通过利用当前热门字样，在互联网上撒网式发送垃圾邮件、钓鱼邮件，一旦收件人点开带有勒索病毒的链接或附件，勒索病毒就会在计算机后台静默运行，实施勒索。</li>
+<li>漏洞传播。通过计算机操作系统和应用软件的漏洞攻击并植入病毒是近年来流行的病毒传播方式。最典型的案例是2017年在国内泛滥的WannaCry大规模勒索事件，攻击者正是利用微软445端口协议漏洞，进行感染传播网内计算机。</li>
+<li>捆绑传播。攻击者将勒索病毒与其他软件尤其是盗版软件、非法破解软件、激活工具进行捆绑，从而诱导用户点击下载安装，并随着宿主文件的捆绑安装进而感染用户的计算机系统。</li>
+<li>介质传播。攻击者通过提前植入或通过交叉使用感染等方式将携有勒索病毒的U盘、光盘等介质进行勒索病毒的移动式传播。此种传播途径往往发生在文印店、公共办公区域等高频交叉使用可移动存储介质的场所，也可能通过广告活动派发、街区丢弃等方式实现诱导用户使用携带勒索病毒的U盘、光盘。携带勒索病毒的光盘、U盘一旦接入计算机，勒索病毒即可能随着其自动运行或用户点击运行导致计算机被感染。</li>
+</ol>
+<h2 id="三、勒索病毒防护难点"><a href="#三、勒索病毒防护难点" class="headerlink" title="三、勒索病毒防护难点"></a>三、勒索病毒防护难点</h2><p>教育、企业、制造业、医疗、政府等行业由于数据重要性和较好的经济能力，已经成为勒索团队的重点攻击目标。以下是勒索病毒常见的攻击行为。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA.png" alt="勒索病毒攻击行为"></p>
+<p>从勒索病毒的攻击行为来看，勒索病毒的防护存以下几个主要难点：</p>
+<ul>
+<li>勒索病毒变种多样 ：对程序 / 脚本的加壳、混淆操作，已经有一套相当成熟的自动化流程，能够快速对病毒进行变种，从而绕过传统静态防护。</li>
+<li>边界突破手段多样：包括但不限于 RDP 爆破、SMB 爆破、漏洞利用、钓鱼邮件等等，其中爆破手段是最常使用的入侵手法。</li>
+<li>防御规避手段多样：如无文件攻击、白进程利用、卸载安全服务等，从运营数据看 ,</li>
+<li>采用黑客工具直接卸载终端安全服务、利用白进程进行加密的绕过手段是最为常见。</li>
+<li>勒索病毒识别精准度不足：部分终端防护可以识别出“病毒”，但不能进一步识别出“勒索病毒”，未引起足够重视，导致后续攻击成功。</li>
+</ul>
+<h2 id="四、常见的勒索病毒"><a href="#四、常见的勒索病毒" class="headerlink" title="四、常见的勒索病毒"></a>四、常见的勒索病毒</h2><h3 id="1、GlobeImposter-勒索病毒"><a href="#1、GlobeImposter-勒索病毒" class="headerlink" title="1、GlobeImposter 勒索病毒"></a>1、GlobeImposter 勒索病毒</h3><p>Globelmposter3.0家族的变种采用RSA+AES算法加密，目前该勒索病毒加密的文件暂无解密工具，文件被加密后会被加上Ox4444、China4444、Help4444、Rat4444 、Tiger4444 、Rabbit4444、Dragon4444 、Snake4444 、Horse4444、Goat4444 、Monkey4444、Rooster4444、Dog4444等后缀。在被加密的目录下会生成一个名为”HOW_TO_BACK_FILES”的txt文件，显示受害者的个人ID序列号以及黑客的联系方式等。</p>
+<p>GlobeImposter病毒本身不具备传播性。主要通过垃圾邮件和RDP暴破植入传播。</p>
+<h3 id="2、GandCrab-勒索病毒"><a href="#2、GandCrab-勒索病毒" class="headerlink" title="2、GandCrab 勒索病毒"></a>2、GandCrab 勒索病毒</h3><p>GandCrab勒索病毒于2018年1月面世以来，短短一年内历经多次版本更新，目前最新的版本为V5。该病毒利用多种方式对企业网络进行攻击传播，受感染主机上的数据库、文档、图片、压缩包等文件将被加密，若没有相应数据或文件的备份，将会影响业务的正常运行。从2018年9月份V5版本面世以来，GandCrab出现了包括了5.0、5.0.2、5.0.3、5.0.4以及最新的5.0.5多个版本的变种。病毒采用Salsa20和RSA-2048算法对文件进行加密，并修改文件后缀为.GDCB、.GRAB、.KRAB或5-10位随机字母，勒索信息文件为GDCB-DECRYPT.txt、KRAB-DECRYPT.txt、[5-10随机字母]-DECRYPT.html\txt，并将感染主机桌面背景替换为勒索信息图片。</p>
+<p>GandCrab病毒家族主要通过RDP暴力破解、钓鱼邮件、捆绑恶意软件、僵尸网络以及漏洞利用传播。病毒本身不具有蠕虫传播能力，但会通过枚举方式对网络共享资源进行加密，同时攻击者往往还会通过内网人工渗透方式，利用口令提取、端口扫描、口令爆破等手段对其他主机进行攻击并植入该病毒。主要影响Windows 系统</p>
+<h3 id="3、Satan-变种病毒"><a href="#3、Satan-变种病毒" class="headerlink" title="3、Satan 变种病毒"></a>3、Satan 变种病毒</h3><p>撒旦（Satan）勒索病毒最开始可以追溯到2017年1月，当时病毒作者提供一个门户网站（RaaS，勒索软件即服务）允许任何人注册和创建撒旦勒索软件的自定义版本。<br>2017年11月左右，撒旦开发者开始更新勒索软件的计划，以更好地适应这些趋势。他们采取的第一步是在Satan程序中加入EternalBlue SMB漏洞的攻击和扫描模块。添加此漏洞意味着在撒旦感染计算机后，勒索软件将使用EternalBlue扫描本地网络，查找具有过时SMB服务的计算机并感染它们，从而最大限度地提高攻击效果。<br>2018年5月底出现了撒旦(Satan)勒索病毒的最新的变种，它不仅仅利用了永恒之蓝漏洞，还利用了多个WEB相关的漏洞进行传播。<br>2018年10月底MalwareHunterTeam发现了一款新型的Satan勒索病毒——DBGer勒索病毒。其属于撒旦(Satan)勒索病毒的最新的变种样本，不仅仅利用了之前的一些安全漏洞，同时还加上了Mimikatz的功能。其加密后的文件后缀名变为了.dbger。<br>2018年11月初，发现部分金融客户出现linux和windows跨平台的远控病毒样本，其样本行为与本次捕获样本极其相似。<br>2018年11月底，国内金融厂商开始出现Satan的最新变种，可以在Linux和Windows平台同时进行传播。将本地文件进行勒索加密，将加密后的文件名修改为.lucky。同时在Linux和Windows平台进行蠕虫式传播。</p>
+<p>Satan病毒家族通过下面8种通用漏洞进行传播。目前发现Satan在linux平台会进行内部IP遍历+端口列表的方式进行漏洞扫描。在windows平台会以IP列表+端口列表的方式进行漏洞扫描。<br>JBoss反序列化漏洞(CVE-2013-4810)<br>JBoss默认配置漏洞(CVE-2010-0738)<br>Tomcat任意文件上传漏洞（CVE-2017-12615）<br>Tomcat web管理后台弱口令爆破<br>Weblogic WLS 组件漏洞（CVE-2017-10271）<br>Windows SMB远程代码执行漏洞MS17-010<br>Apache Struts2远程代码执行漏洞S2-045<br>Apache Struts2远程代码执行漏洞S2-057</p>
+<h3 id="4、Sodinoki-勒索病毒"><a href="#4、Sodinoki-勒索病毒" class="headerlink" title="4、Sodinoki 勒索病毒"></a>4、Sodinoki 勒索病毒</h3><p>业内发现邮件附件中的恶意样本，经分析，样本为2019年6月新出的sodinokibi勒索病毒。该病毒以钓鱼邮件来传播，邮件附件中包含伪装成word文档的可执行文件，诱导员工打开附件，加密主机文件。<br>Sodinokibi勒索病毒暂无解密工具，可先将被加密的重要文件、勒索信息文件备份保存，以待将来有解密工具时解密。</p>
+<h2 id="五、勒索病毒发展趋势"><a href="#五、勒索病毒发展趋势" class="headerlink" title="五、勒索病毒发展趋势"></a>五、勒索病毒发展趋势</h2><p>随着勒索技术的发展，勒索病毒呈现加密速度更快，跨平台发展的趋势。</p>
+<ul>
+<li>加密方式更多的转向“间歇性加密”，加密速度更快</li>
+</ul>
+<p>2021 年中旬，LockFile 勒索软件是首批使用间歇性加密来逃避检测机制的主要勒索软件系列之一，该勒索软件每隔 16 个字节对文件进行加密。此后，越来越多的勒索软件操作加入了这一趋势。如 BlackCat(ALPHV)、PLAY、Qyick、Agenda、Black Basta 等。间歇性加密指对受害者文件进行部分加密，这种加密方法不仅可以大大提高加密速度也可以帮助勒索软件运营商逃避基于统计分析的勒索软件检测技术。</p>
+<ul>
+<li>编程语言更多的转向Rust，实现跨平台勒索</li>
+</ul>
+<p>近年，越来越多的勒索软件编程语言转向 Rust 语言。该语言不仅具有与 C/C++ 类似的性能开发优势，而且具有更好的内存管理实现并发编程以避免内存错误，此外在静态分析工具低检出率方面也存在优势。BlackCat是第一个使用Rust的专业/商业化分布式恶意软件家族，也是迄今为止最繁荣的。<br>Rust 是一种跨平台语言，使威胁行为者能够轻松地为 Windows 和 Linux 等不同操作系统创建定制的恶意软件。现在有不少于 10 个勒索软件家族推出了针对 Linux 系统的版本，其中包括 REvil 的 Linux 版本、DarkSide、Dark Angels 、BlackMatter 以及 Defray777 等家族。勒索团伙倾向于以企业为目标，随着越来越多的组织将业务迁移到 VM 以简化设备管理和提高资源利用效率，将攻击目标转向 Linux 平台具有良好的商业意义，因为这样做可以让他们以最小的努力加密多个服务器。</p>
+<h2 id="六、勒索病毒防护建议："><a href="#六、勒索病毒防护建议：" class="headerlink" title="六、勒索病毒防护建议："></a>六、勒索病毒防护建议：</h2><ol>
+<li>定期做好重要数据、文件的备份工作；</li>
+<li>及时更新升级操作系统和应用软件，修复存在的中高危漏洞；</li>
+<li>安装正版杀毒软件并及时升级病毒库，定期进行全面病毒扫描查杀；</li>
+<li>在系统中禁用U盘、移动硬盘、光盘的自动运行功能，不要使用/打开来路不明的U盘、光盘、电子邮件、网址链接、文件；</li>
+<li>避免使用弱口令，为每台服务器和终端设置不同口令，且采用大小写字母、数字、特殊字符混合的高复杂度组合结构，口令位数应8位以上；</li>
+<li>不要在网上下载安装盗版软件、非法破解软件以及激活工具。</li>
+</ol>
+<h2 id="七、勒索病毒应急处置流程"><a href="#七、勒索病毒应急处置流程" class="headerlink" title="七、勒索病毒应急处置流程"></a>七、勒索病毒应急处置流程</h2><h3 id="1、-检测阶段"><a href="#1、-检测阶段" class="headerlink" title="1、 检测阶段"></a>1、 检测阶段</h3><p>如何发现勒索病毒，可通过如下两个场景进行识别：</p>
+<ul>
+<li>场景一：感染但未加密<br>从攻击者渗透进入内部网络的某一台主机到执行加密行为往往有一段时间，如果在这段时间能够做出响应，完全可以避免勒索事件的发生。如果有以下情况，可能是处于感染未加密状态：</li>
+</ul>
+<ol>
+<li>监测设备告警<br>如果使用了监测系统进行流量分析、威胁监测，系统产生大量告警日志，例如“SMB 远程溢出攻击”、“弱口令爆破”等，可能是病毒在尝试扩散。</li>
+<li>资源占用异常<br>病毒会伪装成系统程序，释放攻击包、扫描局域网络 445 端口等占用大量系统资源，当发现某个疑似系统进程的进程在长期占用 CPU 或内存，有可能是感染病毒。</li>
+</ol>
+<ul>
+<li>场景二：感染已加密<br>如果有以下情况，可能是处于感染且已加密状态：</li>
+</ul>
+<ol>
+<li>统一的异常后缀<br>勒索病毒执行加密程序后会加密特定类型的文件，不同的勒索病毒会加密几十到几百种类型的文件，基本都会包括常见的文档、图片、数据库文件。当文件夹下文件变成如下统一异常不可用后缀，就是已经被加密了。</li>
+<li>勒索信或桌面被篡改<br>勒索病毒加密文件的最终目的是索要赎金，所以会在系统明显位置如桌面上留下文件提示，或将勒索图片更改为桌面。勒索信绝大多数为英文，引导被勒索的用户交赎金。<h3 id="2、抑制阶段"><a href="#2、抑制阶段" class="headerlink" title="2、抑制阶段"></a>2、抑制阶段</h3>发现勒索病毒后如何进行隔离：</li>
+</ol>
+<ul>
+<li>采取可行措施进行隔离，避免影响其它主机（如断网隔离）</li>
+<li>通过边界控制设备，防止网络区域间相互影响</li>
+</ul>
+<p>防止勒索病毒扩散：</p>
+<ul>
+<li>采取及时的补救加固措施（安全加固）</li>
+<li>相关漏洞的扫描修补与跟踪</li>
+<li>配置核查<h3 id="3、处置阶段"><a href="#3、处置阶段" class="headerlink" title="3、处置阶段"></a>3、处置阶段</h3>信息收集：</li>
+<li>IT管理人员截图取证主机中的勒索信息文件</li>
+<li>截图取证被加密的时间和文件后缀名</li>
+<li>检查服务器开放端口情况、补丁更新情况，并截图取证</li>
+<li>检查服务器当日的安全日志，截图取证或导出当天日志<h3 id="4、-恢复阶段"><a href="#4、-恢复阶段" class="headerlink" title="4、 恢复阶段"></a>4、 恢复阶段</h3>业务恢复：</li>
+<li>从备份中恢复损坏的数据 </li>
+<li>调整可能影响业务正常运转的策略</li>
+</ul>
+<p>文件解密：</p>
+<ul>
+<li>付费风险：部分中招主机可能包含关键信息，企业处于业务考虑可能会考虑通过比特币付款，但不能确认付款可以恢复数据，建议企业慎重考虑。</li>
+<li>解密工具：可查看安全厂商已发布部分勒索病毒的解密工具。<h3 id="5、安全加固"><a href="#5、安全加固" class="headerlink" title="5、安全加固"></a>5、安全加固</h3>通常应从如下方面进行加固：</li>
+<li>多数勒索软件会利用RDP(远程桌面协议)暴力破解传播，在不影响业务的前提下避免3389端口对外开放。利用IPS、防火墙等设备对3389端口进行防护</li>
+<li>开启windows自身的防火墙尽量关闭3389、445、139、135等不用的高危端口</li>
+<li>在计算机中配置账户锁定策略，连续登陆失败即锁定账户</li>
+<li>要求每台服务器设置唯一口令，且禁止设置弱口令（复杂度要求采用大小写字母、数字、特殊符号混合）</li>
+<li>对员工进行安全意识培训，避免打开陌生邮件的附件、下载破解版软件和运行来源不明的程序</li>
+<li>定时对重要数据进行异地备份，防止数据破坏和丢失</li>
+<li>及时更新系统及应用版本，及时打漏洞补丁</li>
+<li>及时安装防病毒软件，并更新到最新的病毒库和引擎</li>
+<li>定时通过扫描器做专项口令排查，可排查通用口令和弱口令</li>
+</ul>
+<h2 id="部分公开的勒索相关解密工具"><a href="#部分公开的勒索相关解密工具" class="headerlink" title="部分公开的勒索相关解密工具"></a>部分公开的勒索相关解密工具</h2><p>公开的勒索病毒相关解密工具（Free Ransomware Decryption Tools），可供应急查询使用：<br>1、kaspersky<br>Free Ransomware Decryptors - Kaspersky Lab <a href="https://noransom.kaspersky.com/" target="_blank" rel="noopener">https://noransom.kaspersky.com/</a><br>2、avast<br>Free Ransomware Decryption Tools | Unlock Your Files | Avast<br><a href="https://www.avast.com/ransomware-decryption-tools" target="_blank" rel="noopener">https://www.avast.com/ransomware-decryption-tools</a><br>3、avg<br>Free Ransomware Decryption Tools | Unlock Your Files | AVG<br><a href="https://www.avg.com/en-us/ransomware-decryption-tools" target="_blank" rel="noopener">https://www.avg.com/en-us/ransomware-decryption-tools</a><br>4、No More Ransom<br>The No More Ransom Project<br><a href="https://www.nomoreransom.org/en/decryption-tools.html" target="_blank" rel="noopener">https://www.nomoreransom.org/en/decryption-tools.html</a><br>5、Bitdefender<br>Free Tools – Bitdefender Labs<br><a href="https://labs.bitdefender.com/category/free-tools/" target="_blank" rel="noopener">https://labs.bitdefender.com/category/free-tools/</a><br>6、MalwareHunter<br>ID Ransomware<br><a href="https://id-ransomware.malwarehunterteam.com/index.php" target="_blank" rel="noopener">https://id-ransomware.malwarehunterteam.com/index.php</a><br>7、McAfee<br>McAfee Ransomware Recover (Mr2) | McAfee Free Tools<br><a href="https://www.mcafee.com/enterprise/en-us/downloads/free-tools/ransomware-decryption.html" target="_blank" rel="noopener">https://www.mcafee.com/enterprise/en-us/downloads/free-tools/ransomware-decryption.html</a><br>8、 Trend Micro<br>Using the Trend Micro Ransomware File Decryptor Tool<br><a href="https://success.trendmicro.com/portal_kb_articledetail?solutionid=1114221" target="_blank" rel="noopener">https://success.trendmicro.com/portal_kb_articledetail?solutionid=1114221</a></p>
+<hr>
+<p>博客文章：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c24f493c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2913,246 +3227,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/955b1d60/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/955b1d60/" itemprop="url">网络安全保障之“三同步”</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-02-06T15:54:39+08:00">
-                2023-02-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/955b1d60/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/955b1d60/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/955b1d60/" class="leancloud_visitors" data-flag-title="网络安全保障之“三同步”">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  888
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>建设关键信息基础设施应当确保其具有支持业务稳定、持续运行的性能，并保证安全技术措施同步规划、同步建设、同步使用。<br>                                                                                                                                                               <p align='right'>–《网络安全法》第三十三条 </p></p>
-</blockquote>
-<p>信息系统的生命周期层面和安全保障要素层面不是相互孤立的，而是相互关联、密不可分的。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230206/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%A8%A1%E5%9E%8B.png" alt="信息系统安全保障生命周期的安全保障要素"><br>在信息系统生命周期模型中，将信息系统的整个生命周期抽象成计划组织、开发采购、实施交付、运行维护和废弃5个阶段，加上在运行维护阶段的变更产生的反馈，形成信息系统生命周期完整的闭环结构。在信息系统生命周期中的任何时间点上，都需要综合信息系统安全保障的技术、管理、工程和人员保障要素。从信息系统建设开始，就应该综合考虑系统的安全保障要求，确保信息系统建设和信息系统安全保障建设同步规划、同步实施。也就是我们平时讲的<strong>信息系统和安全保障要“三同步”–同步规划、同步建设、同步使用</strong>。</p>
-<ul>
-<li><strong>同步规划</strong></li>
-</ul>
-<p>关键信息基础设施运营者应：<br>a）同步分析安全需求，即在关键信息基础设施建设或改建之初，从本组织的职能或业务的角度分析对关键信息基础设施实施网络安全的需求，形成安全需求说明书。<br>b）同步定义安全要求，即基于网络安全需求说明书，定义关键信息基础设施的网络安全要求，形成网络安全功能和性能说明书。<br>c）确保安全需求说明书得到网络安全责任部门签字认可。</p>
-<ul>
-<li><strong>同步建设</strong></li>
-</ul>
-<p>关键信息基础设施运营者应：<br>a）同步设计安全体系结构，即基于已经定义的关键信息基础设施的网络安全要求，设计网络安全体系结构，明确系统内的各类信息安全组件，说明各组件提供的信息安全服务及可能的实现机制。<br>b）同步开展详细的安全设计，即根据安全保护等级选择基本安全措施，细化安全机制在关键信息基础设施中的具体实现。<br>c）在建设或改建过程中，按照GB/T 22239工程实施相应等级的要求，同步建设符合其等级要求的网络安全设施，包括自行软件开发。<br>d）建设完成后，组织对关键信息基础设施进行验收并将网络安全作为验收的重要内容。</p>
-<ul>
-<li><strong>同步使用</strong></li>
-</ul>
-<p>关键信息基础设施运营者应：<br>a）同步运行安全设施，确保安全设施保持启用状态。<br>b）按照GB/T 22239安全运维管理相应等级的要求进行安全运维。<br>c）关键信息基础设施及其运行环境发生明显变化时，评估其风险，及时升级安全设施并实施变更管理。<br>d）对安全设施同步实施配置管理，包括制定配置管理计划，制定、记录、维护基线配置，保留基线配置的历史版本，便于必要时恢复历史配置。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3209,7 +3283,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">171</span>
+                  <span class="site-state-item-count">172</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3321,7 +3395,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">362.2k</span>
+    <span title="Site words total count">364.2k</span>
   
   
 <!--51la网站应用监控-->

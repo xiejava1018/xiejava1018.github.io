@@ -313,6 +313,275 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5156b28b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/5156b28b/" itemprop="url">网络信息安全之基于时间的安全模型（PDR和PPDR模型）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-23T10:18:07+08:00">
+                2022-04-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/5156b28b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5156b28b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/5156b28b/" class="leancloud_visitors" data-flag-title="网络信息安全之基于时间的安全模型（PDR和PPDR模型）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>基于时间的安全模型是基于”<strong>任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的</strong>“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。</p>
+<p>基于时间的安全模型主要包括PDR和后来改进的PPDR模型，PDR模型是源自美国国际互联网安全系统公司ISS提出的自适应网络安全模型ANSM（AdaptiveNetwork Security Model），是一个可量化、可数学证明、基于时间的安全模型。美国ISS公司（后被IBM收购）提出的。PPDR模型是PDR的模型上发展起来的，也称P2DR，加入的P是Policy策略。</p>
+<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220423/PDR.png" alt="PDR模型"></p>
+<p>P-protection，保护就是采用一切可能的措施来保护网络、系统以及信息的安全。通常采用的技术及方法主要包括加密、认证、访问控制、防火墙及防病毒等。</p>
+<p>D-detect，检测可以了解和评估网络和系统的安全状态，为安全防护和安全响应提供依据。常用的检测技术主要包括入侵检测、漏洞检测及网络扫描等技术。</p>
+<p> R-response，应急响应在安全模型中占有重要地位，是解决安全问题的最有效办法。解决安全问题就是解决紧急响应和异常处理问题，因此，建立应急响应机制，形成快速安全响应的能力，对网络和系统至关重要。</p>
+<p>PDR模型直观、实用，建立了一个所谓的基于时间的可证明的安全模型，定义了防护时间Pt(攻击者发起攻击时，保护系统不被攻破的时间)、检测时间Dt(从发起攻击到检测到攻击的时间)和响应时间Rt(从发现攻击到做出有效响应的时间)3个概念，并给出了评定系统安全的计算方式，<strong>当Pt&gt;Dt+Rt时，即认为系统是安全的</strong>，也就是说，如果在攻击者攻破系统之前发现并阻止了攻击的行为，那么系统就是安全的。</p>
+<p>局限性：系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明-一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化。</p>
+<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220423/PPDR.png" alt="PPDR模型"></p>
+<p>策略（Policy）：模型的核心，所有的防护、检测和响应都是依据安全策略实施的。安全策略一般由总体安全策略和具体安全策略两部分组成。<br>保护（Protection）：保护是根据系统可能出现的安全问题而采取的预防措施，这些措施通过传统的静态安全技术实现。采用的防护技术通常包括数据加密、身份认证、访问控制、授权和虚拟专用网(VPN)技术、防火墙、安全扫描和数据备份等。<br>检测（Detection）：当攻击者穿透防护系统时，检测功能就发挥作用，与防护系统形成互补。检测是动态响应的依据。<br>响应（Response）：系统一旦检测到人侵，响应系统就开始工作，进行事件处理。响应包括应急响应和恢复处理，恢复处理又包括系统恢复和信息恢复。</p>
+<p>PPDR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等)的同时，利用检测工具(如漏洞评估、人侵检测等)了解和评估系统的安全状态，通过适当的反应将系统调整到“最安全”和“风险最低”的状态。保护、检测和响应组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
+<p>该理论的最基本原理就是信息安全相关的所有活动，不管是攻击行为、防护行为、检测行为和响应行为等都要消耗时间,因此可以用时间来衡量一个体系的安全性和安全能力。假设系统的防护、检测和反应时间分别是Pt、Dt和Rt。系统被对手成功攻击后的时间为暴露时间(Et)，那么PPDR模型就可以用典型的数学公式来表达安全的要求：如果Pt&gt;Dt+Rt,那么系统是安全的。</p>
+<p>P2DR模型中的数学法则：<br>假设S系统的防护、检测和反应的时间分别是<br>• Pt（防护时间、有效防御攻击的时间）<br>• Dt（检测时间、发起攻击到检测到的时间）<br>• Rt（反应时间、检测到攻击到处理完成时间）<br> 假设系统被对手成功攻击后的时间为<br>• Et（暴露时间）<br>则该系统防护、检测和反应的时间关系如下：<br>• 如果Pt＞Dt＋Rt，那么S是安全的；<br>• 如果Pt＜Dt＋Rt，那么Et＝（Dt＋Rt）－Pt。</p>
+<p>PPDR给出了安全的全新定义：“<strong>及时的检测和响应就是安全</strong>”，”<strong>及时的检测和恢复就是安全</strong>”。这样的定义给出了解决安全问题的明确方向:提高系统的防护时间Pt，降低检测时间Dt和响应时间Rt。</p>
+<p>与PDR模型相比，PPDR模型更强调控制和对抗，即强调系统安全的动态性，并且以安全检测、漏洞监测和自适应填充“安全间隙”为循环来提高网络安全。值得指出的是，在PPDR模型中，考虑了管理因素,它强调安全管理的持续性、安全策略的动态性，以实时监视网络活动、发现威胁和弱点来调整和填补网络漏洞。另外，该模型强调检测的重要性，通过经常对信息系统的评估把握系统风险点，及时弱化甚至消除系统的安全漏洞。但该模型忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PDR</th>
+<th>PPDR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>意义</td>
+<td>最早体现主动防御思想的一种网络安全模型</td>
+<td>是动态网络是安全体系的代表模型，动态安全模型的雏形。</td>
+</tr>
+<tr>
+<td>组成</td>
+<td>保护-检测-响应( Protection-Detection-Response, PDR )</td>
+<td>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>PDR模型建立了一个所谓的基于时间的可证明的安全模型，定义了:防护时间Pt (黑客发起攻击时，保护系统不被攻破的时间)、检测时间Dt (从发起攻击到检测到攻击的时间)和响应时间Rt (从发现攻击到作出有效响应的时间)。当Pt&gt;Dt+Rt时，即认为系统是安全的，也就是说，如果在黑客攻破系统之前发现并阻止了黑客的行为，那么系统就是安全的。</td>
+<td>给出了安全一个全新的定义：“及时的检测和响应就是安全”，“及时的检测和恢复就是安全”。而且，这样的定义为安全问题的解决给出了明确的方向：提高系统的防护时间Pt，降低检测时间.Dt和响应时间Rt。</td>
+</tr>
+<tr>
+<td>局限性</td>
+<td>系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化</td>
+<td>忽略了内在的变化因素，如人员的流动、人员的素质和策略贯彻的不稳定性。系统本身安全能力的增强、系统和整个网络的优化，以及人员在系统中最重要角色的素质提升，都是该安全系统没有考虑到的问题。</td>
+</tr>
+</tbody></table>
+<p>不管是PDR还是PPDR，总体来说还是局限于从技术上考虑信息安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木块构成的“木桶”，木桶的容量由最短的那块板决定。在处理信息安全问题时，必须全面考虑各方面的因素，任何一个方面的遗漏都有可能形成“短板”。</p>
+<hr>
+<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7f2622dc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2860,285 +3129,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/78dcbe69/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/78dcbe69/" itemprop="url">网络信息安全常用术语</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-22T09:21:37+08:00">
-                2022-03-22
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/78dcbe69/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/78dcbe69/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/78dcbe69/" class="leancloud_visitors" data-flag-title="网络信息安全常用术语">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>网络信息安全术语是获取网络安全知识和技术的重要途径，常见的网络安全术语可以分为基础技术类、风险评估技术类、防护技术类、检测技术类、响应/恢复技术类、测评技术类等。</p>
-<p>下面主要介绍常见的网络安全技术方面的术语</p>
-<h2 id="一、基础技术类"><a href="#一、基础技术类" class="headerlink" title="一、基础技术类"></a>一、基础技术类</h2><p>基础技术类常见的是密码及加解密相关的技术<br><strong>密码（Cipher）</strong><br>一种用于加密和解密数据的算法。</p>
-<p><strong>密码学（Cryptography）</strong><br>编码研究。同样，使用代码/密码/数学技术来保护数据并提供实体和数据的身份验证。</p>
-<p><strong>密钥（Secret key）</strong><br>用于加密和解密的加密密钥，使对称密钥加密方案能够运行。</p>
-<p><strong>编码(Encode)</strong><br>使用代码将一种符号转换为另外一种符号。</p>
-<p><strong>加密(Encryption)</strong><br>使用密码来保护信息，这使任何没有密钥对其解密的人都无法读取。</p>
-<p><strong>解密（Decryption）</strong><br>将编码文本解密为原始原始格式的过程。</p>
-<p><strong>证书（Certificate）</strong><br>数字证书是数字身份验证的一种形式，它允许计算机，用户或组织安全地交换信息。</p>
-<h2 id="二、攻击技术类"><a href="#二、攻击技术类" class="headerlink" title="二、攻击技术类"></a>二、攻击技术类</h2><p><strong>拒绝服务（Denial of Service）</strong><br>是指通过向 服务器 发送大量垃圾信息或干扰信息的 方式 ，导致服务器无法向正常用户提供服务的现象。</p>
-<p><strong>分布式拒绝服务（Distributed Denial of Service）</strong><br>指处于不同位置的多个攻击者同时向一个或数个目标发动攻击，或者一个攻击者控制了位于不同位置的多台机器并利用这些机器对受害者同时实施攻击。由于攻击的发出点是分布在不同地方的，这类攻击称为分布式拒绝服务攻击。</p>
-<p><strong>网页篡改（Website Distortion）</strong><br>网页篡改是恶意破坏或更改网页内容，使网站无法正常工作或出现黑客插入的非正常网页内容。</p>
-<p><strong>网页仿冒（Phishing）</strong><br>网页仿冒是通过构造与某一目标网站高度相似的页面（俗称钓鱼网站），并通常以垃圾邮件、即时聊天、手机短信或网页虚假广告等方式发送声称来自于被仿冒机构的欺骗性消息，诱骗用户访问钓鱼网站，以获取用户个人秘密信息（如银行账号和账户密码）。</p>
-<p><strong>网页挂马（Website Malicious Code）</strong><br>网页挂马是通过在网页中嵌入恶意代码或链接，致使用户计算机在访问该页面时被植入恶意代码。</p>
-<p><strong>域名劫持（DNS Hijack）</strong><br>域名劫持是通过拦截域名解析请求或篡改域名服务器上的数据，使得用户在访问相关域名时返回虚假IP地址或使用户的请求失败。</p>
-<p><strong>路由劫持（Routing Hijack）</strong><br>路由劫持是通过欺骗方式更改路由信息，以导致用户无法访问正确的目标，或导致用户的访问流量绕行黑客设定的路径，以达到不正当的目的。</p>
-<p><strong>垃圾邮件（Spam）</strong><br>垃圾邮件是将不需要的消息（通常是未经请求的广告）发送给众多收件人。包括：收件人事先没有提出要求或者同意接受的广告、电子刊物、各种形式的宣传品等宣传性的电子邮件；收件人无法拒收的电子邮件；隐藏发件人身份、地址、标题等信息的电子邮件；含有虚假的信息源、发件人、路由等信息的电子邮件。</p>
-<p><strong>特洛伊木马（Trojan Horse）</strong><br>特洛伊木马（简称木马）是以盗取用户个人信息，甚至是远程控制用户计算机为主要目的的恶意代码。由于它像间谍一样潜入用户的电脑，与战争中的 “木马”战术十分相似，因而得名木马。按照功能，木马程序可进一步分为：盗号木马、网银木马、窃密木马、远程控制木马、流量劫持木马和其他木马六类。</p>
-<p><strong>网络蠕虫（Network Worm）</strong><br>网络蠕虫是指能自我复制和广泛传播，以占用系统和网络资源为主要目的恶意代码。按照传播途径，蠕虫可进一步分为：邮件蠕虫、即时消息蠕虫、U盘蠕虫、漏洞利用蠕虫和其他蠕虫五类。</p>
-<p><strong>僵尸程序（Bot）</strong><br>僵尸程序是用于构建僵尸网络以形成大规模攻击平台的恶意代码。按照使用的通信协议，僵尸程序可进一步分为：IRC僵尸程序、Http僵尸程序、P2P僵尸程序和其他僵尸程序四类。</p>
-<p><strong>僵尸网络（Bot Net）</strong><br>僵尸网络是被黑客集中控制的计算机群，其核心特点是黑客能够通过一对多的命令与控制信道操纵感染僵尸程序的主机执行相同的恶意行为，如可同时对某目标网站进行分布式拒绝服务攻击，或发送大量的垃圾邮件等。</p>
-<p><strong>SQL注入（SQL injection）</strong><br>一种使用代码注入来攻击由数据驱动的应用程序的策略。恶意注入的SQL代码可以执行多种操作，包括将所有数据转储到攻击者控制的位置的数据库中。通过这种攻击，恶意黑客可以欺骗身份，修改数据或篡改数据，泄露机密数据，删除和销毁数据或使其不可用。他们还可以完全控制数据库。</p>
-<p><strong>网络钓鱼（Phishing）</strong><br>大量电子邮件要求提供敏感信息或将其推送到假网站。这些电子邮件通常没有针对性。</p>
-<p><strong>宏病毒（Macro virus）</strong><br>一种恶意代码，使用文档应用程序的宏编程功能来执行不当行为，自我复制并在整个系统中传播。</p>
-<p><strong>恶意代码（Malicious code）</strong><br>恶意代码是指在未经授权的情况下，在信息系统中安装、执行以达到不正当目的的程序。旨在损害信息系统的机密性，完整性或可用性。</p>
-<p><strong>恶意广告（Malvertising）</strong><br>使用在线广告投放恶意软件。</p>
-<p><strong>恶意软件（Malware）</strong><br>恶意软件的简称。任何可能对组织或个人造成不利影响的病毒，特洛伊木马，蠕虫，代码或内容。</p>
-<p><strong>中间人攻击（MitM）</strong><br>网络罪犯将自己置于受害者和受害者试图访问的网站之间，以获取正在传输的信息或对其进行更改。有时缩写为MITM，MIM，MiM或MITMA。</p>
-<p><strong>逻辑炸弹（Logic bomb）</strong><br>一段带有一组秘密指令的代码。它被插入系统并由特定操作触发。该代码通常执行恶意操作，例如删除文件。</p>
-<p><strong>高级持久威胁（APT）</strong><br>一种网络攻击，使用复杂的技术持续对目标政府和公司进行网络间谍活动或其他恶意活动。通常由具有丰富专业知识和大量资源的对手进行-通常与民族国家参与者相关。<br>这些攻击往往来自多个入口点，并且可能使用多个攻击媒介（例如，网络攻击，物理攻击，欺骗攻击）。一旦系统遭到破坏，结束攻击可能非常困难。</p>
-<p><strong>被动攻击（Passive attack）</strong><br>攻击者试图获取机密信息以将其提取。因为他们不尝试更改数据，所以这种类型的攻击更难检测-因此称为“被动”。</p>
-<p><strong>密码嗅探（Password sniffing）</strong><br>通过监视或监听网络流量以检索密码数据来收集密码的技术。</p>
-<p><strong>有效载荷（Payload）</strong><br>执行恶意操作的恶意软件元素–网络安全性等同于导弹的爆炸性电荷。通常说来是造成破坏的。</p>
-<p><strong>勒索软件（Ransomware）</strong><br>勒索软件是一种恶意软件（恶意软件），它对PC或移动设备上的所有数据进行加密，从而阻止数据所有者对其进行访问。感染发生后，受害者会收到一条消息，告知他/她必须支付一定数量的钱（通常以比特币支付）才能获得解密密钥。通常，支付赎金也有时间限制。如果受害者支付赎金，则不能保证解密密钥会被移交。最可靠的解决方案是至少在三个不同的位置备份数据（以确保冗余），并使这些备份保持最新状态，这样您就不会失去重要的进展。</p>
-<p><strong>社会工程学（Social engineering）</strong><br>操纵人们执行特定的动作或泄露对攻击者有用的信息。操纵策略包括谎言，心理技巧，贿赂，勒索，假冒和其他类型的威胁。社交工程通常用于提取数据并获得对信息系统的未授权访问，这些信息系统可以是单个私人用户，也可以是组织的信息系统。</p>
-<h2 id="三、防护技术类"><a href="#三、防护技术类" class="headerlink" title="三、防护技术类"></a>三、防护技术类</h2><p><strong>访问控制（Access Control）</strong><br>访问控制是按用户身份及其所归属的某项定义组来限制用户对某些信息项的访问，或限制对某些控制功能的使用的一种技术。</p>
-<p><strong>防火墙（Firewall）</strong><br>网络或设备周围的虚拟边界，用于保护网络或设备免受不必要的访问。可以是硬件或软件。</p>
-<p><strong>入侵防御系统（Intrusion Prevention System）</strong><br>是一部能够监视网络或网络设备的网络资料传输行为的计算机网络安全设备，能够及时的中断、调整或隔离一些不正常或是具有伤害性的网络资料传输行为。</p>
-<p><strong>防毒软件(Antivirus)</strong><br>防病毒软件用于监视计算机或网络，以检测从恶意代码到恶意软件的网络安全威胁。防病毒程序不仅可以警告您威胁的存在，还可以删除或消除恶意代码。</p>
-<p><strong>蜜罐（蜜网）Honeypot (honeynet)</strong><br>诱骗系统或网络，用于吸引潜在的攻击者，通过检测攻击或使攻击发生偏转来保护实际系统。一个学习攻击方式的好工具。多个蜜罐可以组成一个蜜网。</p>
-<p><strong>安全信息和事件管理（SIEM）</strong><br>用于监视，记录，提供警报和分析安全事件以支持威胁检测和事件响应的软件。</p>
-<p><strong>安全监控（Security monitoring）</strong><br>从一系列安全系统中收集数据，并将这些信息与威胁情报进行关联和分析，以识别出受到威胁的迹象。</p>
-<h2 id="四、检测技术类"><a href="#四、检测技术类" class="headerlink" title="四、检测技术类"></a>四、检测技术类</h2><p><strong>入侵检测（Instrusion Detection）</strong><br>是一种对网络传输进行即时监视，在发现可疑传输时发出警报或者采取主动反应措施的网络安全设备。</p>
-<p><strong>漏洞扫描（Vulnerability Scanning）</strong><br>是对网络设备及应用服务的可用性、安全性与合规性等进行扫描，发现可利用漏洞的一种安全检测（渗透攻击）行为。</p>
-<p><strong>威胁分析（Threat analysis）</strong><br>对单个威胁的特征进行详细评估。</p>
-<h2 id="五、响应-恢复技术类"><a href="#五、响应-恢复技术类" class="headerlink" title="五、响应/恢复技术类"></a>五、响应/恢复技术类</h2><p><strong>应急响应（Emergency Response）</strong><br>应急响应通常是指一个组织为了应对各种意外事件的发生所做的准备工作以及在突发事件发生时或者发生后所采取的措施。</p>
-<p><strong>灾难恢复（Disaster Recovery）</strong><br>灾难恢复也称灾备，指自然或人为 灾害 后，重新启用 信息系统 的 数据 、 硬件 及 软体 设备，恢复正常商业运作的过程。</p>
-<p><strong>备份文件（Backup files）</strong><br>一种用户以后数据恢复的文件</p>
-<p><strong>备份（Backup）</strong><br>为应付文件、数据丢失或损坏等可能出现的意外情况，将电子计算机存储设备中的数据复制到磁带等大容量存储设备中。从而在原文中独立出来单独贮存的程序或文件副本。</p>
-<p><strong>应急预案（Contingency plan）</strong><br>一种关于备份、应急响应和灾后恢复的计划。</p>
-<p><strong>灾难恢复计划（Disaster recovery plan）</strong><br>信息系统灾难恢复过程中所需要的任务、行动、数据和资源的文件，用于指导相关人员在预定的灾难恢复目标内恢复系统系统支持的关键业务功能。</p>
-<h2 id="六、评测技术类"><a href="#六、评测技术类" class="headerlink" title="六、评测技术类"></a>六、评测技术类</h2><p><strong>评价方案（Evaluation scheme）</strong><br>针对一个特定的团体，由某一评价机构根据指定标准制定的行政管理的与规章制度的框架。</p>
-<p><strong>渗透测试（Penetration testing）</strong><br>一种旨在探查和暴露信息系统中的安全性弱点以便对其进行修复的测试。</p>
-<p><strong>质量评价（Quality evaluation）</strong><br>对实体满足规定要求程度而进行的系统性检查</p>
-<p><strong>威胁评估（Threat assessment）</strong><br>识别或评估具有或表明可能危害生命，信息，操作和/或财产的实体，动作或事件（自然或人为）的产品或过程。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3195,7 +3185,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">171</span>
+                  <span class="site-state-item-count">172</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3307,7 +3297,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">362.2k</span>
+    <span title="Site words total count">364.2k</span>
   
   
 <!--51la网站应用监控-->

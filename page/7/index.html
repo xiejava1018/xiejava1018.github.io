@@ -313,6 +313,287 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d236743/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/d236743/" itemprop="url">网络安全之认识网络安全网格架构（CSMA）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-09-11T16:18:40+08:00">
+                2023-09-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/d236743/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d236743/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/d236743/" class="leancloud_visitors" data-flag-title="网络安全之认识网络安全网格架构（CSMA）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>“网络安全网格（CyberSecurity Mesh）”是 Gartner 提出的网络安全技术发展新趋势，近两年连续入选其年度重要战略技术趋势研究报告，成为当前网络安全领域流行的热词，受到网络安全从业者的高度关注。</p>
+<h2 id="一、概念产生的背景"><a href="#一、概念产生的背景" class="headerlink" title="一、概念产生的背景"></a>一、概念产生的背景</h2><p>如今，由于现在平均每个企业在自己的网络上部署了多达45个安全解决方案，使得任何形式的集中管理都几乎无法实现。更糟糕的是，检测和响应网络事件需要在其中的19个工具之间进行协调，导致每次设备升级时都需要不断管理和重新配置。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230911/1-CSAM%E6%A6%82%E5%BF%B5.png" alt="CSMA概念背景"></p>
+<p>仅仅依靠连接不同安全技术的变通方法是不够的，企业需要一个全面覆盖、深度集成和动态协同的“网络安全网格平台”，提供集中管理和可见性，支持在一个庞大的解决方案生态系统中协同运行，自动适应网络中的动态变化。</p>
+<p>因此有了网络安全网格这个概念。</p>
+<p>Gartner 发布的《2021 年重要战略技术趋势》（Top Strategic Technology Trends for 2021）中描述了网络安全网格的概念：“网络安全网格是一种分布式架构方法，能够实现可扩展、灵活和可靠的网络安全控制。现在许多资产存在于传统安全边界之外，网络安全网格本质上允许围绕人或事物的身份定义安全边界。通过集中策略编排和分布策略执行来实现更加模块化、更加快速响应的安全防护。”</p>
+<p>在 Gartner 发布的《2022 年重要战略技术趋势 》（Top Strategic Technology Trends for 2022）中对网络安全网格概念有了进一步的说明：“数字业务资产分布在云和数据中心，基于边界的传统、分散的安全方法使组织容易遭受攻击。网络安全网格架构提供一种基于身份的可组合安全方法，以创建可扩展和可互操作的服务。通用的集成结构可以保护任务组织的任何资产，对于使用这样的一体化安全工具的组织来说，可将单项安全事件的财务影响平均减少 90%。”</p>
+<p>从上述 Gartner 报告的描述中可以看出，网络安全网格是一种安全架构方法或者策略，而不是一种定义明确的架构或标准化的技术方法，更不是某种产品，其目的是找到能够应对不断发展的业务系统以及网络环境演变所带来的安全挑战的新方法，提供比传统物理边界防护更强大、更灵活和可扩展的安全能力。通过连接、集成和协同管理各种网络安全控制系统、服务和数据来提供综合安全保护的框架。它致力于构建一个灵活、弹性和动态的安全环境，以适应日益复杂和多样化的网络安全威胁。</p>
+<h2 id="二、架构与实现"><a href="#二、架构与实现" class="headerlink" title="二、架构与实现"></a>二、架构与实现</h2><p>Gartner 提出了网络安全网格的具体实现框架，即网络安全网格架构（CyberSecurity Mesh Architecture，CSMA）。这是一种分布式安全服务的协作框架，提供安全分析与情报、统一策略管理、整合操控界面和分布式身份结构等 4个安全基础设施使不同的安全工具能够基于该基础设施协同工作并实现统一的配置和管理，提高安全工具的可组合性、可扩展性和互操作性，解决多种安全工具在各个孤立体系中运行时所带来的问题，实现各种安全能力的有机聚合，适应业务发展需要并达到“力量倍增”的效果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230911/3-CSMA%E6%9E%B6%E6%9E%842.png" alt="CSMA架构图"><br>网络安全网格架构的组成如上图图所示，4 个基础支撑层之间以及与其他安全系统之间的关系如下：</p>
+<ol>
+<li>安全分析与情报层。可与来自第三方的安全工具开展联合协同检测，基于丰富的威胁分析手段，结合威胁情报，利用机器学习等技术形成更加准确一致的威胁分析结果。</li>
+<li>统一策略管理层。主要包括安全策略编排和安全态势管理，将集中的策略转换为各个安全工具的本地配置策略，实现分布式执行，并支持动态策略管理服务。</li>
+<li>整合操控界面层。实现安全数据可视化，提供安全系统复合视图，主要包括统一的控制面板、告警、审查、指导手册和报告等，使安全团队能够更快速、更有效地响应安全事件。</li>
+<li>身份架构层。主要提供目录服务、自适应访问以及去中心化的身份管理、身份验证和授权管理等功能，支撑构建适合用户需求的零信任网络架构。</li>
+</ol>
+<p>网络安全网格是在物理网络之上构建的逻辑层，网络安全架构的应用视图如下图所示，直观展示了在逻辑层中通过对各种安全能力的编排、执行，使得各种安全工具基于 4 个安全基础层实现互操作，提供统一的安全管控和可见性，而不是在孤岛中运行每个安全工具，从而构建一个能在庞大的安全生态中协同运行，且自动适应网络环境演化的安全平台。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230911/4-CSMA%E6%9E%B6%E6%9E%843.png" alt="CSMA应用视图"></p>
+<h2 id="三、主要特点"><a href="#三、主要特点" class="headerlink" title="三、主要特点"></a>三、主要特点</h2><p>网络安全网格主要涉及设计和建设 IT 安全基础设施，采用“水平”分布式方式将各种安全能力集成到网络中，而不是采用传统的“自上而下”、各种安全设备“一应俱全”的集成方式，致力于构建一个能在庞大的安全生态系统中协同运行，且自动适应网络环境演化的全面覆盖、统一管控、动态协同和快速响应的安全平台。</p>
+<ul>
+<li><p>通用集成框架。网络安全网格提供一种通用的集成框架和方法，实现类似“乐高”化思维的灵活、可组合、可扩展的安全架构。通过标准化工具支持可互操作的各种安全服务编排和协同，从而实现广泛分布的不同安全服务的高效集成，建立起合作的安全生态系统来保护处于本地、数据中心和云中的数字资产，并基于数据分析、情报支持和策略管理等能力的聚合形成更加强大的整体安全防御和响应处置能力。</p>
+</li>
+<li><p>分布式网络架构。网络安全网格利用了“网格”的去中心化、对等协作、结构灵活、连接可靠、扩展性强等优势，不再侧重于围绕所有设备或节点构建“单一”边界，而是围绕每个接入点创建更小的、单独的边界 [5-6]。通过建立与接入点同样多的安全边界，保证物理位置广泛分布的用户能随时随地安全接入，符合零信任网络中的“微分段”要求，使得网络犯罪分子和黑客更难利用整个网络。同时，网络中主客体之间在逻辑上都是点对点直连关系，无须关注具体的物理网络部署，能够简化安全配置且能自动适应网络动态变化。</p>
+</li>
+<li><p>集中管理与分散执行。与传统的网关集中访问控制不同，网络安全网格采用了集中的策略编排和权限管理，基于策略分布式的执行，将网络安全控制能力分布到网络的更多地方，使安全措施更接近需要保护的资产，一方面，有利于消除安全管控盲点，缓解传统集中安全控制存在的性能处理瓶颈，适应用户终端和组织业务分散化发展需要；另一方面，有利于实现全局的安全威胁分析，形成更加一致的安全态势，从而实现更加精准的安全管控和更加快速的响应处置。</p>
+</li>
+<li><p>围绕身份定义安全边界。在当前网络协议中，因缺失身份要素带来了很多安全问题，物理 IP 地址与人和终端的关联性越来越弱，导致基于地址、流量、日志的安全检测和威胁分析技术难以实现针对人的威胁研判；基于网络协议字段特征检测的传统边界访问控制技术，同样使得基于身份的授权访问成为天方夜谭。由于网络威胁本质上是人带来的威胁，因此难以实现精准高效的安全威胁处置。网络安全网格延续了零信任网络的思想，用身份定义网络边界，让身份成为威胁研判与安全管控的基础。</p>
+</li>
+</ul>
+<h2 id="四、应用场景"><a href="#四、应用场景" class="headerlink" title="四、应用场景"></a>四、应用场景</h2><p><strong>网络安全网格的应用场景包括：</strong></p>
+<ol>
+<li>云安全：网络安全网格可用于跨多个云环境提供综合的安全管理和保护，确保云服务的安全性和合规性。</li>
+<li>边缘安全：网络安全网格可以应用于边缘计算环境，以提供安全的边缘设备管理、数据保护和边缘网络保护。</li>
+<li>供应链安全：通过网络安全网格，可以实现供应链中各个环节的安全协同，共享安全信息，降低供应链中的安全风险。</li>
+<li>物联网安全：网络安全网格可以为物联网设备和系统提供统一的安全管理和保护，保障物联网环境的安全性和可信度。</li>
+</ol>
+<h2 id="五、价值和优势"><a href="#五、价值和优势" class="headerlink" title="五、价值和优势"></a>五、价值和优势</h2><p><strong>网络安全网格的主要价值包括：</strong></p>
+<ol>
+<li>综合安全保护：网络安全网格可以集成多个安全控制系统和服务，提供全面的安全保护，从网络边界到终端设备，覆盖各个层面和环节的安全需求。</li>
+<li>动态适应能力：网络安全网格具备弹性和动态适应的特性，能够快速识别和响应新的威胁，并自动调整安全策略和控制措施以提供即时和有效的保护。</li>
+<li>协同合作：网络安全网格促进了不同安全系统和服务之间的协同合作和信息共享。通过共享威胁情报和安全事件信息，提高整体的安全防御能力，并加强各方之间的合作与配合。</li>
+<li>可扩展性和灵活性：网络安全网格具备高度的可扩展性，可以根据实际需求快速部署和调整安全控制系统，适用于各种规模和复杂度的网络环境。</li>
+</ol>
+<p><strong>网络安全网格与传统网络安全方法在以下几个方面存在区别：</strong></p>
+<ol>
+<li>集成性：传统网络安全方法通常是独立而孤立的解决方案，每个安全设备或系统都有自己的管理界面和策略。而网络安全网格强调集成不同的安全控制系统和服务，通过连接和协同工作来提供综合的安全保护，实现整体的安全扩展性和一致性。</li>
+<li>动态适应性：传统网络安全方法通常是静态的，在部署后很少变动，而网络安全网格具备弹性和动态适应的特性。它可以根据实际需求自动调整安全策略和控制措施，灵活应对不断变化的威胁环境。</li>
+<li>协同合作：传统网络安全方法主要依赖于各个安全设备或系统的独立工作，缺乏跨系统的协同合作。而网络安全网格通过实现安全控制系统和服务之间的协同和信息共享，提高整体的安全防御能力，并加强各方之间的合作与配合。</li>
+<li>统一视图和管理：传统网络安全方法通常需要使用多个不同的管理界面来管理各个安全设备或系统，使得安全管理变得复杂而繁琐。而网络安全网格提供统一的视图和管理平台，使得管理员可以更便捷地管理和监控整个安全环境，提高管理效率和反应速度。</li>
+<li>灵活性和可扩展性：传统网络安全方法在部署和扩展时通常需要考虑设备间的兼容性和差异性。而网络安全网格具备高度的灵活性和可扩展性，可以根据实际需求灵活部署和调整安全控制系统，适用于各种规模和复杂度的网络环境。</li>
+</ol>
+<p><strong>网络安全网格架构的优势主要体现以下几个方面：</strong></p>
+<ol>
+<li>实现更加可靠的安全防御。网络安全网格摒弃了传统的边界防护思想，不仅是围绕网络数据中心、服务中心构建“边界”，还围绕每个接入点创建更小的、独立的边界，并由集中的控制中心进行统一管理，从而将安全控制扩展到广泛分布的资产，在提高威胁应对能力的同时，增强了安全系统的可扩展性、灵活性和弹性。</li>
+<li>应对复杂环境下的安全需求。通过网络安全策略集中编排但分散执行的方法，在统一的安全策略控制下，提供一种灵活且易于扩展的安全基础架构，可为混合云和多云等复杂环境中的资产保护提供所需的安全能力。</li>
+<li>实现更加高效的威胁处置。通过安全工具集成，加强了安全数据采集和预测分析之间的协作，可以更加快速、准确地获取安全态势，及时发现并应对安全威胁，可大幅度增强对违规和攻击事件的响应处置能力。</li>
+<li>构建更加开放的安全架构。提供了一种可编排的通用集成框架和方法，支持各类安全服务之间的协同工作，用户可自主选择当前和新兴的安全技术与标准，面向云原生和应用程序接口（Application Programming Interface，API） 插 件的环境更加易于集成，便于定制与扩展，能有效弥补不同供应商安全方案之间的能力差距。</li>
+<li>降低建设维护的成本与难度。用户可以有效减少管理一组庞大的孤立安全解决方案的开销，同时，安全能力部署和维护所需的时间更少、成本更低，易于与用户已建设的身份识别与访问管理（Identity and Access Management，IAM）、安全信息和事件管理（Security Information and Event Management，SIEM）、 安 全运营中心（Security Operations Center，SOC）、态势感知等安全系统共存，也方便对接已建设的专线、软件定义广域网（Software-Defined Wide Area Network，SD-WAN）等网络服务。</li>
+</ol>
+<hr>
+<p> 博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+ <center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/cd0f90f9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2964,320 +3245,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8510060b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/8510060b/" itemprop="url">网络安全之认识勒索病毒</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-23T16:36:27+08:00">
-                2023-03-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/8510060b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8510060b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/8510060b/" class="leancloud_visitors" data-flag-title="网络安全之认识勒索病毒">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  15
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92.png" alt="勒索病毒"></p>
-<h2 id="一、什么是勒索病毒"><a href="#一、什么是勒索病毒" class="headerlink" title="一、什么是勒索病毒"></a>一、什么是勒索病毒</h2><p>勒索病毒，是一种新型电脑病毒，伴随数字货币兴起，主要以邮件、程序木马、网页挂马、服务器入侵、捆绑软件等多种形式进行传播，一旦感染将给用户带来无法估量的损失。如果遭受勒索病毒攻击，将会使绝大多数文件被加密算法加密，并添加一个特殊的后缀，用户无法读取原文件内容，被感染者一般无法解密，必须拿到解密的私钥才有可能无损还原被加密文件。而拿到解密的私钥，通常需要向攻击者支付高昂的赎金，这些赎金必须是通过数字货币支付，一般无法溯源，因此极易造成严重损失。</p>
-<p>一般被勒索病毒感染后，将导致重要文件无法读取、关键数据被损坏、计算机被锁死无法正常使用等情况；为了指引被感染者缴纳赎金，勒索病毒还会在桌面等明显位置生成勒索提示文件，被感染者需要通过缴纳高额赎金才能获取解密密钥恢复计算机系统和数据文件的正常使用，多数情况即使缴纳了高额的赎金也未必能正常恢复数据。因此，勒索病毒具有数据恢复代价大和数据恢复可能性极低的特点。</p>
-<h2 id="二、勒索病毒传播路径"><a href="#二、勒索病毒传播路径" class="headerlink" title="二、勒索病毒传播路径"></a>二、勒索病毒传播路径</h2><p>常见勒索病毒传播途径包括：</p>
-<ol>
-<li>网站挂马。用户浏览挂有木马病毒的网站，上网终端计算机系统极可能被植入木马并感染上勒索病毒。</li>
-<li>邮件传播。邮件传播是目前互联网上常见的病毒传播方式。攻击者通过利用当前热门字样，在互联网上撒网式发送垃圾邮件、钓鱼邮件，一旦收件人点开带有勒索病毒的链接或附件，勒索病毒就会在计算机后台静默运行，实施勒索。</li>
-<li>漏洞传播。通过计算机操作系统和应用软件的漏洞攻击并植入病毒是近年来流行的病毒传播方式。最典型的案例是2017年在国内泛滥的WannaCry大规模勒索事件，攻击者正是利用微软445端口协议漏洞，进行感染传播网内计算机。</li>
-<li>捆绑传播。攻击者将勒索病毒与其他软件尤其是盗版软件、非法破解软件、激活工具进行捆绑，从而诱导用户点击下载安装，并随着宿主文件的捆绑安装进而感染用户的计算机系统。</li>
-<li>介质传播。攻击者通过提前植入或通过交叉使用感染等方式将携有勒索病毒的U盘、光盘等介质进行勒索病毒的移动式传播。此种传播途径往往发生在文印店、公共办公区域等高频交叉使用可移动存储介质的场所，也可能通过广告活动派发、街区丢弃等方式实现诱导用户使用携带勒索病毒的U盘、光盘。携带勒索病毒的光盘、U盘一旦接入计算机，勒索病毒即可能随着其自动运行或用户点击运行导致计算机被感染。</li>
-</ol>
-<h2 id="三、勒索病毒防护难点"><a href="#三、勒索病毒防护难点" class="headerlink" title="三、勒索病毒防护难点"></a>三、勒索病毒防护难点</h2><p>教育、企业、制造业、医疗、政府等行业由于数据重要性和较好的经济能力，已经成为勒索团队的重点攻击目标。以下是勒索病毒常见的攻击行为。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230323/%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E6%94%BB%E5%87%BB%E8%A1%8C%E4%B8%BA.png" alt="勒索病毒攻击行为"></p>
-<p>从勒索病毒的攻击行为来看，勒索病毒的防护存以下几个主要难点：</p>
-<ul>
-<li>勒索病毒变种多样 ：对程序 / 脚本的加壳、混淆操作，已经有一套相当成熟的自动化流程，能够快速对病毒进行变种，从而绕过传统静态防护。</li>
-<li>边界突破手段多样：包括但不限于 RDP 爆破、SMB 爆破、漏洞利用、钓鱼邮件等等，其中爆破手段是最常使用的入侵手法。</li>
-<li>防御规避手段多样：如无文件攻击、白进程利用、卸载安全服务等，从运营数据看 ,</li>
-<li>采用黑客工具直接卸载终端安全服务、利用白进程进行加密的绕过手段是最为常见。</li>
-<li>勒索病毒识别精准度不足：部分终端防护可以识别出“病毒”，但不能进一步识别出“勒索病毒”，未引起足够重视，导致后续攻击成功。</li>
-</ul>
-<h2 id="四、常见的勒索病毒"><a href="#四、常见的勒索病毒" class="headerlink" title="四、常见的勒索病毒"></a>四、常见的勒索病毒</h2><h3 id="1、GlobeImposter-勒索病毒"><a href="#1、GlobeImposter-勒索病毒" class="headerlink" title="1、GlobeImposter 勒索病毒"></a>1、GlobeImposter 勒索病毒</h3><p>Globelmposter3.0家族的变种采用RSA+AES算法加密，目前该勒索病毒加密的文件暂无解密工具，文件被加密后会被加上Ox4444、China4444、Help4444、Rat4444 、Tiger4444 、Rabbit4444、Dragon4444 、Snake4444 、Horse4444、Goat4444 、Monkey4444、Rooster4444、Dog4444等后缀。在被加密的目录下会生成一个名为”HOW_TO_BACK_FILES”的txt文件，显示受害者的个人ID序列号以及黑客的联系方式等。</p>
-<p>GlobeImposter病毒本身不具备传播性。主要通过垃圾邮件和RDP暴破植入传播。</p>
-<h3 id="2、GandCrab-勒索病毒"><a href="#2、GandCrab-勒索病毒" class="headerlink" title="2、GandCrab 勒索病毒"></a>2、GandCrab 勒索病毒</h3><p>GandCrab勒索病毒于2018年1月面世以来，短短一年内历经多次版本更新，目前最新的版本为V5。该病毒利用多种方式对企业网络进行攻击传播，受感染主机上的数据库、文档、图片、压缩包等文件将被加密，若没有相应数据或文件的备份，将会影响业务的正常运行。从2018年9月份V5版本面世以来，GandCrab出现了包括了5.0、5.0.2、5.0.3、5.0.4以及最新的5.0.5多个版本的变种。病毒采用Salsa20和RSA-2048算法对文件进行加密，并修改文件后缀为.GDCB、.GRAB、.KRAB或5-10位随机字母，勒索信息文件为GDCB-DECRYPT.txt、KRAB-DECRYPT.txt、[5-10随机字母]-DECRYPT.html\txt，并将感染主机桌面背景替换为勒索信息图片。</p>
-<p>GandCrab病毒家族主要通过RDP暴力破解、钓鱼邮件、捆绑恶意软件、僵尸网络以及漏洞利用传播。病毒本身不具有蠕虫传播能力，但会通过枚举方式对网络共享资源进行加密，同时攻击者往往还会通过内网人工渗透方式，利用口令提取、端口扫描、口令爆破等手段对其他主机进行攻击并植入该病毒。主要影响Windows 系统</p>
-<h3 id="3、Satan-变种病毒"><a href="#3、Satan-变种病毒" class="headerlink" title="3、Satan 变种病毒"></a>3、Satan 变种病毒</h3><p>撒旦（Satan）勒索病毒最开始可以追溯到2017年1月，当时病毒作者提供一个门户网站（RaaS，勒索软件即服务）允许任何人注册和创建撒旦勒索软件的自定义版本。<br>2017年11月左右，撒旦开发者开始更新勒索软件的计划，以更好地适应这些趋势。他们采取的第一步是在Satan程序中加入EternalBlue SMB漏洞的攻击和扫描模块。添加此漏洞意味着在撒旦感染计算机后，勒索软件将使用EternalBlue扫描本地网络，查找具有过时SMB服务的计算机并感染它们，从而最大限度地提高攻击效果。<br>2018年5月底出现了撒旦(Satan)勒索病毒的最新的变种，它不仅仅利用了永恒之蓝漏洞，还利用了多个WEB相关的漏洞进行传播。<br>2018年10月底MalwareHunterTeam发现了一款新型的Satan勒索病毒——DBGer勒索病毒。其属于撒旦(Satan)勒索病毒的最新的变种样本，不仅仅利用了之前的一些安全漏洞，同时还加上了Mimikatz的功能。其加密后的文件后缀名变为了.dbger。<br>2018年11月初，发现部分金融客户出现linux和windows跨平台的远控病毒样本，其样本行为与本次捕获样本极其相似。<br>2018年11月底，国内金融厂商开始出现Satan的最新变种，可以在Linux和Windows平台同时进行传播。将本地文件进行勒索加密，将加密后的文件名修改为.lucky。同时在Linux和Windows平台进行蠕虫式传播。</p>
-<p>Satan病毒家族通过下面8种通用漏洞进行传播。目前发现Satan在linux平台会进行内部IP遍历+端口列表的方式进行漏洞扫描。在windows平台会以IP列表+端口列表的方式进行漏洞扫描。<br>JBoss反序列化漏洞(CVE-2013-4810)<br>JBoss默认配置漏洞(CVE-2010-0738)<br>Tomcat任意文件上传漏洞（CVE-2017-12615）<br>Tomcat web管理后台弱口令爆破<br>Weblogic WLS 组件漏洞（CVE-2017-10271）<br>Windows SMB远程代码执行漏洞MS17-010<br>Apache Struts2远程代码执行漏洞S2-045<br>Apache Struts2远程代码执行漏洞S2-057</p>
-<h3 id="4、Sodinoki-勒索病毒"><a href="#4、Sodinoki-勒索病毒" class="headerlink" title="4、Sodinoki 勒索病毒"></a>4、Sodinoki 勒索病毒</h3><p>业内发现邮件附件中的恶意样本，经分析，样本为2019年6月新出的sodinokibi勒索病毒。该病毒以钓鱼邮件来传播，邮件附件中包含伪装成word文档的可执行文件，诱导员工打开附件，加密主机文件。<br>Sodinokibi勒索病毒暂无解密工具，可先将被加密的重要文件、勒索信息文件备份保存，以待将来有解密工具时解密。</p>
-<h2 id="五、勒索病毒发展趋势"><a href="#五、勒索病毒发展趋势" class="headerlink" title="五、勒索病毒发展趋势"></a>五、勒索病毒发展趋势</h2><p>随着勒索技术的发展，勒索病毒呈现加密速度更快，跨平台发展的趋势。</p>
-<ul>
-<li>加密方式更多的转向“间歇性加密”，加密速度更快</li>
-</ul>
-<p>2021 年中旬，LockFile 勒索软件是首批使用间歇性加密来逃避检测机制的主要勒索软件系列之一，该勒索软件每隔 16 个字节对文件进行加密。此后，越来越多的勒索软件操作加入了这一趋势。如 BlackCat(ALPHV)、PLAY、Qyick、Agenda、Black Basta 等。间歇性加密指对受害者文件进行部分加密，这种加密方法不仅可以大大提高加密速度也可以帮助勒索软件运营商逃避基于统计分析的勒索软件检测技术。</p>
-<ul>
-<li>编程语言更多的转向Rust，实现跨平台勒索</li>
-</ul>
-<p>近年，越来越多的勒索软件编程语言转向 Rust 语言。该语言不仅具有与 C/C++ 类似的性能开发优势，而且具有更好的内存管理实现并发编程以避免内存错误，此外在静态分析工具低检出率方面也存在优势。BlackCat是第一个使用Rust的专业/商业化分布式恶意软件家族，也是迄今为止最繁荣的。<br>Rust 是一种跨平台语言，使威胁行为者能够轻松地为 Windows 和 Linux 等不同操作系统创建定制的恶意软件。现在有不少于 10 个勒索软件家族推出了针对 Linux 系统的版本，其中包括 REvil 的 Linux 版本、DarkSide、Dark Angels 、BlackMatter 以及 Defray777 等家族。勒索团伙倾向于以企业为目标，随着越来越多的组织将业务迁移到 VM 以简化设备管理和提高资源利用效率，将攻击目标转向 Linux 平台具有良好的商业意义，因为这样做可以让他们以最小的努力加密多个服务器。</p>
-<h2 id="六、勒索病毒防护建议："><a href="#六、勒索病毒防护建议：" class="headerlink" title="六、勒索病毒防护建议："></a>六、勒索病毒防护建议：</h2><ol>
-<li>定期做好重要数据、文件的备份工作；</li>
-<li>及时更新升级操作系统和应用软件，修复存在的中高危漏洞；</li>
-<li>安装正版杀毒软件并及时升级病毒库，定期进行全面病毒扫描查杀；</li>
-<li>在系统中禁用U盘、移动硬盘、光盘的自动运行功能，不要使用/打开来路不明的U盘、光盘、电子邮件、网址链接、文件；</li>
-<li>避免使用弱口令，为每台服务器和终端设置不同口令，且采用大小写字母、数字、特殊字符混合的高复杂度组合结构，口令位数应8位以上；</li>
-<li>不要在网上下载安装盗版软件、非法破解软件以及激活工具。</li>
-</ol>
-<h2 id="七、勒索病毒应急处置流程"><a href="#七、勒索病毒应急处置流程" class="headerlink" title="七、勒索病毒应急处置流程"></a>七、勒索病毒应急处置流程</h2><h3 id="1、-检测阶段"><a href="#1、-检测阶段" class="headerlink" title="1、 检测阶段"></a>1、 检测阶段</h3><p>如何发现勒索病毒，可通过如下两个场景进行识别：</p>
-<ul>
-<li>场景一：感染但未加密<br>从攻击者渗透进入内部网络的某一台主机到执行加密行为往往有一段时间，如果在这段时间能够做出响应，完全可以避免勒索事件的发生。如果有以下情况，可能是处于感染未加密状态：</li>
-</ul>
-<ol>
-<li>监测设备告警<br>如果使用了监测系统进行流量分析、威胁监测，系统产生大量告警日志，例如“SMB 远程溢出攻击”、“弱口令爆破”等，可能是病毒在尝试扩散。</li>
-<li>资源占用异常<br>病毒会伪装成系统程序，释放攻击包、扫描局域网络 445 端口等占用大量系统资源，当发现某个疑似系统进程的进程在长期占用 CPU 或内存，有可能是感染病毒。</li>
-</ol>
-<ul>
-<li>场景二：感染已加密<br>如果有以下情况，可能是处于感染且已加密状态：</li>
-</ul>
-<ol>
-<li>统一的异常后缀<br>勒索病毒执行加密程序后会加密特定类型的文件，不同的勒索病毒会加密几十到几百种类型的文件，基本都会包括常见的文档、图片、数据库文件。当文件夹下文件变成如下统一异常不可用后缀，就是已经被加密了。</li>
-<li>勒索信或桌面被篡改<br>勒索病毒加密文件的最终目的是索要赎金，所以会在系统明显位置如桌面上留下文件提示，或将勒索图片更改为桌面。勒索信绝大多数为英文，引导被勒索的用户交赎金。<h3 id="2、抑制阶段"><a href="#2、抑制阶段" class="headerlink" title="2、抑制阶段"></a>2、抑制阶段</h3>发现勒索病毒后如何进行隔离：</li>
-</ol>
-<ul>
-<li>采取可行措施进行隔离，避免影响其它主机（如断网隔离）</li>
-<li>通过边界控制设备，防止网络区域间相互影响</li>
-</ul>
-<p>防止勒索病毒扩散：</p>
-<ul>
-<li>采取及时的补救加固措施（安全加固）</li>
-<li>相关漏洞的扫描修补与跟踪</li>
-<li>配置核查<h3 id="3、处置阶段"><a href="#3、处置阶段" class="headerlink" title="3、处置阶段"></a>3、处置阶段</h3>信息收集：</li>
-<li>IT管理人员截图取证主机中的勒索信息文件</li>
-<li>截图取证被加密的时间和文件后缀名</li>
-<li>检查服务器开放端口情况、补丁更新情况，并截图取证</li>
-<li>检查服务器当日的安全日志，截图取证或导出当天日志<h3 id="4、-恢复阶段"><a href="#4、-恢复阶段" class="headerlink" title="4、 恢复阶段"></a>4、 恢复阶段</h3>业务恢复：</li>
-<li>从备份中恢复损坏的数据 </li>
-<li>调整可能影响业务正常运转的策略</li>
-</ul>
-<p>文件解密：</p>
-<ul>
-<li>付费风险：部分中招主机可能包含关键信息，企业处于业务考虑可能会考虑通过比特币付款，但不能确认付款可以恢复数据，建议企业慎重考虑。</li>
-<li>解密工具：可查看安全厂商已发布部分勒索病毒的解密工具。<h3 id="5、安全加固"><a href="#5、安全加固" class="headerlink" title="5、安全加固"></a>5、安全加固</h3>通常应从如下方面进行加固：</li>
-<li>多数勒索软件会利用RDP(远程桌面协议)暴力破解传播，在不影响业务的前提下避免3389端口对外开放。利用IPS、防火墙等设备对3389端口进行防护</li>
-<li>开启windows自身的防火墙尽量关闭3389、445、139、135等不用的高危端口</li>
-<li>在计算机中配置账户锁定策略，连续登陆失败即锁定账户</li>
-<li>要求每台服务器设置唯一口令，且禁止设置弱口令（复杂度要求采用大小写字母、数字、特殊符号混合）</li>
-<li>对员工进行安全意识培训，避免打开陌生邮件的附件、下载破解版软件和运行来源不明的程序</li>
-<li>定时对重要数据进行异地备份，防止数据破坏和丢失</li>
-<li>及时更新系统及应用版本，及时打漏洞补丁</li>
-<li>及时安装防病毒软件，并更新到最新的病毒库和引擎</li>
-<li>定时通过扫描器做专项口令排查，可排查通用口令和弱口令</li>
-</ul>
-<h2 id="部分公开的勒索相关解密工具"><a href="#部分公开的勒索相关解密工具" class="headerlink" title="部分公开的勒索相关解密工具"></a>部分公开的勒索相关解密工具</h2><p>公开的勒索病毒相关解密工具（Free Ransomware Decryption Tools），可供应急查询使用：<br>1、kaspersky<br>Free Ransomware Decryptors - Kaspersky Lab <a href="https://noransom.kaspersky.com/" target="_blank" rel="noopener">https://noransom.kaspersky.com/</a><br>2、avast<br>Free Ransomware Decryption Tools | Unlock Your Files | Avast<br><a href="https://www.avast.com/ransomware-decryption-tools" target="_blank" rel="noopener">https://www.avast.com/ransomware-decryption-tools</a><br>3、avg<br>Free Ransomware Decryption Tools | Unlock Your Files | AVG<br><a href="https://www.avg.com/en-us/ransomware-decryption-tools" target="_blank" rel="noopener">https://www.avg.com/en-us/ransomware-decryption-tools</a><br>4、No More Ransom<br>The No More Ransom Project<br><a href="https://www.nomoreransom.org/en/decryption-tools.html" target="_blank" rel="noopener">https://www.nomoreransom.org/en/decryption-tools.html</a><br>5、Bitdefender<br>Free Tools – Bitdefender Labs<br><a href="https://labs.bitdefender.com/category/free-tools/" target="_blank" rel="noopener">https://labs.bitdefender.com/category/free-tools/</a><br>6、MalwareHunter<br>ID Ransomware<br><a href="https://id-ransomware.malwarehunterteam.com/index.php" target="_blank" rel="noopener">https://id-ransomware.malwarehunterteam.com/index.php</a><br>7、McAfee<br>McAfee Ransomware Recover (Mr2) | McAfee Free Tools<br><a href="https://www.mcafee.com/enterprise/en-us/downloads/free-tools/ransomware-decryption.html" target="_blank" rel="noopener">https://www.mcafee.com/enterprise/en-us/downloads/free-tools/ransomware-decryption.html</a><br>8、 Trend Micro<br>Using the Trend Micro Ransomware File Decryptor Tool<br><a href="https://success.trendmicro.com/portal_kb_articledetail?solutionid=1114221" target="_blank" rel="noopener">https://success.trendmicro.com/portal_kb_articledetail?solutionid=1114221</a></p>
-<hr>
-<p>博客文章：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3334,7 +3301,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">171</span>
+                  <span class="site-state-item-count">172</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3446,7 +3413,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">362.2k</span>
+    <span title="Site words total count">364.2k</span>
   
   
 <!--51la网站应用监控-->
