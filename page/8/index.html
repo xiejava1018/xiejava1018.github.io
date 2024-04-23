@@ -313,6 +313,266 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4405dad8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/4405dad8/" itemprop="url">CentOS7+LAMP+DVWA靶机搭建</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-31T15:43:55+08:00">
+                2023-03-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/4405dad8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4405dad8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/4405dad8/" class="leancloud_visitors" data-flag-title="CentOS7+LAMP+DVWA靶机搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  772
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、什么是DVWA"><a href="#一、什么是DVWA" class="headerlink" title="一、什么是DVWA"></a>一、什么是DVWA</h2><p>Damn Vulnerable Web Application (DVWA)(译注：可以直译为：”该死的”不安全Web应用程序)，是一个编码差的、易受攻击的 PHP/MySQL Web应用程序。 它的主要目的是帮助信息安全专业人员在合法的环境中，练习技能和测试工具，帮助 Web 开发人员更好地了解如何加强 Web 应用程序的安全性，并帮助学生和教师在可控的教学环境中了解和学习 Web 安全技术。<br>DVWA的中文介绍见 <a href="https://github.com/digininja/DVWA/blob/master/README.zh.md" target="_blank" rel="noopener">https://github.com/digininja/DVWA/blob/master/README.zh.md</a><br>下载地址：git clone <a href="https://github.com/digininja/DVWA.git" target="_blank" rel="noopener">https://github.com/digininja/DVWA.git</a></p>
+<h2 id="二、环境准备"><a href="#二、环境准备" class="headerlink" title="二、环境准备"></a>二、环境准备</h2><h3 id="1、LAMP环境安装"><a href="#1、LAMP环境安装" class="headerlink" title="1、LAMP环境安装"></a>1、LAMP环境安装</h3><p>DVWA的安装依赖的软件包如下：</p>
+<ul>
+<li>apache2 </li>
+<li>libapache2-mod-php </li>
+<li>mariadb-server </li>
+<li>mariadb-client php</li>
+<li>php-mysqli php-gd</li>
+</ul>
+<p>就是依赖于LAMP环境，可以参考官方文档一个依赖包手工安装也可以通过下载lamp统一安装脚本一键安装。<br>安装 - LAMP一键安装包<br>运行 <code>wget -c http://soft.vpser.net/lnmp/lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lamp</code> 一路回车选择默认项，稍等片刻，即可完成安装<br>如果是手工安装：<code>yum install -y httpd php php-mysql php-gd mariadb-server mariadb</code></p>
+<h2 id="三、安装DVWA"><a href="#三、安装DVWA" class="headerlink" title="三、安装DVWA"></a>三、安装DVWA</h2><h3 id="1、下载DVWA的软件包"><a href="#1、下载DVWA的软件包" class="headerlink" title="1、下载DVWA的软件包"></a>1、下载DVWA的软件包</h3><p>进入到默认的web发布目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/digininja/DVWA.git</span><br></pre></td></tr></table></figure>
+<p>直接通过地址访问DVWA<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/%E8%AE%BF%E9%97%AEDVWA.png" alt="访问DVWA"><br>他会提示需要将config/config.inc.php.dist复制成config/config.inc.php并配置环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp config.inc.php.dist config.inc.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、配置数据库"><a href="#2、配置数据库" class="headerlink" title="2、配置数据库"></a>2、配置数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim config.ini.php</span><br></pre></td></tr></table></figure>
+<p>找到数据库的配置信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_DVWA</span> = array();</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_server'</span> ]   = <span class="string">'127.0.0.1'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_database'</span> ] = <span class="string">'dvwa'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_user'</span> ]     = <span class="string">'dvwa'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_password'</span> ] = <span class="string">'p@ssw0rd'</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'db_port'</span>] = <span class="string">'3306'</span>;</span><br></pre></td></tr></table></figure>
+<p>根据config.inc.php的数据库配置信息配置数据库，注意不要用root来访问数据库。<br>先用客户端工具创建dvwa的数据库，再创建dvwa的用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all on dvwa.* to <span class="string">'dvwa'</span>@<span class="string">'localhost'</span> identified by <span class="string">'p@ssw0rd'</span> with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>登录数据库查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u dvwa -p</span><br><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/showdatabases.png" alt="show databases"></p>
+<h3 id="3、修改php-ini的配置"><a href="#3、修改php-ini的配置" class="headerlink" title="3、修改php.ini的配置"></a>3、修改php.ini的配置</h3><p>再次访问DVWA<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/setupcheck.png" alt="在这里插入图片描述"></p>
+<p>这里提示要修改php.ini的配置将 <code>allow_url_fopen=On</code> 和<code>allow_url_include=On</code>。</p>
+<p>找到环境的php.ini我这里是在/etc/php.ini进行修改，不要修改/var/www/html/DVWA/php.ini中的配置了。<br>配置好后重启apache </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart httpd</span><br></pre></td></tr></table></figure>
+
+<p>刷新浏览器，可以看到红色的Disabled告警消失了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/%E6%A3%80%E6%9F%A5check.png" alt="红色告警消失了"></p>
+<p>reCAPTCHA key: Missing 这个告警是因为reCAPTCHA没有配置，这个需要去谷歌的网站申请公钥和私钥。可以不用管</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ReCAPTCHA settings</span></span><br><span class="line"><span class="comment">#   Used for the 'Insecure CAPTCHA' module</span></span><br><span class="line"><span class="comment">#   You'll need to generate your own keys at: https://www.google.com/recaptcha/admin</span></span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'recaptcha_public_key'</span> ]  = <span class="string">''</span>;</span><br><span class="line"><span class="variable">$_DVWA</span>[ <span class="string">'recaptcha_private_key'</span> ] = <span class="string">''</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 -R hackable</span><br><span class="line">chmod 777 -R config</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/%E4%BF%AE%E5%A4%8D%E7%BB%93%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<h3 id="4、创建数据"><a href="#4、创建数据" class="headerlink" title="4、创建数据"></a>4、创建数据</h3><p>配置完后点击“Create/Reset Database”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/createdatabase.png" alt="成功创建数据库"></p>
+<h3 id="5、登录靶机"><a href="#5、登录靶机" class="headerlink" title="5、登录靶机"></a>5、登录靶机</h3><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/dvwa%E7%99%BB%E5%BD%95.png" alt="在这里插入图片描述"><br>DVWA的默认用户名和密码是admin /password<br>登录成功后就可以开始进行靶机的实验了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230331/DVWA%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F.png" alt="在这里插入图片描述"><br>后续我们将通过Open-WAF来搭建一个WAF来防护这个靶机感受一下软waf的防护情况。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8510060b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3004,229 +3264,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ba190f8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ba190f8/" itemprop="url">任何说30天快速学会架子鼓的都是骗人的!</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-02-19T16:23:36+08:00">
-                2023-02-19
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/ba190f8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ba190f8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/ba190f8/" class="leancloud_visitors" data-flag-title="任何说30天快速学会架子鼓的都是骗人的!">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20230218/%E9%AD%94%E9%B2%A8%E6%9E%B6%E5%AD%90%E9%BC%93.png" alt="架子鼓"></p>
-<center>架子鼓</center>
-从去年的圣诞节报了架子鼓的班以后，过了一年多了，发现自己这个架子鼓还没有入门！！！
-
-<p>报班的时候感觉信心满满，这架子鼓不就是拿个鼓槌敲来敲去，这还不容易学？而且刷抖音、B站上大把的都是30天快速入门、一个月学会打《逆战》，看得我天真的认为我也能行。现实让我啪啪的打脸，过了一年多了，发现还没有入门，只会打简单的动次打次，敲最简单的《yellow》。</p>
-<p>回顾一年多学习架子鼓的历程：</p>
-<p>头三个月，才报完班，兴致满满，每周都想约老师上课，由于没有买鼓也没有去鼓房去练习，所以每次上课的时候总是被老师打击”你这个根本就没有练习啊”，或者是”你这上节课的内容还没有练熟啊”，硬着头皮去上课发现头半节课是在练习，后半节课老师匆匆讲一、两个知识点或教一、两个手法。由于完全是零基础老师讲时值，全音符、4分、8分、16分音符等乐理知识，听得得自己一头雾水；教手法是一听就会，一练就费。就这么稀里糊涂的上了大概7节课后，这个信心被打击得不行了，上课的兴趣没有那么大了。想想，这样下去也不是办法，关键是没有条件练习，既然想学好架子鼓，还是得自己买个鼓！于是花了近4千大洋买了个电鼓。</p>
-<p>自己有了鼓以后果然兴致又大增。鼓刚到的几天，天天在家练。毕竟咱也是成熟的大人了，知道要学好一门乐器，师傅领进门，修行靠个人，需要自己花时间慢慢的练习。又碰上疫情不断，老师也不能上课。于是自己在B站上找架子鼓视频，今天看到一个新手小白必练节奏型，明天看到一个架子鼓新手快速入门。今天看到这个视频好，练了几天，明天发现另外一个视频可能更适合，又开始跟着这个视频练，练了几天后发现因为不成体系，东练一下西练一下啥都没有学会。又想去找老师线下教，把剩下的几节课上完，结果发现因为疫情原因，报名学鼓的地方老板已经搞不下去，教学点已经转让了。联系了几次老板，老板抱怨说”过了这么久我都已经撑不下去不搞了，你们怎么12节课都还没有学完？”后来根本就不理我们了。</p>
-<p>开了个头，总得要学出个名堂来吧？回顾这段学鼓的历程，无疑是段失败的学鼓之路。总结一下，自己学鼓没有目标，不了解学习架子鼓的整个技能知识结构、像个无头苍蝇一样不知道如何有计划的学习和训练，想依赖老师确又没有按照老师的节奏来，把学乐器想得太简单了，不可能通过短短的12次课时就可能把架子鼓学会。人家30天入门、一个月打歌，那基本上都是有基础的，而且是每天都花了大量的时间在练习。个人认为正常情况零基础的学习者没有经过一两年有体系有计划的训练是很难流畅的打好一首中等难度的歌曲的。</p>
-<p>痛定思痛，为了学好架子鼓，我开始思考并改变策略。不再无脑的跟B站那些免费的视频教程了，因为大部分免费的视频教程都有个很大的问题就是不成体系。为此我买了一本《成人零基础学架子鼓》的教材，详细了解要学习架子鼓的整体的体系框架，现在知道了学习架子鼓得知道基本的握槌击打方法、套鼓的组成及击打方式、4分、8分、16分、休止符、基本节奏型、还有前8后16、前16后8、切分、附点等等，这些都是需要一个个的去理解理会，通过不断的练习来熟练掌握的。有了这些基本功后才有可能通过组合应用到实战歌曲里面来完成打一首完整的歌曲。为了更好的掌握这些基本功的练习方法，我在抖音上花了499买了一套完整的视频教学课程，可以跟着课程将这些基本功及常用的技巧进行练习。剩下的就是抛弃速成的幻想，扎扎实实一步步的开始练习了。</p>
-<p>今年的目标是扎扎实实的把基本功练好，拿下最初定下来的《大风吹》这首歌！</p>
-<hr>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3283,7 +3320,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">172</span>
+                  <span class="site-state-item-count">173</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3395,7 +3432,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">364.2k</span>
+    <span title="Site words total count">368.2k</span>
   
   
 <!--51la网站应用监控-->
