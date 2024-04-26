@@ -313,6 +313,358 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/808d8fe8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/808d8fe8/" itemprop="url">pandas基本操作之数据访问(查看与检索)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-07T23:40:32+08:00">
+                2022-02-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/808d8fe8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/808d8fe8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/808d8fe8/" class="leancloud_visitors" data-flag-title="pandas基本操作之数据访问(查看与检索)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对于数据分析来说，在构造或载入数据后最基本的操作应该就是对数据的访问了。看一看数据的结构、组成、分布等，根据需要从数据集中检索提取出相应的数据。pandas作为数据分析的利器，当然提供了多种查看和检索数据的方法。本文就来捋一捋pandas基本的数据访问。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE.png" alt="数据访问"></p>
+<h1 id="一、查看数据"><a href="#一、查看数据" class="headerlink" title="一、查看数据"></a>一、查看数据</h1><p>当我们拿到数据集后，第一步可能就是查看数据了，一方面是了解拿到的数据集的数据结构，另一方面随机检查一下数据的质量问题。<br>不管是Series还是DataFrame的数据集pandas常用的数据查看方法有：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>操作</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>head(n)</td>
+<td>查看数据集对象的前n行</td>
+<td>Series或DataFrame</td>
+</tr>
+<tr>
+<td>tail(n)</td>
+<td>查看数据集的最后n行</td>
+<td>Series或DataFrame</td>
+</tr>
+<tr>
+<td>sample(n)</td>
+<td>随机查看n个样本</td>
+<td>Series或DataFrame</td>
+</tr>
+<tr>
+<td>describe()</td>
+<td>数据集的统计摘要</td>
+<td>Series</td>
+</tr>
+</tbody></table>
+<p>以下就以一个DataFrame数据集为例来看看这些查看数据的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="studend数据集"></p>
+<h2 id="1、查看头部-head-n"><a href="#1、查看头部-head-n" class="headerlink" title="1、查看头部 head(n)"></a>1、查看头部 head(n)</h2><p>head()方法如果不带参数，默认返回前5条记录，带了参数n就返回前n条记录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.head() <span class="comment">#默认查看前5条记录</span></span><br><span class="line">df.head(<span class="number">8</span>) <span class="comment">#指定查看前8条记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/head.png" alt="查看头部 head(n)"></p>
+<h2 id="2、查看尾部-tail-n"><a href="#2、查看尾部-tail-n" class="headerlink" title="2、查看尾部 tail(n)"></a>2、查看尾部 tail(n)</h2><p>同样tail()方法如果不带参数，默认返回后面5条记录，带了参数n就返回后面n条记录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.tail() <span class="comment">#默认查看后面5条记录</span></span><br><span class="line">df.tail(<span class="number">4</span>) <span class="comment">#指定查看后面4条记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/tail.png" alt="查看尾部 tail(n)"></p>
+<h2 id="3、随机查看样本-sample-n"><a href="#3、随机查看样本-sample-n" class="headerlink" title="3、随机查看样本 sample(n)"></a>3、随机查看样本 sample(n)</h2><p>sample() 不带参数会随机返回一条样本数据，带了参数n就会随机返回n条记录。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.sample() <span class="comment">#随机查看一条记录</span></span><br><span class="line">df.sample(<span class="number">4</span>) <span class="comment">#随机查看4条记录</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/sample.png" alt="随机查看样本 sample(n)"></p>
+<h2 id="4、查看统计摘要"><a href="#4、查看统计摘要" class="headerlink" title="4、查看统计摘要"></a>4、查看统计摘要</h2><p><code>df.describe()</code> 返回所有数字列的统计摘要。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/describe1.png" alt="查看统计摘要"></p>
+<p>这里连staff_id的统计摘要就显示出来了，因为它是数字列。如果只看某一列的统计摘要</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[[<span class="string">'staff_salary'</span>]].describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/describe2.png" alt="只看某一列的统计摘要"></p>
+<h1 id="二、检索数据"><a href="#二、检索数据" class="headerlink" title="二、检索数据"></a>二、检索数据</h1><p>在数据分析过程中，很多时候需要从数据表中提取出相应的数据，而这么做的前提是需要先“检索”出这一部分数据。虽然通过 Python 提供的索引操作符”[]”和属性操作符”.”可以访问 Series 或者 DataFrame 中的数据，但这种方式只适应与少量的数据，为了解决这一问题，pandas 提供了多种类型的索引方式来实现数据的访问。包括[]、loc\iloc、at\iat、布尔索引<br>一般的:<br>df[‘name’] #会返回本列的Series<br>df.name   #也会返回本列的Series</p>
+<blockquote>
+<p>但是要注意，name应该是一个合法的python变量时才可以直接作为属性来使用。</p>
+</blockquote>
+<p>如：<br><strong>df[‘1级别’]可以正常返回索引列为“1级别”的数据，而df.1级别会报错，因为”1级别”不是一个合法的python变量。</strong><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%97%E7%B4%A2%E5%BC%95%E6%A3%80%E7%B4%A2.png" alt="列索引检索"><br>以下通过DataFrame数据集来说明常用检索数据的方法。对于DataFrame的数据集来说要检索数据通常是确定数据所在的行和列。而确定行和列也有两种方式，一是通过<strong>标签索引</strong>来确定，二是通过数据<strong>所在的位置</strong>来确定。<br>一般的：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>语法</th>
+<th>返回结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>选择列</td>
+<td>df[col]</td>
+<td>Series</td>
+</tr>
+<tr>
+<td>按索引选择行</td>
+<td>df.loc[label]</td>
+<td>Series</td>
+</tr>
+<tr>
+<td>按位置选择行</td>
+<td>df.iloc[loc]</td>
+<td>Series</td>
+</tr>
+<tr>
+<td>使用切片选择行</td>
+<td>df[2:5]</td>
+<td>DataFrame</td>
+</tr>
+<tr>
+<td>用表达式筛选行</td>
+<td>df[bool]</td>
+<td>DataFrame</td>
+</tr>
+</tbody></table>
+<h2 id="1、切片"><a href="#1、切片" class="headerlink" title="1、切片[]"></a>1、切片[]</h2><p>通过[]进行检索，这将会对行进行切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">0</span>:<span class="number">3</span>] <span class="comment">#通过切片检索行数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%87.png" alt="在这里插入图片描述"></p>
+<p>切片并不对列有效，如果是<code>df[0:3][1:2]</code>，会检索出0-3行，再在这三行切片的基础上切片中检索出第二行。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%872.png" alt="df[0:3][1:2]"></p>
+<p>如果要在切片检索的结果上再选择列，则可以通过列标签索引列表来选择</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="number">0</span>:<span class="number">3</span>][[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]] <span class="comment">#通过列标签索引列表检索列数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%88%87%E7%89%873.png" alt="通过列标签索引列表来选择"></p>
+<h2 id="2、loc-iloc"><a href="#2、loc-iloc" class="headerlink" title="2、loc\iloc"></a>2、loc\iloc</h2><h3 id="loc"><a href="#loc" class="headerlink" title="loc"></a>loc</h3><p>df.loc[] 只能使用标签索引，不能使用位置索引。当通过标签索引的切片方式来筛选数据时，它的取值前闭后闭，也就是只包括边界值标签（开始和结束）<br>.loc[] 具有多种访问方法，如下所示：</p>
+<ul>
+<li>一个标量标签 </li>
+<li>标签列表 </li>
+<li>切片对象</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="number">1</span>] <span class="comment">#标量标签，返回该行标签的Series数据</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">3</span>]] <span class="comment">#标签列表，返回标签列表的行DataFrame数据</span></span><br><span class="line">df.loc[<span class="number">0</span>:<span class="number">3</span>] <span class="comment">#切片对象，返回切片的行DataFrame数据</span></span><br><span class="line">df.loc[<span class="number">0</span>:<span class="number">3</span>,<span class="string">'staff_id'</span>:<span class="string">'staff_salary'</span>]  <span class="comment">#根据行切片，列切片检索数据</span></span><br><span class="line">df.loc[[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>]] <span class="comment">#根据行标签列表，列标签列表检索数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/loc.png" alt="loc"></p>
+<p>.loc[] 除了标量标签，标签列表和切片对象都接受两个参数，并以’,’分隔。第一个位置表示行检索，第二个位置表示列检索<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/loc2.png" alt="loc2"></p>
+<h3 id="iloc"><a href="#iloc" class="headerlink" title="iloc"></a>iloc</h3><p>df.iloc[] 只能使用位置索引(用整数表示所在行或列的位置如第几行第几列)，不能使用标签索引，通过整数索引切片选择数据时，前闭后开(不包含边界结束值)。同 Python 和 NumPy 一样，它们的<strong>索引都是从 0 开始</strong><br>.iloc[] 提供了以下方式来选择数据：</p>
+<ul>
+<li>整数索引   </li>
+<li>整数列表  </li>
+<li>数值范围</li>
+</ul>
+<p>为了说明方便，我们把数据集的行索引重名为字母</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.rename(index=&#123;<span class="number">0</span>:<span class="string">'A'</span>,<span class="number">1</span>:<span class="string">'B'</span>,<span class="number">2</span>:<span class="string">'C'</span>,<span class="number">3</span>:<span class="string">'D'</span>,<span class="number">4</span>:<span class="string">'E'</span>,<span class="number">5</span>:<span class="string">'F'</span>,<span class="number">6</span>:<span class="string">'G'</span>,<span class="number">7</span>:<span class="string">'H'</span>,<span class="number">8</span>:<span class="string">'I'</span>,<span class="number">9</span>:<span class="string">'J'</span>&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/rename.png" alt="reanme"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df.iloc[<span class="number">1</span>]  <span class="comment">#整数标量选择，数据从0开始，为1的就是第二行的数据，返回的是Series</span></span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">3</span>]] <span class="comment">#整数列表选择，选择位置为1和3的数据，返回的是DataFrame</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">3</span>] <span class="comment">#切片选择，选择位置1至2的数据，不包含边界结束值，也就是不包含3的位置</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">3</span>,<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#切片选择位置为1至3的行和1至4的列不含位置为3的行和位置为4的列</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/iloc.png" alt="iloc"></p>
+<h2 id="3、at-iat"><a href="#3、at-iat" class="headerlink" title="3、at\iat"></a>3、at\iat</h2><p>at和iat和loc和iloc类似，不同的是at和iat仅取一个具体的值，结构为 at[&lt;索引&gt;,&lt;列名&gt;]，iat[&lt;行位置&gt;,&lt;列位置&gt;]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.at[<span class="string">'A'</span>,<span class="string">'staff_name'</span>]  <span class="comment">#检索第“A”行的列标签为"staff_name"的数据</span></span><br><span class="line">df.iat[<span class="number">0</span>,<span class="number">1</span>]  <span class="comment">#检索第1行第2列的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/at.png" alt="at\iat"></p>
+<h2 id="4、布尔条件检索"><a href="#4、布尔条件检索" class="headerlink" title="4、布尔条件检索"></a>4、布尔条件检索</h2><h3 id="1、-里用布尔条件进行检索"><a href="#1、-里用布尔条件进行检索" class="headerlink" title="1、[] 里用布尔条件进行检索"></a>1、[] 里用布尔条件进行检索</h3><p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df.staff_salary&gt;<span class="number">10000</span>)&amp;(df.staff_age&lt;<span class="number">40</span>)]  <span class="comment">#检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%5B%5D%E6%9D%A1%E4%BB%B6.png" alt="[] 里用布尔条件进行检索"></p>
+<h3 id="2、loc索引部分用布尔条件检索"><a href="#2、loc索引部分用布尔条件检索" class="headerlink" title="2、loc索引部分用布尔条件检索"></a>2、loc索引部分用布尔条件检索</h3><p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[(df.staff_salary&gt;<span class="number">10000</span>)&amp;(df.staff_age&lt;<span class="number">40</span>)]  <span class="comment">#检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/loc%E6%9D%A1%E4%BB%B6.png" alt="loc索引部分用布尔条件检索"></p>
+<h3 id="3、query函数布尔条件检索"><a href="#3、query函数布尔条件检索" class="headerlink" title="3、query函数布尔条件检索"></a>3、query函数布尔条件检索</h3><p>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.query(<span class="string">'staff_salary&gt;10000 &amp; staff_age&lt;40'</span>) <span class="comment">#通过函数检索staff_age小于40且staff_salary&gt;10000的数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220207/%E5%87%BD%E6%95%B0.png" alt="query函数布尔条件检索"></p>
+<p>至此，本文介绍了pandas常用的数据访问操作通过head()、tail()、sample()、describe()查看数据，通过[]、loc\iloc、at\iat、及布尔条件检索数据。通过灵活运用pandas的各种数据访问方法可以很方便的根据需要查看和检索数据。</p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2c80aac2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3006,227 +3358,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/60aaa7f1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/60aaa7f1/" itemprop="url">不想学鼓的产品经理不是一个好的程序员</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-29T14:09:36+08:00">
-                2021-12-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/60aaa7f1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/60aaa7f1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/60aaa7f1/" class="leancloud_visitors" data-flag-title="不想学鼓的产品经理不是一个好的程序员">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  697
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://xiejava.gitee.io/xiejavaimagesrc/images/2021/20211229/%E6%9E%B6%E5%AD%90%E9%BC%93.jpg" alt="架子鼓"></p>
-<center>架子鼓</center>
-
-<p>一直以来都想学一门乐器。苦于没有任何才艺，不管是学校搞活动还是公司的团拜活动都是躲得远远的。从小就很羡慕那种多才多艺的人，不管什么时候都能成为众人的焦点，在要表演的时候可以自信的拿得出手表现一番。也非常羡慕那种自娱自乐的享受自我放松的自由演奏，感觉会乐器的人总是那么的快乐和陶醉。</p>
-<p>公司搬到岳麓山大学科技城就在中南大学后湖国际艺术园。一天晚上和同事散步经过一家现代音乐体验店，里面传来乐队演奏的声音，于是驻足前往。里面一群快乐的人，正在激情洋溢的排练着享受着。我们都被触动了，这种自由、快乐、充满激情的感觉真好！想着一天到晚围绕着产品、项目、代码、缺陷，被工作和生活的压力摧残着的我们什么时候才会有这样的状态啊？所以合计了一下，我们也来报个班来学乐器。我一直想学架子鼓，所以决定报个学架子鼓的班。</p>
-<p>试听课，老师是一位胖胖的90后小女孩，问了我一个灵魂拷问的问题。你这年纪不小了为什么想起要来学架子鼓？我想了半天，说我就是喜欢敲鼓啊，一直一来就喜欢节奏感比较强的声音，听音乐也是喜欢听节奏感强的歌曲，听到重低音的鼓声敲在心里“咚”、“咚”、“咚”的感觉很踏实。而且敲鼓沉浸在音乐里敲起来帅气。不管怎么样，虽然不会，但是从心里还是喜欢。</p>
-<p>喜欢是喜欢，但是没有目标的学习始终都是在耍流氓，浪费自己的时间、精力还学不好。既然是喜欢，既然开始学了，就一定要学好。我们现在是报的一个课程12节课的班，我的目标是通过这一个课程的学习，了解架子鼓的基本演奏技巧，学会一首歌曲的演奏。就《大风吹》吧，谁叫这歌这段时间这么火呢。计划是每周二、四上课，每天拿出1个小时用来练习。<strong>学鼓，虽然我不是天赋最好的，但我争取做那个最认真的</strong>！</p>
-<p>今天根据老师的建议在网上买了练习用的哑鼓垫、军鼓架、鼓棒、节拍器。后面动次打次练起来！</p>
-<p>以后我的标签又多了一个–<strong>鼓手</strong>！</p>
-<hr>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3283,7 +3414,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">173</span>
+                  <span class="site-state-item-count">174</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3395,7 +3526,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">368.2k</span>
+    <span title="Site words total count">369.8k</span>
   
   
 <!--51la网站应用监控-->

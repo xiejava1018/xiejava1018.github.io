@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="Python," />
+  <meta name="keywords" content="网络安全," />
 
 
 
@@ -134,28 +134,19 @@
 
 
 
-<meta name="description" content="pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。">
+<meta name="description" content="一、什么是通行字安全管理所指的通行字指的是对用于身份验证的账号密码或口令的管理。在计算机系统、网络服务、数据库管理等领域，通行字（或称账号口令、密码）是用于验证用户身份的重要机制。通行字管理的核心目标是确保只有授权用户才能访问系统资源，同时保护敏感信息不被未授权访问。 通行字除了自然人登录信息系统时所必需的用于鉴别登录者身份和权限信息的账号和口令外，还包括信息系统软件之间互相调用数据所需的账号和口">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pandas数据加载(csv、excel、json、mysql、webAPI)">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/4864590d/index.html">
+<meta property="og:title" content="安全运营之通行字管理">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/24bc6ec2/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/excel%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_excel.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDcsv.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_mysql.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDMySQL%E6%95%B0%E6%8D%AE.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_webapi.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDwebAPI%E6%95%B0%E6%8D%AE.png">
+<meta property="og:description" content="一、什么是通行字安全管理所指的通行字指的是对用于身份验证的账号密码或口令的管理。在计算机系统、网络服务、数据库管理等领域，通行字（或称账号口令、密码）是用于验证用户身份的重要机制。通行字管理的核心目标是确保只有授权用户才能访问系统资源，同时保护敏感信息不被未授权访问。 通行字除了自然人登录信息系统时所必需的用于鉴别登录者身份和权限信息的账号和口令外，还包括信息系统软件之间互相调用数据所需的账号和口">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2022-01-22T09:35:55.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:36.695Z">
+<meta property="article:published_time" content="2024-04-26T00:56:55.000Z">
+<meta property="article:modified_time" content="2024-04-26T00:58:49.730Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 
 
 
@@ -185,13 +176,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/4864590d/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/24bc6ec2/"/>
 
 
 
 
 
-  <title>pandas数据加载(csv、excel、json、mysql、webAPI) | XieJava's blog</title>
+  <title>安全运营之通行字管理 | XieJava's blog</title>
   
 
 
@@ -328,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4864590d/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/24bc6ec2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -345,7 +336,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">pandas数据加载(csv、excel、json、mysql、webAPI)</h2>
+          <h2 class="post-title" itemprop="name headline">安全运营之通行字管理</h2>
         
 
         <div class="post-meta">
@@ -357,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-22T17:35:55+08:00">
-                2022-01-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-26T08:56:55+08:00">
+                2024-04-26
               </time>
             
 
@@ -373,8 +364,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-04-26T08:58:49+08:00">
+                2024-04-26
               </time>
             
           </span>
@@ -403,8 +394,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
                   </a>
                 </span>
 
@@ -421,8 +412,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/4864590d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4864590d/" itemprop="commentCount"></span>
+                <a href="/posts/24bc6ec2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/24bc6ec2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -430,7 +421,7 @@
 
           
           
-             <span id="/posts/4864590d/" class="leancloud_visitors" data-flag-title="pandas数据加载(csv、excel、json、mysql、webAPI)">
+             <span id="/posts/24bc6ec2/" class="leancloud_visitors" data-flag-title="安全运营之通行字管理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -455,7 +446,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  1.6k
                 </span>
               
 
@@ -492,131 +483,26 @@
       
 
       
-        <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas.png" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
-<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
-<table>
-<thead>
-<tr>
-<th>Format Type</th>
-<th>Data Description</th>
-<th>Reader</th>
-<th>Writer</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>text</td>
-<td>CSV</td>
-<td>read_csv</td>
-<td>to_csv</td>
-</tr>
-<tr>
-<td>text</td>
-<td>JSON</td>
-<td>read_json</td>
-<td>to_json</td>
-</tr>
-<tr>
-<td>text</td>
-<td>HTML</td>
-<td>read_html</td>
-<td>to_html</td>
-</tr>
-<tr>
-<td>text</td>
-<td>Local clipboard</td>
-<td>read_clipboard</td>
-<td>to_clipboard</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>MS Excel</td>
-<td>read_excel</td>
-<td>to_excel</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>OpenDocument</td>
-<td>read_excel</td>
-<td></td>
-</tr>
-<tr>
-<td>binary</td>
-<td>HDF5 Format</td>
-<td>read_hdf</td>
-<td>to_hdf</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Feather Format</td>
-<td>read_feather</td>
-<td>to_feather</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Parquet Format</td>
-<td>read_parquet</td>
-<td>to_parquet</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Msgpack</td>
-<td>read_msgpack</td>
-<td>to_msgpack</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Stata</td>
-<td>read_stata</td>
-<td>to_stata</td>
-</tr>
-<tr>
-<td>binary</td>
-<td>SAS</td>
-<td>read_sas</td>
-<td></td>
-</tr>
-<tr>
-<td>binary</td>
-<td>Python Pickle Format</td>
-<td>read_pickle</td>
-<td>to_pickle</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>SQL</td>
-<td>read_sql</td>
-<td>to_sql</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>Google Big Query</td>
-<td>read_gbq</td>
-<td>to_gbq</td>
-</tr>
-</tbody></table>
-<p>本文通过几个实例，介绍几种常用的数据加载方式，包括从csv文件、excel文件、关系型数据库如mysql、API接口加载json数据，来初步体验一下pandas加载数据的便捷性。</p>
-<p>见上表pandas 提供了多种数据源读取数据的方法：<br>read_csv() 用于读取文本文件<br>read_json() 用于读取 json 文件<br>read_sql_query() 读取 sql 语句查询的表记录</p>
-<h1 id="一、读取CSV文件"><a href="#一、读取CSV文件" class="headerlink" title="一、读取CSV文件"></a>一、读取CSV文件</h1><p>CSV 又称逗号分隔值文件，是一种简单的文件格式，以特定的结构来排列表格数据。 CSV 文件能够以纯文本形式存储表格数据，比如电子表格、数据库文件，并具有数据交换的通用格式。CSV 文件会在 Excel 文件中被打开，其行和列都定义了标准的数据格式。<br>将 CSV 中的数据转换为 DataFrame 对象是非常便捷的。和一般文件读写不一样，它不需要你做打开文件、读取文件、关闭文件等操作。相反，只需要一行代码就可以完成上述所有步骤，并将数据存储在 DataFrame 中。<br>pandas通过read_csv()从 CSV 文件中读取数据，并创建 DataFrame 对象。<br>下面通过一个实例来说明。一个用于测试的员工数据集csv的数据如下，文件为staff.csv。</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"staff_id"</span>,<span class="string">"staff_name"</span>,<span class="string">"staff_age"</span>,<span class="string">"staff_gender"</span>,<span class="string">"staff_salary"</span>,<span class="string">"staff_depatment_id"</span></span><br><span class="line"><span class="string">"1"</span>,<span class="string">"陈一"</span>,<span class="string">"30"</span>,<span class="string">"男"</span>,<span class="string">"7000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"2"</span>,<span class="string">"周二"</span>,<span class="string">"31"</span>,<span class="string">"男"</span>,<span class="string">"12000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"3"</span>,<span class="string">"张三"</span>,<span class="string">"30"</span>,<span class="string">"女"</span>,<span class="string">"13000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"4"</span>,<span class="string">"李四"</span>,<span class="string">"29"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"5"</span>,<span class="string">"王五"</span>,<span class="string">"29"</span>,<span class="string">"男"</span>,<span class="string">"9000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"6"</span>,<span class="string">"赵六"</span>,<span class="string">"35"</span>,<span class="string">"男"</span>,<span class="string">"8600"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"7"</span>,<span class="string">"钱七"</span>,<span class="string">"36"</span>,<span class="string">"女"</span>,<span class="string">"9700"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"8"</span>,<span class="string">"孙八"</span>,<span class="string">"40"</span>,<span class="string">"女"</span>,<span class="string">"10000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"9"</span>,<span class="string">"何九"</span>,<span class="string">"40"</span>,<span class="string">"男"</span>,<span class="string">"11000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"10"</span>,<span class="string">"顾十"</span>,<span class="string">"37"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"2"</span></span><br></pre></td></tr></table></figure>
-<p>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/excel%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE.png" alt="通过csv加载"></p>
-<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_excel.png" alt="staff.xlsx"><br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDcsv.png" alt="通过Excel加载数据"></p>
-<h1 id="三、读取MySQL数据库表"><a href="#三、读取MySQL数据库表" class="headerlink" title="三、读取MySQL数据库表"></a>三、读取MySQL数据库表</h1><p>在许多应用中，数据很少取自文本文件，因为这种方式存储数据量有限且比较低效。最常见的是基于SQL的关系型数据库如MySQL、MS-SQL、PostgreSQL等。pandas将关系型数据库加载到DataFrame的过程很简单，通过read_sql_query()方法就可以快速的将数据加载。<br>同样是staff的数据集，在mysql中的表结构如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`staff`</span> (</span><br><span class="line">  <span class="string">`staff_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_age`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`staff_gender`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'性别'</span>,</span><br><span class="line">  <span class="string">`staff_salary`</span> <span class="keyword">double</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪水'</span>,</span><br><span class="line">  <span class="string">`staff_depatment_id`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'部门ID'</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
-
-<p>数据如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_mysql.png" alt="staff数据集MySQL记录"><br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:yourpassword@localhost:3306/pandastest'</span>)</span><br><span class="line">sql_query_staff = <span class="string">'select * from staff;'</span></span><br><span class="line">df_staff = pd.read_sql_query(sql_query_staff, engine)</span><br><span class="line">df_staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDMySQL%E6%95%B0%E6%8D%AE.png" alt="加载mysql数据"></p>
-<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_webapi.png" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">url=<span class="string">'http://127.0.0.1:5000/getstaff'</span></span><br><span class="line">resp=requests.get(url)</span><br><span class="line">data=json.loads(resp.text)</span><br><span class="line">staff=pd.DataFrame(data)</span><br><span class="line">staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDwebAPI%E6%95%B0%E6%8D%AE.png" alt="加载WEBAPI数据"></p>
-<p>至此，通过staff测试数据集介绍了pandas的常用多种类型数据源的加载，包括csv、excel、mysql、web API。可以看出pandas对于数据加载非常的方便高效。</p>
-<p>全部数据集及源代码：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+        <h2 id="一、什么是通行字"><a href="#一、什么是通行字" class="headerlink" title="一、什么是通行字"></a>一、什么是通行字</h2><p>安全管理所指的通行字指的是对用于身份验证的账号密码或口令的管理。在计算机系统、网络服务、数据库管理等领域，通行字（或称账号口令、密码）是用于验证用户身份的重要机制。通行字管理的核心目标是确保只有授权用户才能访问系统资源，同时保护敏感信息不被未授权访问。</p>
+<p>通行字除了自然人登录信息系统时所必需的用于鉴别登录者身份和权限信息的账号和口令外，还包括信息系统软件之间互相调用数据所需的账号和口令。</p>
+<h2 id="二、通行字安全管理的重要性"><a href="#二、通行字安全管理的重要性" class="headerlink" title="二、通行字安全管理的重要性"></a>二、通行字安全管理的重要性</h2><p>首先，通行字作为身份验证的关键手段，其安全性直接关系到个人信息、系统资源和数据隐私的保护。一旦通行字被破解或泄露，可能导致未经授权的访问和数据泄露，进而造成财产损失、隐私侵犯甚至法律纠纷。因此，加强通行字安全管理是确保个人和组织信息安全的第一道防线。</p>
+<p>对于企业而言，通行字安全管理更是关乎到整个信息系统的安全稳定。企业内部的敏感数据和关键业务信息都需要得到有效的保护，而通行字作为员工访问系统资源的凭证，其安全性不容忽视。通过实施严格的通行字安全管理措施，企业可以降低内部泄露和外部攻击的风险，维护企业的正常运营和声誉。</p>
+<p>最后，通行字安全管理也是法律法规的要求。许多国家和地区都制定了相关的数据保护和隐私法规，要求企业和组织必须采取必要的安全措施来保护用户的个人信息和数据安全。因此，加强通行字安全管理也是企业和组织履行法律责任的重要体现。</p>
+<p>综上所述，通行字安全管理的重要性不言而喻。无论是个人还是组织，都需要高度重视通行字的安全管理，采取有效的措施来确保通行字的安全性和可用性。</p>
+<h2 id="三、如何做好通行字安全管理"><a href="#三、如何做好通行字安全管理" class="headerlink" title="三、如何做好通行字安全管理"></a>三、如何做好通行字安全管理</h2><h3 id="1、通行字一般要求"><a href="#1、通行字一般要求" class="headerlink" title="1、通行字一般要求"></a>1、通行字一般要求</h3><p>通行字账号和口令严禁使用出厂默认的、易被猜测的字符串，如admin、root、huawei、123456、111111、666666、888888等。<br>通行字口令长度一般应至少8位，系统最高权限通行字口令长度应至少12位。<br>通行字口令应包括数字、小写字母、大写字母、特殊符号4类中至少3类。<br>通行字口令应与用户名无相关性，口令不得包含账号的完整字符串、大小写变位或形似变换的字符串。<br>口令设置应避免键盘排序密码。</p>
+<h3 id="2、通行字管理原则"><a href="#2、通行字管理原则" class="headerlink" title="2、通行字管理原则"></a>2、通行字管理原则</h3><p>通行字管理原则包括以下几个方面：</p>
+<ol>
+<li>职责分离：确保不同的职责和权限得到合理的分离，例如，通行字的创建、修改和删除应该由不同的人员或部门负责，以避免权力滥用和误操作。</li>
+<li>最小授权：通行字的授权应遵循最小权限原则，即每个用户只能获得完成其任务所需的最低权限，这有助于减少潜在的安全风险，防止未经授权的用户访问敏感信息或执行关键操作。</li>
+<li>特殊控制：对于特殊的通行字，如管理员密码或敏感数据的访问密码，应该实施额外的控制措施，例如使用更强的密码策略、定期更换密码或实施多因素身份验证等措施，以增强安全性。</li>
+<li>安全责任：通行字使用人是通行字安全的第一责任人，需要严格遵守通行字安全保护相关规定，如正确填写身份信息、访问权限最小化、及时申请修改或关闭相关权限等。</li>
+<li>操作日志留存：所有系统均留存一定时间（如1年以上）的用户操作日志，定期进行稽核，如有违规违法操作，将立即收回通行字权限并追究相关责任。</li>
+<li>一人一号原则：严格执行“一人一号”，不允许账号转借他人使用，如因转借导致出现违规操作，将由通行字所有人自行承担相关责任。</li>
+</ol>
+<p>通行字管理是网络安全的重要组成部分，它要求系统管理员和用户都采取适当的措施来保护通行字的安全，防止未授权的访问和数据泄露。</p>
+<h3 id="3、通行字安全管理运营建议"><a href="#3、通行字安全管理运营建议" class="headerlink" title="3、通行字安全管理运营建议"></a>3、通行字安全管理运营建议</h3><p>鉴于通行字管理的重要性，通行字安全管理运营建议从通行字的全生命周期进行管理。通行字安全管理包括申请、注册、使用、变注销等环节的全生命周期管理，在必要的环节有监督有审核。<br>1、通行字申请/注册流程由通行字申请人发起，申请人所在部门(通行字使用部门)负责人、申请访问权限的各通行字维护部门负责人、通行字管理员审核，通行字制作员按照结果制作和分配通行字。<br>2、按照“谁使用谁负责”的原则，通行字使用人是通行字安全的第一责任人，通行字使用过程须由通行字管理员督促并通过系统监督通行字使用人遵照本办法执行。<br>3、通行字变更/注销(如通行字使用人因职责发生变化而导致相应通行字权限发生变化)应由通行字申请人、使用人或使用人所在部门主动发起变更或注销需求，通行字管理员或制作员负责实施。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
@@ -643,7 +529,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/4864590d/" title="pandas数据加载(csv、excel、json、mysql、webAPI)">https://xiejava.gitee.io/posts/4864590d/</a>
+    <a href="https://xiejava.gitee.io/posts/24bc6ec2/" title="安全运营之通行字管理">https://xiejava.gitee.io/posts/24bc6ec2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -658,7 +544,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"># Python</a>
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
           
         </div>
       
@@ -671,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/14434407/" rel="next" title="Python实现读取Word表格计算汇总写入Excel">
-                <i class="fa fa-chevron-left"></i> Python实现读取Word表格计算汇总写入Excel
+              <a href="/posts/58f1dee7/" rel="next" title="SWOT分析法：知彼知己的战略规划工具">
+                <i class="fa fa-chevron-left"></i> SWOT分析法：知彼知己的战略规划工具
               </a>
             
           </div>
@@ -680,10 +566,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/531458d5/" rel="prev" title="pandas数据结构(Series和DataFrame)">
-                pandas数据结构(Series和DataFrame) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -863,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、读取CSV文件"><span class="nav-number">1.</span> <span class="nav-text">一、读取CSV文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、读取EXCEL文件"><span class="nav-number">2.</span> <span class="nav-text">二、读取EXCEL文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、读取MySQL数据库表"><span class="nav-number">3.</span> <span class="nav-text">三、读取MySQL数据库表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、读取Web-API的数据"><span class="nav-number">4.</span> <span class="nav-text">四、读取Web API的数据</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是通行字"><span class="nav-number">1.</span> <span class="nav-text">一、什么是通行字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、通行字安全管理的重要性"><span class="nav-number">2.</span> <span class="nav-text">二、通行字安全管理的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、如何做好通行字安全管理"><span class="nav-number">3.</span> <span class="nav-text">三、如何做好通行字安全管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、通行字一般要求"><span class="nav-number">3.1.</span> <span class="nav-text">1、通行字一般要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、通行字管理原则"><span class="nav-number">3.2.</span> <span class="nav-text">2、通行字管理原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、通行字安全管理运营建议"><span class="nav-number">3.3.</span> <span class="nav-text">3、通行字安全管理运营建议</span></a></li></ol></li></ol></div>
             
 
           </div>
