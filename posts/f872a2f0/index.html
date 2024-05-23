@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="网络安全," />
+  <meta name="keywords" content="项目管理," />
 
 
 
@@ -134,19 +134,37 @@
 
 
 
-<meta name="description" content="近年来，高新技术数字经济快速发展，数字化转型成为各个行业高质量发展的重要引擎和创新路径。网络安全作为数字化建设的安全基石，却面临着网络安全人才缺口不断攀升的直接挑战。各安全公司依托自己网络安全经验的人才优势向客户提供各类安全服务，最常见的就是安全托管和重保安全。 安全托管服务与重保安全服务都是为客户提供安全服务，这两者有啥区别呢？ 一、安全托管服务安全托管服务（Managed Security S">
+<meta name="description" content="DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序&#x2F;软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。这是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例，是一个软件开发方法论。 DevOps的目标是通过自动化“软件交付”和“架构变更”的流程，使得构建、测试、发布软">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安全托管与重保安全服务">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/5381000/index.html">
+<meta property="og:title" content="DevOps实践：通过云效实现hexo自动构建部署发布">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/f872a2f0/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="近年来，高新技术数字经济快速发展，数字化转型成为各个行业高质量发展的重要引擎和创新路径。网络安全作为数字化建设的安全基石，却面临着网络安全人才缺口不断攀升的直接挑战。各安全公司依托自己网络安全经验的人才优势向客户提供各类安全服务，最常见的就是安全托管和重保安全。 安全托管服务与重保安全服务都是为客户提供安全服务，这两者有啥区别呢？ 一、安全托管服务安全托管服务（Managed Security S">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2022-12-28T06:48:37.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:36.867Z">
+<meta property="og:description" content="DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序&#x2F;软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。这是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例，是一个软件开发方法论。 DevOps的目标是通过自动化“软件交付”和“架构变更”的流程，使得构建、测试、发布软">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/1-DevOps.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/2-hexo%E7%BD%91%E7%AB%99devops.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/3-%E4%BA%91%E6%95%88%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/4-%E4%BA%91%E6%95%88Codeup%E4%BB%A3%E7%A0%81%E5%BA%93.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/5-%E4%BA%91%E6%95%88%E4%BB%8E%E5%85%B6%E4%BB%96%E4%BB%A3%E7%A0%81%E5%BA%93%E5%AF%BC%E5%85%A5%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/6-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/7-%E4%BA%91%E6%95%88%E4%BB%8E%E5%85%B6%E4%BB%96%E4%BB%93%E5%BA%93%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%E6%BA%90.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/8-%E4%BA%91%E6%95%88%E6%B7%BB%E5%8A%A0%E6%9E%84%E5%BB%BA%E7%8E%AF%E8%8A%82.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/9-Nodejs%E6%9E%84%E5%BB%BA%E5%86%99%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/10-%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA%E9%83%A8%E7%BD%B2%E7%8E%AF%E8%8A%82.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/11-%E6%96%B0%E5%BB%BA%E4%B8%BB%E6%9C%BA%E7%BB%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/12-%E5%B0%86%E4%B8%BB%E6%9C%BA%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%BB%E6%9C%BA%E7%BB%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/13-%E6%B7%BB%E5%8A%A0%E5%9C%A8%E4%B8%BB%E6%9C%BA%E4%B8%8A%E6%89%A7%E8%A1%8C%E7%9A%84%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/14-%E6%B7%BB%E5%8A%A0%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/15-%E8%AE%BE%E7%BD%AE%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/16-%E6%9F%A5%E7%9C%8B%E6%AF%8F%E6%AC%A1%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E7%9A%84%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/17-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/18-%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%BB%9F%E8%AE%A1%E6%A6%82%E5%86%B5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-05-20T04:41:16.000Z">
+<meta property="article:modified_time" content="2024-05-20T06:51:02.935Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="项目管理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/1-DevOps.png">
 
 
 
@@ -176,13 +194,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/5381000/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/f872a2f0/"/>
 
 
 
 
 
-  <title>安全托管与重保安全服务 | XieJava's blog</title>
+  <title>DevOps实践：通过云效实现hexo自动构建部署发布 | XieJava's blog</title>
   
 
 
@@ -319,7 +337,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5381000/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f872a2f0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -336,7 +354,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">安全托管与重保安全服务</h2>
+          <h2 class="post-title" itemprop="name headline">DevOps实践：通过云效实现hexo自动构建部署发布</h2>
         
 
         <div class="post-meta">
@@ -348,8 +366,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-28T14:48:37+08:00">
-                2022-12-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-05-20T12:41:16+08:00">
+                2024-05-20
               </time>
             
 
@@ -364,8 +382,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-05-20T14:51:02+08:00">
+                2024-05-20
               </time>
             
           </span>
@@ -394,8 +412,30 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">管理</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">项目管理</span>
                   </a>
                 </span>
 
@@ -412,8 +452,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/5381000/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5381000/" itemprop="commentCount"></span>
+                <a href="/posts/f872a2f0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f872a2f0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -421,7 +461,7 @@
 
           
           
-             <span id="/posts/5381000/" class="leancloud_visitors" data-flag-title="安全托管与重保安全服务">
+             <span id="/posts/f872a2f0/" class="leancloud_visitors" data-flag-title="DevOps实践：通过云效实现hexo自动构建部署发布">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -446,7 +486,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1k
+                  1.7k
                 </span>
               
 
@@ -462,7 +502,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  5
                 </span>
               
             </div>
@@ -483,29 +523,46 @@
       
 
       
-        <p>近年来，高新技术数字经济快速发展，数字化转型成为各个行业高质量发展的重要引擎和创新路径。网络安全作为数字化建设的安全基石，却面临着网络安全人才缺口不断攀升的直接挑战。各安全公司依托自己网络安全经验的人才优势向客户提供各类安全服务，最常见的就是安全托管和重保安全。</p>
-<p>安全托管服务与重保安全服务都是为客户提供安全服务，这两者有啥区别呢？</p>
-<h2 id="一、安全托管服务"><a href="#一、安全托管服务" class="headerlink" title="一、安全托管服务"></a>一、安全托管服务</h2><p><strong>安全托管服务（Managed Security Service，MSS）</strong>，是由Gartner于2011年提出，简单来讲，即网络安全厂商通过自身的安全运营服务，包括人员、工具、平台等，为其用户提供7*24小时的安全托管服务。MSS安全托管服务最直接的目的，就是解决用户自身安全能力不足的问题，将专业的事情交给专业的人来做。说白了其实就是企业将自身的安全运营外包给有能力的安全厂商，解决自身安全运营能力不足的问题。</p>
-<h2 id="二、重保安全服务"><a href="#二、重保安全服务" class="headerlink" title="二、重保安全服务"></a>二、重保安全服务</h2><p><strong>重保安全服务（Cybersecurity in Important Period, CIP）</strong>，是指在特殊时期（如HVV等）、重要活动（如两会等）、重大节日（如国庆等）期间为用户构建全方面的重要敏感时期的安全保障服务。保障网络基础设施、重点网站和业务系统安全，提供全方位的安全防守建设咨询以及事前、事中、事后的全面安全建设托管服务，确保企业客户的业务系统能够在重大活动期间安全平稳运行。</p>
-<h2 id="三、安全托管服务与重保安全服务的区别"><a href="#三、安全托管服务与重保安全服务的区别" class="headerlink" title="三、安全托管服务与重保安全服务的区别"></a>三、安全托管服务与重保安全服务的区别</h2><p>从安全托管服务与重保安全服务的概念和定义上，个人理解安全托管服务与重保安全服务还是有所区别的。</p>
-<p>一般来说，<strong>安全托管服务(MSS)服务侧重于管理和运营</strong>，以保障企业IT业务稳定运行为目的，主要是日常的安全运营。而<strong>重保安全更接近实战化</strong>主要侧重于重保期间的防护值守，有重点的企业客户的业务系统能够在重大活动期间安全平稳运行。</p>
-<p>拿平时我们见到社会安保来类比，日常安全运营就是我们平时看到的日常治安巡逻；重保就是比如国庆期间、两会其间有针对性的加大安保防范力度如特警武装上岗执勤、某些重要场所限制人流、加强舆情监控等必要的防控手段。</p>
-<ul>
-<li><strong>从具体的服务内容来看：</strong></li>
-</ul>
-<p>安全托管服务主要是日常安全运营相关的内容如：资产的定期梳理、暴露面的检测、定期的漏扫、漏扫后的安全加固整改、安全监测、事件协助处置、安全策略定期优化等。</p>
-<p>重保安全服务主要是针对重保时期有重点的安全保障更贴近实战化如：准备阶段的资产清查、暴露面识别、暴露面收敛等；重保初期的重点系统（或靶标系统）专项加固、情报收集、攻击阻断演练等；重保阶段的安全事件分析、响应处置、溯源反制、防守报告等。</p>
-<ul>
-<li><strong>从人员配置来看：</strong></li>
-</ul>
-<p>重保安全服务的人员配置不管是从人员数量还是个人网络安全专业水平来看都要比安全托管服务的高。一般来说重保安全服务的核心人员都会要求有攻防对抗能力。可以想像一下普通安保人员与武装特警的区别。</p>
+        <p>DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。这是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例，是一个软件开发方法论。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/1-DevOps.png" alt="DevOps"></p>
+<p>DevOps的目标是通过自动化“软件交付”和“架构变更”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠。这种方法的出现是因为软件行业日益清晰地认识到，为了按时交付软件产品和服务，开发和运维工作必须紧密合作。</p>
+<p>《<a href="http://xiejava.ishareread.com/posts/5efe604f/" target="_blank" rel="noopener">研发管理之认识DevOps</a>》介绍了DevOps的概念和价值，本文我们来做一个小小的实践，通过阿里的云效DevOps平台来实现我的xiejava.ishareread.com的hexo博客网站的自动化部署实现持续集成和持续部署（CI/CD）。</p>
+<h2 id="一、没有用DevOps之前"><a href="#一、没有用DevOps之前" class="headerlink" title="一、没有用DevOps之前"></a>一、没有用DevOps之前</h2><p>我的xiejava.ishareread.com个人博客是通过hexo搭建的。因为是个人博客用hexo搭建比较简单而且还可以通过github的pages服务不用购买自己的服务器都可让大家访问。hexo博客的搭建教程见《<a href="http://xiejava.ishareread.com/posts/79ebd763/" target="_blank" rel="noopener">通过Git Pages+Hexo搭建自己的博客</a>》毕竟github在国内访问不是很稳定，所以我是购买了一台阿里的云主机ECS来部署我的hexo应用。</p>
+<p>在没有用DevOps之前，我是通过自己本地用VS Code来编辑hexo的markdown博文，让后在本地通过执行hexo g命令生成构建hexo网站，然后登录到自己的阿里云主机上将文件传到服务器目录，再在服务器上构建并部署hexo应用。hexo很简单，这样构建发布也很容易，这几年也是这样做的。唯一不方便的就是有时候写的博文要修改，改一次就要重新上传发布到服务器上。毕竟咱也是搞IT的，感觉这样还是很不优雅。能不能提交markdown博文的.md文件候就自动给我发布了，省得每次还要登服务器，上传文件，编译，重启服务搞一系列的操作。</p>
+<h2 id="二、用了DevOps之后"><a href="#二、用了DevOps之后" class="headerlink" title="二、用了DevOps之后"></a>二、用了DevOps之后</h2><p>为了体现程序员的优雅，我的个人博客xiejava.ishareread.com，小小的hexo用上了DevOps的牛刀。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/2-hexo%E7%BD%91%E7%AB%99devops.png" alt="hexo的DevOps"></p>
+<p>用了DevOps后，我只需要在本地用VS Code来编辑hexo的markdown博文，提交到代码仓库。后面的构建，打包，部署我都不用管了，直接通过DevOps平台自动做了。</p>
+<h2 id="三、如何实践DevOps实现hexo网站的自动发布"><a href="#三、如何实践DevOps实现hexo网站的自动发布" class="headerlink" title="三、如何实践DevOps实现hexo网站的自动发布"></a>三、如何实践DevOps实现hexo网站的自动发布</h2><p>DevOps平台工具有很多，最常见的就是大名顶顶的Jenkins，本来想搭一套Jenkins的我的云服务器本来就只有1核1G的内存，更本就扛不住。后来在阿里的网站上看到阿里推出了自己的DevOps平台云效，赶紧来试试。<br>云效DevOps平台功能很多，包括有项目协作、代码管理、流水线、测试管理、制品仓库、知识库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/3-%E4%BA%91%E6%95%88%E5%B9%B3%E5%8F%B0.png" alt="在这里插入图片描述"></p>
+<p>对于我这个小小的hexo个人博客的应用，其他都用不上，我就用了代码管理和流水线。</p>
+<h3 id="1、代码管理"><a href="#1、代码管理" class="headerlink" title="1、代码管理"></a>1、代码管理</h3><p>将我的hexo博客代码托管到云效的代码管理Codeup代码库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/4-%E4%BA%91%E6%95%88Codeup%E4%BB%A3%E7%A0%81%E5%BA%93.png" alt="代码管理"></p>
+<p>可以支持从github、gitee、coding等代码仓库导入代码库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/5-%E4%BA%91%E6%95%88%E4%BB%8E%E5%85%B6%E4%BB%96%E4%BB%A3%E7%A0%81%E5%BA%93%E5%AF%BC%E5%85%A5%E4%BB%A3%E7%A0%81.png" alt="云效从其他代码库导入代码"></p>
+<h3 id="2、构建流水线"><a href="#2、构建流水线" class="headerlink" title="2、构建流水线"></a>2、构建流水线</h3><p>新建一条流水线用于拉代码、构建、部署。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/6-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF.png" alt="构建流水线"></p>
+<h4 id="1）设置流水线源"><a href="#1）设置流水线源" class="headerlink" title="1）设置流水线源"></a>1）设置流水线源</h4><p>这里流水线源就是设置代码源流水线将从代码管理的Codeup代码库获取代码。其实也可以不用托管到云效的Codeup代码库，流水线代码源支持github、gitee、coding等代码仓库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/7-%E4%BA%91%E6%95%88%E4%BB%8E%E5%85%B6%E4%BB%96%E4%BB%93%E5%BA%93%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%E6%BA%90.png" alt="设置流水线源"></p>
+<h4 id="2）添加并设置构建环节"><a href="#2）添加并设置构建环节" class="headerlink" title="2）添加并设置构建环节"></a>2）添加并设置构建环节</h4><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/8-%E4%BA%91%E6%95%88%E6%B7%BB%E5%8A%A0%E6%9E%84%E5%BB%BA%E7%8E%AF%E8%8A%82.png" alt="云效添加构建环节"></p>
+<p>因为hexo是通过Node.js构建的，所以这里添加构建任务Node.js构建。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/9-Nodejs%E6%9E%84%E5%BB%BA%E5%86%99%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4.png" alt="Nodejs构建写入自己的构建命令"></p>
+<p>在node.js构建节点，可以选择Node的版版本，将自己hexo应用的构建命令写入到构建命令。<br>我这里只用到了三条命令，安装hexo，从代码库中拉取hexo的主题，通过hexo g生成hexo的博客应用。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span> -<span class="literal">-unsafe</span><span class="literal">-perm</span></span><br><span class="line">git clone https://gitee.com/xiejava/hexo<span class="literal">-theme</span><span class="literal">-next</span>.git themes/hexo<span class="literal">-theme</span><span class="literal">-next</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<p>这一步的任务输出就会生成hexo的博客应用的制品，给你打好包。下一步的动作就是将打好的制品包上传至自己的服务器进行部署。</p>
+<h4 id="3）添加并设置部署环节"><a href="#3）添加并设置部署环节" class="headerlink" title="3）添加并设置部署环节"></a>3）添加并设置部署环节</h4><p>云效支持很多种部署，因为我是要部署到自己的云主机，所以选择“主机部署”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/10-%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA%E9%83%A8%E7%BD%B2%E7%8E%AF%E8%8A%82.png" alt="添加主机部署环节"></p>
+<p>要部署到自己的云主机，就要让云效知道你的主机在哪里，可以点击新建主机组，将自己的主机添加进来。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/11-%E6%96%B0%E5%BB%BA%E4%B8%BB%E6%9C%BA%E7%BB%84.png" alt="新建主机组"></p>
+<p>将需要部署的主机添加到主机组<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/12-%E5%B0%86%E4%B8%BB%E6%9C%BA%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%BB%E6%9C%BA%E7%BB%84.png" alt="将主机添加到主机组"></p>
+<p>然后添加在主机上执行的部署脚本<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/13-%E6%B7%BB%E5%8A%A0%E5%9C%A8%E4%B8%BB%E6%9C%BA%E4%B8%8A%E6%89%A7%E8%A1%8C%E7%9A%84%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC.png" alt="添加在主机上执行的部署脚本"></p>
+<p>我在主机上hexo 服务进程用supervisor进行了托管，在这里部署脚本只有三条命令。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl stop hexo</span><br><span class="line">tar zxvf /home/admin/app/package.tgz <span class="literal">-C</span> /home/myhexo/myblog</span><br><span class="line">supervisorctl start hexo</span><br></pre></td></tr></table></figure>
+
+<p>停止hexo的服务，将制品包解压到hexo的目录，然后再启动hexo服务就可以了。<br>云效还可以定义任务插件，比如在部署成功后发个邮件通知等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/14-%E6%B7%BB%E5%8A%A0%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.png" alt="云效邮件通知"></p>
+<p>到这里流水线就构建好了。</p>
+<h3 id="3、测试流水线"><a href="#3、测试流水线" class="headerlink" title="3、测试流水线"></a>3、测试流水线</h3><p>设置触发条件，开启Webhook触发，实现提交代码到到云效的Codeup代码库就可以触发流水线，开启自动拉取代码，自动构建、自动打包上传至主机、自动部署的流水线作业。也可以手动运行触发流水线。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/15-%E8%AE%BE%E7%BD%AE%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6.png" alt="设置触发条件"></p>
+<p>流水线执行后，可以在运行历史中看到每次流水线执行的情况。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/16-%E6%9F%A5%E7%9C%8B%E6%AF%8F%E6%AC%A1%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E7%9A%84%E6%83%85%E5%86%B5.png" alt="查看每次流水线执行情况"></p>
+<p>也可以收到云效自动发过来的每次部署情况的邮件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/17-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.png" alt="云效邮件通知"></p>
+<h3 id="4、其他"><a href="#4、其他" class="headerlink" title="4、其他"></a>4、其他</h3><p>云效针对流水线还提供了统计报表，可以看到流水线运行的概况的统计数据。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/18-%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%BB%9F%E8%AE%A1%E6%A6%82%E5%86%B5.png" alt="流水线运行的概况的统计数据"></p>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>本文通过一个hexo个人博客进行了DevOps的实践，当然因为项目太小不能实践到DevOps的全部，但也可以窥豹一斑。通过DevOps拉通开发和运维，通过应用DevOps平台能实现自动化“软件交付”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠，提交研发交付效率。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       
@@ -527,7 +584,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/5381000/" title="安全托管与重保安全服务">https://xiejava.gitee.io/posts/5381000/</a>
+    <a href="https://xiejava.gitee.io/posts/f872a2f0/" title="DevOps实践：通过云效实现hexo自动构建部署发布">https://xiejava.gitee.io/posts/f872a2f0/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -542,7 +599,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+            <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag"># 项目管理</a>
           
         </div>
       
@@ -555,8 +612,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/160ef42d/" rel="next" title="认识XDR-扩展威胁检测与响应平台">
-                <i class="fa fa-chevron-left"></i> 认识XDR-扩展威胁检测与响应平台
+              <a href="/posts/5efe604f/" rel="next" title="研发管理之认识DevOps">
+                <i class="fa fa-chevron-left"></i> 研发管理之认识DevOps
               </a>
             
           </div>
@@ -564,10 +621,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/73474fe7/" rel="prev" title="通过Django发送邮件">
-                通过Django发送邮件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -747,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、安全托管服务"><span class="nav-number">1.</span> <span class="nav-text">一、安全托管服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、重保安全服务"><span class="nav-number">2.</span> <span class="nav-text">二、重保安全服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安全托管服务与重保安全服务的区别"><span class="nav-number">3.</span> <span class="nav-text">三、安全托管服务与重保安全服务的区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、没有用DevOps之前"><span class="nav-number">1.</span> <span class="nav-text">一、没有用DevOps之前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、用了DevOps之后"><span class="nav-number">2.</span> <span class="nav-text">二、用了DevOps之后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、如何实践DevOps实现hexo网站的自动发布"><span class="nav-number">3.</span> <span class="nav-text">三、如何实践DevOps实现hexo网站的自动发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、代码管理"><span class="nav-number">3.1.</span> <span class="nav-text">1、代码管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、构建流水线"><span class="nav-number">3.2.</span> <span class="nav-text">2、构建流水线</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）设置流水线源"><span class="nav-number">3.2.1.</span> <span class="nav-text">1）设置流水线源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）添加并设置构建环节"><span class="nav-number">3.2.2.</span> <span class="nav-text">2）添加并设置构建环节</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）添加并设置部署环节"><span class="nav-number">3.2.3.</span> <span class="nav-text">3）添加并设置部署环节</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、测试流水线"><span class="nav-number">3.3.</span> <span class="nav-text">3、测试流水线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、其他"><span class="nav-number">3.4.</span> <span class="nav-text">4、其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、总结"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
             
 
           </div>

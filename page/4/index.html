@@ -313,6 +313,279 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2a24dc00/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/2a24dc00/" itemprop="url">网络安全产品之认识漏洞扫描设备</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-24T15:16:48+08:00">
+                2024-01-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
+                2024-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/2a24dc00/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/2a24dc00/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/2a24dc00/" class="leancloud_visitors" data-flag-title="网络安全产品之认识漏洞扫描设备">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>漏洞是指在硬件、软件、协议的具体实现或系统安全策略上存在的缺陷，从而使攻击者能够在未授权的情况下访问或破坏系统。关于什么是漏洞及如何管理漏洞请参考《<a href="http://xiejava.ishareread.com/posts/a937cbf5/" target="_blank" rel="noopener">安全运营之漏洞管理</a>》。漏洞的形成原因有很多，例如后门、程序员自身的素质、网络协议等都可能导致漏洞的产生。因此，为了保障系统的安全性，需要及时发现和修复漏洞。这可以通过漏洞扫描设备等工具进行自动化检测和修复，同时也可以加强安全意识和培训，提高人员的安全防范能力。虽然无法完全避免漏洞的存在，但通过采取有效的措施可以大大减少漏洞的数量和危害程度，保障系统的安全性和稳定性。本文让我们一起来认识漏洞扫描设备。</p>
+<h2 id="一、什么是漏洞扫描设备"><a href="#一、什么是漏洞扫描设备" class="headerlink" title="一、什么是漏洞扫描设备"></a>一、什么是漏洞扫描设备</h2><p>漏洞扫描设备是一种用于对企业网络进行漏洞扫描的专业硬件设备。它能够自动检测远程或本地计算机系统的安全脆弱性，发现可利用的漏洞，并提供相应的修复建议。漏洞扫描设备基于漏洞数据库，通过扫描等手段对指定的计算机系统进行安全检测，从而发现系统中的安全漏洞。其主要功能包括对网站、系统、数据库、端口、应用软件等网络设备进行智能识别扫描检测，并对其检测出的漏洞进行报警提示管理人员进行修复。同时，漏洞扫描设备还可以对漏洞修复情况进行监督并自动定时对漏洞进行审计，提高漏洞修复效率。</p>
+<p>漏洞扫描设备在网络安全领域中发挥着重要的作用。它可以及时发现和修复网络中存在的安全漏洞，提高系统的安全性，降低被攻击的风险。在实际使用中，可以根据需要选择合适的扫描技术和工具，以最大程度地保障网络安全。</p>
+<h2 id="二、漏洞扫描设备的主要功能"><a href="#二、漏洞扫描设备的主要功能" class="headerlink" title="二、漏洞扫描设备的主要功能"></a>二、漏洞扫描设备的主要功能</h2><p>漏洞扫描设备是网络安全产品中的一种重要设备，用于自动检测和评估网络中的漏洞和弱点。漏洞扫描设备可以对网站、系统、数据库、端口、应用软件等一些网络设备应用进行智能识别扫描检测，并对其检测出的漏洞进行报警提示管理人员进行修复。同时可以对漏洞修复情况进行监督并自动定时对漏洞进行审计提高漏洞修复效率。以下是漏洞扫描设备的主要功能和特点：</p>
+<ol>
+<li>漏洞检测：漏洞扫描设备能够对网络中的各种设备和系统进行自动化的漏洞检测，包括操作系统、数据库、网络设备、应用程序等。它通过模拟攻击者的行为来尝试利用各种漏洞，并记录下目标系统的反应，以判断是否存在漏洞。</li>
+<li>脆弱性评估：漏洞扫描设备能够对目标系统的脆弱性进行评估，识别出可能被攻击者利用的漏洞和弱点。它还能够提供详细的漏洞描述和影响范围，帮助管理员及时了解系统存在的安全风险。</li>
+<li>实时监测：漏洞扫描设备可以实时监测网络中的异常行为和恶意攻击，及时发现并阻止潜在的入侵行为。它还可以与防火墙、入侵检测系统等其他安全设备进行联动，共同构建起强大的安全防护体系。</li>
+<li>报告生成：漏洞扫描设备能够生成详细的漏洞报告，列出已检测到的漏洞信息和修复建议。这些报告可以帮助管理员快速了解系统的安全状况，并制定相应的修复计划。</li>
+<li>自动化修复：一些高端的漏洞扫描设备还具备自动化的修复功能，能够自动安装补丁或配置安全设置，以消除检测到的漏洞。这大大提高了漏洞修复的效率和安全性。</li>
+</ol>
+<p>漏洞扫描设备是网络安全体系中不可或缺的一部分。通过使用漏洞扫描设备，企业可以及时发现和修复网络中的漏洞和弱点，提高系统的安全性，降低被攻击的风险。</p>
+<h2 id="三、漏洞扫描设备的主要技术"><a href="#三、漏洞扫描设备的主要技术" class="headerlink" title="三、漏洞扫描设备的主要技术"></a>三、漏洞扫描设备的主要技术</h2><p>当前，网络安全漏洞扫描技术的两大核心技术是端口扫描技术和漏洞扫描技术。<br>端口扫描技术主要是通过扫描目标主机的网络端口，了解目标主机上开放的网络服务，从而发现可能存在的安全漏洞。端口扫描技术可以帮助网络管理员了解目标主机的网络服务状态和安全风险，常见的端口扫描方法包括TCP扫描、UDP扫描和操作系统探测等。</p>
+<p>漏洞扫描技术则是基于漏洞数据库和漏洞检测工具，通过模拟攻击者的攻击方式对目标系统进行漏洞检测的技术。漏洞扫描技术能够检测出目标系统中可能存在的安全漏洞，如缓冲区溢出、SQL注入、跨站脚本攻击等。</p>
+<p>端口扫描技术主要关注目标主机的网络服务状态和安全风险，而漏洞扫描技术则通过模拟攻击者的攻击方式来检测目标系统中可能存在的安全漏洞。具体包括：</p>
+<ol>
+<li>主机扫描：确定在目标网络上的主机是否在线。</li>
+<li>端口扫描：发现远程主机开放的端口以及服务。</li>
+<li>OS识别技术：根据信息和协议栈判别操作系统。</li>
+<li>漏洞检测数据采集技术：按照网络、系统、数据库进行扫描。</li>
+<li>智能端口识别、多重服务检测、安全优化扫描、系统渗透扫描。</li>
+<li>多种数据库自动化检查技术，数据库实例发现技术。</li>
+</ol>
+<p>在实际使用中，可以根据需要选择合适的扫描技术和工具，以最大程度地保障网络安全。</p>
+<h2 id="四、漏洞扫描设备的主要类型"><a href="#四、漏洞扫描设备的主要类型" class="headerlink" title="四、漏洞扫描设备的主要类型"></a>四、漏洞扫描设备的主要类型</h2><ol>
+<li>针对网络的扫描器：基于网络的扫描器就是通过网络来扫描远程计算机中的漏洞。价格相对来说比较便宜；在操作过程中，不需要涉及到目标系统的管理员，在检测过程中不需要在目标系统上安装任何东西；维护简便。</li>
+<li>针对主机的扫描器：基于主机的扫描器则是在目标系统上安装了一个代理或者是服务，以便能够访问所有的文件与进程，这也使得基于主机的扫描器能够扫描到更多的漏洞。</li>
+<li>针对数据库的扫描器：数据库漏洞扫描系统可以检测出数据库的DBMS漏洞、缺省配置、权限提升漏洞、缓冲区溢出、补丁未升级等自身漏洞。</li>
+<li>Web应用扫描器：专门用于扫描Web应用程序的漏洞，例如SQL注入、跨站脚本（XSS）和跨站请求伪造（CSRF）等，可以模拟攻击者的行为，识别应用程序中的漏洞并生成报告。</li>
+<li>移动应用扫描器：用于扫描移动应用程序中的漏洞和安全问题，可以检测移动应用中的API漏洞、不安全的数据存储和未加密的通信等问题。</li>
+</ol>
+<h2 id="五、漏洞扫描设备的使用方式"><a href="#五、漏洞扫描设备的使用方式" class="headerlink" title="五、漏洞扫描设备的使用方式"></a>五、漏洞扫描设备的使用方式</h2><ul>
+<li>独立式部署：在网络中只部署一台漏扫设备，接入网络并进行正确的配置即可正常使用，其工作范围通常包含用户企业的整个网络地址。用户可以从任意地址登录漏扫系统并下达扫描评估任务，检查任务的地址必须在产品和分配给此用户的授权范围内。</li>
+<li>多级式部署：对于一些大规模和分布式网络用户，建议使用分布式部署方式。在大型网络中采用多台漏扫系统共同工作，可对各系统间的数据共享并汇总，方便用户对分布式网络进行集中管理。</li>
+</ul>
+<h2 id="六、漏洞扫描设备如何与其他安全设备联动"><a href="#六、漏洞扫描设备如何与其他安全设备联动" class="headerlink" title="六、漏洞扫描设备如何与其他安全设备联动"></a>六、漏洞扫描设备如何与其他安全设备联动</h2><p>漏洞扫描设备可以通过多种方式与其他安全设备进行联动，以提高安全防护的效果。以下是漏洞扫描设备与其他安全设备联动的几种常见方式：</p>
+<ol>
+<li>防火墙联动：漏洞扫描设备可以与防火墙进行联动，将扫描结果与防火墙的规则进行匹配，实现对漏洞的自动隔离和修复。例如，当漏洞扫描设备检测到某个主机存在高危漏洞时，可以向防火墙发送指令，暂时关闭该主机的网络访问，直到漏洞被修复为止。</li>
+<li>入侵检测系统（IDS）联动：漏洞扫描设备可以与IDS进行联动，将扫描结果与IDS的规则进行匹配，实现实时监测和报警。当IDS检测到异常行为或攻击时，可以向漏洞扫描设备发送指令，进行进一步的检测和响应。</li>
+<li>Web应用防火墙（WAF）联动：对于Web应用漏洞的扫描，漏洞扫描设备可以与WAF进行联动。当WAF检测到恶意请求或攻击时，可以向漏洞扫描设备发送指令，进行进一步的检测和响应。同时，WAF还可以将扫描结果与自身的规则进行匹配，实现自动过滤和防御。</li>
+<li>身份认证系统联动：漏洞扫描设备可以与身份认证系统进行联动，实现对用户的身份认证和访问控制。通过将扫描结果与身份认证系统的用户信息进行匹配，可以实现对用户访问权限的精细控制，提高系统的安全性。</li>
+<li>安全信息和事件管理（SIEM）系统联动：漏洞扫描设备可以与SIEM系统进行联动，将扫描结果和安全事件信息统一纳入SIEM系统中进行集中管理和分析。通过SIEM系统，管理员可以全面了解网络的安全状况，并及时采取相应的措施进行处置。</li>
+</ol>
+<p>漏洞扫描设备与其他安全设备的联动可以实现信息共享、协同防御和快速响应的效果。通过将不同安全设备的优势结合起来，可以构建起更加完善和强大的安全防护体系。</p>
+<h2 id="七、漏洞扫描设备的应用场景"><a href="#七、漏洞扫描设备的应用场景" class="headerlink" title="七、漏洞扫描设备的应用场景"></a>七、漏洞扫描设备的应用场景</h2><ul>
+<li>定期的网络安全自我检测、评估<br>通过漏洞扫描设备进行安全检测可帮助客户最大可能的消除安全隐患，尽可能早地发现安全漏洞并进行修补，有效的利用已有系统，提高网络的运行效率。</li>
+<li>安装新软件、启动新服务后的检查<br>由于漏洞和安全隐患的形式多种多样，安装新软件和启动新服务都有可能使原来隐藏的漏洞暴露出来，因此进行这些操作之后应该重新扫描系统，才能使安全得到保障。</li>
+<li>网络安全事故后的分析调查<br>网络安全事故后可以通过网络漏洞扫描/网络评估系统分析确定网络被攻击的漏洞所在，帮助弥补漏洞，尽可能多得提供资料方便调查攻击的来源。</li>
+<li>重大网络安全事件前的准备<br>重大网络安全事件前网络漏洞扫描/网络评估系统能够帮助用户及时的找出网络中存在的隐患和漏洞，帮助用户及时的弥补漏洞。可以对网站、系统、数据库、端口、应用软件等一些网络设备应用进行智能识别扫描检测，并对其检测出的漏洞进行报警提示管理人员进行修复。同时可以对漏洞修复情况进行监督并自动定时对漏洞进行审计提高漏洞修复效率。</li>
+</ul>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/974e9e0f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2661,251 +2934,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a57e826e/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/a57e826e/" itemprop="url">安全防御之漏洞扫描技术</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-08T11:08:49+08:00">
-                2024-01-08
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/a57e826e/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a57e826e/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/a57e826e/" class="leancloud_visitors" data-flag-title="安全防御之漏洞扫描技术">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>每年都有数以千计的网络安全漏洞被发现和公布，加上攻击者手段的不断变化，网络安全状况也在随着安全漏洞的增加变得日益严峻。寻根溯源，绝大多数用户缺乏一套完整、有效的漏洞管理工作流程，未能落实定期评估与漏洞修补工作。只有比攻击者更早掌握自己网络安全漏洞并且做好预防工作，才能够有效地避免由于攻击所造成的损失。</p>
-<p>什么是漏洞及漏洞的管理参见博客《<a href="http://xiejava.ishareread.com/posts/a937cbf5/" target="_blank" rel="noopener">安全运营之漏洞管理</a>》，本文介绍安全防御中的漏洞扫描技术来发现漏洞。</p>
-<p>安全防御中的漏洞扫描技术是网络安全防护体系中一项核心的预防性措施，用于自动检测网络、系统和服务中的潜在弱点和已知安全漏洞。这项技术帮助企业、组织和个人识别出可能被攻击者利用的风险点，并采取相应的补救措施以强化其整体安全态势。</p>
-<p>漏洞扫描通过针对常见黑客攻击手法的检查策略，定期对网络系统进行扫描分析，及时发现问题、给出相关安全措施和建议并进行相应的修补和配置，这项技术的具体实现就是安全扫描程序，在很短的时间内查出现存的安全脆弱点。</p>
-<p>安全漏洞扫描技术可以分为被动和主动两种方式。被动扫描是指在不影响系统正常运行的情况下，通过分析系统的网络流量、系统日志和配置信息等，来发现潜在的安全漏洞。主动扫描则是通过模拟攻击的方式，对系统进行深入的探测和漏洞发现。</p>
-<p>被动扫描和主动扫描它们各有优缺点。</p>
-<ol>
-<li>被动扫描是指在不影响系统正常运行的情况下，通过分析系统的网络流量、系统日志和配置信息等，来发现潜在的安全漏洞。被动扫描的优点在于不会对目标系统造成干扰或损害，可以避免触发恶意软件或警报器。同时，被动扫描可以实时监测系统的安全状况，及时发现新的漏洞和攻击。然而，被动扫描的缺点在于无法发现未知的漏洞和攻击，因为它是基于已知的安全漏洞库和规则进行扫描的。</li>
-<li>主动扫描则是通过模拟攻击的方式，对系统进行深入的探测和漏洞发现。主动扫描可以发现未知的漏洞和攻击，因为它是通过模拟攻击来发现系统中的弱点。主动扫描的优点在于可以更加深入地探测系统中的安全漏洞，包括缓冲区溢出、SQL注入等。同时，主动扫描还可以评估系统的防御策略和应急响应措施的有效性。然而，主动扫描的缺点在于可能会对目标系统造成干扰或损害，需要谨慎操作，避免对系统造成不必要的风险。</li>
-</ol>
-<p>被动扫描和主动扫描各有优缺点，需要根据实际情况选择使用。在某些情况下，可能需要结合使用被动扫描和主动扫描，以提高系统的安全性。<br>安全漏洞扫描技术可以自动化进行，也可以手动执行。自动化扫描工具可以根据预定义的漏洞库和扫描规则，自动对目标系统进行扫描和漏洞发现。手动扫描则需要专业的安全人员对系统进行逐一检查和分析。</p>
-<p>常见漏洞扫描工具的特点：</p>
-<ul>
-<li>智能识别：能够对扫描结果数据进行在线分析，能够根据端口、漏洞、BANNER信息、IP地址等关键字对主机信息进行查询并能将查询结果保存。</li>
-<li>高效快捷：支持高级数据分析，能够进行历史数据查询、汇总查看、对比分析等，方便进行多个扫描任务或多个IP风险对比，能够在多个历史任务中，很快的检索到需要关注的资产IP点。</li>
-<li>脚本依赖：扫描模块会自动根据其逻辑依赖关系执行而不是无目的盲目执行，从而提高了扫描准确性。</li>
-<li>信息输出：漏洞分析报告应提供在线浏览报告和离线打印报告;离线报表提供针对不同角色的默认模板，允许用户定制报告的内容、报告的格式等。</li>
-<li>断点恢复：在扫描程序运行到一半的时候如果系统意外掉电等，可以通过查看扫描状态进行重新扫描或者继续扫描，如果选择继续扫描的话，前面扫描到的结果会保留下来和后面的结果一起合并生成结果文件。</li>
-</ul>
-<p>安全漏洞扫描技术可以针对不同的层次进行扫描，例如网络层、操作系统层和应用层等。网络层扫描主要是检查网络设备和通信线路的安全性，操作系统层扫描主要检查操作系统的配置和漏洞，应用层扫描则针对具体的软件应用程序进行安全检查。基于网络的安全扫描主要扫描设定网络内的服务器、路由器、网桥、变换机、访问服务器、防火墙等设备的安全漏洞，并可设定模拟攻击，以测试系统的防御能力。通常该类扫描器限制使用范围（IP地址或路由器跳数）。</p>
-<p>安全漏洞扫描技术是一类重要的网络安全技术。它和防火墙、入侵检测系统互相配合，能够有效提高网络的安全性。通过对网络的扫描，网络管理员能了解网络的安全设置和运行的应用服务，及时发现安全漏洞，客观评估网络风险等级。网络管理员能根据扫描的结果更正网络安全漏洞和系统中的错误设置，在黑客攻击前进行防范。如果防火墙和网络监视系统是被动的防御手段，那么安全扫描就是一种主动的防范措施，能有效避免黑客攻击行为，做到防患于未然。</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2962,7 +2990,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">176</span>
+                  <span class="site-state-item-count">177</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3074,7 +3102,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">374.5k</span>
+    <span title="Site words total count">376.2k</span>
   
   
 <!--51la网站应用监控-->
