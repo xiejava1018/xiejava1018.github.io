@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全,运维,项目管理," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、传统软件开发面临的安全挑战传统软件开发面临的安全挑战主要包括以下几个方面：  安全意识和文化的缺乏：在传统软件开发过程中，往往缺乏对安全性的足够重视和深入理解。开发团队可能更注重功能的实现和交付时间，而忽视了安全性在软件开发过程中的重要性。这种缺乏安全意识和文化的环境使得软件容易受到各种安全威胁的攻击。 代码漏洞和缺陷：在软件开发过程中，由于人为错误、不安全的编程实践或缺乏足够的安全测试，代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是安全左移,如何实现安全左移">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/729ef48e/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="一、传统软件开发面临的安全挑战传统软件开发面临的安全挑战主要包括以下几个方面：  安全意识和文化的缺乏：在传统软件开发过程中，往往缺乏对安全性的足够重视和深入理解。开发团队可能更注重功能的实现和交付时间，而忽视了安全性在软件开发过程中的重要性。这种缺乏安全意识和文化的环境使得软件容易受到各种安全威胁的攻击。 代码漏洞和缺陷：在软件开发过程中，由于人为错误、不安全的编程实践或缺乏足够的安全测试，代码">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/1-SDL.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/2-DevOps2DevSecOps.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/3-DevSecOps.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-05-24T01:10:39.000Z">
+<meta property="article:modified_time" content="2024-05-25T03:12:13.820Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="运维">
+<meta property="article:tag" content="项目管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/1-SDL.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/729ef48e/"/>
+
+
+
+
+
+  <title>什么是安全左移,如何实现安全左移 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/729ef48e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">什么是安全左移,如何实现安全左移</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-05-24T09:10:39+08:00">
+                2024-05-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-05-25T11:12:13+08:00">
+                2024-05-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">管理</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">项目管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/729ef48e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/729ef48e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/729ef48e/" class="leancloud_visitors" data-flag-title="什么是安全左移,如何实现安全左移">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、传统软件开发面临的安全挑战"><a href="#一、传统软件开发面临的安全挑战" class="headerlink" title="一、传统软件开发面临的安全挑战"></a>一、传统软件开发面临的安全挑战</h2><p>传统软件开发面临的安全挑战主要包括以下几个方面：</p>
+<ol>
+<li>安全意识和文化的缺乏：在传统软件开发过程中，往往缺乏对安全性的足够重视和深入理解。开发团队可能更注重功能的实现和交付时间，而忽视了安全性在软件开发过程中的重要性。这种缺乏安全意识和文化的环境使得软件容易受到各种安全威胁的攻击。</li>
+<li>代码漏洞和缺陷：在软件开发过程中，由于人为错误、不安全的编程实践或缺乏足够的安全测试，代码中可能存在各种漏洞和缺陷。这些漏洞和缺陷可能被攻击者利用，从而实现对系统的未授权访问、数据泄露或系统破坏等攻击。</li>
+<li>依赖的第三方组件和库的安全问题：传统软件开发通常依赖于各种第三方组件和库来加速开发过程。然而，这些第三方组件和库可能存在安全漏洞或已知的安全问题，如果未经过充分的安全验证和测试，就可能会被引入到软件中，从而给软件带来安全隐患。</li>
+<li>安全的配置和管理：在软件开发和部署过程中，如果配置不当或管理不善，可能会导致安全问题。例如，错误的权限设置、不安全的网络连接、未加密的敏感数据等，都可能成为攻击者的目标。</li>
+<li>应对新型攻击和威胁的能力不足：随着网络攻击技术的不断发展和新型威胁的出现，传统软件开发可能无法及时应对这些新型攻击和威胁。例如，零日漏洞、勒索软件、分布式拒绝服务攻击（DDoS）等新型攻击手段可能给软件带来严重的安全风险。</li>
+</ol>
+<p>为了应对这些安全挑战，传统软件开发需要采取一系列措施来加强安全性。这包括提高开发团队的安全意识和技能、加强代码审查和测试、对第三方组件和库进行充分的安全验证和测试、实施安全的配置和管理等。此外，还可以引入安全左移等新的安全开发方法，将安全性作为软件开发的核心考量因素，从源头上降低安全风险。</p>
+<h2 id="二、什么是安全左移"><a href="#二、什么是安全左移" class="headerlink" title="二、什么是安全左移"></a>二、什么是安全左移</h2><p>在传统的软件开发流程中，安全测试和评估通常在开发周期的后期进行，比如在测试阶段或部署前。然而，这种方法往往会导致在产品即将发布时才发现安全问题，从而增加了修复成本和风险。</p>
+<p>安全左移（Shift-Left Security）是一种软件开发实践，其核心思想是<strong>将安全措施提前到软件开发生命周期（SDLC）的更早阶段</strong>。安全左移的目标是在软件开发的早期阶段，甚至是在编码之前，就开始考虑和实施安全措施。这样，潜在的安全问题可以在它们变得更加根深蒂固和难以修复之前被发现和解决。</p>
+<h2 id="三、安全左移与安全开发生命周期（SDL）"><a href="#三、安全左移与安全开发生命周期（SDL）" class="headerlink" title="三、安全左移与安全开发生命周期（SDL）"></a>三、安全左移与安全开发生命周期（SDL）</h2><p>安全左移（Shift-Left Security）与安全开发生命周期（SDL, Security Development Lifecycle）紧密相关，是SDL中的一个重要概念。</p>
+<p>安全左移是一种在软件开发过程的早期阶段就引入安全考虑的实践，旨在帮助开发人员在代码被集成、测试、记录甚至发布之前，就能发现潜在的安全风险。这种方法的目标是提高安全任务的效率，并确保这些必要的任务不会遗留到开发周期结束。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/1-SDL.png" alt="SDL"></p>
+<p>SDL由微软提出并应用一个帮助开发人员构建更安全的软件和解决安全合规要求的同时降低开发成本的软件开发过程，侧重于软件开发的安全保证过程，旨在开发出安全的软件应用。其核心理念是将安全考虑集成在软件开发的每一个阶段，包括需求分析、设计、编码、测试和维护。SDL的目标是通过在各个阶段都增加相应的安全活动，来减少软件中漏洞的数量并将安全缺陷降低到最小程度。</p>
+<p>在安全左移与SDL的关系中，可以认为安全左移是SDL的一种实践方式。也就是说，通过实施安全左移，可以将SDL的理念和方法更好地应用到实际的软件开发过程中。安全左移强调在软件开发早期阶段就引入安全考虑，这与SDL将安全考虑集成在软件开发每个阶段的目标是一致的。</p>
+<h2 id="四、安全左移对开发的挑战"><a href="#四、安全左移对开发的挑战" class="headerlink" title="四、安全左移对开发的挑战"></a>四、安全左移对开发的挑战</h2><p>安全左移对开发带来的挑战主要体现在以下几个方面：</p>
+<ol>
+<li>缺少计划：在实践安全左移过程中，缺少合理的规划和计划是最大的挑战之一。安全左移需要建立起安全意识与责任感，并将安全融入到开发团队的工作流程中。然而，由于缺乏明确的计划，许多企业仅仅执意进行左移，却忽略了安全规范和流程的制定，从而导致安全措施的不完善和应对漏洞的能力不足。</li>
+<li>安全责任转嫁：安全左移的核心思想是将安全的责任从专门的安全团队转嫁给开发团队，让开发人员在软件开发过程中就能够考虑和实施必要的安全措施。然而，这种转嫁过程并不容易。开发团队通常关注的是项目的进度和功能的实现，对于安全知识和安全技能的掌握相对较弱。因此，企业需要通过定期的培训和教育，提高开发团队的安全意识和能力，使他们能够主动参与到安全左移的实践中。</li>
+<li>技术和工具的选择：安全左移需要借助各种技术和工具来辅助实施，如自动化测试工具、安全扫描工具等。然而，如何选择和使用这些工具也是一个挑战。不同的工具有不同的适用场景和优缺点，需要根据实际情况进行选择和调整。同时，如何将这些工具与现有的开发流程相结合，也是需要考虑的问题。</li>
+<li>平衡安全与进度：在安全左移的过程中，需要平衡安全与进度的关系。一方面，需要确保软件的安全性，避免潜在的安全漏洞和风险；另一方面，也需要保证项目的进度和交付时间。如何在保证安全的前提下，尽可能地提高开发效率，是安全左移需要解决的一个问题。</li>
+<li>跨团队协作：安全左移需要跨团队协作，包括开发团队、安全团队和运维团队等。如何确保这些团队之间的有效沟通和协作，避免信息孤岛和沟通障碍，也是安全左移需要面临的挑战之一。</li>
+</ol>
+<p>为了应对这些挑战，企业可以采取以下措施：</p>
+<ol>
+<li>制定全面的计划和策略：明确安全左移的目标和步骤，制定详细的计划和策略，确保安全左移的顺利实施。</li>
+<li>加强培训和教育：提高开发团队的安全意识和能力，使他们能够更好地参与到安全左移的实践中。</li>
+<li>选择合适的技术和工具：根据实际需求选择合适的技术和工具，确保它们能够有效地辅助安全左移的实施。</li>
+<li>平衡安全与进度：在制定开发计划时充分考虑安全因素，确保在保证安全的前提下尽可能地提高开发效率。</li>
+<li>加强跨团队协作：建立良好的沟通机制和协作机制，确保各个团队之间的有效沟通和协作。</li>
+</ol>
+<h2 id="五、从DevOps到DevSecOps"><a href="#五、从DevOps到DevSecOps" class="headerlink" title="五、从DevOps到DevSecOps"></a>五、从DevOps到DevSecOps</h2><p>随着对软件安全性的要求不断提高，传统的DevOps模式开始面临挑战。什么是DevOps见《<a href="http://xiejava.ishareread.com/posts/5efe604f/" target="_blank" rel="noopener">研发管理之认识DevOps</a>》。为了确保软件在开发过程中的安全性，需要在DevOps的基础上引入安全性的考虑，这就是DevSecOps（Development，Security，Operations的组合词）的出现。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/2-DevOps2DevSecOps.png" alt="从DevOps到DevSecOps"></p>
+<p>DevSecOps是一种集开发、安全和运维于一体的新型软件开发和运营模式。它强调在快速迭代和持续交付的背景下，将安全性融入到整个软件开发过程中，实现开发、安全和运维的协同和一体化。在DevSecOps模式下，安全性不再是软件开发过程的一个附加环节，而是贯穿于整个开发流程中，从需求分析、设计、编码、测试到部署和维护的每个阶段都需要考虑安全性。</p>
+<p>与DevOps相比，DevSecOps具有以下优势：</p>
+<ol>
+<li>提高安全性：通过在开发过程中引入安全性的考虑，DevSecOps可以更早地发现和修复潜在的安全漏洞和缺陷，从而提高软件的安全性。</li>
+<li>加速开发过程：DevSecOps通过自动化和标准化的安全流程，可以减少手动测试和修复安全漏洞的时间，从而加速开发过程。</li>
+<li>提高团队协作效率：DevSecOps强调开发、安全和运维团队之间的紧密协作，可以提高团队协作效率，促进知识的共享和交流。</li>
+</ol>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240523/3-DevSecOps.png" alt="DevSecOps"></p>
+<p>DevSecOps和DevOps在理念和实践上存在一些关键的区别，主要体现在以下几个方面：</p>
+<ol>
+<li>安全性集成：DevSecOps是“开发、安全和运营”的缩写，它强调在快速迭代和持续交付的背景下，将安全性融入到整个软件开发过程中。这意味着安全性是DevSecOps的一个核心组成部分，从软件开发的早期阶段就开始考虑并贯穿整个开发流程。而DevOps则更侧重于促进开发（Dev）和运维（Ops）团队之间的沟通与协作，虽然也关注安全性，但通常不是其首要关注点。</li>
+<li>安全性防护：DevSecOps强调将安全性作为整个IT生命周期的共同责任，通过应用和基础架构的安全防护来确保软件的安全性。这包括在开发阶段进行安全编码实践、安全测试和漏洞扫描等，以及在运维阶段进行安全监控和事件响应等。而DevOps则更关注于提高开发和运维的协同效率，以及通过自动化和持续集成等技术手段来加速软件交付。</li>
+<li>安全性实践：DevSecOps在安全性实践方面更加深入和全面，它要求在软件开发的全过程中都遵循安全最佳实践，包括安全需求分析、安全设计、安全编码、安全测试、安全部署和安全运维等。而DevOps虽然也关注安全性，但通常不会深入到这些具体的实践层面。<br>DevSecOps和DevOps都是为了提高软件开发和运维的效率和质量而出现的理念和实践，但它们在安全性方面的关注度和实践方式有所不同。DevSecOps更加强调安全性的重要性，并将其作为整个软件开发和运维流程的核心组成部分，而DevOps则更侧重于促进开发和运维团队之间的沟通与协作，以及通过自动化和持续集成等技术手段来加速软件交付。</li>
+</ol>
+<h2 id="六、SDL与DevSecOps"><a href="#六、SDL与DevSecOps" class="headerlink" title="六、SDL与DevSecOps"></a>六、SDL与DevSecOps</h2><p>SDL（Security Development Lifecycle）和DevSecOps（Development Security Operations）都是旨在加强软件开发过程中的安全性的方法论。SDL提供了一种系统化的方法来集成安全实践，而DevSecOps则提供了一种文化和实践框架，以支持SDL的安全实践在DevOps环境中的实施，DevSecOps可以看作是SDL在现代敏捷和DevOps环境中的扩展和适应，它强调了自动化和持续集成的重要性。</p>
+<ul>
+<li>SDL更侧重于安全措施的过程化和文档化，而DevSecOps更侧重于安全文化的推广和自动化工具的应用。</li>
+<li>在SDL中，安全责任可能更侧重于安全团队，而在DevSecOps中，安全是开发、安全、运维团队共同的责任。</li>
+<li>SDL可能更适合大型、长期、需求变化不频繁的项目，而DevSecOps更适合快速迭代、需求不断变化的环境。</li>
+</ul>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/729ef48e/" title="什么是安全左移,如何实现安全左移">https://xiejava.gitee.io/posts/729ef48e/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+            <a href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag"># 运维</a>
+          
+            <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag"># 项目管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/f872a2f0/" rel="next" title="DevOps实践：通过云效实现hexo自动构建部署发布">
+                <i class="fa fa-chevron-left"></i> DevOps实践：通过云效实现hexo自动构建部署发布
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">178</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、传统软件开发面临的安全挑战"><span class="nav-number">1.</span> <span class="nav-text">一、传统软件开发面临的安全挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、什么是安全左移"><span class="nav-number">2.</span> <span class="nav-text">二、什么是安全左移</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、安全左移与安全开发生命周期（SDL）"><span class="nav-number">3.</span> <span class="nav-text">三、安全左移与安全开发生命周期（SDL）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、安全左移对开发的挑战"><span class="nav-number">4.</span> <span class="nav-text">四、安全左移对开发的挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、从DevOps到DevSecOps"><span class="nav-number">5.</span> <span class="nav-text">五、从DevOps到DevSecOps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、SDL与DevSecOps"><span class="nav-number">6.</span> <span class="nav-text">六、SDL与DevSecOps</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">379.5k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
