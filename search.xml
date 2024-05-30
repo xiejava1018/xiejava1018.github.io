@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>django.db.utils.operationalerror:\xF0\x9F\x9....报错解决办法</title>
+      <link href="/posts/835ea0bc/"/>
+      <url>/posts/835ea0bc/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、问题现象"><a href="#一、问题现象" class="headerlink" title="一、问题现象"></a>一、问题现象</h2><p>今天在迁移hexo的.md博客文件到django的博客程序的时候报错了，具体报错信息如下。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\django\db\backends\mysql\base.py"</span>, line 75, <span class="keyword">in</span> execute</span><br><span class="line">    <span class="built_in">return</span> self.cursor.execute(query, args)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 206, <span class="keyword">in</span> execute</span><br><span class="line">    res = self._query(query)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 319, <span class="keyword">in</span> _query</span><br><span class="line">    db.query(q)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\connections.py"</span>, line 254, <span class="keyword">in</span> query</span><br><span class="line">    _mysql.connection.query(self, query)</span><br><span class="line">django.db.utils.OperationalError: (1366, <span class="string">"Incorrect string value: '\\xF0\\x9F\\x98\\x82\\xE5\\x93...' for column 'content' at row 1"</span>)</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/1-%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1.png" alt="报错现象"></p><p>后来发现是因为.md文件中的内容含有mysql不能识别4个字节的utf8编码的字符，抛出了异常。类似于这种4个字节☺、��</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/2-%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0.png" alt="报错原因"></p><h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><h3 id="1、修改mysql的数据库的字符集和的字符集"><a href="#1、修改mysql的数据库的字符集和的字符集" class="headerlink" title="1、修改mysql的数据库的字符集和的字符集"></a>1、修改mysql的数据库的字符集和的字符集</h3><p>修改数据库的字符集为utf8mb4</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p><p>修改字段的字符集为utf8mb4</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/4-%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p><h3 id="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"><a href="#2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置" class="headerlink" title="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"></a>2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/5-%E4%BF%AE%E6%94%B9django%E8%BF%9E%E6%8E%A5%E4%B8%B2%E5%AD%97%E7%AC%A6%E9%9B%86%E8%AE%BE%E7%BD%AE.png" alt="在这里插入图片描述"></p><p>修改完成后，插入正常。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>什么是安全左移,如何实现安全左移</title>
       <link href="/posts/729ef48e/"/>
       <url>/posts/729ef48e/</url>
@@ -4256,7 +4283,7 @@
       <link href="/posts/19a32f6f/"/>
       <url>/posts/19a32f6f/</url>
       
-        <content type="html"><![CDATA[<p>最近用python的tkinter写了个小工具，发现用pyinstaller打包成exe后运行出错。报Failed to execute script XXXX</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -w worksubmit.py</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E6%8A%A5%E9%94%99.png" alt="报错"></p><p>为了搞清楚报错的原因，想看到程序具体执行的情况。可以通过不带-w的参数打包在控制台看程序执行情况。<br><code>pyinstaller -F worksubmit.py</code> 可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行</p><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E8%BF%90%E8%A1%8C.png" alt="运行情况"></p><p>可以清楚的看到</p><blockquote><p>ModuleNotFoundError:No module named ‘xlrd’</p></blockquote><p>这时就要解决打包时xlrd模块没有打进去的问题，找到xlrd模块的位置，并将该模块打到运行程序包里。<br>先找到程序依赖的xlrd模块的位置，在PyCharm中通过”File”-&gt;”Setting”,在项目设置里查看Project interpreter，可以看到xlrd的目录位置。</p><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E6%89%BE%E5%8C%85%E8%B7%AF%E5%BE%84.png" alt="找包路径"></p><p>用pyinstall打包的时候通过加-p的参数将依赖的模块打进去。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -p J:\study\python\testsubmit\venv\Lib\site-packages worksubmit.py</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E6%89%93%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97%E5%8C%85.png" alt="在这里插入图片描述"><br>这样就可以顺利将依赖的模块打进去，再执行exe文件不再报错了。</p><p><strong>总结一下，碰到打包成exe后运行有问题，可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行。基本上所有的运行问题都可以通过控制台的命令定位和排查。</strong></p><hr><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+        <content type="html"><![CDATA[<p>最近用python的tkinter写了个小工具，发现用pyinstaller打包成exe后运行出错。报Failed to execute script XXXX</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -w worksubmit.py</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E6%8A%A5%E9%94%99.png" alt="报错"></p><p>为了搞清楚报错的原因，想看到程序具体执行的情况。可以通过不带-w的参数打包在控制台看程序执行情况。<br><code>pyinstaller -F worksubmit.py</code> 可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行</p><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E8%BF%90%E8%A1%8C.png" alt="运行情况"></p><p>可以清楚的看到</p><blockquote><p>ModuleNotFoundError:No module named ‘xlrd’</p></blockquote><p>这时就要解决打包时xlrd模块没有打进去的问题，找到xlrd模块的位置，并将该模块打到运行程序包里。<br>先找到程序依赖的xlrd模块的位置，在PyCharm中通过”File”-&gt;”Setting”,在项目设置里查看Project interpreter，可以看到xlrd的目录位置。</p><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E6%89%BE%E5%8C%85%E8%B7%AF%E5%BE%84.png" alt="找包路径"></p><p>用pyinstall打包的时候通过加-p的参数将依赖的模块打进去。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller -F -p J:\study\python\testsubmit\venv\Lib\site-packages worksubmit.py</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201101/%E6%89%93%E4%BE%9D%E8%B5%96%E6%A8%A1%E5%9D%97%E5%8C%85.png" alt="在这里插入图片描述"><br>这样就可以顺利将依赖的模块打进去，再执行exe文件不再报错了。</p><p><strong>总结一下，碰到打包成exe后运行有问题，可以通过不带-w的参数打包，这时打包的exe运行是带控制台的命令行。基本上所有的运行问题都可以通过控制台的命令定位和排查。</strong></p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
       
       
       <categories>

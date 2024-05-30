@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2024-05-25T03:12:13.820Z</updated>
+  <updated>2024-05-30T06:40:53.122Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>django.db.utils.operationalerror:\xF0\x9F\x9....报错解决办法</title>
+    <link href="https://xiejava.gitee.io/posts/835ea0bc/"/>
+    <id>https://xiejava.gitee.io/posts/835ea0bc/</id>
+    <published>2024-05-30T06:21:41.000Z</published>
+    <updated>2024-05-30T06:40:53.122Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、问题现象"><a href="#一、问题现象" class="headerlink" title="一、问题现象"></a>一、问题现象</h2><p>今天在迁移hexo的.md博客文件到django的博客程序的时候报错了，具体报错信息如下。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\django\db\backends\mysql\base.py"</span>, line 75, <span class="keyword">in</span> execute</span><br><span class="line">    <span class="built_in">return</span> self.cursor.execute(query, args)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 206, <span class="keyword">in</span> execute</span><br><span class="line">    res = self._query(query)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 319, <span class="keyword">in</span> _query</span><br><span class="line">    db.query(q)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\connections.py"</span>, line 254, <span class="keyword">in</span> query</span><br><span class="line">    _mysql.connection.query(self, query)</span><br><span class="line">django.db.utils.OperationalError: (1366, <span class="string">"Incorrect string value: '\\xF0\\x9F\\x98\\x82\\xE5\\x93...' for column 'content' at row 1"</span>)</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/1-%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1.png" alt="报错现象"></p><p>后来发现是因为.md文件中的内容含有mysql不能识别4个字节的utf8编码的字符，抛出了异常。类似于这种4个字节☺、��</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/2-%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0.png" alt="报错原因"></p><h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><h3 id="1、修改mysql的数据库的字符集和的字符集"><a href="#1、修改mysql的数据库的字符集和的字符集" class="headerlink" title="1、修改mysql的数据库的字符集和的字符集"></a>1、修改mysql的数据库的字符集和的字符集</h3><p>修改数据库的字符集为utf8mb4</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p><p>修改字段的字符集为utf8mb4</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/4-%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p><h3 id="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"><a href="#2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置" class="headerlink" title="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"></a>2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/5-%E4%BF%AE%E6%94%B9django%E8%BF%9E%E6%8E%A5%E4%B8%B2%E5%AD%97%E7%AC%A6%E9%9B%86%E8%AE%BE%E7%BD%AE.png" alt="在这里插入图片描述"></p><p>修改完成后，插入正常。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一、问题现象&quot;&gt;&lt;a href=&quot;#一、问题现象&quot; class=&quot;headerlink&quot; title=&quot;一、问题现象&quot;&gt;&lt;/a&gt;一、问题现象&lt;/h2&gt;&lt;p&gt;今天在迁移hexo的.md博客文件到django的博客程序的时候报错了，具体报错信息如下。&lt;/p&gt;
+&lt;fig
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>什么是安全左移,如何实现安全左移</title>
@@ -565,38 +594,6 @@
       
         &lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240304/0-mitmproxy.jpg&quot; alt=&quot;mitmproxy&quot;&gt;&lt;/p&gt;
 &lt;p&gt;对于APP的数据爬
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
-    
-      <category term="爬虫" scheme="https://xiejava.gitee.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mitmproxy安装与配置</title>
-    <link href="https://xiejava.gitee.io/posts/699b1506/"/>
-    <id>https://xiejava.gitee.io/posts/699b1506/</id>
-    <published>2024-02-29T10:33:41.000Z</published>
-    <updated>2024-03-27T06:54:37.172Z</updated>
-    
-    <content type="html"><![CDATA[<p>mitmproxy是一个免费的开源交互式的HTTPS代理工具。它类似于其他抓包工具如WireShark和Fiddler，支持抓取HTTP和HTTPS协议的数据包，并可以通过控制台形式进行操作。mitmproxy具有两个非常有用的组件：mitmdump和mitmweb。mitmdump是mitmproxy的命令行接口，可以直接抓取请求数据，而mitmweb是一个web程序，可以清楚地观察mitmproxy抓取的请求数据。</p><p>此外，mitmproxy的特点之一是它支持Python自定义脚本，这使得mitmproxy的使用更加灵活和强大。通过安装mitmproxy，用户可以实时查看、记录、修改数据，引发服务端或客户端的特定行为。mitmproxy是一个功能强大的抓包工具，具有广泛的应用场景，如网络调试、安全测试、数据分析等。</p><p>本文介绍mitmproxy的安装与配置，通过mitmproxy代理进行抓包。</p><h2 id="一、mitmproxy的安装"><a href="#一、mitmproxy的安装" class="headerlink" title="一、mitmproxy的安装"></a>一、mitmproxy的安装</h2><p>首先需要安装好python，版本需要不低于3.6，且安装了附带了包管理工具pip<br>在命令行中输入<code>pip install mitmproxy</code>，等待安装完成。<br>安装完成后，系统将拥有mitmproxy、mitmdump、mitmweb三个命令，可以通过<code>mitmdump</code>检查一下mitmproxy是否安装成功了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/1-%E6%9F%A5%E7%9C%8Bmitmproxy%E7%89%88%E6%9C%AC.png" alt="查看mitmproxy版本"></p><h2 id="二、运行mitmproxy"><a href="#二、运行mitmproxy" class="headerlink" title="二、运行mitmproxy"></a>二、运行mitmproxy</h2><p>要启动 mitmproxy 用 mitmproxy、mitmdump、mitmweb 这三个命令中的任意一个即可，这三个命令功能一致，且都可以加载自定义脚本，唯一的区别是交互界面的不同。</p><p>启动mitmproxy后，客户端要配置指定通过mitmproxy代理来访问目标网站的服务资源。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/2-how-mitmproxy-works-explicit.png" alt="mitmproxy代理工作原理"></p><h3 id="1、配置客户端代理"><a href="#1、配置客户端代理" class="headerlink" title="1、配置客户端代理"></a>1、配置客户端代理</h3><p>运行mitmproxy默认代理的端口是8080，所以要配置浏览器通过mitmproxy代理来访问目标网站。</p><h4 id="方式一，设置全局代理"><a href="#方式一，设置全局代理" class="headerlink" title="方式一，设置全局代理"></a>方式一，设置全局代理</h4><p>设置全局代理，在window中找到网络和Internet，点击手动设置代理，将使用代理服务器的开关打开，设置代理IP地址为127.0.0.1，端口为8080<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/3-windows%E8%AE%BE%E7%BD%AE%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86.png" alt="设置全局代理"></p><h4 id="方式二，设置浏览器代理"><a href="#方式二，设置浏览器代理" class="headerlink" title="方式二，设置浏览器代理"></a>方式二，设置浏览器代理</h4><p>通过浏览器插件设置浏览器代理，如chrome浏览器可以通过SwitchyOmega插件设置代理<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/4-SwitchyOmega%E6%8F%92%E4%BB%B6%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86.png" alt="通过SwitchyOmega插件设置代理"></p><p>通过mitmproxy命令启动mitmproxy后通过设置代理后的浏览器访问<a href="http://xiejava.ishareread.com，可以看到通过mitmproxy代理后的访问流量日志。" target="_blank" rel="noopener">http://xiejava.ishareread.com，可以看到通过mitmproxy代理后的访问流量日志。</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/5-%E8%AE%BF%E9%97%AEhttp%E7%9A%84%E7%BD%91%E7%AB%99.png" alt="http抓包日志情况"></p><h3 id="2、客户端安装mitmproxy提供的CA证书"><a href="#2、客户端安装mitmproxy提供的CA证书" class="headerlink" title="2、客户端安装mitmproxy提供的CA证书"></a>2、客户端安装mitmproxy提供的CA证书</h3><p>对于访问https加密的网站需要证书才能解密，所以客户端需要安装mitmproxy提供的CA证书。<br>通过mitmporxy代理浏览器访问<a href="http://mitm.it/将显示mitmproxy证书下载和安装指导页面" target="_blank" rel="noopener">http://mitm.it/将显示mitmproxy证书下载和安装指导页面</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/6-mitmproxy%E8%AF%81%E4%B9%A6%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E9%A1%B5%E9%9D%A2.png" alt="mitmproxy证书下载和安装指导页面"></p><p>可以看到mitmproxy提供了各种操作系统的CA证书，点击”Show Instructions”,将显示证书的安装指导，可以根据指导一步步安装成功。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/7-mitmproxy%E8%AF%81%E4%B9%A6%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4%E4%BB%8B%E7%BB%8D.png" alt="证书的安装指导"></p><p>对于Windows系统：</p><h4 id="手工安装步骤："><a href="#手工安装步骤：" class="headerlink" title="手工安装步骤："></a>手工安装步骤：</h4><ol><li>双击mitmproxy提供的CA证书文件（通常是mitmproxy-ca.p12）。</li><li>在出现的导入证书引导页中，直接点击“下一步”按钮。</li><li>接下来会出现密码设置提示，这里不需要设置密码，直接点击“下一步”按钮。</li><li>选择证书的存储区域。通常选择“将所有的证书都放入下列存储”，然后点击“浏览”按钮，选择证书存储位置为“受信任的根证书颁发机构”，接着点击“确定”按钮。</li><li>点击“下一步”按钮完成证书的导入。</li><li>如果有安全警告弹出，直接点击“是”按钮即可。</li></ol><h4 id="自动安装步骤："><a href="#自动安装步骤：" class="headerlink" title="自动安装步骤："></a>自动安装步骤：</h4><p>在window中用管理员权限运行PowerShell，在命令行控制台，进去到证书的目录，一般是在c:\Users\yourname.mitmproxy目录下。执行 <code>certutil.exe -addstore root mitmproxy-ca-cert.cer</code> 如下图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/8-%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6%E6%93%8D%E4%BD%9C.png" alt="自动安装证书步骤"></p><p>安装好证书后，通过mitmproxy代理，我们来访问https协议的网站<a href="https://www.taobao.com。可以在后台看到mitmproxy抓取的https流量日志" target="_blank" rel="noopener">https://www.taobao.com。可以在后台看到mitmproxy抓取的https流量日志</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240229/9-%E6%8A%93%E5%8F%96https%E7%BD%91%E7%AB%99%E6%B5%81%E9%87%8F.png" alt="mitmproxy抓取的https流量日志"></p><p>至此，我们成功安装了mitmproxy,并配置了相应的CA证书，通过mitmporxy代理能够获取访问http和https网站的流量数据。后续我们将通过一个实例来进行mitmproxy抓包爬取京东APP的金榜排行的数据信息。</p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;mitmproxy是一个免费的开源交互式的HTTPS代理工具。它类似于其他抓包工具如WireShark和Fiddler，支持抓取HTTP和HTTPS协议的数据包，并可以通过控制台形式进行操作。mitmproxy具有两个非常有用的组件：mitmdump和mitmweb。mit
       
     
     </summary>
