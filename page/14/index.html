@@ -313,6 +313,309 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/16c9fc17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/16c9fc17/" itemprop="url">pandas数据分析之排序和排名(sort和rank)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-30T09:14:37+08:00">
+                2022-01-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:16+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/16c9fc17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/16c9fc17/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/16c9fc17/" class="leancloud_visitors" data-flag-title="pandas数据分析之排序和排名(sort和rank)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。</p>
+<p>本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。<br>数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"><br>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<h1 id="一、排序"><a href="#一、排序" class="headerlink" title="一、排序"></a>一、排序</h1><p>对数据集进行排序是是常用的数据分析需求之一。pandas提供了按 索引标签排序sort_index()和按值排序sort_values()两种排序方法。对于DataFrame，可以根据任意一个轴上的索引标签进行排序。默认顺序排序，也可以设置按倒序排序。</p>
+<h2 id="1、按标签排序"><a href="#1、按标签排序" class="headerlink" title="1、按标签排序"></a>1、按标签排序</h2><h3 id="1）按行标签索引排序"><a href="#1）按行标签索引排序" class="headerlink" title="1）按行标签索引排序"></a>1）按行标签索引排序</h3><p>pandas默认按行标签索引顺序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引排序</span></span><br><span class="line">df.sort_index()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按行索引排序"><br>可以通过设置<code>ascending=False</code>参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引倒序排序</span></span><br><span class="line">df.sort_index(ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按行索引倒序排序"></p>
+<h3 id="2）按列标签索引排序"><a href="#2）按列标签索引排序" class="headerlink" title="2）按列标签索引排序"></a>2）按列标签索引排序</h3><p>通过给 axis 轴参数传递 0 或 1，可以对列标签进行排序。默认情况下，axis=0 表示按行排序；而 axis=1 则表示按列排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按列索引排序"><br>同样可以设置ascending=False参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引倒序排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按列索引倒序排序"></p>
+<h2 id="2、按值排序"><a href="#2、按值排序" class="headerlink" title="2、按值排序"></a>2、按值排序</h2><p>在实际应用中用得最多的应该是根据某一列的值进行排序。在pandas中可以通过sort_value()，在sort_value中可以设定按某个列排序，也可以通过sort_value(by=[])，通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。</p>
+<h3 id="1）对单个列的值排序"><a href="#1）对单个列的值排序" class="headerlink" title="1）对单个列的值排序"></a>1）对单个列的值排序</h3><p>如在数据集中对语文成绩进行排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩排序</span></span><br><span class="line">df.sort_values(<span class="string">'4-语文'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对语文成绩进行排序"></p>
+<h3 id="2）对多个列的值进行排序"><a href="#2）对多个列的值进行排序" class="headerlink" title="2）对多个列的值进行排序"></a>2）对多个列的值进行排序</h3><p>通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。<br>如对数据集中的语文和数学进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%A4%9A%E4%B8%AA%E5%88%97%E7%9A%84%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对数据集中的语文和数学进行排序"></p>
+<h2 id="3、排序算法"><a href="#3、排序算法" class="headerlink" title="3、排序算法"></a>3、排序算法</h2><p>sort_values() 提供了参数kind用来指定排序算法。这里有三种排序算法：</p>
+<ul>
+<li>mergesort（归并排序） </li>
+<li>heapsort（堆排序） </li>
+<li>quicksort（快速排序）</li>
+</ul>
+<p>默认为 quicksort(快速排序) ，其中 mergesort归并排序是最稳定的算法。<br>具体用法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学用mergesort归并排序算法排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>],kind=<span class="string">'mergesort'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt="排序算法"></p>
+<h1 id="二、排名"><a href="#二、排名" class="headerlink" title="二、排名"></a>二、排名</h1><p>排名和排序的区别在于排序一定是有顺序，而排名分先后并列。如在现实生活中相同的分数存在排名并列的情况。<br>在《使用python进行数据分析》一书中对rank排名的描述为：排名是指对数组从1到有效数据点总数分配名次的操作。Series和DataFrame的rank方法是实现排名的方法，默认情况下，rank是通过“为各组分配一个平均排名”的方式破坏平级关系。这段话讲得是什么鬼？其实就是在存在并列排名的时候采用一定的策略来打破这种关系。<br>排名中的平级关系打破方法有如下几种：</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>average</td>
+<td>默认：在每个组中分配平均排名</td>
+</tr>
+<tr>
+<td>min</td>
+<td>对整个组使用最小排名</td>
+</tr>
+<tr>
+<td>max</td>
+<td>对整个组使用最大排名</td>
+</tr>
+<tr>
+<td>first</td>
+<td>按照值在数据中出现的次序分配排名</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>类似于method=’min’,但组件排名总是加1，而不是一个组中的相等元素的数量</td>
+</tr>
+</tbody></table>
+<p><strong>rank()函数原型：</strong><code>rank(axis=0, method: str = &#39;average&#39;, numeric_only: Union[bool, NoneType] = None, na_option: str = &#39;keep&#39;, ascending: bool = True, pct: bool = False)</code><br>这里method取值可以为’average’，’first’，’min’， ‘max’，’dense’，用来打破排名中的平级关系的。<br>光看这些说明还是比较难理解。下面通过实例来说明：</p>
+<h2 id="1、默认average-排名"><a href="#1、默认average-排名" class="headerlink" title="1、默认average 排名"></a>1、默认average 排名</h2><p>在数据集中我们只取“学号”、“姓名”、“语文”，然后取“语文”的排名，默认average</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_rank=df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>]].copy()</span><br><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E6%8E%92%E5%90%8D.png" alt="默认average 排名"></p>
+<p>这个排名很奇怪，97分排名第一没有问题，居然没有第二名，三个96分排名均为3，还有两个90分排名为9.5。这是什么鬼？<br>原来这就是默认的“average”规则,成绩相同时，取顺序排名中所有名次之和除以该成绩的个数，如两个90分的名次为最后两名分别为9名和10名，即(9+10)/2=9.5，三个96分的名次分别为2、3、4 那么排名为（2+3+4)/3=9/3=3</p>
+<h2 id="2、mothod-’min’的排名"><a href="#2、mothod-’min’的排名" class="headerlink" title="2、mothod=’min’的排名"></a>2、mothod=’min’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-min%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行min排名"></p>
+<p>在这个排名中看到有3个并列为2的排名，但没有排名为3、4的，有两个排名为9的，但没有排名为10的。可以看出当method=“min”时，成绩相同的同学，取在顺序排名中最小的那个排名作为该值的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。因为有了三个2名，接下来就从5名开始，5、6、7、8，到了第9名又有两个同分数的取9、10的最小排名为9，所以有两个9名。</p>
+<h2 id="3、mothod-’max’的排名"><a href="#3、mothod-’max’的排名" class="headerlink" title="3、mothod=’max’的排名"></a>3、mothod=’max’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-max%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行max排名"><br>与min相反，成绩相同的同学，排名相同取顺序最大的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。当method为max时，取最大的4作为96分的整体排名，同理90分的取10为90分的整体排名。</p>
+<h2 id="4、mothod-’first’的排名"><a href="#4、mothod-’first’的排名" class="headerlink" title="4、mothod=’first’的排名"></a>4、mothod=’first’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-first%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行first排名"></p>
+<p>first排名很好理解了，有点先到先得的意思，成绩相同，谁的索引排前，谁的排名就靠前，比如张三、王五、顾十 这三个同学都是96分，按理应该是并列第2，但张三的索引比王五和顾十的都靠前，王五的索引比顾十靠前，所以他们的顺序分别为2、3、4，同理陈一、钱七的分数都是90分，但陈一的索引比钱七靠前所以陈一排名为9、钱七排名第10</p>
+<h2 id="5、mothod-’dense’的排名"><a href="#5、mothod-’dense’的排名" class="headerlink" title="5、mothod=’dense’的排名"></a>5、mothod=’dense’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-dense%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行dense排名"><br>“dense”: 是密集的意思，也比较好理解，即相同成绩的同学排名相同，其他依次加1即可。可以看到张三、王五、顾十这三位同学都是96分，并列排名第2，后面的加1，即比他们分数稍低的赵六95分排名第3，后面依次。</p>
+<h2 id="6、不同method的排名对比"><a href="#6、不同method的排名对比" class="headerlink" title="6、不同method的排名对比"></a>6、不同method的排名对比</h2><p>最后不同method的排名对比：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-average'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-min'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-max'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-first'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-dense'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'4-语文'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E4%B8%8D%E5%90%8Cmethod%E6%8E%92%E5%90%8D%E5%AF%B9%E6%AF%94.png" alt="按语文成绩进行rank的默认排名"></p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/531458d5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,8 +663,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:16+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -489,8 +792,8 @@
 <p>结果：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>    陈一</span><br><span class="line"><span class="number">1</span>    周二</span><br><span class="line"><span class="number">2</span>    张三</span><br><span class="line"><span class="number">3</span>    李四</span><br><span class="line"><span class="number">4</span>    王五</span><br><span class="line"><span class="number">5</span>    赵六</span><br><span class="line"><span class="number">6</span>    钱七</span><br><span class="line"><span class="number">7</span>    孙八</span><br><span class="line"><span class="number">8</span>    何九</span><br><span class="line"><span class="number">9</span>    顾十</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
 
-<p>Series的字符串表现形式为：索引在左边，值在右边。由于没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/Series%E7%BB%93%E6%9E%84.png" alt="Serires数据结构"></p>
-<p>可以通过Series的values和index属性获取其数组表示形式和索引对象。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/%E8%8E%B7%E5%8F%96Serires%E7%9A%84values%E5%92%8Cindex%E5%B1%9E%E6%80%A7.png" alt="通过Series的values和index属性获取其数组表示形式和索引对象"></p>
+<p>Series的字符串表现形式为：索引在左边，值在右边。由于没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/Series%E7%BB%93%E6%9E%84.png" alt="Serires数据结构"></p>
+<p>可以通过Series的values和index属性获取其数组表示形式和索引对象。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E8%8E%B7%E5%8F%96Serires%E7%9A%84values%E5%92%8Cindex%E5%B1%9E%E6%80%A7.png" alt="通过Series的values和index属性获取其数组表示形式和索引对象"></p>
 <p><strong>可以将Series看成一个定长的有序字典，因为它是索引值到数据值的一个映射。</strong></p>
 <h2 id="1、Series对象创建"><a href="#1、Series对象创建" class="headerlink" title="1、Series对象创建"></a>1、Series对象创建</h2><p>pandas 使用 Series()  函数来创建 Series 对象，通过这个对象可以调用相应的方法和属性，从而达到处理数据的目的：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">obj=pd.Series( data, index, dtype, copy)</span><br></pre></td></tr></table></figure>
@@ -559,7 +862,7 @@
 <h4 id="2-删除多个数据"><a href="#2-删除多个数据" class="headerlink" title="2.删除多个数据"></a>2.删除多个数据</h4><p>参数为索引列表，即可以删除索引为列表中的数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">obj.drop([<span class="string">'十二'</span>,<span class="string">'十三'</span>],inplace=<span class="literal">True</span>)</span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">四    李四</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
 
-<h1 id="二、DataFrame"><a href="#二、DataFrame" class="headerlink" title="二、DataFrame"></a>二、DataFrame</h1><p>DataFrame 是 Pandas 的重要数据结构之一，也是在使用 Pandas 进行数据分析过程中最常用的结构之一。DataFrame 一个表格型的数据结构，既有行标签（index），又有列标签（columns），它也被称异构数据表，所谓异构，指的是表格中每列的数据类型可以不同，比如可以是字符串、整型或者浮点型等。DataFrame 的每一行数据都可以看成一个 Series 结构，只不过，DataFrame 为这些行中每个数据值增加了一个列标签。因此 DataFrame 其实是从 Series 的基础上演变而来。<strong>可以把DataFrame看做是关系型数据库里或Excel里的一张表格来理解</strong>。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/DataFrame%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="DataFrame数据结构"><br><strong>DataFrame 数据结构的特点：</strong><br>DataFrame 每一列的标签值允许使用不同的数据类型；<br>DataFrame 是表格型的数据结构，具有行和列；<br>DataFrame 中的每个数据值都可以被修改。<br>DataFrame 结构的行数、列数允许增加或者删除；<br>DataFrame 有两个方向的标签轴，分别是行标签和列标签；<br>DataFrame 可以对行和列执行算术运算。</p>
+<h1 id="二、DataFrame"><a href="#二、DataFrame" class="headerlink" title="二、DataFrame"></a>二、DataFrame</h1><p>DataFrame 是 Pandas 的重要数据结构之一，也是在使用 Pandas 进行数据分析过程中最常用的结构之一。DataFrame 一个表格型的数据结构，既有行标签（index），又有列标签（columns），它也被称异构数据表，所谓异构，指的是表格中每列的数据类型可以不同，比如可以是字符串、整型或者浮点型等。DataFrame 的每一行数据都可以看成一个 Series 结构，只不过，DataFrame 为这些行中每个数据值增加了一个列标签。因此 DataFrame 其实是从 Series 的基础上演变而来。<strong>可以把DataFrame看做是关系型数据库里或Excel里的一张表格来理解</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/DataFrame%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="DataFrame数据结构"><br><strong>DataFrame 数据结构的特点：</strong><br>DataFrame 每一列的标签值允许使用不同的数据类型；<br>DataFrame 是表格型的数据结构，具有行和列；<br>DataFrame 中的每个数据值都可以被修改。<br>DataFrame 结构的行数、列数允许增加或者删除；<br>DataFrame 有两个方向的标签轴，分别是行标签和列标签；<br>DataFrame 可以对行和列执行算术运算。</p>
 <h2 id="1、DataFrame对象的创建"><a href="#1、DataFrame对象的创建" class="headerlink" title="1、DataFrame对象的创建"></a>1、DataFrame对象的创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df=pd.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
 <p>参数说明：</p>
 <table>
@@ -592,11 +895,11 @@
 </tbody></table>
 <p>Pandas 提供了多种创建 DataFrame 对象的方式可以看data的参数说明，包括列表、ndarray、series、dict等。<br>平时在数据分析过程中用得最多的应该是从其他数据源文件如cvs、excel、数据库、WEBAPI等方式加载数据到DataFrame中。<br>如：从Excel中加载数据。更多的数据加载方式见：<a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/4864590d/</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/staff_excel%E5%AF%BC%E5%85%A5.png" alt="staff数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/staff_excel%E5%AF%BC%E5%85%A5.png" alt="staff数据集"></p>
 <h2 id="2、DataFrame数据操作"><a href="#2、DataFrame数据操作" class="headerlink" title="2、DataFrame数据操作"></a>2、DataFrame数据操作</h2><p>DataFrame 可以使用行索引(index )来选取 DataFrame 中的数据并进行操作。也可以使用列索（columns ）引来完成数据的选取、添加和删除操作。</p>
 <h3 id="1-行索引操作DataFrame"><a href="#1-行索引操作DataFrame" class="headerlink" title="1) 行索引操作DataFrame"></a>1) 行索引操作DataFrame</h3><h4 id="选取数据"><a href="#选取数据" class="headerlink" title="选取数据"></a>选取数据</h4><p>行标签选取数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选取行标签为2的行</span></span><br><span class="line">df.loc[[<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE1.png" alt="选取行标签为2的行"><br>注意：如果是df.loc[2]，同样是选择行标签为2的行，但现实效果为<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE2.png" alt="选取行标签为2的行"><br>因为df.loc[2]返回是Series对象，而df.loc[[2]]返回的是DataFrame对象</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE1.png" alt="选取行标签为2的行"><br>注意：如果是df.loc[2]，同样是选择行标签为2的行，但现实效果为<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE2.png" alt="选取行标签为2的行"><br>因为df.loc[2]返回是Series对象，而df.loc[[2]]返回的是DataFrame对象</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(df.iloc[<span class="number">2</span>])</span><br><span class="line">pandas.core.series.Series</span><br></pre></td></tr></table></figure>
 
 
@@ -605,25 +908,25 @@
 
 <p>切片选取数据</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切片选取数据（左闭右开）</span></span><br><span class="line">df[<span class="number">2</span>:<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/%E5%88%87%E7%89%87%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE.png" alt="切片选取数据"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E5%88%87%E7%89%87%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE.png" alt="切片选取数据"></p>
 <h4 id="增加行"><a href="#增加行" class="headerlink" title="增加行"></a>增加行</h4><p> 添加数据行，使用 append() 函数，可以将新的数据行添加到 DataFrame 中，该函数会在行末追加数据行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],index=[<span class="number">11</span>,<span class="number">12</span>],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C.png" alt=" 添加数据行"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C.png" alt=" 添加数据行"></p>
 <p>注意新增加的DataFrame如果没有指定行索引，将会默认从0开始，添加数据行后将会有行重复的行索引。如没有指定index=[11,12]</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C%E9%87%8D%E5%A4%8Did.png" alt="添加数据行有重复行索引"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C%E9%87%8D%E5%A4%8Did.png" alt="添加数据行有重复行索引"></p>
 <h4 id="删除行"><a href="#删除行" class="headerlink" title="删除行"></a>删除行</h4><p>可以使用行索引标签，从 DataFrame 中删除某一行数据。如果索引标签存在重复，那么它们将被一起删除</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.drop(<span class="number">0</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
 
-<p>可以看到到行索引为0的两条记录被一起删除了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df%E5%88%A0%E9%99%A4.png" alt="删除"></p>
+<p>可以看到到行索引为0的两条记录被一起删除了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E5%88%A0%E9%99%A4.png" alt="删除"></p>
 <h3 id="2-列索引操作DataFrame"><a href="#2-列索引操作DataFrame" class="headerlink" title="2) 列索引操作DataFrame"></a>2) 列索引操作DataFrame</h3><h4 id="列索引选取数据列"><a href="#列索引选取数据列" class="headerlink" title="列索引选取数据列"></a>列索引选取数据列</h4><p>通过指定列索引来选取数据列，如选择只显示staff_id,staff_name,staff_gender三列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df2=df[[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]]</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df-%E9%80%89%E5%8F%96%E5%88%97.png" alt="列索引选取数据列"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E9%80%89%E5%8F%96%E5%88%97.png" alt="列索引选取数据列"></p>
 <h4 id="列索引添加数据列"><a href="#列索引添加数据列" class="headerlink" title="列索引添加数据列"></a>列索引添加数据列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df3=df[<span class="string">'staff_salary'</span>]+<span class="number">500</span></span><br><span class="line"><span class="comment">#在df的基础上增加append_cloume列，新增的append_cloume列为df['staff_salary']+500，即薪水加了500的列</span></span><br><span class="line">df[<span class="string">'append_cloume'</span>]=df3</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引添加数据列"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引添加数据列"></p>
 <h4 id="列索引删除数据列"><a href="#列索引删除数据列" class="headerlink" title="列索引删除数据列"></a>列索引删除数据列</h4><p>通过del 来删除指定的数据列，如删除staff_depatment_id列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> df[<span class="string">'staff_depatment_id'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引删除数据列"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引删除数据列"></p>
 <p>本文介绍了pandas的两大核心数据结构Series和DataFrame，分别介绍了Series和DataFrame数据对象的创建及基于数据对象的基础上对数据进行选择、增加、删除等数据操作，可以加深对Series和DataFrame的理解，并可以将创建，增、删、改、查等应用于实际的数据处理应用中。</p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -631,7 +934,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -728,8 +1031,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -849,8 +1152,8 @@
       
         
           
-            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas.png" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
-<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/pandas.png" alt="pandas"><br>pandas 是基于NumPy 的一种工具，该工具是为解决数据分析任务而创建的。Pandas 纳入了大量库和一些标准的数据模型，提供了高效地操作大型数据集所需的工具。Pandas的名称来自于面板数据（panel data）和python数据分析（data analysis）。pandas提供了大量能使我们快速便捷地处理数据的函数和方法。它是使Python成为强大而高效的数据分析环境的重要因素之一。</p>
+<p>数据的输入是数据分析的第一步，如果不能将数据快速方便的导入导出python，那么pandas不可能成为强大而高效的数据分析环境，本文重点介绍pandas的数据输入加载。pandas的数据输入可以划分为几个大类：读取文本文件和其他更高效的磁盘存储格式，加载数据库中的数据，利用Web API获取网络资源。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86.png" alt="pandas数据处理"><br>pandas的IO工具支持非常多的数据输入输出方式。包括csv、json、Excel、数据库等。</p>
 <table>
 <thead>
 <tr>
@@ -957,19 +1260,19 @@
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"staff_id"</span>,<span class="string">"staff_name"</span>,<span class="string">"staff_age"</span>,<span class="string">"staff_gender"</span>,<span class="string">"staff_salary"</span>,<span class="string">"staff_depatment_id"</span></span><br><span class="line"><span class="string">"1"</span>,<span class="string">"陈一"</span>,<span class="string">"30"</span>,<span class="string">"男"</span>,<span class="string">"7000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"2"</span>,<span class="string">"周二"</span>,<span class="string">"31"</span>,<span class="string">"男"</span>,<span class="string">"12000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"3"</span>,<span class="string">"张三"</span>,<span class="string">"30"</span>,<span class="string">"女"</span>,<span class="string">"13000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"4"</span>,<span class="string">"李四"</span>,<span class="string">"29"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"5"</span>,<span class="string">"王五"</span>,<span class="string">"29"</span>,<span class="string">"男"</span>,<span class="string">"9000"</span>,<span class="string">"2"</span></span><br><span class="line"><span class="string">"6"</span>,<span class="string">"赵六"</span>,<span class="string">"35"</span>,<span class="string">"男"</span>,<span class="string">"8600"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"7"</span>,<span class="string">"钱七"</span>,<span class="string">"36"</span>,<span class="string">"女"</span>,<span class="string">"9700"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"8"</span>,<span class="string">"孙八"</span>,<span class="string">"40"</span>,<span class="string">"女"</span>,<span class="string">"10000"</span>,<span class="string">"3"</span></span><br><span class="line"><span class="string">"9"</span>,<span class="string">"何九"</span>,<span class="string">"40"</span>,<span class="string">"男"</span>,<span class="string">"11000"</span>,<span class="string">"1"</span></span><br><span class="line"><span class="string">"10"</span>,<span class="string">"顾十"</span>,<span class="string">"37"</span>,<span class="string">"女"</span>,<span class="string">"15000"</span>,<span class="string">"2"</span></span><br></pre></td></tr></table></figure>
 <p>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.csv'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/excel%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE.png" alt="通过csv加载"></p>
-<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_excel.png" alt="staff.xlsx"><br>代码如下：</p>
+<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/excel%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE.png" alt="通过csv加载"></p>
+<h1 id="二、读取EXCEL文件"><a href="#二、读取EXCEL文件" class="headerlink" title="二、读取EXCEL文件"></a>二、读取EXCEL文件</h1><p>Excel 是由微软公司开发的办公软件之一，它在日常工作中得到了广泛的应用。在数据量较少的情况下，Excel 对于数据的处理、分析、可视化有其独特的优势，因此可以显著提升您的工作效率。但是，当数据量非常大时，Excel 的劣势就暴露出来了，比如，操作重复、数据分析难等问题。Pandas 提供了操作 Excel 文件的函数，可以很方便地处理 Excel 表格。<br>pandas提供了 read_excel() 方法，从 Excel文件中读取数据，并创建 DataFrame 对象。<br>staff数据集excel文件staff.xlsx如下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/staff_excel.png" alt="staff.xlsx"><br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'C:\\Users\\xiejava\\Desktop\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDcsv.png" alt="通过Excel加载数据"></p>
+<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDcsv.png" alt="通过Excel加载数据"></p>
 <h1 id="三、读取MySQL数据库表"><a href="#三、读取MySQL数据库表" class="headerlink" title="三、读取MySQL数据库表"></a>三、读取MySQL数据库表</h1><p>在许多应用中，数据很少取自文本文件，因为这种方式存储数据量有限且比较低效。最常见的是基于SQL的关系型数据库如MySQL、MS-SQL、PostgreSQL等。pandas将关系型数据库加载到DataFrame的过程很简单，通过read_sql_query()方法就可以快速的将数据加载。<br>同样是staff的数据集，在mysql中的表结构如下：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`staff`</span> (</span><br><span class="line">  <span class="string">`staff_id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_name`</span> <span class="built_in">varchar</span>(<span class="number">64</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`staff_age`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'年龄'</span>,</span><br><span class="line">  <span class="string">`staff_gender`</span> <span class="built_in">varchar</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'性别'</span>,</span><br><span class="line">  <span class="string">`staff_salary`</span> <span class="keyword">double</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'薪水'</span>,</span><br><span class="line">  <span class="string">`staff_depatment_id`</span> <span class="built_in">int</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'部门ID'</span></span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br></pre></td></tr></table></figure>
 
-<p>数据如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_mysql.png" alt="staff数据集MySQL记录"><br>代码如下：</p>
+<p>数据如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/staff_mysql.png" alt="staff数据集MySQL记录"><br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sqlalchemy <span class="keyword">import</span> create_engine</span><br><span class="line">engine = create_engine(<span class="string">'mysql+pymysql://root:yourpassword@localhost:3306/pandastest'</span>)</span><br><span class="line">sql_query_staff = <span class="string">'select * from staff;'</span></span><br><span class="line">df_staff = pd.read_sql_query(sql_query_staff, engine)</span><br><span class="line">df_staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDMySQL%E6%95%B0%E6%8D%AE.png" alt="加载mysql数据"></p>
-<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/staff_webapi.png" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
+<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDMySQL%E6%95%B0%E6%8D%AE.png" alt="加载mysql数据"></p>
+<h1 id="四、读取Web-API的数据"><a href="#四、读取Web-API的数据" class="headerlink" title="四、读取Web API的数据"></a>四、读取Web API的数据</h1><p>除了本地文件和数据库外，许多网站和web应用都有一些通过JSON或其他格式提供数据的公共API。可以通过Python的requests包来访问这些API获得相应的数据，经过解析处理后加载到pandas的DataFrame中。<br>为了演示方便，本文通过Flask做了一个staff数据集的API，效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/staff_webapi.png" alt="staff数据集API"><br>通过requests包来访问API，通过json包来解析json，然后加载到pandas的DataFrame中。<br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">url=<span class="string">'http://127.0.0.1:5000/getstaff'</span></span><br><span class="line">resp=requests.get(url)</span><br><span class="line">data=json.loads(resp.text)</span><br><span class="line">staff=pd.DataFrame(data)</span><br><span class="line">staff</span><br></pre></td></tr></table></figure>
-<p>输出：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDwebAPI%E6%95%B0%E6%8D%AE.png" alt="加载WEBAPI数据"></p>
+<p>输出：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220122/%E5%8A%A0%E8%BD%BDwebAPI%E6%95%B0%E6%8D%AE.png" alt="加载WEBAPI数据"></p>
 <p>至此，通过staff测试数据集介绍了pandas的常用多种类型数据源的加载，包括csv、excel、mysql、web API。可以看出pandas对于数据加载非常的方便高效。</p>
 <p>全部数据集及源代码：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
@@ -978,7 +1281,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1075,8 +1378,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1197,7 +1500,7 @@
         
           
             <p>快过年了，又到了公司年底评级的时候了。今年的评级和往常一下，每个人都要填写公司的民主评议表，给各个同事进行评价打分，然后部门收集起来根据收集上来的评价表进行汇总统计。想想要收集几十号人的评价表，并根据每个人的评价表又要填到Excel中进行汇总计算统计给出每个人的评价，就头大。虽然不是个什么难事，但是是个无脑的细致活。几十个人的评价也得要花大半天的时间来弄，而且搞多了还容易搞错。如是就想起干脆用Python写个小程序自动来处理这些脏活累活，评级年年都要评，每年都可以用。</p>
-<p>要做的事情就是读放到某个文件夹中的word文档中的评价表格，根据表格内容进行处理，然后汇总所有的表格数据，根据计算规则，算出每个人的评分，在根据评分计算每个人的评价。汇总后写入Excel中。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220120/word2excle.png" alt="处理Word解析、汇总、统计写入Excel"></p>
+<p>要做的事情就是读放到某个文件夹中的word文档中的评价表格，根据表格内容进行处理，然后汇总所有的表格数据，根据计算规则，算出每个人的评分，在根据评分计算每个人的评价。汇总后写入Excel中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220120/word2excle.png" alt="处理Word解析、汇总、统计写入Excel"></p>
 <p>不可否认用Python来实现这样的事情真的是太方便了，人生苦短我用Python。<br>我是用的python的docx包来处理word，用pandas来处理数据并写入excel</p>
 <h1 id="一、首先导入包"><a href="#一、首先导入包" class="headerlink" title="一、首先导入包"></a>一、首先导入包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install docx</span><br><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
 <p>pandas写excel依赖openpyxl包所以也到导入</p>
@@ -1226,7 +1529,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1323,8 +1626,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1560,7 +1863,7 @@
 </ul>
 <p>总的来说，恶意代码的传播是因为用户的软件出现了漏洞、操作不慎或者是两者的结合造成。</p>
 <p>（1）病毒。病毒具备有自我复制能力，一般嵌入主机的程序中。当被感染文件执行操作，如，用户打开一个可执行文件时，病毒就会自我繁殖。病毒一般都具有破坏性。<br>（2）木马。这种程序从表面上看没有危害，但实际上却隐含着恶意的意图和破坏的作用。一些木马程序会通过覆盖系统中已经存在的文件的方式存在于系统之中；另外有的还会以软件的形式出现，因为它一般是以一个正常的应用程序身份在系统中运行的，所以这种程序通常不容易被发现。<br>（3）蠕虫。蠕虫是一种可以自我复制的完全独立的程序，它的传播不需要借助被感染主机中的程序和用户的操作，而是通过系统存在的漏洞和设置的不安全性来进行入侵，如通过共享的设置来侵入。蠕虫可以自动创建与它的功能完全相同的副本，并能在无人干涉的情况下自动运行，大量地复制占用计算机的空间，使计算机的运行缓慢甚至瘫痪。</p>
-<h2 id="2、攻击机制"><a href="#2、攻击机制" class="headerlink" title="2、攻击机制"></a>2、攻击机制</h2><p>恶意代码的行为表现各异，破坏程度千差万别，但基本作用机制大体相同，其整个作用过程分为6个部分。<br><strong>（1）侵入系统</strong>。侵入系统是而已代码实现其恶意目的的必要条件。恶意代码入侵的途径很多，包括前面传播方式的各种途径。如：从互联网下载的程序本身就可能含有而已代码；接收已感染恶意代码的电子邮件；从光盘或U盘往系统上安装软件；黑客或者攻击者故意将恶意代码植入系统等。<br><strong>（2）维持或提升权限</strong>。恶意代码的传播与破坏必须盗用用户或者进程的合法权限才能完成。<br><strong>（3）隐蔽策略</strong>。为了不让系统发现恶意代码已经侵入系统，恶意代码可能会改名、删除源文件或者修改系统的安全策略来隐藏自己。<br><strong>（4）潜伏</strong>。恶意代码侵入系统后，等待一定的条件，并具有足够的权限时，就发作并进行破坏活动。<br><strong>（5）破坏</strong>。恶意代码本质具有破坏性，其目的是造成信息丢失，泄密，破坏系统完整性等。<br><strong>（6）重复（1）至（5）对新的目标实施攻击过程。</strong><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220117/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E6%94%BB%E5%87%BB%E6%A8%A1%E5%9E%8B.png" alt="恶意代码的攻击模型"></p>
+<h2 id="2、攻击机制"><a href="#2、攻击机制" class="headerlink" title="2、攻击机制"></a>2、攻击机制</h2><p>恶意代码的行为表现各异，破坏程度千差万别，但基本作用机制大体相同，其整个作用过程分为6个部分。<br><strong>（1）侵入系统</strong>。侵入系统是而已代码实现其恶意目的的必要条件。恶意代码入侵的途径很多，包括前面传播方式的各种途径。如：从互联网下载的程序本身就可能含有而已代码；接收已感染恶意代码的电子邮件；从光盘或U盘往系统上安装软件；黑客或者攻击者故意将恶意代码植入系统等。<br><strong>（2）维持或提升权限</strong>。恶意代码的传播与破坏必须盗用用户或者进程的合法权限才能完成。<br><strong>（3）隐蔽策略</strong>。为了不让系统发现恶意代码已经侵入系统，恶意代码可能会改名、删除源文件或者修改系统的安全策略来隐藏自己。<br><strong>（4）潜伏</strong>。恶意代码侵入系统后，等待一定的条件，并具有足够的权限时，就发作并进行破坏活动。<br><strong>（5）破坏</strong>。恶意代码本质具有破坏性，其目的是造成信息丢失，泄密，破坏系统完整性等。<br><strong>（6）重复（1）至（5）对新的目标实施攻击过程。</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220117/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E6%94%BB%E5%87%BB%E6%A8%A1%E5%9E%8B.png" alt="恶意代码的攻击模型"></p>
 <h2 id="3、防范手段"><a href="#3、防范手段" class="headerlink" title="3、防范手段"></a>3、防范手段</h2><p>通用恶意代码检测技术包括静态和动态检测技术：</p>
 <ul>
 <li><p><strong>基于特征的扫描技术</strong><br>建立恶意代码的特征文件，在扫描时根据特征进行匹配查找</p>
@@ -1573,7 +1876,7 @@
 </li>
 </ul>
 <p>其中基于特征的扫描技术和校验和法是静态检测技术，沙箱技术和基于蜜罐的检测技术属于动态检测技术。</p>
-<h2 id="四、常见恶意代码"><a href="#四、常见恶意代码" class="headerlink" title="四、常见恶意代码"></a>四、常见恶意代码</h2><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220117/%E5%B8%B8%E8%A7%81%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81.png" alt="常见的恶意代码"></p>
+<h2 id="四、常见恶意代码"><a href="#四、常见恶意代码" class="headerlink" title="四、常见恶意代码"></a>四、常见恶意代码</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220117/%E5%B8%B8%E8%A7%81%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81.png" alt="常见的恶意代码"></p>
 <p>参考文献：<br>《网络攻防技术与实战 深入理解信息安全防护体系》 郭帆<br>《恶意代码及其防御》知乎 Drifter<br>《恶意代码》MBA智库百科</p>
 <hr>
 <p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -1581,7 +1884,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1678,8 +1981,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1812,7 +2115,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1909,8 +2212,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2033,7 +2336,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2130,8 +2433,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2258,7 +2561,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2355,8 +2658,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
-                2024-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2599,8 +2902,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2734,7 +3037,7 @@
             <p>恶意URL检测的方法很多，这里介绍通过机器学习分析URL文本分词词频来检测恶意URL。训练的数据集为开源数据集，通过机器学习训练检测模型，然后做了部分工程化的应用，将模型持久化，在应用的时候加载进来直接应用，不用重新进行训练。通过接口调用实现恶意URL检测预测判断。</p>
 <p>恶意URL检测，对应与机器学习是个分类问题，这里分别用逻辑回归和SVM支持向量机分类模型进行模型实现。</p>
 <p>具体实现过程包括<strong>数据载入</strong>–&gt;<strong>数据处理（分词、向量化处理）</strong>–&gt;<strong>模型训练</strong>–&gt;<strong>模型保存</strong>–&gt;<strong>模型应用</strong></p>
-<p><strong>项目组织结构如下：</strong><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201209/1-%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="项目组织结构"></p>
+<p><strong>项目组织结构如下：</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/1-%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="项目组织结构"></p>
 <h1 id="一、数据载入"><a href="#一、数据载入" class="headerlink" title="一、数据载入"></a>一、数据载入</h1><p>从数据集中载入数据，读取数据，将URL和标签进行识别和区分。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从文件中获取数据集</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDataFromFile</span><span class="params">(filename=<span class="string">'data/data.csv'</span>)</span>:</span></span><br><span class="line">    input_url = filename</span><br><span class="line">    data_csv = pd.read_csv(input_url, <span class="string">','</span>, error_bad_lines=<span class="literal">False</span>)</span><br><span class="line">    data_df = pd.DataFrame(data_csv)</span><br><span class="line">    url_df = np.array(data_df)</span><br><span class="line">    random.shuffle(url_df)</span><br><span class="line">    y = [d[<span class="number">1</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    inputurls = [d[<span class="number">0</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    <span class="keyword">return</span> inputurls,y</span><br></pre></td></tr></table></figure>
 
@@ -2761,7 +3064,7 @@
 <h2 id="载入已经训练好的模型"><a href="#载入已经训练好的模型" class="headerlink" title="载入已经训练好的模型"></a>载入已经训练好的模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#载入已经训练好的模型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadModel</span><span class="params">()</span>:</span></span><br><span class="line">    file1 = modelfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file1, <span class="string">'rb'</span>) <span class="keyword">as</span> f1:</span><br><span class="line">        model = pickle.load(f1)</span><br><span class="line">    f1.close()</span><br><span class="line"></span><br><span class="line">    file2 = vectorfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file2, <span class="string">'rb'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        vector = pickle.load(f2)</span><br><span class="line">    f2.close()</span><br><span class="line">    <span class="keyword">return</span> model,vector</span><br></pre></td></tr></table></figure>
 <h2 id="通过接口进行调用"><a href="#通过接口进行调用" class="headerlink" title="通过接口进行调用"></a>通过接口进行调用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过接口进行调用</span></span><br><span class="line"><span class="meta">@app.route('/&lt;path:path&gt;')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_predict</span><span class="params">(path)</span>:</span></span><br><span class="line">    X_predict = []</span><br><span class="line">    X_predict.append(path)</span><br><span class="line">    model, vector = loadModel()</span><br><span class="line">    x = vector.transform(X_predict)</span><br><span class="line">    y_predict = model.predict(x)</span><br><span class="line">    print(y_predict[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"url predict: "</span>+str(y_predict[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 
-<h1 id="五、应用效果"><a href="#五、应用效果" class="headerlink" title="五、应用效果"></a>五、应用效果</h1><p>将需要检测的URL，输入到<a href="http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。" target="_blank" rel="noopener">http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。</a><br><a href="http://127.0.0.1:5000/sohu.com/a/338823532_354899" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/338823532_354899</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201209/2-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%AD%A3%E5%B8%B8.png" alt="检测效果1"><br><a href="http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2020/20201209/3-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%81%B6%E6%84%8F.png" alt="检测效果2"></p>
+<h1 id="五、应用效果"><a href="#五、应用效果" class="headerlink" title="五、应用效果"></a>五、应用效果</h1><p>将需要检测的URL，输入到<a href="http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。" target="_blank" rel="noopener">http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。</a><br><a href="http://127.0.0.1:5000/sohu.com/a/338823532_354899" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/338823532_354899</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/2-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%AD%A3%E5%B8%B8.png" alt="检测效果1"><br><a href="http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/3-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%81%B6%E6%84%8F.png" alt="检测效果2"></p>
 <p>完整代码及数据集见：<a href="https://github.com/xiejava1018/urldetection.git" target="_blank" rel="noopener">https://github.com/xiejava1018/urldetection.git</a></p>
 <hr>
 <p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -2769,253 +3072,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d101efba/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d101efba/" itemprop="url">解决Anaconda报The channel is not accessible源通道不可用问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-26T15:53:22+08:00">
-                2021-11-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d101efba/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d101efba/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d101efba/" class="leancloud_visitors" data-flag-title="解决Anaconda报The channel is not accessible源通道不可用问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  675
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在通过pycharm开发python程序，引用anaconda环境建立虚拟环境时报错，报UnavailableInvalidChannel: The channel is not accessible or is invalid.应该是镜像源访问通道无法访问或无效。现将解决办法记录如下：</p>
-<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：win10<br>安装有anaconda 4.10.3<br>pycharm2021.2</p>
-<h1 id="报错现象："><a href="#报错现象：" class="headerlink" title="报错现象："></a>报错现象：</h1><p>在pycharm中新建python项目，引用anaconda建立虚拟环境时报错<br>报“UnavailableInvalidChannel: The channel is not accessible or is invalid.”<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211126/%E6%8A%A5%E9%94%99.png" alt="建立虚拟环境报错"></p>
-<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><h2 id="1、找到anaconda的源配置文件"><a href="#1、找到anaconda的源配置文件" class="headerlink" title="1、找到anaconda的源配置文件"></a>1、找到anaconda的源配置文件</h2><p>根据报错的建议提示：</p>
-<blockquote>
-<p>You will need to ajust your conda configuration to proceed.<br>Use ‘cona config –show channels’ to view your configuration’s current state,<br>and use ‘conda config –show-sources’ to view config file location.</p>
-</blockquote>
-<p>意思是建议你需要调整conda的配置来处理，可以通过<code>cona config --show channels</code>命令来查看你当前的配置状态，可以用<code>conda config --show-sources</code>看查看本地的配置文件。<br>根据这个建议，打开anaconda的命令行控制台。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211126/AnacondaPowershell.png" alt="Anaconda Powershell"></p>
-<p>敲入“conda config –show-sources”命令，显示当前的通道为<a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a>  报错就是说这个通道无法访问或无效。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show channels</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-
-<p>通过“conda config –show-sources” 查看配置文件的路径。配置文件为用户目录下的<code>.condarc</code>文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211126/%E6%89%BE%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="在这里插入图片描述"></p>
-<h2 id="2、修改为清华的镜像源"><a href="#2、修改为清华的镜像源" class="headerlink" title="2、修改为清华的镜像源"></a>2、修改为清华的镜像源</h2><p>将找到的.condarc文件打开。<br>拷贝以下清华的镜像源到该文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-
-<p>然后再次运行<code>conda config --show-sources</code>，确认配置文件内容已经修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><p>再打开pycharm引用Conda Enviroment新建新的虚拟环境。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211126/%E5%BB%BA%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="新建新的虚拟环境"><br>这时不报错可以正常创建Conda虚拟环境了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211126/%E5%88%9B%E5%BB%BACondaEnvironment.png" alt="创建Conda Environment"></p>
-<p>至此，修改成清华镜像源解决了Anaconda报The channel is not accessible源通道不可用的问题。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -3108,7 +3165,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3220,7 +3277,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

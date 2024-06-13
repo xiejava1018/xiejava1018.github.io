@@ -140,14 +140,14 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/880de541/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="安全运营是一个将技术、流程和人有机结合的复杂系统工程，通过对已有安全产品、工具和服务产出的数据进行有效的分析，持续输出价值，解决安全问题，以确保网络安全为最终目标。 安全加固和运维是网络安全运营中的两个重要方面。安全加固是指通过采取一系列措施，提高网络、系统和应用程序的安全性，以防止或减少未经授权的访问、数据泄露或系统损坏。这包括对网络设备、服务器、数据库和其他关键组件进行安全配置和加固，以防止潜">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2023-12-19T06:06:03.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:37.044Z">
+<meta property="article:modified_time" content="2024-06-13T14:52:31.322Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png">
 
 
 
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:31+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -505,7 +505,7 @@
 <p>以下从补丁管理、安全加固、日志的监控分析、日常安全运维几个方面来一窥安全加固和运维。</p>
 <h2 id="一、补丁管理"><a href="#一、补丁管理" class="headerlink" title="一、补丁管理"></a>一、补丁管理</h2><p>伴随着软件大小的不断膨胀，潜在的BUG 也不断增加。据估计，1992年发布的Windows3.1 有3 百万行代码。然而，估计它存在15000 到60000处潜在的BUG。1999 年发布的Windows2000 保守估计有三千五百万行代码，也就是说可能存在175,000 到700,000 个潜在的BUG。<br>安全相关的BUG 通常是在大量用户使用，以及黑客或者软件测试者企图进行渗透时才会发现的。一旦BUG 被发现，软件厂商通常会发布一段软件修正这个BUG。这种软件一般称为补丁(patch)、hotfix，或者Service pack。<br>与以往不同的是，只有时刻对出现的漏洞及时做出反应才能够有效地保护系统的有效性、保密性和完整性。几乎每天都会有厂商发布新的补丁，即使有经验的系统管理员也很难保证能够及时使用所有最新的补丁修补系统。<br>补丁管理是指一个区域的系统管理，包括获得、测试和安装多个补丁（代码改变）到一个执行的计算机系统。补丁管理可被看作变动管理的部分。<br>补丁管理任务包括：维持当前的可用补丁的知识；决定对于特定的系统什么样的补丁是合适的；确保补丁正确安装；安装后测试系统；证明所有相关的程序，例如所需的特殊的配置等。<br>在网络环境中，组织通常尝试维护计算机之间的软件版本一致性，并且通常执行集中式补丁管理，而不是允许每台计算机下载自己的补丁。集中式补丁管理使用中央服务器检查网络硬件是否有缺失的补丁、下载缺失的补丁并根据组织的补丁管理策略将其分发到网络上的计算机和其他设备。集中式补丁管理服务器的作用不仅仅是自动化补丁管理；它还使组织能够对补丁管理流程进行一定程度的控制。例如，如果确定某个特定补丁有问题，组织可以配置其补丁管理软件以阻止部署该补丁。集中式补丁管理的另一个优点是它有助于节省互联网带宽。从带宽的角度来看，允许组织中的每台计算机下载完全相同的补丁是没有意义的。相反，补丁管理服务器可以下载补丁一次并将其分发到指定接收它的所有计算机。</p>
 <h2 id="二、安全加固"><a href="#二、安全加固" class="headerlink" title="二、安全加固"></a>二、安全加固</h2><h3 id="1、安全加固作用"><a href="#1、安全加固作用" class="headerlink" title="1、安全加固作用"></a>1、安全加固作用</h3><p>各类网络设备、主机系统、数据库系统、应用系统等的安全状况是动态变化的，对于安全问题的发现及安全加固优化配置等操作都需要非常专业的安全技能，需要进行周期性的安全评估、审计、加固等工作，才能够保障整体安全水平的持续提高。<br>安全加固主要是解决以下安全问题：<br>（1）安装、配置不符合安全需求；<br>（2）使用、维护不符合安全需求；<br>（3）系统完整性被破坏；<br>（4）被植入木马程序；<br>（5）帐户、口令策略问题；<br>（6）安全漏洞没有及时修补；<br>（7）应用服务和应用程序滥用；</p>
-<h3 id="2、安全加固流程"><a href="#2、安全加固流程" class="headerlink" title="2、安全加固流程"></a>2、安全加固流程</h3><p>安全加固是根据专业安全评估结果，制定相应的系统加固方案，针对不同目标系统，通过打补丁、修改安全配置、增加安全机制等方法，合理进行安全性加强。加固的流程和范围如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png" alt="安全加固流程"></p>
+<h3 id="2、安全加固流程"><a href="#2、安全加固流程" class="headerlink" title="2、安全加固流程"></a>2、安全加固流程</h3><p>安全加固是根据专业安全评估结果，制定相应的系统加固方案，针对不同目标系统，通过打补丁、修改安全配置、增加安全机制等方法，合理进行安全性加强。加固的流程和范围如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231219/%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%B5%81%E7%A8%8B.png" alt="安全加固流程"></p>
 <h3 id="3、安全加固内容"><a href="#3、安全加固内容" class="headerlink" title="3、安全加固内容"></a>3、安全加固内容</h3><p>系统安全加固是指通过一定的技术手段，提高操作系统或网络设备安全性和抗攻击能力。内容包括主机加固、数据库加固、中间件加固、网络设备加固等。</p>
 <h4 id="（1）主机加固"><a href="#（1）主机加固" class="headerlink" title="（1）主机加固"></a>（1）主机加固</h4><p>Windows设备安全加固内容：账号、口令、授权、日志配置操作、日志保护配置、共享文件夹及访问权限、Windows服务、防病毒管理、自动播放、屏幕保护、远程登录控制、补丁管理、IP协议安全配置操作、时间同步服务。<br>Linux操作系统安全加固内容：账号、口令、文件权限、IP协议安全、日志审计、关闭不必要的服务、资源控制。<br>AIX操作系统安全加固内容：账号、口令、授权、日志配置、IP协议安全、路由协议安全、补丁管理、内核调整、服务进程和启动、AIX可被利用的漏洞。</p>
 <h4 id="（2）数据库加固"><a href="#（2）数据库加固" class="headerlink" title="（2）数据库加固"></a>（2）数据库加固</h4><p>加固的内容包括：身份鉴别、访问控制、安全审计、资源控制等安全项加固。加固方法包括：对数据库安全策略、服务等进行安全加固；加强对敏感存储过程的管理，尤其是能执行操作系统命令的存储过程。<br>Oracle数据库安全加固内容：账号、口令、授权、日志审计、远程操作连接。<br>Linux版MySQL数据库安全加固内容：认证授权（以非root用户启动MySQL、口令策略、共享帐号、最小权限、IP地址限制、删除无关帐号）、日志审计、安全文件权限配置、连接数限制。<br>Windows版MySQL安全加固内容：认证授权（以普通用户权限运行MySQL、口令策略、共享帐号、最小权限、IP地址限制、删除无关帐号）、日志审计、安全文件权限配置、连接数限制。<br>SQL Server数据库安全加固内容：账号、口令、授权、日志审计、通信协议、补丁、停用不必要的存储过程。</p>
@@ -548,7 +548,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       
@@ -696,7 +696,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -824,7 +824,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

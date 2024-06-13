@@ -313,6 +313,292 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d8042a8c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/d8042a8c/" itemprop="url">什么是基于风险的漏洞管理RBVM及其优势</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-06-13T22:20:11+08:00">
+                2024-06-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:42+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/d8042a8c/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d8042a8c/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/d8042a8c/" class="leancloud_visitors" data-flag-title="什么是基于风险的漏洞管理RBVM及其优势">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、什么是漏洞管理"><a href="#一、什么是漏洞管理" class="headerlink" title="一、什么是漏洞管理"></a>一、什么是漏洞管理</h2><p>安全漏洞是网络或网络资产的结构、功能或实现中的任何缺陷或弱点，黑客可以利用这些缺陷或弱点发起网络攻击，获得对系统或数据的未经授权的访问，或以其他方式损害组织。常见漏洞的示例包括可能允许某些类型的恶意软件进入网络的防火墙配置错误，或可能允许黑客接管设备的操作系统远程桌面协议中未修补的错误。</p>
+<p>漏洞管理是指通过对网络系统中的漏洞进行识别、评估、修复、验证等一系列操作，以保障系统的安全性。这一过程是IT风险管理的一个子领域，主要关注组织IT基础设施和软件中的安全漏洞。</p>
+<p>关于漏洞的分类及漏洞管理参见《<a href="http://xiejava.ishareread.com/posts/a937cbf5/" target="_blank" rel="noopener">安全运营之漏洞管理</a>》</p>
+<h2 id="二、什么是基于风险的漏洞管理RBVM"><a href="#二、什么是基于风险的漏洞管理RBVM" class="headerlink" title="二、什么是基于风险的漏洞管理RBVM"></a>二、什么是基于风险的漏洞管理RBVM</h2><p>传统的漏洞管理方法通常依赖于扫描工具来发现漏洞，然后按照某种顺序（如时间顺序或严重程度）进行修复。随着技术的快速发展和数字化转型的推进，网络系统和应用程序的复杂性日益增加，导致安全漏洞的数量也呈现爆炸式增长。面对不断增长的漏洞列表和警报，安全团队很容易陷入警报疲劳，难以判断哪些漏洞是真正需要优先处理的。</p>
+<p>而<strong>RBVM（Risk-based Vulnerability Management）是基于风险的漏洞管理</strong>，RBVM方法不是简单地修补所有漏洞，而是关注那些实际可利用的、对组织构成风险的漏洞。这种方法通过分析内部资产、攻击者活动以及威胁情报馈送（特别是漏洞情报），来确定哪些漏洞是需要优先处理的。是一种更加智能化和策略性的方法来识别、评估、优先级排序和修复组织中的安全漏洞。</p>
+<p>RBVM的核心在于更好地了解和评估风险，通过综合考虑漏洞的严重性、可利用性、资产价值等因素，确定每个漏洞的风险等级，并据此制定修复策略。这种方法能够帮助安全团队集中资源处理那些真正高风险的漏洞，提高漏洞管理的效率和效果。</p>
+<h2 id="三、RBVM的基本流程"><a href="#三、RBVM的基本流程" class="headerlink" title="三、RBVM的基本流程"></a>三、RBVM的基本流程</h2><p>RBVM（基于风险的漏洞管理）与传统漏洞管理的识别、评估、修复、验证相比是多了资产识别、风险评估和优先级排序。RBVM的基本流程如下：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240613/RBVM%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="RBVM的基本流程"></p>
+<p><strong>1. 资产识别</strong></p>
+<ul>
+<li>列出组织内的所有关键资产，包括硬件、软件、数据和网络等。</li>
+<li>对每个资产进行分类，如生产环境、测试环境、非关键业务系统等。</li>
+<li>确定每个资产的重要性级别，如高、中、低。</li>
+</ul>
+<p><strong>2. 漏洞发现</strong></p>
+<ul>
+<li>使用自动化漏洞扫描工具对关键资产进行定期扫描。</li>
+<li>结合手动渗透测试，发现可能存在的未知漏洞。</li>
+<li>订阅外部漏洞情报服务，获取最新的漏洞信息。</li>
+</ul>
+<p><strong>3. 风险评估</strong></p>
+<ul>
+<li>对每个发现的漏洞进行风险评估，包括严重性、可利用性、资产重要性等因素。</li>
+<li>使用脆弱性优先级技术（Vulnerability Prioritize Technology–VPT）、CVSS（Common Vulnerability Scoring System）或其他风险评估框架进行评分。</li>
+<li>结合威胁情报，评估漏洞被利用的可能性和潜在影响。</li>
+</ul>
+<p><strong>4. 优先级排序</strong></p>
+<ul>
+<li>根据风险评估结果，将漏洞按照风险级别进行排序。</li>
+<li>优先处理高风险漏洞，确保关键资产的安全。</li>
+<li>对于中低风险漏洞，制定缓解措施或监控计划。</li>
+</ul>
+<p><strong>5. 修复和缓解</strong></p>
+<ul>
+<li>对于高风险漏洞，立即制定修复计划并实施。</li>
+<li>对于无法立即修复的漏洞，制定缓解措施，如限制访问权限、部署防火墙规则等。</li>
+<li>与供应商和社区保持沟通，获取漏洞修复的最新信息。</li>
+</ul>
+<p><strong>6. 监控和重新评估</strong></p>
+<ul>
+<li>定期对已修复的漏洞进行验证，确保漏洞已被成功修复。</li>
+<li>监控新的漏洞和威胁情报，及时更新风险评估和优先级排序。</li>
+<li>定期对RBVM流程进行审查和更新，以适应组织环境的变化。</li>
+</ul>
+<p>RBVM策略将帮助我们优先处理那些对组织构成最大威胁的漏洞，从而在有限的资源下实现最大的安全效益。</p>
+<h2 id="四、RBVM的特点和优势"><a href="#四、RBVM的特点和优势" class="headerlink" title="四、RBVM的特点和优势"></a>四、RBVM的特点和优势</h2><p>RBVM是一种更为精细化和策略性的方法，旨在识别、评估、优先级排序和修复那些对组织构成最大风险的漏洞。与传统的漏洞管理方法相比，RBVM具有以下区别：</p>
+<ol>
+<li>风险评估：传统的漏洞管理通常侧重于发现和修复所有检测到的漏洞，而不考虑这些漏洞对组织的实际风险。而RBVM则根据漏洞的严重性、可利用性、资产的重要性以及威胁的紧迫性等因素，对漏洞进行风险评估，以确定修复的优先级。</li>
+<li>资源优化：由于RBVM侧重于修复高风险的漏洞，因此它可以帮助组织更有效地分配资源。组织可以将有限的资源集中在那些对业务影响最大的漏洞上，而不是盲目地修复所有检测到的漏洞。</li>
+<li>业务上下文：RBVM将漏洞管理置于业务上下文中，考虑漏洞对组织业务运营和战略目标的影响。这种方法使组织能够更清楚地了解哪些漏洞是需要优先处理的，以确保业务连续性和合规性。</li>
+<li>持续监控和评估：RBVM强调对漏洞的持续监控和评估。它使用自动化工具和流程来跟踪漏洞的状态，包括已知漏洞的发布、修复和再利用等。此外，RBVM还利用威胁情报来识别新的攻击向量和漏洞，以便及时调整漏洞管理策略。</li>
+<li>威胁情报整合：RBVM将威胁情报与漏洞管理相结合，以便更准确地评估漏洞的风险。威胁情报提供了关于攻击者行为、目标、工具和技术的信息，这些信息有助于组织识别那些可能被攻击者利用的漏洞。</li>
+<li>优先级排序：RBVM使用风险评估结果来确定漏洞修复的优先级。这有助于组织在有限的资源下，优先处理那些对业务影响最大的漏洞。与传统的漏洞管理方法相比，这种方法更加灵活和有效。</li>
+</ol>
+<p><strong>RBVM的优点</strong></p>
+<ol>
+<li>资源优化：通过优先处理高风险的漏洞，RBVM可以帮助组织更有效地分配资源，确保在有限的资源下取得最大的安全效益。</li>
+<li>业务连续性：RBVM关注业务上下文与业务的关联性强，确保在修复漏洞的过程中不会中断关键业务操作或影响用户体验。</li>
+<li>提高安全性：通过持续监控和评估漏洞风险，RBVM可以帮助组织及时发现并修复潜在的安全隐患，提高整体安全性。</li>
+</ol>
+<p>RBVM 在传统漏洞管理的基础上，进一步引入了资产攻击面、 漏洞情报、威胁情报等多维度数据 ，以脆弱性优先级技术（Vulnerability Prioritize Technology – VPT）对漏洞进行打分 与评级。如此一来，安全团队需要面对的“高危”、“严重”漏洞的范围与数量大大缩小，漏洞不再只是漏洞，而是与业务连续性、 资产关键性等联系更加紧密的脆弱点。安全团队可以更加主动地协调运维、业务部门率先修复高优先级的脆弱点。</p>
+<p><strong>RBVM 的主要价值在于</strong>，避免那些最需要优先被关注的可能带来巨大风险的漏洞淹没在海量漏洞告警中，转而<strong>让安全团队能够优先考虑优先级更高的关键漏洞</strong>。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/835ea0bc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,8 +646,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-05-30T14:40:53+08:00">
-                2024-05-30
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -499,7 +785,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -596,8 +882,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-05-25T11:12:13+08:00">
-                2024-05-25
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -896,8 +1182,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-05-25T10:59:50+08:00">
-                2024-05-25
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1175,8 +1461,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-05-14T14:32:24+08:00">
-                2024-05-14
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1297,25 +1583,25 @@
         
           
             <h2 id="一、什么是DevOps"><a href="#一、什么是DevOps" class="headerlink" title="一、什么是DevOps"></a>一、什么是DevOps</h2><p>DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。这是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例，是一个软件开发方法论。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240514/2.dev_ops.png" alt="DevOps"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/2.dev_ops.png" alt="DevOps"></p>
 <p>DevOps的目标是通过自动化“软件交付”和“架构变更”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠。这种方法的出现是因为软件行业日益清晰地认识到，为了按时交付软件产品和服务，开发和运维工作必须紧密合作。</p>
 <p>DevOps它强调开发（Development）和运维（Operations）之间的协作与交流，以提高软件交付的速度和质量。DevOps的核心目标是缩短系统开发生命周期，提供持续的交付和快速的反馈。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240514/1.devops.png" alt="DevOps"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/1.devops.png" alt="DevOps"></p>
 <h2 id="二、DevOps的背景和起源"><a href="#二、DevOps的背景和起源" class="headerlink" title="二、DevOps的背景和起源"></a>二、DevOps的背景和起源</h2><p>DevOps的背景和起源可以追溯到软件开发行业面临的一些挑战和变革。</p>
 <p>在传统的软件开发模式中，设计、开发、测试、部署等各个环节往往是顺序进行的又叫瀑布开发模型，每个阶段都有明确的输出和交接点。然而，这种模式在面对快速变化的市场需求时显得捉襟见肘，无法满足用户对软件的快速迭代和持续交付的需求。因此，敏捷开发模式开始受到广泛关注。</p>
 <p>敏捷开发强调跨部门、跨角色的协作与沟通，注重快速响应变化，持续交付价值。在这种模式下，开发团队被划分为多个小团队，每个小团队负责一部分功能或模块的开发，通过短周期的迭代开发方式，逐步实现软件的整体功能。这种模式有效地提高了软件开发的并行度和效率，但也给运维带来了新的挑战。</p>
 <p>持续开发带来的运维问题主要包括：随着软件功能的不断增加和版本迭代速度的加快，运维工作面临巨大的压力。开发团队和运维团队之间往往存在沟通障碍，导致开发完成的功能在部署和运维阶段出现问题。此外，传统的软件开发模式通常将开发、IT运营和质量保障设为各自分离的部门，这种分工方式使得跨部门的协作变得困难，进一步加剧了运维问题。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240514/3.%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B.png" alt="开发模型演进"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/3.%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B.png" alt="开发模型演进"></p>
 <p>为了解决这些问题，DevOps应运而生。DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。</p>
 <p>DevOps的起源可以追溯到2009年左右，当时一些欧洲的IT企业开始尝试将开发和运维工作结合起来，以提高软件交付的效率和质量。随着这种模式的不断发展和完善，DevOps逐渐成为了全球软件开发行业的一种主流趋势。</p>
 <p>DevOps将开发、测试、运维拉到同一战线，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布新版本。它的目标是打破开发和运维之间的壁垒，实现二者的紧密结合，从而提高软件交付的速度和质量。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240514/4.%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="开发模型之间的关系"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/4.%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="开发模型之间的关系"></p>
 <p>如今，越来越多的企业开始采用DevOps模式来改进软件开发和运维流程，以应对快速变化的市场需求。</p>
 <h2 id="三、DevOps的特点和价值"><a href="#三、DevOps的特点和价值" class="headerlink" title="三、DevOps的特点和价值"></a>三、DevOps的特点和价值</h2><p>DevOps（Development和Operations的组合），旨在通过自动化、协作和共享责任来提高软件开发和运维的效率、质量和安全性。以下是DevOps的主要特点和价值：</p>
 <h3 id="1、特点："><a href="#1、特点：" class="headerlink" title="1、特点："></a>1、特点：</h3><p>● 文化和团队协作：DevOps强调开发（Dev）和运维（Ops）团队之间的紧密合作，打破传统的壁垒，实现跨部门、跨角色的沟通和协作。<br>● 自动化：通过引入自动化工具和流程，DevOps可以显著减少手动操作，提高开发、测试、部署和运维的效率。<br>● 持续集成和持续部署（CI/CD）：CI/CD是DevOps的核心实践之一，通过自动化构建、测试和部署流程，实现快速迭代和交付。<br>● 监控和反馈：DevOps强调对系统性能、安全性和可靠性的实时监控，以便及时发现问题并进行修复。同时，通过收集和分析数据，为决策提供支持。<br>● 共享责任：在DevOps文化中，开发和运维团队共同承担系统质量、稳定性和可靠性的责任，共同推动系统的持续改进和优化。</p>
 <h3 id="2、价值："><a href="#2、价值：" class="headerlink" title="2、价值："></a>2、价值：</h3><p>● 提高交付速度和质量：通过自动化和协作，DevOps可以显著缩短开发周期，提高交付速度。同时，通过引入持续集成和持续部署等实践，可以确保代码质量和系统稳定性。<br>● 降低运维成本：通过自动化运维流程和工具，DevOps可以降低手动操作的错误率，减少故障恢复时间，从而降低运维成本。<br>● 增强安全性：DevOps强调对系统性能的实时监控和数据分析，有助于及时发现潜在的安全风险并进行修复。此外，通过引入自动化安全测试和审计工具，可以确保系统的安全性。<br>● 提高客户满意度：通过快速迭代和交付高质量的产品，DevOps可以满足客户的不断变化的需求，提高客户满意度。<br>● 促进创新和竞争力：DevOps鼓励团队之间的协作和创新，有助于推动组织的持续创新和竞争力提升。</p>
 <p>DevOps将开发、测试、运维拉到同一战线，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布交付新版本。对比前面所说的瀑布式开发和敏捷开发，我们可以明显看出，DevOps贯穿了软件全生命周期。下面这张图，更明显地说明了DevOps所处的位置，还有它的价值：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240514/5.devops%E4%BB%B7%E5%80%BC.png" alt="devops价值"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/5.devops%E4%BB%B7%E5%80%BC.png" alt="devops价值"></p>
 <p>DevOps通过打破传统壁垒、引入自动化和协作实践、实时监控和数据分析等手段，为组织带来了诸多价值和优势。随着技术的不断发展和市场需求的变化，DevOps将在未来继续发挥重要作用。</p>
 <h2 id="四、DevOps如何帮助提高软件交付速度和质量"><a href="#四、DevOps如何帮助提高软件交付速度和质量" class="headerlink" title="四、DevOps如何帮助提高软件交付速度和质量"></a>四、DevOps如何帮助提高软件交付速度和质量</h2><p>DevOps通过一系列的实践和工具，帮助提高软件交付速度和质量，具体体现在以下几个方面：</p>
 <ol>
@@ -1327,7 +1613,7 @@
 <li>反馈迭代循环：<br>○ DevOps通过建立反馈循环，将客户反馈和业务需求纳入产品迭代计划中。这使得团队能够更快地响应客户需求和变化，不断改进产品以满足市场的期望。这种反馈循环有助于确保软件交付的质量符合客户和业务的需求。</li>
 </ol>
 <p>DevOps通过持续集成、自动化测试、自动化部署和配置管理、实时监控和快速响应、文化与团队协作以及反馈循环等手段，帮助提高软件交付速度和质量。这些实践和工具使得软件开发和交付过程更加高效、可靠和灵活。以下是DevOps生态圈中的一些工具，企业可以通过集成这些工具搭建自己的DevOps平台。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240514/devops%E7%94%9F%E6%80%81%E5%9C%88.png" alt="devops生态圈"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/devops%E7%94%9F%E6%80%81%E5%9C%88.png" alt="devops生态圈"></p>
 <p>在DevOps的流程下，运维人员会在项目开发期间就介入到开发过程中，了解开发人员使用的系统架构和技术路线，从而制定适当的运维方案。而开发人员也会在运维的初期参与到系统部署中，并提供系统部署的优化建议。除了平台工具外，想要将DevOps真正落地，首先第一点，是<strong>思维转变</strong>，DevOps并不仅仅是组织架构变革，更是企业文化和思想观念的变革。根据DevOps思想重新梳理全流程的<strong>规范和标准</strong>。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -1335,7 +1621,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1432,8 +1718,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-04-29T10:07:24+08:00">
-                2024-04-29
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1553,10 +1839,10 @@
       
         
           
-            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240428/PDCA.png" alt="PDCA"></p>
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240428/PDCA.png" alt="PDCA"></p>
 <h2 id="一、什么是PDCA"><a href="#一、什么是PDCA" class="headerlink" title="一、什么是PDCA"></a>一、什么是PDCA</h2><p>PDCA循环是由美国质量管理专家沃特·阿曼德·休哈特（Walter A. Shewhart）在20世纪30年代提出的，最初用于制造业的质量管理。休哈特博士在构想PDCA循环时，总结了质量管理活动的基本规律，并将其上升为科学的程序。</p>
 <p>在PDCA循环中，每个阶段都有其特定的任务和目的：<br><strong>计划阶段（Plan）</strong>：主要工作是搜集资料、找出问题、找出主要问题、制定计划措施。计划需要明确目的、措施、执行部门、执行时间等。<br><strong>执行阶段（Do）</strong>：即按照计划要求去实地执行，实现计划中的内容。<br><strong>检查阶段（Check）</strong>：总结执行计划的结果，注意效果，找出成功的经验和失败的教训。<br><strong>处理阶段（Act）</strong>：对检查的结果进行处理，巩固措施，制定标准，形成规章制度。同时，找出遗留问题，转入下一个循环。</p>
-<p>然而，真正让PDCA循环广为人知并得以普及的是美国的质量管理专家爱德华兹·戴明（W.E. Deming）。戴明博士在20世纪50年代初采纳并大力宣传了PDCA循环，因此这个循环也被称为“<strong>戴明环</strong>”。戴明博士强调持续的质量改进和顾客满意，他提出的PDCA循环理念对于企业的质量管理具有深远的影响。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240428/PDCA%E6%88%B4%E6%98%8E%E7%8E%AF.png" alt="PDCA戴明环"></p>
+<p>然而，真正让PDCA循环广为人知并得以普及的是美国的质量管理专家爱德华兹·戴明（W.E. Deming）。戴明博士在20世纪50年代初采纳并大力宣传了PDCA循环，因此这个循环也被称为“<strong>戴明环</strong>”。戴明博士强调持续的质量改进和顾客满意，他提出的PDCA循环理念对于企业的质量管理具有深远的影响。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240428/PDCA%E6%88%B4%E6%98%8E%E7%8E%AF.png" alt="PDCA戴明环"></p>
 <p>PDCA循环的提出背景与当时工业界对质量管理的需求密不可分。随着市场竞争的加剧和消费者对产品质量要求的提高，企业需要寻求一种有效的质量管理方法来提高产品质量和客户满意度。PDCA循环提供了一个科学、系统的质量管理框架，帮助企业识别问题、制定改进措施、执行计划并检查结果，从而实现质量的持续改进。</p>
 <p>PDCA循环的提出也反映了质量管理理念的发展。从最初的质量检验阶段，到后来的统计质量控制阶段，再到全面的质量管理阶段，人们对于质量管理的认识不断深化。PDCA循环作为全面质量管理所应遵循的科学程序，强调了质量管理的系统性和持续改进的重要性。PDCA循环这个由美国质量管理专家沃特·阿曼德·休哈特提出的理念，经戴明采纳、宣传后普及，不仅在质量管理领域发挥了重要作用，而且已经渗透到各个行业和领域的各个方面。</p>
 <h2 id="二、PDCA的应用场景"><a href="#二、PDCA的应用场景" class="headerlink" title="二、PDCA的应用场景"></a>二、PDCA的应用场景</h2><p>PDCA循环作为一种科学的管理工具，其适用范围非常广泛，几乎可以应用于所有需要持续改进和提升的领域和场景：</p>
@@ -1574,7 +1860,7 @@
 <li><strong>Plan（计划）阶段</strong>：<br>在信息系统项目管理的初期，项目管理师需要制定详细的项目计划。这一阶段涉及项目的目标、范围、时间、成本、质量、人力资源、沟通、风险和干系人管理等各个方面的规划。计划制定不仅仅是简单的设定目标和任务，还包括对市场、技术、用户需求等的深入分析和预测。此外，项目管理师还需要制定具体的实施步骤和对策，确保项目的顺利进行。</li>
 <li><strong>Do（执行）阶段</strong>：<br>执行阶段主要是按照预定的计划进行实施。这包括分配任务、协调团队成员、解决遇到的问题等。在这一阶段，项目管理师需要确保所有团队成员都清楚自己的职责和任务，并且能够按照计划执行。</li>
 <li><strong>Check（检查）阶段</strong>：<br>在执行阶段之后，项目管理师需要对项目的进展和成果进行检查。这包括与计划的对比，检查项目是否按照预定的目标进行，以及是否存在偏差或问题。通过收集和分析数据，项目管理师可以评估项目的状态，并确定是否需要调整或改进。</li>
-<li><strong>Act（处理）阶段</strong>：<br>处理阶段是PDCA循环的关键部分。在这一阶段，项目管理师需要分析检查阶段发现的问题和偏差，找出原因，并制定相应的纠正措施和预防措施。这有助于项目重新回到预定的轨道，并确保项目能够顺利完成。此外，项目管理师还需要总结项目执行过程中的经验教训，为今后的项目提供有益的借鉴。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240428/PDCA%E6%8C%81%E7%BB%AD%E6%94%B9%E8%BF%9B.png" alt="PDCA持续改进"></li>
+<li><strong>Act（处理）阶段</strong>：<br>处理阶段是PDCA循环的关键部分。在这一阶段，项目管理师需要分析检查阶段发现的问题和偏差，找出原因，并制定相应的纠正措施和预防措施。这有助于项目重新回到预定的轨道，并确保项目能够顺利完成。此外，项目管理师还需要总结项目执行过程中的经验教训，为今后的项目提供有益的借鉴。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240428/PDCA%E6%8C%81%E7%BB%AD%E6%94%B9%E8%BF%9B.png" alt="PDCA持续改进"></li>
 </ol>
 <p>整个PDCA循环是一个不断迭代和持续改进的过程。每一个循环周期结束后，遗留的问题和需要改进的地方都会被纳入下一个循环周期，通过不断的循环，项目的管理水平会得到不断提升。</p>
 <p>总的来说，PDCA循环在信息系统项目管理中的应用是一个系统性、循环性和持续改进的过程。通过科学的规划、执行、检查和处理，项目管理师可以确保项目的顺利进行和成功完成，同时提升项目管理的水平和效率。</p>
@@ -1584,7 +1870,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1681,8 +1967,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-04-26T08:59:04+08:00">
-                2024-04-26
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1826,7 +2112,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1923,8 +2209,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-04-23T11:30:32+08:00">
-                2024-04-23
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2044,7 +2330,7 @@
       
         
           
-            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240423/SWOT.png" alt="SWOT"></p>
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240423/SWOT.png" alt="SWOT"></p>
 <h2 id="一、什么是SWOT分析法"><a href="#一、什么是SWOT分析法" class="headerlink" title="一、什么是SWOT分析法"></a>一、什么是SWOT分析法</h2><p>SWOT分析法是一种用于评估组织、项目、个人或任何其他事物的战略规划工具。SWOT是Strengths（优势）、Weaknesses（劣势）、Opportunities（机会）和Threats（威胁）的缩写。通过分析这四个方面，SWOT分析法可以帮助决策者了解当前情况，并为未来的行动制定策略。</p>
 <ol>
 <li>优势（Strengths）：指组织或项目内部的资源和能力，这些可以成为竞争优势。例如，强大的品牌、专业技能、专利技术、良好的客户关系、充足的资金等。</li>
@@ -2064,7 +2350,7 @@
 <li>咨询顾问和策略分析师：作为专业的咨询顾问或策略分析师，SWOT分析法是他们为客户提供服务的常用工具。通过运用SWOT分析法，他们可以帮助客户识别核心优势、挖掘市场机会，并制定相应的战略和行动计划。</li>
 </ol>
 <p>综上所述SWOT分析法适合那些需要制定战略、进行市场分析和评估竞争态势的人群使用。通过运用这一工具，他们可以更加清晰地认识到自身的优势和劣势，以及外部环境中的机遇和挑战，从而制定出更加有效的战略和决策。</p>
-<h2 id="四、SWOT分析法的应用场景"><a href="#四、SWOT分析法的应用场景" class="headerlink" title="四、SWOT分析法的应用场景"></a>四、SWOT分析法的应用场景</h2><p>SWOT分析法，也称为SWOT矩阵，是一种常用的战略规划工具，用于评估一个企业或项目的内部优势（Strengths）、劣势（Weaknesses）以及外部环境的机会（Opportunities）和威胁（Threats）。这种分析法通过系统地识别这些关键因素，帮助企业或个人制定更有效的发展战略和决策。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240423/swot%E7%9F%A9%E9%98%B5.png" alt="SWOT分析矩阵"><br>利用SWOT矩阵，把四个大方向的条件罗列出来，能够初步分析一件事情要不要做。<br>如果一件事情已经决定要做了，再把SWOT的四个条件通过矩阵做交叉关联，就有了这个SWOT交叉矩阵。<br>用交叉矩阵可以更进一步分析在内部和外部因素综合之下，该怎么能把事情处理的更好。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240423/swot%E4%BA%A4%E5%8F%89%E7%9F%A9%E9%98%B5.png" alt="SWOT分析交叉矩阵"><br>具体地，SWOT分析法的应用包括：</p>
+<h2 id="四、SWOT分析法的应用场景"><a href="#四、SWOT分析法的应用场景" class="headerlink" title="四、SWOT分析法的应用场景"></a>四、SWOT分析法的应用场景</h2><p>SWOT分析法，也称为SWOT矩阵，是一种常用的战略规划工具，用于评估一个企业或项目的内部优势（Strengths）、劣势（Weaknesses）以及外部环境的机会（Opportunities）和威胁（Threats）。这种分析法通过系统地识别这些关键因素，帮助企业或个人制定更有效的发展战略和决策。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240423/swot%E7%9F%A9%E9%98%B5.png" alt="SWOT分析矩阵"><br>利用SWOT矩阵，把四个大方向的条件罗列出来，能够初步分析一件事情要不要做。<br>如果一件事情已经决定要做了，再把SWOT的四个条件通过矩阵做交叉关联，就有了这个SWOT交叉矩阵。<br>用交叉矩阵可以更进一步分析在内部和外部因素综合之下，该怎么能把事情处理的更好。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240423/swot%E4%BA%A4%E5%8F%89%E7%9F%A9%E9%98%B5.png" alt="SWOT分析交叉矩阵"><br>具体地，SWOT分析法的应用包括：</p>
 <ol>
 <li>优势（Strengths）：这是组织内部积极且有助于实现目标的因素。例如，企业可能拥有强大的品牌影响力、技术优势、高效的供应链或优秀的员工队伍。</li>
 <li>劣势（Weaknesses）：这些是组织内部消极且可能阻碍目标实现的因素。例如，企业可能面临资金短缺、技术落后、管理不善或市场份额小等问题。</li>
@@ -2129,7 +2415,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2226,8 +2512,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-04-18T10:47:08+08:00">
-                2024-04-18
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:40+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2380,7 +2666,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2477,8 +2763,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-04-10T19:58:03+08:00">
-                2024-04-10
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:40+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2615,7 +2901,7 @@
 </ol>
 <p>总的来说，数据脱敏是确保数据安全和隐私保护的重要手段，有助于企业在处理敏感数据时遵守法规要求，降低安全风险，并促进数据的合规使用和共享。</p>
 <h2 id="三、数据脱敏系统的工作原理"><a href="#三、数据脱敏系统的工作原理" class="headerlink" title="三、数据脱敏系统的工作原理"></a>三、数据脱敏系统的工作原理</h2><p>数据脱敏系统的工作原理涉及几个关键步骤和技术，主要目的是将敏感数据转换成非敏感数据，同时保持数据的一致性和可用性。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240410/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="数据脱敏系统工作原理图"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240410/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="数据脱敏系统工作原理图"></p>
 <ol>
 <li>数据识别：首先，系统需要识别和分类需要脱敏的数据。这通常涉及到扫描数据源，如数据库、数据仓库或文件系统，以确定包含敏感信息的数据字段。这些数据字段可能包括个人身份信息（如姓名、身份证号、联系方式等）、财务信息、健康记录等。</li>
 <li>脱敏规则定义：一旦识别了敏感数据，下一步是定义脱敏规则。这些规则指定了如何转换敏感数据，以及哪些数据需要被脱敏。脱敏规则可以基于数据类型、数据敏感级别、业务需求和合规要求来制定。例如，可以使用掩码遮盖电话号码的一部分，或者将姓名替换为随机生成的别名。</li>
@@ -2667,247 +2953,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/3abdad7c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/3abdad7c/" itemprop="url">实战要求下，如何做好资产安全信息管理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-09T16:02:48+08:00">
-                2024-04-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-04-09T16:17:21+08:00">
-                2024-04-09
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/3abdad7c/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/3abdad7c/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/3abdad7c/" class="leancloud_visitors" data-flag-title="实战要求下，如何做好资产安全信息管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>“摸清家底，认清风险”做好资产管理是安全运营的第一步。本文一起来看一下资产管理的重要性、难点痛点是什么，如何做好资产管理，认清风险。</p>
-<h2 id="一、资产安全信息管理的重要性"><a href="#一、资产安全信息管理的重要性" class="headerlink" title="一、资产安全信息管理的重要性"></a>一、资产安全信息管理的重要性</h2><p>安全风险管理的三要素分别是资产、威胁和脆弱性，脆弱性的存在将会导致风险，而威胁主体利用脆弱性产生风险。网络攻击主要利用了系统的脆弱性。由于网络管理对象（资产）自身的脆弱性，使得威胁的发生成为可能，从而造成了不同的影响，形成了风险。什么是网络安全资产参见《<a href="http://xiejava.ishareread.com/posts/dc7085dc/" target="_blank" rel="noopener">网络安全之资产及攻击面管理</a>》</p>
-<p>首先，网络安全资产管理有助于降低网络风险。通过对公司网络资产进行识别和分类，包括硬件设备、软件系统、数据等，可以更好地进行后续的安全措施和决策，从而最大程度地减少网络风险和避免潜在的安全漏洞。这对于保护企业的核心业务和数据安全至关重要，有助于防止数据泄露、非法访问和业务中断等风险事件的发生。</p>
-<p>其次，网络安全资产管理是高质量安全管理与运营的基础。良好的资产管理能够有效支撑互联网暴露面收敛、安全漏洞修复与验证、威胁检测与分析、安全事件响应与处置等日常安全运营与攻防对抗中的关键活动。这不仅可以提高网络安全的防御能力，还可以为企业的日常安全管理和运营工作带来极大的便利。</p>
-<p>此外，网络安全资产管理也有助于满足法规和合规要求。随着网络安全法规的不断完善和监管力度的加强，企业需要确保其网络资产符合相关法规和政策要求，避免违法违规行为的发生。通过网络安全资产管理，企业可以系统地管理网络资产，确保合规性，降低因违反法规而带来的潜在风险。</p>
-<h2 id="二、资产安全信息管理的痛点"><a href="#二、资产安全信息管理的痛点" class="headerlink" title="二、资产安全信息管理的痛点"></a>二、资产安全信息管理的痛点</h2><p>随着企业数字化转型进程的不断加速，IT系统安全资产数量增长迅猛。与此同时，云计算、大数据等各种新技术应用也使得安全资产类型日益复杂多样。传统的安全资产管理方式难以适应新环境要求，主要面临如下问题：</p>
-<ol>
-<li><strong>安全资产覆盖面广，梳理工作量巨大</strong><br>安全资产管理的对象包括与IT系统运行相关的主机/虚机、容器、中间件、数据库、大数据组件、WEB应用、WEB框架、网络设备、安全设备等其它应用软件。安全资产分布范围广、种类繁多、属性各异、关系复杂，面对这么多的安全资产对象，传统的填表梳理方式需要投入大量的人力，而且效果极差。</li>
-<li><strong>台账不清晰，无法为安全资产风险治理提供有效输入</strong><br>人工的梳理方式同时也带来大量的安全资产遗漏、属性缺失、资产归属关系不清、安全资产数据碎片化严重等问题，很难形成完整的安全资产台账与暴露面台账，无法为安全资产风险治理与防护提供支撑。</li>
-<li><strong>安全资产更新不及时，无法对变更进行及时监控与预警</strong><br>缺乏动态的资产更新机制，不能及时发现安全资产的变更情况，例如互联网暴露面端口的开通、恶意应用软件的安装、高危WEB插件的应用等，无法及时对安全资产进行风险预警与防范。</li>
-<li><strong>缺乏安全资产运营的机制和流程保障，安全资产管理成效差</strong><br>没有建立规范的安全资产运营机制与流程，安全资产管理工作存在着职责不清、管理制度缺乏、安全资产管理工作无法有条不紊地进行等问题，最终导致安全资产纳管随意、安全资产管理成效差，安全资产风险处置无法有的放矢。</li>
-</ol>
-<h2 id="三、如何做好资产安全信息管理"><a href="#三、如何做好资产安全信息管理" class="headerlink" title="三、如何做好资产安全信息管理"></a>三、如何做好资产安全信息管理</h2><p>以下梳理了资产安全信息管理的运营管理事项<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240409/%E8%B5%84%E4%BA%A7%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E4%BA%8B%E9%A1%B9.png" alt="资产安全信息管理事项"></p>
-<h3 id="1、提升资产安全信息自动化、集约化管理能力，做到资产全过程管理"><a href="#1、提升资产安全信息自动化、集约化管理能力，做到资产全过程管理" class="headerlink" title="1、提升资产安全信息自动化、集约化管理能力，做到资产全过程管理"></a>1、提升资产安全信息自动化、集约化管理能力，做到资产全过程管理</h3><p><strong>管理措施：</strong><br>1)集约化统一纳管<br>随着数字化应用的深入，资产分布在多个数据中心、私有云、公有云、混合云、边缘计算和物联网等各种基础设施环境中，照成了资产信息割裂碎片化，给资产的统一管理带来了困难。为了看到全局的资产信息，有必要实现资产安全信息的自动化、集约化管理，将资产安全管理纳入云主虚机分配、IP 地址申请等流程，打通资产安全管理平台与云管平台、各专业网管系统等 平台接口，将资产安全信息通过接口采集至资产安全管理平台， 确保云网资产安全信息自动化、集约化的统一纳管。<br>2)资产信息全过程管理<br>资产的全生命周期覆盖资产上线、资产运行、资产下线，在这过程中要对资产进行定级备案、对资产的台账进行维护、对资产进行风险评估、对资产进行定期的清查。参考《<a href="http://xiejava.ishareread.com/posts/a446b750/" target="_blank" rel="noopener">安全运营之资产安全信息管理</a>》。<br>在资产上线阶段，组织开展Agent安装、资产信息同步、资产安全管理平台信息确认，提升新增资产入网的规范性；在资产入网运营阶段，结合网络部门IP地址分配清单，通过网络空间测绘、IP扫描、流量监测等技术定期开展资产清查，对发现的未知IP地址开展溯源、认领等资产核查工作；在资产下线退网阶段，及时清理资产安全管理平台基本信息、IP地址备案、云管平台等资产分配管理系统数据。<br><strong>运营指标：</strong><br>关键的运营指标包括：纳管的资产类型、各类型资产数、Agent的安装率、资产信息准确率、安全资产脱管率（Agent被卸载或失效）、“三无”资产数等。</p>
-<h3 id="2、做好资产的安全风险识别"><a href="#2、做好资产的安全风险识别" class="headerlink" title="2、做好资产的安全风险识别"></a>2、做好资产的安全风险识别</h3><p><strong>管理措施：</strong><br>对本单位管理的资产和安全事件进行关联、分析、展示和管理；<br>对本单位管理的资产和脆弱性进行关联、分析、展示和管理；<br>按期开展风险评估和符合性评测，使用定量或定性的风险评估模型，结合资产价值、威胁可能性和脆弱性暴露程度进行计算风险等级，对本单位资产风险情况进行动态管理。<br><strong>运营指标：</strong><br>关键的运营指标包括：资产漏洞数、漏洞影响资产数、资产被攻击数、资产被攻击趋势、资产风险值等。</p>
-<h3 id="3、做好互联网暴露面的测绘与管空"><a href="#3、做好互联网暴露面的测绘与管空" class="headerlink" title="3、做好互联网暴露面的测绘与管空"></a>3、做好互联网暴露面的测绘与管空</h3><p><strong>管理措施：</strong><br>1）开通审批，应按“非必须不开通”、“先审批后开通”原则管控互联网暴露资产。开通前应由需求单位开展必要性评估，安全运营维护单位完成系统安全加固和问题整改，安全运营支撑单位开展风险评估，安全运营归口管理单位审核。<br>2）统一管理，对互联网暴露面资产数据进行统一管理，应对互联网暴露资产进行清单制管理，安全运营支撑单位应至少每月开展一次暴露资产探测和自有网站备案情况自查，安全运营维护单位及时整改相关问题。对未经审批上线的互联网暴露资产责任到人。<br>3）定期测绘，基于本单位企业指纹和暴露面地址段定期进行互联网暴露面测绘。安全运营支撑单位至少每月开展一次互联网暴露资产安全风险评估，包含安全防护策略有效性核实、全 IP 和端口漏洞扫描、渗透测试和基线配置合规率核查等。系统发生代码更新或版本升级时，安全运营维护单位应重新开展安全风险评估。<br>4）下线更新，互联网暴露资产下线阶段，系统维护单位应及时发起相关资源的下线申请，在互联网暴露资产关停后 15 日内完成资产安全管理平台的信息更新。<br><strong>运营指标：</strong><br>关键的运营指标包括：互联网暴露的系统数、互联网暴露面审批数、互联网暴露的URL数、互联网暴露的端口数、互联网暴露的APP、互联网暴露面趋势等。</p>
-<h3 id="4、做好资产安全信息的动态稽核管理"><a href="#4、做好资产安全信息的动态稽核管理" class="headerlink" title="4、做好资产安全信息的动态稽核管理"></a>4、做好资产安全信息的动态稽核管理</h3><p><strong>管理措施：</strong><br>1）对内网资产资源自动化测绘，对未纳管资产的扫描和识别，应至少每季度开展一次资产探测，识别并推进“三无”资产下线。<br>2）定期对资产数据进行稽核，确保定级备案资产信息和资产安全管理平台、4A 系统资产信息一致。<br><strong>运营指标：</strong><br>关键的运营指标包括：“三无”资产数、未纳管资产数、资产信息准确率等。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -3000,7 +3046,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3112,7 +3158,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

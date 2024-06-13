@@ -140,21 +140,21 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/d97c8b95/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="在应用机器学习的过程中，很大一部分工作都是在做数据的处理，一个非常常见的场景就是将一个list序列的特征数据拆成多个单独的特征数据。 比如数据集如下所示： 12345data &#x3D; [[&#39;John&#39;, &#39;25&#39;, &#39;Male&#39;,[99,100,98]],        [&#39;Emily&#39;, &#39;22&#39;, &#39;Female&#39;,[97,99,98]],        [&#39;Michael&#39;, &#39;30&#39;, &#39;Ma">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2023-12-26T09:06:29.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:37.056Z">
+<meta property="article:modified_time" content="2024-06-13T14:52:32.199Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png">
 
 
 
@@ -372,8 +372,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:32+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -494,28 +494,28 @@
         <p>在应用机器学习的过程中，很大一部分工作都是在做数据的处理，一个非常常见的场景就是将一个list序列的特征数据拆成多个单独的特征数据。</p>
 <p>比如数据集如下所示：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="在这里插入图片描述"></p>
 <p>很多场景是需要将类似于Score的list序列特征，拆成多个特征值如这里的语、数、外的分数。</p>
 <p>下面通过几个实例来将dataframe列中的list序列转换为多列。</p>
 <h3 id="1、一维序列拆成多列"><a href="#1、一维序列拆成多列" class="headerlink" title="1、一维序列拆成多列"></a>1、一维序列拆成多列</h3><p>可以通过在列上应用Series来进行拆分。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
 <p>可以看到将Score的数组，拆分成了English、Math、Chinese三个特征字段了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_data=df_data.join(df_score)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png" alt="在这里插入图片描述"></p>
 <h3 id="2、二维序列拆成多列"><a href="#2、二维序列拆成多列" class="headerlink" title="2、二维序列拆成多列"></a>2、二维序列拆成多列</h3><p>用同样的思路也可以将二维序列的特征列拆成多列<br>如特征列是二维序列，序列里还有多个序列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>],[<span class="number">89</span>,<span class="number">70</span>]]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>],[<span class="number">99</span>,<span class="number">96</span>]]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>],[<span class="number">87</span>,<span class="number">99</span>]]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series)</span><br><span class="line">df_score_1=df_score[<span class="number">0</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>&#125;)</span><br><span class="line">df_score_2=df_score[<span class="number">1</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'Biology'</span>,<span class="number">1</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score=df_score_1.join(df_score_2)</span><br><span class="line">df_data=df_data.join(df_score_1).join(df_score_2)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
 <p>另外一种情况就是序列里面只有一个序列的二维序列，数据如下所示：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>,<span class="number">89</span>,<span class="number">70</span>]]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">96</span>]]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">87</span>,<span class="number">99</span>]]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
 <p>这样也可以通过多次应用Series来进行拆分，也可以先explode()再应用Series来进行拆分。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series)[<span class="number">0</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>,<span class="number">3</span>:<span class="string">'Biology'</span>,<span class="number">4</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].explode().apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>,<span class="number">3</span>:<span class="string">'Biology'</span>,<span class="number">4</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
 <p>两者效果是一样的。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -523,7 +523,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       
@@ -671,7 +671,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -799,7 +799,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

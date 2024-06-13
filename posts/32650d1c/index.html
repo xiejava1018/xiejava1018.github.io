@@ -140,19 +140,19 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/32650d1c/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="实现了hexo的md文件格式解析，通过什么方式怎么来迁移hexo的博客到django的博客呢？开始想到的是通过Django的manage.py的shell命令，通过shell可以执行写好的python脚本进行hexo的md文件格式解析并入库。后来想想为啥不直接自定义一个manage.py的命令直接进行迁移呢？就如我们新建Django工程迁移数据库一样，执行python manage.py migr">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C1.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C2.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-07-27T08:39:24.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:36.854Z">
+<meta property="article:modified_time" content="2024-06-13T14:52:22.896Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -370,8 +370,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:22+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -481,7 +481,7 @@
         <p>实现了hexo的md文件格式解析，通过什么方式怎么来迁移hexo的博客到django的博客呢？开始想到的是通过Django的manage.py的shell命令，通过shell可以执行写好的python脚本进行hexo的md文件格式解析并入库。后来想想为啥不直接自定义一个manage.py的命令直接进行迁移呢？就如我们新建Django工程迁移数据库一样，执行python manage.py migrate来迁移数据库。我们可以定义python manage.py xxx来执行的迁移hexo博客。</p>
 <p>自定义Django-admin命令分三步：创建management文件夹、编写命令代码、测试验证</p>
 <h2 id="一、创建management文件夹"><a href="#一、创建management文件夹" class="headerlink" title="一、创建management文件夹"></a>一、创建management文件夹</h2><p>自定义的Django-admin管理命令本质上是一个python脚本文件，它的存放路径必须遵循一定的规范，一般位于app/management/commands目录。整个文件夹的布局如下所示：<br><code>注意app要在setting中注册</code><br>在blog/management/commands包下面创建transblog.py文件</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="在这里插入图片描述"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt="在这里插入图片描述"></p>
 <p>这里有两个要注意的地方:</p>
 <blockquote>
 <p>1、app要在setting中注册。如blog在setting中注册了所以可以在blog/management/commands包下面创建transblog.py文件，api和common都没有在setting中注册所以在这两个目录下创建的不会作为管理命令生效。<br>2、创建的management/commands是Python包，不是单纯的目录，区别就是目录里必须有<strong>init</strong>.py文件，空文件都可以。</p>
@@ -491,19 +491,19 @@
 
 <p>代码很简单，就是根据读取命令行的参数，这个参数就是需要迁移hexo的.md文件的目录或文件路径，读取目录或文件路径进行文件的解析，并写入到数据库。<br>.md文件的解析参考:<a href="https://blog.csdn.net/fullbug/article/details/126007706" target="_blank" rel="noopener">Python二十行代码实现hexo的md文件格式解析</a></p>
 <h2 id="三、测试验证"><a href="#三、测试验证" class="headerlink" title="三、测试验证"></a>三、测试验证</h2><p>命令代码写完后就可以进行测试了。<br>在命令行输入<code>python manage.py</code> 可以看到自定义的transblog已经加入到管理命令了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4.png" alt="transblog已经加入到管理命令"></p>
-<p>输入 <code>python manage.py transblog -h</code><br>会提示命令的参数和用法：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9.png" alt="管理命令帮助"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4.png" alt="transblog已经加入到管理命令"></p>
+<p>输入 <code>python manage.py transblog -h</code><br>会提示命令的参数和用法：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9.png" alt="管理命令帮助"></p>
 <p>如执行 <code>python manage.py transblog</code> 会提示”请输入指定的目录路径或.md文件路径:”</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(venv) PS D:\Python\study\pythonproject\ishareblog\ishareblog&gt; python manage.py transblog</span><br><span class="line">请输入指定的目录路径或.md文件路径:</span><br></pre></td></tr></table></figure>
 
-<p>我们输入需要迁移的.md文件或路径<br>如：E:\CloudStation\personal\xiejavablog\myhexo\myblog\source_posts\2022-07-27-Python二十行代码实现hexo的md文件格式解析.md<br>不出意外的情况下控制台会打印“XXXX.md读取解析入库成功！”的信息<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C1.png" alt="执行效果"></p>
-<p>访问博客，可以看到文章已经迁移过来了<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C2.png" alt="执行效果"><br>全部代码仓库：<a href="https://gitee.com/ishareblog/ishareblog" target="_blank" rel="noopener">https://gitee.com/ishareblog/ishareblog</a></p>
+<p>我们输入需要迁移的.md文件或路径<br>如：E:\CloudStation\personal\xiejavablog\myhexo\myblog\source_posts\2022-07-27-Python二十行代码实现hexo的md文件格式解析.md<br>不出意外的情况下控制台会打印“XXXX.md读取解析入库成功！”的信息<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C1.png" alt="执行效果"></p>
+<p>访问博客，可以看到文章已经迁移过来了<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220727/Django%E8%87%AA%E5%AE%9A%E4%B9%89manage.py%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0hexo%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB/%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C2.png" alt="执行效果"><br>全部代码仓库：<a href="https://gitee.com/ishareblog/ishareblog" target="_blank" rel="noopener">https://gitee.com/ishareblog/ishareblog</a></p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
       
@@ -653,7 +653,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -781,7 +781,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

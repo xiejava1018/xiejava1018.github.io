@@ -313,6 +313,261 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/25495876/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/25495876/" itemprop="url">Python实现avif图片转jpg格式并识别图片中的文字</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-31T21:09:23+08:00">
+                2024-01-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:36+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/25495876/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/25495876/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/25495876/" class="leancloud_visitors" data-flag-title="Python实现avif图片转jpg格式并识别图片中的文字">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  935
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在做数据分析的时候有些数据是从图片上去获取的，这就需要去识别图片上的文字。Python有很多库可以很方便的实现OCR识别图片中的文字。这里介绍用EasyOCR库进行图片文字识别。easyocr是一个比较流行的库，支持超过80种语言，识别率高，速度也比较快。</p>
+<h2 id="一、图片识别文字"><a href="#一、图片识别文字" class="headerlink" title="一、图片识别文字"></a>一、图片识别文字</h2><h3 id="1、导包"><a href="#1、导包" class="headerlink" title="1、导包"></a>1、导包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install easyocr</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、代码实现"><a href="#2、代码实现" class="headerlink" title="2、代码实现"></a>2、代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> easyocr</span><br><span class="line"><span class="comment"># 用easyocr识别图片并提取文字</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">easyocr_pic</span><span class="params">(pic_path)</span>:</span></span><br><span class="line">    reader = easyocr.Reader([<span class="string">'ch_sim'</span>, <span class="string">'en'</span>])</span><br><span class="line">    results = reader.readtext(pic_path)</span><br><span class="line">    ocr_result_dict = &#123;&#125;</span><br><span class="line">    result_list = []</span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">        result_list.append(result[<span class="number">1</span>])</span><br><span class="line">    ocr_result_dict[<span class="string">'orc_reslut'</span>]=result_list</span><br><span class="line">    <span class="keyword">return</span> ocr_result_dict</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    orc_result = easyocr_pic(<span class="string">r'waf.png'</span>)</span><br><span class="line">    print(orc_result)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、运行效果"><a href="#3、运行效果" class="headerlink" title="3、运行效果"></a>3、运行效果</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/1-%E9%98%B2%E7%81%AB%E5%A2%99%E8%AF%86%E5%88%AB%E5%9B%BE%E7%89%87.png" alt="图片OCR识别效果"></p>
+<p>可以看到图片中的中文“防火墙”和”Web应用防火墙”都正确识别出来了。</p>
+<blockquote>
+<p>注意：文件名和文件路径都不能有中文，否则会报错。如：如果将waf.png改成web应用防火墙.png就会报如下的错误。<br> [WARN:<a href="mailto:0@11.296">0@11.296</a>] global loadsave.cpp:248 cv::findDecoder imread_(‘web应用防火墙.png’): can’t open/read file: check file path/integrity</p>
+</blockquote>
+<p>在进行图片识别的时候发现如果是avif格式的也会报错。如从京东商品详情页下载的图片都是avif格式的，进行识别的时候就会报错。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/2-avif%E6%A0%BC%E5%BC%8Focr%E8%AF%86%E5%88%AB%E6%8A%A5%E9%94%99.png" alt="在OCR识别报错"></p>
+<p>但是这个图片用看图软件是可以正常显示的。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/3-%E7%9C%8B%E5%9B%BE%E8%BD%AF%E4%BB%B6%E6%89%93%E5%BC%80%E5%9B%BE%E7%89%87.png" alt="用看图软件打开图片"></p>
+<p>用画图软件另存为png或jpg格式后可以用easyocr正常识别出图片中的文字。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/4-%E5%8F%A6%E5%AD%98%E4%B8%BAjpg%E5%90%8E%E5%8F%AF%E4%BB%A5ocr%E8%AF%86%E5%88%AB.png" alt="在这里插入图片描述"></p>
+<p>注意：直接将.avif的后缀名直接改成.jpg虽然可以用看图软件可以打开，但是用easyocr识别同样会报错，所以我们需要用程序来实现将avif格式的文件转成jpg或png文件格式。</p>
+<h2 id="二、avif格式图片转jpg格式"><a href="#二、avif格式图片转jpg格式" class="headerlink" title="二、avif格式图片转jpg格式"></a>二、avif格式图片转jpg格式</h2><p>用python来实现将avif格式的文件转成jpg也很简单，但也有些注意事项。</p>
+<h3 id="1、导包-1"><a href="#1、导包-1" class="headerlink" title="1、导包"></a>1、导包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pillow-avif-plugin Pillow</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、代码实现-1"><a href="#2、代码实现-1" class="headerlink" title="2、代码实现"></a>2、代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pillow_avif  <span class="comment">#注意一定要引入pillow_avif否则会抛异常'cannot identify image file 'XXX''</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将avif文件转成jpg文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_avif_to_jpg</span><span class="params">(input_path, output_dir)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 打开AVIF图像</span></span><br><span class="line">        image = Image.open(input_path)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取输入路径的文件名及其所在目录</span></span><br><span class="line">        file_name = os.path.basename(input_path)</span><br><span class="line">        <span class="comment"># 构建输出路径</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_dir):</span><br><span class="line">            os.makedirs(output_dir)</span><br><span class="line"></span><br><span class="line">        output_path = os.path.join(output_dir, <span class="string">f"<span class="subst">&#123;os.path.splitext(file_name)[<span class="number">0</span>]&#125;</span>.jpg"</span>)</span><br><span class="line">        <span class="comment"># 保存为PNG格式</span></span><br><span class="line">        image.save(output_path, <span class="string">"JPEG"</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 调用函数进行转换</span></span><br><span class="line">    convert_avif_to_jpg(<span class="string">r'5e595ea90b71f7ae.jpg.avif'</span>, <span class="string">'avif2jpg'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、运行效果-1"><a href="#3、运行效果-1" class="headerlink" title="3、运行效果"></a>3、运行效果</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240131/5-avif%E6%96%87%E4%BB%B6%E8%BD%ACjpg%E6%96%87%E4%BB%B6.png" alt="在这里插入图片描述"></p>
+<p>可以看到正常将avif文件转成了jpg格式的文件。</p>
+<h3 id="4、注意事项"><a href="#4、注意事项" class="headerlink" title="4、注意事项"></a>4、注意事项</h3><blockquote>
+<p>import pillow_avif  #注意一定要引入pillow_avif否则会抛异常’cannot identify image file ‘XXX’’<br>虽然代码没有用到pillow_avif但是一定要显示的用import pillow_avif否则在运行的时候会抛异常’cannot identify image file ‘XXX’’</p>
+</blockquote>
+<h2 id="三、Python实现avif图片转jpg格式并识别文字全部代码"><a href="#三、Python实现avif图片转jpg格式并识别文字全部代码" class="headerlink" title="三、Python实现avif图片转jpg格式并识别文字全部代码"></a>三、Python实现avif图片转jpg格式并识别文字全部代码</h2><p><strong>所有代码用easyocrUtil.py实现</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> easyocr</span><br><span class="line"><span class="keyword">import</span> pillow_avif  <span class="comment">#注意一定要引入pillow_avif否则会抛异常'cannot identify image file 'XXX''</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将avif文件转成jpg文件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convert_avif_to_jpg</span><span class="params">(input_path, output_dir)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 打开AVIF图像</span></span><br><span class="line">        image = Image.open(input_path)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取输入路径的文件名及其所在目录</span></span><br><span class="line">        file_name = os.path.basename(input_path)</span><br><span class="line">        <span class="comment"># 构建输出路径</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(output_dir):</span><br><span class="line">            os.makedirs(output_dir)</span><br><span class="line"></span><br><span class="line">        output_path = os.path.join(output_dir, <span class="string">f"<span class="subst">&#123;os.path.splitext(file_name)[<span class="number">0</span>]&#125;</span>.jpg"</span>)</span><br><span class="line">        <span class="comment"># 保存为PNG格式</span></span><br><span class="line">        image.save(output_path, <span class="string">"JPEG"</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用easyocr识别图片并提取文字</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">easyocr_pic</span><span class="params">(pic_path)</span>:</span></span><br><span class="line">    reader = easyocr.Reader([<span class="string">'ch_sim'</span>, <span class="string">'en'</span>])</span><br><span class="line">    results = reader.readtext(pic_path)</span><br><span class="line">    ocr_result_dict = &#123;&#125;</span><br><span class="line">    result_list = []</span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">        result_list.append(result[<span class="number">1</span>])</span><br><span class="line">    ocr_result_dict[<span class="string">'orc_reslut'</span>]=result_list</span><br><span class="line">    <span class="keyword">return</span> ocr_result_dict</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 调用函数进行转换</span></span><br><span class="line">    convert_avif_to_jpg(<span class="string">r'5e595ea90b71f7ae.jpg.avif'</span>, <span class="string">'avif2jpg'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 调用函数识别图片并提取文字</span></span><br><span class="line">    orc_result = easyocr_pic(<span class="string">r'avif2jpg\5e595ea90b71f7ae.jpg.jpg'</span>)</span><br><span class="line">    print(orc_result)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4d544f9a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,8 +615,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:36+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -541,7 +796,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -638,8 +893,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:35+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -799,7 +1054,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -896,8 +1151,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:35+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1072,7 +1327,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1169,8 +1424,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:35+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1334,7 +1589,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1431,8 +1686,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:35+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1619,7 +1874,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1716,8 +1971,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:34+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1894,7 +2149,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1991,8 +2246,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:34+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2140,19 +2395,19 @@
 <ol>
 <li>透明网桥模式</li>
 </ol>
-<p>透明网桥模式指在两台运行的设备中间插入WEB应用防火墙，但是对流量并不产生任何影响。在透明网桥模式下，Web应用防火墙阻断Wb应用层攻击，而让其他的流量通过。透明网桥模式是部署最为简便的方式。透明网桥模式是透明的，所以不会干预任何网络中的设备，如图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙透明网桥模式部署"></p>
+<p>透明网桥模式指在两台运行的设备中间插入WEB应用防火墙，但是对流量并不产生任何影响。在透明网桥模式下，Web应用防火墙阻断Wb应用层攻击，而让其他的流量通过。透明网桥模式是部署最为简便的方式。透明网桥模式是透明的，所以不会干预任何网络中的设备，如图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E9%80%8F%E6%98%8E%E7%BD%91%E6%A1%A5%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙透明网桥模式部署"></p>
 <center>WEB应用防火墙透明网桥模式部署</center>
 
 <ol start="2">
 <li>单机模式</li>
 </ol>
-<p>单机模式下，Web应用防火墙只要串入Web服务器的前端即可进行防护，同时并不影响Web服务器的其他应用，如图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙单机模式部署"></p>
+<p>单机模式下，Web应用防火墙只要串入Web服务器的前端即可进行防护，同时并不影响Web服务器的其他应用，如图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙单机模式部署"></p>
 <center>WEB应用防火墙单机模式部署</center>
 
 <ol start="3">
 <li>旁路反向代理模式</li>
 </ol>
-<p>旁路反向代理模式，可以将Web应用防火墙与Wb服务器置于内网的交换机下，访问Web服务器的所有请求都通过Web应用防火墙流入流出。WAF采用反向代理模式以旁路的方式接入到网络环境中，需要更改网络防火墙的目的映射表，网络防火墙映射WAF的业务口地址，将服务器的IP地址进行隐藏。然而，这种模式下，Web服务器无法获取访问者的真实IP，需要借助HTTP报文中设置相应的字段来表示访问者IP，这样需要修改原有的HTTP报文。如下图所示。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙旁路反向代理模式部署"></p>
+<p>旁路反向代理模式，可以将Web应用防火墙与Wb服务器置于内网的交换机下，访问Web服务器的所有请求都通过Web应用防火墙流入流出。WAF采用反向代理模式以旁路的方式接入到网络环境中，需要更改网络防火墙的目的映射表，网络防火墙映射WAF的业务口地址，将服务器的IP地址进行隐藏。然而，这种模式下，Web服务器无法获取访问者的真实IP，需要借助HTTP报文中设置相应的字段来表示访问者IP，这样需要修改原有的HTTP报文。如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240115/web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%97%81%E8%B7%AF%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2.png" alt="WEB应用防火墙旁路反向代理模式部署"></p>
 <center>WEB应用防火墙旁路反向代理模式部署</center>
 
 <h2 id="五、防火墙和WAF的关系和区别"><a href="#五、防火墙和WAF的关系和区别" class="headerlink" title="五、防火墙和WAF的关系和区别"></a>五、防火墙和WAF的关系和区别</h2><p>防火墙和Web应用防火墙（WAF）都是网络安全产品，但它们的功能和用途有所不同。</p>
@@ -2172,7 +2427,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2269,8 +2524,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:34+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2390,13 +2645,13 @@
       
         
           
-            <h2 id="一、选车经过"><a href="#一、选车经过" class="headerlink" title="一、选车经过"></a>一、选车经过</h2><p>第一辆车是11年8月购入的奇瑞A3，1.6手动精英，开了十多年了，不得不说奇瑞的车真是皮实耐用。十二年12万公里了从来没有出过出现过大问题，就换过几次电池、换过雨刮器、右后门的电动车窗的升降机，4条胎换过一次，其他都没有换过。现在开起来还是非常好开，底盘扎实，操控性好，油耗在8、9个左右。唯一的不爽就是手动档在上比较大的陡坡的时候半坡起步乏力，常常要大脚轰油才能不溜坡不熄火。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/%E5%A5%87%E7%91%9EA3.jpg" alt="奇瑞A3"><br>在年初就立了个FLAG，计划两年内换车，目标是新能源混动车型。所以最近一两年都在看新能源的汽车。见<a href="http://xiejava.ishareread.com/posts/c33148ad/" target="_blank" rel="noopener">《写给2025年的自己》</a></p>
+            <h2 id="一、选车经过"><a href="#一、选车经过" class="headerlink" title="一、选车经过"></a>一、选车经过</h2><p>第一辆车是11年8月购入的奇瑞A3，1.6手动精英，开了十多年了，不得不说奇瑞的车真是皮实耐用。十二年12万公里了从来没有出过出现过大问题，就换过几次电池、换过雨刮器、右后门的电动车窗的升降机，4条胎换过一次，其他都没有换过。现在开起来还是非常好开，底盘扎实，操控性好，油耗在8、9个左右。唯一的不爽就是手动档在上比较大的陡坡的时候半坡起步乏力，常常要大脚轰油才能不溜坡不熄火。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/%E5%A5%87%E7%91%9EA3.jpg" alt="奇瑞A3"><br>在年初就立了个FLAG，计划两年内换车，目标是新能源混动车型。所以最近一两年都在看新能源的汽车。见<a href="http://xiejava.ishareread.com/posts/c33148ad/" target="_blank" rel="noopener">《写给2025年的自己》</a></p>
 <p>因为是奇瑞的忠实客户，一开始就关注奇瑞的新能源，当时瑞虎8PLUS的PHEV出来的时候就准备开始下手的，结果网上瑞虎8PLUS的PHEV用户体验并不是特别好最初的800客户变成800勇士，虽然说后面问题都解决了的调校越来越好，但让我也不敢贸然下手了。后来看到奇瑞马上要推第二代混动CDM了，所以一直在关注奇瑞的瑶光的CDM和最近比较火的捷途旅行者的CDM，无赖等了又等迟迟不见上市。</p>
 <h2 id="二、选择对比"><a href="#二、选择对比" class="headerlink" title="二、选择对比"></a>二、选择对比</h2><p>目前国内新能源最火的莫过于比亚迪了，关注了比亚迪唐和比亚迪护卫舰07。</p>
 <p>在十二月长沙车展的时候逛了一圈，发现了在领克展台C位的领克08EMP，外观时尚科技，透发着低调的闷骚。接下来就是试驾，在期间我试驾了比亚迪护卫舰07、长安的深蓝S7和领克08EMP。对比下来，护卫舰07最大因为坐姿比较高开起来像开船，内饰中规中矩；深蓝S7是增程式的，内饰极简风格，没有仪表盘只有HUD有点不太适应；对比起来领克08EMP各方面都很均衡比深蓝S7稍大，看上去比护卫舰07小点，三台车都好开，但个人更喜欢领克08EMP底盘紧绷的感觉，外观内饰也是08EMP更符合自己的胃口。领克08EMP就它了！</p>
 <h2 id="三、订车过程"><a href="#三、订车过程" class="headerlink" title="三、订车过程"></a>三、订车过程</h2><p>开始购车前也是想到各个4S店去对比杀价，结果跑了一圈才知道领克现在是网销模式和其他通过4S代销不一样，全国统一价，根本就没得价可谈。<br>2023年12月24日在APP上下的大定，4000元订金，下完订单后就可以在APP上实时看到订单交付状态。<br>我选的是120版本液体灰的halo版，21.58万。12月的政策是厂家优惠6000，全款优惠2000，老车增购补贴4000。</p>
 <h2 id="四、提车过程"><a href="#四、提车过程" class="headerlink" title="四、提车过程"></a>四、提车过程</h2><p>2023年12月24日下的订单，4S店告诉我要等2-4周，结果26号就告诉我刚好来了现车可以提车了。看来领克销量不错，产能提升了。<br>提车的时候在4S店买了保险4441.85+交钱险950+4S店上牌500<br>现在1月份的政策是全款送魅族20pro的手机，后悔太冲动了，没多等几天。但是08很难不让人冲动。<br>提车过程很简单，充分相信领克的质量，都没有怎么仔细看，4S店服务人员讲解了一下如何使用，搞了一个小小的仪式就把车开回来了。</p>
-<h2 id="五、用车感受"><a href="#五、用车感受" class="headerlink" title="五、用车感受"></a>五、用车感受</h2><h3 id="1、外观"><a href="#1、外观" class="headerlink" title="1、外观"></a>1、外观</h3><p>领克的车设计感都很强，从01到09颜值都在线，相对来说我认为09的颜值差了一点。01和05的颜值最好看，08科技时尚，设计可圈可点，很有个性。正面的辨识度很高，无框车门帅得一B。颜值即正义的年代，颜值就是销量的保证。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/08-1.jpg" alt="08-1"><br>有人说正面大灯看上去像蛤蟆，确实有点，但说实话一点不丑<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/08-2.jpg" alt="08-2"><br>08最好看的还是侧颜，立柱式的无边后视镜，原创度非常高，显得立体高级。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/08-3.jpg" alt="08-3"><br>无边后视镜很大视野好颜值高<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/08-4.jpg" alt="08-4"><br>尾部贯穿式尾灯，还带点小造型和前面相呼应，晚上点量后非常漂亮，在锁车的时候有个流水灯效果仪式感满满。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/08-5.jpg" alt="08-5"><br>液体灰，低调高级，远看车不显大，近看还是蛮大的。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2024/20240114/08-6.jpg" alt="08-6"></p>
+<h2 id="五、用车感受"><a href="#五、用车感受" class="headerlink" title="五、用车感受"></a>五、用车感受</h2><h3 id="1、外观"><a href="#1、外观" class="headerlink" title="1、外观"></a>1、外观</h3><p>领克的车设计感都很强，从01到09颜值都在线，相对来说我认为09的颜值差了一点。01和05的颜值最好看，08科技时尚，设计可圈可点，很有个性。正面的辨识度很高，无框车门帅得一B。颜值即正义的年代，颜值就是销量的保证。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/08-1.jpg" alt="08-1"><br>有人说正面大灯看上去像蛤蟆，确实有点，但说实话一点不丑<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/08-2.jpg" alt="08-2"><br>08最好看的还是侧颜，立柱式的无边后视镜，原创度非常高，显得立体高级。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/08-3.jpg" alt="08-3"><br>无边后视镜很大视野好颜值高<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/08-4.jpg" alt="08-4"><br>尾部贯穿式尾灯，还带点小造型和前面相呼应，晚上点量后非常漂亮，在锁车的时候有个流水灯效果仪式感满满。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/08-5.jpg" alt="08-5"><br>液体灰，低调高级，远看车不显大，近看还是蛮大的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240114/08-6.jpg" alt="08-6"></p>
 <h3 id="2、内饰"><a href="#2、内饰" class="headerlink" title="2、内饰"></a>2、内饰</h3><p>内饰颇具小资情调，多彩氛围灯、深灰的Nappa真皮座椅很舒服，全车内部除了HUD部分其他都是软性材质的包裹，摸到的地方都是软的。</p>
 <p>座椅很软，包裹性很好，通风、加热、按摩都给配上了，尤其是四个座位都带了按摩，舒适性照顾到了所有人。</p>
 <p>仪表盘和中控大屏都很清晰，没有实体按键，车机很流畅，我的车机提车的时候就是1.2.0版本的，没有出现网上有人说的车机花屏的情况。语音控制非常好用，可以连续下达多个指令。</p>
@@ -2415,7 +2670,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2512,8 +2767,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:33+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2677,268 +2932,7 @@
 <center> 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/71d4ad9f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/71d4ad9f/" itemprop="url">安全防御之备份恢复技术</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-10T09:37:59+08:00">
-                2024-01-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:37+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/71d4ad9f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/71d4ad9f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/71d4ad9f/" class="leancloud_visitors" data-flag-title="安全防御之备份恢复技术">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>随着计算机和网络的不断普及，人们更多的通过网络来传递大量信息。在网络环境下，还有各种各样的病毒感染、系统故障、线路故障等，使得数据信息的安全无法得到保障。由于安全风险的动态性，安全不是绝对的，信息系统不可能保证不出现安全事故，因此，一旦出现安全事件造成信息系统中断或者数据丢失，如果事先采取了必要的备份准备并及时启用，能够最小程度的减少系统重构时间和对业务中断的影响。备份恢复技术是安全防御体系中的重要组成部分，旨在保护数据安全，防止数据丢失或损坏，提高企业的数据安全性和业务连续性水平。</p>
-<h2 id="一、备份恢复的基本概念"><a href="#一、备份恢复的基本概念" class="headerlink" title="一、备份恢复的基本概念"></a>一、备份恢复的基本概念</h2><p>备份恢复的基本概念主要包括备份和恢复两个方面。备份是指将数据或系统进行复制和存储的过程，以便在数据丢失或损坏时能够从备份中恢复。<br>恢复则是指当数据或系统出现问题时，通过备份数据进行数据恢复或系统重建的过程。</p>
-<h2 id="二、备份恢复技术的分类"><a href="#二、备份恢复技术的分类" class="headerlink" title="二、备份恢复技术的分类"></a>二、备份恢复技术的分类</h2><p>备份恢复技术有多种分类和应用场景，可以根据实际需求进行选择和应用。常见的备份恢复技术包括数据备份技术、灾难恢复技术、容灾技术、备份与恢复管理技术、数据归档技术和文件系统快照技术等。</p>
-<ol>
-<li>数据备份技术：是指定期对重要数据或全部数据复制和存储，以防止数据丢失或损坏。数据备份可以分为完整备份、增量备份、差异备份等。</li>
-<li>灾难恢复技术：是指在发生灾难事件时，通过事先制定的灾难恢复计划和流程，快速恢复业务运行。灾难恢复技术包括数据备份、系统恢复、业务恢复等方面的内容。</li>
-<li>容灾技术：是指通过建立异地容灾中心，将重要数据实时或定时复制到容灾中心，确保在主中心发生故障时，数据仍能保持可用性和完整性。容灾技术包括数据同步、异步复制、数据验证等方面的内容。</li>
-<li>备份与恢复管理技术：是指定期对备份数据进行验证和测试，确保备份数据的可用性和完整性。同时，建立完善的备份与恢复管理制度，规范备份与恢复操作，确保备份和恢复工作的顺利进行。</li>
-<li>数据归档技术：是指将不再经常使用的数据迁移到归档设备上，以释放存储空间并降低管理成本。归档设备可以是磁带库、光盘库等。</li>
-<li>文件系统快照技术：是指利用文件系统快照技术，对文件系统进行快速备份。快照技术可以捕获文件系统在某一时刻的状态，以便在发生问题时迅速恢复数据。<br>这些技术可以根据实际需求进行选择和应用，以确保数据的完整性和可用性，提高企业的业务连续性水平，降低企业的风险和成本。</li>
-</ol>
-<h2 id="三、备份恢复的能力等级"><a href="#三、备份恢复的能力等级" class="headerlink" title="三、备份恢复的能力等级"></a>三、备份恢复的能力等级</h2><p>系统备份恢复能力也是信息系统一种重要的安全能力。2007年国家针对备份恢复发布了国家标准《GB/T 20988-2007 信息安全技术 信息系统灾难恢复规范》，《规范》将灾难恢复能力划分为6级：</p>
-<ul>
-<li>等级一：基本支持。要求数据备份系统能够保证每周至少进行一次数据备份，备份介质能够提供场外存放。对于备用数据处理系统和备用网络系统，没有具体要求。</li>
-<li>等级二：备用场地支持。在满足等级一的条件基础上，要求配备灾难恢复所需的部分数据处理设备，或灾难发生后能在预定时间内调配所需的数据处理设备到备用场地；要求配备部分通信线路和相应的网络设备，或灾难发生后能在预定时间内调配所需的通信线路和网络设备到备用场地。</li>
-<li>等级三：电子传输和设备支持。要求每天至少进行一次完全数据备份，备份介质场外存放，同时每天多次利用通信网络将关键数据定时批量传送至备用场地。配备灾难恢复所需的部分数据处理设备、通信线路和相应的网络设备。</li>
-<li>等级四：电子传输及完整设备支持。在等级三的基础上，要求配置灾难恢复所需的所有数据处理设备、通行线路和相应的网络设备，并且处于就绪或运行状态。</li>
-<li>等级五：实时数据传输及完整设备支持。除要求每天至少进行一次完全数据备份，备份介质场外存放外，还要求采用远程数据复制技术，利用通信网络将关键数据实时复制到备用场地。</li>
-<li>等级六：数据零丢失和远程集群支持。要求实现远程实时备份，数据零丢失；备用数据处理系统具备与生产数据处理系统一致的处理能力，应用软件是“集群的”，可实时无缝切换。</li>
-</ul>
-<p>由此可见，灾难恢复能力等级越高，对于信息系统的保护效果越好，但同时成本也会急剧上升。</p>
-<h2 id="四、备份恢复的类型"><a href="#四、备份恢复的类型" class="headerlink" title="四、备份恢复的类型"></a>四、备份恢复的类型</h2><p>备份恢复的基本原理是确保数据的完整性和可用性，防止数据丢失或损坏。在备份过程中，需要对重要数据或全部数据进行拷贝和存储，可以选择不同的备份策略，如完整备份、增量备份、差异备份等，以满足不同场景的需求。在恢复过程中，需要使用备份数据来恢复受损的数据或系统，确保业务能够正常运行。<br>备份通常可以分成下面的这三种类型：</p>
-<h3 id="1、完全备份"><a href="#1、完全备份" class="headerlink" title="1、完全备份"></a>1、完全备份</h3><p>完全备份就是将系统中所有的数据都通过备份进程备份。完全备份需要的时间相比其他集中备份方式要长，但是故障发生时，恢复时间非常快。</p>
-<h3 id="2、差异备份"><a href="#2、差异备份" class="headerlink" title="2、差异备份"></a>2、差异备份</h3><p>通常，系统管理员会每周定期作完全备份，在一周的其他时间针对与完全备份的差异部分作差异备份。<br>这种备份方法的恢复时间较长，我们不但要从全备份中恢复数据，还需要将每天的变化量恢复到系统中。</p>
-<h3 id="3、增量备份"><a href="#3、增量备份" class="headerlink" title="3、增量备份"></a>3、增量备份</h3><p>增量备份是每周定期进行完全备份，每天增加备份当天的数据变化，对于备份时间，增量备份需要的时间最短，但是，回复时间较长且较为复杂。在恢复过程中，我们不但需要恢复第一次的完全备份，还需要使用每天变化量的备份，一次恢复一天的数据，直到最近的一次所做的增量备份为止。</p>
-<h2 id="五、数据备份的方式"><a href="#五、数据备份的方式" class="headerlink" title="五、数据备份的方式"></a>五、数据备份的方式</h2><h3 id="1、远程镜像"><a href="#1、远程镜像" class="headerlink" title="1、远程镜像"></a>1、远程镜像</h3><p>远程镜像技术在主数据中心和数据备份中心之间的数据备份过程中使用。镜像是在两个或多个磁盘或磁盘子系统上产生同一个数据的镜像视图的信息存储过程，一个叫主镜像系统，另一个叫从镜像系统。按主从镜像存储系统所处的位置可分为本地镜像和远程镜像。远程镜像又叫远程复制，是容灾备份的核心技术，同时也是保持远程数据同步和实现灾难恢复的基础。远程镜像按请求镜像的主机是否需要远程镜像站点的确认信息，又可分为同步远程镜像和异步远程镜像。</p>
-<p>同步远程镜像（同步复制技术）是指通过远程镜像软件，将本地数据以完全同步的方式复制到异地，每一本地的I/O事务均需等待远程复制的完成确认信息，方予以释放。同步镜像使远程拷贝总能与本地机要求复制的内容相匹配。当主站点出现故障时，用户的应用程序切换到备份的替代站点后，被镜像的远程副本可以保证业务继续执行而没有数据的丢失。但它存在往返传播造成延时较长的缺点，只限于在相对较近的距离上应用。</p>
-<p>异步远程镜像（异步复制技术）保证在更新远程存储视图前完成向本地存储系统的基本I/O操作，而由本地存储系统提供给请求镜像主机的I/O操作完成确认信息。远程的数据复制是以后台同步的方式进行的，这使本地系统性能受到的影响很小，传输距离长（可达1000公里以上），对网络带宽要求小。但是，许多远程的从属存储子系统的写没有得到确认，当某种因素造成数据传输失败，可能出现数据一致性问题。为了解决这个问题，目前大多采用延迟复制的技术，即在确保本地数据完好无损后进行远程数据更新。</p>
-<h3 id="2、快照技术"><a href="#2、快照技术" class="headerlink" title="2、快照技术"></a>2、快照技术</h3><p>快照是通过软件对要备份的磁盘子系统的数据快速扫描，建立一个要备份数据的快照逻辑单元号LUN和快照cache。在快速扫描时，把备份过程中即将要修改的数据块同时快速拷贝到快照cache中。<br>快照LUN是一组指针，它指向快照cache和磁盘子系统中不变的数据块（在备份过程中）。在正常业务进行的同时，利用快照LUN实现对原数据的一个完全的备份。它可使用户在正常业务不受影响的情况下（主要指容灾备份系统），实时提取当前在线业务数据。其“备份窗口”接近于零，可增加系统业务的连续性，为实现系统真正的7×24运转提供了保证。</p>
-<h3 id="3、互连技术"><a href="#3、互连技术" class="headerlink" title="3、互连技术"></a>3、互连技术</h3><p>现有多种基于IP的SAN的远程数据容灾备份技术。它们是利用基于IP的SAN的互连协议，将主数据中心SAN中的信息通过现有的TCP/IP网络，远程复制到备援中心SAN中。早期方法多通过光纤通道FC连接两个SAN，存在实现成本高、设备的互操作性差、跨越的地理距离短（10公里）等缺点。<br>当备援中心存储的数据量过大时，可利用快照技术将其备份到磁带库或光盘库中。这种基于IP的SAN的远程容灾备份，可以跨越LAN、MAN和WAN，成本低、可扩展性好，具有广阔的发展前景。<br>基于IP的互连协议包括：FCIP、iFCP、Infiniband、iSCSI等。</p>
-<h2 id="六、备份恢复技术应用场景"><a href="#六、备份恢复技术应用场景" class="headerlink" title="六、备份恢复技术应用场景"></a>六、备份恢复技术应用场景</h2><p>备份恢复技术的应用场景有很多，以下是常见的一些场景：</p>
-<ol>
-<li>数据丢失应用场景：包括人为操作失误、软件BUG、硬件故障、安全漏洞被入侵等情况，导致数据被误操作、部分或全部丢失。在这种情况下，备份恢复技术可以用来恢复丢失的数据。</li>
-<li>非数据丢失应用场景：包括特殊应用场景下基于时间点的数据恢复、开发测试环境数据库搭建、相同数据库的新环境搭建、数据库或数据迁移等情况。在这些情况下，备份恢复技术可以用来迁移数据或者在新的环境中快速搭建数据库。</li>
-<li>设备更换场景：当用户的设备损坏或丢失时，可以通过备份恢复技术将备份的数据导入到新设备中，恢复原有的应用程序和设置，避免了重新配置和下载应用的麻烦。</li>
-<li>数据迁移场景：当用户的设备升级或更换时，可以通过备份恢复技术将备份的数据迁移到新设备中，保留原有的数据和设置，提高用户的使用体验。</li>
-</ol>
-<p>备份恢复技术的应用场景非常广泛，可以在各种情况下保护数据安全，降低风险和成本。根据实际需求选择适合的备份恢复技术，可以提高企业的数据安全性和业务连续性水平。</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -3031,7 +3025,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3143,7 +3137,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

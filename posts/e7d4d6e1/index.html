@@ -140,40 +140,40 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/e7d4d6e1/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="在许多应用中，数据可能来自不同的渠道，在数据处理的过程中常常需要将这些数据集进行组合合并拼接，形成更加丰富的数据集。pandas提供了多种方法完全可以满足数据处理的常用需求。具体来说包括有join、merge、concat、append等。  一般来说    方法 说明    join 最简单，主要用于基于索引的横向合并拼接   merge 最常用，主要用户基于指定列的横向合并拼接   conca">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/SQL-JOIN.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(left).png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/left-join.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(right).png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/right-join.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(inner).png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/inner-join.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(outer).png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/out-join.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/merge%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge(left).png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge(outer).png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge%E6%8C%87%E5%AE%9A%E5%88%97%E5%90%8D%E5%85%B3%E8%81%94.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E7%BA%B5%E5%90%91%E5%90%88%E5%B9%B6.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B62.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/append%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-append.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A0.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A02.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E8%BF%BD%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/combine_first.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/update.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/SQL-JOIN.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(left).png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/left-join.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(right).png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/right-join.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(inner).png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/inner-join.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(outer).png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/out-join.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/merge%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge(left).png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge(outer).png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge%E6%8C%87%E5%AE%9A%E5%88%97%E5%90%8D%E5%85%B3%E8%81%94.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E7%BA%B5%E5%90%91%E5%90%88%E5%B9%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B62.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/append%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-append.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A0.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A02.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E8%BF%BD%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/combine_first.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/update.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-02-10T06:10:57.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:36.722Z">
+<meta property="article:modified_time" content="2024-06-13T14:52:17.291Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png">
 
 
 
@@ -391,8 +391,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:17+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -511,7 +511,7 @@
 
       
         <p>在许多应用中，数据可能来自不同的渠道，在数据处理的过程中常常需要将这些数据集进行组合合并拼接，形成更加丰富的数据集。pandas提供了多种方法完全可以满足数据处理的常用需求。具体来说包括有join、merge、concat、append等。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png" alt="合并与拼接"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E5%90%88%E5%B9%B6%E4%B8%8E%E8%BF%9E%E6%8E%A5.png" alt="合并与拼接"></p>
 <p>一般来说</p>
 <table>
 <thead>
@@ -546,27 +546,27 @@
 </tr>
 </tbody></table>
 <p>下面就来逐一介绍每个方法</p>
-<h1 id="一、join"><a href="#一、join" class="headerlink" title="一、join"></a>一、join</h1><p>join主要用于基于索引的横向合并拼接<br>在介绍pandas的join之前我们来看一下SQL对数据集join的几种模式。如果大家对SQL比较熟悉的话应该对SQL操作数据集进行各种合并拼接印象深刻。SQL中各种JOIN的方法如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/SQL-JOIN.png" alt="SQL-JOIN"></p>
+<h1 id="一、join"><a href="#一、join" class="headerlink" title="一、join"></a>一、join</h1><p>join主要用于基于索引的横向合并拼接<br>在介绍pandas的join之前我们来看一下SQL对数据集join的几种模式。如果大家对SQL比较熟悉的话应该对SQL操作数据集进行各种合并拼接印象深刻。SQL中各种JOIN的方法如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/SQL-JOIN.png" alt="SQL-JOIN"></p>
 <p>pandas的join实现了<strong>left join、right jion、inner join、out jion</strong>常用的4中join方法<br>来自官网的参数说明：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dataframe.join(other,  <span class="comment"># 待合并的另一个数据集</span></span><br><span class="line">                   on=<span class="literal">None</span>,  <span class="comment"># 连接的键</span></span><br><span class="line">                   how=<span class="string">'left'</span>,   <span class="comment"># 连接方式：‘left’, ‘right’, ‘outer’, ‘inner’ 默认是left</span></span><br><span class="line">                   lsuffix=<span class="string">''</span>,  <span class="comment"># 左边（第一个）数据集相同键的后缀</span></span><br><span class="line">                   rsuffix=<span class="string">''</span>,  <span class="comment"># 第二个数据集的键的后缀</span></span><br><span class="line">                   sort=<span class="literal">False</span>)  <span class="comment"># 是否根据连接的键进行排序；默认False</span></span><br></pre></td></tr></table></figure>
 
 <p>我们来看下实例，有两个数据集一个是人员姓名，一个是人员的工资</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left=pd.DataFrame([<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>], index=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>],columns=[<span class="string">'姓名'</span>])</span><br><span class="line">right=pd.DataFrame([<span class="number">13000</span>,<span class="number">15000</span>,<span class="number">9000</span>,<span class="number">8600</span>,<span class="number">10000</span>], index=[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>],columns=[<span class="string">'工资'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <blockquote>
 <p>注意，left和right的数据集分别都指定了index，因为join主要用于基于索引的横向合并拼接。</p>
 </blockquote>
 <h2 id="1、left-join"><a href="#1、left-join" class="headerlink" title="1、left join"></a>1、left join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right)  <span class="comment">#默认how='left'</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(left).png" alt="left join"></p>
-<p>jion操作默认是left jion的操作，可以看到left索引为7姓名为钱七，在right中没有索引为7的对应所以显示left的姓名但right的工资为NaN，right中索引为8的数据在left中没有索引为8的，所以没有显示。left join合并left的数据<br>left join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/left-join.png" alt="left join"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(left).png" alt="left join"></p>
+<p>jion操作默认是left jion的操作，可以看到left索引为7姓名为钱七，在right中没有索引为7的对应所以显示left的姓名但right的工资为NaN，right中索引为8的数据在left中没有索引为8的，所以没有显示。left join合并left的数据<br>left join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/left-join.png" alt="left join"></p>
 <h2 id="2、right-join"><a href="#2、right-join" class="headerlink" title="2、right join"></a>2、right join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'right'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(right).png" alt="right join"></p>
-<p>右链接合并时可以看到，left的数据集没有索引为8的项，所以索引为8的项显示right数据集的工资数据但姓名为NaN，在left中索引为7的项因为right中不存在，所以没有显示。right join合并right的数据<br>right join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/right-join.png" alt="right join"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(right).png" alt="right join"></p>
+<p>右链接合并时可以看到，left的数据集没有索引为8的项，所以索引为8的项显示right数据集的工资数据但姓名为NaN，在left中索引为7的项因为right中不存在，所以没有显示。right join合并right的数据<br>right join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/right-join.png" alt="right join"></p>
 <h2 id="3、inner-join"><a href="#3、inner-join" class="headerlink" title="3、inner join"></a>3、inner join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(inner).png" alt="inner join"></p>
-<p>内链接合并时，可以看到left数据集中的索引为7姓名为钱七因为在right数据集中找不到对应的索引，right数据集中索引为8的在left找不到对应的索引所以内连接合并时索引7和8都没有进行合并，inner join只合并两个数据集共有的数据<br>inner join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/inner-join.png" alt="inner join"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(inner).png" alt="inner join"></p>
+<p>内链接合并时，可以看到left数据集中的索引为7姓名为钱七因为在right数据集中找不到对应的索引，right数据集中索引为8的在left找不到对应的索引所以内连接合并时索引7和8都没有进行合并，inner join只合并两个数据集共有的数据<br>inner join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/inner-join.png" alt="inner join"></p>
 <h2 id="4、out-join"><a href="#4、out-join" class="headerlink" title="4、out join"></a>4、out join</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.join(right,how=<span class="string">'outer'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-join(outer).png" alt="out join"><br>外链接合并时，可以看到不管是left中的数据还是right中的数据都进行了合并。right join合并两个数据集中所有的数据。<br>outer join 如下图所示<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/out-join.png" alt="outer join"><br>join很简单，但是它有局限性，因为它只能根据索引来合并。不能指定键来进行合并。比如我要根据编号和姓名来合并，join就比较难办了。但是pandas提供了merge的方法，可以指定列来进行合并拼接。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-join(outer).png" alt="out join"><br>外链接合并时，可以看到不管是left中的数据还是right中的数据都进行了合并。right join合并两个数据集中所有的数据。<br>outer join 如下图所示<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/out-join.png" alt="outer join"><br>join很简单，但是它有局限性，因为它只能根据索引来合并。不能指定键来进行合并。比如我要根据编号和姓名来合并，join就比较难办了。但是pandas提供了merge的方法，可以指定列来进行合并拼接。</p>
 <h1 id="二、merge"><a href="#二、merge" class="headerlink" title="二、merge"></a>二、merge</h1><p>merge最常用，主要用户基于指定列和横向合并拼接，语法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left, right, how=<span class="string">'inner'</span>, on=<span class="literal">None</span>, left_on=<span class="literal">None</span>, right_on=<span class="literal">None</span>,</span><br><span class="line">left_index=<span class="literal">False</span>, right_index=<span class="literal">False</span>, sort=<span class="literal">True</span>,suffixes=(<span class="string">'_x'</span>, <span class="string">'_y'</span>), copy=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
@@ -620,18 +620,18 @@
 </tbody></table>
 <p>我们来看下面的数据集，在上面的数据集中left数据集加入了员工的编号，right数据集加入了编号及姓名。索引就按默认的索引。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">left=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>],[<span class="number">4</span>,<span class="string">'李四'</span>],[<span class="number">5</span>,<span class="string">'王五'</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>],[<span class="number">7</span>,<span class="string">'钱七'</span>]],</span><br><span class="line">columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br><span class="line"></span><br><span class="line">right=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>,<span class="number">13000</span>],[<span class="number">4</span>,<span class="string">'李四'</span>,<span class="number">15000</span>],[<span class="number">5</span>,<span class="string">'王五'</span>,<span class="number">9000</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>,<span class="number">8600</span>],[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>]],</span><br><span class="line">columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/merge%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="merge数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/merge%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="merge数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge.png" alt="pd.merge(left,right)"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge.png" alt="pd.merge(left,right)"></p>
 <p>没有指定连接键，默认用重叠列名，没有指定连接方式，默认inner内连接（取left和right编号和姓名的交集）<br>和join一样通过how来指定连接方式如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right,how=<span class="string">'left'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge(left).png" alt="pd.merge(left,right,how=&#39;left&#39;)"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge(left).png" alt="pd.merge(left,right,how=&#39;left&#39;)"></p>
 <p>how的连接方式和join一样支持left、right、inner、outer<br>merge还可以指定多个列进行合并链接，也就是和SQL一样设置多个关联的列。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(left,right,how=<span class="string">'outer'</span>,on=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge(outer).png" alt="merge-out"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge(outer).png" alt="merge-out"></p>
 <p>如果两个对象的列名不同，可以使用<code>left_on</code>，<code>right_on</code>分别指定，如我们把right数据集的“编码”列标签改成“ID”后如果需要left数据集的”编号”和right数据集的”ID”进行关联</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">right=pd.DataFrame([[<span class="number">3</span>,<span class="string">'张三'</span>,<span class="number">13000</span>],[<span class="number">4</span>,<span class="string">'李四'</span>,<span class="number">15000</span>],[<span class="number">5</span>,<span class="string">'王五'</span>,<span class="number">9000</span>],[<span class="number">6</span>,<span class="string">'赵六'</span>,<span class="number">8600</span>],[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>]],columns=[<span class="string">'ID'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br><span class="line"></span><br><span class="line">pd.merge(left,right,how=<span class="string">'outer'</span>,left_on=<span class="string">'编号'</span>,right_on=<span class="string">'ID'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-merge%E6%8C%87%E5%AE%9A%E5%88%97%E5%90%8D%E5%85%B3%E8%81%94.png" alt="指定列名关联"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-merge%E6%8C%87%E5%AE%9A%E5%88%97%E5%90%8D%E5%85%B3%E8%81%94.png" alt="指定列名关联"></p>
 <p>虽然说merge已经很强大了，但是pandas愿意给你更多，它提供了concat，可以实现横向和纵向的合并与拼接。也就是说不但实现了SQL中的join还实现了union</p>
 <h1 id="三、concat"><a href="#三、concat" class="headerlink" title="三、concat"></a>三、concat</h1><p>concat() 函数用于沿某个特定的轴执行连接操作，语法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.concat(objs,axis=<span class="number">0</span>,join=<span class="string">'outer'</span>,join_axes=<span class="literal">None</span>,ignore_index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
@@ -666,18 +666,18 @@
 </tbody></table>
 <p>来看具体的例子</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left2=pd.DataFrame([[<span class="number">1</span>,<span class="string">'陈一'</span>],[<span class="number">2</span>,<span class="string">'周二'</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据集"></p>
 <h2 id="1、纵向合并"><a href="#1、纵向合并" class="headerlink" title="1、纵向合并"></a>1、纵向合并</h2><p>concat默认纵向拼接，我们要在left1数据集的基础上把left2数据集给合并上去，很简单用concat直接就可以合并。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df=pd.concat([left,left2])</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E7%BA%B5%E5%90%91%E5%90%88%E5%B9%B6.png" alt="纵向合并"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E7%BA%B5%E5%90%91%E5%90%88%E5%B9%B6.png" alt="纵向合并"></p>
 <h2 id="2、横向合并"><a href="#2、横向合并" class="headerlink" title="2、横向合并"></a>2、横向合并</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_outer=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'outer'</span>)<span class="comment">#外链接</span></span><br><span class="line">df_inner=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)<span class="comment">#内链接</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6.png" alt="横向合并"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6.png" alt="横向合并"></p>
 <blockquote>
 <p>注意：因为concat的链接和join一样是通过索引来链接合并，并不能指定通过某个特定的列来链接进行合并，所以看到的合并后的数据集left和right的编号和姓名是错位的。</p>
 </blockquote>
 <p>如果要根据编号来关联可以指定编号作为索引再进行横向合并，这样就没有问题了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">left.index=left[<span class="string">'编号'</span>].values</span><br><span class="line">right.index=right[<span class="string">'编号'</span>].values</span><br><span class="line">df_outer=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'outer'</span>)</span><br><span class="line">df_inner=pd.concat([left,right],axis=<span class="number">1</span>,join=<span class="string">'inner'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B62.png" alt="横向合并"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/concat%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B62.png" alt="横向合并"></p>
 <h1 id="四、append"><a href="#四、append" class="headerlink" title="四、append"></a>四、append</h1><p>df.append 可以将其他行附加到调用方的末尾，并返回一个新对象。它是最简单常用的数据合并方式。语法如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.append(self, other, ignore_index=<span class="literal">False</span>,verify_integrity=<span class="literal">False</span>, sort=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 
@@ -691,27 +691,27 @@
 <p>来看下面的例子：</p>
 <h2 id="1、同结构数据追加"><a href="#1、同结构数据追加" class="headerlink" title="1、同结构数据追加"></a>1、同结构数据追加</h2><p>将同结构的数据追加在原数据后面，在left数据集后面追加left2数据集，left2的数据集内容如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left2=pd.DataFrame([[<span class="number">1</span>,<span class="string">'陈一'</span>],[<span class="number">2</span>,<span class="string">'周二'</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>])</span><br><span class="line">left2</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/append%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="append数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/append%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="append数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append(left2)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/pandas-append.png" alt="append"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/pandas-append.png" alt="append"></p>
 <h2 id="2、不同结构数据追加"><a href="#2、不同结构数据追加" class="headerlink" title="2、不同结构数据追加"></a>2、不同结构数据追加</h2><p>不同结构数据追加，原数据没有的列会增加，没有对应内容的会为空NaN。<br>如：left3的数据集列有”编号”、”姓名”、”工资”</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">left3=pd.DataFrame([[<span class="number">8</span>,<span class="string">'孙八'</span>,<span class="number">10000</span>],[<span class="number">9</span>,<span class="string">'何九'</span>,<span class="number">15000</span>]],columns=[<span class="string">'编号'</span>,<span class="string">'姓名'</span>,<span class="string">'工资'</span>])</span><br><span class="line">left3</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A0.png" alt="left3的数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A0.png" alt="left3的数据集"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append(left3)</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A02.png" alt="不同结构数据追加"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E4%B8%8D%E5%90%8C%E7%BB%93%E6%9E%84%E6%95%B0%E6%8D%AE%E8%BF%BD%E5%8A%A02.png" alt="不同结构数据追加"></p>
 <p>当left后追加left3后的数据集会增加“工资列”，没有对应内容的会为空。</p>
 <h2 id="3、追加合并多个数据集"><a href="#3、追加合并多个数据集" class="headerlink" title="3、追加合并多个数据集"></a>3、追加合并多个数据集</h2><p>append参数可带数据集列表，可以将多个数据集追加到原数据集<br>如我们将left2和left3都追加到left</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.append([left2,left3])</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/%E8%BF%BD%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="追加合并多个数据集"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/%E8%BF%BD%E5%8A%A0%E5%A4%9A%E4%B8%AA%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="追加合并多个数据集"></p>
 <h1 id="五、combine-first"><a href="#五、combine-first" class="headerlink" title="五、combine_first"></a>五、combine_first</h1><p>combine_first可用于合并重复数据，用其他数据集填充没有的数据。如一个DataFrame数据集中出现了缺失数据，就可以用其他DataFrame数据集中的数据进行填充。语法格式如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">combine_first(other) <span class="comment">#只有一个参数other，该参数用于接收填充缺失值的DataFrame对象。</span></span><br></pre></td></tr></table></figure>
 
 <p>如left数据集中没有”工资”的数据，我们可以用right数据集有的数据去填充left数据集中的数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.combine_first(right) <span class="comment">#用right去填充left</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/combine_first.png" alt="combine_first"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/combine_first.png" alt="combine_first"></p>
 <h1 id="六、update"><a href="#六、update" class="headerlink" title="六、update"></a>六、update</h1><p>update和combine_first比较类似，区别在于：<br>1、填充合并方式稍有差异<br>combine_first：如果s1中c的值为空，用s2的值替换，否则保留s1的值<br>update：如果s2中的值不为空，那么替换s1，否则保留s1的值<br>2、update是更新原数据，combine_first会返回一个填充后的新数据集，对原数据不做更新。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">left.update(right) <span class="comment">#用right的数据更新left中的数据。</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220210/update.png" alt="update"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220210/update.png" alt="update"></p>
 <p>至此，本文介绍了pandas的多种数据合并与拼接方法，并介绍了每种方法的异同，通过pandas的数据处理可以应付日常数据处理中大部分的数据处理工作。</p>
 <p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
 <hr>
@@ -720,7 +720,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       
@@ -868,7 +868,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -996,7 +996,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

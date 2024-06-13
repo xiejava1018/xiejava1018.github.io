@@ -140,16 +140,16 @@
 <meta property="og:url" content="https://xiejava.gitee.io/posts/aebdf141/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="初次用Django开发web应用，在试图用Pycharm进行debug的时候，出现了一个奇怪的问题。以正常模式启动或者在terminal启动都没有问题。但是以debug模式启动时，显示can&#39;t find &#39;__main__&#39; module”报错。在网上找了很久都没有看到解决方法，最后在某乎上看到一篇文章，在启动时加上--noreload参数，既可以debug模式启动。 报">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/--noreload.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/--noreload.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2022-06-06T00:56:51.000Z">
-<meta property="article:modified_time" content="2024-03-27T06:54:36.806Z">
+<meta property="article:modified_time" content="2024-06-13T14:52:20.754Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png">
 
 
 
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -487,8 +487,8 @@
 
       
         <p>初次用Django开发web应用，在试图用Pycharm进行debug的时候，出现了一个奇怪的问题。以正常模式启动或者在terminal启动都没有问题。但是以debug模式启动时，显示<code>can&#39;t find &#39;__main__&#39; module”</code>报错。在网上找了很久都没有看到解决方法，最后在某乎上看到一篇文章，在启动时加上<code>--noreload</code>参数，既可以debug模式启动。</p>
-<p><strong>报错信息：</strong><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png" alt="报错信息"><br><strong>解决方法：</strong><br>在启动时加上 <code>--noreload</code> 参数可以正常启动调试<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/--noreload.png" alt="加入不重新加载参数"></p>
-<p>debug启动正常也可以调试了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png" alt="debug正常启动"></p>
+<p><strong>报错信息：</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png" alt="报错信息"><br><strong>解决方法：</strong><br>在启动时加上 <code>--noreload</code> 参数可以正常启动调试<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/--noreload.png" alt="加入不重新加载参数"></p>
+<p>debug启动正常也可以调试了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png" alt="debug正常启动"></p>
 <p>踩过的坑记录一下，希望能帮到碰到同样问题的人。</p>
 <p>感谢大佬的文章 <a href="https://zhuanlan.zhihu.com/p/443763989" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/443763989</a> </p>
 <hr>
@@ -497,7 +497,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
       
@@ -636,7 +636,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -748,7 +748,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->

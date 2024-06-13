@@ -313,6 +313,252 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d101efba/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/d101efba/" itemprop="url">解决Anaconda报The channel is not accessible源通道不可用问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-26T15:53:22+08:00">
+                2021-11-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/d101efba/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d101efba/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/d101efba/" class="leancloud_visitors" data-flag-title="解决Anaconda报The channel is not accessible源通道不可用问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  675
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在通过pycharm开发python程序，引用anaconda环境建立虚拟环境时报错，报UnavailableInvalidChannel: The channel is not accessible or is invalid.应该是镜像源访问通道无法访问或无效。现将解决办法记录如下：</p>
+<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：win10<br>安装有anaconda 4.10.3<br>pycharm2021.2</p>
+<h1 id="报错现象："><a href="#报错现象：" class="headerlink" title="报错现象："></a>报错现象：</h1><p>在pycharm中新建python项目，引用anaconda建立虚拟环境时报错<br>报“UnavailableInvalidChannel: The channel is not accessible or is invalid.”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E6%8A%A5%E9%94%99.png" alt="建立虚拟环境报错"></p>
+<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><h2 id="1、找到anaconda的源配置文件"><a href="#1、找到anaconda的源配置文件" class="headerlink" title="1、找到anaconda的源配置文件"></a>1、找到anaconda的源配置文件</h2><p>根据报错的建议提示：</p>
+<blockquote>
+<p>You will need to ajust your conda configuration to proceed.<br>Use ‘cona config –show channels’ to view your configuration’s current state,<br>and use ‘conda config –show-sources’ to view config file location.</p>
+</blockquote>
+<p>意思是建议你需要调整conda的配置来处理，可以通过<code>cona config --show channels</code>命令来查看你当前的配置状态，可以用<code>conda config --show-sources</code>看查看本地的配置文件。<br>根据这个建议，打开anaconda的命令行控制台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/AnacondaPowershell.png" alt="Anaconda Powershell"></p>
+<p>敲入“conda config –show-sources”命令，显示当前的通道为<a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a>  报错就是说这个通道无法访问或无效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show channels</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<p>通过“conda config –show-sources” 查看配置文件的路径。配置文件为用户目录下的<code>.condarc</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E6%89%BE%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="在这里插入图片描述"></p>
+<h2 id="2、修改为清华的镜像源"><a href="#2、修改为清华的镜像源" class="headerlink" title="2、修改为清华的镜像源"></a>2、修改为清华的镜像源</h2><p>将找到的.condarc文件打开。<br>拷贝以下清华的镜像源到该文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
+
+<p>然后再次运行<code>conda config --show-sources</code>，确认配置文件内容已经修改。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><p>再打开pycharm引用Conda Enviroment新建新的虚拟环境。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E5%BB%BA%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="新建新的虚拟环境"><br>这时不报错可以正常创建Conda虚拟环境了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E5%88%9B%E5%BB%BACondaEnvironment.png" alt="创建Conda Environment"></p>
+<p>至此，修改成清华镜像源解决了Anaconda报The channel is not accessible源通道不可用的问题。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/fa820ec9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,8 +606,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -510,7 +756,7 @@
 <h2 id="从GeoLite离线库获取IP信息"><a href="#从GeoLite离线库获取IP信息" class="headerlink" title="从GeoLite离线库获取IP信息"></a>从GeoLite离线库获取IP信息</h2><p>如何获取GeoLite离线库及如何读取，详见：<a href="http://xiejava.ishareread.com/posts/2c5697c0/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/2c5697c0/</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getipinfobygeoip2</span><span class="params">(ip)</span>:</span></span><br><span class="line">    ipinfo=&#123;&#125;</span><br><span class="line">    dbdir=Config.geoLiteDBdir</span><br><span class="line">    <span class="keyword">with</span> geoip2.database.Reader(dbdir) <span class="keyword">as</span> reader:</span><br><span class="line">        response = reader.city(ip)</span><br><span class="line">        ipinfo[<span class="string">'ip'</span>] =ip</span><br><span class="line">        ipinfo[<span class="string">'country'</span>] = response.country.names[<span class="string">'zh-CN'</span>]</span><br><span class="line">        ipinfo[<span class="string">'region'</span>] =<span class="string">''</span></span><br><span class="line">        ipinfo[<span class="string">'city'</span>]=response.city.name</span><br><span class="line">        ipinfo[<span class="string">'org'</span>] =<span class="string">''</span></span><br><span class="line">        ipinfo[<span class="string">'loc'</span>] = str(response.location.latitude)+<span class="string">','</span>+str(response.location.longitude)</span><br><span class="line">        ipinfo[<span class="string">'timezone'</span>] = response.location.time_zone</span><br><span class="line">        ipinfo[<span class="string">'source'</span>] = <span class="string">'GeoIP'</span></span><br><span class="line">        addIPInfo2DB(ipinfo)</span><br><span class="line">    <span class="keyword">return</span> ipinfo</span><br></pre></td></tr></table></figure>
 
-<h1 id="四、搭建一个FLASK-Web应用来查询聚合的域名、IP情报信息"><a href="#四、搭建一个FLASK-Web应用来查询聚合的域名、IP情报信息" class="headerlink" title="四、搭建一个FLASK Web应用来查询聚合的域名、IP情报信息"></a>四、搭建一个FLASK Web应用来查询聚合的域名、IP情报信息</h1><h2 id="1、FLASK-Web应用的工程组织"><a href="#1、FLASK-Web应用的工程组织" class="headerlink" title="1、FLASK Web应用的工程组织"></a>1、FLASK Web应用的工程组织</h2><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211121/infocollect%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87.png" alt="工程组织"></p>
+<h1 id="四、搭建一个FLASK-Web应用来查询聚合的域名、IP情报信息"><a href="#四、搭建一个FLASK-Web应用来查询聚合的域名、IP情报信息" class="headerlink" title="四、搭建一个FLASK Web应用来查询聚合的域名、IP情报信息"></a>四、搭建一个FLASK Web应用来查询聚合的域名、IP情报信息</h1><h2 id="1、FLASK-Web应用的工程组织"><a href="#1、FLASK-Web应用的工程组织" class="headerlink" title="1、FLASK Web应用的工程组织"></a>1、FLASK Web应用的工程组织</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211121/infocollect%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87.png" alt="工程组织"></p>
 <h2 id="2、配置数据及读取配置数据"><a href="#2、配置数据及读取配置数据" class="headerlink" title="2、配置数据及读取配置数据"></a>2、配置数据及读取配置数据</h2><h3 id="1）配置数据"><a href="#1）配置数据" class="headerlink" title="1）配置数据"></a>1）配置数据</h3><p>配置数据分别放在.env及.flaskenv中，其中<code>.env</code>放的是工程中用到的数据库链接等比较私密的配置信息。<code>.flaskenv</code>放的是Flask运行环境的信息<br>.env的配置信息参考如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DEV_DATABASE_URI = <span class="string">'mysql+pymysql://dbuser:yourpassword@127.0.0.1:3306/infocol_db_dev?charset=utf8'</span></span><br><span class="line">TEST_DATABASE_URI = <span class="string">'mysql+pymysql://dbuser:yourpassword@127.0.0.1:3306/infocol_db_test?charset=utf8'</span></span><br><span class="line">PROD_DATABASE_URI = <span class="string">'mysql+pymysql://dbuser:yourpassword@127.0.0.1:3306/infocol_db?charset=utf8'</span></span><br><span class="line"></span><br><span class="line">SQLALCHEMY_TRACK_MODIFICATIONS = <span class="literal">True</span></span><br><span class="line">SECRET_KEY=your secret key</span><br></pre></td></tr></table></figure>
 
@@ -520,14 +766,14 @@
 <h3 id="2）实现读取配置数据"><a href="#2）实现读取配置数据" class="headerlink" title="2）实现读取配置数据"></a>2）实现读取配置数据</h3><p>通过config.py实现配置数据的读取及管理</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> dotenv <span class="keyword">import</span> load_dotenv</span><br><span class="line">basedir=os.path.abspath(os.path.dirname(__file__))</span><br><span class="line">flaskenv_path=os.path.join(basedir,<span class="string">'.flaskenv'</span>)</span><br><span class="line">env_path=os.path.join(basedir,<span class="string">'.env'</span>)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(flaskenv_path):</span><br><span class="line">    load_dotenv(flaskenv_path)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(env_path):</span><br><span class="line">    load_dotenv(env_path)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Config</span>:</span></span><br><span class="line">    geoLiteDBdir=os.path.join(basedir,<span class="string">'GeoLite2\GeoLite2-City.mmdb'</span>)</span><br><span class="line">    flaskenv = os.getenv(<span class="string">'FLASK_ENV'</span>,<span class="string">'development'</span>)</span><br><span class="line">    SECRET_KEY=os.getenv(<span class="string">'SECRET_KEY'</span>,<span class="string">'123!@#'</span>)</span><br><span class="line">    SQLALCHEMY_TRACK_MODIFICATIONS=os.getenv(<span class="string">'SQLALCHEMY_TRACK_MODIFICATIONS'</span>)</span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'DEV_DATABASE_URI'</span>)</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">init_app</span><span class="params">(app)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DevelopmentConfig</span><span class="params">(Config)</span>:</span></span><br><span class="line">    DEBUG=<span class="literal">True</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'DEV_DATABASE_URI'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestingConfig</span><span class="params">(Config)</span>:</span></span><br><span class="line">    TESTING=<span class="literal">True</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'TEST_DATABASE_URI'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionConfig</span><span class="params">(Config)</span>:</span></span><br><span class="line">    SQLALCHEMY_DATABASE_URI = os.getenv(<span class="string">'PROD_DATABASE_URI'</span>)</span><br><span class="line"></span><br><span class="line">config=&#123;</span><br><span class="line">    <span class="string">'development'</span>:DevelopmentConfig,</span><br><span class="line">    <span class="string">'testing'</span>:TestingConfig,</span><br><span class="line">    <span class="string">'production'</span>:ProductionConfig,</span><br><span class="line">    <span class="string">'default'</span>:DevelopmentConfig</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="3、界面及路由"><a href="#3、界面及路由" class="headerlink" title="3、界面及路由"></a>3、界面及路由</h2><p>界面很简单就一个域名/IP的输入框，输入域名或IP后去查询相应的域名信息或IP信息显示到界面上。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211121/index%E7%95%8C%E9%9D%A2.png" alt="index界面"></p>
+<h2 id="3、界面及路由"><a href="#3、界面及路由" class="headerlink" title="3、界面及路由"></a>3、界面及路由</h2><p>界面很简单就一个域名/IP的输入框，输入域名或IP后去查询相应的域名信息或IP信息显示到界面上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211121/index%E7%95%8C%E9%9D%A2.png" alt="index界面"></p>
 <p>界面用jinjia2的模板<br>index.html代码如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&#123;% extends "bootstrap/base.html" %&#125;</span><br><span class="line">&#123;% block title %&#125;InfoCol&#123;% endblock %&#125;</span><br><span class="line">&#123;% block head %&#125;</span><br><span class="line">    &#123;&#123; super() &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">&#123;% endblock %&#125;</span><br><span class="line">&#123;% block body %&#125;</span><br><span class="line">    &#123;% block navbar %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar navbar-inverse"</span> <span class="attr">role</span>=<span class="string">"navigation"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-header"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"navbar-toggle"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span> <span class="attr">data-target</span>=<span class="string">".navbar-collapse"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"sr-only"</span>&gt;</span>Toggle navigation<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"icon-bar"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"navbar-brand"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>InfoCol<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"navbar-collapse collapse"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav navbar-nav"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endblock %&#125;</span><br><span class="line">    &#123;% block content %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"page-header "</span> &gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">class</span>=<span class="string">"center-block"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"center-block"</span> <span class="attr">style</span>=<span class="string">"text-align:center"</span>&gt;</span></span><br><span class="line">                &#123;&#123; form.hidden_tag() &#125;&#125;</span><br><span class="line">                &#123;&#123; form.name.label &#125;&#125;&#123;&#123; form.name() &#125;&#125;</span><br><span class="line">                &#123;&#123; form.submit() &#125;&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                &#123;% if whois_info %&#125;</span><br><span class="line">                  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>&#123;&#123; name &#125;&#125;的Whois信息<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                    &#123;% for item in whois_info %&#125;</span><br><span class="line">                        &#123;% if item!='详情' %&#125;</span><br><span class="line">                        <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 20%"</span>&gt;</span>&#123;&#123; item &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 80%"</span>&gt;</span>&#123;&#123; whois_info[item] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                        &#123;% else %&#125;</span><br><span class="line">                        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 20%"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">a</span> <span class="attr">role</span>=<span class="string">"button"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span> <span class="attr">href</span>=<span class="string">"#collapseExample"</span> <span class="attr">aria-expanded</span>=<span class="string">"false"</span> <span class="attr">aria-controls</span>=<span class="string">"collapseExample"</span>&gt;</span></span><br><span class="line">                               &#123;&#123; item &#125;&#125;</span><br><span class="line">                            <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">td</span> <span class="attr">style</span>=<span class="string">"width: 80%"</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"collapse"</span> <span class="attr">id</span>=<span class="string">"collapseExample"</span>&gt;</span></span><br><span class="line">                                  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"well"</span>&gt;</span></span><br><span class="line">                                    &#123;&#123; whois_info[item] &#125;&#125;</span><br><span class="line">                                  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                        &#123;% endif %&#125;</span><br><span class="line">                    &#123;% endfor %&#125;</span><br><span class="line">                  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">                &#123;% endif %&#125;</span><br><span class="line">                &#123;% if ipinfos|length&gt;0 %&#125;</span><br><span class="line">                  <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>IP<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>国家/地区<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>省份<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>城市<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>机构<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>ISP<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>经纬度<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;<span class="name">th</span>&gt;</span>来源<span class="tag">&lt;/<span class="name">th</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                      &#123;% for ipinfo in ipinfos %&#125;</span><br><span class="line">                      <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['ip'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['country'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['region'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['city'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['org'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['isp'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;&#123; ipinfo['loc'] &#125;&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                          <span class="tag">&lt;<span class="name">td</span>&gt;</span></span><br><span class="line">                              &#123;% if ipinfo['source']=='ipinfo.io' %&#125;</span><br><span class="line">                                  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://ipinfo.io/&#123;&#123; ipinfo['ip'] &#125;&#125;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>&#123;&#123; ipinfo['source'] &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                              &#123;% elif ipinfo['source']=='ip-api.com'%&#125;</span><br><span class="line">                                  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://ip-api.com/json/&#123;&#123; ipinfo['ip'] &#125;&#125;"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>&#123;&#123; ipinfo['source'] &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                              &#123;% else %&#125;</span><br><span class="line">                                  &#123;&#123; ipinfo['source'] &#125;&#125;</span><br><span class="line">                              &#123;% endif %&#125;</span><br><span class="line">                          <span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">                      <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                      &#123;% endfor %&#125;</span><br><span class="line">                  <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">                &#123;% endif %&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123;% endblock %&#125;</span><br><span class="line">&#123;% endblock %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>路由配置处理中实现了获取表单中的信息，并判断是域名还是IP如果是域名者获取whois信息，并根据域名获取IP信息。如果输入的是IP则获取IP信息，并反馈到页面上。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@index_bp.route('/',methods=['GET','POST'])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">    name = <span class="string">''</span></span><br><span class="line">    ipinfos = []</span><br><span class="line">    whois_info = <span class="string">''</span></span><br><span class="line">    form = InputForm()</span><br><span class="line">    <span class="keyword">if</span> form.validate_on_submit():</span><br><span class="line">        name = form.name.data</span><br><span class="line">        <span class="keyword">if</span> checkip(name):</span><br><span class="line">            ipinfos = getipinfo(name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            whois_info = getwhoisinfo(name)</span><br><span class="line">            whois_ip = getIPbyDomain(name)</span><br><span class="line">            <span class="keyword">if</span> checkip(whois_ip):</span><br><span class="line">                ipinfos = getipinfo(whois_ip)</span><br><span class="line">        form.name.data = <span class="string">''</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'index.html'</span>,form=form, name=name, ipinfos=ipinfos, whois_info=whois_info)</span><br></pre></td></tr></table></figure>
 
-<h2 id="4、最终实现效果"><a href="#4、最终实现效果" class="headerlink" title="4、最终实现效果"></a>4、最终实现效果</h2><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211121/%E7%95%8C%E9%9D%A2%E6%9F%A5%E8%AF%A2%E6%95%88%E6%9E%9C.png" alt="界面查询效果"></p>
+<h2 id="4、最终实现效果"><a href="#4、最终实现效果" class="headerlink" title="4、最终实现效果"></a>4、最终实现效果</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211121/%E7%95%8C%E9%9D%A2%E6%9F%A5%E8%AF%A2%E6%95%88%E6%9E%9C.png" alt="界面查询效果"></p>
 <p><strong>至此通过Python快速实现了一个简单的域名、IP信息聚合网站</strong></p>
 <hr>
 <p>全部源代码：<a href="https://github.com/xiejava1018/infocollect" target="_blank" rel="noopener">https://github.com/xiejava1018/infocollect</a></p>
@@ -537,7 +783,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -634,8 +880,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -769,19 +1015,19 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> Book <span class="keyword">import</span> Book</span><br><span class="line"></span><br><span class="line">savepath=<span class="string">"J://kgbook//books//"</span> <span class="comment">#保存地址</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">main_url=<span class="string">'https://kgbook.com/'</span></span><br><span class="line">bookcount=<span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 
-<h1 id="一、获取目录"><a href="#一、获取目录" class="headerlink" title="一、获取目录"></a>一、获取目录</h1><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9B%AE%E5%BD%95.png" alt="获取目录"><br>通过浏览器的调试工具可以看到目录在id=catagory的div标签下，下面还有ul和li标签，那我们可以迭代li可以获得目录及目录页的地址。<br>可以通过soup.find_all(attrs={‘id’: ‘category’})[0].ul 获取 到ul标签，然后获取ul的li标签，进行迭代获取。<br>代码如下：</p>
+<h1 id="一、获取目录"><a href="#一、获取目录" class="headerlink" title="一、获取目录"></a>一、获取目录</h1><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9B%AE%E5%BD%95.png" alt="获取目录"><br>通过浏览器的调试工具可以看到目录在id=catagory的div标签下，下面还有ul和li标签，那我们可以迭代li可以获得目录及目录页的地址。<br>可以通过soup.find_all(attrs={‘id’: ‘category’})[0].ul 获取 到ul标签，然后获取ul的li标签，进行迭代获取。<br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">获取目录</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getcategory</span><span class="params">()</span>:</span></span><br><span class="line">    req_result=requests.get(main_url,headers=headers)</span><br><span class="line">    <span class="keyword">if</span> req_result.status_code==<span class="number">200</span>:</span><br><span class="line">        htmlstr=req_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">        soup = BeautifulSoup(htmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">        categorys=soup.find_all(attrs=&#123;<span class="string">'id'</span>: <span class="string">'category'</span>&#125;)[<span class="number">0</span>].ul</span><br><span class="line">        <span class="keyword">for</span> li <span class="keyword">in</span> categorys.find_all(name=<span class="string">'li'</span>):</span><br><span class="line">            print(<span class="string">'开始抓取'</span>+li.a.attrs[<span class="string">'href'</span>]+<span class="string">"--"</span>+li.string)</span><br><span class="line">            getcategroydetail(main_url+li.a.attrs[<span class="string">'href'</span>],li.string)</span><br><span class="line">            time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="二、获取书籍列表页"><a href="#二、获取书籍列表页" class="headerlink" title="二、获取书籍列表页"></a>二、获取书籍列表页</h1><p>在书籍列表页，我们要获取两个信息，分别是书籍列表的信息及翻页下一页书籍列表的URL地址。<br>通过浏览器的调试工具分别对列表的信息及翻页下一页的html进行分析。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E5%88%97%E8%A1%A8.png" alt="获取书籍列表页"><br>列表中的书籍详情页信息在class=”channel-item”的div标签下，通过class=”list-title”的h3标签循环迭代<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E7%BF%BB%E9%A1%B5.png" alt="翻页"><br>下一页，我们可以直接通过next_pag=soup.find(name=’a’,text=re.compile(‘下一页’))来获取。<br>然后我们可以通过递归来不断的调用获取下一页书籍列表页的代码，知道没有下一页为止。就可以把怎个目录都可以爬取完。<br>代码如下：</p>
+<h1 id="二、获取书籍列表页"><a href="#二、获取书籍列表页" class="headerlink" title="二、获取书籍列表页"></a>二、获取书籍列表页</h1><p>在书籍列表页，我们要获取两个信息，分别是书籍列表的信息及翻页下一页书籍列表的URL地址。<br>通过浏览器的调试工具分别对列表的信息及翻页下一页的html进行分析。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E5%88%97%E8%A1%A8.png" alt="获取书籍列表页"><br>列表中的书籍详情页信息在class=”channel-item”的div标签下，通过class=”list-title”的h3标签循环迭代<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E7%BF%BB%E9%A1%B5.png" alt="翻页"><br>下一页，我们可以直接通过next_pag=soup.find(name=’a’,text=re.compile(‘下一页’))来获取。<br>然后我们可以通过递归来不断的调用获取下一页书籍列表页的代码，知道没有下一页为止。就可以把怎个目录都可以爬取完。<br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">获取书籍列表</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbookslist</span><span class="params">(bookurlstr,categroy_path)</span>:</span></span><br><span class="line">    book_result=requests.get(bookurlstr,headers=headers)</span><br><span class="line">    bookhtmlstr=book_result.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    soup = BeautifulSoup(bookhtmlstr, <span class="string">'lxml'</span>)</span><br><span class="line">    booklists=soup.select(<span class="string">'.channel-item'</span>)</span><br><span class="line">    <span class="keyword">for</span> bookinfo_div <span class="keyword">in</span> booklists:</span><br><span class="line">        booktitle_div=bookinfo_div.select(<span class="string">'.list-title'</span>)[<span class="number">0</span>]</span><br><span class="line">        bookurl=booktitle_div.a.attrs[<span class="string">'href'</span>]</span><br><span class="line">        getbookdetail(bookurl,categroy_path)</span><br><span class="line">    next_pag=soup.find(name=<span class="string">'a'</span>,text=re.compile(<span class="string">'下一页'</span>))</span><br><span class="line">    <span class="keyword">if</span> next_pag <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        next_url=next_pag.attrs[<span class="string">'href'</span>]</span><br><span class="line">        print(<span class="string">'爬取下一页：'</span>+next_url)</span><br><span class="line">        getbookslist(next_url,categroy_path)</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="三、获取书籍详情页"><a href="#三、获取书籍详情页" class="headerlink" title="三、获取书籍详情页"></a>三、获取书籍详情页</h1><p>我们要在书籍详情页需要获得书籍详情信息包括书名、作者等信息<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E8%AF%A6%E6%83%85.png" alt="书籍详情"><br>关于书名和作者可以分别通过提取class=”news_title”的h1标签和id=”news_details”的div下的ul下的li再通过正则表达式对作者信息进行提取。</p>
+<h1 id="三、获取书籍详情页"><a href="#三、获取书籍详情页" class="headerlink" title="三、获取书籍详情页"></a>三、获取书籍详情页</h1><p>我们要在书籍详情页需要获得书籍详情信息包括书名、作者等信息<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E4%B9%A6%E7%B1%8D%E8%AF%A6%E6%83%85.png" alt="书籍详情"><br>关于书名和作者可以分别通过提取class=”news_title”的h1标签和id=”news_details”的div下的ul下的li再通过正则表达式对作者信息进行提取。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">booktitle=bookdetailsoup.select(<span class="string">'.news_title'</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">bookauthor=bookdetailsoup.select(<span class="string">'#news_details'</span>)[<span class="number">0</span>].ul.li.find(text=re.compile(<span class="string">'作者：(.*?)'</span>)).strip()</span><br><span class="line">bookauthor=bookauthor.replace(<span class="string">'作者：'</span>,<span class="string">''</span>)</span><br><span class="line">booktitleinfo=<span class="string">"《"</span>+booktitle+<span class="string">'》-'</span>+bookauthor</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="四、分析书籍详情页的资源地址"><a href="#四、分析书籍详情页的资源地址" class="headerlink" title="四、分析书籍详情页的资源地址"></a>四、分析书籍详情页的资源地址</h1><p>在书籍详情页，我们还要分析书籍详情页的资源地址<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%BA%90%E5%9C%B0%E5%9D%80.png" alt="资源地址"><br>电子书的资源下载地址可以通过提取a标签的信息来获取。通过正则表达式分别匹配azw3、mobi、epub分别提取不同的电子书资源。<br>book_url_item=bookdetailsoup.find(name=’a’,text=re.compile(booktype,re.I))<br>代码如下：</p>
+<h1 id="四、分析书籍详情页的资源地址"><a href="#四、分析书籍详情页的资源地址" class="headerlink" title="四、分析书籍详情页的资源地址"></a>四、分析书籍详情页的资源地址</h1><p>在书籍详情页，我们还要分析书籍详情页的资源地址<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E4%B9%A6%E7%B1%8D%E8%B5%84%E6%BA%90%E5%9C%B0%E5%9D%80.png" alt="资源地址"><br>电子书的资源下载地址可以通过提取a标签的信息来获取。通过正则表达式分别匹配azw3、mobi、epub分别提取不同的电子书资源。<br>book_url_item=bookdetailsoup.find(name=’a’,text=re.compile(booktype,re.I))<br>代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">根据书籍资源类型下载资源</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getbookfortype</span><span class="params">(bookurl,categroy_path,bookdetailsoup,booktype)</span>:</span></span><br><span class="line">    booktitle=bookdetailsoup.select(<span class="string">'.news_title'</span>)[<span class="number">0</span>].text.strip()</span><br><span class="line">    bookauthor=bookdetailsoup.select(<span class="string">'#news_details'</span>)[<span class="number">0</span>].ul.li.find(text=re.compile(<span class="string">'作者：(.*?)'</span>)).strip()</span><br><span class="line">    bookauthor=bookauthor.replace(<span class="string">'作者：'</span>,<span class="string">''</span>)</span><br><span class="line">    booktitleinfo=<span class="string">"《"</span>+booktitle+<span class="string">'》-'</span>+bookauthor</span><br><span class="line">    print(<span class="string">'书籍详情：---'</span>+booktitleinfo)</span><br><span class="line">    book_url_item=bookdetailsoup.find(name=<span class="string">'a'</span>,text=re.compile(booktype,re.I))</span><br><span class="line">    <span class="keyword">if</span> book_url_item <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        downloadurl=book_url_item.attrs[<span class="string">'href'</span>]</span><br><span class="line">        print(<span class="string">'下载地址：'</span>+downloadurl)</span><br><span class="line">        <span class="keyword">if</span> checkIfNoExistBookByUrl(downloadurl):</span><br><span class="line">            r = requests.get(downloadurl)</span><br><span class="line">            <span class="keyword">if</span> r.status_code==<span class="number">200</span>:</span><br><span class="line">                savepath=createdir(categroy_path,booktitleinfo)</span><br><span class="line">                filename=booktitle+<span class="string">"."</span>+booktype</span><br><span class="line">                savebook(r.content,savepath,filename)</span><br><span class="line">                p,f=os.path.split(categroy_path)</span><br><span class="line">                bookcategory=f</span><br><span class="line">                book=Book(bookcategory,booktitle,bookauthor,bookurl,downloadurl,savepath,<span class="string">"苦瓜书盘"</span>,booktype)</span><br><span class="line">                print(book.toString())</span><br><span class="line">                savebooktojson(book)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                print(<span class="string">'下载失败：status_code='</span>+str(r.status_code))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">'没有'</span>+booktype+<span class="string">'格式的书'</span>)</span><br></pre></td></tr></table></figure>
 
 
@@ -803,7 +1049,7 @@
 
 <hr>
 <p>运行效果如下：</p>
-<p>1、爬取过程<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%BF%87%E7%A8%8B.png" alt="爬取过程"><br>2、爬取记录的json信息<br>data.json的信息如下：<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%AE%B0%E5%BD%95%E7%9A%84json%E4%BF%A1%E6%81%AF.png" alt="爬取记录"><br>3、爬取获取的资源<br>按目录都已经整理好了，够你看的了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9A%84%E8%B5%84%E6%BA%90.png" alt="获取的资源"></p>
+<p>1、爬取过程<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%BF%87%E7%A8%8B.png" alt="爬取过程"><br>2、爬取记录的json信息<br>data.json的信息如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E7%88%AC%E5%8F%96%E8%AE%B0%E5%BD%95%E7%9A%84json%E4%BF%A1%E6%81%AF.png" alt="爬取记录"><br>3、爬取获取的资源<br>按目录都已经整理好了，够你看的了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211120/%E8%8E%B7%E5%8F%96%E7%9A%84%E8%B5%84%E6%BA%90.png" alt="获取的资源"></p>
 <p>​<br>Python爬虫获取电子书资源实战的全部代码，包括爬取-&gt;分析、解析-&gt;保存至本地及数据库。<a href="https://download.csdn.net/download/fullbug/10468606" target="_blank" rel="noopener">下载</a></p>
 <p>​<strong>github:</strong> <a href="https://github.com/xiejava1018/getbooks" target="_blank" rel="noopener">https://github.com/xiejava1018/getbooks</a></p>
 <hr>
@@ -812,7 +1058,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -909,8 +1155,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
-                2024-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1127,8 +1373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1251,7 +1497,7 @@
             <p>很多网友留言问如何配置Supervisor 自启动，现将如何在CentOS7下配置Supervisor自启动的两种方法整理如下：</p>
 <h1 id="一、方法一"><a href="#一、方法一" class="headerlink" title="一、方法一"></a>一、方法一</h1><p><strong>直接将启动命令加入到/etc/rc.d/rc.local中（简单但不推荐）</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
-<p>在现有的内容后面加入supervisor的启动命令<br>supervisord -c /etc/supervisord.conf<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211111/rc.local.png" alt="/etc/rc.d/rc.local"><br>注意：一定要执行 chmod +x /etc/rc.d/rc.local</p>
+<p>在现有的内容后面加入supervisor的启动命令<br>supervisord -c /etc/supervisord.conf<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211111/rc.local.png" alt="/etc/rc.d/rc.local"><br>注意：一定要执行 chmod +x /etc/rc.d/rc.local</p>
 <blockquote>
 <p>chmod +x /etc/rc.d/rc.local</p>
 </blockquote>
@@ -1284,7 +1530,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1381,8 +1627,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:13+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1505,15 +1751,15 @@
             <p>IP地址信息是非常重要的情报信息，通过IP可以定位到该IP所在的国家、城市、经纬度等。<br>获取IP信息的方式有很多，很多服务商都提供了相应的地址库或API接口服务。<br>如国内的ipip.net，国外的ip-api.com、maxmind.com等。<br>很多公司都是使用Maxmind网站的IP信息库，里面包含着IP的详细信息，有付费的也有免费的，收费与免费的区别就是精准度和覆盖率。</p>
 <p>本文介绍下载及定时更新Maxmind的离线库用python通过GeoIP来获取IP信息 </p>
 <h1 id="一、下载GeoLite2离线地址库"><a href="#一、下载GeoLite2离线地址库" class="headerlink" title="一、下载GeoLite2离线地址库"></a>一、下载GeoLite2离线地址库</h1><h2 id="1、注册及申请License-Key"><a href="#1、注册及申请License-Key" class="headerlink" title="1、注册及申请License Key"></a>1、注册及申请License Key</h2><p>下载地址库之前先要在Maxmind网站注册同意相应的协议并登陆。</p>
-<h3 id="1）注册"><a href="#1）注册" class="headerlink" title="1）注册"></a>1）注册</h3><p>访问 <a href="https://dev.maxmind.com/geoip/geolite2-free-geolocation-data" target="_blank" rel="noopener">https://dev.maxmind.com/geoip/geolite2-free-geolocation-data</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/Maxmind%E6%B3%A8%E5%86%8C%E5%AF%BC%E8%88%AA%E9%A1%B5.png" alt="Maxmiand注册导航"><br>点击”Sign Up for GeoLite2” 根据输入框进行注册<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/Maxmind%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8D%95%E9%A1%B5.png" alt="Maxmiand注册表单"><br>注意邮箱一定要正确，注册后会发邮件进行确认及修改密码。<br>根据注册的用户名和修改后的密码登陆就可以直接下载离线包了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/Maxmind%E8%B4%A6%E5%8F%B7%E6%A6%82%E8%A7%88.png" alt="Maxmind账号信息"><br>点击”Download Databases”进入到下载页面，可以看到提供了CSV及mmdb两种格式的离线库包，最近的更新时间为2021年11月02日。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/%E5%9C%B0%E5%9D%80%E5%BA%93%E4%B8%8B%E8%BD%BD.png" alt="MaxmiandGeoLite2地址库下载"><br>由于IP地址信息是经常有变化的，Maxmind提供了geoipupdate工具来更新离线地址包。该工具使用需要申请账号和License Key</p>
-<h3 id="2）申请License-Key"><a href="#2）申请License-Key" class="headerlink" title="2）申请License Key"></a>2）申请License Key</h3><p>还是通过刚注册的引导页面，点击“Generate a License Key”<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/Maxmind%E7%94%9F%E6%88%90License%E5%AF%BC%E8%88%AA%E9%A1%B5.png" alt="Maxmind生成License导航页"><br>进如到页面后，点击“Generate new license key”<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/Maxmind%E7%94%9F%E6%88%90Licensekey.png" alt="Generate new license key"><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/Maxmind%E7%94%9F%E6%88%90License2.png" alt="License Key生成确定页"><br>点击确定以后就会生成账号及License key<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/MaxmindLicense%E7%94%9F%E6%88%90%E9%A1%B5.png" alt="License key生成"></p>
+<h3 id="1）注册"><a href="#1）注册" class="headerlink" title="1）注册"></a>1）注册</h3><p>访问 <a href="https://dev.maxmind.com/geoip/geolite2-free-geolocation-data" target="_blank" rel="noopener">https://dev.maxmind.com/geoip/geolite2-free-geolocation-data</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/Maxmind%E6%B3%A8%E5%86%8C%E5%AF%BC%E8%88%AA%E9%A1%B5.png" alt="Maxmiand注册导航"><br>点击”Sign Up for GeoLite2” 根据输入框进行注册<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/Maxmind%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8D%95%E9%A1%B5.png" alt="Maxmiand注册表单"><br>注意邮箱一定要正确，注册后会发邮件进行确认及修改密码。<br>根据注册的用户名和修改后的密码登陆就可以直接下载离线包了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/Maxmind%E8%B4%A6%E5%8F%B7%E6%A6%82%E8%A7%88.png" alt="Maxmind账号信息"><br>点击”Download Databases”进入到下载页面，可以看到提供了CSV及mmdb两种格式的离线库包，最近的更新时间为2021年11月02日。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/%E5%9C%B0%E5%9D%80%E5%BA%93%E4%B8%8B%E8%BD%BD.png" alt="MaxmiandGeoLite2地址库下载"><br>由于IP地址信息是经常有变化的，Maxmind提供了geoipupdate工具来更新离线地址包。该工具使用需要申请账号和License Key</p>
+<h3 id="2）申请License-Key"><a href="#2）申请License-Key" class="headerlink" title="2）申请License Key"></a>2）申请License Key</h3><p>还是通过刚注册的引导页面，点击“Generate a License Key”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/Maxmind%E7%94%9F%E6%88%90License%E5%AF%BC%E8%88%AA%E9%A1%B5.png" alt="Maxmind生成License导航页"><br>进如到页面后，点击“Generate new license key”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/Maxmind%E7%94%9F%E6%88%90Licensekey.png" alt="Generate new license key"><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/Maxmind%E7%94%9F%E6%88%90License2.png" alt="License Key生成确定页"><br>点击确定以后就会生成账号及License key<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/MaxmindLicense%E7%94%9F%E6%88%90%E9%A1%B5.png" alt="License key生成"></p>
 <h2 id="2、下载并配置geoipupdate"><a href="#2、下载并配置geoipupdate" class="headerlink" title="2、下载并配置geoipupdate"></a>2、下载并配置geoipupdate</h2><p><a href="https://github.com/maxmind/geoipupdate" target="_blank" rel="noopener">https://github.com/maxmind/geoipupdate</a><br>这里有详细的安安装及配置说明</p>
-<p>发行版本下载地址 <a href="https://github.com/maxmind/geoipupdate/releases" target="_blank" rel="noopener">https://github.com/maxmind/geoipupdate/releases</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/geoipupdate%E4%B8%8B%E8%BD%BD.png" alt="在这里插入图片描述"></p>
+<p>发行版本下载地址 <a href="https://github.com/maxmind/geoipupdate/releases" target="_blank" rel="noopener">https://github.com/maxmind/geoipupdate/releases</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/geoipupdate%E4%B8%8B%E8%BD%BD.png" alt="在这里插入图片描述"></p>
 <p>可以看到提供了各种平台的版本的下载链接，这里我们下载安装的是linux版本，点击下载“geoipupdate_4.8.0_linux_amd64.tar.gz”<br>在home目录下执行</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/maxmind/geoipupdate/releases/download/v4.<span class="number">8.0</span>/geoipupdate_4.<span class="number">8.0</span>_linux_amd64.tar.gz</span><br></pre></td></tr></table></figure>
 
 <p>下载至home目录</p>
-<p>tar -zxvf geoipupdate_4.8.0_linux_amd64.tar.gz 进行解压<br>cd geoipupdate_4.8.0_linux_amd64  目录执行ls -alh查看目录内容，发现有两个关键文件，一个是getipupdate命令执行文件，一个是GeoIP.conf配置文件<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/geoipupdate%E7%9B%AE%E5%BD%95.png" alt="geoipupdate目录"></p>
+<p>tar -zxvf geoipupdate_4.8.0_linux_amd64.tar.gz 进行解压<br>cd geoipupdate_4.8.0_linux_amd64  目录执行ls -alh查看目录内容，发现有两个关键文件，一个是getipupdate命令执行文件，一个是GeoIP.conf配置文件<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/geoipupdate%E7%9B%AE%E5%BD%95.png" alt="geoipupdate目录"></p>
 <p>将执行命令拷贝到命令文件夹</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp geoipupdate /usr/<span class="built_in">local</span>/bin/</span><br></pre></td></tr></table></figure>
 
@@ -1521,8 +1767,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp GeoIP.conf /usr/<span class="built_in">local</span>/etc/</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/etc/GeoIP.conf</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/geoipupdate%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="修改GeoIP.conf"><br>如上图修改离线库文件目录及账号、LicenseKey，AccountID和LicenseKey就是开始在Maxmind网站上申请的。</p>
-<h2 id="3、运行geoipupdate命令并加入定时任务"><a href="#3、运行geoipupdate命令并加入定时任务" class="headerlink" title="3、运行geoipupdate命令并加入定时任务"></a>3、运行geoipupdate命令并加入定时任务</h2><p>执行geoipupdate命令，在目录下面产生了GeoLite2-City.mmdb、GeoLite2-Country.mmdb两个离线库文件。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/GeoLite2%E5%BA%93%E6%96%87%E4%BB%B6.png" alt="GeoLite2离线库文件"><br>创建Linux定时任务，每周自动更新一下离线库文件</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/geoipupdate%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="修改GeoIP.conf"><br>如上图修改离线库文件目录及账号、LicenseKey，AccountID和LicenseKey就是开始在Maxmind网站上申请的。</p>
+<h2 id="3、运行geoipupdate命令并加入定时任务"><a href="#3、运行geoipupdate命令并加入定时任务" class="headerlink" title="3、运行geoipupdate命令并加入定时任务"></a>3、运行geoipupdate命令并加入定时任务</h2><p>执行geoipupdate命令，在目录下面产生了GeoLite2-City.mmdb、GeoLite2-Country.mmdb两个离线库文件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/GeoLite2%E5%BA%93%E6%96%87%E4%BB%B6.png" alt="GeoLite2离线库文件"><br>创建Linux定时任务，每周自动更新一下离线库文件</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">crontab <span class="literal">-e</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> * * <span class="number">0</span> /usr/local/bin/geoipupdate</span><br></pre></td></tr></table></figure>
 
 <h1 id="二、通过Python调用GeoIP获取IP信息"><a href="#二、通过Python调用GeoIP获取IP信息" class="headerlink" title="二、通过Python调用GeoIP获取IP信息"></a>二、通过Python调用GeoIP获取IP信息</h1><p>默认已经安装好了Flask环境，并激活了python虚拟环境。激活python虚拟环境安装Flask教程见<a href="http://xiejava.ishareread.com/posts/7f405b25/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/7f405b25/</a></p>
@@ -1536,7 +1782,7 @@
 <h2 id="3、运行hello-py"><a href="#3、运行hello-py" class="headerlink" title="3、运行hello.py"></a>3、运行hello.py</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(flask_web) [<span class="type">root</span>@<span class="type">localhost</span> <span class="type">flask_web</span>]<span class="comment"># python hello.py</span></span><br><span class="line"> * Serving Flask app <span class="string">'hello'</span> (lazy loading)</span><br><span class="line"> * Environment: production</span><br><span class="line">   WARNING: This is a development server. <span class="keyword">Do</span> not use it <span class="keyword">in</span> a production deployment.</span><br><span class="line">   Use a production WSGI server instead.</span><br><span class="line"> * Debug mode: off</span><br><span class="line"> * Running on all addresses.</span><br><span class="line">   WARNING: This is a development server. <span class="keyword">Do</span> not use it <span class="keyword">in</span> a production deployment.</span><br><span class="line"> * Running on http://<span class="number">192.168</span>.<span class="number">1.18</span>:<span class="number">8080</span>/ (Press CTRL+C to quit)</span><br></pre></td></tr></table></figure>
 
 <p>注意：如果linux开启了防火墙请关闭防火墙，或放开192.168.1.18</p>
-<h2 id="4、验证"><a href="#4、验证" class="headerlink" title="4、验证"></a>4、验证</h2><p>通过浏览器访问 <a href="http://192.168.1.18:8080/getip/128.101.101.101" target="_blank" rel="noopener">http://192.168.1.18:8080/getip/128.101.101.101</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211110/IP%E4%BF%A1%E6%81%AF%E8%BF%94%E5%9B%9E%E9%AA%8C%E8%AF%81.png" alt="验证IP信息"><br>可以看到返回IP的国家、城市、经纬度等信息。</p>
+<h2 id="4、验证"><a href="#4、验证" class="headerlink" title="4、验证"></a>4、验证</h2><p>通过浏览器访问 <a href="http://192.168.1.18:8080/getip/128.101.101.101" target="_blank" rel="noopener">http://192.168.1.18:8080/getip/128.101.101.101</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211110/IP%E4%BF%A1%E6%81%AF%E8%BF%94%E5%9B%9E%E9%AA%8C%E8%AF%81.png" alt="验证IP信息"><br>可以看到返回IP的国家、城市、经纬度等信息。</p>
 <p><strong>至此，本文介绍了如何注册并下载GeoIP离线数据包，并通过官方提供的geoipupdate进行定期更新数据。还介绍了如何通过Python调用GeoIP获取IP信息。</strong></p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -1544,7 +1790,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1641,8 +1887,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:13+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -1767,14 +2013,14 @@
 <p>查看python版本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># python -V</span></span><br><span class="line">Python 3.8.12</span><br></pre></td></tr></table></figure>
 
-<h1 id="二、安装Flask"><a href="#二、安装Flask" class="headerlink" title="二、安装Flask"></a>二、安装Flask</h1><h2 id="1、创建Python虚拟环境"><a href="#1、创建Python虚拟环境" class="headerlink" title="1、创建Python虚拟环境"></a>1、创建Python虚拟环境</h2><p>在home目录下创建flask_web目录（目录根据具体实际环境创建，本教程是/home/flask_web）<br>通过venv创建虚拟环境<br>[root@localhost flask_web]# python -m venv /home/flask_web<br>创建成功后可以看到在目录下自动建了一些文件夹，包括python命令及依赖库等，激活以后是个独立的python虚拟运行环境。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%96%87%E4%BB%B6.png" alt="python虚拟运行环境"></p>
+<h1 id="二、安装Flask"><a href="#二、安装Flask" class="headerlink" title="二、安装Flask"></a>二、安装Flask</h1><h2 id="1、创建Python虚拟环境"><a href="#1、创建Python虚拟环境" class="headerlink" title="1、创建Python虚拟环境"></a>1、创建Python虚拟环境</h2><p>在home目录下创建flask_web目录（目录根据具体实际环境创建，本教程是/home/flask_web）<br>通过venv创建虚拟环境<br>[root@localhost flask_web]# python -m venv /home/flask_web<br>创建成功后可以看到在目录下自动建了一些文件夹，包括python命令及依赖库等，激活以后是个独立的python虚拟运行环境。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%96%87%E4%BB%B6.png" alt="python虚拟运行环境"></p>
 <p>在目录下运行source bin/activate 激活虚拟环境</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost flask_web]<span class="comment"># source bin/activate</span></span><br><span class="line">(flask_web) [root@localhost flask_web]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="2、安装Flask"><a href="#2、安装Flask" class="headerlink" title="2、安装Flask"></a>2、安装Flask</h2><p>通过pip install flask安装flask</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(flask_web) [root@localhost flask_web]<span class="comment"># pip install flask</span></span><br></pre></td></tr></table></figure>
 
-<p>安装的时候有可能报ModuleNotFoundError: No module named ‘_ctypes’的错误，原因是缺少libffi-devel包，具体可参考 <a href="https://blog.csdn.net/qq_36416904/article/details/79316972" target="_blank" rel="noopener">https://blog.csdn.net/qq_36416904/article/details/79316972</a><br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/%E5%AE%89%E8%A3%85flask%E6%8A%A5%E9%94%99.png" alt="安装Flask报错"></p>
+<p>安装的时候有可能报ModuleNotFoundError: No module named ‘_ctypes’的错误，原因是缺少libffi-devel包，具体可参考 <a href="https://blog.csdn.net/qq_36416904/article/details/79316972" target="_blank" rel="noopener">https://blog.csdn.net/qq_36416904/article/details/79316972</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/%E5%AE%89%E8%A3%85flask%E6%8A%A5%E9%94%99.png" alt="安装Flask报错"></p>
 <p>运行yum install libffi-devel -y 并且要重新编译执行安装python<br>解决包依赖的问题<br>(flask_web) [root@localhost flask_web]# yum install libffi-devel -y<br>进入到python源码包目录 执行使用make&amp;make install 命令重新编译并安装python（这里比较坑）<br>然后再pip install flask 进行安装<br>安装完成后可以尝试运行flask run，提示没有Flask应用程序，说明flask已经安装成功并且可以运行了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(flask_web) [root@localhost flask_web]<span class="comment"># flask run</span></span><br><span class="line"> * Environment: production</span><br><span class="line">   WARNING: This is a development server. Do not use it <span class="keyword">in</span> a production deployment.</span><br><span class="line">   Use a production WSGI server instead.</span><br><span class="line"> * Debug mode: off</span><br><span class="line">Usage: flask run [OPTIONS]</span><br><span class="line">Try <span class="string">'flask run --help'</span> <span class="keyword">for</span> <span class="built_in">help</span>.</span><br><span class="line"></span><br><span class="line">Error: Could not locate a Flask application. You did not provide the <span class="string">"FLASK_APP"</span> environment variable, and a <span class="string">"wsgi.py"</span> or <span class="string">"app.py"</span> module was not found <span class="keyword">in</span> the current directory.</span><br></pre></td></tr></table></figure>
 
@@ -1799,7 +2045,7 @@
 <p>启动以后通过访问curl <a href="http://127.0.0.1:3366" target="_blank" rel="noopener">http://127.0.0.1:3366</a> 有Hello World!的返回信息表示uwsgi已经成功启动，并且应用程序正常。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost flask_web]<span class="comment"># curl http://127.0.0.1:3366</span></span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
 
-<h1 id="四、配置Nginx反向代理"><a href="#四、配置Nginx反向代理" class="headerlink" title="四、配置Nginx反向代理"></a>四、配置Nginx反向代理</h1><p>ps -ef|grep nginx 找到nginx的配置文件<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="nginx配置文件"><br>如果uwsgi配置的是socket连接<br>[uwsgi]<br>socket=127.0.0.1:3366 #如果是socket，通过nginx配置uwsgi_pass socket链接<br>nginx的server配置如下：</p>
+<h1 id="四、配置Nginx反向代理"><a href="#四、配置Nginx反向代理" class="headerlink" title="四、配置Nginx反向代理"></a>四、配置Nginx反向代理</h1><p>ps -ef|grep nginx 找到nginx的配置文件<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="nginx配置文件"><br>如果uwsgi配置的是socket连接<br>[uwsgi]<br>socket=127.0.0.1:3366 #如果是socket，通过nginx配置uwsgi_pass socket链接<br>nginx的server配置如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">     listen 808;</span><br><span class="line">     server_name localhost;</span><br><span class="line"></span><br><span class="line">     location / &#123;</span><br><span class="line">          include uwsgi_params;</span><br><span class="line">          uwsgi_pass 127.0.0.1:3366;</span><br><span class="line">      &#125;</span><br><span class="line">      access_log /home/flask_web/access.log;</span><br><span class="line">      error_log /home/flask_web/error.log;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>如果uwsgi配置的是http<br>[uwsgi]<br>http=127.0.0.1:3366  #如果是http,通过proxy_pass http链接<br>nginx的server配置如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen 808;</span><br><span class="line">      server_name localhost;</span><br><span class="line"></span><br><span class="line">      location / &#123;</span><br><span class="line">           proxy_pass http://127.0.0.1:3366;</span><br><span class="line">       &#125;</span><br><span class="line">       access_log /home/flask_web/access.log;</span><br><span class="line">       error_log /home/flask_web/error.log;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
@@ -1816,7 +2062,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv supervisord.conf /etc/</span><br></pre></td></tr></table></figure>
 <p>修改supervisord.conf的配置文件，主要是将子配置文件路径开启并指定配置文件路径，按照惯例将配置文件放到/etc目录下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[include]</span><br><span class="line">files = /etc/supervisord.d/*.ini</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/supervisord.config.png" alt="supervisord.conf配置文件"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/supervisord.config.png" alt="supervisord.conf配置文件"></p>
 <p>我们在/etc目录下建个supervisord.d目录用来保存supervisor托管进程的配置文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cd /etc/</span></span><br><span class="line">[root@localhost etc]<span class="comment"># mkdir supervisord.d</span></span><br></pre></td></tr></table></figure>
 <p>建立并配置子配置文件</p>
@@ -1825,7 +2071,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[program:uwsgi]</span><br><span class="line"><span class="built_in">command</span> =uwsgi --ini /home/flask_web/uwsgi.ini</span><br><span class="line">directory=/home/flask_web</span><br><span class="line">startsecs=10</span><br><span class="line">startretries=5</span><br><span class="line">autostart=<span class="literal">true</span></span><br><span class="line">autorestart=<span class="literal">true</span></span><br><span class="line">stdout_logfile=/home/flask_web/uwsgi_sup_log.log</span><br><span class="line">stdout_logfile_maxbytes=10MB</span><br><span class="line">user=root</span><br><span class="line">stopasgroup=<span class="literal">true</span></span><br><span class="line">killasgroup=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="3、启动supervisor"><a href="#3、启动supervisor" class="headerlink" title="3、启动supervisor"></a>3、启动supervisor</h2><p>在启动supervisor拉起uwsgi前两个注意事项</p>
-<p>1) uwsgi的配置文件中daemonize一定要屏蔽掉，否则守护进程一直会重启，导致端口每次都被占用，Supervisor托管不了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/uwsgi.ini.png" alt="uwsgi.ini"><br>2) 在启动之前先将已经启动的uwsgi进程停掉，否则通过supervisor拉起uwsgi进程时端口冲突<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/kill-uwsgi.png" alt="kill uwsgi进程"></p>
+<p>1) uwsgi的配置文件中daemonize一定要屏蔽掉，否则守护进程一直会重启，导致端口每次都被占用，Supervisor托管不了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/uwsgi.ini.png" alt="uwsgi.ini"><br>2) 在启动之前先将已经启动的uwsgi进程停掉，否则通过supervisor拉起uwsgi进程时端口冲突<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/kill-uwsgi.png" alt="kill uwsgi进程"></p>
 <p>启动supervisord进程</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># supervisord -c /etc/supervisord.conf</span></span><br></pre></td></tr></table></figure>
 
@@ -1839,14 +2085,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost supervisord.d]<span class="comment"># supervisorctl shutdown</span></span><br><span class="line">Server requires authentication</span><br><span class="line">error: &lt;class <span class="string">'xmlrpc.client.ProtocolError'</span>&gt;, &lt;ProtocolError <span class="keyword">for</span> 127.0.0.1/RPC2: 401 Unauthorized&gt;: file: /usr/<span class="built_in">local</span>/lib/python3.8/site-packages/supervisor/xmlrpc.py line: 542</span><br></pre></td></tr></table></figure>
 
 <p>可以直接kill -9杀掉supervisor的进程再启动，也可以通过supervisorctl 输入用户名、口令通过shutdown然后再重启。<br>启动命令：supervisord -c /etc/supervisord.conf</p>
-<p>这时就可以通过supervisor的web控制界面进行进程的管理了。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211105/supervisor-web.png" alt="Supervisor"><br><strong>至此，CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境全部搭建好了。</strong></p>
+<p>这时就可以通过supervisor的web控制界面进行进程的管理了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211105/supervisor-web.png" alt="Supervisor"><br><strong>至此，CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境全部搭建好了。</strong></p>
 <hr>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1943,8 +2189,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:13+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2074,7 +2320,7 @@
 <h1 id="二、安装依赖"><a href="#二、安装依赖" class="headerlink" title="二、安装依赖"></a>二、安装依赖</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
 
 <p>如果有提示一路选择Y就可以</p>
-<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211104/%E4%B8%8B%E8%BD%BDpython.png" alt="下载Python源码包"></p>
+<h1 id="三、下载python源码包"><a href="#三、下载python源码包" class="headerlink" title="三、下载python源码包"></a>三、下载python源码包</h1><p>python官网<a href="https://www.python.org/" target="_blank" rel="noopener">https://www.python.org/</a> 目前python最新版本是python3.10<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%B8%8B%E8%BD%BDpython.png" alt="下载Python源码包"></p>
 <p>下载稳定版本3.8版</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz</span><br></pre></td></tr></table></figure>
 
@@ -2083,7 +2329,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.8.12/</span><br><span class="line">[root@localhost Python-3.8.12]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># ./configure</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># make&amp;&amp;make install</span></span><br></pre></td></tr></table></figure>
-<p>执行完后显示安装成功<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211104/python%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt="pyhont安装成功"></p>
+<p>执行完后显示安装成功<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/python%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F.png" alt="pyhont安装成功"></p>
 <h2 id="3、建立命令软链接"><a href="#3、建立命令软链接" class="headerlink" title="3、建立命令软链接"></a>3、建立命令软链接</h2><p>虽然python3.8.12安装成功了，但默认输入python还是显示是2.7版本的。如果要用python3.8.12需要输入python3即可，有时候不太方便。可以通过修改软链接的方式将默认的python指向python3.8.12。<br>先看一下默认的python及新安装的python3都安装在哪里</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python</span></span><br><span class="line">/usr/bin/python</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost Python-3.8.12]<span class="comment"># which python3</span></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/python3</span><br></pre></td></tr></table></figure>
@@ -2105,11 +2351,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># which python2</span></span><br><span class="line">/usr/bin/python2</span><br></pre></td></tr></table></figure>
 <p>可以cd到/usr/bin目录下 通过ls -alh|grep python查看python命令的详细情况。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ls -alh|grep python</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211104/python%E8%BD%AF%E9%93%BE%E6%8E%A5.png" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/python%E8%BD%AF%E9%93%BE%E6%8E%A5.png" alt="python命令软链接"><br>可以看到python软连接是执行的python3命令，python2是执行的python2.7的命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
-<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yun%E4%BE%9D%E8%B5%961.png" alt="修改依赖"></p>
+<p>修改对python的依赖，修改成python2或python2.7都可以。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yun%E4%BE%9D%E8%B5%961.png" alt="修改依赖"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yum%E4%BE%9D%E8%B5%962.png" alt="修改依赖"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211104/%E4%BF%AE%E6%94%B9yum%E4%BE%9D%E8%B5%962.png" alt="修改依赖"></p>
 <p>修改完这两个文件后，再敲yum命令就不会报错了。</p>
 <p><strong>至此CentOS7环境下python3.8.12已经成功安装！</strong></p>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -2117,7 +2363,7 @@
 
 <br>
 
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2214,8 +2460,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:13+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2336,24 +2582,24 @@
         
           
             <p>SOAR是最近几年安全市场上最火热的词汇之一。SOAR究竟是什么，发展历程是什么，能够起什么作用，带着这些问题我们来认识一下SOAR。</p>
-<h1 id="一、SOAR是什么"><a href="#一、SOAR是什么" class="headerlink" title="一、SOAR是什么"></a>一、SOAR是什么</h1><p>SOAR 一词来自分析机构 Gartner，SOAR-Security Orchestration, Automation and Response 安全编排和自动化响应。在Gartner的报告里，SOAR平台的核心组件为，编排与自动化、工作流引擎、案例与工单管理、威胁情报管理。而SOAR体系则是三个概念的交叉重叠：<strong>SOAR=SOA+SIRP+TIP</strong><br>1）精密编排的联动安全解决方案(SOA)；<br>2）事件应急响应平台(SIRP)；<br>3）威胁情报平台(TIP)。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211101/soar.png" alt="SOAR"></p>
-<h1 id="二、SOAR的发展历程"><a href="#二、SOAR的发展历程" class="headerlink" title="二、SOAR的发展历程"></a>二、SOAR的发展历程</h1><p>2015年，可以定义为SOAR的1.0时代。Gartner将SOAR(当时被认为是“安全运维分析和报告”)描述成为安全运维团队提供机器可读的安全数据报告和分析管理功能的产品。2017年，SOAR进入2.0时代。Gartner提出了“安全编排、自动化及响应”(SOAR)这个术语，用以描述脱胎于事件响应、安全自动化、场景管理和其他安全工具的一系列新兴平台。Gartner观察到三种以前截然不同的技术：安全编排和自动化(SOA)、安全事件响应平台(SIRPs)和威胁情报平台(TIPs)，正在逐步融合到一起。<br>根据Gartner2019年最新定义，SOAR是指能使企业组织从SIEM等监控系统中收集报警信息，或通过与其它技术的集成和自动化协调，提供包括安全事件响应和威胁情报等功能。SOAR技术市场最终目标是将安全编排和自动化(SOA)、安全事件响应(SIR)和威胁情报平台(TIP)功能融合到单个解决方案中。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211101/soar%E7%9A%84%E6%BC%94%E8%BF%9B.png" alt="SOAR的演进"></p>
+<h1 id="一、SOAR是什么"><a href="#一、SOAR是什么" class="headerlink" title="一、SOAR是什么"></a>一、SOAR是什么</h1><p>SOAR 一词来自分析机构 Gartner，SOAR-Security Orchestration, Automation and Response 安全编排和自动化响应。在Gartner的报告里，SOAR平台的核心组件为，编排与自动化、工作流引擎、案例与工单管理、威胁情报管理。而SOAR体系则是三个概念的交叉重叠：<strong>SOAR=SOA+SIRP+TIP</strong><br>1）精密编排的联动安全解决方案(SOA)；<br>2）事件应急响应平台(SIRP)；<br>3）威胁情报平台(TIP)。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211101/soar.png" alt="SOAR"></p>
+<h1 id="二、SOAR的发展历程"><a href="#二、SOAR的发展历程" class="headerlink" title="二、SOAR的发展历程"></a>二、SOAR的发展历程</h1><p>2015年，可以定义为SOAR的1.0时代。Gartner将SOAR(当时被认为是“安全运维分析和报告”)描述成为安全运维团队提供机器可读的安全数据报告和分析管理功能的产品。2017年，SOAR进入2.0时代。Gartner提出了“安全编排、自动化及响应”(SOAR)这个术语，用以描述脱胎于事件响应、安全自动化、场景管理和其他安全工具的一系列新兴平台。Gartner观察到三种以前截然不同的技术：安全编排和自动化(SOA)、安全事件响应平台(SIRPs)和威胁情报平台(TIPs)，正在逐步融合到一起。<br>根据Gartner2019年最新定义，SOAR是指能使企业组织从SIEM等监控系统中收集报警信息，或通过与其它技术的集成和自动化协调，提供包括安全事件响应和威胁情报等功能。SOAR技术市场最终目标是将安全编排和自动化(SOA)、安全事件响应(SIR)和威胁情报平台(TIP)功能融合到单个解决方案中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211101/soar%E7%9A%84%E6%BC%94%E8%BF%9B.png" alt="SOAR的演进"></p>
 <p>根据Gartner预测，到2022年，有30%大型企业组织（安全团队超过5人）将在安全和运维的工作中使用SOAR，这一比例远超当下5%。当下SOAR技术的早期拥护者是那些已经拥有成熟安全运维中心，并且能够理解SOAR带来好处的那些成熟的安全组织。</p>
 <h1 id="三、SOAR主要解决什么问题"><a href="#三、SOAR主要解决什么问题" class="headerlink" title="三、SOAR主要解决什么问题"></a>三、SOAR主要解决什么问题</h1><p>随着网络安全攻防对抗的日趋激烈，网络安全单纯指望防范和阻止的策略已经失效，必须更加注重检测与响应。企业和组织要在网络已经遭受攻击的假定前提下构建集阻止、检测、响应和预防于一体的全新安全防护体系。在国际上，检测和响应类产品受到了极大的关注。放眼国内，更多的注意力集中到了新型检测产品，尤其是未知威胁检测领域。借助这些产品和技术，用户获得了更低的 MTTD（平均检测时间），能够更快更准确地检测出攻击和入侵。但是，这些产品和技术大都没有帮助用户降低 MTTR（平均响应时间）。事实上，对于用户而言，更快地检测出问题仅仅是第一步，如何快速地对问题进行响应更加重要。而在提升安全响应效率的时候，不能仅仅从单点（譬如单纯从端点或者网络）去考虑，还需要从全网整体安全运维的角度去考虑，要将分散的检测与响应机制整合起来。而这，正是 SOAR 要解决的问题。<br>Gartner指出，SOAR可供公司企业收集不同来源的安全威胁数据和警报，运用人机结合的方法进行事件分析与分类，根据标准流程辅助定义、排序和驱动标准化事件响应行为。SOAR主要为安全团队提供定制化的流程和控制，弥合并加速有效网络威胁的调查与缓解。安全运营团队的大量日常事务性工作也可以借助SOAR加以自动化。而且，案例战术手册还可以帮助分析师在单一平台上响应和缓解威胁，节约事件响应的每一分每一秒宝贵时间。<br>Gartner 用 OODA 模型，来描绘一个典型的安全运营流程。OODA 即 Observe(观察)、Orient(定位)、Decide(决策)、Act(行动)。</p>
 <ul>
 <li>观察：观察事件并确定发生了什么，即通过各种检测、分析工具，比如 SIEM 类工具，找到威胁线索，如告警。</li>
 <li>定位：确定观察的方向，并添加上下文来确定观察的含义，即对产生的告警的内容做调查、丰富化。比如查找外网域名的威胁情报，查找此 IP 的历史行为协助研判等等。</li>
 <li>决策：根据业务的风险容忍度和能力决定适当的响应行动，即判定是否需要对此告警采取行动，比如是否需要封禁，是否影响业务，是否需要进一步观察。</li>
-<li>行动：根据决定采取行动，并应用到观察过程中，然后重复，即执行确定的安全策略，并验证。每一步都对下一步提供了指导，周而复始，构成了一个良性促进的进化循环，不断优化企业的安全运营流程以应对不断变化的安全威胁。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211101/ooda.png" alt="OODA 模型"></li>
+<li>行动：根据决定采取行动，并应用到观察过程中，然后重复，即执行确定的安全策略，并验证。每一步都对下一步提供了指导，周而复始，构成了一个良性促进的进化循环，不断优化企业的安全运营流程以应对不断变化的安全威胁。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211101/ooda.png" alt="OODA 模型"></li>
 </ul>
 <p>OODA 环看起来逻辑清晰，易于操作。但事实上， OODA 环里的丰富化、调查取证、验证、执行安全策略变更等等，都是耗时耗力的工作。加上安全设备一直以来的误报问题产生的噪音，以及安全人员工作负荷重，资深从业人员短缺等原因，难以真正有效的推进 OODA 循环。更不用提在 HW 时段高强度的工作压力下，如何能够有条不紊的保持一贯的处置流程来处理每一个安全线索。SOAR 正是在这个背景下被提出，并被寄予厚望。SOAR 的核心，就是将安全流程或预案，即 OODA 循环的每一个实例，比如蠕虫爆发处理流程、挖矿病毒告警处理流程、疑似钓鱼邮件处理流程等等，数字化管理起来形成 Playbook。用自动化完成其中所有可能自动化的动作，无法自动的仍然交由人来处理，通过可视化编排工具将人、技术和流程有机的结合起来，形成标准统一的、可重复的、更高效的安全运营流程。</p>
 <h1 id="四、SOAR的核心功能"><a href="#四、SOAR的核心功能" class="headerlink" title="四、SOAR的核心功能"></a>四、SOAR的核心功能</h1><p>从SOAR安全编排自动化响应的字面定义来看SOAR应该具备三大核心能力，编排、自动化、响应</p>
 <h2 id="编排"><a href="#编排" class="headerlink" title="编排"></a>编排</h2><p>SOAR中的关键词是编排，这是在使用自动化和响应之前必须构建的关键组件。SOAR的编排体现的是一种协调和决策的能力，针对复杂性的安全事件，通过编排将分析过程中各种复杂性分析流程和处理平台进行组合。分析涉及多种数据或平台，如SIEM分析平台、漏洞管理平台、情报数据、资产数据等。处置响应的编排也涉及到很多平台或设备，如EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙等。仅仅以技术为中心的安全保障已不再能满足现状，将人员和流程的编排才能保证安全流程真正高效的运行。SOAR的终极目标就是实现技术、流程、人员的无缝编排。</p>
 <h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><p>SOAR的自动化体现在三个方面，面对需要处理的安全事件能够根据策略自动选择编排的剧本、自动执行剧本的操作流程、根据决策结果自动联动设备进行防护阻断等行动策略。它允许剧本（常称为Playbooks）在安全流程的部分或全部内容上执行多个任务，将线性剧本串联起来。虽然线性剧本可能更容易创建，但只适用于处理决策需求较少的工作流。编排和自动化比线性剧本的最大优势就是其灵活性，为支持全自动化和半自动化的决策，需要更加灵活的工作流和执行剧本。SOAR能够识别这些决策模式，并基于以往事件中的执行操作，自动推荐新事件的剧本、执行剧本操作流程，自动化分析决策，根据决策结果自动下发防护阻断的行动策略。</p>
-<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>安全事件响应包括告警管理、工单管理、案件管理等功能。告警管理的核心不仅是对告警安全事件的收集、展示和响应，更强调告警分诊和告警调查。只有通过告警分诊和告警调查才能提升告警的质量，减少告警的数量。工单管理适用于中大型的安全运维团队协同化、流程化地进行告警处置与响应，并且确保响应过程可记录、可度量、可考核。案件管理是现代安全事件响应管理的核心能力。案件管理帮助用户对一组相关的告警进行流程化、持续化的调查分析与响应处置，并不断积累该案件相关的痕迹物证 (IOC) 和攻击者的战技过程指标信息 (TTP)。多个案件并行执行，从而持续化地对一系列安全事件进行追踪处置。<br><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211101/soar2.png" alt="SOAR事件响应"></p>
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><p>安全事件响应包括告警管理、工单管理、案件管理等功能。告警管理的核心不仅是对告警安全事件的收集、展示和响应，更强调告警分诊和告警调查。只有通过告警分诊和告警调查才能提升告警的质量，减少告警的数量。工单管理适用于中大型的安全运维团队协同化、流程化地进行告警处置与响应，并且确保响应过程可记录、可度量、可考核。案件管理是现代安全事件响应管理的核心能力。案件管理帮助用户对一组相关的告警进行流程化、持续化的调查分析与响应处置，并不断积累该案件相关的痕迹物证 (IOC) 和攻击者的战技过程指标信息 (TTP)。多个案件并行执行，从而持续化地对一系列安全事件进行追踪处置。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211101/soar2.png" alt="SOAR事件响应"></p>
 <p>事件响应是SOC操作中非常复杂的部分，理想状态下，它将是一个有效的动态过程，涉及数十种相互关联的技术、IT、业务流程和整个组织的人员，将是持续性适应风险和信任评估（Continuous Adaptive Risk and Trust Assessment, CARTA）策略用于在持续监测和可视性方面时，SOC团队可使用SOAR技术执行连续活动，利用SOAR技术通过智能化编排与响应最大程度的将已有安全技术进行整合，提高整个安全事件的解决能力和效率。基于编排和自动化前期对事件的分析，SOAR所提供的响应技术是完善整个事件生命周期，提高解决安全威胁效率的关键一环。本质上，SOAR的最终目标是促进安全团队对事件有全面的、端到端的理解，完成更好、更明智响应。</p>
 <h1 id="五、SOAR的价值"><a href="#五、SOAR的价值" class="headerlink" title="五、SOAR的价值"></a>五、SOAR的价值</h1><p><strong>1、缩短响应时间</strong><br>通过自动化技术，尽可能多的自动完成一个安全事件处置流程中相关步骤，从而缩短响应时间即 MTTR。<br><strong>2、释放人力</strong><br>让安全专家从繁重的重复劳动中释放出来，将时间放在更有价值的安全分析、威胁猎捕、流程建立等工作上。<br><strong>3、安全运营流程标准化</strong><br>将公司的安全运营流程数字化管理起来，每一次安全事件的对应处置过程都在统一标准，统一步骤下执行，有迹可循。避免人员能力的差距导致的处置实际效果不可控。<br><strong>4、避免能力断层</strong><br>将安全专家的经验固化成处置预案Playbook，让不同的人都可以遵循同样的方法来完成特定安全事件的处置流程，避免因为个人的离职导致某个领域的安全能力缺失。<br><strong>5、运营流程指标可度量</strong><br>因为运营流程都通过 Playbook 数字化管理且每一次的执行过程都记录在案，因此流程的 KPI 如 MTTD、MTTR、TTQ、TTI 等全部可评估、可度量、可追踪。<br><strong>6、安全运营决策支撑</strong><br>通过对公司的所有运营流程数字化管理、数字化执行、数字化KPI评估后，管理者可以有效的评估什么流程基本无用，什么流程执行效率不高，什么流程发挥了最大的作用，甚至什么安全设备在所有流程中被使用的价值最大。从而为以后的安全投资决策，安全团队建设决策提供有价值的数值化支撑。</p>
-<h1 id="六、SOAR与其他安全产品的关系"><a href="#六、SOAR与其他安全产品的关系" class="headerlink" title="六、SOAR与其他安全产品的关系"></a>六、SOAR与其他安全产品的关系</h1><p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20211101/soar3.png" alt="SOAR与其他安全产品的关系"></p>
+<h1 id="六、SOAR与其他安全产品的关系"><a href="#六、SOAR与其他安全产品的关系" class="headerlink" title="六、SOAR与其他安全产品的关系"></a>六、SOAR与其他安全产品的关系</h1><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211101/soar3.png" alt="SOAR与其他安全产品的关系"></p>
 <p>SOAR定位于安全运营操作平台，它收集不同来源的安全威胁数据和警报，事件来源于其他的态势感知平台、SIEM、日志分析系统或安全人员人工录入需要处理的事件。通过调用安全设备的能力如：情报平台、资产管理平台、漏洞扫描平台、EDR管理平台、运维管理平台、工单管理平台、WAF设备、防火墙来实现对安全事件的分析、溯源、取证、处置、通知等。一端接安全事件源，一端对接安全设备能力。通过SOAR本身的编排能力将人员、设备、资源、流程协同起来。每个企业部署流程和技术并不相同，SOAR在实际落地应用过程中并不能“即插即用”，需要对接事件源、对接各类联动处置设备，根据企业具体的实际情况定制剧本流程。对接的实际安全设备能力数量以及剧本的积累，是SOAR平台能够很好的支持运营的关键。</p>
 <p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 
@@ -2451,8 +2697,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-19T11:32:18+08:00">
-                2024-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:13+08:00">
+                2024-06-13
               </time>
             
           </span>
@@ -2657,225 +2903,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7626e526/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/7626e526/" itemprop="url">都2021了，我为什么还在用博客这种古老的方式在记录</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-20T21:53:09+08:00">
-                2021-08-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-03-27T14:54:36+08:00">
-                2024-03-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/7626e526/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7626e526/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/7626e526/" class="leancloud_visitors" data-flag-title="都2021了，我为什么还在用博客这种古老的方式在记录">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  903
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/2021/20210820/blog.png" alt="BLOG"></p>
-<p>都2021了，在这个移动互联网异常发达，自媒体泛滥的时代，博客这个古老的在互联网时代记录自己的工具似乎是不合时宜要被大众所遗忘被历史所淘汰。而我却还在用博客这种古老的方式生活在移动互联网时代记录工作，学习，生活。</p>
-<p><strong>一、为什么要记录</strong><br>正如我的博客标题，记录最好的自己。最朴实的想法就是想记录自己的所学、所见、所闻、所思、所想。记录使人进步。吴军老师的《全球科技通史》中提到，促进人类文明发展的是两条主线，一条是能源，一条是信息。文字的发明，信息的记录，让人类的文明得以延续和发展。是一代一代人通过信息的记载和积累促进科技的发展，让信息不管是从记录方式还是传播速度都得到了跨越式的发展，进入到了现在信息爆炸的时代。书中提到，为什么在近代早期西方的科学技术进步的速度要明显的快于中国，一个重要的原因就西方对于科学技术的研究及传播方式。西方的研究方式是通过不断的实验大量的记录进行定量研究，后人可以基于前人记录的信息研究成果进行研究和传播，大大加快的科学技术的进步。而那时候中国可能还是定性方式的研究，口口相传的传播方式，导致原来很多技术到现在都失传了。</p>
-<p>对于个人来说，我想应该也是一样的，要想更快进步和发展，将自己生活、学习、工作过程中的所学、所见、所闻、所思、所想记录下来定期的回顾和思考应该会有所促进吧。而且随着时间的推移回头看看自己以前记录的东西应该也是一种乐趣。或许，有人看到我所记录的东西以此为鉴少走一点弯路。</p>
-<p>不在乎文笔，不限于内容，仅仅只是记录，希望记录能够成就最好的自己。</p>
-<p><strong>二、为什么是博客这种方式</strong><br>记录信息的手段很多，尤其是自媒体时代，微博、微信、头条、抖音、小红书啥的，平台很多。为什么还要用博客这种古老的方式呢？如果自是记录给自己看映象笔记、网易云笔记都是很好的，私密性太强，不够开放。微博、微信社交属性太强关注的都是些熟人。头条、抖音、小红书，功利性太强，为了收益去强迫自己去写也不是自己的初衷。想来想去还只有博客这种古老的方式比较合适，安安静静的自己想记录什么就记录什么。也不用去担心什么流量，不用去关注什么人关注了你。以前几个大的通用的博客平台都不提供服务了如新浪博客、网易博客等，而CSDN、cnblog主要是技术类的博客，想记录点乱七八糟的事情似乎也不太适合。所以只好自己来搭建博客咯。</p>
-<p>自己搭建的博客<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a> 已经快两年了。记录的东西不是太多，说明见识不多，思考太少。</p>
-<hr>
-<center> 
-
-<br>
-
-<p><img src="https://cdn.jsdelivr.net/gh/xiejava1018/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2932,7 +2959,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">179</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3044,7 +3071,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">379.8k</span>
+    <span title="Site words total count">381.9k</span>
   
   
 <!--51la网站应用监控-->
