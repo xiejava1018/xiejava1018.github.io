@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>解决django与sqlite3不兼容报SQLite 3.9.0 or later is required (found 3.8.2)错的问题</title>
+      <link href="/posts/b952e40e/"/>
+      <url>/posts/b952e40e/</url>
+      
+        <content type="html"><![CDATA[<p>今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报<code>django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).</code>的错。</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p><p>从报错的提示看是sqlite3的版本太低，期望是3.9.0但是当前版本是3.8.2<br>在网上找了很多资料，也都是说django与sqlite3的版本不兼容，需要升级sqlite3的版本。<br>于是将sqlite3升级到目前的稳定版本3.46.0，然而发现并没有什么用，还是报<code>sqlite3.NotSupportedError: deterministic=True requires SQLite 3.8.3 or higher</code> 。</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p><p>通过sqlite3 –version 查看版本号已经是3.46.0了，但还是提示要求SQLite版本在3.8.3以上。重装django4和python3.8的环境都没有用。<br>最后在网上找到解决办法。使用第三方包pysqlite3运行SQLite3<br>具体方法如下：<br>1、安装pysqlite3和pysqlite3-binary</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pysqlite3</span><br><span class="line">pip install pysqlite3<span class="literal">-binary</span></span><br></pre></td></tr></table></figure><p>2、找到django的sqlite3驱动包，/usr/local/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py 找到 from sqlite3 import dbapi2 as Database 注释它，添加代码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#from sqlite3 import dbapi2 as Database  #注释它</span></span><br><span class="line"><span class="keyword">from</span> pysqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database <span class="comment">#新加这段代码</span></span><br></pre></td></tr></table></figure><p>历经周折终于解决。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+          <category> 开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>什么是软件定义安全SDSec</title>
       <link href="/posts/2e4b09a6/"/>
       <url>/posts/2e4b09a6/</url>
