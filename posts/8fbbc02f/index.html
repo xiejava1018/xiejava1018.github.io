@@ -136,7 +136,7 @@
 
 <meta name="description" content="在Django项目中集成Pytest进行单元测试可以提高测试的灵活性和效率，相比于Django自带的测试框架，Pytest提供了更为丰富和强大的测试功能。本文通过一个实际项目ishareblog介绍django集成pytest进行自动化单元测试实战。 一、引入pytest相关的包123pip install pytestpip install pytest-djangopip install py">
 <meta property="og:type" content="article">
-<meta property="og:title" content="集成pytest进行自动化单元测试实战">
+<meta property="og:title" content="django集成pytest进行自动化单元测试实战">
 <meta property="og:url" content="https://xiejava.gitee.io/posts/8fbbc02f/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="在Django项目中集成Pytest进行单元测试可以提高测试的灵活性和效率，相比于Django自带的测试框架，Pytest提供了更为丰富和强大的测试功能。本文通过一个实际项目ishareblog介绍django集成pytest进行自动化单元测试实战。 一、引入pytest相关的包123pip install pytestpip install pytest-djangopip install py">
@@ -147,7 +147,7 @@
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/5-pytest%E7%9A%84report%E6%8A%A5%E5%91%8A.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2024-08-03T09:23:11.000Z">
-<meta property="article:modified_time" content="2024-08-03T09:30:25.002Z">
+<meta property="article:modified_time" content="2024-08-03T10:23:48.512Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -187,7 +187,7 @@
 
 
 
-  <title>集成pytest进行自动化单元测试实战 | XieJava's blog</title>
+  <title>django集成pytest进行自动化单元测试实战 | XieJava's blog</title>
   
 
 
@@ -341,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">集成pytest进行自动化单元测试实战</h2>
+          <h2 class="post-title" itemprop="name headline">django集成pytest进行自动化单元测试实战</h2>
         
 
         <div class="post-meta">
@@ -369,7 +369,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-03T17:30:25+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-03T18:23:48+08:00">
                 2024-08-03
               </time>
             
@@ -426,7 +426,7 @@
 
           
           
-             <span id="/posts/8fbbc02f/" class="leancloud_visitors" data-flag-title="集成pytest进行自动化单元测试实战">
+             <span id="/posts/8fbbc02f/" class="leancloud_visitors" data-flag-title="django集成pytest进行自动化单元测试实战">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -502,7 +502,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">DJANGO_SETTINGS_MODULE = ishareblog.settings_test</span><br><span class="line"></span><br><span class="line">python_files = tests.py test_*.py *_tests.py</span><br></pre></td></tr></table></figure>
 
 <p>DJANGO_SETTINGS_MODULE = ishareblog.settings_test  指定了pytest用到的环境配置<br>python_files = tests.py test_*.py *_tests.py 指定了pytest将测试以test开头的py文件中的测试用例。</p>
-<h2 id="三、编写测试用例"><a href="#三、编写测试用例" class="headerlink" title="三、编写测试用例"></a>三、编写测试用例</h2><p>接下来，可以在tests.py或test_*.py文件中编写你的测试用例。由于pytest-django插件的存在，你可以像平常一样使用Django的测试机制，同时也能享受Pytest带来的便利。以下以我的ishareblog博客代码通过业务测试和接口测试来编写测试用例。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/3-pytest%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B.png" alt="在这里插入图片描述"></p>
+<h2 id="三、编写测试用例"><a href="#三、编写测试用例" class="headerlink" title="三、编写测试用例"></a>三、编写测试用例</h2><p>接下来，可以在tests.py或test_*.py文件中编写你的测试用例。由于pytest-django插件的存在，你可以像平常一样使用Django的测试机制，同时也能享受Pytest带来的便利。以下以我的ishareblog博客代码通过业务测试和接口测试来编写测试用例。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/3-pytest%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B.png" alt="在这里插入图片描述"></p>
 <h3 id="1、业务测试"><a href="#1、业务测试" class="headerlink" title="1、业务测试"></a>1、业务测试</h3><p>我的isharebog业务相对简单，主要是测试验证业务模型模块的增删改查是否符合预期。<br>业务测试tests.py示例代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> BlogCategory</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestBlogCategory</span><span class="params">(TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_BogCategoryModel</span><span class="params">(self)</span>:</span></span><br><span class="line">        blog_category = BlogCategory.objects.get(id=self.blogcategory.id)</span><br><span class="line">        self.assertEqual(blog_category.title, <span class="string">"Test Category"</span>)</span><br><span class="line">        self.assertEqual(blog_category.href, <span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_create</span><span class="params">()</span>:</span></span><br><span class="line">    blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line">    category_count = BlogCategory.objects.count()</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt; <span class="number">0</span>, <span class="string">"Blog category was not created category_count=0."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.id &gt; <span class="number">0</span>, <span class="string">"Blog category was not created."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.title == <span class="string">"Test Category"</span>, <span class="string">"Blog category title is wrong."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.href == <span class="string">"/category/1"</span>, <span class="string">"Blog category href is wrong."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_query</span><span class="params">()</span>:</span></span><br><span class="line">    category_count = len(BlogCategory.objects.all())</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt;= <span class="number">0</span>, <span class="string">"Blog category query error."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"blog/tests.py"</span>])</span><br></pre></td></tr></table></figure>
 
@@ -542,7 +543,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/8fbbc02f/" title="集成pytest进行自动化单元测试实战">https://xiejava.gitee.io/posts/8fbbc02f/</a>
+    <a href="https://xiejava.gitee.io/posts/8fbbc02f/" title="django集成pytest进行自动化单元测试实战">https://xiejava.gitee.io/posts/8fbbc02f/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
