@@ -313,6 +313,242 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7f9a3a8d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/7f9a3a8d/" itemprop="url">django快速实现个人博客(附源码)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-10T14:18:04+08:00">
+                2024-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-10T15:23:25+08:00">
+                2024-08-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/7f9a3a8d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/7f9a3a8d/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/7f9a3a8d/" class="leancloud_visitors" data-flag-title="django快速实现个人博客(附源码)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Django作为一款成熟的Python Web开发框架提供了丰富的内置功能，如ORM（对象关系映射）、Admin管理界面、URL分发、模板系统、表单处理等，使得开发者能够快速搭建Web应用，大幅提高了开发效率。以前写过一篇博文《<a href="https://xiejava.blog.csdn.net/article/details/125939504" target="_blank" rel="noopener">Django+Vue快速实现博客网站</a>》介绍了通过Djang+Vue快速实现博客网站，django+vue作为个人博客来说稍显复杂，部署起来也比较麻烦，Vue的单页面架构也不利于SEO，更简单的解决方案其实还是用django的模板系统快速构建web应用，对于个人博客来说部署和运维更加简单也利于SEO。下面介绍如何快速的通过django模板系统快速实现个人博客。</p>
+<h2 id="一、工程目录组织结构"><a href="#一、工程目录组织结构" class="headerlink" title="一、工程目录组织结构"></a>一、工程目录组织结构</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240810/1-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="在这里插入图片描述"></p>
+<h2 id="二、模型及管理实现"><a href="#二、模型及管理实现" class="headerlink" title="二、模型及管理实现"></a>二、模型及管理实现</h2><p>模型及管理端的实现沿用《<a href="https://xiejava.blog.csdn.net/article/details/125939504" target="_blank" rel="noopener">Django+Vue快速实现博客网站</a>》文章中的实现，用Django搭建很快很简单。<br>模型很简单，根据博客要显示的内容包括有‘文章分类’、‘文章标签’、‘博客文章’、‘站点信息’、‘社交信息’、‘聚焦’，模型定义分别如下： 这里要说明的是因为博客文章内容准备用markdown编写，所以引入了<code>mdeditor from mdeditor.fields import MDTextField</code> 内容字段<code>content=MDTextField(verbose_name=&#39;内容&#39;)</code><br>模型代码示例如下：</p>
+<h3 id="1、模型"><a href="#1、模型" class="headerlink" title="1、模型"></a>1、模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> common.basemodel <span class="keyword">import</span> BaseModel</span><br><span class="line"><span class="keyword">from</span> mdeditor.fields <span class="keyword">import</span> MDTextField</span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="string">'''文章分类'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategory</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">50</span>,verbose_name=<span class="string">'分类名称'</span>,default=<span class="string">''</span>)</span><br><span class="line">    href = models.CharField(max_length=<span class="number">100</span>,verbose_name=<span class="string">'分类路径'</span>,default=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'文章分类'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'文章分类'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''文章标签'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    tag=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标签'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.tag</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'标签'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'标签'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>,null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    isShow = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否显示'</span>)</span><br><span class="line">    summary = models.TextField(max_length=<span class="number">500</span>, verbose_name=<span class="string">'内容摘要'</span>, default=<span class="string">''</span>)</span><br><span class="line">    content = MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line">    tags = models.ManyToManyField(to=Tag, related_name=<span class="string">"tag_post"</span>, blank=<span class="literal">True</span>, default=<span class="literal">None</span>, verbose_name=<span class="string">"标签"</span>)</span><br><span class="line">    blogSource = models.CharField(max_length=<span class="number">200</span>, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, default=<span class="string">''</span>,verbose_name=<span class="string">'文章来源'</span>)</span><br><span class="line">    pubTime = models.DateTimeField(blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'发布日期'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tag_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">','</span>.join([i.tag <span class="keyword">for</span> i <span class="keyword">in</span> self.tags.all()])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''站点信息'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">'站点名称'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    avatar = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点图标'</span>)</span><br><span class="line">    slogan = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点标语'</span>)</span><br><span class="line">    domain = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点域名'</span>)</span><br><span class="line">    notice = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点备注'</span>)</span><br><span class="line">    desc = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'站点信息'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'站点信息'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''社交信息'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Social</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标题'</span>)</span><br><span class="line">    icon = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'图标'</span>)</span><br><span class="line">    color = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'颜色'</span>)</span><br><span class="line">    href = models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'社交信息'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'社交信息'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''聚焦'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Focus</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标题'</span>)</span><br><span class="line">    img = models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'聚焦'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'聚焦'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''友链'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Friend</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    siteName = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'友链站点名称'</span>)</span><br><span class="line">    path = models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'地址路径'</span>)</span><br><span class="line">    desc = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.siteName</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'友链'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'友链'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、admin管理"><a href="#2、admin管理" class="headerlink" title="2、admin管理"></a>2、admin管理</h3><p>实际上只要把模型注册到admin就可以了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="meta">@admin.register(BlogCategory)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategoryAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    admin.site.site_title=<span class="string">"ishareblog后台"</span></span><br><span class="line">    admin.site.site_header=<span class="string">"ishareblog后台"</span></span><br><span class="line">    admin.site.index_title=<span class="string">"ishareblog管理"</span></span><br><span class="line"></span><br><span class="line">    list_display = [<span class="string">'id'</span>, <span class="string">'title'</span>, <span class="string">'href'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(BlogPost)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPostAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'category'</span>,<span class="string">'isTop'</span>,<span class="string">'isHot'</span>]</span><br><span class="line">    search_fields = (<span class="string">'title'</span>,)</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Site)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SiteAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'name'</span>,<span class="string">'slogan'</span>,<span class="string">'domain'</span>,<span class="string">'desc'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Social)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SocialAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'href'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Focus)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoucusAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'title'</span>,<span class="string">'img'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Friend)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FoucusAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'siteName'</span>,<span class="string">'path'</span>,<span class="string">'desc'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@admin.register(Tag)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TagAdmin</span><span class="params">(admin.ModelAdmin)</span>:</span></span><br><span class="line">    list_display = [<span class="string">'id'</span>,<span class="string">'tag'</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、博客展现实现"><a href="#三、博客展现实现" class="headerlink" title="三、博客展现实现"></a>三、博客展现实现</h2><p>博客前端展现用django的模板技术实现。在网上找了一个基于Bootstrap v4.3.1的小清新风格HTML博客模板，<a href="https://gitee.com/yinqi/Light-Year-Blog" target="_blank" rel="noopener">https://gitee.com/yinqi/Light-Year-Blog</a>  这个博客模只有三个页面，首页，详细页和About页面，样式和js都不多，比较简单。将html模板放入到templates的blog目录，为了便于维护将一些公共部分抽到了base.html，index.html和post.html 通过<code>{ % extends &#39;blog/base.html&#39; % }</code>进行应用</p>
+<h3 id="1、视图实现"><a href="#1、视图实现" class="headerlink" title="1、视图实现"></a>1、视图实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, Http404</span><br><span class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> loader</span><br><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> BlogPost, Tag, BlogCategory</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.db.models <span class="keyword">import</span> Count</span><br><span class="line"><span class="keyword">from</span> django.db.models.functions <span class="keyword">import</span> TruncYear</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> markdown2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首页/列表页视图实现.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    category_id = request.GET.get(<span class="string">'category'</span>)</span><br><span class="line">    tag_id = int(request.GET.get(<span class="string">'tag'</span>,<span class="number">0</span>))</span><br><span class="line">    year = request.GET.get(<span class="string">'year'</span>)</span><br><span class="line">    search = request.GET.get(<span class="string">'search'</span>)</span><br><span class="line">    <span class="keyword">if</span> category_id:</span><br><span class="line">        blogpost_list = BlogPost.objects.filter(category=category_id, isShow=<span class="literal">True</span>).order_by(<span class="string">'-isTop'</span>, <span class="string">'-pubTime'</span>)</span><br><span class="line">    <span class="keyword">elif</span> tag_id:</span><br><span class="line">        blogpost_list = BlogPost.objects.filter(tags__id=tag_id, isShow=<span class="literal">True</span>).order_by(<span class="string">'-isTop'</span>, <span class="string">'-pubTime'</span>)</span><br><span class="line">    <span class="keyword">elif</span> year:</span><br><span class="line">        blogpost_list = BlogPost.objects.filter(pubTime__year=year, isShow=<span class="literal">True</span>).order_by(<span class="string">'-isTop'</span>, <span class="string">'-pubTime'</span>)</span><br><span class="line">    <span class="keyword">elif</span> search:</span><br><span class="line">        blogpost_list = BlogPost.objects.filter(content__icontains=search, isShow=<span class="literal">True</span>).order_by(<span class="string">'-isTop'</span>, <span class="string">'-pubTime'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 筛选出需要显示的博客文章</span></span><br><span class="line">        blogpost_list = BlogPost.objects.filter(isShow=<span class="literal">True</span>).order_by(<span class="string">'-isTop'</span>, <span class="string">'-pubTime'</span>, <span class="string">'-update_time'</span>)</span><br><span class="line">    <span class="comment"># 每页显示的数量</span></span><br><span class="line">    per_page = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建分页器实例</span></span><br><span class="line">    paginator = Paginator(blogpost_list, per_page)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取当前页码，如果没有提供，则默认为第一页</span></span><br><span class="line">    page_number = request.GET.get(<span class="string">'page'</span>) <span class="keyword">or</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取当前页的数据</span></span><br><span class="line">    page_obj = paginator.get_page(page_number)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算显示的页码范围</span></span><br><span class="line">    current_page = int(page_number)</span><br><span class="line">    pages_to_show = <span class="number">11</span>  <span class="comment"># 当前页前后各5页加上当前页共11页</span></span><br><span class="line">    start_page = max(current_page - <span class="number">5</span>, <span class="number">1</span>)</span><br><span class="line">    end_page = min(start_page + pages_to_show - <span class="number">1</span>, paginator.num_pages)</span><br><span class="line"></span><br><span class="line">    template = loader.get_template(<span class="string">"blog/index.html"</span>)</span><br><span class="line">    context = &#123;</span><br><span class="line">        <span class="string">"page_obj"</span>: page_obj,</span><br><span class="line">        <span class="string">'start_page'</span>: start_page,</span><br><span class="line">        <span class="string">'end_page'</span>: end_page,</span><br><span class="line">        <span class="string">'hot_posts'</span>: get_hot_posts(),</span><br><span class="line">        <span class="string">'tags'</span>: get_all_tags(),</span><br><span class="line">        <span class="string">'post_grouped_by_year'</span>:get_post_groped_by_year(),</span><br><span class="line">        <span class="string">'categories'</span>: get_categories(),</span><br><span class="line">        <span class="string">'category_id'</span>: category_id,</span><br><span class="line">        <span class="string">'tag_id'</span>: tag_id,</span><br><span class="line">        <span class="string">'year'</span>: year,</span><br><span class="line">        <span class="string">'search'</span>: search,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(template.render(context, request))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 详情页视图实现.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_detail</span><span class="params">(request, id)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        post_obj = BlogPost.objects.get(id=id)</span><br><span class="line">        html_content = markdown2.markdown(post_obj.content,</span><br><span class="line">                                          extras=[<span class="string">"code-color"</span>, <span class="string">"fenced-code-blocks"</span>, <span class="string">"cuddled-lists"</span>, <span class="string">"tables"</span>,</span><br><span class="line">                                                  <span class="string">"with-toc"</span>, <span class="string">"highlightjs-lang"</span>])</span><br><span class="line">        html_content = html_content.replace(<span class="string">'&lt; table &gt;'</span>, <span class="string">'&lt; table class="table table-bordered" &gt;'</span>)</span><br><span class="line">        html_content = html_content.replace(<span class="string">'&lt; img src='</span>, <span class="string">'&lt; img style="max-width:100%;height:auto;" src= '</span>)</span><br><span class="line">        context = &#123;<span class="string">"post_obj"</span>: post_obj, <span class="string">"html_content"</span>: html_content, <span class="string">"hot_posts"</span>: get_hot_posts(),<span class="string">"tags"</span>: get_all_tags(),<span class="string">"post_grouped_by_year"</span>:get_post_groped_by_year(),<span class="string">'categories'</span>: get_categories()&#125;</span><br><span class="line">    <span class="keyword">except</span> BlogPost.DoesNotExist:</span><br><span class="line">        <span class="keyword">raise</span> Http404(<span class="string">"Post does not exist"</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">"blog/post.html"</span>, context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_hot_posts</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 获取点赞数最高的前5篇文章</span></span><br><span class="line">    hot_posts = BlogPost.objects.filter(isShow=<span class="literal">True</span>).order_by(<span class="string">'-viewsCount'</span>, <span class="string">'-pubTime'</span>)[:<span class="number">5</span>]</span><br><span class="line">    <span class="keyword">return</span> hot_posts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_all_tags</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 获取所有的标签</span></span><br><span class="line">    tags = Tag.objects.all()  <span class="comment"># 获取所有的标签</span></span><br><span class="line">    <span class="keyword">return</span> tags</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_post_groped_by_year</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 将发布日期截断为年份，并计算每年的文章数量。</span></span><br><span class="line">    post_grouped_by_year = (</span><br><span class="line">        BlogPost.objects</span><br><span class="line">        .annotate(year=TruncYear(<span class="string">'pubTime'</span>))</span><br><span class="line">        .values(<span class="string">'year'</span>)  <span class="comment"># 返回的字典包含'year'键</span></span><br><span class="line">        .annotate(publication_count=Count(<span class="string">'id'</span>))  <span class="comment"># 计算每年的文章数量</span></span><br><span class="line">        .order_by(<span class="string">'-year'</span>)  <span class="comment"># 按年排序</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> post_grouped_by_year</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_categories</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 获取所有分类</span></span><br><span class="line">    categories = BlogCategory.objects.all()</span><br><span class="line">    <span class="keyword">return</span> categories</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、模板实现"><a href="#2、模板实现" class="headerlink" title="2、模板实现"></a>2、模板实现</h3><p>静态文件如css、js等放到static的blog目录，html模板文件放到templates的blog目录<br>在setting.py文件中配置 <code>STATIC_URL = &#39;static/&#39;</code>，在html模板文件中通过<code>{ % load static % }</code> 将静态文件的地址引用进来<br>将公共部分抽取出来形成base.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">&#123; % load static % &#125;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>XieJava的博客<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"author"</span> <span class="attr">content</span>=<span class="string">"xiejava"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"shortcut icon"</span> <span class="attr">type</span>=<span class="string">"image/x-icon"</span> <span class="attr">href</span>=<span class="string">"favicon.ico"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123; % static 'blog/css/bootstrap.min.css' % &#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123; % static 'blog/css/materialdesignicons.min.css' % &#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123; % static 'blog/css/style.min.css' % &#125;"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">"lyear-header text-center"</span> <span class="attr">style</span>=<span class="string">"background-image:url(images/left-bg.jpg);"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-header-container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-mask"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"lyear-blogger pt-lg-4 mb-0"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;"</span>&gt;</span>XieJava的博客<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"navbar navbar-expand-lg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"navbar-toggler"</span> <span class="attr">data-toggle</span>=<span class="string">"collapse"</span> <span class="attr">data-target</span>=<span class="string">"#navigation"</span> <span class="attr">aria-controls</span>=<span class="string">"navigation"</span> <span class="attr">aria-expanded</span>=<span class="string">"false"</span> <span class="attr">aria-label</span>=<span class="string">"Toggle navigation"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-hamburger"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"hamburger-inner"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"navigation"</span> <span class="attr">class</span>=<span class="string">"collapse navbar-collapse flex-column"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"profile-section pt-3 pt-lg-0"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"profile-image mb-3 rounded-circle mx-auto"</span> <span class="attr">src</span>=<span class="string">"https://img9.doubanio.com/icon/ul70489051-4.jpg"</span> <span class="attr">width</span>=<span class="string">"120"</span> <span class="attr">height</span>=<span class="string">"120"</span> <span class="attr">alt</span>=<span class="string">"xiejava"</span> &gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-sentence mb-3"</span>&gt;</span></span><br><span class="line">            记录最好的自己<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">            写是为了更好的思考，坚持写作，力争更好的思考。</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     </span><br><span class="line">     <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"navbar-nav flex-column text-center"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"nav-item active"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"nav-link"</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          &#123; % for category in categories % &#125;</span><br><span class="line">       <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"nav-item"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"nav-link"</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;?category=&#123;  &#123; category.id  &#125;  &#125;"</span>&gt;</span>&#123;  &#123; category.title  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">          &#123; % endfor % &#125;</span><br><span class="line">       <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"nav-item"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"nav-link"</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;"</span>&gt;</span>关于我<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"my-2 my-md-3"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"lyear-search-form form-inline justify-content-center pt-3"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"search"</span> <span class="attr">name</span>=<span class="string">"search"</span> <span class="attr">class</span>=<span class="string">"form-control mr-md-1"</span> <span class="attr">placeholder</span>=<span class="string">"搜索关键词"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-wrapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"mt-5 pb-5"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文章列表 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xl-8"</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 内容 --&gt;</span></span><br><span class="line">           &#123; % block content % &#125;</span><br><span class="line">            <span class="comment">&lt;!-- 默认内容 --&gt;</span></span><br><span class="line">           &#123; % endblock % &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 内容 end --&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 侧边栏 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xl-4"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-sidebar"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 热门文章 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"widget widget-hot-posts"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"widget-title"</span>&gt;</span>热门文章<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                  &#123; % for post in hot_posts % &#125;</span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'post_detail' id=post.id % &#125;"</span>&gt;</span>&#123;  &#123; post.title  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span> <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;  &#123; post.pubTime  &#125;  &#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                  &#123; % endfor % &#125;</span><br><span class="line">              <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 归档 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"widget"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"widget-title"</span>&gt;</span>归档<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                  &#123; % for post in post_grouped_by_year % &#125;</span><br><span class="line">                      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;?year=&#123;  &#123; post.year|date:'Y'  &#125;  &#125;"</span> &gt;</span>&#123; % if year == post.year|date:'Y' % &#125;<span class="tag">&lt;<span class="name">b</span>&gt;</span>&#123;  &#123; post.year|date:'Y'  &#125;  &#125; 年 <span class="tag">&lt;/<span class="name">b</span>&gt;</span>&#123; % else % &#125;&#123;  &#123; post.year|date:'Y'  &#125;  &#125; 年&#123; % endif % &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span> (&#123;  &#123; post.publication_count  &#125;  &#125;)<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                  &#123; % endfor % &#125;</span><br><span class="line">              <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 标签 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aside</span> <span class="attr">class</span>=<span class="string">"widget widget-tag-cloud"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"widget-title"</span>&gt;</span>标签 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tag-cloud"</span>&gt;</span></span><br><span class="line">                  &#123; % for tag in tags % &#125;</span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;?tag=&#123;  &#123; tag.id  &#125;  &#125;"</span> &#123; % <span class="attr">if</span> <span class="attr">tag_id</span> == <span class="string">tag.id</span> % &#125;<span class="attr">class</span>=<span class="string">"badge badge-primary"</span>&#123; % <span class="attr">else</span> % &#125;<span class="attr">class</span>=<span class="string">"badge badge-light"</span>&#123; % <span class="attr">endif</span> % &#125;&gt;</span>&#123;  &#123; tag.tag  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                  &#123; % endfor % &#125;</span><br><span class="line">              <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 侧边栏 end --&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- end container --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&#123; % static 'blog/js/jquery.min.js' % &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&#123; % static 'blog/js/jquery.nicescroll.min.js' % &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&#123; % static 'blog/js/bootstrap.min.js' % &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"&#123; % static 'blog/js/main.min.js' % &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>博客首页/列表页<br>通过<code>{ % extends &#39;blog/base.html&#39; % }</code> 将公共部门引入进来后index.html的内容就简洁了很多<br>index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123; % extends 'blog/base.html' % &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 内容 --&gt;</span></span><br><span class="line">&#123; % block content % &#125;</span><br><span class="line"> &#123; % if page_obj.object_list.count &gt; 0 % &#125;</span><br><span class="line">  &#123; % for blogpost in page_obj.object_list % &#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"lyear-arc"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arc-header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"arc-title"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"article/&#123;  &#123; blogpost.id  &#125;  &#125;"</span>&gt;</span>&#123;  &#123; blogpost.title  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"arc-meta"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-calendar"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> &#123;  &#123; blogpost.pubTime  &#125;  &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-tag-text-outline"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">i</span>&gt;</span> &#123; % for tag in blogpost.tags.all % &#125;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;?tag=&#123;  &#123; tag.id  &#125;  &#125;"</span>&gt;</span>&#123;  &#123; tag.tag  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span>&amp;nbsp&#123; % endfor % &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--&lt;li&gt;&lt;i class="mdi mdi-comment-multiple-outline"&gt;&lt;/i&gt; &lt;a href="#"&gt;3 评论&lt;/a&gt;&lt;/li&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-heart-outline"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>&#123;  &#123; blogpost.viewsCount  &#125;  &#125; 喜欢<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arc-synopsis"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;  &#123; blogpost.summary  &#125;  &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"> &#123; % endfor % &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 分页 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-lg-12"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span><br><span class="line">       &#123; % if page_obj.has_previous % &#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"?page=&#123;  &#123; page_obj.previous_page_number  &#125;  &#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-chevron-left"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">       &#123; % endif % &#125;</span><br><span class="line"></span><br><span class="line">        &#123; % for page_no in page_obj.paginator.page_range % &#125;</span><br><span class="line">            &#123; % if page_no &gt;= start_page and page_no <span class="tag">&lt;<span class="name">=</span> <span class="attr">end_page</span> % &#125;</span></span><br><span class="line"><span class="tag">                &#123; % <span class="attr">if</span> <span class="attr">page_no</span> == <span class="string">page_obj.number</span> % &#125;</span></span><br><span class="line">                    &lt;li class="page-item active"&gt;&lt;a class="page-link" href="#"&gt;&#123;  &#123; page_no  &#125;  &#125;&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">                &#123; % else % &#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"?page=&#123;  &#123; page_no  &#125;  &#125;&#123; % if tag_id % &#125;&amp;tag=&#123;  &#123; tag_id  &#125;  &#125;&#123; % endif % &#125;&#123; % if year % &#125;&amp;year=&#123;  &#123; year  &#125;  &#125;&#123; % endif % &#125;&#123; % if search % &#125;&amp;search=&#123;  &#123; search  &#125;  &#125;&#123; % endif % &#125;"</span>&gt;</span>&#123;  &#123; page_no  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                &#123; % endif % &#125;</span><br><span class="line">            &#123; % endif % &#125;</span><br><span class="line">        &#123; % endfor % &#125;</span><br><span class="line"></span><br><span class="line">      &#123; % if page_obj.has_next % &#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"page-item"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"page-link"</span> <span class="attr">href</span>=<span class="string">"?page=&#123;  &#123; page_obj.next_page_number  &#125;  &#125;&#123; % if tag_id % &#125;&amp;tag=&#123;  &#123; tag_id  &#125;  &#125;&#123; % endif % &#125;&#123; % if year % &#125;&amp;year=&#123;  &#123; year  &#125;  &#125;&#123; % endif % &#125;&#123; % if search % &#125;&amp;search=&#123;  &#123; search  &#125;  &#125;&#123; % endif % &#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-chevron-right"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      &#123; % endif % &#125;</span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>总页数: &#123;  &#123; page_obj.paginator.num_pages &#125;  &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    &#123; % else % &#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> 没有找到文章 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    &#123; % endif % &#125;</span><br><span class="line">  <span class="comment">&lt;!-- 分页 end --&gt;</span></span><br><span class="line">&#123; % endblock % &#125;</span><br><span class="line"><span class="comment">&lt;!-- 内容 end --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>博客详情页post.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123; % extends 'blog/base.html' % &#125;</span><br><span class="line"><span class="comment">&lt;!-- 文章阅读 --&gt;</span></span><br><span class="line"></span><br><span class="line">&#123; % block content % &#125;</span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"lyear-arc"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arc-header"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"arc-title"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>&#123;  &#123; post_obj.title  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"arc-meta"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-calendar"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> &#123;  &#123; post_obj.pubTime  &#125;  &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span> &#123; % for tag in post_obj.tags.all % &#125;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;?tag=&#123;  &#123; tag.id  &#125;  &#125;"</span>&gt;</span>&#123;  &#123; tag.tag  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span>&#123; % endfor % &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;li&gt;&lt;i class="mdi mdi-comment-multiple-outline"&gt;&lt;/i&gt; &lt;a href="#"&gt;3 评论&lt;/a&gt;&lt;/li&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-heart-outline"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>&#123;  &#123; post_obj.viewsCount  &#125;  &#125; 喜欢<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            </span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arc-preview"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/blog/post-1.png"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"img-fluid rounded"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-arc-detail"</span>&gt;</span></span><br><span class="line">               &#123;  &#123; html_content|safe  &#125;  &#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123; % endblock % &#125;</span><br><span class="line"><span class="comment">&lt;!-- 内容 end --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、部署及效果"><a href="#四、部署及效果" class="headerlink" title="四、部署及效果"></a>四、部署及效果</h2><p>在部署之前执行<code>python manage.py collectstatic</code> 将admin等其他模块用到的静态文件统一输出到static的目录。<br>通过  <code>python manage.py runserver</code> 启动应用就可以看到效果。<br>实际效果见 <a href="http://iblog.ishareread.com/" target="_blank" rel="noopener">http://iblog.ishareread.com/</a><br><strong>博客首页</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240810/2-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5.png" alt="在这里插入图片描述"></p>
+<p><strong>博客详情页</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240810/3-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5.png" alt="在这里插入图片描述"></p>
+<h2 id="五、源代码"><a href="#五、源代码" class="headerlink" title="五、源代码"></a>五、源代码</h2><p>所有源代码及说明见 <a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8fbbc02f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,8 +596,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-03T18:23:48+08:00">
-                2024-08-03
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-10T14:20:39+08:00">
+                2024-08-10
               </time>
             
           </span>
@@ -381,17 +617,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
                     <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -2678,255 +2903,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/3213d463/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/3213d463/" itemprop="url">PDCA循环：持续精进的工具</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-29T09:05:19+08:00">
-                2024-04-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">管理</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/3213d463/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/3213d463/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/3213d463/" class="leancloud_visitors" data-flag-title="PDCA循环：持续精进的工具">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240428/PDCA.png" alt="PDCA"></p>
-<h2 id="一、什么是PDCA"><a href="#一、什么是PDCA" class="headerlink" title="一、什么是PDCA"></a>一、什么是PDCA</h2><p>PDCA循环是由美国质量管理专家沃特·阿曼德·休哈特（Walter A. Shewhart）在20世纪30年代提出的，最初用于制造业的质量管理。休哈特博士在构想PDCA循环时，总结了质量管理活动的基本规律，并将其上升为科学的程序。</p>
-<p>在PDCA循环中，每个阶段都有其特定的任务和目的：<br><strong>计划阶段（Plan）</strong>：主要工作是搜集资料、找出问题、找出主要问题、制定计划措施。计划需要明确目的、措施、执行部门、执行时间等。<br><strong>执行阶段（Do）</strong>：即按照计划要求去实地执行，实现计划中的内容。<br><strong>检查阶段（Check）</strong>：总结执行计划的结果，注意效果，找出成功的经验和失败的教训。<br><strong>处理阶段（Act）</strong>：对检查的结果进行处理，巩固措施，制定标准，形成规章制度。同时，找出遗留问题，转入下一个循环。</p>
-<p>然而，真正让PDCA循环广为人知并得以普及的是美国的质量管理专家爱德华兹·戴明（W.E. Deming）。戴明博士在20世纪50年代初采纳并大力宣传了PDCA循环，因此这个循环也被称为“<strong>戴明环</strong>”。戴明博士强调持续的质量改进和顾客满意，他提出的PDCA循环理念对于企业的质量管理具有深远的影响。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240428/PDCA%E6%88%B4%E6%98%8E%E7%8E%AF.png" alt="PDCA戴明环"></p>
-<p>PDCA循环的提出背景与当时工业界对质量管理的需求密不可分。随着市场竞争的加剧和消费者对产品质量要求的提高，企业需要寻求一种有效的质量管理方法来提高产品质量和客户满意度。PDCA循环提供了一个科学、系统的质量管理框架，帮助企业识别问题、制定改进措施、执行计划并检查结果，从而实现质量的持续改进。</p>
-<p>PDCA循环的提出也反映了质量管理理念的发展。从最初的质量检验阶段，到后来的统计质量控制阶段，再到全面的质量管理阶段，人们对于质量管理的认识不断深化。PDCA循环作为全面质量管理所应遵循的科学程序，强调了质量管理的系统性和持续改进的重要性。PDCA循环这个由美国质量管理专家沃特·阿曼德·休哈特提出的理念，经戴明采纳、宣传后普及，不仅在质量管理领域发挥了重要作用，而且已经渗透到各个行业和领域的各个方面。</p>
-<h2 id="二、PDCA的应用场景"><a href="#二、PDCA的应用场景" class="headerlink" title="二、PDCA的应用场景"></a>二、PDCA的应用场景</h2><p>PDCA循环作为一种科学的管理工具，其适用范围非常广泛，几乎可以应用于所有需要持续改进和提升的领域和场景：</p>
-<ol>
-<li>项目管理：在项目管理中，PDCA循环可用于规划项目、分配资源、监控进度以及解决项目过程中出现的问题。通过不断地进行计划、执行、检查和处理的循环，项目经理可以确保项目按计划进行，并及时调整策略以应对不可预见的情况。</li>
-<li>质量管理：作为质量管理的经典工具，PDCA循环在制造业、服务业等领域都有广泛应用。通过循环往复地识别质量问题、分析原因、制定改进措施并验证效果，企业可以不断提升产品和服务的质量，满足客户需求。</li>
-<li>流程优化：PDCA循环可用于对现有业务流程进行分析和优化。通过收集数据、评估流程效率、识别瓶颈环节并制定改进措施，企业可以提高工作效率、降低成本并增强竞争力。</li>
-<li>员工培训与发展：在人力资源管理中，PDCA循环可用于员工培训计划的设计和执行。通过制定培训目标、实施培训计划、评估培训效果并根据反馈进行调整，企业可以提升员工的技能水平和工作绩效。</li>
-<li>市场营销：在市场营销领域，PDCA循环可用于制定营销策略、推广活动、评估市场反馈并根据结果进行调整。通过不断试错和优化，企业可以更有效地推广产品和服务，提升市场份额。</li>
-<li>个人成长与发展：除了组织层面的应用，PDCA循环同样适用于个人成长与发展。个人可以制定职业发展规划、设定目标、采取行动并不断反思和调整，以实现个人成长和职业成功。</li>
-</ol>
-<p>PDCA循环通过不断地进行计划、执行、检查和处理的循环，组织和个人可以不断提升绩效、解决问题并实现目标。</p>
-<h2 id="三、PDCA在信息系统项目管理中的应用"><a href="#三、PDCA在信息系统项目管理中的应用" class="headerlink" title="三、PDCA在信息系统项目管理中的应用"></a>三、PDCA在信息系统项目管理中的应用</h2><p>在信息系统项目管理中，PDCA循环是一个非常重要的工具，用于确保项目的顺利进行和成功完成。PDCA循环包括四个主要阶段：Plan（计划）、Do（执行）、Check（检查）和Act（处理）。</p>
-<ol>
-<li><strong>Plan（计划）阶段</strong>：<br>在信息系统项目管理的初期，项目管理师需要制定详细的项目计划。这一阶段涉及项目的目标、范围、时间、成本、质量、人力资源、沟通、风险和干系人管理等各个方面的规划。计划制定不仅仅是简单的设定目标和任务，还包括对市场、技术、用户需求等的深入分析和预测。此外，项目管理师还需要制定具体的实施步骤和对策，确保项目的顺利进行。</li>
-<li><strong>Do（执行）阶段</strong>：<br>执行阶段主要是按照预定的计划进行实施。这包括分配任务、协调团队成员、解决遇到的问题等。在这一阶段，项目管理师需要确保所有团队成员都清楚自己的职责和任务，并且能够按照计划执行。</li>
-<li><strong>Check（检查）阶段</strong>：<br>在执行阶段之后，项目管理师需要对项目的进展和成果进行检查。这包括与计划的对比，检查项目是否按照预定的目标进行，以及是否存在偏差或问题。通过收集和分析数据，项目管理师可以评估项目的状态，并确定是否需要调整或改进。</li>
-<li><strong>Act（处理）阶段</strong>：<br>处理阶段是PDCA循环的关键部分。在这一阶段，项目管理师需要分析检查阶段发现的问题和偏差，找出原因，并制定相应的纠正措施和预防措施。这有助于项目重新回到预定的轨道，并确保项目能够顺利完成。此外，项目管理师还需要总结项目执行过程中的经验教训，为今后的项目提供有益的借鉴。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240428/PDCA%E6%8C%81%E7%BB%AD%E6%94%B9%E8%BF%9B.png" alt="PDCA持续改进"></li>
-</ol>
-<p>整个PDCA循环是一个不断迭代和持续改进的过程。每一个循环周期结束后，遗留的问题和需要改进的地方都会被纳入下一个循环周期，通过不断的循环，项目的管理水平会得到不断提升。</p>
-<p>总的来说，PDCA循环在信息系统项目管理中的应用是一个系统性、循环性和持续改进的过程。通过科学的规划、执行、检查和处理，项目管理师可以确保项目的顺利进行和成功完成，同时提升项目管理的水平和效率。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2983,7 +2959,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">184</span>
+                  <span class="site-state-item-count">185</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3095,7 +3071,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">388k</span>
+    <span title="Site words total count">391.7k</span>
   
   
 <!--51la网站应用监控-->
