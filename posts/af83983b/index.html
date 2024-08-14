@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,Django," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="随着markdown的流行，web应用系统常常会要碰到有使用markdown编辑器进行富文本编辑，然后在前台web页面进行显示。常见的博客系统当然也需要支持markdown的编辑与显示。本文就通过一个真实的博客系统来说明django+markdown2+pygments实现markdown解析及代码高亮。 一、后台管理支持markdown编辑django应用的后台管理支持markdown可以用dj">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django+markdown2+pygments实现markdown解析及代码高亮">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/af83983b/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="随着markdown的流行，web应用系统常常会要碰到有使用markdown编辑器进行富文本编辑，然后在前台web页面进行显示。常见的博客系统当然也需要支持markdown的编辑与显示。本文就通过一个真实的博客系统来说明django+markdown2+pygments实现markdown解析及代码高亮。 一、后台管理支持markdown编辑django应用的后台管理支持markdown可以用dj">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2024-08-14T10:38:22.000Z">
+<meta property="article:modified_time" content="2024-08-14T10:55:16.849Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/af83983b/"/>
+
+
+
+
+
+  <title>django+markdown2+pygments实现markdown解析及代码高亮 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/af83983b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">django+markdown2+pygments实现markdown解析及代码高亮</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-14T18:38:22+08:00">
+                2024-08-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-14T18:55:16+08:00">
+                2024-08-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/af83983b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/af83983b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/af83983b/" class="leancloud_visitors" data-flag-title="django+markdown2+pygments实现markdown解析及代码高亮">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着markdown的流行，web应用系统常常会要碰到有使用markdown编辑器进行富文本编辑，然后在前台web页面进行显示。常见的博客系统当然也需要支持markdown的编辑与显示。本文就通过一个真实的博客系统来说明django+markdown2+pygments实现markdown解析及代码高亮。</p>
+<h2 id="一、后台管理支持markdown编辑"><a href="#一、后台管理支持markdown编辑" class="headerlink" title="一、后台管理支持markdown编辑"></a>一、后台管理支持markdown编辑</h2><p>django应用的后台管理支持markdown可以用django-mdeditor，它是一个Django应用，它集成了markdown-editor，允许你在Django项目中使用富文本编辑器编写Markdown格式的内容。这个插件通常用于博客、论坛或任何需要用户输入Markdown文本的场景。</p>
+<h3 id="1、安装依赖"><a href="#1、安装依赖" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><p>首先，通过pip安装django-mdeditor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-mdeditor</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、添加应用到INSTALLED-APPS"><a href="#2、添加应用到INSTALLED-APPS" class="headerlink" title="2、添加应用到INSTALLED_APPS"></a>2、添加应用到INSTALLED_APPS</h3><p>在settings.py文件中，将django_mdeditor添加到INSTALLED_APPS列表中，参考如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'django_filters'</span>,  <span class="comment"># 注册条件查询</span></span><br><span class="line">    <span class="string">'mdeditor'</span>,  <span class="comment"># 注册markdown的应用</span></span><br><span class="line">    <span class="string">'drf_yasg2'</span>,  <span class="comment"># 接口文档</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、设置MEDIA-URL和MEDIA-ROOT"><a href="#3、设置MEDIA-URL和MEDIA-ROOT" class="headerlink" title="3、设置MEDIA_URL和MEDIA_ROOT"></a>3、设置MEDIA_URL和MEDIA_ROOT</h3><p>django-mdeditor使用文件上传功能，因此需要在settings.py中正确设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_URL和MEDIA_ROOT：</span><br><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'uploads'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、在模型中使用MdEditorField"><a href="#4、在模型中使用MdEditorField" class="headerlink" title="4、在模型中使用MdEditorField"></a>4、在模型中使用MdEditorField</h3><p>在Django模型中，使用MdEditorField替换标准的TextField：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>,null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    isShow = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否显示'</span>)</span><br><span class="line">    summary = models.TextField(max_length=<span class="number">500</span>, verbose_name=<span class="string">'内容摘要'</span>, default=<span class="string">''</span>)</span><br><span class="line">    content = MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line">    tags = models.ManyToManyField(to=Tag, related_name=<span class="string">"tag_post"</span>, blank=<span class="literal">True</span>, default=<span class="literal">None</span>, verbose_name=<span class="string">"标签"</span>)</span><br><span class="line">    blogSource = models.CharField(max_length=<span class="number">200</span>, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, default=<span class="string">''</span>,verbose_name=<span class="string">'文章来源'</span>)</span><br><span class="line">    pubTime = models.DateTimeField(blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'发布日期'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tag_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">','</span>.join([i.tag <span class="keyword">for</span> i <span class="keyword">in</span> self.tags.all()])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br></pre></td></tr></table></figure>
+
+<p>在博客文章的模型中，文章内容需要支持markdown,所以<code>content = MDTextField(verbose_name=&#39;内容&#39;)</code></p>
+<h3 id="5、查看效果"><a href="#5、查看效果" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>用django自带的后台管理admin就可以看到效果了</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png" alt="django自带的后台管理admin"></p>
+<h2 id="二、前台支持markdown解析及代码高亮"><a href="#二、前台支持markdown解析及代码高亮" class="headerlink" title="二、前台支持markdown解析及代码高亮"></a>二、前台支持markdown解析及代码高亮</h2><p>在后台支持markdown编辑后，前台页面的博客文章页面也得要支持对markdown得解析。</p>
+<h3 id="1、安装依赖-1"><a href="#1、安装依赖-1" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><p>在Django项目中使用markdown2库实现代码高亮，安装markdown2和pygments这两个Python库。markdown2用于解析Markdown文本，而pygments用于代码高亮。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install markdown2 pygments</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、配置Markdown解析器"><a href="#2、配置Markdown解析器" class="headerlink" title="2、配置Markdown解析器"></a>2、配置Markdown解析器</h3><p>在Django视图中，需要导入markdown2模块，并使用它来解析Markdown文本。同时，要启用fenced-code-blocks扩展，以便markdown2能正确识别代码块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> markdown2</span><br></pre></td></tr></table></figure>
+
+<p>markdown2的扩展说明见 <a href="https://github.com/trentm/python-markdown2/wiki/Extras" target="_blank" rel="noopener">https://github.com/trentm/python-markdown2/wiki/Extras</a><br>在这里加入了 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extras=[<span class="string">"code-color"</span>, <span class="string">"fenced-code-blocks"</span>, <span class="string">"cuddled-lists"</span>, <span class="string">"tables"</span>,</span><br><span class="line">  <span class="string">"with-toc"</span>, <span class="string">"code-friendly"</span>]</span><br></pre></td></tr></table></figure>
+<p>视图实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 详情页视图实现.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_detail</span><span class="params">(request, id)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        post_obj = BlogPost.objects.get(id=id)</span><br><span class="line">        html_content = markdown2.markdown(post_obj.content,</span><br><span class="line">                                          extras=[<span class="string">"code-color"</span>, <span class="string">"fenced-code-blocks"</span>, <span class="string">"cuddled-lists"</span>, <span class="string">"tables"</span>,</span><br><span class="line">                                                  <span class="string">"with-toc"</span>, <span class="string">"code-friendly"</span>])</span><br><span class="line">        html_content = html_content.replace(<span class="string">'&lt;table&gt;'</span>, <span class="string">'&lt;table class="table table-bordered"&gt;'</span>)</span><br><span class="line">        html_content = html_content.replace(<span class="string">'&lt;img src='</span>, <span class="string">'&lt;img style="max-width:100%;height:auto;" src='</span>)</span><br><span class="line">        context = &#123;<span class="string">"post_obj"</span>: post_obj,</span><br><span class="line">                   <span class="string">"html_content"</span>: html_content,</span><br><span class="line">                   <span class="string">"hot_posts"</span>: get_hot_posts(),</span><br><span class="line">                   <span class="string">"tags"</span>: get_all_tags(),</span><br><span class="line">                   <span class="string">"post_grouped_by_year"</span>: get_post_groped_by_year(),</span><br><span class="line">                   <span class="string">'categories'</span>: get_categories(),</span><br><span class="line">                   <span class="string">'social_infos'</span>: get_socialinfo()&#125;</span><br><span class="line">    <span class="keyword">except</span> BlogPost.DoesNotExist:</span><br><span class="line">        <span class="keyword">raise</span> Http404(<span class="string">"Post does not exist"</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">"blog/post.html"</span>, context)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在模板中显示HTML"><a href="#3、在模板中显示HTML" class="headerlink" title="3、在模板中显示HTML"></a>3、在模板中显示HTML</h3><p>在Django模板中，直接输出转换后的HTML内容。使用|safe过滤器告诉模板引擎不要转义HTML代码。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="lyear-arc-detail"&gt;</span><br><span class="line">   &#123;&#123; html_content|safe &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、导出高亮的css文件并引入css"><a href="#4、导出高亮的css文件并引入css" class="headerlink" title="4、导出高亮的css文件并引入css"></a>4、导出高亮的css文件并引入css</h3><p>有了上面的步骤，只是可以解析了markdown成html并显示，最终代码的高亮是通过css 来控制显示的，执行以下命令将高亮的css文件导出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pygmentize -S default -f html -a .codehilite &gt; markdown_highlighy.css</span><br></pre></td></tr></table></figure>
+
+<p>pyments的官方文档 <a href="https://pygments.org/" target="_blank" rel="noopener">https://pygments.org/</a> 查看一共有多少种风格，可以参考网址 <a href="https://pygments.org/docs/styles/#getting-a-list-of-available-styles" target="_blank" rel="noopener">https://pygments.org/docs/styles/#getting-a-list-of-available-styles</a><br>将生成的markdown_highlighy.css文件拷入到static/blog/css下<br>在模板页面中引入css </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123;% static 'blog/css/markdown_highlighy.css' %&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、查看效果-1"><a href="#5、查看效果-1" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>可以看到markdown可以正常解析，代码也可以高亮显示了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png" alt="在这里插入图片描述"></p>
+<h2 id="三、全套代码"><a href="#三、全套代码" class="headerlink" title="三、全套代码"></a>三、全套代码</h2><p><a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/af83983b/" title="django+markdown2+pygments实现markdown解析及代码高亮">https://xiejava.gitee.io/posts/af83983b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/fd8c1dd4/" rel="next" title="一个人活成一个团队：python的django项目devops实战">
+                <i class="fa fa-chevron-left"></i> 一个人活成一个团队：python的django项目devops实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">187</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、后台管理支持markdown编辑"><span class="nav-number">1.</span> <span class="nav-text">一、后台管理支持markdown编辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、安装依赖"><span class="nav-number">1.1.</span> <span class="nav-text">1、安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、添加应用到INSTALLED-APPS"><span class="nav-number">1.2.</span> <span class="nav-text">2、添加应用到INSTALLED_APPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、设置MEDIA-URL和MEDIA-ROOT"><span class="nav-number">1.3.</span> <span class="nav-text">3、设置MEDIA_URL和MEDIA_ROOT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、在模型中使用MdEditorField"><span class="nav-number">1.4.</span> <span class="nav-text">4、在模型中使用MdEditorField</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、查看效果"><span class="nav-number">1.5.</span> <span class="nav-text">5、查看效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、前台支持markdown解析及代码高亮"><span class="nav-number">2.</span> <span class="nav-text">二、前台支持markdown解析及代码高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、安装依赖-1"><span class="nav-number">2.1.</span> <span class="nav-text">1、安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置Markdown解析器"><span class="nav-number">2.2.</span> <span class="nav-text">2、配置Markdown解析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、在模板中显示HTML"><span class="nav-number">2.3.</span> <span class="nav-text">3、在模板中显示HTML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、导出高亮的css文件并引入css"><span class="nav-number">2.4.</span> <span class="nav-text">4、导出高亮的css文件并引入css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、查看效果-1"><span class="nav-number">2.5.</span> <span class="nav-text">5、查看效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、全套代码"><span class="nav-number">3.</span> <span class="nav-text">三、全套代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">394.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

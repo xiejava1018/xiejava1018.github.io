@@ -313,6 +313,293 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/160ef42d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/160ef42d/" itemprop="url">认识XDR-扩展威胁检测与响应平台</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-10-13T19:30:54+08:00">
+                2022-10-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:23+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/160ef42d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/160ef42d/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/160ef42d/" class="leancloud_visitors" data-flag-title="认识XDR-扩展威胁检测与响应平台">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近年安全圈XDR的概念非常火，是近几年热点的安全技术之一，究竟什么是XDR，XDR核心能力是什么？能够解决什么问题，XDR与EDR、NDR关系和区别又是什么？让我们带着这些问题一起来认识一下XDR。</p>
+<h1 id="一、什么是XDR"><a href="#一、什么是XDR" class="headerlink" title="一、什么是XDR"></a>一、什么是XDR</h1><p>XDR 于 2018 年由 Palo Alto 首席技术官 Nir Zuk 提出，2020-2021 年连续入选 Gartner 端点安全、安全运营技术成熟度曲线，目前处于创新启动期。</p>
+<p>XDR全名是<strong>Extended Detection and Response（扩展检测和响应）</strong>，因为缩写与EDR重名了，所以就取了Extended第二个字母X，缩成了XDR。</p>
+<p>Gartner给出的XDR定义为：XDR是一种基于SaaS的、绑定于特定供应商的安全威胁检测和事件响应工具，它将多个安全产品集成到一个统一了所有许可安全组件的内聚安全运营系统中。</p>
+<p>通常情况下，可以认为XDR是一个融合了多种安全检测、响应能力的平台框架，只要是为了解决威胁检测与响应的问题能力模块，都可以往里装。它需要将多个安全产品能力有机的结合在一起，有统一的数据格式、策略、交互界面。相对于EDR（端点的检测与响应）和NDR（网络的检测与响应）来说，特别的强调X的概念，也就是可以扩展（Extended）的检测与响应。这里X覆盖了云、网、端、威胁情报等，EDR和NDR及其他的检测设备都可以作为XDR的能力模块为XDR提供数据来源和检测手段。</p>
+<h1 id="二、XDR解决什么问题"><a href="#二、XDR解决什么问题" class="headerlink" title="二、XDR解决什么问题"></a>二、XDR解决什么问题</h1><p>近期， Gartner正式发布了2022安全运营技术成熟度曲线（Hype Cycle），正如大家所预测的那样，XDR终于站上了Peak of Inflated Expectations的顶端，成为安全运营体系中最炙手可热的技术之一，具体如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221013/2022%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E6%8A%80%E6%9C%AF%E6%88%90%E7%86%9F%E5%BA%A6%E6%9B%B2%E7%BA%BF.png" alt="2022安全运营技术成熟度曲线"></p>
+<p>那么在企业安全运营过程中究竟有什么困惑，XDR又能解决什么问题呢？</p>
+<h2 id="1、安全运营的困惑"><a href="#1、安全运营的困惑" class="headerlink" title="1、安全运营的困惑"></a>1、安全运营的困惑</h2><ul>
+<li><strong>单兵作战/数据孤岛</strong></li>
+</ul>
+<p>企业虽然有了SIEM/SOC等日志类数据分析平台，或是IDS、IPS、WAF、防火墙、EDR等单点安全设备，但前者无法理解下游检测设备告警，数据多而不准，安全误报多；后者获取的数据又有限，不同设备数据还无法紧密集成，最后变成了真实风险看不到，出现威胁防不了。</p>
+<ul>
+<li><strong>告警疲劳，误报多</strong></li>
+</ul>
+<p>安全人员每天都会收到来自不同安全设备的上万条威胁告警，而头疼的是，绝大多数（90%以上）都并非真实威胁，所以安全人员不是身体在处理误报的路上，就是精神在遭受误报的折磨，压力非常之大。</p>
+<ul>
+<li><strong>全局态势不可见</strong></li>
+</ul>
+<p>企业虽然买了一堆的安全设备，这些设备都产生了相应的告警，但是没有形成统一的全局的安全风险态势，对于安全主管来说要重点防范哪些地方，企业的安全建设还有哪些短板，这些都不可以知不可见。</p>
+<ul>
+<li><strong>响应处置能力弱</strong></li>
+</ul>
+<p>发生网络安全事件以后，无法有效溯源，快速的处置，尤其是多设备的联动处置，大多还停留在手工处置的阶段，处置效率先对比较低，不及时。</p>
+<h2 id="2、XDR的作用"><a href="#2、XDR的作用" class="headerlink" title="2、XDR的作用"></a>2、XDR的作用</h2><p>XDR通过统一的交互框架、统一的数据标准、统一的数据存储方式进行安全数据采集、安全威胁集中分析、安全事件统一处置、响应编排。</p>
+<p>XDR的核心作用在于能够跨越不同数据源与IT架构，集中汇集云、网、端、威胁情报等多源安全数据/工具。通过大数据与人工智能、用户行为分析等智能分析手段，对安全数据/事件进行关联分析，还原攻击路径，达到对整个攻击面的全面可视，解决安全孤岛的问题。基于动态更新的事件库与预置处置场景将产出的告警进行自动化编排与分诊，实现自动化响应。解决安全运营过程中数据孤岛、告警疲劳、全局态势不可见、响应处置能力弱的问题，更重要的是将企业安全运营水平和标准化产品挂钩，而非依赖不稳定的个人技术水平。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221013/XDR%E7%9A%84%E4%BD%9C%E7%94%A8.png" alt="XDR的作用"></p>
+<h1 id="三、XDR与EDR、NDR的区别"><a href="#三、XDR与EDR、NDR的区别" class="headerlink" title="三、XDR与EDR、NDR的区别"></a>三、XDR与EDR、NDR的区别</h1><p>EDR从端点侧做威胁检测，确实能检测到攻击的准确信息，但是端点检测这种方式需要在用户主机上安装检测agent程序，无法覆盖用户所有的资产。并且端点检测的部署成本相比网络检测也更高，对于端点的操作系统、硬件配置、网络情况都有要求。</p>
+<p>NDR从网络侧做威胁检测，检测到的更多都是攻击的特征或者攻击意图，此时攻击很有可能并未真正发生，或者并未造成严重后果。如果全部转化为威胁事件，则会造成告警风暴，给运营带来困难。</p>
+<p>所以EDR的特点是检测的深但是覆盖面窄，而NDR的特点是检测的浅但是覆盖面广。</p>
+<p>XDR则结合了这两者的全部优点，对于重点资产可采用端点检测方式，对于其他资产可采用网络检测方式。XDR平台会将这两种能力检测到的原始事件信息进行自动化关联，最终可将这些疑似的攻击信息，关联分析形成精准的威胁告警事件。</p>
+<h1 id="四、XDR的架构和核心能力"><a href="#四、XDR的架构和核心能力" class="headerlink" title="四、XDR的架构和核心能力"></a>四、XDR的架构和核心能力</h1><h2 id="1、XDR的架构"><a href="#1、XDR的架构" class="headerlink" title="1、XDR的架构"></a>1、XDR的架构</h2><p>因为XDR是一个融合了多种安全检测、响应能力的平台框架，XDR的架构其关键组件包括前端组件（感应器，主要负责数据采集及检测）和后端平台组件（主要负责数据的汇聚、分析、威胁检测、响应处置）</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221013/XDR%E6%9E%B6%E6%9E%84.png" alt="XDR的架构"><br>XDR前端组件，由生成安全遥测数据的“触角”（感应器）组成，这些触角包括但不限于EDR（终端检测与响应-Endpoint Detection and Response)、EPP(终端防护平台-Endpoint Protection Platforms)、NDR（流量检测与响应平台-Network Detection and Response)、SSE（安全服务边缘-Security Services Edge)、CWPP(云工作负载安全防护平台-Cloud Workload Protection Platforms)、蜜罐、邮件安全。</p>
+<p>而XDR的后端平台，则是吸收所有关键位置的遥测数据、日志、威胁上下文信息，之后再对所有的数据进行关联、高级分析、从而完成威胁检测、调查分析、攻击溯源、工具编排、自动化响应等工作。</p>
+<p>从整体架构上<strong>XDR可以看成是融合了各安全能力组件（EDR、NDR等）+SDC（安全数据中心）+SIEM/SA（安全信息事件管理/态势感知）+SOAR（安全编排与自动化响应）形成的一个安全运营系统</strong>。</p>
+<h2 id="2、核心能力"><a href="#2、核心能力" class="headerlink" title="2、核心能力"></a>2、核心能力</h2><p>XDR核心能力包括数据集成、检测技术、可视化、编排响应技术。</p>
+<ul>
+<li><strong>安全数据全面集成</strong></li>
+</ul>
+<p>对不同安全设备的数据进行全面的采集包括：内部（资产、脆弱性）、外部（流量、日志）以及云端威胁情报接入等相关安全数据的全面采集，汇聚、分析。</p>
+<ul>
+<li><strong>安全威胁深度检测</strong></li>
+</ul>
+<p>对多源安全告警进行关联分析、规则分析、情报分析、机器学习等，发现潜伏的高级持续性威胁，提升告警检出率和准确率。</p>
+<ul>
+<li><strong>安全态势集中展示</strong></li>
+</ul>
+<p>告警可视、事件可视、攻击可视，从多安全事件、攻击方向、攻击趋势、影响范围等多维度多视角进行态势可视化呈现。</p>
+<ul>
+<li><strong>安全事件快速处置</strong></li>
+</ul>
+<p>通过可视化剧本编排，快速实现人员、流程、工具的有效协同，对接联动安全防护设备，在安全事件发生时自动下发阻断策略，并在必要时下发通知预警，及时完成安全闭环。</p>
+<p>   XDR成熟度模型如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221013/XDR%E6%88%90%E7%86%9F%E5%BA%A6%E6%A8%A1%E5%9E%8B.png" alt="XDR成熟度模型"></p>
+<h1 id="五、XDR应用场景"><a href="#五、XDR应用场景" class="headerlink" title="五、XDR应用场景"></a>五、XDR应用场景</h1><p>XDR集中汇集云、网、端、威胁情报等多源安全数据/工具，解决安全运营过程中数据孤岛、告警疲劳、全局态势不可见、响应处置能力弱的问题。可以有效应用于企业常态化安全运营及重保攻防实战对抗场景。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221013/XDR%E5%A8%81%E8%83%81%E6%A3%80%E6%B5%8B%E8%81%94%E5%8A%A8%E5%93%8D%E5%BA%94%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="XDR威胁检测联动响应示意图"></p>
+<ul>
+<li><strong>日常安全运营场景</strong></li>
+</ul>
+<p>日常安全运营，通过XDR提升安全运营的威胁检测能力和响应效率。<br>精准响应：更好的检测效果及响应能力，解决原有海量告警导致事件难以有效检测、溯源深度不足导致响应效果差的问题，有效应对攻防对抗加剧带来新的安全风险。<br>风险管理：从被动事件响应转向有计划的风险管理，预防重大安全事件。<br>处置闭环：采用简单有效的方式开展安全分析、管理、处置工作，实现事件处置的有效闭环管控。<br>态势可见：安全态势统一呈现，安全运营有地放矢，哪里不足补哪里。</p>
+<ul>
+<li><strong>攻防实战对抗场景</strong></li>
+</ul>
+<p>攻防实战，通过XDR实现异构可扩展的威胁检测响应能力，进行快速响应、加固优化安全措施、攻击反制。<br>检测深度：更精准的高级威胁检测和安全事件溯源能力。<br>检测广度：拥有丰富的数据，包括事件完整的上下文信息、原始报文等供客户深度挖掘；全方位的的威胁数据采集，全面的威胁检测分析，全局的态势呈现。<br>敏捷响应：可进行快速响应、加固优化安全措施、攻击反制。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/32650d1c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2568,235 +2855,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/aebdf141/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/aebdf141/" itemprop="url">PyCharm在用Django开发时debug模式启动失败显示can't find '__main__' module的解决方法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-06-06T08:56:51+08:00">
-                2022-06-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/aebdf141/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/aebdf141/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/aebdf141/" class="leancloud_visitors" data-flag-title="PyCharm在用Django开发时debug模式启动失败显示can't find '__main__' module的解决方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  203
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>初次用Django开发web应用，在试图用Pycharm进行debug的时候，出现了一个奇怪的问题。以正常模式启动或者在terminal启动都没有问题。但是以debug模式启动时，显示<code>can&#39;t find &#39;__main__&#39; module”</code>报错。在网上找了很久都没有看到解决方法，最后在某乎上看到一篇文章，在启动时加上<code>--noreload</code>参数，既可以debug模式启动。</p>
-<p><strong>报错信息：</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png" alt="报错信息"><br><strong>解决方法：</strong><br>在启动时加上 <code>--noreload</code> 参数可以正常启动调试<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/--noreload.png" alt="加入不重新加载参数"></p>
-<p>debug启动正常也可以调试了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png" alt="debug正常启动"></p>
-<p>踩过的坑记录一下，希望能帮到碰到同样问题的人。</p>
-<p>感谢大佬的文章 <a href="https://zhuanlan.zhihu.com/p/443763989" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/443763989</a> </p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2853,7 +2911,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">186</span>
+                  <span class="site-state-item-count">187</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2965,7 +3023,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">393.2k</span>
+    <span title="Site words total count">394.3k</span>
   
   
 <!--51la网站应用监控-->

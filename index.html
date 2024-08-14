@@ -313,6 +313,260 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/af83983b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/af83983b/" itemprop="url">django+markdown2+pygments实现markdown解析及代码高亮</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-14T18:38:22+08:00">
+                2024-08-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-14T18:55:16+08:00">
+                2024-08-14
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/af83983b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/af83983b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/af83983b/" class="leancloud_visitors" data-flag-title="django+markdown2+pygments实现markdown解析及代码高亮">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着markdown的流行，web应用系统常常会要碰到有使用markdown编辑器进行富文本编辑，然后在前台web页面进行显示。常见的博客系统当然也需要支持markdown的编辑与显示。本文就通过一个真实的博客系统来说明django+markdown2+pygments实现markdown解析及代码高亮。</p>
+<h2 id="一、后台管理支持markdown编辑"><a href="#一、后台管理支持markdown编辑" class="headerlink" title="一、后台管理支持markdown编辑"></a>一、后台管理支持markdown编辑</h2><p>django应用的后台管理支持markdown可以用django-mdeditor，它是一个Django应用，它集成了markdown-editor，允许你在Django项目中使用富文本编辑器编写Markdown格式的内容。这个插件通常用于博客、论坛或任何需要用户输入Markdown文本的场景。</p>
+<h3 id="1、安装依赖"><a href="#1、安装依赖" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><p>首先，通过pip安装django-mdeditor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django-mdeditor</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、添加应用到INSTALLED-APPS"><a href="#2、添加应用到INSTALLED-APPS" class="headerlink" title="2、添加应用到INSTALLED_APPS"></a>2、添加应用到INSTALLED_APPS</h3><p>在settings.py文件中，将django_mdeditor添加到INSTALLED_APPS列表中，参考如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'django_filters'</span>,  <span class="comment"># 注册条件查询</span></span><br><span class="line">    <span class="string">'mdeditor'</span>,  <span class="comment"># 注册markdown的应用</span></span><br><span class="line">    <span class="string">'drf_yasg2'</span>,  <span class="comment"># 接口文档</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、设置MEDIA-URL和MEDIA-ROOT"><a href="#3、设置MEDIA-URL和MEDIA-ROOT" class="headerlink" title="3、设置MEDIA_URL和MEDIA_ROOT"></a>3、设置MEDIA_URL和MEDIA_ROOT</h3><p>django-mdeditor使用文件上传功能，因此需要在settings.py中正确设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_URL和MEDIA_ROOT：</span><br><span class="line">MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'uploads'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、在模型中使用MdEditorField"><a href="#4、在模型中使用MdEditorField" class="headerlink" title="4、在模型中使用MdEditorField"></a>4、在模型中使用MdEditorField</h3><p>在Django模型中，使用MdEditorField替换标准的TextField：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>,null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    isShow = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否显示'</span>)</span><br><span class="line">    summary = models.TextField(max_length=<span class="number">500</span>, verbose_name=<span class="string">'内容摘要'</span>, default=<span class="string">''</span>)</span><br><span class="line">    content = MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line">    tags = models.ManyToManyField(to=Tag, related_name=<span class="string">"tag_post"</span>, blank=<span class="literal">True</span>, default=<span class="literal">None</span>, verbose_name=<span class="string">"标签"</span>)</span><br><span class="line">    blogSource = models.CharField(max_length=<span class="number">200</span>, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, default=<span class="string">''</span>,verbose_name=<span class="string">'文章来源'</span>)</span><br><span class="line">    pubTime = models.DateTimeField(blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'发布日期'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tag_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">','</span>.join([i.tag <span class="keyword">for</span> i <span class="keyword">in</span> self.tags.all()])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br></pre></td></tr></table></figure>
+
+<p>在博客文章的模型中，文章内容需要支持markdown,所以<code>content = MDTextField(verbose_name=&#39;内容&#39;)</code></p>
+<h3 id="5、查看效果"><a href="#5、查看效果" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>用django自带的后台管理admin就可以看到效果了</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png" alt="django自带的后台管理admin"></p>
+<h2 id="二、前台支持markdown解析及代码高亮"><a href="#二、前台支持markdown解析及代码高亮" class="headerlink" title="二、前台支持markdown解析及代码高亮"></a>二、前台支持markdown解析及代码高亮</h2><p>在后台支持markdown编辑后，前台页面的博客文章页面也得要支持对markdown得解析。</p>
+<h3 id="1、安装依赖-1"><a href="#1、安装依赖-1" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><p>在Django项目中使用markdown2库实现代码高亮，安装markdown2和pygments这两个Python库。markdown2用于解析Markdown文本，而pygments用于代码高亮。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install markdown2 pygments</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、配置Markdown解析器"><a href="#2、配置Markdown解析器" class="headerlink" title="2、配置Markdown解析器"></a>2、配置Markdown解析器</h3><p>在Django视图中，需要导入markdown2模块，并使用它来解析Markdown文本。同时，要启用fenced-code-blocks扩展，以便markdown2能正确识别代码块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> markdown2</span><br></pre></td></tr></table></figure>
+
+<p>markdown2的扩展说明见 <a href="https://github.com/trentm/python-markdown2/wiki/Extras" target="_blank" rel="noopener">https://github.com/trentm/python-markdown2/wiki/Extras</a><br>在这里加入了 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extras=[<span class="string">"code-color"</span>, <span class="string">"fenced-code-blocks"</span>, <span class="string">"cuddled-lists"</span>, <span class="string">"tables"</span>,</span><br><span class="line">  <span class="string">"with-toc"</span>, <span class="string">"code-friendly"</span>]</span><br></pre></td></tr></table></figure>
+<p>视图实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 详情页视图实现.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">post_detail</span><span class="params">(request, id)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        post_obj = BlogPost.objects.get(id=id)</span><br><span class="line">        html_content = markdown2.markdown(post_obj.content,</span><br><span class="line">                                          extras=[<span class="string">"code-color"</span>, <span class="string">"fenced-code-blocks"</span>, <span class="string">"cuddled-lists"</span>, <span class="string">"tables"</span>,</span><br><span class="line">                                                  <span class="string">"with-toc"</span>, <span class="string">"code-friendly"</span>])</span><br><span class="line">        html_content = html_content.replace(<span class="string">'&lt;table&gt;'</span>, <span class="string">'&lt;table class="table table-bordered"&gt;'</span>)</span><br><span class="line">        html_content = html_content.replace(<span class="string">'&lt;img src='</span>, <span class="string">'&lt;img style="max-width:100%;height:auto;" src='</span>)</span><br><span class="line">        context = &#123;<span class="string">"post_obj"</span>: post_obj,</span><br><span class="line">                   <span class="string">"html_content"</span>: html_content,</span><br><span class="line">                   <span class="string">"hot_posts"</span>: get_hot_posts(),</span><br><span class="line">                   <span class="string">"tags"</span>: get_all_tags(),</span><br><span class="line">                   <span class="string">"post_grouped_by_year"</span>: get_post_groped_by_year(),</span><br><span class="line">                   <span class="string">'categories'</span>: get_categories(),</span><br><span class="line">                   <span class="string">'social_infos'</span>: get_socialinfo()&#125;</span><br><span class="line">    <span class="keyword">except</span> BlogPost.DoesNotExist:</span><br><span class="line">        <span class="keyword">raise</span> Http404(<span class="string">"Post does not exist"</span>)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">"blog/post.html"</span>, context)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在模板中显示HTML"><a href="#3、在模板中显示HTML" class="headerlink" title="3、在模板中显示HTML"></a>3、在模板中显示HTML</h3><p>在Django模板中，直接输出转换后的HTML内容。使用|safe过滤器告诉模板引擎不要转义HTML代码。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class="lyear-arc-detail"&gt;</span><br><span class="line">   &#123;&#123; html_content|safe &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、导出高亮的css文件并引入css"><a href="#4、导出高亮的css文件并引入css" class="headerlink" title="4、导出高亮的css文件并引入css"></a>4、导出高亮的css文件并引入css</h3><p>有了上面的步骤，只是可以解析了markdown成html并显示，最终代码的高亮是通过css 来控制显示的，执行以下命令将高亮的css文件导出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pygmentize -S default -f html -a .codehilite &gt; markdown_highlighy.css</span><br></pre></td></tr></table></figure>
+
+<p>pyments的官方文档 <a href="https://pygments.org/" target="_blank" rel="noopener">https://pygments.org/</a> 查看一共有多少种风格，可以参考网址 <a href="https://pygments.org/docs/styles/#getting-a-list-of-available-styles" target="_blank" rel="noopener">https://pygments.org/docs/styles/#getting-a-list-of-available-styles</a><br>将生成的markdown_highlighy.css文件拷入到static/blog/css下<br>在模板页面中引入css </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123;% static 'blog/css/markdown_highlighy.css' %&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、查看效果-1"><a href="#5、查看效果-1" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>可以看到markdown可以正常解析，代码也可以高亮显示了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png" alt="在这里插入图片描述"></p>
+<h2 id="三、全套代码"><a href="#三、全套代码" class="headerlink" title="三、全套代码"></a>三、全套代码</h2><p><a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/fd8c1dd4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2607,285 +2861,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f872a2f0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/f872a2f0/" itemprop="url">DevOps实践：通过云效实现hexo自动构建部署发布</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-05-20T12:41:16+08:00">
-                2024-05-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">管理</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/f872a2f0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f872a2f0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/f872a2f0/" class="leancloud_visitors" data-flag-title="DevOps实践：通过云效实现hexo自动构建部署发布">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。这是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例，是一个软件开发方法论。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/1-DevOps.png" alt="DevOps"></p>
-<p>DevOps的目标是通过自动化“软件交付”和“架构变更”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠。这种方法的出现是因为软件行业日益清晰地认识到，为了按时交付软件产品和服务，开发和运维工作必须紧密合作。</p>
-<p>《<a href="http://xiejava.ishareread.com/posts/5efe604f/" target="_blank" rel="noopener">研发管理之认识DevOps</a>》介绍了DevOps的概念和价值，本文我们来做一个小小的实践，通过阿里的云效DevOps平台来实现我的xiejava.ishareread.com的hexo博客网站的自动化部署实现持续集成和持续部署（CI/CD）。</p>
-<h2 id="一、没有用DevOps之前"><a href="#一、没有用DevOps之前" class="headerlink" title="一、没有用DevOps之前"></a>一、没有用DevOps之前</h2><p>我的xiejava.ishareread.com个人博客是通过hexo搭建的。因为是个人博客用hexo搭建比较简单而且还可以通过github的pages服务不用购买自己的服务器都可让大家访问。hexo博客的搭建教程见《<a href="http://xiejava.ishareread.com/posts/79ebd763/" target="_blank" rel="noopener">通过Git Pages+Hexo搭建自己的博客</a>》毕竟github在国内访问不是很稳定，所以我是购买了一台阿里的云主机ECS来部署我的hexo应用。</p>
-<p>在没有用DevOps之前，我是通过自己本地用VS Code来编辑hexo的markdown博文，让后在本地通过执行hexo g命令生成构建hexo网站，然后登录到自己的阿里云主机上将文件传到服务器目录，再在服务器上构建并部署hexo应用。hexo很简单，这样构建发布也很容易，这几年也是这样做的。唯一不方便的就是有时候写的博文要修改，改一次就要重新上传发布到服务器上。毕竟咱也是搞IT的，感觉这样还是很不优雅。能不能提交markdown博文的.md文件候就自动给我发布了，省得每次还要登服务器，上传文件，编译，重启服务搞一系列的操作。</p>
-<h2 id="二、用了DevOps之后"><a href="#二、用了DevOps之后" class="headerlink" title="二、用了DevOps之后"></a>二、用了DevOps之后</h2><p>为了体现程序员的优雅，我的个人博客xiejava.ishareread.com，小小的hexo用上了DevOps的牛刀。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/2-hexo%E7%BD%91%E7%AB%99devops.png" alt="hexo的DevOps"></p>
-<p>用了DevOps后，我只需要在本地用VS Code来编辑hexo的markdown博文，提交到代码仓库。后面的构建，打包，部署我都不用管了，直接通过DevOps平台自动做了。</p>
-<h2 id="三、如何实践DevOps实现hexo网站的自动发布"><a href="#三、如何实践DevOps实现hexo网站的自动发布" class="headerlink" title="三、如何实践DevOps实现hexo网站的自动发布"></a>三、如何实践DevOps实现hexo网站的自动发布</h2><p>DevOps平台工具有很多，最常见的就是大名顶顶的Jenkins，本来想搭一套Jenkins的我的云服务器本来就只有1核1G的内存，更本就扛不住。后来在阿里的网站上看到阿里推出了自己的DevOps平台云效，赶紧来试试。<br>云效DevOps平台功能很多，包括有项目协作、代码管理、流水线、测试管理、制品仓库、知识库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/3-%E4%BA%91%E6%95%88%E5%B9%B3%E5%8F%B0.png" alt="在这里插入图片描述"></p>
-<p>对于我这个小小的hexo个人博客的应用，其他都用不上，我就用了代码管理和流水线。</p>
-<h3 id="1、代码管理"><a href="#1、代码管理" class="headerlink" title="1、代码管理"></a>1、代码管理</h3><p>将我的hexo博客代码托管到云效的代码管理Codeup代码库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/4-%E4%BA%91%E6%95%88Codeup%E4%BB%A3%E7%A0%81%E5%BA%93.png" alt="代码管理"></p>
-<p>可以支持从github、gitee、coding等代码仓库导入代码库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/5-%E4%BA%91%E6%95%88%E4%BB%8E%E5%85%B6%E4%BB%96%E4%BB%A3%E7%A0%81%E5%BA%93%E5%AF%BC%E5%85%A5%E4%BB%A3%E7%A0%81.png" alt="云效从其他代码库导入代码"></p>
-<h3 id="2、构建流水线"><a href="#2、构建流水线" class="headerlink" title="2、构建流水线"></a>2、构建流水线</h3><p>新建一条流水线用于拉代码、构建、部署。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/6-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF.png" alt="构建流水线"></p>
-<h4 id="1）设置流水线源"><a href="#1）设置流水线源" class="headerlink" title="1）设置流水线源"></a>1）设置流水线源</h4><p>这里流水线源就是设置代码源流水线将从代码管理的Codeup代码库获取代码。其实也可以不用托管到云效的Codeup代码库，流水线代码源支持github、gitee、coding等代码仓库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/7-%E4%BA%91%E6%95%88%E4%BB%8E%E5%85%B6%E4%BB%96%E4%BB%93%E5%BA%93%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81%E6%BA%90.png" alt="设置流水线源"></p>
-<h4 id="2）添加并设置构建环节"><a href="#2）添加并设置构建环节" class="headerlink" title="2）添加并设置构建环节"></a>2）添加并设置构建环节</h4><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/8-%E4%BA%91%E6%95%88%E6%B7%BB%E5%8A%A0%E6%9E%84%E5%BB%BA%E7%8E%AF%E8%8A%82.png" alt="云效添加构建环节"></p>
-<p>因为hexo是通过Node.js构建的，所以这里添加构建任务Node.js构建。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/9-Nodejs%E6%9E%84%E5%BB%BA%E5%86%99%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9E%84%E5%BB%BA%E5%91%BD%E4%BB%A4.png" alt="Nodejs构建写入自己的构建命令"></p>
-<p>在node.js构建节点，可以选择Node的版版本，将自己hexo应用的构建命令写入到构建命令。<br>我这里只用到了三条命令，安装hexo，从代码库中拉取hexo的主题，通过hexo g生成hexo的博客应用。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="literal">-g</span> hexo<span class="literal">-cli</span> -<span class="literal">-unsafe</span><span class="literal">-perm</span></span><br><span class="line">git clone https://gitee.com/xiejava/hexo<span class="literal">-theme</span><span class="literal">-next</span>.git themes/hexo<span class="literal">-theme</span><span class="literal">-next</span></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
-<p>这一步的任务输出就会生成hexo的博客应用的制品，给你打好包。下一步的动作就是将打好的制品包上传至自己的服务器进行部署。</p>
-<h4 id="3）添加并设置部署环节"><a href="#3）添加并设置部署环节" class="headerlink" title="3）添加并设置部署环节"></a>3）添加并设置部署环节</h4><p>云效支持很多种部署，因为我是要部署到自己的云主机，所以选择“主机部署”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/10-%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA%E9%83%A8%E7%BD%B2%E7%8E%AF%E8%8A%82.png" alt="添加主机部署环节"></p>
-<p>要部署到自己的云主机，就要让云效知道你的主机在哪里，可以点击新建主机组，将自己的主机添加进来。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/11-%E6%96%B0%E5%BB%BA%E4%B8%BB%E6%9C%BA%E7%BB%84.png" alt="新建主机组"></p>
-<p>将需要部署的主机添加到主机组<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/12-%E5%B0%86%E4%B8%BB%E6%9C%BA%E6%B7%BB%E5%8A%A0%E5%88%B0%E4%B8%BB%E6%9C%BA%E7%BB%84.png" alt="将主机添加到主机组"></p>
-<p>然后添加在主机上执行的部署脚本<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/13-%E6%B7%BB%E5%8A%A0%E5%9C%A8%E4%B8%BB%E6%9C%BA%E4%B8%8A%E6%89%A7%E8%A1%8C%E7%9A%84%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC.png" alt="添加在主机上执行的部署脚本"></p>
-<p>我在主机上hexo 服务进程用supervisor进行了托管，在这里部署脚本只有三条命令。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">supervisorctl stop hexo</span><br><span class="line">tar zxvf /home/admin/app/package.tgz <span class="literal">-C</span> /home/myhexo/myblog</span><br><span class="line">supervisorctl start hexo</span><br></pre></td></tr></table></figure>
-
-<p>停止hexo的服务，将制品包解压到hexo的目录，然后再启动hexo服务就可以了。<br>云效还可以定义任务插件，比如在部署成功后发个邮件通知等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/14-%E6%B7%BB%E5%8A%A0%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.png" alt="云效邮件通知"></p>
-<p>到这里流水线就构建好了。</p>
-<h3 id="3、测试流水线"><a href="#3、测试流水线" class="headerlink" title="3、测试流水线"></a>3、测试流水线</h3><p>设置触发条件，开启Webhook触发，实现提交代码到到云效的Codeup代码库就可以触发流水线，开启自动拉取代码，自动构建、自动打包上传至主机、自动部署的流水线作业。也可以手动运行触发流水线。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/15-%E8%AE%BE%E7%BD%AE%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6.png" alt="设置触发条件"></p>
-<p>流水线执行后，可以在运行历史中看到每次流水线执行的情况。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/16-%E6%9F%A5%E7%9C%8B%E6%AF%8F%E6%AC%A1%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E7%9A%84%E6%83%85%E5%86%B5.png" alt="查看每次流水线执行情况"></p>
-<p>也可以收到云效自动发过来的每次部署情况的邮件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/17-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E9%82%AE%E4%BB%B6%E9%80%9A%E7%9F%A5.png" alt="云效邮件通知"></p>
-<h3 id="4、其他"><a href="#4、其他" class="headerlink" title="4、其他"></a>4、其他</h3><p>云效针对流水线还提供了统计报表，可以看到流水线运行的概况的统计数据。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240519/18-%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%BB%9F%E8%AE%A1%E6%A6%82%E5%86%B5.png" alt="流水线运行的概况的统计数据"></p>
-<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>本文通过一个hexo个人博客进行了DevOps的实践，当然因为项目太小不能实践到DevOps的全部，但也可以窥豹一斑。通过DevOps拉通开发和运维，通过应用DevOps平台能实现自动化“软件交付”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠，提交研发交付效率。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2942,7 +2917,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">186</span>
+                  <span class="site-state-item-count">187</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3054,7 +3029,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">393.2k</span>
+    <span title="Site words total count">394.3k</span>
   
   
 <!--51la网站应用监控-->
