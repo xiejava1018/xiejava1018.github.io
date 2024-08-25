@@ -313,6 +313,579 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a87a78e2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/a87a78e2/" itemprop="url">pandas数据清洗之处理缺失、重复、异常数据</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-02T09:55:55+08:00">
+                2022-02-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:16+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/a87a78e2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a87a78e2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/a87a78e2/" class="leancloud_visitors" data-flag-title="pandas数据清洗之处理缺失、重复、异常数据">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在数据分析和建模的过程中，有相当多的时间要用在数据准备上：加载、清理、转换以及重塑。这些工作会占到分析师时间的80%或更多。幸运的是pandas和内置的Python标准库提供了高效、灵活的工具可以帮助我们轻松的做这些事情。</p>
+<p>本文重点介绍通过pandas进行数据的清洗。数据处理中的清洗工作主要包括对需要分析的数据集中的缺失值（空值）、重复值、异常值的处理。对于数据清洗一般也是分两个步骤，第一步就是要很方便快速的找到需要处理的数据，如何快速找到数据中的缺失值（空值）、重复数据或异常的数据，第二步是对找到的数据根据自己的实际使用需求进行处理，如删除还是替换成其他的数据。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.png" alt="pandas数据清洗"></p>
+<h1 id="一、处理缺失值"><a href="#一、处理缺失值" class="headerlink" title="一、处理缺失值"></a>一、处理缺失值</h1><p>在许多数据分析工作过程中，由于对数据质量问题，缺失数据是经常发生的。对于数值数据，pandas使用浮点值NaN(Not a Number)表示缺失数据。在pandas中，还采用了R语言中惯用的缺失值表示法NA，它表示不可用not available。在统计应用中，NA数据可能是不存在的数据或虽然存在但是看不到。进行数据清洗对缺失数据进行分析，以判断数据采集的问题或缺失数据导致的偏差。</p>
+<h2 id="1、判断缺失值（空值）"><a href="#1、判断缺失值（空值）" class="headerlink" title="1、判断缺失值（空值）"></a>1、判断缺失值（空值）</h2><p>在pandas中通过isna()或isnull()方法判断空值，二者等价，用于判断一个series或dataframe各元素值是否为空的bool结果。需注意对空值的界定：即None或numpy.nan才算空值，而空字符串、空列表等则不属于空值；类似地，notna()和notnull()则用于判断是否非空。<br>看下实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">stud_data=pd.Series([<span class="string">'张三'</span>,<span class="string">'李四'</span>,np.nan,[],<span class="string">''</span>,<span class="literal">None</span>,<span class="string">'王五'</span>])</span><br><span class="line">stud_data</span><br></pre></td></tr></table></figure>
+
+<p>通过stud_data.isnull()和stud_data.isna()分别来判断空值<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E7%A9%BA%E5%80%BC%E5%88%A4%E6%96%AD.png" alt="判断空值"></p>
+<p>类似地，notna()和notnull()则用于判断是否非空<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E9%9D%9E%E7%A9%BA.png" alt="判断是否非空"><br>同样的对于DataFrame中的缺失数据判断也是一样的。<br>构建DataFrame</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stud_df=pd.DataFrame(stud_data,columns=[<span class="string">'student_name'</span>])</span><br><span class="line">stud_df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandasDataFrame%E9%9D%9E%E7%A9%BA%E5%88%A4%E6%96%AD.png" alt="DataFrame中的缺失数据判断"></p>
+<p>对于缺失值的处理有两种常用的方式，一是用按一定的策略对空值进行填充，二是对于缺失值干脆进行删除。</p>
+<h2 id="2、填充缺失值（空值）"><a href="#2、填充缺失值（空值）" class="headerlink" title="2、填充缺失值（空值）"></a>2、填充缺失值（空值）</h2><p>pandas中用户填充缺失值的方法是fillna()，可以按一定的策略对空值进行填充，如常数填充、向前/向后填充等，也可通过inplace参数确定是否本地更改。</p>
+<h3 id="1-常量填充"><a href="#1-常量填充" class="headerlink" title="1.常量填充"></a>1.常量填充</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stud_df[[<span class="string">'student_name'</span>]].fillna(<span class="string">'某某'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BA.png" alt="常量填充"></p>
+<p>可以看到判断为缺失值的地方都填充了”某某”，因为空字符串和空列表都不是缺失值，所以没有填充。</p>
+<h3 id="2-向前和向后填充NA"><a href="#2-向前和向后填充NA" class="headerlink" title="2.向前和向后填充NA"></a>2.向前和向后填充NA</h3><p>通过fillna(mathod=’ffill’)，mathod=’ffill’ 向前填充和 mathod=’bfill’ 向后填充，也就是说用前面的值来填充NA或用后面的值来填充NA<br>我们来增加一列性别列gender来看一下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stud_gender_data=pd.Series([<span class="number">1</span>,<span class="number">0</span>,np.nan,<span class="string">'女'</span>,<span class="number">1</span>,<span class="literal">None</span>,<span class="string">'男'</span>])</span><br><span class="line">stud_df[<span class="string">'gender'</span>]=stud_gender_data</span><br><span class="line">stud_df</span><br><span class="line">stud_df[[<span class="string">'gender'</span>]].fillna(method=<span class="string">'ffill'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BAffill.png" alt="向前和向后填充NA"></p>
+<p>可以看到通过method=’ffill’，将NaN和None前面的值填充端到了NaN和None。<br>用fillna()进行填充会返回一个填充好的数据集的副本，并没有对原始数据进行操作，如果要修改原始数据可以通过inplace参数确定是否本地更改。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%A1%AB%E5%85%85%E9%9D%9E%E7%A9%BAffill-inplace=True.png" alt="通过inplace参数确定是否本地更改"></p>
+<h2 id="3、删除缺失值（空值）"><a href="#3、删除缺失值（空值）" class="headerlink" title="3、删除缺失值（空值）"></a>3、删除缺失值（空值）</h2><p>如果想删除缺失值，那么使用 dropna() 函数与参数 axis 可以实现。在默认情况下，按照 axis=0 来按行处理，这意味着如果某一行中存在 NaN 值将会删除整行数据。如果在dropna()中传入<code>how=&#39;all&#39;</code>将只会删除全为NA或NaN的行。示例如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E7%A9%BA%E5%80%BC.png" alt="删除缺失值（空值）"></p>
+<h1 id="二、处理重复值"><a href="#二、处理重复值" class="headerlink" title="二、处理重复值"></a>二、处理重复值</h1><p>重复数据也是在实际数据处理过程中碰到比较多的，处理重复数据就是在数据集中找出重复数据然后将其删除保留一个唯一不重复的数据。</p>
+<h2 id="1、检测重复值"><a href="#1、检测重复值" class="headerlink" title="1、检测重复值"></a>1、检测重复值</h2><p>pandas通过duplicated()方法检测各行是否重复，返回一个行索引的bool结果，可通过keep参数设置保留第一行、最后一行、无保留，例如keep=first意味着在存在重复的多行时，首行被认为是合法的而可以保留。<br>构造一个DataFrame来看一个实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data=pd.DataFrame(&#123;<span class="string">'key1'</span>:[<span class="string">'A'</span>,<span class="string">'B'</span>]*<span class="number">3</span>+[<span class="string">'B'</span>],<span class="string">'key2'</span>:[<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>]&#125;)</span><br><span class="line">data</span><br><span class="line">data.duplicated()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%A3%80%E6%B5%8B%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="检测重复值"></p>
+<h2 id="2、删除重复值"><a href="#2、删除重复值" class="headerlink" title="2、删除重复值"></a>2、删除重复值</h2><p>pandas通过drop_duplicates()方法按行检测并删除重复的记录，也可通过keep参数设置保留项。由于该方法默认是按行进行检测，如果存在某个需要需要按列删除，则可以先转置再执行该方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.drop_duplicates()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9.png" alt="删除重复值"><br>可以看到第7行也就是index为6的重复行被删除了。<br>当带了<code>keep=&#39;last&#39;</code>参数时，保留最后一个重复项，前面的重复项将被丢弃。可以看到保留的是索引为6的，索引为5的重复项被丢弃了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9-keeplast.png" alt="保留最后一个重复项"></p>
+<h1 id="三、处理异常值"><a href="#三、处理异常值" class="headerlink" title="三、处理异常值"></a>三、处理异常值</h1><h2 id="1、判断异常值"><a href="#1、判断异常值" class="headerlink" title="1、判断异常值"></a>1、判断异常值</h2><p>判断异常值的标准依赖具体分析数据，如大于或小于某个基线范围的值。<br>我们来看一个含有正态分布的DataFrame数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=pd.DataFrame(np.random.randn(<span class="number">1000</span>,<span class="number">4</span>))</span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/pandas%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="含有正态分布的DataFrame数据集"></p>
+<p>假设我们认为某列中绝对值大小超过3的是异常值，那么判断异常值就是要找出某列中大小超过3的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[np.abs(col)&gt;<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E5%80%BC2.png" alt="找出某列中大小超过3的值"></p>
+<p>要选出全部含有绝对值大小超过3的行，可以在布尔型DataFrame中使用any()方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[(np.abs(data)&gt;<span class="number">3</span>).any(<span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%A3%80%E6%B5%8B%E5%BC%82%E5%B8%B8%E4%BD%BF%E7%94%A8any%E6%96%B9%E6%B3%95.png" alt="全部含有绝对值大小超过3的行"></p>
+<h2 id="2、替换异常值"><a href="#2、替换异常值" class="headerlink" title="2、替换异常值"></a>2、替换异常值</h2><p>对于异常值，可以直接替换。<br>如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[np.abs(data)&gt;<span class="number">3</span>]=np.sign(data)*<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就可以将异常值替换为绝对值不大于3的<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E6%9B%BF%E6%8D%A2%E5%BC%82%E5%B8%B8%E5%80%BC.png" alt="替换异常值"></p>
+<h2 id="3、删除异常值"><a href="#3、删除异常值" class="headerlink" title="3、删除异常值"></a>3、删除异常值</h2><p>删除异常值，可以用pandas的drop()方法，接受参数在特定轴线执行删除一条或多条记录，可通过axis参数设置是按行删除还是按列删除<br>如删除第3列，列索引为2的列中绝对值&gt;3的行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">col=data[<span class="number">2</span>]</span><br><span class="line">data.drop(data[np.abs(col)&gt;<span class="number">3</span>].index,inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220201/%E5%88%A0%E9%99%A4%E5%BC%82%E5%B8%B8%E5%80%BC.png" alt="删除异常值"></p>
+<p>可以看到本来有1000行的，删除了3行，再用data[np.abs(col)&gt;3]验证，已经找不到数据了。</p>
+<p>至此，本文通过实例介绍了pandas进行数据清洗包括缺失值、重复值及异常值的处理。数据清洗是数据分析前面的准备工作，数据质量的好坏将直接影响数据分析的结果。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/16c9fc17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/16c9fc17/" itemprop="url">pandas数据分析之排序和排名(sort和rank)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-30T09:14:37+08:00">
+                2022-01-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:16+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/16c9fc17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/16c9fc17/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/16c9fc17/" class="leancloud_visitors" data-flag-title="pandas数据分析之排序和排名(sort和rank)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对数据集进行排序和排名的是常用最基础的数据分析手段，pandas提供了方便的排序和排名的方法，通过简单的语句和参数就可以实现常用的排序和排名。</p>
+<p>本文以student数据集的DataFrame为例来演示和介绍pandas数据分析之排序和排名(sort和rank)。<br>数据集内容如下，包括学生的学号、姓名、年龄及语文、数学、英语的成绩：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"><br>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<h1 id="一、排序"><a href="#一、排序" class="headerlink" title="一、排序"></a>一、排序</h1><p>对数据集进行排序是是常用的数据分析需求之一。pandas提供了按 索引标签排序sort_index()和按值排序sort_values()两种排序方法。对于DataFrame，可以根据任意一个轴上的索引标签进行排序。默认顺序排序，也可以设置按倒序排序。</p>
+<h2 id="1、按标签排序"><a href="#1、按标签排序" class="headerlink" title="1、按标签排序"></a>1、按标签排序</h2><h3 id="1）按行标签索引排序"><a href="#1）按行标签索引排序" class="headerlink" title="1）按行标签索引排序"></a>1）按行标签索引排序</h3><p>pandas默认按行标签索引顺序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引排序</span></span><br><span class="line">df.sort_index()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按行索引排序"><br>可以通过设置<code>ascending=False</code>参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按行索引倒序排序</span></span><br><span class="line">df.sort_index(ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按行索引倒序排序"></p>
+<h3 id="2）按列标签索引排序"><a href="#2）按列标签索引排序" class="headerlink" title="2）按列标签索引排序"></a>2）按列标签索引排序</h3><p>通过给 axis 轴参数传递 0 或 1，可以对列标签进行排序。默认情况下，axis=0 表示按行排序；而 axis=1 则表示按列排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E6%8E%92%E5%BA%8F.png" alt="按列索引排序"><br>同样可以设置ascending=False参数进行倒序排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按列索引倒序排序</span></span><br><span class="line">df.sort_index(axis=<span class="number">1</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%88%97%E7%B4%A2%E5%BC%95%E5%80%92%E5%BA%8F%E6%8E%92%E5%BA%8F.png" alt="按列索引倒序排序"></p>
+<h2 id="2、按值排序"><a href="#2、按值排序" class="headerlink" title="2、按值排序"></a>2、按值排序</h2><p>在实际应用中用得最多的应该是根据某一列的值进行排序。在pandas中可以通过sort_value()，在sort_value中可以设定按某个列排序，也可以通过sort_value(by=[])，通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。</p>
+<h3 id="1）对单个列的值排序"><a href="#1）对单个列的值排序" class="headerlink" title="1）对单个列的值排序"></a>1）对单个列的值排序</h3><p>如在数据集中对语文成绩进行排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩排序</span></span><br><span class="line">df.sort_values(<span class="string">'4-语文'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对语文成绩进行排序"></p>
+<h3 id="2）对多个列的值进行排序"><a href="#2）对多个列的值进行排序" class="headerlink" title="2）对多个列的值进行排序"></a>2）对多个列的值进行排序</h3><p>通过设置by=[‘a’,’b’]列表来指定多个需要排序的列。<br>如对数据集中的语文和数学进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E5%A4%9A%E4%B8%AA%E5%88%97%E7%9A%84%E5%80%BC%E6%8E%92%E5%BA%8F.png" alt="对数据集中的语文和数学进行排序"></p>
+<h2 id="3、排序算法"><a href="#3、排序算法" class="headerlink" title="3、排序算法"></a>3、排序算法</h2><p>sort_values() 提供了参数kind用来指定排序算法。这里有三种排序算法：</p>
+<ul>
+<li>mergesort（归并排序） </li>
+<li>heapsort（堆排序） </li>
+<li>quicksort（快速排序）</li>
+</ul>
+<p>默认为 quicksort(快速排序) ，其中 mergesort归并排序是最稳定的算法。<br>具体用法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文、数学用mergesort归并排序算法排序</span></span><br><span class="line">df.sort_values(by=[<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>],kind=<span class="string">'mergesort'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.png" alt="排序算法"></p>
+<h1 id="二、排名"><a href="#二、排名" class="headerlink" title="二、排名"></a>二、排名</h1><p>排名和排序的区别在于排序一定是有顺序，而排名分先后并列。如在现实生活中相同的分数存在排名并列的情况。<br>在《使用python进行数据分析》一书中对rank排名的描述为：排名是指对数组从1到有效数据点总数分配名次的操作。Series和DataFrame的rank方法是实现排名的方法，默认情况下，rank是通过“为各组分配一个平均排名”的方式破坏平级关系。这段话讲得是什么鬼？其实就是在存在并列排名的时候采用一定的策略来打破这种关系。<br>排名中的平级关系打破方法有如下几种：</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>average</td>
+<td>默认：在每个组中分配平均排名</td>
+</tr>
+<tr>
+<td>min</td>
+<td>对整个组使用最小排名</td>
+</tr>
+<tr>
+<td>max</td>
+<td>对整个组使用最大排名</td>
+</tr>
+<tr>
+<td>first</td>
+<td>按照值在数据中出现的次序分配排名</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>类似于method=’min’,但组件排名总是加1，而不是一个组中的相等元素的数量</td>
+</tr>
+</tbody></table>
+<p><strong>rank()函数原型：</strong><code>rank(axis=0, method: str = &#39;average&#39;, numeric_only: Union[bool, NoneType] = None, na_option: str = &#39;keep&#39;, ascending: bool = True, pct: bool = False)</code><br>这里method取值可以为’average’，’first’，’min’， ‘max’，’dense’，用来打破排名中的平级关系的。<br>光看这些说明还是比较难理解。下面通过实例来说明：</p>
+<h2 id="1、默认average-排名"><a href="#1、默认average-排名" class="headerlink" title="1、默认average 排名"></a>1、默认average 排名</h2><p>在数据集中我们只取“学号”、“姓名”、“语文”，然后取“语文”的排名，默认average</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df_rank=df[[<span class="string">'1-学号'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>]].copy()</span><br><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E6%8E%92%E5%90%8D.png" alt="默认average 排名"></p>
+<p>这个排名很奇怪，97分排名第一没有问题，居然没有第二名，三个96分排名均为3，还有两个90分排名为9.5。这是什么鬼？<br>原来这就是默认的“average”规则,成绩相同时，取顺序排名中所有名次之和除以该成绩的个数，如两个90分的名次为最后两名分别为9名和10名，即(9+10)/2=9.5，三个96分的名次分别为2、3、4 那么排名为（2+3+4)/3=9/3=3</p>
+<h2 id="2、mothod-’min’的排名"><a href="#2、mothod-’min’的排名" class="headerlink" title="2、mothod=’min’的排名"></a>2、mothod=’min’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-min%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行min排名"></p>
+<p>在这个排名中看到有3个并列为2的排名，但没有排名为3、4的，有两个排名为9的，但没有排名为10的。可以看出当method=“min”时，成绩相同的同学，取在顺序排名中最小的那个排名作为该值的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。因为有了三个2名，接下来就从5名开始，5、6、7、8，到了第9名又有两个同分数的取9、10的最小排名为9，所以有两个9名。</p>
+<h2 id="3、mothod-’max’的排名"><a href="#3、mothod-’max’的排名" class="headerlink" title="3、mothod=’max’的排名"></a>3、mothod=’max’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-max%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行max排名"><br>与min相反，成绩相同的同学，排名相同取顺序最大的排名，张三、王五、顾十三个同学都是96分排名分别为2、3、4，那么当method为min时，取2、3、4的最小的那个作为成绩为96的整体排名即第2名。当method为max时，取最大的4作为96分的整体排名，同理90分的取10为90分的整体排名。</p>
+<h2 id="4、mothod-’first’的排名"><a href="#4、mothod-’first’的排名" class="headerlink" title="4、mothod=’first’的排名"></a>4、mothod=’first’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-first%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行first排名"></p>
+<p>first排名很好理解了，有点先到先得的意思，成绩相同，谁的索引排前，谁的排名就靠前，比如张三、王五、顾十 这三个同学都是96分，按理应该是并列第2，但张三的索引比王五和顾十的都靠前，王五的索引比顾十靠前，所以他们的顺序分别为2、3、4，同理陈一、钱七的分数都是90分，但陈一的索引比钱七靠前所以陈一排名为9、钱七排名第10</p>
+<h2 id="5、mothod-’dense’的排名"><a href="#5、mothod-’dense’的排名" class="headerlink" title="5、mothod=’dense’的排名"></a>5、mothod=’dense’的排名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'语文排名'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank-dense%E6%8E%92%E5%90%8D.png" alt="按语文成绩进行dense排名"><br>“dense”: 是密集的意思，也比较好理解，即相同成绩的同学排名相同，其他依次加1即可。可以看到张三、王五、顾十这三位同学都是96分，并列排名第2，后面的加1，即比他们分数稍低的赵六95分排名第3，后面依次。</p>
+<h2 id="6、不同method的排名对比"><a href="#6、不同method的排名对比" class="headerlink" title="6、不同method的排名对比"></a>6、不同method的排名对比</h2><p>最后不同method的排名对比：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#按语文成绩进行rank的默认排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-average'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行min排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-min'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'min'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行max排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-max'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'max'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行first排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-first'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'first'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#按语文成绩进行dense排名</span></span><br><span class="line">df_rank[<span class="string">'语文排名-dense'</span>]=df_rank[<span class="string">'4-语文'</span>].rank(method=<span class="string">'dense'</span>,ascending=<span class="literal">False</span>)</span><br><span class="line">df_rank.sort_values(by=<span class="string">'4-语文'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220130/rank%E4%B8%8D%E5%90%8Cmethod%E6%8E%92%E5%90%8D%E5%AF%B9%E6%AF%94.png" alt="按语文成绩进行rank的默认排名"></p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/531458d5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2539,524 +3112,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6b6a91de/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/6b6a91de/" itemprop="url">机器学习实现恶意URL检测实战一</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-09T08:58:04+08:00">
-                2021-12-09
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/6b6a91de/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6b6a91de/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/6b6a91de/" class="leancloud_visitors" data-flag-title="机器学习实现恶意URL检测实战一">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>恶意URL检测的方法很多，这里介绍通过机器学习分析URL文本分词词频来检测恶意URL。训练的数据集为开源数据集，通过机器学习训练检测模型，然后做了部分工程化的应用，将模型持久化，在应用的时候加载进来直接应用，不用重新进行训练。通过接口调用实现恶意URL检测预测判断。</p>
-<p>恶意URL检测，对应与机器学习是个分类问题，这里分别用逻辑回归和SVM支持向量机分类模型进行模型实现。</p>
-<p>具体实现过程包括<strong>数据载入</strong>–&gt;<strong>数据处理（分词、向量化处理）</strong>–&gt;<strong>模型训练</strong>–&gt;<strong>模型保存</strong>–&gt;<strong>模型应用</strong></p>
-<p><strong>项目组织结构如下：</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/1-%E9%A1%B9%E7%9B%AE%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="项目组织结构"></p>
-<h1 id="一、数据载入"><a href="#一、数据载入" class="headerlink" title="一、数据载入"></a>一、数据载入</h1><p>从数据集中载入数据，读取数据，将URL和标签进行识别和区分。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#从文件中获取数据集</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDataFromFile</span><span class="params">(filename=<span class="string">'data/data.csv'</span>)</span>:</span></span><br><span class="line">    input_url = filename</span><br><span class="line">    data_csv = pd.read_csv(input_url, <span class="string">','</span>, error_bad_lines=<span class="literal">False</span>)</span><br><span class="line">    data_df = pd.DataFrame(data_csv)</span><br><span class="line">    url_df = np.array(data_df)</span><br><span class="line">    random.shuffle(url_df)</span><br><span class="line">    y = [d[<span class="number">1</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    inputurls = [d[<span class="number">0</span>] <span class="keyword">for</span> d <span class="keyword">in</span> url_df]</span><br><span class="line">    <span class="keyword">return</span> inputurls,y</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、数据处理（分词、向量化处理）"><a href="#二、数据处理（分词、向量化处理）" class="headerlink" title="二、数据处理（分词、向量化处理）"></a>二、数据处理（分词、向量化处理）</h1><p>数据处理实现对URL的分词及向量化处理<br>分词:分析URL根据,.-进行分词，由于com、cn等常用域名不是关键影响因素，所以分词的时候去掉了</p>
-<h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#分词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getTokens</span><span class="params">(input)</span>:</span></span><br><span class="line">    web_url = input.lower()</span><br><span class="line">    urltoken = []</span><br><span class="line">    dot_slash = []</span><br><span class="line">    slash = str(web_url).split(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> slash:</span><br><span class="line">        r1 = str(i).split(<span class="string">'-'</span>)</span><br><span class="line">        token_slash = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, len(r1)):</span><br><span class="line">            r2 = str(r1[j]).split(<span class="string">'.'</span>)</span><br><span class="line">            token_slash = token_slash + r2</span><br><span class="line">        dot_slash = dot_slash + r1 + token_slash</span><br><span class="line">    urltoken = list(set(dot_slash))</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'com'</span> <span class="keyword">in</span> urltoken:</span><br><span class="line">        urltoken.remove(<span class="string">'com'</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'cn'</span> <span class="keyword">in</span> urltoken:</span><br><span class="line">        urltoken.remove(<span class="string">'cn'</span>)</span><br><span class="line">    <span class="keyword">return</span> urltoken</span><br></pre></td></tr></table></figure>
-<h2 id="向量化处理"><a href="#向量化处理" class="headerlink" title="向量化处理"></a>向量化处理</h2><p>将分词以后的结果进行词频的向量化处理，形成可以用于模型训练的稀疏矩阵向量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">all_urls,y=getDataFromFile(datapath)</span><br><span class="line">url_vectorizer = TfidfVectorizer(tokenizer=getTokens)</span><br><span class="line">x = url_vectorizer.fit_transform(all_urls)</span><br></pre></td></tr></table></figure>
-
-<h1 id="三、模型训练"><a href="#三、模型训练" class="headerlink" title="三、模型训练"></a>三、模型训练</h1><p>将经过处理后的训练数据用模型进行训练，将数据集分为两部分一部分用于训练，一部分用于测试评估。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#训练,通过逻辑回归模型训练</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainLR</span><span class="params">(datapath)</span>:</span></span><br><span class="line">    all_urls,y=getDataFromFile(datapath)</span><br><span class="line">    url_vectorizer = TfidfVectorizer(tokenizer=getTokens)</span><br><span class="line">    x = url_vectorizer.fit_transform(all_urls)</span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>)</span><br><span class="line">    l_regress = LogisticRegression()                  <span class="comment"># Logistic regression</span></span><br><span class="line">    l_regress.fit(x_train, y_train)</span><br><span class="line">    l_score = l_regress.score(x_test, y_test)</span><br><span class="line">    print(<span class="string">"score: &#123;0:.2f&#125; %"</span>.format(<span class="number">100</span> * l_score))</span><br><span class="line">    <span class="keyword">return</span> l_regress,url_vectorizer</span><br></pre></td></tr></table></figure>
-
-<p>用逻辑回归模型训练的结果是 score: 98.50 %</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#训练，通过SVM支持向量机模型训练</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainSVM</span><span class="params">(datapath)</span>:</span></span><br><span class="line">    all_urls, y = getDataFromFile(datapath)</span><br><span class="line">    url_vectorizer = TfidfVectorizer(tokenizer=getTokens)</span><br><span class="line">    x = url_vectorizer.fit_transform(all_urls)</span><br><span class="line">    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span>)</span><br><span class="line">    svmModel=svm.LinearSVC()</span><br><span class="line">    svmModel.fit(x_train, y_train)</span><br><span class="line">    svm_score=svmModel.score(x_test, y_test)</span><br><span class="line">    print(<span class="string">"score: &#123;0:.2f&#125; %"</span>.format(<span class="number">100</span> * svm_score))</span><br><span class="line">    <span class="keyword">return</span> svmModel,url_vectorizer</span><br></pre></td></tr></table></figure>
-
-<p>用SVM模型训练的结果是 score: 99.64 %</p>
-<p>可以看出SVM模型训练的结果比逻辑回归模型训练的效果要稍好。</p>
-<h1 id="四、保存模型"><a href="#四、保存模型" class="headerlink" title="四、保存模型"></a>四、保存模型</h1><p>将训练好的模型进行持久化保存，通过pickle.dump()的方式把训练好的模型参数及特征保存至模型文件，以便于应用的时候不要再进行训练，直接应用训练好的模型。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#保存模型及特征</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveModel</span><span class="params">(model,vector)</span>:</span></span><br><span class="line">    <span class="comment">#保存模型</span></span><br><span class="line">    file1 = modelfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file1, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        pickle.dump(model, f)</span><br><span class="line">    f.close()</span><br><span class="line">    <span class="comment">#保存特征</span></span><br><span class="line">    file2 = vectorfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file2, <span class="string">'wb'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        pickle.dump(vector, f2)</span><br><span class="line">    f2.close()</span><br></pre></td></tr></table></figure>
-
-<p>通过main方法执行训练模型及保存模型</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment">#model,vector=trainLR('data/data.csv')</span></span><br><span class="line">    model, vector = trainSVM(<span class="string">'data/data.csv'</span>)</span><br><span class="line">    saveModel(model,vector)</span><br></pre></td></tr></table></figure>
-
-<h1 id="四、模型应用"><a href="#四、模型应用" class="headerlink" title="四、模型应用"></a>四、模型应用</h1><p>通过pickle.load载入已经训练好的模型和特征，并用Flask暴露一个接口调用模型的预测方法进行预测。</p>
-<h2 id="载入已经训练好的模型"><a href="#载入已经训练好的模型" class="headerlink" title="载入已经训练好的模型"></a>载入已经训练好的模型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#载入已经训练好的模型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadModel</span><span class="params">()</span>:</span></span><br><span class="line">    file1 = modelfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file1, <span class="string">'rb'</span>) <span class="keyword">as</span> f1:</span><br><span class="line">        model = pickle.load(f1)</span><br><span class="line">    f1.close()</span><br><span class="line"></span><br><span class="line">    file2 = vectorfile_path</span><br><span class="line">    <span class="keyword">with</span> open(file2, <span class="string">'rb'</span>) <span class="keyword">as</span> f2:</span><br><span class="line">        vector = pickle.load(f2)</span><br><span class="line">    f2.close()</span><br><span class="line">    <span class="keyword">return</span> model,vector</span><br></pre></td></tr></table></figure>
-<h2 id="通过接口进行调用"><a href="#通过接口进行调用" class="headerlink" title="通过接口进行调用"></a>通过接口进行调用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过接口进行调用</span></span><br><span class="line"><span class="meta">@app.route('/&lt;path:path&gt;')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show_predict</span><span class="params">(path)</span>:</span></span><br><span class="line">    X_predict = []</span><br><span class="line">    X_predict.append(path)</span><br><span class="line">    model, vector = loadModel()</span><br><span class="line">    x = vector.transform(X_predict)</span><br><span class="line">    y_predict = model.predict(x)</span><br><span class="line">    print(y_predict[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"url predict: "</span>+str(y_predict[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-
-<h1 id="五、应用效果"><a href="#五、应用效果" class="headerlink" title="五、应用效果"></a>五、应用效果</h1><p>将需要检测的URL，输入到<a href="http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。" target="_blank" rel="noopener">http://127.0.0.1:5000/后面，就可以根据输入的URL进行检测给出模型预测的结果。</a><br><a href="http://127.0.0.1:5000/sohu.com/a/338823532_354899" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/338823532_354899</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/2-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%AD%A3%E5%B8%B8.png" alt="检测效果1"><br><a href="http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test" target="_blank" rel="noopener">http://127.0.0.1:5000/sohu.com/a/%3Cscript%3E/test</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20201209/3-%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C-%E6%81%B6%E6%84%8F.png" alt="检测效果2"></p>
-<p>完整代码及数据集见：<a href="https://github.com/xiejava1018/urldetection.git" target="_blank" rel="noopener">https://github.com/xiejava1018/urldetection.git</a></p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d101efba/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d101efba/" itemprop="url">解决Anaconda报The channel is not accessible源通道不可用问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-26T15:53:22+08:00">
-                2021-11-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:14+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d101efba/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d101efba/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d101efba/" class="leancloud_visitors" data-flag-title="解决Anaconda报The channel is not accessible源通道不可用问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  675
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在通过pycharm开发python程序，引用anaconda环境建立虚拟环境时报错，报UnavailableInvalidChannel: The channel is not accessible or is invalid.应该是镜像源访问通道无法访问或无效。现将解决办法记录如下：</p>
-<h1 id="环境说明："><a href="#环境说明：" class="headerlink" title="环境说明："></a>环境说明：</h1><p>操作系统：win10<br>安装有anaconda 4.10.3<br>pycharm2021.2</p>
-<h1 id="报错现象："><a href="#报错现象：" class="headerlink" title="报错现象："></a>报错现象：</h1><p>在pycharm中新建python项目，引用anaconda建立虚拟环境时报错<br>报“UnavailableInvalidChannel: The channel is not accessible or is invalid.”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E6%8A%A5%E9%94%99.png" alt="建立虚拟环境报错"></p>
-<h1 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h1><h2 id="1、找到anaconda的源配置文件"><a href="#1、找到anaconda的源配置文件" class="headerlink" title="1、找到anaconda的源配置文件"></a>1、找到anaconda的源配置文件</h2><p>根据报错的建议提示：</p>
-<blockquote>
-<p>You will need to ajust your conda configuration to proceed.<br>Use ‘cona config –show channels’ to view your configuration’s current state,<br>and use ‘conda config –show-sources’ to view config file location.</p>
-</blockquote>
-<p>意思是建议你需要调整conda的配置来处理，可以通过<code>cona config --show channels</code>命令来查看你当前的配置状态，可以用<code>conda config --show-sources</code>看查看本地的配置文件。<br>根据这个建议，打开anaconda的命令行控制台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/AnacondaPowershell.png" alt="Anaconda Powershell"></p>
-<p>敲入“conda config –show-sources”命令，显示当前的通道为<a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a>  报错就是说这个通道无法访问或无效。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show channels</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-
-<p>通过“conda config –show-sources” 查看配置文件的路径。配置文件为用户目录下的<code>.condarc</code>文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E6%89%BE%E5%88%B0%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="在这里插入图片描述"></p>
-<h2 id="2、修改为清华的镜像源"><a href="#2、修改为清华的镜像源" class="headerlink" title="2、修改为清华的镜像源"></a>2、修改为清华的镜像源</h2><p>将找到的.condarc文件打开。<br>拷贝以下清华的镜像源到该文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-
-<p>然后再次运行<code>conda config --show-sources</code>，确认配置文件内容已经修改。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(base) PS C:\Users\xiejava&gt; conda config --show-sources</span><br><span class="line">==&gt; C:\Users\xiejava\.condarc &lt;==</span><br><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">show_channel_urls: True</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><p>再打开pycharm引用Conda Enviroment新建新的虚拟环境。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E5%BB%BA%E7%AB%8B%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.png" alt="新建新的虚拟环境"><br>这时不报错可以正常创建Conda虚拟环境了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211126/%E5%88%9B%E5%BB%BACondaEnvironment.png" alt="创建Conda Environment"></p>
-<p>至此，修改成清华镜像源解决了Anaconda报The channel is not accessible源通道不可用的问题。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/16/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/14/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/16/">&gt;</a>
   </nav>
 
 
@@ -3108,7 +3168,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">189</span>
+                  <span class="site-state-item-count">191</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3220,7 +3280,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">396.8k</span>
+    <span title="Site words total count">399.4k</span>
   
   
 <!--51la网站应用监控-->

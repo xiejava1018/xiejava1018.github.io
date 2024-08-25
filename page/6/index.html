@@ -313,6 +313,529 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/afc06be4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/afc06be4/" itemprop="url">网络安全产品之认识防火墙</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-12T10:07:23+08:00">
+                2024-01-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:33+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/afc06be4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/afc06be4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/afc06be4/" class="leancloud_visitors" data-flag-title="网络安全产品之认识防火墙">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>防火墙是一种网络安全产品，它设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间，通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况，以此来实现网络的安全保护。</p>
+<h2 id="一、什么是防火墙"><a href="#一、什么是防火墙" class="headerlink" title="一、什么是防火墙"></a>一、什么是防火墙</h2><p>防火墙指的是一个由软件和硬件设备组合而成、在内部网和外部网之间、专用网与公共网之间的边界上构造的保护屏障。它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况，以此来实现网络的安全保护。在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动，保证了内部网络的安全。防火墙（Firewall），是一种硬件设备或软件系统，主要架设在内部网络和外部网络间，为了防止外界恶意程式对内部系统的破坏，或者阻止内部重要信息向外流出，有双向监督功能。防火墙主要由服务访问规则、验证工具、包过滤和应用网关4个部分组成。</p>
+<h2 id="二、防火墙的主要功能"><a href="#二、防火墙的主要功能" class="headerlink" title="二、防火墙的主要功能"></a>二、防火墙的主要功能</h2><ol>
+<li>创建一个阻塞点<br>防火墙在一个公司内部网络和外部网络间建立一个检查点，这种实现要求所有的流量都要通过这个检查点。一旦这些检查点清楚地建立，防火墙设备就可以监视，过滤和检查所有进来和出去的流量。这样一个检查点，在网络安全行业中称之为“阻塞点”。通过强制所有进出流量都通过这些检查点，网络管理员可以集中在较少的地方来实现安全目的。</li>
+<li>隔离不同网络，防止内部信息的外泄<br>这是防火墙的最基本功能，它通过隔离内、外部网络来确保内部网络的安全。使用防火墙就可以隐蔽那些透漏内部细节如Finger，DNS等服务。防火墙可以同样阻塞有关内部网络中的DNS信息，这样一台主机的域名和IP地址就不会被外界所了解。</li>
+<li>强化网络安全策略<br>通过以防火墙为中心的安全方案配置，能将所有安全软件(如口令、加密、身份认证、审计等)配置在防火墙上。与将网络安全问题分散到各个主机上相比，防火墙的集中安全管理更经济。各种安全措施的有机结合，更能有效地对网络安全性能起到加强作用。</li>
+<li>有效地审计和记录内、外部网络上的活动<br>防火墙可以对内、外部网络存取和访问进行监控审计。如果所有的访问都经过防火墙，那么，防火墙就能记录下这些访问并进行日志记录，同时也能提供网络使用情况的统计数据。当发生可疑动作时，防火墙能进行适当的报警，并提供网络是否受到监测和攻击的详细信息。这为网络管理人员提供非常重要的安全管理信息，可以使管理员清楚防火墙是否能够抵挡攻击者的探测和攻击，并且清楚防火墙的控制是否充足。</li>
+</ol>
+<h2 id="三、防火墙的主要类型"><a href="#三、防火墙的主要类型" class="headerlink" title="三、防火墙的主要类型"></a>三、防火墙的主要类型</h2><p>按照防火墙实现技术的不同可以将防火墙为以下几种主要的类型。</p>
+<ol>
+<li>包过滤防火墙<br>数据包过滤是指在网络层对数据包进行分析、选择和过滤。选择的数据是系统内设置的访问控制表（又叫规则表），规则表制定允许哪些类型的数据包可以流入或流出内部网络。通过检查数据流中每一个IP数据包的源地址、目的地址、所用端口号、协议状态等因素或它们的组合来确定是否允许该数据包通过。包过滤防火墙一般可以直接集成在路由器上，在进行路由选择的同时完成数据包的选择与过滤，也可以由一台单独的计算机来完成数据包的过滤。</li>
+<li>应用代理防火墙<br>应用代理防火墙能够将所有跨越防火墙的网络通信链路分为两段，使得网络内部的客户不直接与外部的服务器通信。防火墙内外计算机系统间应用层的连接由两个代理服务器之间的连接来实现。有点是外部计算机的网络链路只能到达代理服务器，从而起到隔离防火墙内外计算机系统的作用：缺点是执行速度慢，操作系统容易遭到攻击。</li>
+<li>状态检测防火墙<br>状态检测防火墙又叫动态包过滤防火墙。状态检测防火墙在网络层由一个检查引擎截获数据包并抽取出与应用状态有关的信息。一次作为数据来决定该数据包是接受还是拒绝。检查引擎维护一个动态的状态信息表并对后续的数据包进行检查，一旦发现任何连接的参数有意外变化，该连接就被终止。状态检测防火墙克服了包过滤防火墙和应用代理防火墙的局限性，能够根据协议、端口及P数据包的源地址、目的地址的具体情况来决定数据包是否可以通过。</li>
+</ol>
+<h2 id="四、部署方式"><a href="#四、部署方式" class="headerlink" title="四、部署方式"></a>四、部署方式</h2><p>防火墙在实际的部署过程中主要有三种模式可供选择，这三种模式分别是：基于TCP/IP协议三层的NAT模式、基于TCP/IP协议三层的路由模式、基于二层协议的透明模式。</p>
+<ol>
+<li>NAT模式<br>当Juniper防火墙入口接口（“内网端口”）处于NAT模式时，防火墙将通往Untrust区（外网或者公网）的IP数据包包头中的两个组件进行转换：源IP地址和源端口号。防火墙使用Untrust区（外网或者公网）接口的IP地址替换始发端主机的源IP地址；同时使用由防火墙生成的任意端口号替换源端口号。</li>
+<li>Route-路由模式<br>当Juniper防火墙接口配置为路由模式时，防火墙在不同安全区间（例如：Trust/Utrust/DMZ）转发信息流时IP数据包包头中的源地址和端口号保持不变（除非明确采用了地址翻译策略）。与NAT模式下不同，防火墙接口都处于路由模式时，防火墙不会自动实施地址翻译；与透明模式下不同，当防火墙接口都处于路由模式时，其所有接口都处于不同的子网中。</li>
+<li>透明模式<br>当Juniper防火墙接口处于“透明”模式时，防火墙将过滤通过的IP数据包，但不会修改IP数据包包头中的任何信息。防火墙的作用更像是处于同一VLAN的2层交换机或者桥接器，防火墙对于用户来说是透明的。</li>
+</ol>
+<h2 id="五、局限性"><a href="#五、局限性" class="headerlink" title="五、局限性"></a>五、局限性</h2><ol>
+<li>不能防止源于内部的攻击，不提供对内部的保护；</li>
+<li>不能防病毒；</li>
+<li>不能根据网络被恶意使用和攻击的情况动态调整自己的策略；</li>
+<li>本身的防攻击能力不够，容易成为被攻击的首要目标。</li>
+</ol>
+<h2 id="六、防火墙与IPS的区别与关系"><a href="#六、防火墙与IPS的区别与关系" class="headerlink" title="六、防火墙与IPS的区别与关系"></a>六、防火墙与IPS的区别与关系</h2><p>防火墙和IPS（入侵防御系统）是两种不同的网络安全产品，它们在保护网络方面有不同的侧重点和功能。</p>
+<p>防火墙主要用于控制网络访问，它可以过滤掉不安全的服务和非法用户，防止入侵者接近防御设施，是第一道的防线。防火墙部署在网络边界，可以隔离内外网，并对进出网络的数据流进行过滤和监测。防火墙通常基于预设的安全策略来允许或拒绝数据流的进出，可以防御常见的网络攻击，但对于一些未知或不断变化的威胁可能效果有限。</p>
+<p>而IPS是一种主动的网络安全防御系统，它可以在网络中实时检测和防御恶意行为。IPS可以检测到攻击者的行为，并在攻击对系统造成损害之前及时阻止。IPS通过分析网络流量和检测异常行为来发现攻击，并可以采取措施来隔离攻击源、修复受损系统、记录攻击信息等。由于IPS需要实时监测网络流量，因此对于大规模的网络流量可能会对性能产生一定影响。</p>
+<p>防火墙和IPS在网络安全中各有侧重，但可以相互配合使用。防火墙可以过滤掉大部分的常见威胁，而IPS可以补充防火墙的不足，提供更深入的检测和防御能力。同时，IPS可以检测和防御那些已经绕过防火墙的攻击，提高整体的网络安全性。</p>
+<h2 id="七、防火墙如何提升防护能力"><a href="#七、防火墙如何提升防护能力" class="headerlink" title="七、防火墙如何提升防护能力"></a>七、防火墙如何提升防护能力</h2><p>防火墙应对不断变化的网络威胁的方法主要包括以下几个方面：</p>
+<ol>
+<li>动态更新和升级：防火墙可以通过动态更新和升级来应对不断变化的网络威胁。厂商会不断发布新的安全漏洞和威胁情报，防火墙可以通过定期更新和升级来修补这些漏洞，并增强对新型威胁的防御能力。</li>
+<li>应用层防护：随着网络威胁的变化，防火墙需要具备应用层防护能力，能够识别和拦截各种应用层的攻击，如SQL注入、跨站脚本等。</li>
+<li>入侵检测与防御：防火墙集成了入侵检测与防御功能，能够实时检测网络流量中的异常行为，并采取相应的防御措施。通过与安全设备的联动，可以进一步增强对网络威胁的应对能力。</li>
+<li>智能分析：借助大数据和人工智能技术，防火墙可以进行智能分析，自动识别和分类网络流量中的威胁，并提供可视化的威胁报表。这有助于企业及时发现和处理潜在的安全风险。</li>
+<li>云安全技术：随着云计算的普及，云安全也成为防火墙的重要功能之一。防火墙需要具备云安全技术，能够防御来自云端的安全威胁，保护企业数据的安全。</li>
+</ol>
+<p>防火墙通过动态更新和升级、应用层防护、入侵检测与防御、智能分析和云安全技术等手段，可以应对不断变化的网络威胁。但需要注意的是，防火墙只是网络安全的一部分，企业还需要结合其他安全措施，如数据加密、身份认证等，来全面提升网络安全防护能力。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/71d4ad9f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/71d4ad9f/" itemprop="url">安全防御之备份恢复技术</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-10T09:37:59+08:00">
+                2024-01-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:33+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/71d4ad9f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/71d4ad9f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/71d4ad9f/" class="leancloud_visitors" data-flag-title="安全防御之备份恢复技术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着计算机和网络的不断普及，人们更多的通过网络来传递大量信息。在网络环境下，还有各种各样的病毒感染、系统故障、线路故障等，使得数据信息的安全无法得到保障。由于安全风险的动态性，安全不是绝对的，信息系统不可能保证不出现安全事故，因此，一旦出现安全事件造成信息系统中断或者数据丢失，如果事先采取了必要的备份准备并及时启用，能够最小程度的减少系统重构时间和对业务中断的影响。备份恢复技术是安全防御体系中的重要组成部分，旨在保护数据安全，防止数据丢失或损坏，提高企业的数据安全性和业务连续性水平。</p>
+<h2 id="一、备份恢复的基本概念"><a href="#一、备份恢复的基本概念" class="headerlink" title="一、备份恢复的基本概念"></a>一、备份恢复的基本概念</h2><p>备份恢复的基本概念主要包括备份和恢复两个方面。备份是指将数据或系统进行复制和存储的过程，以便在数据丢失或损坏时能够从备份中恢复。<br>恢复则是指当数据或系统出现问题时，通过备份数据进行数据恢复或系统重建的过程。</p>
+<h2 id="二、备份恢复技术的分类"><a href="#二、备份恢复技术的分类" class="headerlink" title="二、备份恢复技术的分类"></a>二、备份恢复技术的分类</h2><p>备份恢复技术有多种分类和应用场景，可以根据实际需求进行选择和应用。常见的备份恢复技术包括数据备份技术、灾难恢复技术、容灾技术、备份与恢复管理技术、数据归档技术和文件系统快照技术等。</p>
+<ol>
+<li>数据备份技术：是指定期对重要数据或全部数据复制和存储，以防止数据丢失或损坏。数据备份可以分为完整备份、增量备份、差异备份等。</li>
+<li>灾难恢复技术：是指在发生灾难事件时，通过事先制定的灾难恢复计划和流程，快速恢复业务运行。灾难恢复技术包括数据备份、系统恢复、业务恢复等方面的内容。</li>
+<li>容灾技术：是指通过建立异地容灾中心，将重要数据实时或定时复制到容灾中心，确保在主中心发生故障时，数据仍能保持可用性和完整性。容灾技术包括数据同步、异步复制、数据验证等方面的内容。</li>
+<li>备份与恢复管理技术：是指定期对备份数据进行验证和测试，确保备份数据的可用性和完整性。同时，建立完善的备份与恢复管理制度，规范备份与恢复操作，确保备份和恢复工作的顺利进行。</li>
+<li>数据归档技术：是指将不再经常使用的数据迁移到归档设备上，以释放存储空间并降低管理成本。归档设备可以是磁带库、光盘库等。</li>
+<li>文件系统快照技术：是指利用文件系统快照技术，对文件系统进行快速备份。快照技术可以捕获文件系统在某一时刻的状态，以便在发生问题时迅速恢复数据。<br>这些技术可以根据实际需求进行选择和应用，以确保数据的完整性和可用性，提高企业的业务连续性水平，降低企业的风险和成本。</li>
+</ol>
+<h2 id="三、备份恢复的能力等级"><a href="#三、备份恢复的能力等级" class="headerlink" title="三、备份恢复的能力等级"></a>三、备份恢复的能力等级</h2><p>系统备份恢复能力也是信息系统一种重要的安全能力。2007年国家针对备份恢复发布了国家标准《GB/T 20988-2007 信息安全技术 信息系统灾难恢复规范》，《规范》将灾难恢复能力划分为6级：</p>
+<ul>
+<li>等级一：基本支持。要求数据备份系统能够保证每周至少进行一次数据备份，备份介质能够提供场外存放。对于备用数据处理系统和备用网络系统，没有具体要求。</li>
+<li>等级二：备用场地支持。在满足等级一的条件基础上，要求配备灾难恢复所需的部分数据处理设备，或灾难发生后能在预定时间内调配所需的数据处理设备到备用场地；要求配备部分通信线路和相应的网络设备，或灾难发生后能在预定时间内调配所需的通信线路和网络设备到备用场地。</li>
+<li>等级三：电子传输和设备支持。要求每天至少进行一次完全数据备份，备份介质场外存放，同时每天多次利用通信网络将关键数据定时批量传送至备用场地。配备灾难恢复所需的部分数据处理设备、通信线路和相应的网络设备。</li>
+<li>等级四：电子传输及完整设备支持。在等级三的基础上，要求配置灾难恢复所需的所有数据处理设备、通行线路和相应的网络设备，并且处于就绪或运行状态。</li>
+<li>等级五：实时数据传输及完整设备支持。除要求每天至少进行一次完全数据备份，备份介质场外存放外，还要求采用远程数据复制技术，利用通信网络将关键数据实时复制到备用场地。</li>
+<li>等级六：数据零丢失和远程集群支持。要求实现远程实时备份，数据零丢失；备用数据处理系统具备与生产数据处理系统一致的处理能力，应用软件是“集群的”，可实时无缝切换。</li>
+</ul>
+<p>由此可见，灾难恢复能力等级越高，对于信息系统的保护效果越好，但同时成本也会急剧上升。</p>
+<h2 id="四、备份恢复的类型"><a href="#四、备份恢复的类型" class="headerlink" title="四、备份恢复的类型"></a>四、备份恢复的类型</h2><p>备份恢复的基本原理是确保数据的完整性和可用性，防止数据丢失或损坏。在备份过程中，需要对重要数据或全部数据进行拷贝和存储，可以选择不同的备份策略，如完整备份、增量备份、差异备份等，以满足不同场景的需求。在恢复过程中，需要使用备份数据来恢复受损的数据或系统，确保业务能够正常运行。<br>备份通常可以分成下面的这三种类型：</p>
+<h3 id="1、完全备份"><a href="#1、完全备份" class="headerlink" title="1、完全备份"></a>1、完全备份</h3><p>完全备份就是将系统中所有的数据都通过备份进程备份。完全备份需要的时间相比其他集中备份方式要长，但是故障发生时，恢复时间非常快。</p>
+<h3 id="2、差异备份"><a href="#2、差异备份" class="headerlink" title="2、差异备份"></a>2、差异备份</h3><p>通常，系统管理员会每周定期作完全备份，在一周的其他时间针对与完全备份的差异部分作差异备份。<br>这种备份方法的恢复时间较长，我们不但要从全备份中恢复数据，还需要将每天的变化量恢复到系统中。</p>
+<h3 id="3、增量备份"><a href="#3、增量备份" class="headerlink" title="3、增量备份"></a>3、增量备份</h3><p>增量备份是每周定期进行完全备份，每天增加备份当天的数据变化，对于备份时间，增量备份需要的时间最短，但是，回复时间较长且较为复杂。在恢复过程中，我们不但需要恢复第一次的完全备份，还需要使用每天变化量的备份，一次恢复一天的数据，直到最近的一次所做的增量备份为止。</p>
+<h2 id="五、数据备份的方式"><a href="#五、数据备份的方式" class="headerlink" title="五、数据备份的方式"></a>五、数据备份的方式</h2><h3 id="1、远程镜像"><a href="#1、远程镜像" class="headerlink" title="1、远程镜像"></a>1、远程镜像</h3><p>远程镜像技术在主数据中心和数据备份中心之间的数据备份过程中使用。镜像是在两个或多个磁盘或磁盘子系统上产生同一个数据的镜像视图的信息存储过程，一个叫主镜像系统，另一个叫从镜像系统。按主从镜像存储系统所处的位置可分为本地镜像和远程镜像。远程镜像又叫远程复制，是容灾备份的核心技术，同时也是保持远程数据同步和实现灾难恢复的基础。远程镜像按请求镜像的主机是否需要远程镜像站点的确认信息，又可分为同步远程镜像和异步远程镜像。</p>
+<p>同步远程镜像（同步复制技术）是指通过远程镜像软件，将本地数据以完全同步的方式复制到异地，每一本地的I/O事务均需等待远程复制的完成确认信息，方予以释放。同步镜像使远程拷贝总能与本地机要求复制的内容相匹配。当主站点出现故障时，用户的应用程序切换到备份的替代站点后，被镜像的远程副本可以保证业务继续执行而没有数据的丢失。但它存在往返传播造成延时较长的缺点，只限于在相对较近的距离上应用。</p>
+<p>异步远程镜像（异步复制技术）保证在更新远程存储视图前完成向本地存储系统的基本I/O操作，而由本地存储系统提供给请求镜像主机的I/O操作完成确认信息。远程的数据复制是以后台同步的方式进行的，这使本地系统性能受到的影响很小，传输距离长（可达1000公里以上），对网络带宽要求小。但是，许多远程的从属存储子系统的写没有得到确认，当某种因素造成数据传输失败，可能出现数据一致性问题。为了解决这个问题，目前大多采用延迟复制的技术，即在确保本地数据完好无损后进行远程数据更新。</p>
+<h3 id="2、快照技术"><a href="#2、快照技术" class="headerlink" title="2、快照技术"></a>2、快照技术</h3><p>快照是通过软件对要备份的磁盘子系统的数据快速扫描，建立一个要备份数据的快照逻辑单元号LUN和快照cache。在快速扫描时，把备份过程中即将要修改的数据块同时快速拷贝到快照cache中。<br>快照LUN是一组指针，它指向快照cache和磁盘子系统中不变的数据块（在备份过程中）。在正常业务进行的同时，利用快照LUN实现对原数据的一个完全的备份。它可使用户在正常业务不受影响的情况下（主要指容灾备份系统），实时提取当前在线业务数据。其“备份窗口”接近于零，可增加系统业务的连续性，为实现系统真正的7×24运转提供了保证。</p>
+<h3 id="3、互连技术"><a href="#3、互连技术" class="headerlink" title="3、互连技术"></a>3、互连技术</h3><p>现有多种基于IP的SAN的远程数据容灾备份技术。它们是利用基于IP的SAN的互连协议，将主数据中心SAN中的信息通过现有的TCP/IP网络，远程复制到备援中心SAN中。早期方法多通过光纤通道FC连接两个SAN，存在实现成本高、设备的互操作性差、跨越的地理距离短（10公里）等缺点。<br>当备援中心存储的数据量过大时，可利用快照技术将其备份到磁带库或光盘库中。这种基于IP的SAN的远程容灾备份，可以跨越LAN、MAN和WAN，成本低、可扩展性好，具有广阔的发展前景。<br>基于IP的互连协议包括：FCIP、iFCP、Infiniband、iSCSI等。</p>
+<h2 id="六、备份恢复技术应用场景"><a href="#六、备份恢复技术应用场景" class="headerlink" title="六、备份恢复技术应用场景"></a>六、备份恢复技术应用场景</h2><p>备份恢复技术的应用场景有很多，以下是常见的一些场景：</p>
+<ol>
+<li>数据丢失应用场景：包括人为操作失误、软件BUG、硬件故障、安全漏洞被入侵等情况，导致数据被误操作、部分或全部丢失。在这种情况下，备份恢复技术可以用来恢复丢失的数据。</li>
+<li>非数据丢失应用场景：包括特殊应用场景下基于时间点的数据恢复、开发测试环境数据库搭建、相同数据库的新环境搭建、数据库或数据迁移等情况。在这些情况下，备份恢复技术可以用来迁移数据或者在新的环境中快速搭建数据库。</li>
+<li>设备更换场景：当用户的设备损坏或丢失时，可以通过备份恢复技术将备份的数据导入到新设备中，恢复原有的应用程序和设置，避免了重新配置和下载应用的麻烦。</li>
+<li>数据迁移场景：当用户的设备升级或更换时，可以通过备份恢复技术将备份的数据迁移到新设备中，保留原有的数据和设置，提高用户的使用体验。</li>
+</ol>
+<p>备份恢复技术的应用场景非常广泛，可以在各种情况下保护数据安全，降低风险和成本。根据实际需求选择适合的备份恢复技术，可以提高企业的数据安全性和业务连续性水平。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d23a1bb5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2319,687 +2842,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d97c8b95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d97c8b95/" itemprop="url">pandas将dataframe列中的list转换为多列</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-26T17:06:29+08:00">
-                2023-12-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:32+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d97c8b95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d97c8b95/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d97c8b95/" class="leancloud_visitors" data-flag-title="pandas将dataframe列中的list转换为多列">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  524
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在应用机器学习的过程中，很大一部分工作都是在做数据的处理，一个非常常见的场景就是将一个list序列的特征数据拆成多个单独的特征数据。</p>
-<p>比如数据集如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/1_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="在这里插入图片描述"></p>
-<p>很多场景是需要将类似于Score的list序列特征，拆成多个特征值如这里的语、数、外的分数。</p>
-<p>下面通过几个实例来将dataframe列中的list序列转换为多列。</p>
-<h3 id="1、一维序列拆成多列"><a href="#1、一维序列拆成多列" class="headerlink" title="1、一维序列拆成多列"></a>1、一维序列拆成多列</h3><p>可以通过在列上应用Series来进行拆分。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/2_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
-<p>可以看到将Score的数组，拆分成了English、Math、Chinese三个特征字段了</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_data=df_data.join(df_score)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/3_%E4%B8%80%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86join.png" alt="在这里插入图片描述"></p>
-<h3 id="2、二维序列拆成多列"><a href="#2、二维序列拆成多列" class="headerlink" title="2、二维序列拆成多列"></a>2、二维序列拆成多列</h3><p>用同样的思路也可以将二维序列的特征列拆成多列<br>如特征列是二维序列，序列里还有多个序列</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>],[<span class="number">89</span>,<span class="number">70</span>]]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>],[<span class="number">99</span>,<span class="number">96</span>]]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>],[<span class="number">87</span>,<span class="number">99</span>]]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/4_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series)</span><br><span class="line">df_score_1=df_score[<span class="number">0</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>&#125;)</span><br><span class="line">df_score_2=df_score[<span class="number">1</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'Biology'</span>,<span class="number">1</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score=df_score_1.join(df_score_2)</span><br><span class="line">df_data=df_data.join(df_score_1).join(df_score_2)</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/5_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E5%A4%9A%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
-<p>另外一种情况就是序列里面只有一个序列的二维序列，数据如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>,<span class="number">89</span>,<span class="number">70</span>]]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">96</span>]]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">87</span>,<span class="number">99</span>]]]]</span><br><span class="line">df_data= pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">df_data</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/6_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
-<p>这样也可以通过多次应用Series来进行拆分，也可以先explode()再应用Series来进行拆分。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].apply(pd.Series)[<span class="number">0</span>].apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>,<span class="number">3</span>:<span class="string">'Biology'</span>,<span class="number">4</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/7_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%A4%9A%E6%AC%A1Series%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_score=df_data[<span class="string">'Score'</span>].explode().apply(pd.Series).rename(columns=&#123;<span class="number">0</span>:<span class="string">'English'</span>,<span class="number">1</span>:<span class="string">'Math'</span>,<span class="number">2</span>:<span class="string">'Chinese'</span>,<span class="number">3</span>:<span class="string">'Biology'</span>,<span class="number">4</span>:<span class="string">'Geography'</span>&#125;)</span><br><span class="line">df_score</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231226/8_%E4%BA%8C%E7%BB%B4%E6%95%B0%E6%8D%AE%E9%9B%86%E5%88%97%E8%A1%A8%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E5%85%88explode%E5%86%8DSeries%E6%8B%86%E5%88%86.png" alt="在这里插入图片描述"></p>
-<p>两者效果是一样的。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/68430272/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/68430272/" itemprop="url">安全运营之团队人员组织建议</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-22T22:35:05+08:00">
-                2023-12-22
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:32+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/68430272/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/68430272/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/68430272/" class="leancloud_visitors" data-flag-title="安全运营之团队人员组织建议">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全运营是一个持续的过程，需要不断地评估风险、监测威胁、改进措施和更新策略，以确保组织的安全性和可靠性。由人员、数据、平台（工具）、流程的共同组合构成安全运营体系。</p>
-<h2 id="一、安全运营团队目标"><a href="#一、安全运营团队目标" class="headerlink" title="一、安全运营团队目标"></a>一、安全运营团队目标</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231222/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F%E7%9B%AE%E6%A0%87.png" alt="安全运营团队目标"></p>
-<center>图-安全运营团队目标</center>
-
-
-<p>安全运营团队是具有日常安全运营及实战化攻防对抗能力的专职安全团队，依托安全运营中心平台，有效使用各项安全工具，以标准化的作业流程驱动，开展各项安全运营活动，实现安全工作持续、主动、精细化、标准化的过程管理，通过持续有效的安全运营活动满足合规要求、降低网络安全风险、保障企业网络安全。</p>
-<h2 id="二、团队人员组织架构"><a href="#二、团队人员组织架构" class="headerlink" title="二、团队人员组织架构"></a>二、团队人员组织架构</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231222/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F%E4%BA%BA%E5%91%98%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84.png" alt="在这里插入图片描述"></p>
-<center>图-安全运营团队人员组织架构</center>
-
-<h2 id="三、运营团队职责分工"><a href="#三、运营团队职责分工" class="headerlink" title="三、运营团队职责分工"></a>三、运营团队职责分工</h2><table border="1" cellspacing="0">
-    <thead  style="background-color: lightgray;" >
-        <td>序号</td> 
-        <td>运营工作内容</td> 
-        <td>运营工作子项</td>
-        <td>频率</td>
-        <td>所属分组</td>
-        <td>相关职责</td>
-        <td>备注</td>
-    </thead>
-    <tr>
-        <td rowspan="2">1</td> 
-        <td rowspan="2">安全资产识别与梳理</td> 
-        <td>安全资产发现和识别</td>
-        <td rowspan="3">按需</td>
-        <td rowspan="3">安全资产管理</td>
-        <td rowspan="2">对已有安全资产和新增安全资产进行管理维护，协调督促业务部门安全资产责任人进行资产数据上报、agent安装。定期对异常资产、未纳管安全资产等进行通报督促整改。</td>
-        <td rowspan="3">常态化</td>
-    </tr>
-    <tr> 
-        <td>安全资产信息梳理与管理</td>
-    </tr>
-    <tr> 
-        <td >2</td> 
-        <td>安全资产脆弱性管理</td>
-        <td>安全资产脆弱性识别与管理</td>
-        <td>对安全资产的脆弱性进行定期的识别，发布存在有脆弱性风险通知到安全资产责任人，督促整改，对脆弱性问题跟踪确认。</td>
-    </tr>
-    <tr> 
-        <td rowspan="6">3</td> 
-        <td rowspan="6">威胁监测</td>
-        <td >威胁监测</td>
-        <td rowspan="8">按需</td>
-        <td rowspan="8">监测研判</td>
-        <td rowspan="8">
-            1.对安全监测平台进行日常的监测运营工作，形成相关交付物。（运营日报、周报、月报等）<br>
-            2.对监测过程中发现的安全告警进行初步筛选，排查是否误报，对非误报告警进行安全级别判断，对判断后的安全告警进行安全事件的升级，并进行专人的研判分析。<br>
-            3.对分析后重要安全事件，进行处置组递交沟通，提供事件分析报告。并对处置执行组反馈的处置情况进行复验审核工作。
-        </td>
-        <td rowspan="8">常态化</td>
-    </tr>
-    <tr> 
-        <td >威胁分析与通告</td> 
-    </tr>
-    <tr> 
-        <td >持续攻击对抗</td> 
-    </tr>
-    <tr> 
-        <td >事件分析与处置</td> 
-    </tr>
-    <tr> 
-        <td >应急响应</td> 
-    </tr>
-    <tr> 
-        <td >安全运营可视化</td> 
-    </tr>
-    <tr>
-        <td rowspan="2">4</td> 
-        <td rowspan="2">人工研判</td> 
-        <td >安全事件人工研判</td> 
-    </tr>
-    <tr> 
-        <td >定期安全运营汇报</td> 
-    </tr>
-    <tr> 
-        <td rowspan="3">5</td> 
-        <td rowspan="3">安全问题处置</td> 
-        <td >安全事件处置</td> 
-        <td rowspan="5">按需</td> 
-        <td rowspan="5">处置执行</td>
-        <td rowspan="5">
-            1.对研判后的安全事件进行处置操作，负责协调相关业务部门及安全资产归属单位，对网络及安全策略进行调整优化控制（含平台策略优化）。<br>
-            2.对责任部门或责任人按处置流程进行通告下发，并跟踪事件处置过程，提供处置建议与咨询。<br>
-            3. 跟踪事件处置情况，并将处置反馈情况同步监测研判组进行复验，负责对安全事件处置进行闭环，归档工作。<br>
-        </td>
-        <td rowspan="5">常态化</td>
-    </tr>
-    <tr> 
-        <td >安全事件归档</td> 
-    </tr>
-    <tr> 
-        <td >安全事件报告</td> 
-    </tr>
-    <tr> 
-        <td >6</td> 
-        <td >安全通告</td> 
-        <td >安全事件通告</td> 
-    </tr>
-    <tr> 
-        <td >7</td> 
-        <td >策略管理</td> 
-        <td >策略管理</td> 
-    </tr>
-    <tr> 
-        <td rowspan="5">8</td> 
-        <td rowspan="5">平台保障</td> 
-        <td >现场处置协调跟踪</td> 
-        <td rowspan="5">按需</td> 
-        <td rowspan="5">平台保障</td> 
-        <td rowspan="5">
-            1.对安全运营中心平台进行日常的巡检维护，对各平台功能，告警数据采集，设备权限，性能消耗进行巡检监控，对巡检过程中发现的问题及时跟踪处理。<br>
-            2.协助处置执行组对安全事件进行处置闭环跟踪及协调工作。<br>
-            3.根据运营需求进行平台规则优化、剧本流程优化。<br>
-        </td> 
-        <td rowspan="5">
-            常态化（平台建设方参与）
-        </td>
-    </tr>
-    <tr> 
-        <td >现场故障应急处理</td> 
-    </tr>
-    <tr> 
-        <td >平台现场运营监测</td> 
-    </tr>
-    <tr> 
-        <td >平台运营日常巡检</td> 
-    </tr>
-    <tr> 
-        <td >平台规则流程优化</td> 
-    </tr>
-    <tr> 
-        <td rowspan="2">9</td> 
-        <td rowspan="2">脆弱性评估与管理</td> 
-        <td >漏洞、弱口令扫描
-            最新漏洞预警和响应
-            </td> 
-        <td rowspan="2">月/次</td> 
-        <td rowspan="7">安全服务</td> 
-        <td rowspan="5">
-            1.负责漏洞管理、渗透测试、应急演练的方案整理及需求确认工作。<br>
-            2.依据各服务内容流程，负责实施相关服务。<br>
-            3.对服务过程发现安全问题进行协助处置工作，并提供处置方案。<br>
-            4.负责方案服务总结，并对发现安全问题进行分析总结，提供加固建议及安全事件处理能力的建议。<br>            
-        </td> 
-        <td rowspan="7">
-            按需，一般以服务外包的方式外包给专业团队
-        </td>
-    </tr>
-    <tr> 
-        <td >漏洞协助处置</td> 
-    </tr>
-    <tr> 
-        <td rowspan="2">10</td>
-        <td rowspan="2">渗透测试</td> 
-        <td >渗透测试方案</td> 
-        <td rowspan="2">按需</td>
-    </tr>
-    <tr> 
-        <td >渗透测试内容</td> 
-    </tr>
-    <tr> 
-        <td >11</td>
-        <td >应急演练</td> 
-        <td >应急演练</td> 
-        <td >一年/次</td>
-    </tr>
-    <tr> 
-        <td rowspan="2">12</td>
-        <td rowspan="2">风险评估</td> 
-        <td >双新评估服务</td> 
-        <td >一年/次</td>
-        <td rowspan="2">负责双新评估、定级备案风险评估等安全风险评估服务。</td>
-    </tr>
-    <tr> 
-        <td >定级备案风险评估</td> 
-        <td >一年/次</td>
-    </tr>
-    <tr> 
-        <td >13</td> 
-        <td >流程优化</td>
-        <td >运营流程及人员调整优化</td>
-        <td rowspan="3">按需</td>
-        <td rowspan="3">安全运营管理</td>
-        <td rowspan="3">
-            流程优化；团队管理；
-            培训组织；工作汇报；
-            质量审核；应急响应。
-        </td>
-        <td rowspan="3">
-            常态化，固定负责人
-        </td>
-    </tr>
-    <tr>
-        <td >14</td> 
-        <td >工作汇报</td>
-        <td >安全监测运营汇报（月报、季报、半年报）</td>
-    </tr>
-    <tr>
-        <td >15</td> 
-        <td >培训组织</td>
-        <td >培训组织</td>
-    </tr>
-</table>
-
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231222/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F%E8%81%8C%E8%B4%A3.png" alt="在这里插入图片描述"></h2><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/7/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">&gt;</a>
   </nav>
 
 
@@ -3051,7 +2898,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">189</span>
+                  <span class="site-state-item-count">191</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3163,7 +3010,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">396.8k</span>
+    <span title="Site words total count">399.4k</span>
   
   
 <!--51la网站应用监控-->
