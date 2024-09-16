@@ -313,6 +313,237 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2affeb7f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/2affeb7f/" itemprop="url">django实现开发、测试、生产环境配置区分</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-09-16T10:55:15+08:00">
+                2024-09-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-16T11:02:25+08:00">
+                2024-09-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/2affeb7f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/2affeb7f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/2affeb7f/" class="leancloud_visitors" data-flag-title="django实现开发、测试、生产环境配置区分">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>任何实际的软件项目中都要经过开发、测试、然后上生产的阶段，在开发、测试的过程中往往会要频繁的切换开发、测试、生产等不同的环境。每个环境的配置有可能不一样，本文介绍如何实现django项目配置环境变量实现开发、测试、生产灵活便捷的切换。</p>
+<h2 id="一、为什么要区分开发-dev-、测试-test-和生产-prod-环境"><a href="#一、为什么要区分开发-dev-、测试-test-和生产-prod-环境" class="headerlink" title="一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境"></a>一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境</h2><p>在Django项目中区分开发、测试和生产环境是非常重要的，这主要是因为不同环境在多个方面存在显著差异。<br>● 开发环境：通常配置为易于开发和调试，比如开启调试模式（DEBUG = True），这样可以提供更详细的错误信息和页面跟踪，方便开发者定位问题。同时，开发环境可能使用本地数据库或内存数据库，以便快速启动和测试。<br>● 测试环境：配置为模拟生产环境，但用于自动化测试。测试环境需要确保测试的独立性和一致性，以便准确地评估应用程序在类似生产条件下的表现。测试环境通常使用与生产环境相同或相似的数据库设置，但数据是测试专用的。<br>● 生产环境：配置为高性能、高可用性和高安全性。关闭调试模式，优化数据库连接和缓存策略，确保应用程序能够处理大量并发请求和保障数据的安全。<br>通过区分这些环境，开发者可以更有效地管理django项目，确保每个环境都能满足其特定的需求，从而提高开发效率、保障数据安全和提升用户体验。</p>
+<h2 id="二、django项目如何通过配置实现环境配置的区分"><a href="#二、django项目如何通过配置实现环境配置的区分" class="headerlink" title="二、django项目如何通过配置实现环境配置的区分"></a>二、django项目如何通过配置实现环境配置的区分</h2><p>对于django项目实现开发（dev）、测试(test)和生产(prod)环境的配置分离可以通过使用不同的设置文件实现。<br>下面，我们以一个实例来介绍在django的项目如何通过使用不同的设置文件的方式区分不同的环境。</p>
+<h3 id="1、针对不同的环境创建不同的设置文件settings-py"><a href="#1、针对不同的环境创建不同的设置文件settings-py" class="headerlink" title="1、针对不同的环境创建不同的设置文件settings.py"></a>1、针对不同的环境创建不同的设置文件settings.py</h3><p>针对不同的环境创建不同的设置文件，如开发环境settings_dev.py ,测试环境setting_test.py，正式生产环境使用默认的setting.py，对于共性的配置可以抽取到base.py中，其他的设置文件可以继承base.py中的配置，只有实现各个环境特有的设置就可以了。<br>创建设置文件的目录结构如下图所示。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/1-%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E7%8E%AF%E5%A2%83%E5%88%9B%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="根据不同的环境创建不同的配置文件"></p>
+<h3 id="2、在设置文件中根据需要进行配置区分"><a href="#2、在设置文件中根据需要进行配置区分" class="headerlink" title="2、在设置文件中根据需要进行配置区分"></a>2、在设置文件中根据需要进行配置区分</h3><p>典型的，如开发环境settings_dev.py用的本地数据库并开启debug模式、测试环境setting_test.py用sqlite3数据库开启debug模式。<br>注意：其他的设置文件要继承base.py中的配置，需要加入<code>from .base import *</code><br>参考配置如下：<br>setting_test.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = []</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'test_db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>setting_dev.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = [<span class="string">'127.0.0.1'</span>, <span class="string">'localhost'</span>,<span class="string">'ishareblog.com'</span>]</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'ishareblog_test'</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'ishareblog'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'yourpassword'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="string">'3306'</span>,</span><br><span class="line">        <span class="comment"># 1、取消外键约束，否则多对多模型迁移报django.db.utils.IntegrityError: (1215, 'Cannot add foreign key constraint')；</span></span><br><span class="line">        <span class="comment"># 2、解决字符串4个字节的utf8编码的字符报错的问题</span></span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'charset'</span>: <span class="string">'utf8mb4'</span>,<span class="string">"init_command"</span>: <span class="string">"SET foreign_key_checks = 0;"</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、根据不同的环境运行使用不同的设置文件"><a href="#3、根据不同的环境运行使用不同的设置文件" class="headerlink" title="3、根据不同的环境运行使用不同的设置文件"></a>3、根据不同的环境运行使用不同的设置文件</h3><p>不同的环境有了不同的设置文件后，就可以在不同的环境运行和使用配置文件。<br>如生产环境使用的wsgi启动的服务，可以在wsgi.py文件中指定使用生产环境的配置文件</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/2-wsgi%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="wsgi中使用生产环境配置文件"></p>
+<p>在开发环境中使用manage.py启动服务的，可以修改manage.py将设置文件改为setting_dev<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/3-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%9C%A8manage%E6%96%87%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="开发环境在manage文件中使用开发设置文件"></p>
+<p>也可以通过命令行指定设置文件  <code>python manage.py runserver  --settings=ishareblog.settings_dev</code><br>如果时通过IDE启动，可以在IDE中指定使用的环境设置文件。<br>如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/4-%E5%9C%A8IDE%E4%B8%AD%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="在IDE中指定环境设置文件"></p>
+<p>如要使用测试环境的设置文件，可以配置成ishareblog.settings_test，或通过命令行指定设置文件  <code>python manage.py runserver  --settings=ishareblog.settings_test</code></p>
+<p>至此，本文详细的介绍了通过不同的设置文件来区分配置开发、测试、生产环境的配置及如何根据不同的环境使用不同的设置文件。解决不同环境去频繁修改settings.py环境设置的问题。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ea8d8762/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +591,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-09-02T09:49:47+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-02T09:50:33+08:00">
                 2024-09-02
               </time>
             
@@ -2462,241 +2693,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/b952e40e/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/b952e40e/" itemprop="url">解决django与sqlite3不兼容报SQLite 3.9.0 or later is required (found 3.8.2)错的问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-07-23T17:23:11+08:00">
-                2024-07-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:37+08:00">
-                2024-08-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/b952e40e/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/b952e40e/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/b952e40e/" class="leancloud_visitors" data-flag-title="解决django与sqlite3不兼容报SQLite 3.9.0 or later is required (found 3.8.2)错的问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  331
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报<code>django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).</code>的错。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p>
-<p>从报错的提示看是sqlite3的版本太低，期望是3.9.0但是当前版本是3.8.2<br>在网上找了很多资料，也都是说django与sqlite3的版本不兼容，需要升级sqlite3的版本。<br>于是将sqlite3升级到目前的稳定版本3.46.0，然而发现并没有什么用，还是报<code>sqlite3.NotSupportedError: deterministic=True requires SQLite 3.8.3 or higher</code> 。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p>
-<p>通过sqlite3 –version 查看版本号已经是3.46.0了，但还是提示要求SQLite版本在3.8.3以上。重装django4和python3.8的环境都没有用。<br>最后在网上找到解决办法。使用第三方包pysqlite3运行SQLite3<br>具体方法如下：<br>1、安装pysqlite3和pysqlite3-binary</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pysqlite3</span><br><span class="line">pip install pysqlite3<span class="literal">-binary</span></span><br></pre></td></tr></table></figure>
-
-<p>2、找到django的sqlite3驱动包，/usr/local/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py 找到 from sqlite3 import dbapi2 as Database 注释它，添加代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#from sqlite3 import dbapi2 as Database  #注释它</span></span><br><span class="line"><span class="keyword">from</span> pysqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database <span class="comment">#新加这段代码</span></span><br></pre></td></tr></table></figure>
-
-<p>历经周折终于解决。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2753,7 +2749,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2865,7 +2861,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">401.1k</span>
+    <span title="Site words total count">402.3k</span>
   
   
 <!--51la网站应用监控-->

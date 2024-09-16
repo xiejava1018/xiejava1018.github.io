@@ -313,6 +313,241 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/b952e40e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/b952e40e/" itemprop="url">解决django与sqlite3不兼容报SQLite 3.9.0 or later is required (found 3.8.2)错的问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-07-23T17:23:11+08:00">
+                2024-07-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:37+08:00">
+                2024-08-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/b952e40e/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/b952e40e/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/b952e40e/" class="leancloud_visitors" data-flag-title="解决django与sqlite3不兼容报SQLite 3.9.0 or later is required (found 3.8.2)错的问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  331
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报<code>django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).</code>的错。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p>
+<p>从报错的提示看是sqlite3的版本太低，期望是3.9.0但是当前版本是3.8.2<br>在网上找了很多资料，也都是说django与sqlite3的版本不兼容，需要升级sqlite3的版本。<br>于是将sqlite3升级到目前的稳定版本3.46.0，然而发现并没有什么用，还是报<code>sqlite3.NotSupportedError: deterministic=True requires SQLite 3.8.3 or higher</code> 。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p>
+<p>通过sqlite3 –version 查看版本号已经是3.46.0了，但还是提示要求SQLite版本在3.8.3以上。重装django4和python3.8的环境都没有用。<br>最后在网上找到解决办法。使用第三方包pysqlite3运行SQLite3<br>具体方法如下：<br>1、安装pysqlite3和pysqlite3-binary</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pysqlite3</span><br><span class="line">pip install pysqlite3<span class="literal">-binary</span></span><br></pre></td></tr></table></figure>
+
+<p>2、找到django的sqlite3驱动包，/usr/local/lib/python3.8/site-packages/django/db/backends/sqlite3/base.py 找到 from sqlite3 import dbapi2 as Database 注释它，添加代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#from sqlite3 import dbapi2 as Database  #注释它</span></span><br><span class="line"><span class="keyword">from</span> pysqlite3 <span class="keyword">import</span> dbapi2 <span class="keyword">as</span> Database <span class="comment">#新加这段代码</span></span><br></pre></td></tr></table></figure>
+
+<p>历经周折终于解决。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2e4b09a6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2683,309 +2918,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/58f1dee7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/58f1dee7/" itemprop="url">SWOT分析法：知彼知己的战略规划工具</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-23T11:22:22+08:00">
-                2024-04-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">管理</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/58f1dee7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/58f1dee7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/58f1dee7/" class="leancloud_visitors" data-flag-title="SWOT分析法：知彼知己的战略规划工具">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240423/SWOT.png" alt="SWOT"></p>
-<h2 id="一、什么是SWOT分析法"><a href="#一、什么是SWOT分析法" class="headerlink" title="一、什么是SWOT分析法"></a>一、什么是SWOT分析法</h2><p>SWOT分析法是一种用于评估组织、项目、个人或任何其他事物的战略规划工具。SWOT是Strengths（优势）、Weaknesses（劣势）、Opportunities（机会）和Threats（威胁）的缩写。通过分析这四个方面，SWOT分析法可以帮助决策者了解当前情况，并为未来的行动制定策略。</p>
-<ol>
-<li>优势（Strengths）：指组织或项目内部的资源和能力，这些可以成为竞争优势。例如，强大的品牌、专业技能、专利技术、良好的客户关系、充足的资金等。</li>
-<li>劣势（Weaknesses）：指可能阻碍组织或项目成功的内部限制或缺陷。这可能包括资源短缺、技能不足、过时的设备、不良的品牌形象或低效的流程等。</li>
-<li>机会（Opportunities）：指外部环境中可能带来利益的元素。这可能包括市场增长、技术进步、合作伙伴关系、政策变化或竞争对手的弱点等。</li>
-<li>威胁（Threats）：指可能对组织或项目造成损害的外部因素。这可能包括竞争对手的行动、市场需求的下降、不利的法规变化、经济衰退或技术变革等。</li>
-</ol>
-<p>SWOT分析法通常以矩阵形式呈现，将优势、劣势、机会和威胁分别列在四个象限中，以便于直观地比较和分析。通过对组织或个人的内部条件（优势与劣势）和外部环境（机会与威胁）进行系统的分析，帮助人们深入了解自身和市场的状况，从而制定出更有效的战略计划。通过这种方法，组织可以识别和利用其优势，弥补劣势，抓住机会，并应对威胁，从而制定出更加全面和有效的战略规划。</p>
-<h2 id="二、SWOT分析法是如何产生的"><a href="#二、SWOT分析法是如何产生的" class="headerlink" title="二、SWOT分析法是如何产生的"></a>二、SWOT分析法是如何产生的</h2><p>SWOT分析法，也被称为SWOT矩阵或SWOT分析，其起源可以追溯到多个阶段和不同的研究者。<br>在20世纪60年代，美国斯坦福大学的管理学教授安德鲁斯曼（Albert Humphrey）在研究美国500强公司的竞争优势时，发现这些公司都进行了一种类似的战略分析。他最初将这种分析命名为SOFT（Strategy of Firm Tactics）（优势、劣势、机会、威胁），即公司策略。随后，安德鲁斯曼对多家美国公司进行了深入研究，并发现这些成功的公司都对自己的优势和劣势有清晰的认识，并能利用外部的机会和威胁来调整战略。为了更好地解释这种情况，他将SOFT更名为SWOT。<br>然而，SWOT分析法的具体提出者通常被认为是美国旧金山大学的管理学教授海因茨·韦里克（Heinz Weihrich）。他在20世纪80年代初进一步发展和完善了SWOT分析，使其成为一种帮助企业（或部门、个人）清晰把握与企业（或部门、个人）发展目标相关的外部和内部环境与资源的战略分析工具。<br>SWOT分析法中的四个关键要素分别是：优势（Strengths）、劣势（Weaknesses）、机会（Opportunities）和威胁（Threats）。其中，优势和劣势主要关注企业内部的条件，而机会和威胁则关注企业外部的环境。<br>自SWOT分析法提出以来，它逐渐得到了广泛的认可和应用。在20世纪70年代，SWOT分析开始在商业界广泛应用，许多公司开始使用它来评估自己的竞争优势和市场机会，以制定更有效的战略计划。到了80年代，SWOT分析进一步发展并得到了学术界的广泛认可，许多商学院开始将其纳入课程内容。随着信息技术的发展，SWOT分析也开始使用电子表格和软件工具进行分析和展示，使其更加方便和高效。如今，SWOT分析已经成为战略管理重要工具，在全球范围内得到了广泛应用。</p>
-<h2 id="三、SWOT分析法适合哪些人"><a href="#三、SWOT分析法适合哪些人" class="headerlink" title="三、SWOT分析法适合哪些人"></a>三、SWOT分析法适合哪些人</h2><p>SWOT分析法作为战略规划工具适合以下人群使用：</p>
-<ol>
-<li>企业管理人员：企业管理人员，特别是高层管理人员，可以使用SWOT分析法来评估企业的整体竞争态势，识别出企业的核心优势、潜在的劣势、市场机会以及面临的威胁。这有助于他们制定和调整企业战略，以应对市场竞争和变化。</li>
-<li>市场营销人员：市场营销人员可以利用SWOT分析法来分析产品或服务在市场上的表现。通过评估产品的优势与劣势，以及市场中的机会与威胁，市场营销人员可以制定更有效的市场推广策略，提升产品的竞争力。</li>
-<li>创业者：对于初创企业和小型企业，SWOT分析法可以帮助创业者清晰地认识到自己的资源和能力，以及外部环境中的机遇和挑战。这有助于他们制定创业计划、明确市场定位，并寻找适合自身发展的策略。</li>
-<li>职业规划者：个人在进行职业规划时，也可以使用SWOT分析法来评估自己的技能、经验和兴趣，以及职业市场中的机会和威胁。这有助于个人制定更合理的职业目标和发展计划，提升自身的职业竞争力。</li>
-<li>项目经理：项目经理可以运用SWOT分析法来评估项目的可行性、潜在风险以及项目资源与市场需求的匹配度。这有助于他们制定项目计划、确保项目顺利进行，并降低潜在风险。</li>
-<li>咨询顾问和策略分析师：作为专业的咨询顾问或策略分析师，SWOT分析法是他们为客户提供服务的常用工具。通过运用SWOT分析法，他们可以帮助客户识别核心优势、挖掘市场机会，并制定相应的战略和行动计划。</li>
-</ol>
-<p>综上所述SWOT分析法适合那些需要制定战略、进行市场分析和评估竞争态势的人群使用。通过运用这一工具，他们可以更加清晰地认识到自身的优势和劣势，以及外部环境中的机遇和挑战，从而制定出更加有效的战略和决策。</p>
-<h2 id="四、SWOT分析法的应用场景"><a href="#四、SWOT分析法的应用场景" class="headerlink" title="四、SWOT分析法的应用场景"></a>四、SWOT分析法的应用场景</h2><p>SWOT分析法，也称为SWOT矩阵，是一种常用的战略规划工具，用于评估一个企业或项目的内部优势（Strengths）、劣势（Weaknesses）以及外部环境的机会（Opportunities）和威胁（Threats）。这种分析法通过系统地识别这些关键因素，帮助企业或个人制定更有效的发展战略和决策。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240423/swot%E7%9F%A9%E9%98%B5.png" alt="SWOT分析矩阵"><br>利用SWOT矩阵，把四个大方向的条件罗列出来，能够初步分析一件事情要不要做。<br>如果一件事情已经决定要做了，再把SWOT的四个条件通过矩阵做交叉关联，就有了这个SWOT交叉矩阵。<br>用交叉矩阵可以更进一步分析在内部和外部因素综合之下，该怎么能把事情处理的更好。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240423/swot%E4%BA%A4%E5%8F%89%E7%9F%A9%E9%98%B5.png" alt="SWOT分析交叉矩阵"><br>具体地，SWOT分析法的应用包括：</p>
-<ol>
-<li>优势（Strengths）：这是组织内部积极且有助于实现目标的因素。例如，企业可能拥有强大的品牌影响力、技术优势、高效的供应链或优秀的员工队伍。</li>
-<li>劣势（Weaknesses）：这些是组织内部消极且可能阻碍目标实现的因素。例如，企业可能面临资金短缺、技术落后、管理不善或市场份额小等问题。</li>
-<li>机会（Opportunities）：这些是外部环境中的有利因素，可能为企业带来增长或发展的机遇。例如，市场需求的增长、新技术的出现、政策的支持或竞争对手的失误等。</li>
-<li>威胁（Threats）：这些是外部环境中的不利因素，可能对企业的运营和发展造成威胁。例如，市场竞争的加剧、法律法规的变化、经济衰退或自然灾害等。</li>
-</ol>
-<p>SWOT分析法的具体应用非常广泛，包括但不限于以下几个方面：</p>
-<ol>
-<li>商业策略制定：企业可以利用SWOT分析来评估自身在市场中的竞争地位，识别潜在的增长机会，并制定相应的市场进入、产品推广或竞争策略。</li>
-<li>产品开发：在产品开发阶段，SWOT分析可以帮助企业识别产品的优势和劣势，以及市场上的机会和威胁，从而确定最佳的产品设计和营销策略。</li>
-<li>市场营销：通过SWOT分析，企业可以更好地了解自身的品牌形象、产品质量和服务水平，以及竞争对手的情况，从而制定更有效的市场推广策略。</li>
-<li>个人职业规划：个人也可以使用SWOT分析来评估自己的技能、经验和兴趣，以及职业市场中的机会和威胁，从而制定更适合自己的职业发展路径。</li>
-</ol>
-<p>总之，SWOT分析法通过全面、系统地评估内外部因素，为企业或个人提供了一个清晰、直观的框架，帮助他们制定更明智的战略和决策。</p>
-<h2 id="五、SWOT分析法的优缺点"><a href="#五、SWOT分析法的优缺点" class="headerlink" title="五、SWOT分析法的优缺点"></a>五、SWOT分析法的优缺点</h2><p>SWOT分析法在战略规划和决策过程中具有一定的优势，但也存在一些局限性。SWOT分析法的优缺点如下：<br><strong>优点：</strong></p>
-<ol>
-<li>全面性与系统性：SWOT分析法能够全面系统地评估组织的内部条件（优势和劣势）和外部环境（机会和威胁），从而帮助决策者获得一个全面的战略视野。</li>
-<li>直观性与简单性：SWOT分析法的矩阵形式直观易懂，使得分析过程和结果易于理解和沟通。同时，它的应用相对简单，不需要复杂的数学模型或工具。</li>
-<li>战略制定基础：通过识别优势和劣势、机会和威胁，SWOT分析法为制定组织战略提供了坚实的基础。它可以帮助决策者确定战略方向，制定具体的行动计划。</li>
-<li>灵活性与适用性：SWOT分析法不仅适用于企业层面的战略分析，还可以应用于个人职业规划、项目管理等多个领域。此外，它还可以与其他战略规划工具和方法相结合，如PEST分析、五力模型等，以增强分析的深度和广度。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>主观性与依赖性：SWOT分析法的结果很大程度上依赖于分析者的主观判断和经验。不同的分析者可能会得出不同的结论，从而导致战略制定过程中的偏差。</li>
-<li>静态性：SWOT分析通常基于当前的内部条件和外部环境进行，缺乏对未来的预测和动态变化的考虑。因此，它可能无法完全捕捉到市场、技术、竞争等方面的快速变化。</li>
-<li>可能忽略关键因素：在某些情况下，SWOT分析可能会忽略一些重要的非优势、非劣势、非机会和非威胁因素，这些因素可能对组织的战略制定产生重要影响。</li>
-<li>缺乏量化指标：SWOT分析主要基于定性分析，缺乏量化指标来评估优势、劣势、机会和威胁的程度。这使得分析结果可能不够精确，难以进行具体的量化比较和决策。</li>
-</ol>
-<p>在使用SWOT分析法时，应结合其他战略规划工具和方法，以提高分析的准确性和有效性。同时，还需要注意分析者的主观性和经验对分析结果的影响，以确保制定出的战略符合组织的实际情况和发展目标。</p>
-<h2 id="六、SWOT分析实例"><a href="#六、SWOT分析实例" class="headerlink" title="六、SWOT分析实例"></a>六、SWOT分析实例</h2><p>使用SWOT分析法进行计算机专业毕业大学生的个人职业规划，可以帮助学生充分了解自己的优势、劣势，以及外部环境中的机会和威胁，从而制定出符合自己特点和行业趋势的职业规划。以下是一名对软件开发和人工智能领域有浓厚兴趣即将毕业的计算机专业大学生通过SWOT分析法进行个人职业规划的具体例子：<br><strong>个人背景：</strong><br>小华，一名即将毕业的计算机专业大学生，对软件开发和人工智能领域有浓厚兴趣。<br><strong>优势（Strengths）：</strong></p>
-<ol>
-<li>专业知识扎实：在校期间系统学习了计算机科学的理论知识，具备扎实的编程基础和算法设计能力。</li>
-<li>项目经验丰富：参与了多个软件开发项目，包括课程作业、实习项目和个人实践，积累了丰富的项目经验。</li>
-<li>快速学习能力：对新技术和新知识保持高度敏感，能够快速学习和掌握新的编程语言、框架和工具。</li>
-</ol>
-<p><strong>劣势（Weaknesses）：</strong></p>
-<ol>
-<li>缺乏实际工作经验：虽然参与了多个项目，但都是在学校或实习环境下，缺乏实际职场工作经验。</li>
-<li>团队协作和沟通能力待提升：在团队协作中，有时过于关注技术细节，忽略了与团队成员的有效沟通和协作。</li>
-</ol>
-<p><strong>机会（Opportunities）：</strong></p>
-<ol>
-<li>技术行业快速发展：随着数字化转型的加速，计算机行业呈现出蓬勃发展的态势，为张华提供了广阔的就业空间和职业发展机会。</li>
-<li>政策支持与市场需求：政府对高科技产业的扶持力度加大，市场需求旺盛，尤其是人工智能、大数据等领域，为专业方向提供了良好的发展前景。</li>
-</ol>
-<p><strong>威胁（Threats）：</strong></p>
-<ol>
-<li>行业竞争激烈：计算机专业毕业生众多，行业竞争激烈，需要不断提升自己的技能水平和实践经验，以增加就业竞争力。</li>
-<li>技术更新换代快：计算机行业技术更新换代迅速，需要不断学习和跟进新技术，以适应市场需求和行业变化。</li>
-</ol>
-<p><strong>基于SWOT分析的职业规划策略：</strong></p>
-<ol>
-<li><strong>发挥优势</strong>：利用扎实的专业知识和项目经验，寻找与软件开发和人工智能相关的岗位，争取在行业中获得认可和发展。</li>
-<li><strong>克服劣势</strong>：通过参加实际项目、实习或职业培训，积累实际工作经验，提升团队协作和沟通能力。同时，注重与同事和业界人士的交流，拓宽人脉圈子。</li>
-<li><strong>抓住机会</strong>：关注行业发展趋势和市场需求，积极寻找适合自己的发展机会。可以考虑在人工智能、大数据等热门领域寻求就业机会或创业机会。</li>
-<li><strong>应对威胁</strong>：保持持续学习和进取的态度，不断跟进新技术和新知识。同时，提升自己的综合素质和竞争力，以应对潜在的就业威胁和行业变化。</li>
-</ol>
-<p>SWOT分析法可以帮助个人全面评估自己的优势和劣势，以及外部环境中的机会和威胁，从而制定出符合自己特点和行业趋势的职业规划策略。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3042,7 +2974,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-count">193</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3154,7 +3086,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">401.1k</span>
+    <span title="Site words total count">402.3k</span>
   
   
 <!--51la网站应用监控-->

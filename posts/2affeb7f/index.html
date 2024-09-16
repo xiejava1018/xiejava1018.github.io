@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="自我管理," />
+  <meta name="keywords" content="Python,Django," />
 
 
 
@@ -134,22 +134,24 @@
 
 
 
-<meta name="description" content="在信息技术飞速发展的今天，越来越多的人进入到IT行业，也使得这个行业越来越卷。随着信息化普及进入尾声以及全球经济下行，IT行业也像传统的房地产行业一样哀鸿遍野，码农也像农民工一样转行的转行失业的失业。想要在这个行业里站住脚不被淘汰只能是不断的提升学习提升自己的能力，让自己成为不可替代才行。 作为码农，如是今还有份稳定的工作，应该来说是幸运的，但也是很焦虑的。一方面不知道自己所负责的业务还能撑多久，">
+<meta name="description" content="任何实际的软件项目中都要经过开发、测试、然后上生产的阶段，在开发、测试的过程中往往会要频繁的切换开发、测试、生产等不同的环境。每个环境的配置有可能不一样，本文介绍如何实现django项目配置环境变量实现开发、测试、生产灵活便捷的切换。 一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境在Django项目中区分开发、测试和生产环境是非常重要的，这主要是因为不同环境在多个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不忘初心，方得始终，码农实现自我提升的心法与工具">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/927ce8c5/index.html">
+<meta property="og:title" content="django实现开发、测试、生产环境配置区分">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/2affeb7f/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="在信息技术飞速发展的今天，越来越多的人进入到IT行业，也使得这个行业越来越卷。随着信息化普及进入尾声以及全球经济下行，IT行业也像传统的房地产行业一样哀鸿遍野，码农也像农民工一样转行的转行失业的失业。想要在这个行业里站住脚不被淘汰只能是不断的提升学习提升自己的能力，让自己成为不可替代才行。 作为码农，如是今还有份稳定的工作，应该来说是幸运的，但也是很焦虑的。一方面不知道自己所负责的业务还能撑多久，">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/Forest%E4%B8%93%E6%B3%A8%E6%B7%B1%E6%9E%97.jpg">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E5%9C%B0%E5%9B%BE.png">
+<meta property="og:description" content="任何实际的软件项目中都要经过开发、测试、然后上生产的阶段，在开发、测试的过程中往往会要频繁的切换开发、测试、生产等不同的环境。每个环境的配置有可能不一样，本文介绍如何实现django项目配置环境变量实现开发、测试、生产灵活便捷的切换。 一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境在Django项目中区分开发、测试和生产环境是非常重要的，这主要是因为不同环境在多个">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/1-%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E7%8E%AF%E5%A2%83%E5%88%9B%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/2-wsgi%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/3-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%9C%A8manage%E6%96%87%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/4-%E5%9C%A8IDE%E4%B8%AD%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2024-08-20T01:06:38.000Z">
-<meta property="article:modified_time" content="2024-08-20T01:21:56.347Z">
+<meta property="article:published_time" content="2024-09-16T02:55:15.000Z">
+<meta property="article:modified_time" content="2024-09-16T03:02:25.619Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="自我管理">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/Forest%E4%B8%93%E6%B3%A8%E6%B7%B1%E6%9E%97.jpg">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/1-%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E7%8E%AF%E5%A2%83%E5%88%9B%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png">
 
 
 
@@ -179,13 +181,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/927ce8c5/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/2affeb7f/"/>
 
 
 
 
 
-  <title>不忘初心，方得始终，码农实现自我提升的心法与工具 | XieJava's blog</title>
+  <title>django实现开发、测试、生产环境配置区分 | XieJava's blog</title>
   
 
 
@@ -322,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/927ce8c5/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2affeb7f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -339,7 +341,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">不忘初心，方得始终，码农实现自我提升的心法与工具</h2>
+          <h2 class="post-title" itemprop="name headline">django实现开发、测试、生产环境配置区分</h2>
         
 
         <div class="post-meta">
@@ -351,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-20T09:06:38+08:00">
-                2024-08-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-09-16T10:55:15+08:00">
+                2024-09-16
               </time>
             
 
@@ -367,8 +369,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-20T09:21:56+08:00">
-                2024-08-20
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-16T11:02:25+08:00">
+                2024-09-16
               </time>
             
           </span>
@@ -386,8 +388,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
                   </a>
                 </span>
 
@@ -404,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/927ce8c5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/927ce8c5/" itemprop="commentCount"></span>
+                <a href="/posts/2affeb7f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/2affeb7f/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -413,7 +415,7 @@
 
           
           
-             <span id="/posts/927ce8c5/" class="leancloud_visitors" data-flag-title="不忘初心，方得始终，码农实现自我提升的心法与工具">
+             <span id="/posts/2affeb7f/" class="leancloud_visitors" data-flag-title="django实现开发、测试、生产环境配置区分">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -438,7 +440,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  1.2k
                 </span>
               
 
@@ -454,7 +456,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -475,18 +477,24 @@
       
 
       
-        <p>在信息技术飞速发展的今天，越来越多的人进入到IT行业，也使得这个行业越来越卷。随着信息化普及进入尾声以及全球经济下行，IT行业也像传统的房地产行业一样哀鸿遍野，码农也像农民工一样转行的转行失业的失业。想要在这个行业里站住脚不被淘汰只能是不断的提升学习提升自己的能力，让自己成为不可替代才行。</p>
-<p>作为码农，如是今还有份稳定的工作，应该来说是幸运的，但也是很焦虑的。一方面不知道自己所负责的业务还能撑多久，公司还能撑多久；一方面还得要思考一旦失业不知道自己的技术水平还能不能找到合适的工作。作为社会人，只有有了对抗风险的本钱后，才会有底气，有了底气后才会不至于那么的焦虑。而底气来自两个方面一方面是有足够的钱；另一方面是有足够的能力。如果有足够的钱，像文艺复兴时期的大咖们被人包养，吃喝不愁，那我们可以不用焦虑，惬意的写代码那一定是很开心的；如果能力足够强，其实也不用担心，换个地方施展自己的能力而已。而我们的现状是既要幸幸苦苦赚钱维持自己的生活又要不断的学习来提升自己的能力适应这个不断发展的行业。</p>
-<p>如何在繁忙琐碎的编码工作与个人成长之间找到平衡，下面以我个人的经历来谈谈我的思考。对于码农来说，面临最大的两个问题是<strong>如何更好的利用时间</strong>和<strong>如何通过学习来提升自我</strong>的问题。</p>
-<h2 id="一、如何更好的利用时间？"><a href="#一、如何更好的利用时间？" class="headerlink" title="一、如何更好的利用时间？"></a>一、如何更好的利用时间？</h2><p>在李笑来老师的《和时间做朋友》的书中讲到，其实时间是不可以管理的，每个人每天只有24小时，能够管理的是自己的精力，也就是把自己的关注力放到哪里。要学习，就应该把学习精力、注意力投入足够多的时间。对于我们来说最大的挑战来自手机，下班后很多同学报复性的休息放松，想起自己上班工作了，休息的时候一定得要彻底的放松，拿着手机刷抖音、打游戏、聊天不知不觉就到了深夜。为了避免长时间的玩手机，我的做法是到了一定时间把手机所有的应用都关闭，给自己一段没有手机打挠的时间，很多手机都提供的“禅定模式”，开启“禅定模式”后手机上除了接打电话，其他的应用都暂时不能用，除非退出“禅定模式”，通过这种方式让自己的注意力从手机上移开，放到看书和学习上来。在这里我常用的专注力APP是”Forest 专注森林“，它可以设置一段专注力时间，比如60分钟，如果60分钟你没有动手机就成功的种下了一颗健康的树，如果中途心痒痒玩了手机这个树就会蔫掉。可以按时间周期统计你的专注的时间。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/Forest%E4%B8%93%E6%B3%A8%E6%B7%B1%E6%9E%97.jpg" alt="Forest 专注森林"></p>
-<p>当然专注力是一方面，其实更重要的是我们应该有自控力的意识，有自我提升学习的意识。有了意识以后才会有行动。</p>
-<h2 id="二、如何通过学习来提升自我？"><a href="#二、如何通过学习来提升自我？" class="headerlink" title="二、如何通过学习来提升自我？"></a>二、如何通过学习来提升自我？</h2><p>焦虑是因为面对残酷的社会竞争压力以及对自身能力的不自信。所以很多东西都想学，机器学习、网络安全、英语、写作等等。正因为焦虑，所以面临的困惑是什么都想学，什么都想学的结果是什么都没有学会。相信大多数人都有这样的经历，心想着要不断的提升自己，桌上摆了很多书，今天看几页这本书，明天翻几页那本书，看上去天天在看书，实际上一本书都没有看进去。看英语的时候在想应该多花点时间看看专业书，看专业书的时候在想英语也很重要，要不看会英语。实际就是有限的时间精力和无限的需要学习的知识之间的矛盾。尤其是专业领域，看了很多书，不能学以致用，看了就忘，感觉就是学了个寂寞。</p>
-<p>早几年我也有相同的困惑，认识到学习，目标非常重要，没有明确目标的学习到头来都是浪费时间。于是写了一篇《<a href="http://xiejava.ishareread.com/posts/e6daf5ca/" target="_blank" rel="noopener">你有了一个目标，于是你有了一堆技能，而不是反过来</a>》。其实道理大家都懂，要有目标，不忘初心，方得始终。但是对于个人来说目标其实并不好确定，大部分人来说其实也没有什么明确的目标，我的经验是在没有明确的目标的时候就把考证当做目标，以考促学。见《<a href="http://xiejava.ishareread.com/posts/9fed4f95/" target="_blank" rel="noopener">工作这么多年了，我为什么还在考证</a>》。后来我意识到自我提升最核心的是要构建自己知识体系，我的目标是<strong>构建了自己的知识体系</strong>，能够利用自己的知识体系具备“成事”的能力。如何建立个人知识体系，借用网上的一张图。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="个人知识体系"></p>
-<p>有了构建自己知识体系的大目标后，我把自己近几年需要巩固提升的方面做了一个学习地图，有了学习地图就像航海的地图一样，避免东一下西一下迷失方向。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E5%9C%B0%E5%9B%BE.png" alt="学习地图"></p>
-<p>刘未鹏在他的《暗时间》中有个观点让我感触特别的深刻，意思是你所懂得的多少并不是在于你看了多少书而是取决于你思考有多深。“教是最好的学”、“书写是更好的思考”。为了践行“<strong>问题-&gt;输入-&gt;内化-&gt;输出</strong>”，笃信写是为了更好的思考，坚持写作，力争更好的思考。我开启了自己的博客持续在CSDN和自己的博客上进行写作输出，将自己碰到的问题、经验、思考写出来，即帮助了大家又促进了自己，希望能和大家一起成长。</p>
+        <p>任何实际的软件项目中都要经过开发、测试、然后上生产的阶段，在开发、测试的过程中往往会要频繁的切换开发、测试、生产等不同的环境。每个环境的配置有可能不一样，本文介绍如何实现django项目配置环境变量实现开发、测试、生产灵活便捷的切换。</p>
+<h2 id="一、为什么要区分开发-dev-、测试-test-和生产-prod-环境"><a href="#一、为什么要区分开发-dev-、测试-test-和生产-prod-环境" class="headerlink" title="一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境"></a>一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境</h2><p>在Django项目中区分开发、测试和生产环境是非常重要的，这主要是因为不同环境在多个方面存在显著差异。<br>● 开发环境：通常配置为易于开发和调试，比如开启调试模式（DEBUG = True），这样可以提供更详细的错误信息和页面跟踪，方便开发者定位问题。同时，开发环境可能使用本地数据库或内存数据库，以便快速启动和测试。<br>● 测试环境：配置为模拟生产环境，但用于自动化测试。测试环境需要确保测试的独立性和一致性，以便准确地评估应用程序在类似生产条件下的表现。测试环境通常使用与生产环境相同或相似的数据库设置，但数据是测试专用的。<br>● 生产环境：配置为高性能、高可用性和高安全性。关闭调试模式，优化数据库连接和缓存策略，确保应用程序能够处理大量并发请求和保障数据的安全。<br>通过区分这些环境，开发者可以更有效地管理django项目，确保每个环境都能满足其特定的需求，从而提高开发效率、保障数据安全和提升用户体验。</p>
+<h2 id="二、django项目如何通过配置实现环境配置的区分"><a href="#二、django项目如何通过配置实现环境配置的区分" class="headerlink" title="二、django项目如何通过配置实现环境配置的区分"></a>二、django项目如何通过配置实现环境配置的区分</h2><p>对于django项目实现开发（dev）、测试(test)和生产(prod)环境的配置分离可以通过使用不同的设置文件实现。<br>下面，我们以一个实例来介绍在django的项目如何通过使用不同的设置文件的方式区分不同的环境。</p>
+<h3 id="1、针对不同的环境创建不同的设置文件settings-py"><a href="#1、针对不同的环境创建不同的设置文件settings-py" class="headerlink" title="1、针对不同的环境创建不同的设置文件settings.py"></a>1、针对不同的环境创建不同的设置文件settings.py</h3><p>针对不同的环境创建不同的设置文件，如开发环境settings_dev.py ,测试环境setting_test.py，正式生产环境使用默认的setting.py，对于共性的配置可以抽取到base.py中，其他的设置文件可以继承base.py中的配置，只有实现各个环境特有的设置就可以了。<br>创建设置文件的目录结构如下图所示。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/1-%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E7%8E%AF%E5%A2%83%E5%88%9B%E5%BB%BA%E4%B8%8D%E5%90%8C%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="根据不同的环境创建不同的配置文件"></p>
+<h3 id="2、在设置文件中根据需要进行配置区分"><a href="#2、在设置文件中根据需要进行配置区分" class="headerlink" title="2、在设置文件中根据需要进行配置区分"></a>2、在设置文件中根据需要进行配置区分</h3><p>典型的，如开发环境settings_dev.py用的本地数据库并开启debug模式、测试环境setting_test.py用sqlite3数据库开启debug模式。<br>注意：其他的设置文件要继承base.py中的配置，需要加入<code>from .base import *</code><br>参考配置如下：<br>setting_test.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = []</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'test_db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>setting_dev.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = [<span class="string">'127.0.0.1'</span>, <span class="string">'localhost'</span>,<span class="string">'ishareblog.com'</span>]</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'ishareblog_test'</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'ishareblog'</span>,</span><br><span class="line">        <span class="string">'PASSWORD'</span>: <span class="string">'yourpassword'</span>,</span><br><span class="line">        <span class="string">'HOST'</span>: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        <span class="string">'PORT'</span>: <span class="string">'3306'</span>,</span><br><span class="line">        <span class="comment"># 1、取消外键约束，否则多对多模型迁移报django.db.utils.IntegrityError: (1215, 'Cannot add foreign key constraint')；</span></span><br><span class="line">        <span class="comment"># 2、解决字符串4个字节的utf8编码的字符报错的问题</span></span><br><span class="line">        <span class="string">'OPTIONS'</span>: &#123;</span><br><span class="line">            <span class="string">'charset'</span>: <span class="string">'utf8mb4'</span>,<span class="string">"init_command"</span>: <span class="string">"SET foreign_key_checks = 0;"</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、根据不同的环境运行使用不同的设置文件"><a href="#3、根据不同的环境运行使用不同的设置文件" class="headerlink" title="3、根据不同的环境运行使用不同的设置文件"></a>3、根据不同的环境运行使用不同的设置文件</h3><p>不同的环境有了不同的设置文件后，就可以在不同的环境运行和使用配置文件。<br>如生产环境使用的wsgi启动的服务，可以在wsgi.py文件中指定使用生产环境的配置文件</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/2-wsgi%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="wsgi中使用生产环境配置文件"></p>
+<p>在开发环境中使用manage.py启动服务的，可以修改manage.py将设置文件改为setting_dev<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/3-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%9C%A8manage%E6%96%87%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%BC%80%E5%8F%91%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="开发环境在manage文件中使用开发设置文件"></p>
+<p>也可以通过命令行指定设置文件  <code>python manage.py runserver  --settings=ishareblog.settings_dev</code><br>如果时通过IDE启动，可以在IDE中指定使用的环境设置文件。<br>如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240916/4-%E5%9C%A8IDE%E4%B8%AD%E6%8C%87%E5%AE%9A%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="在IDE中指定环境设置文件"></p>
+<p>如要使用测试环境的设置文件，可以配置成ishareblog.settings_test，或通过命令行指定设置文件  <code>python manage.py runserver  --settings=ishareblog.settings_test</code></p>
+<p>至此，本文详细的介绍了通过不同的设置文件来区分配置开发、测试、生产环境的配置及如何根据不同的环境使用不同的设置文件。解决不同环境去频繁修改settings.py环境设置的问题。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
@@ -515,7 +523,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/927ce8c5/" title="不忘初心，方得始终，码农实现自我提升的心法与工具">https://xiejava.gitee.io/posts/927ce8c5/</a>
+    <a href="https://xiejava.gitee.io/posts/2affeb7f/" title="django实现开发、测试、生产环境配置区分">https://xiejava.gitee.io/posts/2affeb7f/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -530,7 +538,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E8%87%AA%E6%88%91%E7%AE%A1%E7%90%86/" rel="tag"># 自我管理</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Django/" rel="tag"># Django</a>
           
         </div>
       
@@ -543,8 +553,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/442ea121/" rel="next" title="node20+版本下hexo部署报错失败的解决办法">
-                <i class="fa fa-chevron-left"></i> node20+版本下hexo部署报错失败的解决办法
+              <a href="/posts/ea8d8762/" rel="next" title="vue3+elementplus的表格展示和分页实战">
+                <i class="fa fa-chevron-left"></i> vue3+elementplus的表格展示和分页实战
               </a>
             
           </div>
@@ -552,10 +562,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/e9ff8595/" rel="prev" title="vue3+vite+axios+mock从接口获取模拟数据实战">
-                vue3+vite+axios+mock从接口获取模拟数据实战 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -735,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、如何更好的利用时间？"><span class="nav-number">1.</span> <span class="nav-text">一、如何更好的利用时间？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、如何通过学习来提升自我？"><span class="nav-number">2.</span> <span class="nav-text">二、如何通过学习来提升自我？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、为什么要区分开发-dev-、测试-test-和生产-prod-环境"><span class="nav-number">1.</span> <span class="nav-text">一、为什么要区分开发 (dev)、测试 (test) 和生产 (prod) 环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、django项目如何通过配置实现环境配置的区分"><span class="nav-number">2.</span> <span class="nav-text">二、django项目如何通过配置实现环境配置的区分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、针对不同的环境创建不同的设置文件settings-py"><span class="nav-number">2.1.</span> <span class="nav-text">1、针对不同的环境创建不同的设置文件settings.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、在设置文件中根据需要进行配置区分"><span class="nav-number">2.2.</span> <span class="nav-text">2、在设置文件中根据需要进行配置区分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、根据不同的环境运行使用不同的设置文件"><span class="nav-number">2.3.</span> <span class="nav-text">3、根据不同的环境运行使用不同的设置文件</span></a></li></ol></li></ol></div>
             
 
           </div>
