@@ -313,6 +313,264 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ca8e72/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ca8e72/" itemprop="url">django应用JWT(JsonWebToken)实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-09-22T12:17:14+08:00">
+                2024-09-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-22T12:37:46+08:00">
+                2024-09-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ca8e72/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ca8e72/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ca8e72/" class="leancloud_visitors" data-flag-title="django应用JWT(JsonWebToken)实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在前后端分离的项目中，前后端进行身份验证通常用JWT来进行，JWT 提供了一个理想的认证解决方案，用来保护 RESTful API，确保只有经过认证的用户才能访问受保护的资源。基于前端框架（如React, Angular, Vue.js）的单页面应用 (SPA)，开发者通过使用 JWT可以获得一种简单、安全、高效的方式来处理用户认证和授权的问题。本文通过django项目的实战来说明如何应用和使用JWT。</p>
+<h2 id="一、什么是JWT"><a href="#一、什么是JWT" class="headerlink" title="一、什么是JWT"></a>一、什么是JWT</h2><p>JWT（JSON Web Token）是一种开放标准（RFC 7519），用于在网络各方之间以安全且紧凑的形式传输信息。JWT 是一个小型的凭证，通常用于身份验证和授权场景。JWT 由三部分组成：头部 (Header)、负载 (Payload) 和签名 (Signature)。<br>JWT信息由3段构成，它们之间用圆点“.”连接，格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aaaaaa.bbbbbb.cccccc</span><br></pre></td></tr></table></figure>
+
+<p>一个典型的JWT如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2OTcyMDc2LCJpYXQiOjE3MjY5NzAyNzYsImp0aSI6IjMyMTFiZjdmZDlhZTRmNTBhMDNmOGM2NjcwNDM2NjFiIiwidXNlcl9pZCI6Mn0.Ej6US4Uk-sSNm9P8kTU_cDAzBpO4I-BLhPstp5sG00Q</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>头部 (Header)：包含了关于 JWT 类型的信息以及所使用的签名算法。</li>
+<li>负载 (Payload)：是 JWT 的主体部分，包含了实际需要声明的数据。这些数据通常包括用户ID、用户名、角色等信息。</li>
+<li>签名 (Signature)：用于验证 JWT 的发送者就是它声称的发送者，同时也确保了 JWT 在传输过程中没有被篡改。</li>
+</ul>
+<h2 id="二、为什么使用JWT"><a href="#二、为什么使用JWT" class="headerlink" title="二、为什么使用JWT"></a>二、为什么使用JWT</h2><p>使用 JWT 的原因主要有以下几点：</p>
+<ul>
+<li>安全性：JWT 通过签名来保证数据的完整性和防篡改性。如果有人试图修改 JWT 内容，签名会失效，接收方可以检测到这一行为。</li>
+<li>无状态性：JWT 是自包含的，这意味着不需要在服务器上保存会话状态。每个 JWT 都包含了所有必要的信息，从而减少了对服务器端存储的需求。</li>
+<li>跨域支持：JWT 可以轻松地在不同的域之间共享，这使得它非常适合微服务架构和分布式系统。</li>
+<li>性能提升：由于 JWT 是自包含的，所以服务器可以快速地验证 JWT，而无需查询数据库来获取用户信息，这提高了应用的响应速度。</li>
+<li>易于缓存和扩展：JWT 可以被缓存，并且因为它们是无状态的，所以可以很容易地扩展到多个服务器，而无需担心会话复制问题。</li>
+<li>CSRF 防护：使用 JWT 可以帮助缓解跨站请求伪造（CSRF）攻击的风险，因为 JWT 不依赖于 cookie，也就不会随同 HTTP 请求自动发送。</li>
+</ul>
+<p>总的来说，JWT 提供了一种高效、安全的方式来处理用户认证和授权，尤其是在需要跨域操作或构建无状态服务的情况下。</p>
+<h2 id="三、在django项目中如何应用JWT"><a href="#三、在django项目中如何应用JWT" class="headerlink" title="三、在django项目中如何应用JWT"></a>三、在django项目中如何应用JWT</h2><p>JWT（JSON Web Token）是一种用于在网络应用中安全地传输信息的令牌。它通常用于身份验证和授权，特别是在单页应用（SPA）和API服务中。在Django中应用JWT，可以使用 djangorestframework-simplejwt。</p>
+<h3 id="1、安装djangorestframework-simplejwt库："><a href="#1、安装djangorestframework-simplejwt库：" class="headerlink" title="1、安装djangorestframework-simplejwt库："></a>1、安装djangorestframework-simplejwt库：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install djangorestframework-simplejwt</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、在settings-py中配置JWT认证："><a href="#2、在settings-py中配置JWT认证：" class="headerlink" title="2、在settings.py中配置JWT认证："></a>2、在settings.py中配置JWT认证：</h3><p>在INSTALLED_APPS中添加rest_framework_simplejwt的应用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'blog'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'rest_framework_simplejwt'</span>,  <span class="comment"># 添加 simplejwt 应用</span></span><br><span class="line">    <span class="string">'django_filters'</span>,  <span class="comment"># 注册条件查询</span></span><br><span class="line">    <span class="string">'mdeditor'</span>,  <span class="comment"># 注册markdown的应用</span></span><br><span class="line">    <span class="string">'drf_yasg2'</span>,  <span class="comment"># 接口文档</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>添加REST_FRAMEWORK的默认认证类为JWT认证</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">REST_FRAMEWORK = &#123;</span><br><span class="line">    <span class="string">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [</span><br><span class="line">        <span class="string">'rest_framework_simplejwt.authentication.JWTAuthentication'</span>,</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>添加SIMPLE_JWT的相关配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># JWT 相关设置</span></span><br><span class="line">SIMPLE_JWT = &#123;</span><br><span class="line">    <span class="string">'ACCESS_TOKEN_LIFETIME'</span>: timedelta(minutes=<span class="number">30</span>),  <span class="comment"># 访问令牌的有效时间</span></span><br><span class="line">    <span class="string">'REFRESH_TOKEN_LIFETIME'</span>: timedelta(days=<span class="number">1</span>),  <span class="comment"># 刷新令牌的有效时间</span></span><br><span class="line">    <span class="string">'ROTATE_REFRESH_TOKENS'</span>: <span class="literal">False</span>,  <span class="comment"># 是否允许刷新令牌循环</span></span><br><span class="line">    <span class="string">'BLACKLIST_AFTER_ROTATION'</span>: <span class="literal">True</span>,  <span class="comment"># 刷新令牌后是否加入黑名单</span></span><br><span class="line">    <span class="string">'UPDATE_LAST_LOGIN'</span>: <span class="literal">False</span>,  <span class="comment"># 登录时是否更新最后登录时间</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'ALGORITHM'</span>: <span class="string">'HS256'</span>,  <span class="comment"># 签名算法</span></span><br><span class="line">    <span class="string">'SIGNING_KEY'</span>: SECRET_KEY,  <span class="comment"># 签名密钥</span></span><br><span class="line">    <span class="string">'VERIFYING_KEY'</span>: <span class="literal">None</span>,  <span class="comment"># 验证密钥</span></span><br><span class="line">    <span class="string">'AUDIENCE'</span>: <span class="literal">None</span>,  <span class="comment"># 观众</span></span><br><span class="line">    <span class="string">'ISSUER'</span>: <span class="literal">None</span>,  <span class="comment"># 发行人</span></span><br><span class="line">    <span class="string">'JWK_URL'</span>: <span class="literal">None</span>,  <span class="comment"># JWK URL</span></span><br><span class="line">    <span class="string">'LEEWAY'</span>: <span class="number">0</span>,  <span class="comment"># 宽限期</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'AUTH_HEADER_TYPES'</span>: (<span class="string">'Bearer'</span>,),  <span class="comment"># 授权头类型</span></span><br><span class="line">    <span class="string">'AUTH_HEADER_NAME'</span>: <span class="string">'HTTP_AUTHORIZATION'</span>,  <span class="comment"># 授权头名称</span></span><br><span class="line">    <span class="string">'USER_ID_FIELD'</span>: <span class="string">'id'</span>,  <span class="comment"># 用户 ID 字段</span></span><br><span class="line">    <span class="string">'USER_ID_CLAIM'</span>: <span class="string">'user_id'</span>,  <span class="comment"># 用户 ID 声明</span></span><br><span class="line">    <span class="string">'USER_AUTHENTICATION_RULE'</span>: <span class="string">'rest_framework_simplejwt.authentication.default_user_authentication_rule'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'AUTH_TOKEN_CLASSES'</span>: (<span class="string">'rest_framework_simplejwt.tokens.AccessToken'</span>,),  <span class="comment"># 认证令牌类</span></span><br><span class="line">    <span class="string">'TOKEN_TYPE_CLAIM'</span>: <span class="string">'token_type'</span>,  <span class="comment"># 令牌类型声明</span></span><br><span class="line">    <span class="string">'TOKEN_USER_CLASS'</span>: <span class="string">'rest_framework_simplejwt.models.TokenUser'</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">'SLIDING_TOKEN_REFRESH_EXP_CLAIM'</span>: <span class="string">'refresh_exp'</span>,  <span class="comment"># 滑动令牌刷新过期声明</span></span><br><span class="line">    <span class="string">'SLIDING_TOKEN_LIFETIME'</span>: timedelta(minutes=<span class="number">5</span>),  <span class="comment"># 滑动令牌有效时间</span></span><br><span class="line">    <span class="string">'SLIDING_TOKEN_REFRESH_LIFETIME'</span>: timedelta(days=<span class="number">1</span>),  <span class="comment"># 滑动令牌刷新有效时间</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在urls-py中配置JWT的获取和刷新路由："><a href="#3、在urls-py中配置JWT的获取和刷新路由：" class="headerlink" title="3、在urls.py中配置JWT的获取和刷新路由："></a>3、在urls.py中配置JWT的获取和刷新路由：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> rest_framework_simplejwt.views <span class="keyword">import</span> (TokenObtainPairView, TokenRefreshView)</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'token/'</span>, TokenObtainPairView.as_view(), name=<span class="string">'token_obtain_pair'</span>),</span><br><span class="line">    path(<span class="string">'token/refresh/'</span>, TokenRefreshView.as_view(), name=<span class="string">'token_refresh'</span>),</span><br><span class="line">    <span class="comment"># 其他路由...</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>4、在视图中需要认证的地方使用JWT认证<br>如下modelviweset中使用，对于查询方法如list，retrieve不做鉴权，对于其他方法需要鉴权。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_permissions</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Instantiates and returns the list of permissions that this view requires.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> self.action <span class="keyword">in</span> [<span class="string">'list'</span>, <span class="string">'retrieve'</span>]:</span><br><span class="line">        <span class="comment"># 对于list方法，返回AllowAny权限类，表示不需要鉴权</span></span><br><span class="line">        permission_classes = [AllowAny, ]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 对于其他方法，返回IsAuthenticated权限类，表示需要用户已认证</span></span><br><span class="line">        permission_classes = [IsAuthenticated, ]</span><br><span class="line">    <span class="keyword">return</span> [permission() <span class="keyword">for</span> permission <span class="keyword">in</span> permission_classes]</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、JWT如何使用"><a href="#四、JWT如何使用" class="headerlink" title="四、JWT如何使用"></a>四、JWT如何使用</h2><p>通过上面的应用后，使用接口调用遇到需要鉴权的会提示需要认证。<br>如当我们调用删除接口时，如果没有获得鉴权，接口会返回需要认证的信息。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240922/1-%E9%9C%80%E8%A6%81%E9%89%B4%E6%9D%83.png" alt="接口调用需要认证"></p>
+<p>那如何通过JWT进行认证呢？<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240922/2-JWT%E7%9A%84%E9%AA%8C%E8%AF%81%E8%BF%87%E7%A8%8B.png" alt="JWT进行认证过程"></p>
+<p>下面通过postman来应用JWT的使用过程。</p>
+<h3 id="1、调用生成JWT的接口获取JWT"><a href="#1、调用生成JWT的接口获取JWT" class="headerlink" title="1、调用生成JWT的接口获取JWT"></a>1、调用生成JWT的接口获取JWT</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240922/3-%E8%B0%83%E7%94%A8%E7%94%9F%E6%88%90JWT%E7%9A%84%E6%8E%A5%E5%8F%A3%E8%8E%B7%E5%8F%96JWT.png" alt="调用生成JWT的接口获取JWT"></p>
+<h3 id="2、客户端保存JWT在调用接口时带上获取的JWT"><a href="#2、客户端保存JWT在调用接口时带上获取的JWT" class="headerlink" title="2、客户端保存JWT在调用接口时带上获取的JWT"></a>2、客户端保存JWT在调用接口时带上获取的JWT</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240922/4-%E8%AF%B7%E6%B1%82%E6%8E%A5%E5%8F%A3%E5%B8%A6%E4%B8%8AJWT.png" alt="调用接口时带上获取的JWT"></p>
+<p>至此，本文介绍了什么时JWT，为什么要使用JWT，通过django实现JWT，介绍了JWT的使用流程，最后以一个具体API接口实例的调用来说明JWT如何使用。后续将介绍VUE从前端登录获取JWT到JWT认证的实例。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/2affeb7f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +618,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-09-16T11:02:25+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-09-16T11:02:41+08:00">
                 2024-09-16
               </time>
             
@@ -2453,246 +2711,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8fbbc02f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/8fbbc02f/" itemprop="url">django集成pytest进行自动化单元测试实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-03T17:23:11+08:00">
-                2024-08-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/8fbbc02f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8fbbc02f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/8fbbc02f/" class="leancloud_visitors" data-flag-title="django集成pytest进行自动化单元测试实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在Django项目中集成Pytest进行单元测试可以提高测试的灵活性和效率，相比于Django自带的测试框架，Pytest提供了更为丰富和强大的测试功能。本文通过一个实际项目ishareblog介绍django集成pytest进行自动化单元测试实战。</p>
-<h2 id="一、引入pytest相关的包"><a href="#一、引入pytest相关的包" class="headerlink" title="一、引入pytest相关的包"></a>一、引入pytest相关的包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install pytest</span><br><span class="line">pip install pytest-django</span><br><span class="line">pip install pytest-html</span><br></pre></td></tr></table></figure>
-
-<p>其中pytest-django插件，它提供了Django和Pytest之间的桥梁，pytest-html 是一个 pytest 的插件，用于生成详细的 HTML 测试报告。这个插件能够将 pytest 运行的结果转化为一个直观、易于阅读的 HTML 格式报告，这对于分享测试结果、审查测试覆盖率以及归档测试历史非常有帮助。</p>
-<h2 id="二、配置pytest"><a href="#二、配置pytest" class="headerlink" title="二、配置pytest"></a>二、配置pytest</h2><h3 id="1、将django的配置区分测试环境、开发环境和生产环境"><a href="#1、将django的配置区分测试环境、开发环境和生产环境" class="headerlink" title="1、将django的配置区分测试环境、开发环境和生产环境"></a>1、将django的配置区分测试环境、开发环境和生产环境</h3><p>因为测试环境、开发环境和生产环境的环境配置参数不一样，一个好的实践是将开发、测试和生产环境通过配置区分开，django的配置主要集中在项目的settings.py文件，这里通过settings.py的配置文件将开发、测试、生产区分开，不同的环境调用不通的配置文件。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/1-django%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
-<p>因为大部分的配置参数都是一样的，在这里我将公共的配置参数都抽到了base.py，环境配置中有差异的部分分别放到各自的配置文件中，如开发环境用的是mysql，测试环境用sqlite3，就可以将不同的配置给区分开。<br>测试环境是settings_test.py，这里除了数据库的配置不一样，其他都沿用基础的公共配置。settings_test.py配置如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = []</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'test_db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、配置pytest"><a href="#2、配置pytest" class="headerlink" title="2、配置pytest"></a>2、配置pytest</h3><p>在Django项目根目录下，创建或编辑pytest.ini文件，来配置Pytest。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/2-pytest%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
-<p>pytest.ini代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">DJANGO_SETTINGS_MODULE = ishareblog.settings_test</span><br><span class="line"></span><br><span class="line">python_files = tests.py test_*.py *_tests.py</span><br></pre></td></tr></table></figure>
-
-<p>DJANGO_SETTINGS_MODULE = ishareblog.settings_test  指定了pytest用到的环境配置<br>python_files = tests.py test_*.py *_tests.py 指定了pytest将测试以test开头的py文件中的测试用例。</p>
-<h2 id="三、编写测试用例"><a href="#三、编写测试用例" class="headerlink" title="三、编写测试用例"></a>三、编写测试用例</h2><p>接下来，可以在tests.py或test_*.py文件中编写你的测试用例。由于pytest-django插件的存在，你可以像平常一样使用Django的测试机制，同时也能享受Pytest带来的便利。以下以我的ishareblog博客代码通过业务测试和接口测试来编写测试用例。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/3-pytest%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B.png" alt="在这里插入图片描述"></p>
-<h3 id="1、业务测试"><a href="#1、业务测试" class="headerlink" title="1、业务测试"></a>1、业务测试</h3><p>我的isharebog业务相对简单，主要是测试验证业务模型模块的增删改查是否符合预期。<br>业务测试tests.py示例代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> BlogCategory</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestBlogCategory</span><span class="params">(TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_BogCategoryModel</span><span class="params">(self)</span>:</span></span><br><span class="line">        blog_category = BlogCategory.objects.get(id=self.blogcategory.id)</span><br><span class="line">        self.assertEqual(blog_category.title, <span class="string">"Test Category"</span>)</span><br><span class="line">        self.assertEqual(blog_category.href, <span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_create</span><span class="params">()</span>:</span></span><br><span class="line">    blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line">    category_count = BlogCategory.objects.count()</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt; <span class="number">0</span>, <span class="string">"Blog category was not created category_count=0."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.id &gt; <span class="number">0</span>, <span class="string">"Blog category was not created."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.title == <span class="string">"Test Category"</span>, <span class="string">"Blog category title is wrong."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.href == <span class="string">"/category/1"</span>, <span class="string">"Blog category href is wrong."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_query</span><span class="params">()</span>:</span></span><br><span class="line">    category_count = len(BlogCategory.objects.all())</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt;= <span class="number">0</span>, <span class="string">"Blog category query error."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"blog/tests.py"</span>])</span><br></pre></td></tr></table></figure>
-
-<p>业务测试举了通过测试类和测试方法写的测试用例，分别对博客目录进行添加和查询编写了测试用例。</p>
-<h3 id="2、接口测试"><a href="#2、接口测试" class="headerlink" title="2、接口测试"></a>2、接口测试</h3><p>接口是暴露给前端程序调用的，接口测试主要是测试接口正不正常，接口值是不是符合预期。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line">host = <span class="string">"http://localhost:8000"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestApi</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_getcategory_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">f'<span class="subst">&#123;host&#125;</span>/api/category/'</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">assert</span> response.status_code == <span class="number">200</span>, <span class="string">f'Expected status code 200 but got <span class="subst">&#123;response.status_code&#125;</span>'</span></span><br><span class="line">        <span class="keyword">assert</span> response.json() != <span class="literal">None</span>, <span class="string">f'Expected to get json response but got <span class="subst">&#123;response.text&#125;</span>'</span></span><br><span class="line">        print(response.json())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_getpost_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">f'<span class="subst">&#123;host&#125;</span>/api/post/list'</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">assert</span> response.status_code == <span class="number">200</span>, <span class="string">f'Expected status code 200 but got <span class="subst">&#123;response.status_code&#125;</span>'</span></span><br><span class="line">        <span class="keyword">assert</span> response.json() != <span class="literal">None</span>, <span class="string">f'Expected to get json response but got <span class="subst">&#123;response.text&#125;</span>'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"api/tests.py"</span>])</span><br></pre></td></tr></table></figure>
-
-<p>接口测试部分，对获取目录的API接口和文章列表的API接口编写了测试用例。</p>
-<h2 id="四、进行测试"><a href="#四、进行测试" class="headerlink" title="四、进行测试"></a>四、进行测试</h2><p>最后可以分别在blog目录和api目录下运行test.py 分别进行业务和接口的单元测试。<br>注意在进行测试之前需要执行 <code>python manage.py makemigrations --settings=ishareblog.settings_test</code> 初始化环境。<br>在进行api接口测试之前需要将django的应用服务启动 <code>python manage.py runserver 8000 --settings=ishareblog.settings_test</code> 启动的时候也带上测试环境的配置。<br>可以通过<code>pytest --html=report.html</code> 自动执行所有的单元测试，并生成可读的html的测试报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/4-pytest%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
-<p>pytest生成的report.html测试报告<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/5-pytest%E7%9A%84report%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
-<p>以上通过一个ishareblog的实际项目介绍django集成pytest进行自动化单元测试实战。<br>ishareblog的所有代码包括pytest的配置见 <a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2749,7 +2767,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">193</span>
+                  <span class="site-state-item-count">194</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2861,7 +2879,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">402.3k</span>
+    <span title="Site words total count">403.7k</span>
   
   
 <!--51la网站应用监控-->
