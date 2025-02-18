@@ -313,6 +313,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/bc5826bd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/bc5826bd/" itemprop="url">pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-14T00:30:52+08:00">
+                2022-02-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:17+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/bc5826bd/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/bc5826bd/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/bc5826bd/" class="leancloud_visitors" data-flag-title="pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在数据分析的过程中，分析师常常希望通过多个维度多种方式来观察分析数据，重塑和透视是常用的手段。<br>数据的重塑简单说就是对原数据进行变形，为什么需要变形，因为当前数据的展示形式不是我们期望的维度，也可以说索引不符合我们的需求。对数据的重塑不是仅改变形状那么简单，在变形过程中，数据的内在数据意义不能变化，但数据的提示逻辑则发生了重大的改变。<br>数据透视是最常用的数据汇总工具，Excel 中经常会做数据透视，它可以根据一个或者多个指定的维度来聚合数据。pandas 也提供了数据透视函数来实现这些功能。<br>如果能熟练区分和使用各种重塑和透视分析方法，那用pandas处理分析日常的数据基本上就没有什么难度了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/%E9%87%8D%E5%A1%91%E9%80%8F%E8%A7%86.png" alt="重塑和透视"></p>
+<p>在介绍数据重塑透视之前，先来介绍一下pandas中DataFrame的层次化索引，它广泛应用于重塑透视操作。</p>
+<h1 id="一、层次化索引"><a href="#一、层次化索引" class="headerlink" title="一、层次化索引"></a>一、层次化索引</h1><p>层次化索引是pandas的一项重要功能，它使你能在一个轴上拥有多个（两个以上）索引层数，分层索引的目的是用低维度的结构（Series 或者 DataFrame）更好地处理高维数据。通过分层索引，我们可以像处理二维数据一样，处理三维及以上的数据。分层索引的存在使得分析高维数据变得简单。<br>我们来看一下student数据集，并根据该数据集分别构建列和行的层次索引。然后再介绍数据的重塑和透视。<br>引入student数据集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="student数据集"></p>
+<p>该student数据集包含学生学号、姓名、语文、数据、英语的成绩等。</p>
+<h2 id="1、列索引分层"><a href="#1、列索引分层" class="headerlink" title="1、列索引分层"></a>1、列索引分层</h2><p>我们选取一些关键的数据构建列标签的层次化索引。这里我们选取’班级’,’姓名’,’语文’,’数学’,’英语’的列，并且将‘班级’、‘姓名’标记为‘标识’，’语文’,’数学’,’英语’标记为‘成绩’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_student=df[[<span class="string">'班级'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>,<span class="string">'6-英语'</span>]]</span><br><span class="line">df_student.columns=[[<span class="string">'标识'</span>,<span class="string">'标识'</span>,<span class="string">'成绩'</span>,<span class="string">'成绩'</span>,<span class="string">'成绩'</span>],[<span class="string">'班级'</span>,<span class="string">'姓名'</span>,<span class="string">'语文'</span>,<span class="string">'数学'</span>,<span class="string">'英语'</span>]]</span><br><span class="line">df_student</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%86%E5%B1%82.png" alt="列索引分层"><br>通过指定DataFrame的columns的层级将’班级’,’姓名’,’语文’,’数学’,’英语’，上多抽出了一个层级，这个层有两个索引一个是‘标识’，一个是成绩，其中‘班级’和‘名称’是属于标识，’语文’,’数学’,’英语’都是’成绩’。</p>
+<h2 id="2、行索引分层"><a href="#2、行索引分层" class="headerlink" title="2、行索引分层"></a>2、行索引分层</h2><p>  接下来看行索引的分层。我们将属于一班的和属于二班的同学进行分层，再分成两个索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#根据行索引分层，设置行索引将其分成班级和姓名两个层次索引</span></span><br><span class="line">df_student=df_student.set_index([(<span class="string">'标识'</span>,<span class="string">'班级'</span>),(<span class="string">'标识'</span>,<span class="string">'姓名'</span>)])</span><br><span class="line">df_student.index.names=[<span class="string">'班级'</span>,<span class="string">'姓名'</span>]</span><br><span class="line">df_student</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/%E8%A1%8C%E7%B4%A2%E5%BC%95%E5%88%86%E5%B1%82.png" alt="行索引的分层"></p>
+<p>可以看到将数据集的班级和姓名列分成了两个行的层级索引。没有用默认的0-9的行索引</p>
+<h1 id="二、数据堆叠与拆堆"><a href="#二、数据堆叠与拆堆" class="headerlink" title="二、数据堆叠与拆堆"></a>二、数据堆叠与拆堆</h1><p>层次化索引为DataFrame数据的重排任务提供了一种具有良好一致性的方式，有许多用于重新排列表格数据的基础运算。这些函数也称作重塑（reshape）或轴向旋转（pivot）运算。<br>常见的数据重塑包括数据的堆叠 stack 和 取消堆叠 unstck</p>
+<h2 id="1、数据堆叠-stack"><a href="#1、数据堆叠-stack" class="headerlink" title="1、数据堆叠 stack"></a>1、数据堆叠 stack</h2><p>堆叠 stack ，顾名思义，就是将列的数据堆叠形成行。<br>借用pandas官网的示意图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/stack.png" alt="堆叠 stack"></p>
+<p>看实际数据数据会更容易理解，为了方便我们取student数据集的前5行记录来进行数据堆叠stack()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df_student[:<span class="number">5</span>]</span><br><span class="line"><span class="comment">#将数据进行堆叠</span></span><br><span class="line"><span class="comment">#将数据进行堆叠</span></span><br><span class="line">df_student5=df_student[:<span class="number">5</span>].stack()</span><br><span class="line">df_student5</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/stack1.png" alt="堆叠 stack(）"></p>
+<p>在这里可以看到通过stack()将“语文”、“数学”、”英语”，三列，一个个堆叠形成一条记录的三行。这样列数减少了，行数增多了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/stack2.png" alt="stack()"></p>
+<p>对于多层索引，可以根据指定堆叠层次，默认是最高层次的堆叠。<br>我们来看指定堆叠层次，如果<code>stack(0)</code>，表示堆叠level0层的。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/stack3.png" alt="分层堆叠"></p>
+<h2 id="2、取消堆叠-unstack"><a href="#2、取消堆叠-unstack" class="headerlink" title="2、取消堆叠 unstack"></a>2、取消堆叠 unstack</h2><p>取消堆叠 unstack是堆叠的反操作。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/unstack.png" alt="Unstack"></p>
+<p>也就是将堆叠好了的行数据，一个个卸下来形成列。这样一来行数减少了，但是列数增多了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取消堆叠 unstack()</span></span><br><span class="line">df_student5.unstack()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/unstack1.png" alt="unstack"></p>
+<p>可以看到原来的“语文”、“数学”、”英语”三行，通过unstack()进行拆堆，拆成了三列，明显数据没有那么高了，行数少了，列数多了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/unstack2.png" alt="unstack"></p>
+<p>同样对于多层索引可以逐层拆堆<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/unstack3.png" alt="逐层拆堆"></p>
+<h1 id="三、数据融合与透视"><a href="#三、数据融合与透视" class="headerlink" title="三、数据融合与透视"></a>三、数据融合与透视</h1><p>数据透视是最常用的数据汇总工具，它可以根据一个或者多个指定的维度来聚合数据。实际上搞懂了stack和unstack就很容易搞懂pivot和melt了，stack和unstack根据索引来进行堆叠和拆堆，pivot和melt可以根据指定的数据来进行变换操作灵活性更高。</p>
+<h2 id="1、数据融合-melt"><a href="#1、数据融合-melt" class="headerlink" title="1、数据融合 melt"></a>1、数据融合 melt</h2><p>来看pandas官网的示意图，是不是和stack的图有点类似，都是将列转换成行，不同的是melt可以指定哪些列固定，哪些列转换成行等灵活性更高。简单说就是将指定的列放到铺开放到行上名为variable(可指定)列，值在value(可指定)列<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/melt.png" alt="melt"><br>melt语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pd.melt(frame: pandas.core.frame.DataFrame,</span><br><span class="line">        id_vars=<span class="literal">None</span>, value_vars=<span class="literal">None</span>,</span><br><span class="line">        var_name=<span class="string">'variable'</span>, value_name=<span class="string">'value'</span>,</span><br><span class="line">        col_level=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li>id_varstuple，list或ndarray（可选），用作标识变量的列。</li>
+<li>value_varstuple，列表或ndarray，可选，要取消透视的列。 如果未指定，则使用未设置为id_vars的所有列。</li>
+<li>var_namescalar，用于“变量”列的名称。 如果为None，则使用frame.columns.name或“variable”。</li>
+<li>value_namescalar，默认为“ value”，用于“ value”列的名称。<ul>
+<li>col_levelint或str，可选，如果列是MultiIndex，则使用此级别来融化。</li>
+</ul>
+</li>
+</ul>
+<p>我们还是来看示例：<br>数据集还是student数据集，为了演示方便取前5条记录</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_student=df[[<span class="string">'班级'</span>,<span class="string">'2-姓名'</span>,<span class="string">'4-语文'</span>,<span class="string">'5-数学'</span>,<span class="string">'6-英语'</span>]]</span><br><span class="line">df_student.columns=[[<span class="string">'标识'</span>,<span class="string">'标识'</span>,<span class="string">'成绩'</span>,<span class="string">'成绩'</span>,<span class="string">'成绩'</span>],[<span class="string">'班级'</span>,<span class="string">'姓名'</span>,<span class="string">'语文'</span>,<span class="string">'数学'</span>,<span class="string">'英语'</span>]]</span><br><span class="line">df_student[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/melt1.png" alt="melt"></p>
+<p>现在将“班级”和“姓名”固定，’语文’,’数学’,’英语’三列转换成行融合为“学科”字段，这三个列的值定义为“分数”列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将“班级”和“姓名”固定，'语文','数学','英语'三列转换成行融合为“学科”字段，这三个列的值定义为“分数”列</span></span><br><span class="line">df_student[<span class="number">0</span>:<span class="number">5</span>].melt(id_vars=[<span class="string">'班级'</span>,<span class="string">'姓名'</span>],</span><br><span class="line">                     value_vars=[<span class="string">'语文'</span>,<span class="string">'数学'</span>,<span class="string">'英语'</span>],</span><br><span class="line">                     var_name=<span class="string">'学科'</span>,</span><br><span class="line">                     value_name=<span class="string">'分数'</span>,col_level=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/melt2.png" alt="melt"><br>具体实现如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/melt3.png" alt="melt"></p>
+<h2 id="2、数据透视-pivot"><a href="#2、数据透视-pivot" class="headerlink" title="2、数据透视 pivot"></a>2、数据透视 pivot</h2><p>来看pandas官网的示意图，是不是和unstack的图有点类似，将行数据转换成列。同样pivot提供了更多的参数可以指定相应的数据进行转换，比unstack更加灵活。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/pivot.png" alt="pivot"></p>
+<p>这里有三个参数，作用分别是：</p>
+<ul>
+<li>index：新 df 的索引列，用于分组，如果为None，则使用现有索引 </li>
+<li>columns：新 df 的列，如果透视后有重复值会报错</li>
+<li>values：用于填充 df 的列。 如果未指定，将使用所有剩余的列，并且结果将具有按层次结构索引的列</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">df_student5=df_student[<span class="number">0</span>:<span class="number">5</span>].melt(id_vars=[<span class="string">'班级'</span>,<span class="string">'姓名'</span>],</span><br><span class="line">                     value_vars=[<span class="string">'语文'</span>,<span class="string">'数学'</span>,<span class="string">'英语'</span>],</span><br><span class="line">                     var_name=<span class="string">'学科'</span>,</span><br><span class="line">                     value_name=<span class="string">'分数'</span>,col_level=<span class="number">1</span>)</span><br><span class="line">df_student5</span><br><span class="line">df_student5.pivot(index=[<span class="string">'班级'</span>,<span class="string">'姓名'</span>],columns=<span class="string">'学科'</span>,values=<span class="string">'分数'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/pivot1.png" alt="pivot"></p>
+<p>这里通过pivot将“学科”的行数据透视转换成“数学”、“英语”、“语文”三列，具体实现如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220214/pivot2.png" alt="privot"><br>可以看出privot实际和unstack类似是由行转换成列的视图，但比起unstack更加灵活。</p>
+<p>至此，介绍了pandas的多层索引及pandas的4种重塑操作：<strong>stack、unstack、pivot、melt</strong>:<br><strong>stack、unstack是基础：stack实现列转行，unstack实现行转列</strong>。<br>melt与stack类似，比stack更加灵活。<br>pivot与unstack类似，比unstack更加灵活。</p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dd24116d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3264,254 +3549,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/14434407/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/14434407/" itemprop="url">Python实现读取Word表格计算汇总写入Excel</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-20T21:09:47+08:00">
-                2022-01-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:15+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/14434407/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/14434407/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/14434407/" class="leancloud_visitors" data-flag-title="Python实现读取Word表格计算汇总写入Excel">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>快过年了，又到了公司年底评级的时候了。今年的评级和往常一下，每个人都要填写公司的民主评议表，给各个同事进行评价打分，然后部门收集起来根据收集上来的评价表进行汇总统计。想想要收集几十号人的评价表，并根据每个人的评价表又要填到Excel中进行汇总计算统计给出每个人的评价，就头大。虽然不是个什么难事，但是是个无脑的细致活。几十个人的评价也得要花大半天的时间来弄，而且搞多了还容易搞错。如是就想起干脆用Python写个小程序自动来处理这些脏活累活，评级年年都要评，每年都可以用。</p>
-<p>要做的事情就是读放到某个文件夹中的word文档中的评价表格，根据表格内容进行处理，然后汇总所有的表格数据，根据计算规则，算出每个人的评分，在根据评分计算每个人的评价。汇总后写入Excel中。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220120/word2excle.png" alt="处理Word解析、汇总、统计写入Excel"></p>
-<p>不可否认用Python来实现这样的事情真的是太方便了，人生苦短我用Python。<br>我是用的python的docx包来处理word，用pandas来处理数据并写入excel</p>
-<h1 id="一、首先导入包"><a href="#一、首先导入包" class="headerlink" title="一、首先导入包"></a>一、首先导入包</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install docx</span><br><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
-<p>pandas写excel依赖openpyxl包所以也到导入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install openpyxl</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、读评价表所在的目录文件"><a href="#二、读评价表所在的目录文件" class="headerlink" title="二、读评价表所在的目录文件"></a>二、读评价表所在的目录文件</h1><p>通过python的os包，列出文件夹里面的文件，识别出.docx的文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">files=os.listdir(filepah)</span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">if</span> file.find(<span class="string">'.docx'</span>)&gt;<span class="number">0</span>:</span><br><span class="line">        docfilepah=filepah+file</span><br></pre></td></tr></table></figure>
-
-<h1 id="三、读word文件，处理word中的表格数据"><a href="#三、读word文件，处理word中的表格数据" class="headerlink" title="三、读word文件，处理word中的表格数据"></a>三、读word文件，处理word中的表格数据</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">data=[]</span><br><span class="line"><span class="comment">#读word的docx评议表文件，并读取word中的表格数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">procdoc</span><span class="params">(docfilepath)</span>:</span></span><br><span class="line">    document=Document(docfilepath)</span><br><span class="line">    tables=document.tables</span><br><span class="line">    table=tables[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(table.rows)):</span><br><span class="line">        id=int(table.cell(i,<span class="number">0</span>).text)</span><br><span class="line">        name=table.cell(i,<span class="number">1</span>).text</span><br><span class="line">        excellent=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i,<span class="number">2</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i,<span class="number">2</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            excellent=<span class="number">1</span></span><br><span class="line">        competent = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">3</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">3</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            competent=<span class="number">1</span></span><br><span class="line">        basicacompetent=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">4</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">4</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            basicacompetent=<span class="number">1</span></span><br><span class="line">        notcompetent = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">5</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">5</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            notcompetent=<span class="number">1</span></span><br><span class="line">        dontunderstand =<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">6</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">6</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            dontunderstand=<span class="number">1</span></span><br><span class="line">        appraisedata=[id,name,excellent,competent,basicacompetent,notcompetent,dontunderstand]</span><br><span class="line">        data.append(appraisedata)</span><br></pre></td></tr></table></figure>
-
-<h1 id="四、统计计算"><a href="#四、统计计算" class="headerlink" title="四、统计计算"></a>四、统计计算</h1><p>通过pandas直接对数据进行统计计算，避免了传统的循环计算。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(data,columns=[<span class="string">'序号'</span>,<span class="string">'姓名'</span>,<span class="string">'优秀'</span>,<span class="string">'称职'</span>,<span class="string">'基本称职'</span>,<span class="string">'不称职'</span>,<span class="string">'不了解'</span>])</span><br><span class="line">df=df.groupby([<span class="string">'序号'</span>,<span class="string">'姓名'</span>]).sum() <span class="comment">#汇总每个人每一项的评分</span></span><br><span class="line">df[<span class="string">'票数'</span>] = df.apply(<span class="keyword">lambda</span> x: x.sum(), axis=<span class="number">1</span>) <span class="comment">#统计票数</span></span><br><span class="line">df[<span class="string">'计分'</span>] = (df[<span class="string">'优秀'</span>]*<span class="number">95</span>+df[<span class="string">'称职'</span>]*<span class="number">85</span>+df[<span class="string">'基本称职'</span>]*<span class="number">75</span>+df[<span class="string">'不称职'</span>]*<span class="number">65</span>+df[<span class="string">'不了解'</span>]*<span class="number">0</span>)/len(df)<span class="comment">#根据规则计分</span></span><br><span class="line">df[<span class="string">'评价'</span>]=df[<span class="string">'计分'</span>].map(getscore) <span class="comment">#根据规则评价评级</span></span><br></pre></td></tr></table></figure>
-
-<p>计分方法：民主评议得分=Σ各等级票数*等级计分分数/总票数，其中“优秀”计95分，“称职”计85分，“基本称职”计75分，“不称职”计65分，“不了解”不计分。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#根据评分规则计算评级</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getscore</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x&gt;=<span class="number">95</span>:</span><br><span class="line">        score=<span class="string">'优秀'</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;=<span class="number">80</span> <span class="keyword">and</span> x&lt;<span class="number">95</span>:</span><br><span class="line">        score=<span class="string">'称职'</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;=<span class="number">75</span> <span class="keyword">and</span> x&lt;<span class="number">80</span>:</span><br><span class="line">        score=<span class="string">'基本称职'</span></span><br><span class="line">    <span class="keyword">elif</span> x&lt;<span class="number">75</span>:</span><br><span class="line">        score=<span class="string">'不称职'</span></span><br><span class="line">    <span class="keyword">return</span> score</span><br></pre></td></tr></table></figure>
-
-<h1 id="五、将统计计算结果写入汇总Excel"><a href="#五、将统计计算结果写入汇总Excel" class="headerlink" title="五、将统计计算结果写入汇总Excel"></a>五、将统计计算结果写入汇总Excel</h1><p>通过pandas直接可以将dataframe写入到Excel文件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将汇总计算好的数据写入Excel</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write2excle</span><span class="params">(exclefile,dataframe)</span>:</span></span><br><span class="line">    writer = pd.ExcelWriter(exclefile)</span><br><span class="line">    dataframe.to_excel(writer)</span><br><span class="line">    writer.save()</span><br><span class="line">    print(<span class="string">'输出成功'</span>)</span><br></pre></td></tr></table></figure>
-
-<h1 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h1><p><strong>Python不到八十行代码，实现读Word-&gt;处理表格数据-&gt;汇总计算数据-&gt;写Excel。</strong><br>完整的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> docx <span class="keyword">import</span> Document</span><br><span class="line"></span><br><span class="line">data=[]</span><br><span class="line"><span class="comment">#读word的docx评议表文件，并读取word中的表格数据</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">procdoc</span><span class="params">(docfilepath)</span>:</span></span><br><span class="line">    document=Document(docfilepath)</span><br><span class="line">    tables=document.tables</span><br><span class="line">    table=tables[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(table.rows)):</span><br><span class="line">        id=int(table.cell(i,<span class="number">0</span>).text)</span><br><span class="line">        name=table.cell(i,<span class="number">1</span>).text</span><br><span class="line">        excellent=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i,<span class="number">2</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i,<span class="number">2</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            excellent=<span class="number">1</span></span><br><span class="line">        competent = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">3</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">3</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            competent=<span class="number">1</span></span><br><span class="line">        basicacompetent=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">4</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">4</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            basicacompetent=<span class="number">1</span></span><br><span class="line">        notcompetent = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">5</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">5</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            notcompetent=<span class="number">1</span></span><br><span class="line">        dontunderstand =<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> table.cell(i, <span class="number">6</span>).text!=<span class="string">''</span> <span class="keyword">and</span> table.cell(i, <span class="number">6</span>).text <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            dontunderstand=<span class="number">1</span></span><br><span class="line">        appraisedata=[id,name,excellent,competent,basicacompetent,notcompetent,dontunderstand]</span><br><span class="line">        data.append(appraisedata)</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取评议表的目录，并处理目录中的docx文件，根据评议表计算评分，写入汇总表。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readfile</span><span class="params">(filepah)</span>:</span></span><br><span class="line">    files=os.listdir(filepah)</span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">        <span class="keyword">if</span> file.find(<span class="string">'.docx'</span>)&gt;<span class="number">0</span>:</span><br><span class="line">            docfilepah=filepah+file</span><br><span class="line">            procdoc(docfilepah)</span><br><span class="line">    df = pd.DataFrame(data,columns=[<span class="string">'序号'</span>,<span class="string">'姓名'</span>,<span class="string">'优秀'</span>,<span class="string">'称职'</span>,<span class="string">'基本称职'</span>,<span class="string">'不称职'</span>,<span class="string">'不了解'</span>])</span><br><span class="line">    print(df)</span><br><span class="line">    df=df.groupby([<span class="string">'序号'</span>,<span class="string">'姓名'</span>]).sum()</span><br><span class="line">    df[<span class="string">'票数'</span>] = df.apply(<span class="keyword">lambda</span> x: x.sum(), axis=<span class="number">1</span>)</span><br><span class="line">    df[<span class="string">'计分'</span>] = (df[<span class="string">'优秀'</span>]*<span class="number">95</span>+df[<span class="string">'称职'</span>]*<span class="number">85</span>+df[<span class="string">'基本称职'</span>]*<span class="number">75</span>+df[<span class="string">'不称职'</span>]*<span class="number">65</span>+df[<span class="string">'不了解'</span>]*<span class="number">0</span>)/len(df)</span><br><span class="line">    df[<span class="string">'评价'</span>]=df[<span class="string">'计分'</span>].map(getscore)</span><br><span class="line">    print(df)</span><br><span class="line">    write2excle(<span class="string">'民主评议\\民主评议表汇总.xlsx'</span>,df)</span><br><span class="line"></span><br><span class="line"><span class="comment">#根据评分规则计算评级</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getscore</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> x&gt;=<span class="number">95</span>:</span><br><span class="line">        score=<span class="string">'优秀'</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;=<span class="number">80</span> <span class="keyword">and</span> x&lt;<span class="number">95</span>:</span><br><span class="line">        score=<span class="string">'称职'</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;=<span class="number">75</span> <span class="keyword">and</span> x&lt;<span class="number">80</span>:</span><br><span class="line">        score=<span class="string">'基本称职'</span></span><br><span class="line">    <span class="keyword">elif</span> x&lt;<span class="number">75</span>:</span><br><span class="line">        score=<span class="string">'不称职'</span></span><br><span class="line">    <span class="keyword">return</span> score</span><br><span class="line"></span><br><span class="line"><span class="comment">#将汇总计算好的数据写入Excel</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write2excle</span><span class="params">(exclefile,dataframe)</span>:</span></span><br><span class="line">    writer = pd.ExcelWriter(exclefile)</span><br><span class="line">    dataframe.to_excel(writer)</span><br><span class="line">    writer.save()</span><br><span class="line">    print(<span class="string">'输出成功'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    readfile(<span class="string">'民主评议\\'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>全部源代码：<a href="https://github.com/xiejava1018/pythonprocword" target="_blank" rel="noopener">https://github.com/xiejava1018/pythonprocword</a></p>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3568,7 +3605,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">196</span>
+                  <span class="site-state-item-count">197</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3666,7 +3703,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -3680,7 +3717,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">407.5k</span>
+    <span title="Site words total count">409.6k</span>
   
   
 <!--51la网站应用监控-->
