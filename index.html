@@ -313,6 +313,315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6e957ca9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/6e957ca9/" itemprop="url">什么是互联网暴露面？什么是攻击面？暴露面与攻击面有什么区别？</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-02-24T11:28:04+08:00">
+                2025-02-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-02-24T12:44:56+08:00">
+                2025-02-24
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6e957ca9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6e957ca9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/6e957ca9/" class="leancloud_visitors" data-flag-title="什么是互联网暴露面？什么是攻击面？暴露面与攻击面有什么区别？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  911
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、定义与核心概念"><a href="#一、定义与核心概念" class="headerlink" title="一、定义与核心概念"></a>一、定义与核心概念</h2><h3 id="1-‌互联网暴露面‌"><a href="#1-‌互联网暴露面‌" class="headerlink" title="1. ‌互联网暴露面‌"></a>1. ‌互联网暴露面‌</h3><ul>
+<li><strong>定义</strong>：指组织在互联网上公开可访问的数字化资产和服务，如服务器、开放端口、API、网站、云服务等。</li>
+</ul>
+<p><strong>暴露面</strong>指网络系统中<strong>对外界开放的可见部分</strong>，包括公开的接口、网络端口、服务或应用程序等。例如Web服务、API、数据库端口等，这些资源可直接被外部访问或识别‌。暴露面的大小直接影响潜在攻击机会‌。</p>
+<ul>
+<li><p><strong>核心特点</strong>：</p>
+<ul>
+<li>可见性：能被外部扫描或探测到（如通过IP、域名、端口）。</li>
+<li>入口点：是外部与内部系统交互的桥梁（如登录页面、文件上传接口）。</li>
+</ul>
+</li>
+<li><p><strong>示例</strong>：</p>
+<ul>
+<li>公网IP地址、开放的SSH端口（22）、公开的Web应用、未加密的HTTP服务。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-‌攻击面"><a href="#2-‌攻击面" class="headerlink" title="2. ‌攻击面"></a>2. ‌攻击面</h3><ul>
+<li><strong>定义</strong>：指所有可能被攻击者利用的潜在漏洞和风险点，涵盖技术、人员、流程等多个维度。‌</li>
+</ul>
+<p><strong>攻击面</strong>指攻击者<strong>可能利用的所有潜在入口点和攻击路径</strong>，不仅包含暴露面中的可见部分，还涵盖漏洞、错误配置、权限问题、社会工程等动态风险因素。攻击面越大，系统被入侵的概率越高‌。</p>
+<ul>
+<li><p><strong>核心特点</strong>：</p>
+<ul>
+<li>全面性：不仅包括暴露面，还包含内部漏洞（如配置错误、弱密码、员工安全意识不足）。</li>
+<li>动态性：随系统更新、新漏洞披露、业务扩展而变化。</li>
+</ul>
+</li>
+<li><p><strong>示例</strong>：</p>
+<ul>
+<li>暴露面中的漏洞（如SQL注入）、内部数据库弱口令、员工易受钓鱼攻击、过时的内部软件版本。</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、区别与关联"><a href="#二、区别与关联" class="headerlink" title="二、区别与关联"></a>二、区别与关联</h2><p><strong>关系</strong>：从定义上看，攻击面包含暴露面，并且更加广泛。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250224001/%E6%9A%B4%E9%9C%B2%E9%9D%A2%E4%B8%8E%E6%94%BB%E5%87%BB%E9%9D%A2%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="暴露面与攻击面的关系"></p>
+<p><strong>区别：</strong></p>
+<table>
+<thead>
+<tr>
+<th>维度‌</th>
+<th>‌暴露面‌</th>
+<th>‌攻击面‌</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>范围‌</td>
+<td>仅包含对外可见的开放部分‌</td>
+<td>包含所有潜在攻击路径（含暴露面及内部系统、人为因素等）‌</td>
+</tr>
+<tr>
+<td>‌动态性‌</td>
+<td>相对静态，与系统配置直接相关‌</td>
+<td>动态变化，受漏洞、人为因素等影响‌</td>
+</tr>
+<tr>
+<td>关注点‌</td>
+<td>资源对外暴露的“可见性”‌，可见性和可访问性</td>
+<td>攻击者可利用的“漏洞总和”‌，潜在漏洞和攻击路径</td>
+</tr>
+<tr>
+<td>防御重点</td>
+<td>减少不必要的公开资产</td>
+<td>全面风险管理（技术+管理）</td>
+</tr>
+<tr>
+<td>管理策略</td>
+<td>定期扫描并关闭不必要的服务，使用防火墙限制访问，最小化公开资产。</td>
+<td>漏洞管理、员工培训、权限控制、持续监控（如日志审计、入侵检测）。</td>
+</tr>
+<tr>
+<td>示例</td>
+<td>如：公司官网（example.com）开放了80和443端口，允许用户访问。</td>
+<td>若官网存在未修复的XSS漏洞（技术风险），且管理员使用弱密码（人为风险），两者均属于攻击面。</td>
+</tr>
+</tbody></table>
+<h2 id="三、防护侧重点"><a href="#三、防护侧重点" class="headerlink" title="三、防护侧重点"></a>三、防护侧重点</h2><h3 id="1-‌暴露面管理‌"><a href="#1-‌暴露面管理‌" class="headerlink" title="1. ‌暴露面管理‌"></a>1. ‌暴露面管理‌</h3><ul>
+<li>‌原则‌：遵循最小权限，仅开放必要端口或服务‌。</li>
+<li>‌措施‌：网络隔离、访问控制、定期审查暴露资源‌。</li>
+</ul>
+<h3 id="2-‌攻击面管理‌"><a href="#2-‌攻击面管理‌" class="headerlink" title="2. ‌攻击面管理‌"></a>2. ‌攻击面管理‌</h3><ul>
+<li>‌原则‌：降低漏洞利用可能性，覆盖技术、流程、人为因素‌。</li>
+<li>‌措施‌：渗透测试、安全评估、漏洞修复、权限管控‌。</li>
+</ul>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>‌<strong>暴露面是攻击面的子集‌</strong>，两者区别在于：暴露面聚焦“对外可见性”，攻击面覆盖“可利用性”；前者是静态防御的基础，后者需动态应对综合风险‌。缩小暴露面可降低被攻击概率，而减少攻击面则能全面降低风险。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9aafe860/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +669,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-02-19T12:28:13+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2025-02-19T12:28:30+08:00">
                 2025-02-19
               </time>
             
@@ -2647,231 +2956,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/927ce8c5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/927ce8c5/" itemprop="url">不忘初心，方得始终，码农实现自我提升的心法与工具</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-20T09:06:38+08:00">
-                2024-08-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-20T09:21:56+08:00">
-                2024-08-20
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/927ce8c5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/927ce8c5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/927ce8c5/" class="leancloud_visitors" data-flag-title="不忘初心，方得始终，码农实现自我提升的心法与工具">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在信息技术飞速发展的今天，越来越多的人进入到IT行业，也使得这个行业越来越卷。随着信息化普及进入尾声以及全球经济下行，IT行业也像传统的房地产行业一样哀鸿遍野，码农也像农民工一样转行的转行失业的失业。想要在这个行业里站住脚不被淘汰只能是不断的提升学习提升自己的能力，让自己成为不可替代才行。</p>
-<p>作为码农，如是今还有份稳定的工作，应该来说是幸运的，但也是很焦虑的。一方面不知道自己所负责的业务还能撑多久，公司还能撑多久；一方面还得要思考一旦失业不知道自己的技术水平还能不能找到合适的工作。作为社会人，只有有了对抗风险的本钱后，才会有底气，有了底气后才会不至于那么的焦虑。而底气来自两个方面一方面是有足够的钱；另一方面是有足够的能力。如果有足够的钱，像文艺复兴时期的大咖们被人包养，吃喝不愁，那我们可以不用焦虑，惬意的写代码那一定是很开心的；如果能力足够强，其实也不用担心，换个地方施展自己的能力而已。而我们的现状是既要幸幸苦苦赚钱维持自己的生活又要不断的学习来提升自己的能力适应这个不断发展的行业。</p>
-<p>如何在繁忙琐碎的编码工作与个人成长之间找到平衡，下面以我个人的经历来谈谈我的思考。对于码农来说，面临最大的两个问题是<strong>如何更好的利用时间</strong>和<strong>如何通过学习来提升自我</strong>的问题。</p>
-<h2 id="一、如何更好的利用时间？"><a href="#一、如何更好的利用时间？" class="headerlink" title="一、如何更好的利用时间？"></a>一、如何更好的利用时间？</h2><p>在李笑来老师的《和时间做朋友》的书中讲到，其实时间是不可以管理的，每个人每天只有24小时，能够管理的是自己的精力，也就是把自己的关注力放到哪里。要学习，就应该把学习精力、注意力投入足够多的时间。对于我们来说最大的挑战来自手机，下班后很多同学报复性的休息放松，想起自己上班工作了，休息的时候一定得要彻底的放松，拿着手机刷抖音、打游戏、聊天不知不觉就到了深夜。为了避免长时间的玩手机，我的做法是到了一定时间把手机所有的应用都关闭，给自己一段没有手机打挠的时间，很多手机都提供的“禅定模式”，开启“禅定模式”后手机上除了接打电话，其他的应用都暂时不能用，除非退出“禅定模式”，通过这种方式让自己的注意力从手机上移开，放到看书和学习上来。在这里我常用的专注力APP是”Forest 专注森林“，它可以设置一段专注力时间，比如60分钟，如果60分钟你没有动手机就成功的种下了一颗健康的树，如果中途心痒痒玩了手机这个树就会蔫掉。可以按时间周期统计你的专注的时间。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/Forest%E4%B8%93%E6%B3%A8%E6%B7%B1%E6%9E%97.jpg" alt="Forest 专注森林"></p>
-<p>当然专注力是一方面，其实更重要的是我们应该有自控力的意识，有自我提升学习的意识。有了意识以后才会有行动。</p>
-<h2 id="二、如何通过学习来提升自我？"><a href="#二、如何通过学习来提升自我？" class="headerlink" title="二、如何通过学习来提升自我？"></a>二、如何通过学习来提升自我？</h2><p>焦虑是因为面对残酷的社会竞争压力以及对自身能力的不自信。所以很多东西都想学，机器学习、网络安全、英语、写作等等。正因为焦虑，所以面临的困惑是什么都想学，什么都想学的结果是什么都没有学会。相信大多数人都有这样的经历，心想着要不断的提升自己，桌上摆了很多书，今天看几页这本书，明天翻几页那本书，看上去天天在看书，实际上一本书都没有看进去。看英语的时候在想应该多花点时间看看专业书，看专业书的时候在想英语也很重要，要不看会英语。实际就是有限的时间精力和无限的需要学习的知识之间的矛盾。尤其是专业领域，看了很多书，不能学以致用，看了就忘，感觉就是学了个寂寞。</p>
-<p>早几年我也有相同的困惑，认识到学习，目标非常重要，没有明确目标的学习到头来都是浪费时间。于是写了一篇《<a href="http://xiejava.ishareread.com/posts/e6daf5ca/" target="_blank" rel="noopener">你有了一个目标，于是你有了一堆技能，而不是反过来</a>》。其实道理大家都懂，要有目标，不忘初心，方得始终。但是对于个人来说目标其实并不好确定，大部分人来说其实也没有什么明确的目标，我的经验是在没有明确的目标的时候就把考证当做目标，以考促学。见《<a href="http://xiejava.ishareread.com/posts/9fed4f95/" target="_blank" rel="noopener">工作这么多年了，我为什么还在考证</a>》。后来我意识到自我提升最核心的是要构建自己知识体系，我的目标是<strong>构建了自己的知识体系</strong>，能够利用自己的知识体系具备“成事”的能力。如何建立个人知识体系，借用网上的一张图。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png" alt="个人知识体系"></p>
-<p>有了构建自己知识体系的大目标后，我把自己近几年需要巩固提升的方面做了一个学习地图，有了学习地图就像航海的地图一样，避免东一下西一下迷失方向。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240817/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E5%9C%B0%E5%9B%BE.png" alt="学习地图"></p>
-<p>刘未鹏在他的《暗时间》中有个观点让我感触特别的深刻，意思是你所懂得的多少并不是在于你看了多少书而是取决于你思考有多深。“教是最好的学”、“书写是更好的思考”。为了践行“<strong>问题-&gt;输入-&gt;内化-&gt;输出</strong>”，笃信写是为了更好的思考，坚持写作，力争更好的思考。我开启了自己的博客持续在CSDN和自己的博客上进行写作输出，将自己碰到的问题、经验、思考写出来，即帮助了大家又促进了自己，希望能和大家一起成长。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2928,7 +3012,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-count">199</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3040,7 +3124,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">412.9k</span>
+    <span title="Site words total count">413.8k</span>
   
   
 <!--51la网站应用监控-->

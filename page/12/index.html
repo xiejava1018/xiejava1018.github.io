@@ -313,6 +313,243 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/73474fe7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/73474fe7/" itemprop="url">通过Django发送邮件</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-30T14:57:46+08:00">
+                2022-12-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:23+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/73474fe7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/73474fe7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/73474fe7/" class="leancloud_visitors" data-flag-title="通过Django发送邮件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  926
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通过Django发送邮件非常的简单，在Python中已经内置了一个smtplib邮件发送模块，Django在此基础上进行了简单地封装，我们可以在Django的环境中方便的发送邮件。大部分邮件发送成功主要是邮件的参数配置，本文以常用的126邮箱和QQ邮箱为例介绍Django发送邮件的配置，其他提供smtp邮件服务的邮箱都是一样的。</p>
+<h2 id="一、Django邮件配置"><a href="#一、Django邮件配置" class="headerlink" title="一、Django邮件配置"></a>一、Django邮件配置</h2><p>用Django发送邮件需要告诉你的邮件服务器相应的参数配置，需要在settings.py中进行配置好。<br>默认情况下，使用配置文件中的<code>EMAIL_HOST</code>和<code>EMAIL_PORT</code>设置SMTP服务器主机和端口，<code>EMAIL_HOST_USER</code>和<br><code>EMAIL_HOST_PASSWORD</code>是用户名和密码。如果设置了EMAIL_USE_TLS和EMAIL_USE_SSL，它们将控制是否使用相应的加密链接。<br>典型的配置如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.126.com'</span>      <span class="comment">#126邮箱的邮箱服务地址</span></span><br><span class="line">EMAIL_PORT = <span class="number">25</span>          <span class="comment">#端口，大部分都是默认25</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@126.com'</span>    <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
+
+<p>这里要注意的两个地方，一个是EMAIL_PORT端口、一个是EMAIL_HOST_PASSWORD密码。<br>端口一般默认是25，但有些邮箱改了默认端口或需要用加密链接465、578端口，可以从邮件服务商查到。<br>密码以前可以用邮箱账号密码，但这几年随着安全要求的提高，大部分主要的邮件服务提供商都要用申请的授权码进一步加强安全系数。<br>这里介绍这些关键的信息如何在邮件服务商获取。</p>
+<blockquote>
+<p> <code>注意EMAIL_HOST_PASSWORD这里不能用你邮箱账号的密码，而要用申请的设备授权码。</code></p>
+</blockquote>
+<h3 id="126邮箱"><a href="#126邮箱" class="headerlink" title="126邮箱"></a>126邮箱</h3><p>进入到邮箱配置界面，点击“POP3/SMTP/IMAP”，注意要开启SMTP。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/1_%E5%BC%80%E5%90%AFSMTP.png" alt="126邮箱配置界面"></p>
+<p>授权码是用于登录第三方邮件客户端的专用密码，点击”新增授权密码”，降会弹出一个账号安全验证，扫描后可以快速的发短信。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/2_%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png" alt="账号安全验证界面"></p>
+<p>用你的注册手机发完短信后点击”我已发送”就会弹出一个授权码的窗口，要把这个授权码记下来，这个窗口只显示一次。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/3_%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8E%88%E6%9D%83.png" alt="授权码显示界面"></p>
+<h3 id="QQ邮箱"><a href="#QQ邮箱" class="headerlink" title="QQ邮箱"></a>QQ邮箱</h3><p>进入到QQ邮箱WEB界面后点击“设置”，点击“邮件设置”的“账户”页签拉到“账户安全”处就可以看到相关的SMTP服务信息</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/4_QQ%E9%82%AE%E7%AE%B1%E8%AE%BE%E7%BD%AESMTP%E6%9C%8D%E5%8A%A1.png" alt="QQ邮箱配置界面"></p>
+<p>点击“生成授权码”，将弹出验证密保的界面。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/5_QQ%E9%82%AE%E7%AE%B1%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81.png" alt="验证密保界面"></p>
+<p>根据提示发送短信后，点击我已发送，将会弹出生成授权码的界面显示授权码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/6_QQ%E9%82%AE%E7%AE%B1%E7%94%9F%E6%88%90%E6%8E%88%E6%9D%83%E7%A0%81.png" alt="授权码生成界面"></p>
+<p>如果需要SSL加密方式，可以进一步查看服务商的SMTP服务说明<br>如QQ邮箱的服务说明 <a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&&id=28&&no=331" target="_blank" rel="noopener">https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=331</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/7_QQ%E9%82%AE%E7%AE%B1%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.png" alt="服务说明界面"></p>
+<p>看到使用SSL，端口号是465或587</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EMAIL_BACKEND = <span class="string">'django.core.mail.backends.smtp.EmailBackend'</span></span><br><span class="line">EMAIL_HOST = <span class="string">'smtp.qq.com'</span>  <span class="comment">#QQ邮箱的smtp服务器</span></span><br><span class="line">EMAIL_PORT = <span class="number">465</span>           <span class="comment">#端口为465或587</span></span><br><span class="line">EMAIL_USE_SSL = <span class="literal">True</span>    <span class="comment">#SSL加密方式设置为True</span></span><br><span class="line">EMAIL_HOST_USER = <span class="string">'yourmail@qq.com'</span>     <span class="comment">#这里是你的邮箱账号</span></span><br><span class="line">EMAIL_HOST_PASSWORD = <span class="string">'yourpassword'</span>   <span class="comment">#注意这里不能用你邮箱账号的密码，而要用申请的设备授权码。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二、测试发送邮件"><a href="#二、测试发送邮件" class="headerlink" title="二、测试发送邮件"></a>二、测试发送邮件</h2><p>可以用django的环境在shell中测试。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line">from django.core.mail import send_mail</span><br><span class="line">send_mail(<span class="string">'test'</span>,<span class="string">'this is test mail'</span>,<span class="string">'yourmail@qq.com'</span>,[<span class="string">'yourmail@126.com'</span>,<span class="string">'yormail@qq.com'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20221230/8_%E5%8F%91%E9%80%81%E9%82%AE%E7%AE%B1%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<p>如果反回1就表示发送成功了, 查收邮件到达。</p>
+<p>如果发送不成功，请仔细核对邮箱服务的相关配置，一般来说与django无关。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5381000/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2537,283 +2774,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5b619f34/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/5b619f34/" itemprop="url">Vue3引入vue-router路由并通过vue-wechat-title设置页面title</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-03T16:36:53+08:00">
-                2022-07-03
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:21+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/5b619f34/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5b619f34/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/5b619f34/" class="leancloud_visitors" data-flag-title="Vue3引入vue-router路由并通过vue-wechat-title设置页面title">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>对于用类似Vue前后端分离技术架构的单页应用页面之间的跳转没有非前后端分离那么来得直接，甚至连设置跳转页面的Title都要费一番周折，本文介绍Vue3引入vue-router路由并设置页面Title，通过vue-router实现页面的路由，通过vue-wechat-title来设置页面的title。</p>
-<h1 id="一、用vue-router库实现路由管理"><a href="#一、用vue-router库实现路由管理" class="headerlink" title="一、用vue-router库实现路由管理"></a>一、用vue-router库实现路由管理</h1><p>vue-router是Vue.js官方推荐的路由管理库。它和Vue.js的核心深度集成，让构建单页应用变得轻松容易。使用Vue.js和vue-router库创建单页应用非常的简单：使用Vue.js开发，整个应用已经被拆分成了独立的组件；使用vue-router库，可以把路由映射到各个组件，并把各个组件渲染到正确的地方。下面就来介绍如何安装引入vue-router库并实现路由管理</p>
-<h2 id="1、安装vue-router库"><a href="#1、安装vue-router库" class="headerlink" title="1、安装vue-router库"></a>1、安装vue-router库</h2><p>使用如下命令安装vue-router库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -save -vue-router</span><br></pre></td></tr></table></figure>
-
-<p>也可以通过  <code>npm install -save vue-router@4</code> 来指定版本号@4表示版本是4<br>安装成功后，可以在控制台看到了安装成功的信息和版本号<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/%E5%AE%89%E8%A3%85vue-route%E5%BA%93.png" alt="控制台看到了安装成功的信息和版本号"><br>除此之外也可以在工程中的package.json中看到依赖的库中包含有vue-router及版本号。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/%E6%9F%A5%E7%9C%8Bvue-route%E7%89%88%E6%9C%AC.png" alt="package.json中看到依赖的库中包含有vue-router及版本号"></p>
-<h2 id="2、在router文件夹下创建router-js"><a href="#2、在router文件夹下创建router-js" class="headerlink" title="2、在router文件夹下创建router.js"></a>2、在router文件夹下创建router.js</h2><p>在工程的src目录下建立router文件夹 在router文件夹下创建router.js，该文件是Vue路由管理的核心文件，所有的各组件的路由在该文件中进行配置。<br>参考代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRouter,createWebHistory &#125; <span class="keyword">from</span> <span class="string">"vue-router"</span>; <span class="comment">//引入vue-router组件</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'@/components/HelloWorld'</span>;           <span class="comment">//引入需要路由管理的页面组件HelloWorld</span></span><br><span class="line"><span class="keyword">import</span> siteLogin <span class="keyword">from</span> <span class="string">'@/views/user/login'</span>;                 <span class="comment">//引入需要路由管理的页面组件login</span></span><br><span class="line"><span class="keyword">import</span> userInfo <span class="keyword">from</span> <span class="string">"@/views/user/userinfo"</span>;               <span class="comment">//引入需要路由管理的页面组件userinfo</span></span><br><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">    history:createWebHistory(),</span><br><span class="line">    routes:[</span><br><span class="line">        &#123;</span><br><span class="line">            path:<span class="string">'/'</span>,              <span class="comment">//路由的路径</span></span><br><span class="line">            name:<span class="string">'Home'</span>,           <span class="comment">//路由的名称</span></span><br><span class="line">            component:HelloWorld,  <span class="comment">//路由的组件</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path:<span class="string">'/login'</span>,</span><br><span class="line">            name:<span class="string">'Login'</span>,</span><br><span class="line">            component:siteLogin,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path:<span class="string">'/userinfo'</span>,</span><br><span class="line">            name:<span class="string">'UserInfo'</span>,</span><br><span class="line">            component:userInfo,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
-
-<p>代码组织结构如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84.png" alt="代码组织结构如下"></p>
-<h2 id="3、在App-vue中加入路由视图"><a href="#3、在App-vue中加入路由视图" class="headerlink" title="3、在App.vue中加入路由视图"></a>3、在App.vue中加入路由视图</h2><p>在App.vue中加入<code>&lt;router-view /&gt;</code><br>App.vue示例代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;router-view /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'App'</span>,</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、在项目的main-js中引入路由"><a href="#4、在项目的main-js中引入路由" class="headerlink" title="4、在项目的main.js中引入路由"></a>4、在项目的main.js中引入路由</h2><p>参考代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">"@/router/router"</span>;  <span class="comment">//引入路由，会去找router下的router.js的配置文件</span></span><br><span class="line">createApp(App).use(router).mount(<span class="string">'#app'</span>)  <span class="comment">//创建应用的时候应用路由</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="5、验证效果"><a href="#5、验证效果" class="headerlink" title="5、验证效果"></a>5、验证效果</h2><p>为了显示更清楚，将默认创建的src\components\HelloWorld.vue内容稍加调整</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div &gt;</span><br><span class="line">    第一个路由组件Home</span><br><span class="line">    &lt;p&gt;&#123;&#123; name &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">export default &#123;</span></span><br><span class="line"><span class="regexp">  name: 'HelloWorld',</span></span><br><span class="line"><span class="regexp">  data() &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      name:"Hello World!"</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;!-- Add <span class="string">"scoped"</span> attribute to limit CSS to <span class="keyword">this</span> component only --&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果上面的步骤没有遗漏，在终端输入 npm run serve 将前端服务启动起来，在浏览器访问localhost:8080可以看到如下页面：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/home%E8%B7%AF%E7%94%B1.png" alt="localhost:8080"></p>
-<p>访问localhost:8080/login</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/login.png" alt="访问localhost:8080/login"></p>
-<p>访问localhost:8080/userinfo</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/userinfo.png" alt="访问localhost:8080/userinfo"><br>可以看到访问不同的URL路由到了不同的Vue页面，上述login.vue和userinfo.vue示例代码没有给出，大家可以自行随便实现。</p>
-<h1 id="二、用vue-wechat-title实现页面title的设置"><a href="#二、用vue-wechat-title实现页面title的设置" class="headerlink" title="二、用vue-wechat-title实现页面title的设置"></a>二、用vue-wechat-title实现页面title的设置</h1><p>在上面实现了不同页面的路由管理，但是访问不同的URL看到的页面title所有的页面都是一样的，如何设置不同页面不同的页面Title呢？比较方便的做法是用vue-wechat-title来实现。<br>同样首先要安装vue-wechat-title库</p>
-<h2 id="1、安装vue-wechat-title库"><a href="#1、安装vue-wechat-title库" class="headerlink" title="1、安装vue-wechat-title库"></a>1、安装vue-wechat-title库</h2><p>使用如下命令安装vue-wechat-title库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-wechat-title -save</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后在工程中的package.json中看到依赖的库中包含有vue-wechat-title及版本号<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/vue-wecha-title.png" alt="package.json中看到依赖的库中包含有vue-wechat-title及版本号"></p>
-<h2 id="2、在router文件夹下的router-js中增加title的配置"><a href="#2、在router文件夹下的router-js中增加title的配置" class="headerlink" title="2、在router文件夹下的router.js中增加title的配置"></a>2、在router文件夹下的router.js中增加title的配置</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRouter,createWebHistory &#125; <span class="keyword">from</span> <span class="string">"vue-router"</span>; <span class="comment">//引入vue-router组件</span></span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">'@/components/HelloWorld'</span>;           <span class="comment">//引入需要路由管理的页面组件HelloWorld</span></span><br><span class="line"><span class="keyword">import</span> siteLogin <span class="keyword">from</span> <span class="string">'@/views/user/login'</span>;                 <span class="comment">//引入需要路由管理的页面组件login</span></span><br><span class="line"><span class="keyword">import</span> userInfo <span class="keyword">from</span> <span class="string">"@/views/user/userinfo"</span>;               <span class="comment">//引入需要路由管理的页面组件userinfo</span></span><br><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span><br><span class="line">    history:createWebHistory(),</span><br><span class="line">    routes:[</span><br><span class="line">        &#123;</span><br><span class="line">            path:<span class="string">'/'</span>,              <span class="comment">//路由的路径</span></span><br><span class="line">            name:<span class="string">'Home'</span>,           <span class="comment">//路由的名称</span></span><br><span class="line">            meta:&#123;</span><br><span class="line">                title: <span class="string">'首页'</span>       <span class="comment">//title配置</span></span><br><span class="line">            &#125;,</span><br><span class="line">            component:HelloWorld,  <span class="comment">//路由的组件</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path:<span class="string">'/login'</span>,</span><br><span class="line">            name:<span class="string">'Login'</span>,</span><br><span class="line">            meta:&#123;</span><br><span class="line">                title:<span class="string">'登录'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            component:siteLogin,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path:<span class="string">'/userinfo'</span>,</span><br><span class="line">            name:<span class="string">'UserInfo'</span>,</span><br><span class="line">            meta:&#123;</span><br><span class="line">                title: <span class="string">'用户信息'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            component:userInfo,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
-
-<p>主要是在路由配置时设置了<code>meta:{title:&#39;xxxx&#39;}</code>如下图：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/%E5%8A%A0%E5%85%A5title.png" alt="router.js中增加title的配置"></p>
-<h2 id="3、在App-vue页面中使用"><a href="#3、在App-vue页面中使用" class="headerlink" title="3、在App.vue页面中使用"></a>3、在App.vue页面中使用</h2><p>App.vue代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>  v-wechat-title=<span class="string">"$route.meta.title"</span>&gt;</span><br><span class="line">    &lt;router-view /&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'App'</span>,</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
-
-<p>主要是在<code>&lt;div id=&quot;app&quot;  v-wechat-title=&quot;$route.meta.title&quot;&gt;</code> 加入了<code>v-wechat-title=&quot;$route.meta.title&quot;</code></p>
-<h2 id="4、在main-js中引用vue-wechat-title"><a href="#4、在main-js中引用vue-wechat-title" class="headerlink" title="4、在main.js中引用vue-wechat-title"></a>4、在main.js中引用vue-wechat-title</h2><p>在main.js中引用vue-wechat-title的时候有个坑，如果按照一般的引用会报错<br>mian.js代码示例如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">"@/router/router"</span>;  <span class="comment">//引入路由，会去找router下的router.js的配置文件</span></span><br><span class="line"><span class="keyword">import</span> VueWechatTitle <span class="keyword">from</span> <span class="string">'vue-wechat-title'</span>; <span class="comment">//引入VueWechatTitle</span></span><br><span class="line">createApp(App).use(router,VueWechatTitle).mount(<span class="string">'#app'</span>)  <span class="comment">//创建应用的时候应用路由</span></span><br></pre></td></tr></table></figure>
-
-<p>在终端输入 npm run serve 将前端服务启动起来会报错！<br><font color=Red>Uncaught TypeError: Cannot read properties of undefined (reading ‘deep’)</font></p>
-<p>原因是在挂载app示例前，vue-wechat-title还没有加载好，一定要先应用再挂载app<br>将createApp(App).use(router,VueWechatTitle).mount(‘#app’)删除或注释掉。改用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app=createApp(App);</span><br><span class="line">app.use(VueWechatTitle);</span><br><span class="line">app.use(router);</span><br><span class="line">app.mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>main.js的参考示例代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">"@/router/router"</span>;  <span class="comment">//引入路由，会去找router下的router.js的配置文件</span></span><br><span class="line"><span class="keyword">import</span> VueWechatTitle <span class="keyword">from</span> <span class="string">'vue-wechat-title'</span>; <span class="comment">//引入VueWechatTitle</span></span><br><span class="line"><span class="comment">//createApp(App).use(router,VueWechatTitle).mount('#app')  //指令定义在 mount('#app')之后，导致自定义指令未挂载到，会报错</span></span><br><span class="line"><span class="keyword">const</span> app=createApp(App);</span><br><span class="line">app.use(VueWechatTitle);</span><br><span class="line">app.use(router);</span><br><span class="line">app.mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="5、验证效果-1"><a href="#5、验证效果-1" class="headerlink" title="5、验证效果"></a>5、验证效果</h2><p>在终端输入 npm run serve 将前端服务启动起来<br>看到访问不同的URL会显示不同的title<br><a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/home%E8%B7%AF%E7%94%B1.png" alt="http://localhost:8080/的title"><br><a href="http://localhost:8080/login" target="_blank" rel="noopener">http://localhost:8080/login</a></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/login%E7%9A%84title.png" alt="login的title登录"></p>
-<p><a href="http://localhost:8080/userinfo" target="_blank" rel="noopener">http://localhost:8080/userinfo</a></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Vue3%E5%BC%95%E5%85%A5vue-router%E8%B7%AF%E7%94%B1%E5%B9%B6%E9%80%9A%E8%BF%87vue-wechat-title%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2Title/userinfo%E7%9A%84title.png" alt="userinfo的title用户信息"></p>
-<p>本文通过以上实例实现了Vue3引入vue-router路由并设置页面Title，通过vue-router实现页面的路由，通过vue-wechat-title来设置页面的title都还比较方便。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2870,7 +2830,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-count">199</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2982,7 +2942,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">412.9k</span>
+    <span title="Site words total count">413.8k</span>
   
   
 <!--51la网站应用监控-->

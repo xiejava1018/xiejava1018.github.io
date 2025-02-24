@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiejava.gitee.io/"/>
-  <updated>2025-02-19T04:28:13.150Z</updated>
+  <updated>2025-02-24T04:44:56.682Z</updated>
   <id>https://xiejava.gitee.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>什么是互联网暴露面？什么是攻击面？暴露面与攻击面有什么区别？</title>
+    <link href="https://xiejava.gitee.io/posts/6e957ca9/"/>
+    <id>https://xiejava.gitee.io/posts/6e957ca9/</id>
+    <published>2025-02-24T03:28:04.000Z</published>
+    <updated>2025-02-24T04:44:56.682Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、定义与核心概念"><a href="#一、定义与核心概念" class="headerlink" title="一、定义与核心概念"></a>一、定义与核心概念</h2><h3 id="1-‌互联网暴露面‌"><a href="#1-‌互联网暴露面‌" class="headerlink" title="1. ‌互联网暴露面‌"></a>1. ‌互联网暴露面‌</h3><ul><li><strong>定义</strong>：指组织在互联网上公开可访问的数字化资产和服务，如服务器、开放端口、API、网站、云服务等。</li></ul><p><strong>暴露面</strong>指网络系统中<strong>对外界开放的可见部分</strong>，包括公开的接口、网络端口、服务或应用程序等。例如Web服务、API、数据库端口等，这些资源可直接被外部访问或识别‌。暴露面的大小直接影响潜在攻击机会‌。</p><ul><li><p><strong>核心特点</strong>：</p><ul><li>可见性：能被外部扫描或探测到（如通过IP、域名、端口）。</li><li>入口点：是外部与内部系统交互的桥梁（如登录页面、文件上传接口）。</li></ul></li><li><p><strong>示例</strong>：</p><ul><li>公网IP地址、开放的SSH端口（22）、公开的Web应用、未加密的HTTP服务。</li></ul></li></ul><h3 id="2-‌攻击面"><a href="#2-‌攻击面" class="headerlink" title="2. ‌攻击面"></a>2. ‌攻击面</h3><ul><li><strong>定义</strong>：指所有可能被攻击者利用的潜在漏洞和风险点，涵盖技术、人员、流程等多个维度。‌</li></ul><p><strong>攻击面</strong>指攻击者<strong>可能利用的所有潜在入口点和攻击路径</strong>，不仅包含暴露面中的可见部分，还涵盖漏洞、错误配置、权限问题、社会工程等动态风险因素。攻击面越大，系统被入侵的概率越高‌。</p><ul><li><p><strong>核心特点</strong>：</p><ul><li>全面性：不仅包括暴露面，还包含内部漏洞（如配置错误、弱密码、员工安全意识不足）。</li><li>动态性：随系统更新、新漏洞披露、业务扩展而变化。</li></ul></li><li><p><strong>示例</strong>：</p><ul><li>暴露面中的漏洞（如SQL注入）、内部数据库弱口令、员工易受钓鱼攻击、过时的内部软件版本。</li></ul></li></ul><h2 id="二、区别与关联"><a href="#二、区别与关联" class="headerlink" title="二、区别与关联"></a>二、区别与关联</h2><p><strong>关系</strong>：从定义上看，攻击面包含暴露面，并且更加广泛。</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250224001/%E6%9A%B4%E9%9C%B2%E9%9D%A2%E4%B8%8E%E6%94%BB%E5%87%BB%E9%9D%A2%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="暴露面与攻击面的关系"></p><p><strong>区别：</strong></p><table><thead><tr><th>维度‌</th><th>‌暴露面‌</th><th>‌攻击面‌</th></tr></thead><tbody><tr><td>范围‌</td><td>仅包含对外可见的开放部分‌</td><td>包含所有潜在攻击路径（含暴露面及内部系统、人为因素等）‌</td></tr><tr><td>‌动态性‌</td><td>相对静态，与系统配置直接相关‌</td><td>动态变化，受漏洞、人为因素等影响‌</td></tr><tr><td>关注点‌</td><td>资源对外暴露的“可见性”‌，可见性和可访问性</td><td>攻击者可利用的“漏洞总和”‌，潜在漏洞和攻击路径</td></tr><tr><td>防御重点</td><td>减少不必要的公开资产</td><td>全面风险管理（技术+管理）</td></tr><tr><td>管理策略</td><td>定期扫描并关闭不必要的服务，使用防火墙限制访问，最小化公开资产。</td><td>漏洞管理、员工培训、权限控制、持续监控（如日志审计、入侵检测）。</td></tr><tr><td>示例</td><td>如：公司官网（example.com）开放了80和443端口，允许用户访问。</td><td>若官网存在未修复的XSS漏洞（技术风险），且管理员使用弱密码（人为风险），两者均属于攻击面。</td></tr></tbody></table><h2 id="三、防护侧重点"><a href="#三、防护侧重点" class="headerlink" title="三、防护侧重点"></a>三、防护侧重点</h2><h3 id="1-‌暴露面管理‌"><a href="#1-‌暴露面管理‌" class="headerlink" title="1. ‌暴露面管理‌"></a>1. ‌暴露面管理‌</h3><ul><li>‌原则‌：遵循最小权限，仅开放必要端口或服务‌。</li><li>‌措施‌：网络隔离、访问控制、定期审查暴露资源‌。</li></ul><h3 id="2-‌攻击面管理‌"><a href="#2-‌攻击面管理‌" class="headerlink" title="2. ‌攻击面管理‌"></a>2. ‌攻击面管理‌</h3><ul><li>‌原则‌：降低漏洞利用可能性，覆盖技术、流程、人为因素‌。</li><li>‌措施‌：渗透测试、安全评估、漏洞修复、权限管控‌。</li></ul><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>‌<strong>暴露面是攻击面的子集‌</strong>，两者区别在于：暴露面聚焦“对外可见性”，攻击面覆盖“可利用性”；前者是静态防御的基础，后者需动态应对综合风险‌。缩小暴露面可降低被攻击概率，而减少攻击面则能全面降低风险。</p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一、定义与核心概念&quot;&gt;&lt;a href=&quot;#一、定义与核心概念&quot; class=&quot;headerlink&quot; title=&quot;一、定义与核心概念&quot;&gt;&lt;/a&gt;一、定义与核心概念&lt;/h2&gt;&lt;h3 id=&quot;1-‌互联网暴露面‌&quot;&gt;&lt;a href=&quot;#1-‌互联网暴露面‌&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>一文搞懂什么是攻击面管理（ASM）</title>
     <link href="https://xiejava.gitee.io/posts/9aafe860/"/>
     <id>https://xiejava.gitee.io/posts/9aafe860/</id>
     <published>2025-02-19T04:24:11.000Z</published>
-    <updated>2025-02-19T04:28:13.150Z</updated>
+    <updated>2025-02-19T04:28:30.174Z</updated>
     
     <content type="html"><![CDATA[<p>攻击面是网络安全防御的“第一道防线”，其管理能力直接决定企业的安全基线。</p><p>攻击面管理（Attack Surface Management，ASM）是一种新兴的网络安全策略和实践，旨在通过持续发现、分析、监控和评估组织内外部的所有资产，识别并管理潜在的安全风险。其核心是从攻击者的视角出发，主动识别企业网络资产的攻击面及脆弱性，包括已知和未知的资产、漏洞、配置缺陷以及泄露信息等。</p><h2 id="一、什么是攻击面"><a href="#一、什么是攻击面" class="headerlink" title="一、什么是攻击面"></a>一、什么是攻击面</h2><p>要了解攻击面管理（ASM）首先需要了解什么是攻击面。攻击面指的是所有可能被攻击者利用的入口点，比如硬件、软件、云服务等等。攻击面（Attack Surface） 是网络安全领域的核心概念，指一个系统、网络或组织中可能被攻击者利用的所有潜在入口点和漏洞的集合。简单来说，它是攻击者可能发起攻击的“可触及范围”，范围越大，暴露的风险越高，防御难度也越大。</p><h3 id="攻击面的核心组成部分"><a href="#攻击面的核心组成部分" class="headerlink" title="攻击面的核心组成部分"></a>攻击面的核心组成部分</h3><p>攻击面通常由以下要素构成：</p><ol><li>技术资产<br>○ 硬件：服务器、路由器、IoT设备、摄像头等。<br>○ 软件：操作系统、应用程序、API、开源组件等。<br>○ 网络服务：开放的端口（如HTTP 80端口、SSH 22端口）、云服务（如AWS S3存储桶）、域名等。</li><li>配置缺陷<br>○ 默认密码未修改、权限设置错误、未加密的通信协议（如HTTP）、冗余服务（如未关闭的测试环境）等。</li><li>数据暴露<br>○ 敏感数据泄露（如数据库备份文件被公开）、代码仓库中的密钥硬编码、日志文件中的用户信息等。</li><li>人为因素<br>○ 员工的安全意识薄弱（如点击钓鱼链接）、第三方供应商的访问权限、社会工程攻击的潜在目标。</li><li>供应链风险<br>○ 依赖的第三方软件漏洞（如Log4j）、开源库的未更新版本、外包开发引入的后门等。</li></ol><h3 id="攻击面扩大的原因"><a href="#攻击面扩大的原因" class="headerlink" title="攻击面扩大的原因"></a>攻击面扩大的原因</h3><ol><li>数字化转型：云服务、微服务架构、远程办公导致资产分散化。</li><li>影子IT：员工私自部署未授权的应用或设备（如个人NAS）。</li><li>复杂供应链：第三方服务、开源组件的依赖增加。</li><li>自动化攻击工具：攻击者可快速扫描全网暴露资产（如Shodan搜索引擎）</li></ol><h2 id="二、攻击面的分类"><a href="#二、攻击面的分类" class="headerlink" title="二、攻击面的分类"></a>二、攻击面的分类</h2><p>根据视角和范围，攻击面可分为以下两类：</p><ol><li>外部攻击面（External Attack Surface）<br>○ 定义：暴露在互联网上，能被外部攻击者直接访问的资产和漏洞。<br>○ 典型示例：<br> ■ 面向公网的Web应用、API接口。<br> ■ 云存储桶的错误配置（如公开可读）。<br> ■ 员工在GitHub意外上传的数据库凭证。<br>○ 管理工具：EASM（外部攻击面管理）。</li><li>内部攻击面（Internal Attack Surface）<br>○ 定义：仅限内部网络访问，但可能被已渗透的攻击者横向利用的弱点。<br>○ 典型示例：<br> ■ 内网未修复的漏洞（如永恒之蓝漏洞）。<br> ■ 域控制器权限滥用、共享文件夹过度开放。<br> ■ 内部员工滥用权限窃取数据。<br>○ 管理工具：CAASM（网络资产攻击面管理）、内部漏洞扫描器。</li></ol><h2 id="三、网络资产攻击面管理-CAASM"><a href="#三、网络资产攻击面管理-CAASM" class="headerlink" title="三、网络资产攻击面管理(CAASM)"></a>三、网络资产攻击面管理(CAASM)</h2><p>网络资产攻击面管理(CAASM)全称（Cyber Asset Attack Surface Management, CAASM）是一种网络安全技术或方法论，旨在帮助组织全面发现、识别、监控和管理其数字化资产（包括硬件、软件、云服务、API、物联网设备等）的潜在攻击面，从而降低安全风险并提升防御能力。CAASM通过整合现有安全工具（如漏洞扫描器、EDR、CMDB等）的数据，构建统一的资产视图，覆盖内部网络、云环境、第三方服务等所有资产。其核心目标是解决资产分散、数据孤岛和未知资产的问题，帮助安全团队识别安全控制中的漏洞与差距，并协调修复。</p><h3 id="CAASM-的核心功能"><a href="#CAASM-的核心功能" class="headerlink" title="CAASM 的核心功能"></a>CAASM 的核心功能</h3><ol><li>自动化资产发现<br>○ 通过主动扫描、被动流量分析、API集成等方式，自动发现企业内外的所有资产，包括未授权的“影子IT”（如员工私建的云实例、未知设备）。<br>○ 覆盖范围包括本地基础设施、云环境（AWS、Azure等）、第三方服务、物联网设备等。</li><li>资产分类与优先级排序<br>○ 根据资产类型（服务器、数据库、API）、业务重要性、暴露程度（如是否面向公网）等，对资产进行分类和风险评估。<br>○ 帮助安全团队优先处理高风险资产（如暴露在互联网的敏感数据库）。</li><li>攻击面可视化与实时监控<br>○ 通过仪表盘展示所有资产的拓扑关系和暴露路径，直观呈现攻击面。<br>○ 实时监控资产状态变化（如新开放的端口、新增的云服务），及时发现异常。</li><li>与现有工具集成<br>○ 整合漏洞扫描工具（如Nessus）、EDR（端点检测与响应）、防火墙日志等，形成统一的资产视图。<br>○ 利用API打通数据孤岛，避免不同工具间的信息割裂。</li><li>风险评估与缓解建议<br>○ 结合漏洞数据、威胁情报和资产上下文，生成风险评分。<br>○ 提供修复建议（如关闭不必要的端口、更新补丁）或临时缓解措施（如配置防火墙规则）。</li></ol><h3 id="网络资产攻击面管理-CAASM-与传统资产管理的区别"><a href="#网络资产攻击面管理-CAASM-与传统资产管理的区别" class="headerlink" title="网络资产攻击面管理(CAASM)与传统资产管理的区别"></a>网络资产攻击面管理(CAASM)与传统资产管理的区别</h3><p>传统资产管理工具（如CMDB）通常依赖手动录入或静态数据，且缺乏对攻击面的动态分析。而CAASM的特点包括：<br>● 主动发现：自动识别资产，减少人为遗漏。<br>● 攻击面视角：不仅记录资产，还分析其暴露程度和潜在风险。<br>● 实时性：持续监控变化，适应动态环境（如云资源的弹性扩展）。<br>● 威胁关联：结合漏洞、配置错误和威胁情报进行综合分析。</p><h2 id="四、外部攻击面管理（EASM）"><a href="#四、外部攻击面管理（EASM）" class="headerlink" title="四、外部攻击面管理（EASM）"></a>四、外部攻击面管理（EASM）</h2><p>外部攻击面管理（External Attack Surface Management, EASM） 是一种以攻击者视角为核心的安全管理方法，旨在持续发现、监控和评估组织暴露在互联网上的所有数字资产及其潜在风险。这些资产包括服务器、域名、云服务、API、物联网设备等，同时也涵盖影子资产（如未授权的云实例）、错误配置、开放端口、未修复漏洞以及敏感数据泄露等问题。EASM的关键在于通过外部视角模拟攻击者的行为，识别可能被利用的薄弱点，从而提前修复风险。</p><h3 id="外部攻击面管理（EASM）的核心功能"><a href="#外部攻击面管理（EASM）的核心功能" class="headerlink" title="外部攻击面管理（EASM）的核心功能"></a>外部攻击面管理（EASM）的核心功能</h3><p>外部攻击面管理（EASM）的核心功能主要包括以下几个方面：</p><ol><li>泛资产发现与监控<br>通过分布式探测引擎，持续扫描和监控外部环境，识别和编目从互联网可访问的数字资产，包括域名、IP地址、网页应用程序、API、云服务、影子资产、仿冒资产等。这些功能为企业提供了全面的资产暴露面视图。</li><li>攻击触点识别与评估<br>在攻防视角下，依托指纹库和情报库，对发现的资产进行弱点检测，包括漏洞扫描、弱口令检测、敏感数据识别等。同时，结合供应链情报和攻防情报，评估资产被利用的风险。</li><li>数据泄露监测<br>覆盖全网（包括暗网、深网、代码托管平台、网盘、文库等）范围，监测敏感数据泄露情况，及时发现并处理潜在的数据泄露风险。</li><li>攻击面分析<br>基于弱点检测结果，综合分析资产的风险，识别可能的攻击路径和风险等级。评估一旦发生安全事件，业务可能受影响的范围，并提供风险收敛的优先级建议。</li><li>风险评估与预警<br>评估外部攻击面相关的风险，并根据威胁的潜在影响和可能性进行优先级排序。提供7×24小时的风险预警服务，包括暴露面变动提醒、数据泄露监测、网站篡改和黑链预警等。</li><li>持续监控与适应<br>定期对外部攻击面进行实时扫描和监控，结合威胁情报源和漏洞管理，检测新的或变化的资产、漏洞和威胁，并根据这些变化调整安全策略。</li></ol><h2 id="五、网络资产攻击面管理（CAASM）与外部攻击面管理（EASM）的联系与区别"><a href="#五、网络资产攻击面管理（CAASM）与外部攻击面管理（EASM）的联系与区别" class="headerlink" title="五、网络资产攻击面管理（CAASM）与外部攻击面管理（EASM）的联系与区别"></a>五、网络资产攻击面管理（CAASM）与外部攻击面管理（EASM）的联系与区别</h2><h3 id="EASM与CAASM的联系"><a href="#EASM与CAASM的联系" class="headerlink" title="EASM与CAASM的联系"></a>EASM与CAASM的联系</h3><ol><li>共同目标：两者均属于攻击面管理（ASM）的核心组成部分，旨在缩小攻击面、降低安全风险。</li><li>互补性：EASM提供外部视角的资产发现和风险分析，而CAASM整合内外资产数据，形成全局视图。例如，EASM发现的外部暴露资产可输入到CAASM系统中进行关联分析。</li><li>数据整合：CAASM依赖EASM和DRPS（数字风险保护服务）的数据源，实现更全面的资产清单管理。</li></ol><h3 id="EASM与CAASM的区别"><a href="#EASM与CAASM的区别" class="headerlink" title="EASM与CAASM的区别"></a>EASM与CAASM的区别</h3><table><thead><tr><th>维度</th><th>EASM</th><th>CAASM</th></tr></thead><tbody><tr><td>视角</td><td>攻击者视角（外部“黑盒”扫描）</td><td>防御者视角（内部“白盒”数据整合）</td></tr><tr><td>覆盖范围</td><td>互联网暴露的资产（如云服务、域名、第三方应用）</td><td>内外部所有资产（包括网络设备、服务器、API、IoT设备等）</td></tr><tr><td>技术手段</td><td>依赖网络空间测绘、主动扫描、暗网监控</td><td>通过API与现有工具集成（如CMDB、漏洞扫描器），聚合多源数据</td></tr><tr><td>核心功能</td><td>资产发现、漏洞优先级排序、数据泄露检测、供应链风险评估</td><td>资产清点、数据关联分析、安全控制差距识别、自动化修复建议</td></tr><tr><td>适用场景</td><td>暴露在公网的资产风险管理（如云服务、子公司资产）</td><td>复杂混合环境（如多云、本地数据中心）的资产可见性与合规管理</td></tr><tr><td>数据来源</td><td>外部扫描、公开网络、暗网情报</td><td>内部系统日志、IT工具接口、CMDB数据库</td></tr></tbody></table><h3 id="典型应用场景对比"><a href="#典型应用场景对比" class="headerlink" title="典型应用场景对比"></a>典型应用场景对比</h3><ol><li>EASM：<br>○ 云安全治理：发现公有云上的错误配置或未授权实例。<br>○ 供应链风险：评估第三方服务商的暴露面，如合作伙伴的漏洞代码。<br>○ 敏感数据泄露：监控暗网或公共平台（如GitHub）上的数据泄露。</li><li>CAASM：<br>○ 影子资产管理：通过整合EDR、防火墙日志等，发现未登记的内部设备。<br>○ 漏洞优先级排序：结合资产业务价值与漏洞严重性，优化修复策略。<br>○ 合规性报告：生成统一的资产与安全控制报告，满足ISO 27001等合规要求。</li></ol><p>● EASM更强调从外部攻击者的角度发现风险，适用于防御边界模糊的互联网暴露场景。<br>● CAASM则聚焦于内部资产的全面可见性，解决复杂IT环境下的数据孤岛问题。<br>● 协同作用：在实际应用中，两者需结合使用。例如，EASM发现的外部风险需通过CAASM与内部资产关联分析，形成闭环管理。</p><p>未来，随着攻击面管理技术的成熟，EASM与CAASM可能会进一步融合到统一平台中，实现更高效的风险收敛。</p><h2 id="六、攻击面管理的优势与应用场景"><a href="#六、攻击面管理的优势与应用场景" class="headerlink" title="六、攻击面管理的优势与应用场景"></a>六、攻击面管理的优势与应用场景</h2><p>随着技术的发展，攻击面正从传统IT向云、物联网、供应链等方向快速扩展，企业需借助自动化工具（如EASM、CAASM）和系统化策略，实现攻击面的持续收敛与风险控制。</p><h3 id="攻击面管理的优势"><a href="#攻击面管理的优势" class="headerlink" title="攻击面管理的优势"></a>攻击面管理的优势</h3><p>● 主动防御：从传统的被动防御模式转变为积极主动地发现和管理潜在风险。<br>● 全面覆盖：不仅关注已知资产，还能发现未知的影子资产和泄露信息。<br>● 动态适应：能够适应云计算、物联网等复杂环境，并与现有安全工具（如SOC、SIEM）集成。<br>● 风险量化：提供更精细的风险评估和量化功能，帮助企业制定有效的安全策略。</p><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>攻击面管理适用于多种场景，包括但不限于：<br>● 企业数字化转型：应对云计算、物联网等新技术带来的复杂攻击面。<br>● 供应链安全：评估和管理供应商基础设施中的安全风险。<br>● 安全运营：与安全运营中心（SOC）结合，提升整体安全管理水平。</p><p>随着技术的不断发展，攻击面管理正朝着自动化、智能化、云原生化的方向发展，并与企业的业务风险管理流程紧密结合。</p><hr><p>博客文章：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
     
@@ -542,35 +570,6 @@
     
     
       <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>django.db.utils.operationalerror:\xF0\x9F\x9....报错解决办法</title>
-    <link href="https://xiejava.gitee.io/posts/835ea0bc/"/>
-    <id>https://xiejava.gitee.io/posts/835ea0bc/</id>
-    <published>2024-05-30T06:21:41.000Z</published>
-    <updated>2024-06-13T14:52:41.922Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="一、问题现象"><a href="#一、问题现象" class="headerlink" title="一、问题现象"></a>一、问题现象</h2><p>今天在迁移hexo的.md博客文件到django的博客程序的时候报错了，具体报错信息如下。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\django\db\backends\mysql\base.py"</span>, line 75, <span class="keyword">in</span> execute</span><br><span class="line">    <span class="built_in">return</span> self.cursor.execute(query, args)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 206, <span class="keyword">in</span> execute</span><br><span class="line">    res = self._query(query)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 319, <span class="keyword">in</span> _query</span><br><span class="line">    db.query(q)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\connections.py"</span>, line 254, <span class="keyword">in</span> query</span><br><span class="line">    _mysql.connection.query(self, query)</span><br><span class="line">django.db.utils.OperationalError: (1366, <span class="string">"Incorrect string value: '\\xF0\\x9F\\x98\\x82\\xE5\\x93...' for column 'content' at row 1"</span>)</span><br></pre></td></tr></table></figure><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/1-%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1.png" alt="报错现象"></p><p>后来发现是因为.md文件中的内容含有mysql不能识别4个字节的utf8编码的字符，抛出了异常。类似于这种4个字节☺、��</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/2-%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0.png" alt="报错原因"></p><h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><h3 id="1、修改mysql的数据库的字符集和的字符集"><a href="#1、修改mysql的数据库的字符集和的字符集" class="headerlink" title="1、修改mysql的数据库的字符集和的字符集"></a>1、修改mysql的数据库的字符集和的字符集</h3><p>修改数据库的字符集为utf8mb4</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p><p>修改字段的字符集为utf8mb4</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/4-%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p><h3 id="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"><a href="#2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置" class="headerlink" title="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"></a>2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/5-%E4%BF%AE%E6%94%B9django%E8%BF%9E%E6%8E%A5%E4%B8%B2%E5%AD%97%E7%AC%A6%E9%9B%86%E8%AE%BE%E7%BD%AE.png" alt="在这里插入图片描述"></p><p>修改完成后，插入正常。</p><hr><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;一、问题现象&quot;&gt;&lt;a href=&quot;#一、问题现象&quot; class=&quot;headerlink&quot; title=&quot;一、问题现象&quot;&gt;&lt;/a&gt;一、问题现象&lt;/h2&gt;&lt;p&gt;今天在迁移hexo的.md博客文件到django的博客程序的时候报错了，具体报错信息如下。&lt;/p&gt;
-&lt;fig
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="Python" scheme="https://xiejava.gitee.io/tags/Python/"/>
     
   </entry>
   

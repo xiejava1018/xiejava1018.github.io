@@ -313,6 +313,265 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/17215b2c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/17215b2c/" itemprop="url">pandas快速入门指南</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-23T10:29:43+08:00">
+                2022-02-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:17+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/17215b2c/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/17215b2c/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/17215b2c/" class="leancloud_visitors" data-flag-title="pandas快速入门指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  742
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220223/pandas_logo.png" alt="pandas"></p>
+<p>Pandas 是一个开源的第三方 Python 库，从 Numpy 和 Matplotlib 的基础上构建而来，享有数据分析“三剑客之一”的盛名（NumPy、Matplotlib、Pandas）。是学习数据分析、AI机器学习必学组件之一。<br>Pandas 这个名字来源于面板数据（Panel Data）与数据分析（data analysis）这两个名词的组合。在经济学中，Panel Data 是一个关于多维数据集的术语。Pandas 对数据的处理是为数据的分析服务的，它所提供的各种数据处理方法、工具是基于数理统计学出发，包含了日常应用中的众多数据分析方法。</p>
+<p>Pandas 可以实现复杂的处理逻辑，这些往往是 Excel 等工具无法处理的，还可以自动化、批量化，对于相同的大量的数据处理我们不需要重复去工作。Pandas 的出现使得 Python 做数据分析的能力得到了大幅度提升，它主要实现了数据分析的五个重要环节：</p>
+<ul>
+<li>加载数据 </li>
+<li>整理数据 </li>
+<li>操作数据 </li>
+<li>构建数据模型 </li>
+<li>分析数据</li>
+</ul>
+<p>主要特点</p>
+<ul>
+<li>它提供了一个简单、高效、带有默认标签（也可以自定义标签）的 DataFrame 对象。 </li>
+<li>能够快速得从不同格式的文件中加载数据（比如<br>Excel、CSV 、SQL文件），然后将其转换为可处理的对象； </li>
+<li>能够按数据的行、列标签进行分组，并对分组后的对象执行聚合和转换操作；</li>
+<li>能够很方便地实现数据归一化操作和缺失值处理； </li>
+<li>能够很方便地对 DataFrame 的数据列进行增加、修改或者删除的操作；</li>
+<li>能够处理不同格式的数据集，比如矩阵数据、异构数据表、时间序列等；</li>
+<li>提供了多种处理数据集的方式，比如构建子集、切片、过滤、分组以及重新排序等。</li>
+</ul>
+<p>本教程梳理了快速入门pandas的一些知识点。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220223/pandas.png" alt="pandas快速入门"></p>
+<p><a href="http://xiejava.ishareread.com/posts/531458d5/" target="_blank" rel="noopener">一、pandas数据结构(Series和DataFrame)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">二、pandas数据加载(csv、excel、json、mysql、webAPI)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/808d8fe8/" target="_blank" rel="noopener">三、pandas基本操作之数据访问(查看与检索)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/16c9fc17/" target="_blank" rel="noopener">四、pandas数据分析之排序和排名(sort和rank)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/a87a78e2/" target="_blank" rel="noopener">五、pandas数据清洗之处理缺失、重复、异常数据</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/2c80aac2/" target="_blank" rel="noopener">六、pandas数据处理之数据转换(映射map、替换replace、重命名rename)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/f44191db/" target="_blank" rel="noopener">七、pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/e7d4d6e1/" target="_blank" rel="noopener">八、pandas数据处理之合并与拼接</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/dd24116d/" target="_blank" rel="noopener">九、pandas数据分析之分组聚合</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/bc5826bd/" target="_blank" rel="noopener">十、pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/e8cac912/" target="_blank" rel="noopener">十一、pandas数据分析之数据绘图</a></p>
+<p>学习pandas最好的资料肯定是pandas的官网  <a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank" rel="noopener">https://pandas.pydata.org/docs/user_guide/index.html</a></p>
+<p>书籍推荐pandas的作者写的《利用python进行数据分析》</p>
+<hr>
+<p>本教程作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e8cac912/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3125,374 +3384,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/531458d5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/531458d5/" itemprop="url">pandas数据结构(Series和DataFrame)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-23T21:07:57+08:00">
-                2022-01-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:16+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/531458d5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/531458d5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/531458d5/" class="leancloud_visitors" data-flag-title="pandas数据结构(Series和DataFrame)">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>无可非议，pandas是Python最强大的数据分析和探索工具之一，因金融数据分析工具而开发，支持类似于SQL语句的模型，可以对数据进行增删改查等操作，支持时间序列分析，也能够灵活的处理缺失的数据。它含有使数据分析工作变得更快更简单的高级数据结构和操作工具。pandas是基于NumPy构建的，让以NumPy为中心的应用变得更加简单。</p>
-<p>这里所说的让pandas变得更快更简单的高级数据结构就是Series和DataFrame。要熟练使用pandas，首先得要熟悉它的这两个主要的数据结构：<strong>Series</strong>和<strong>DateFrame</strong>。</p>
-<p>本文将针对Series和DateFrame，介绍Series和DataFrame数据对象的创建及基于数据对象的基础上对数据进行选择、增加、删除等数据操作。</p>
-<h1 id="一、Series"><a href="#一、Series" class="headerlink" title="一、Series"></a>一、Series</h1><p>Series是一种类似于一维数组对象，它是由一组的数据值value（各种NumPy数据类型）以及一组与之相关的数据标签index（即索引）组成，其中标签与数据值之间是一一对应的关系。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">obj = pd.Series([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>,<span class="string">'孙八'</span>,<span class="string">'何九'</span>,<span class="string">'顾十'</span>])</span><br><span class="line">obj</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>    陈一</span><br><span class="line"><span class="number">1</span>    周二</span><br><span class="line"><span class="number">2</span>    张三</span><br><span class="line"><span class="number">3</span>    李四</span><br><span class="line"><span class="number">4</span>    王五</span><br><span class="line"><span class="number">5</span>    赵六</span><br><span class="line"><span class="number">6</span>    钱七</span><br><span class="line"><span class="number">7</span>    孙八</span><br><span class="line"><span class="number">8</span>    何九</span><br><span class="line"><span class="number">9</span>    顾十</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<p>Series的字符串表现形式为：索引在左边，值在右边。由于没有为数据指定索引，于是会自动创建一个0到N-1（N为数据的长度）的整数型索引。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/Series%E7%BB%93%E6%9E%84.png" alt="Serires数据结构"></p>
-<p>可以通过Series的values和index属性获取其数组表示形式和索引对象。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E8%8E%B7%E5%8F%96Serires%E7%9A%84values%E5%92%8Cindex%E5%B1%9E%E6%80%A7.png" alt="通过Series的values和index属性获取其数组表示形式和索引对象"></p>
-<p><strong>可以将Series看成一个定长的有序字典，因为它是索引值到数据值的一个映射。</strong></p>
-<h2 id="1、Series对象创建"><a href="#1、Series对象创建" class="headerlink" title="1、Series对象创建"></a>1、Series对象创建</h2><p>pandas 使用 Series()  函数来创建 Series 对象，通过这个对象可以调用相应的方法和属性，从而达到处理数据的目的：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">obj=pd.Series( data, index, dtype, copy)</span><br></pre></td></tr></table></figure>
-
-
-<p>参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>data</td>
-<td>输入的数据，可以是列表、常量、ndarray 数组等。</td>
-</tr>
-<tr>
-<td>index</td>
-<td>索引值必须是惟一的，如果没有传递索引，则默认为 np.arrange(n)。</td>
-</tr>
-<tr>
-<td>dtype</td>
-<td>dtype表示数据类型，如果没有提供，则会自动判断得出。</td>
-</tr>
-<tr>
-<td>copy</td>
-<td>表示对 data 进行拷贝，默认为 False。</td>
-</tr>
-</tbody></table>
-<p>data可以是列表、常量、ndarray数组等，如果数据被存放在一个Python字典dict中，也可以直接通过这个dict来创建Series，如果没有传入索引时会按照字典的键来构造索引；反之，当传递了索引时需要将索引标签与字典中的值一一对应。<br>前面的列子是通过列表来创建的Series，接下来看下通过ndarray和dic来创建Series。</p>
-<h3 id="通过ndarray创建Series"><a href="#通过ndarray创建Series" class="headerlink" title="通过ndarray创建Series"></a>通过ndarray创建Series</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ndarray创建Series</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.array([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>,<span class="string">'钱七'</span>,<span class="string">'孙八'</span>,<span class="string">'何九'</span>,<span class="string">'顾十'</span>])</span><br><span class="line">obj= pd.Series(data)</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>    陈一</span><br><span class="line"><span class="number">1</span>    周二</span><br><span class="line"><span class="number">2</span>    张三</span><br><span class="line"><span class="number">3</span>    李四</span><br><span class="line"><span class="number">4</span>    王五</span><br><span class="line"><span class="number">5</span>    赵六</span><br><span class="line"><span class="number">6</span>    钱七</span><br><span class="line"><span class="number">7</span>    孙八</span><br><span class="line"><span class="number">8</span>    何九</span><br><span class="line"><span class="number">9</span>    顾十</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h3 id="通过dict创建Series"><a href="#通过dict创建Series" class="headerlink" title="通过dict创建Series"></a>通过dict创建Series</h3><p>#通过dict创建Series,没有设置indx</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;<span class="string">'1'</span> :<span class="string">'张三'</span>, <span class="string">'2'</span> :<span class="string">'李四'</span>, <span class="string">'3'</span> : <span class="string">'王五'</span>&#125;</span><br><span class="line">obj=pd.Series(data)</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>    张三</span><br><span class="line"><span class="number">2</span>    李四</span><br><span class="line"><span class="number">3</span>    王五</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<p>当传递的索引值无法找到与其对应的值时，使用 NaN（非数字）填充。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过dict创建Series,设置indx</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = &#123;<span class="string">'1'</span> :<span class="string">'张三'</span>, <span class="string">'2'</span> :<span class="string">'李四'</span>, <span class="string">'3'</span> : <span class="string">'王五'</span>&#125;</span><br><span class="line">obj=pd.Series(data,index=[<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'4'</span>])</span><br><span class="line"><span class="comment">#索引4没有在dict的对应的key，所以使用NaN（非数字）填充</span></span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>     张三</span><br><span class="line"><span class="number">2</span>     李四</span><br><span class="line"><span class="number">4</span>    NaN</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、Series操作"><a href="#2、Series操作" class="headerlink" title="2、Series操作"></a>2、Series操作</h2><h3 id="Series数据访问"><a href="#Series数据访问" class="headerlink" title="Series数据访问"></a>Series数据访问</h3><p>Series提供了多种数据访问的方式，可以通过位置下标及索引来访问数据，可以访问单个数据也可以访问多个数据。</p>
-<h4 id="通过位置下标及索引来访问数据"><a href="#通过位置下标及索引来访问数据" class="headerlink" title="通过位置下标及索引来访问数据"></a>通过位置下标及索引来访问数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.array([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>])</span><br><span class="line">obj= pd.Series(data,index=[<span class="string">'一'</span>,<span class="string">'二'</span>,<span class="string">'三'</span>,<span class="string">'四'</span>,<span class="string">'五'</span>,<span class="string">'六'</span>])</span><br><span class="line">print(<span class="string">'obj的Series数据'</span>)</span><br><span class="line">print(obj)</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#位置下标访问</span></span><br><span class="line">print(<span class="string">'位置下标访问:obj[0]'</span>)</span><br><span class="line">print(obj[<span class="number">0</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#切片访问</span></span><br><span class="line">print(<span class="string">'位置切片访问多个元素值:obj[1:3]'</span>)</span><br><span class="line">print(obj[<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#索引访问</span></span><br><span class="line">print(<span class="string">'索引访问:obj[obj.index==\'三\']'</span>)</span><br><span class="line">print(obj[obj.index==<span class="string">'三'</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#索引访问</span></span><br><span class="line">print(<span class="string">'索引访问:obj[\'一\']'</span>)</span><br><span class="line">print(obj[<span class="string">'一'</span>])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#索引列表访问</span></span><br><span class="line">print(<span class="string">'索引列表访问多个元素值:obj[[\'二\',\'三\']]'</span>)</span><br><span class="line">print(obj[[<span class="string">'二'</span>,<span class="string">'三'</span>]])</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">obj的Series数据</span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">四    李四</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">位置下标访问:obj[<span class="number">0</span>]</span><br><span class="line">陈一</span><br><span class="line"></span><br><span class="line">位置切片访问多个元素值:obj[<span class="number">1</span>:<span class="number">3</span>]</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">索引访问:obj[obj.index==<span class="string">'三'</span>]</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">索引访问:obj[<span class="string">'一'</span>]</span><br><span class="line">陈一</span><br><span class="line"></span><br><span class="line">索引列表访问多个元素值:obj[[<span class="string">'二'</span>,<span class="string">'三'</span>]]</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h4 id="head-amp-tail-查看数据"><a href="#head-amp-tail-查看数据" class="headerlink" title="head()&amp;tail()查看数据"></a>head()&amp;tail()查看数据</h4><p>如果想要查看 Series 的某一部分数据，可以使用 head() 或者 tail() 方法。其中 head() 返回前 n 行数据，默认显示前 5 行数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.array([<span class="string">'陈一'</span>,<span class="string">'周二'</span>,<span class="string">'张三'</span>,<span class="string">'李四'</span>,<span class="string">'王五'</span>,<span class="string">'赵六'</span>])</span><br><span class="line">obj= pd.Series(data,index=[<span class="string">'一'</span>,<span class="string">'二'</span>,<span class="string">'三'</span>,<span class="string">'四'</span>,<span class="string">'五'</span>,<span class="string">'六'</span>])</span><br><span class="line"><span class="comment">#输出前三行数据</span></span><br><span class="line">print(<span class="string">'输出前三行数据'</span>)</span><br><span class="line">print(obj.head(<span class="number">3</span>))</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br><span class="line"><span class="comment">#输出后两行数据</span></span><br><span class="line">print(<span class="string">'输出后两行数据'</span>)</span><br><span class="line">print(obj.tail(<span class="number">2</span>))</span><br><span class="line">print(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输出前三行数据</span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line">输出后两行数据</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-<h3 id="Series数据增加"><a href="#Series数据增加" class="headerlink" title="Series数据增加"></a>Series数据增加</h3><h4 id="1-直接通过索引增加"><a href="#1-直接通过索引增加" class="headerlink" title="1.直接通过索引增加"></a>1.直接通过索引增加</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过索引增加数据</span></span><br><span class="line">obj[<span class="string">'十一'</span>]=<span class="string">'肖十一'</span></span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十一    肖十一</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-<h4 id="2-通过append-增加"><a href="#2-通过append-增加" class="headerlink" title="2.通过append()增加"></a>2.通过append()增加</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过append()增加多个数据</span></span><br><span class="line">obj2=pd.Series([<span class="string">'郭芙蓉'</span>,<span class="string">'杨过'</span>],index=[<span class="string">'十二'</span>,<span class="string">'十三'</span>])</span><br><span class="line">obj=obj.append(obj2)</span><br><span class="line">print(obj)</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十一    肖十一</span><br><span class="line">十二    郭芙蓉</span><br><span class="line">十三     杨过</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h3 id="Series数据修改"><a href="#Series数据修改" class="headerlink" title="Series数据修改"></a>Series数据修改</h3><p>Series数据可以通过制定索引直接修改<br>如：修改索引为十一的数据，直接obj[‘十一’]=’肖XX’，就可以进行修改。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改Series数据</span></span><br><span class="line">obj[<span class="string">'十一'</span>]=<span class="string">'肖XX'</span></span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十一    肖XX</span><br><span class="line">十二    郭芙蓉</span><br><span class="line">十三     杨过</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h3 id="Series数据删除"><a href="#Series数据删除" class="headerlink" title="Series数据删除"></a>Series数据删除</h3><p>通过drop()删除，<code>注意如果没有带inplace=True，会返回一个新的Series对象。如果要修改本对象，注意要带上inplace=True</code>。</p>
-<h4 id="1-删除单个数据"><a href="#1-删除单个数据" class="headerlink" title="1.删除单个数据"></a>1.删除单个数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">obj.drop(<span class="string">'十一'</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一      陈一</span><br><span class="line">二      周二</span><br><span class="line">三      张三</span><br><span class="line">四      李四</span><br><span class="line">五      王五</span><br><span class="line">六      赵六</span><br><span class="line">十二    郭芙蓉</span><br><span class="line">十三     杨过</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-删除多个数据"><a href="#2-删除多个数据" class="headerlink" title="2.删除多个数据"></a>2.删除多个数据</h4><p>参数为索引列表，即可以删除索引为列表中的数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">obj.drop([<span class="string">'十二'</span>,<span class="string">'十三'</span>],inplace=<span class="literal">True</span>)</span><br><span class="line">print(obj)</span><br><span class="line"></span><br><span class="line">一    陈一</span><br><span class="line">二    周二</span><br><span class="line">三    张三</span><br><span class="line">四    李四</span><br><span class="line">五    王五</span><br><span class="line">六    赵六</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、DataFrame"><a href="#二、DataFrame" class="headerlink" title="二、DataFrame"></a>二、DataFrame</h1><p>DataFrame 是 Pandas 的重要数据结构之一，也是在使用 Pandas 进行数据分析过程中最常用的结构之一。DataFrame 一个表格型的数据结构，既有行标签（index），又有列标签（columns），它也被称异构数据表，所谓异构，指的是表格中每列的数据类型可以不同，比如可以是字符串、整型或者浮点型等。DataFrame 的每一行数据都可以看成一个 Series 结构，只不过，DataFrame 为这些行中每个数据值增加了一个列标签。因此 DataFrame 其实是从 Series 的基础上演变而来。<strong>可以把DataFrame看做是关系型数据库里或Excel里的一张表格来理解</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/DataFrame%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84.png" alt="DataFrame数据结构"><br><strong>DataFrame 数据结构的特点：</strong><br>DataFrame 每一列的标签值允许使用不同的数据类型；<br>DataFrame 是表格型的数据结构，具有行和列；<br>DataFrame 中的每个数据值都可以被修改。<br>DataFrame 结构的行数、列数允许增加或者删除；<br>DataFrame 有两个方向的标签轴，分别是行标签和列标签；<br>DataFrame 可以对行和列执行算术运算。</p>
-<h2 id="1、DataFrame对象的创建"><a href="#1、DataFrame对象的创建" class="headerlink" title="1、DataFrame对象的创建"></a>1、DataFrame对象的创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df=pd.DataFrame( data, index, columns, dtype, copy)</span><br></pre></td></tr></table></figure>
-<p>参数说明：</p>
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>data</td>
-<td>输入的数据，可以是 ndarray，series，list，dict，标量以及一个 DataFrame。</td>
-</tr>
-<tr>
-<td>index</td>
-<td>行标签，如果没有传递 index 值，则默认行标签是 np.arange(n)，n 代表 data 的元素个数。</td>
-</tr>
-<tr>
-<td>columns</td>
-<td>列标签，如果没有传递 columns 值，则默认列标签是 np.arange(n)。</td>
-</tr>
-<tr>
-<td>dtype</td>
-<td>dtype表示每一列的数据类型。</td>
-</tr>
-<tr>
-<td>copy</td>
-<td>默认为 False，表示复制数据 data。</td>
-</tr>
-</tbody></table>
-<p>Pandas 提供了多种创建 DataFrame 对象的方式可以看data的参数说明，包括列表、ndarray、series、dict等。<br>平时在数据分析过程中用得最多的应该是从其他数据源文件如cvs、excel、数据库、WEBAPI等方式加载数据到DataFrame中。<br>如：从Excel中加载数据。更多的数据加载方式见：<a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">http://xiejava.ishareread.com/posts/4864590d/</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\staff.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/staff_excel%E5%AF%BC%E5%85%A5.png" alt="staff数据集"></p>
-<h2 id="2、DataFrame数据操作"><a href="#2、DataFrame数据操作" class="headerlink" title="2、DataFrame数据操作"></a>2、DataFrame数据操作</h2><p>DataFrame 可以使用行索引(index )来选取 DataFrame 中的数据并进行操作。也可以使用列索（columns ）引来完成数据的选取、添加和删除操作。</p>
-<h3 id="1-行索引操作DataFrame"><a href="#1-行索引操作DataFrame" class="headerlink" title="1) 行索引操作DataFrame"></a>1) 行索引操作DataFrame</h3><h4 id="选取数据"><a href="#选取数据" class="headerlink" title="选取数据"></a>选取数据</h4><p>行标签选取数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#选取行标签为2的行</span></span><br><span class="line">df.loc[[<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE1.png" alt="选取行标签为2的行"><br>注意：如果是df.loc[2]，同样是选择行标签为2的行，但现实效果为<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E9%80%89%E5%8F%96%E8%A1%8C%E6%95%B0%E6%8D%AE2.png" alt="选取行标签为2的行"><br>因为df.loc[2]返回是Series对象，而df.loc[[2]]返回的是DataFrame对象</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(df.iloc[<span class="number">2</span>])</span><br><span class="line">pandas.core.series.Series</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type(df.loc[[<span class="number">2</span>]])</span><br><span class="line">pandas.core.frame.DataFrame</span><br></pre></td></tr></table></figure>
-
-
-<p>切片选取数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#切片选取数据（左闭右开）</span></span><br><span class="line">df[<span class="number">2</span>:<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/%E5%88%87%E7%89%87%E9%80%89%E5%8F%96%E6%95%B0%E6%8D%AE.png" alt="切片选取数据"></p>
-<h4 id="增加行"><a href="#增加行" class="headerlink" title="增加行"></a>增加行</h4><p> 添加数据行，使用 append() 函数，可以将新的数据行添加到 DataFrame 中，该函数会在行末追加数据行。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],index=[<span class="number">11</span>,<span class="number">12</span>],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C.png" alt=" 添加数据行"></p>
-<p>注意新增加的DataFrame如果没有指定行索引，将会默认从0开始，添加数据行后将会有行重复的行索引。如没有指定index=[11,12]</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_1 = pd.DataFrame([[<span class="number">11</span>,<span class="string">'肖十一'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7000'</span>,<span class="string">'1'</span>],[<span class="number">12</span>,<span class="string">'郭芙蓉'</span>,<span class="string">'30'</span>,<span class="string">'女'</span>,<span class="string">'7400'</span>,<span class="string">'1'</span>]],columns = [<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_age'</span>,<span class="string">'staff_gender'</span>,<span class="string">'staff_salary'</span>,<span class="string">'staff_depatment_id'</span>])</span><br><span class="line">df=df.append(df_1)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E8%A1%8C%E9%87%8D%E5%A4%8Did.png" alt="添加数据行有重复行索引"></p>
-<h4 id="删除行"><a href="#删除行" class="headerlink" title="删除行"></a>删除行</h4><p>可以使用行索引标签，从 DataFrame 中删除某一行数据。如果索引标签存在重复，那么它们将被一起删除</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df=df.drop(<span class="number">0</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-<p>可以看到到行索引为0的两条记录被一起删除了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df%E5%88%A0%E9%99%A4.png" alt="删除"></p>
-<h3 id="2-列索引操作DataFrame"><a href="#2-列索引操作DataFrame" class="headerlink" title="2) 列索引操作DataFrame"></a>2) 列索引操作DataFrame</h3><h4 id="列索引选取数据列"><a href="#列索引选取数据列" class="headerlink" title="列索引选取数据列"></a>列索引选取数据列</h4><p>通过指定列索引来选取数据列，如选择只显示staff_id,staff_name,staff_gender三列</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df2=df[[<span class="string">'staff_id'</span>,<span class="string">'staff_name'</span>,<span class="string">'staff_gender'</span>]]</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E9%80%89%E5%8F%96%E5%88%97.png" alt="列索引选取数据列"></p>
-<h4 id="列索引添加数据列"><a href="#列索引添加数据列" class="headerlink" title="列索引添加数据列"></a>列索引添加数据列</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df3=df[<span class="string">'staff_salary'</span>]+<span class="number">500</span></span><br><span class="line"><span class="comment">#在df的基础上增加append_cloume列，新增的append_cloume列为df['staff_salary']+500，即薪水加了500的列</span></span><br><span class="line">df[<span class="string">'append_cloume'</span>]=df3</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引添加数据列"></p>
-<h4 id="列索引删除数据列"><a href="#列索引删除数据列" class="headerlink" title="列索引删除数据列"></a>列索引删除数据列</h4><p>通过del 来删除指定的数据列，如删除staff_depatment_id列</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> df[<span class="string">'staff_depatment_id'</span>]</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220123/df-%E5%88%97%E7%B4%A2%E5%BC%95%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%88%97.png" alt="列索引删除数据列"></p>
-<p>本文介绍了pandas的两大核心数据结构Series和DataFrame，分别介绍了Series和DataFrame数据对象的创建及基于数据对象的基础上对数据进行选择、增加、删除等数据操作，可以加深对Series和DataFrame的理解，并可以将创建，增、删、改、查等应用于实际的数据处理应用中。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3549,7 +3440,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">198</span>
+                  <span class="site-state-item-count">199</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3661,7 +3552,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">412.9k</span>
+    <span title="Site words total count">413.8k</span>
   
   
 <!--51la网站应用监控-->
