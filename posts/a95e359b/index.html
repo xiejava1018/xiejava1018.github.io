@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="项目管理,学习方法," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、什么是RACIRACI矩阵是一种用于明确项目或任务中角色与责任的管理工具，通过定义不同人员在任务中的参与程度来避免职责不清的问题。以下是其核心要点：  ‌RACI的含义‌   ‌R（Responsible）执行者‌：直接完成任务的具体负责人。 ‌A（Accountable）批准者‌：对任务结果负最终责任，通常为决策者。 ‌C（Consulted）被咨询者‌：提供专业意见的专家或利益相关方。 ‌">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是RACI矩阵，应用在什么场景？">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/a95e359b/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="一、什么是RACIRACI矩阵是一种用于明确项目或任务中角色与责任的管理工具，通过定义不同人员在任务中的参与程度来避免职责不清的问题。以下是其核心要点：  ‌RACI的含义‌   ‌R（Responsible）执行者‌：直接完成任务的具体负责人。 ‌A（Accountable）批准者‌：对任务结果负最终责任，通常为决策者。 ‌C（Consulted）被咨询者‌：提供专业意见的专家或利益相关方。 ‌">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2025-04-08T02:58:36.000Z">
+<meta property="article:modified_time" content="2025-04-08T05:57:01.525Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="项目管理">
+<meta property="article:tag" content="学习方法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/a95e359b/"/>
+
+
+
+
+
+  <title>什么是RACI矩阵，应用在什么场景？ | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a95e359b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">什么是RACI矩阵，应用在什么场景？</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-04-08T10:58:36+08:00">
+                2025-04-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-04-08T13:57:01+08:00">
+                2025-04-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">管理</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
+                    <span itemprop="name">项目管理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/a95e359b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a95e359b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/a95e359b/" class="leancloud_visitors" data-flag-title="什么是RACI矩阵，应用在什么场景？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、什么是RACI"><a href="#一、什么是RACI" class="headerlink" title="一、什么是RACI"></a>一、什么是RACI</h2><p>RACI矩阵是一种用于明确项目或任务中角色与责任的管理工具，通过定义不同人员在任务中的参与程度来避免职责不清的问题。以下是其核心要点：</p>
+<ol>
+<li>‌RACI的含义‌</li>
+</ol>
+<ul>
+<li>‌R（Responsible）执行者‌：直接完成任务的具体负责人。</li>
+<li>‌A（Accountable）批准者‌：对任务结果负最终责任，通常为决策者。</li>
+<li>‌C（Consulted）被咨询者‌：提供专业意见的专家或利益相关方。</li>
+<li>‌I（Informed）被通知者‌：需知悉进展但不直接参与的人员。</li>
+</ul>
+<ol start="2">
+<li>‌典型应用场景‌</li>
+</ol>
+<ul>
+<li>‌跨部门协作项目‌：例如新产品发布，需明确市场、研发、生产等部门的职责。</li>
+<li>‌复杂流程优化‌：如企业ERP系统实施，区分流程设计、数据迁移等任务的责任人。</li>
+<li>‌危机管理‌：如安全事故处理时明确指挥、执行、沟通等角色。</li>
+<li>‌日常运营‌：适用于周期性工作（如财务审计）的职责划分。</li>
+</ul>
+<ol start="3">
+<li>‌使用案例‌</li>
+</ol>
+<ul>
+<li>‌软件开发项目‌：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>项目经理（A）</th>
+<th>开发团队（R）</th>
+<th>测试组（R）</th>
+<th>客户（C）</th>
+<th>法务（I）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>需求确认</td>
+<td>A</td>
+<td>R</td>
+<td>-</td>
+<td>C</td>
+<td>I</td>
+</tr>
+<tr>
+<td>代码审查</td>
+<td>R</td>
+<td>C</td>
+<td>-</td>
+<td>-</td>
+<td></td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>构建要点‌</li>
+</ol>
+<ul>
+<li>每个任务确保‌仅1个A角色‌，避免多头领导</li>
+<li>避免R角色过多导致执行分散（如单个任务超过3个R）</li>
+<li>关键干系人必须纳入C或I，防止遗漏重要意见</li>
+</ul>
+<ol start="5">
+<li>常见误区‌</li>
+</ol>
+<ul>
+<li>混淆A和R角色（如误将部门领导设为所有任务的A）</li>
+<li>过度咨询（C角色过多导致决策延迟）</li>
+<li>忽略变更管理（未随项目进展更新矩阵）</li>
+</ul>
+<h2 id="二、如何适用RACI矩阵"><a href="#二、如何适用RACI矩阵" class="headerlink" title="二、如何适用RACI矩阵"></a>二、如何适用RACI矩阵</h2><p>结合不同场景的关键步骤与操作要点：</p>
+<ol>
+<li><p><strong>前期准备‌</strong></p>
+<ul>
+<li>分解任务清单‌<br>基于项目目标，将工作拆解为具体任务（如软件开发中的需求收集、测试、部署等）‌。<br>示例：在IT系统迁移项目中，任务可拆分为“制定迁移方案”“数据备份验证”等‌。</li>
+<li>识别参与角色‌<br>列出所有相关角色或部门（如项目经理、开发团队、法务部等），避免仅使用个人姓名，需标注岗位或职能‌。</li>
+</ul>
+</li>
+<li><p><strong>构建矩阵‌</strong></p>
+<ul>
+<li>分配RACI角色‌<br>○ 每个任务需指定 ‌1个A角色‌（唯一责任人）和若干R/C/I角色‌。<br>示例：在需求确认阶段，产品经理为A，开发团队为R，法务部为I‌。<br>○ 避免单任务分配过多R角色（建议≤3个），防止执行分散‌。</li>
+<li>关键逻辑验证‌<br>○ ‌横向检查‌：每项任务需至少包含R和A角色，确保无遗漏‌。<br>○ ‌纵向检查‌：单个角色名下任务量需合理，避免过度集中（如某成员承担过多R角色）‌。</li>
+</ul>
+</li>
+<li><p><strong>应用中的关键技巧‌</strong></p>
+<ul>
+<li>与项目工具结合‌<br>○ 将RACI矩阵与甘特图、WBS（工作分解结构）联动，识别关键路径任务并优先分配资源‌。<br>示例：在部署阶段，明确运维团队为R角色并与甘特图中的时间节点对齐‌。</li>
+<li>动态更新机制‌<br>○ 项目变更时同步调整矩阵（如新增任务或角色变更）‌。<br>○ 定期向I角色推送进展（如周报同步），向C角色发起咨询（如需求评审会）‌。</li>
+</ul>
+</li>
+<li><p><strong>常见问题与规避策略‌</strong></p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‌角色冲突‌（多个A）</td>
+<td>重新界定任务边界，仅保留1个A角色‌。</td>
+</tr>
+<tr>
+<td>‌沟通低效‌（C/I过多）</td>
+<td>精简咨询范围（如仅核心专家参与C角色），减少非必要通知‌。</td>
+</tr>
+<tr>
+<td>‌ 责任模糊‌（无明确R）</td>
+<td>通过工作分解细化任务颗粒度，确保每个子任务均有R角色‌。</td>
+</tr>
+</tbody></table>
+<ol start="5">
+<li>扩展应用场景‌</li>
+</ol>
+<ul>
+<li>‌RASCI矩阵‌：在RACI基础上增加S（Support）角色，标注辅助支持团队（如IT部门协助数据迁移）‌15。</li>
+<li>‌多层级矩阵‌：针对复杂项目分层设计（如战略级、执行级），分别分配责任‌7。</li>
+</ul>
+<p>总结：核心操作流程<br>1.‌分解任务 → 2. 定义角色 → 3. 填充矩阵 → 4. 验证逻辑 → 5. 动态维护‌<br>示例：某市政工程通过RACI矩阵将环评报告责任唯一分配给环保机构（A角色），施工执行由承包商（R角色）承担，社区代表仅需知悉（I角色）‌。<br>通过结构化分配与持续优化，RACI矩阵可显著提升跨团队协作效率，减少责任争议‌。</p>
+<h2 id="三、应用案例"><a href="#三、应用案例" class="headerlink" title="三、应用案例"></a>三、应用案例</h2><ol>
+<li>IT系统升级项目‌<br>‌背景‌：某企业需将本地服务器迁移至云端，涉及IT部、安全部、财务部及外部供应商。<br>‌任务分解与角色分配‌：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>IT经理 (A)</th>
+<th>运维团队 （R）</th>
+<th>安全部 （C）</th>
+<th>财务部 （I）</th>
+<th>供应商 （R）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>制定迁移方案</td>
+<td>A</td>
+<td>R</td>
+<td>C</td>
+<td>I</td>
+<td>C</td>
+</tr>
+<tr>
+<td>数据备份与验证</td>
+<td>I</td>
+<td>R</td>
+<td>C</td>
+<td>-</td>
+<td>R</td>
+</tr>
+<tr>
+<td>云环境安全测试</td>
+<td>-</td>
+<td>C</td>
+<td>A</td>
+<td>I</td>
+<td>R</td>
+</tr>
+</tbody></table>
+<p>‌关键点‌：</p>
+<ul>
+<li>安全部需深度参与方案设计和测试（C/A角色），避免安全漏洞；</li>
+<li>供应商负责具体执行（R），但需接受IT经理的最终审批（A）。</li>
+</ul>
+<ol start="2">
+<li>日常运维（IT支持团队）‌<br>‌背景‌：某公司IT部门处理日常故障，需明确一线支持、二线专家及管理层职责。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>IT主管 (A)</th>
+<th>一线支持 (R)</th>
+<th>二线专家 (C)</th>
+<th>用户部门 (I)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>故障初步诊断</td>
+<td>-</td>
+<td>R</td>
+<td>-</td>
+<td>I</td>
+</tr>
+<tr>
+<td>复杂问题升级处理</td>
+<td>I</td>
+<td>-</td>
+<td>R</td>
+<td>C</td>
+</tr>
+<tr>
+<td>故障解决率报告</td>
+<td>A</td>
+<td>C</td>
+<td>-</td>
+<td>I</td>
+</tr>
+</tbody></table>
+<p>‌注意事项‌：</p>
+<ul>
+<li>一线支持直接处理简单问题（R），二线专家解决技术难点（R）；</li>
+<li>用户部门仅需知悉进展（I），避免干扰技术处理。</li>
+</ul>
+<p>从以上看出，RACI矩阵适用于‌任何<strong>需要明确角色分工的场景‌</strong>，尤其适合跨职能、多利益相关方的复杂任务。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/a95e359b/" title="什么是RACI矩阵，应用在什么场景？">https://xiejava.gitee.io/posts/a95e359b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" rel="tag"># 项目管理</a>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag"># 学习方法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/6e957ca9/" rel="next" title="什么是互联网暴露面？什么是攻击面？暴露面与攻击面有什么区别？">
+                <i class="fa fa-chevron-left"></i> 什么是互联网暴露面？什么是攻击面？暴露面与攻击面有什么区别？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">200</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是RACI"><span class="nav-number">1.</span> <span class="nav-text">一、什么是RACI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、如何适用RACI矩阵"><span class="nav-number">2.</span> <span class="nav-text">二、如何适用RACI矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、应用案例"><span class="nav-number">3.</span> <span class="nav-text">三、应用案例</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">415.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
