@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI机器学习," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="@[TOC] 谷歌的Gemini API 为开发者提供了具体的免费额度，允许将Gemini模型集成到自己的应用程序中。模型可访问范围：开发者可以免费调用 Gemini 2.5 Pro 模型及其轻量级版本 Gemini 2.5 Flash 。标准免费额度：通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="国内免代理免费使用Gemini大模型实战">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/4999be0b/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="@[TOC] 谷歌的Gemini API 为开发者提供了具体的免费额度，允许将Gemini模型集成到自己的应用程序中。模型可访问范围：开发者可以免费调用 Gemini 2.5 Pro 模型及其轻量级版本 Gemini 2.5 Flash 。标准免费额度：通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/2-DeployNetlify.PNG">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/3-NetlifyProjectOvervier.PNG">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/4-CherryStudio%E9%85%8D%E7%BD%AEGeminiAPI.PNG">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/5-CherryStudio%E4%B8%AD%E4%BD%BF%E7%94%A8GeminiAPI.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/6-%E5%9C%A8dify%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/7-%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E4%B8%AD%E9%85%8D%E7%BD%AEGeminiAPI.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/8-%E5%9C%A8Dify%E4%B8%AD%E9%85%8D%E7%BD%AEGemini%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/9-DNS%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/10-%E5%9C%A8netlify%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/11-netlify%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/12-%E5%9C%A8DNS%E4%B8%AD%E9%85%8D%E7%BD%AETXT%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/13-Netlify%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/14-%E5%9C%A8cherrystdio%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2025-07-07T11:19:01.000Z">
+<meta property="article:modified_time" content="2025-07-07T11:34:14.530Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="AI机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/4999be0b/"/>
+
+
+
+
+
+  <title>国内免代理免费使用Gemini大模型实战 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4999be0b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">国内免代理免费使用Gemini大模型实战</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-07T19:19:01+08:00">
+                2025-07-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-07-07T19:34:14+08:00">
+                2025-07-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/4999be0b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4999be0b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/4999be0b/" class="leancloud_visitors" data-flag-title="国内免代理免费使用Gemini大模型实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>@[TOC]</p>
+<p>谷歌的Gemini API 为开发者提供了具体的免费额度，允许将Gemini模型集成到自己的应用程序中。<br>模型可访问范围：开发者可以免费调用 Gemini 2.5 Pro 模型及其轻量级版本 Gemini 2.5 Flash 。<br>标准免费额度：通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。</p>
+<h2 id="一、免费申请Gemini-API密钥"><a href="#一、免费申请Gemini-API密钥" class="headerlink" title="一、免费申请Gemini API密钥"></a>一、免费申请Gemini API密钥</h2><p>注册google账号就可以免费申请Gemini API密钥。<br>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG" alt="申请密钥"></p>
+<p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。<br>国内上网环境无法直接使用Gemini API，本文介绍能够免代理使用Gemini的方法。</p>
+<h2 id="二、使用openai-gemini"><a href="#二、使用openai-gemini" class="headerlink" title="二、使用openai-gemini"></a>二、使用openai-gemini</h2><h3 id="1、在github上找到openai-gemini"><a href="#1、在github上找到openai-gemini" class="headerlink" title="1、在github上找到openai-gemini"></a>1、在github上找到openai-gemini</h3><p>openai-gemini 是一个 serverless 的代理项目，用于将 Gemini API 转换为 OpenAI API 。<br>项目地址：<a href="https://github.com/PublicAffairs/openai-gemini" target="_blank" rel="noopener">https://github.com/PublicAffairs/openai-gemini</a><br>Gemini API 是免费的， 但有许多工具专门与 OpenAI API 一起使用。该项目可以将Gemini API 转换为 OpenAI API ，并且通过serverless进行调用。我们可以找个国内可以访问的免费serverless服务进行中转满足国内调用使用需求。<br>这里介绍将openai-gemini部署到Netlify<br>Netlify 是一个领先的 Web 开发平台，它专门为构建、部署和管理现代高性能网站和 Web 应用程序提供了一站式解决方案。Netlify 的核心理念是支持 Jamstack 架构（JavaScript, APIs, Markup），该架构强调将网站内容预构建为静态文件，并通过 CDN 快速分发，然后通过 API 调用动态数据和执行后端逻辑。</p>
+<h3 id="2、将openai-gemini部署到Netlify"><a href="#2、将openai-gemini部署到Netlify" class="headerlink" title="2、将openai-gemini部署到Netlify"></a>2、将openai-gemini部署到Netlify</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/2-DeployNetlify.PNG" alt="Deploy to Netlify"></p>
+<p>找到”Deploy to Netlify” 点击就可以一键部署到Netlify,部署完成后Netlify会自动分配一个地址用于访问刚部署的openai-gemini的serverless服务。并且这个地址是在过国内可以正常访问的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/3-NetlifyProjectOvervier.PNG" alt="project overview"></p>
+<h3 id="3、在Cherry-Studio中配置和使用gemini的模型"><a href="#3、在Cherry-Studio中配置和使用gemini的模型" class="headerlink" title="3、在Cherry Studio中配置和使用gemini的模型"></a>3、在Cherry Studio中配置和使用gemini的模型</h3><h4 id="1）在Cherry-Studio中配置gemini-API"><a href="#1）在Cherry-Studio中配置gemini-API" class="headerlink" title="1）在Cherry Studio中配置gemini API"></a>1）在Cherry Studio中配置gemini API</h4><p>通过Netlify中转访问gemini API，我们可以直接在Cherry Studio中配置通过Netlify中转访问gemini API<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini-2.5-pro<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/4-CherryStudio%E9%85%8D%E7%BD%AEGeminiAPI.PNG" alt="Cherry Studio中配置API key"></p>
+<h4 id="2）在Cherry-Studio中使用gemini-的模型"><a href="#2）在Cherry-Studio中使用gemini-的模型" class="headerlink" title="2）在Cherry Studio中使用gemini 的模型"></a>2）在Cherry Studio中使用gemini 的模型</h4><p>在Cherry Studio中选择刚配置的gemini-2.5-pro并和它对话，可以看到gemini-2.5-pro可以流畅的输出。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/5-CherryStudio%E4%B8%AD%E4%BD%BF%E7%94%A8GeminiAPI.png" alt="在cherry Studio中使用gemini"></p>
+<h3 id="4、在Dify中配置和使用gemini的模型"><a href="#4、在Dify中配置和使用gemini的模型" class="headerlink" title="4、在Dify中配置和使用gemini的模型"></a>4、在Dify中配置和使用gemini的模型</h3><h4 id="1-在Dify中配置gemini-API"><a href="#1-在Dify中配置gemini-API" class="headerlink" title="1) 在Dify中配置gemini API"></a>1) 在Dify中配置gemini API</h4><p>  通过openai-gemini将 Gemini API 转换为了 OpenAI API ，所以在dify中应该使用“OpenAI-API-compatible”的插件来配置模型。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/6-%E5%9C%A8dify%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86.png" alt="OpenAI插件"></p>
+<p>如果没有安装“OpenAI-API-compatible”插件需先安装。在模型供应商中选择“OpenAI-API-compatible”,点击“添加模型”。<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini 2.5 pro<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/7-%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E4%B8%AD%E9%85%8D%E7%BD%AEGeminiAPI.png" alt="配置API key"></p>
+<h4 id="2）在Dify中使用gemini的模型"><a href="#2）在Dify中使用gemini的模型" class="headerlink" title="2）在Dify中使用gemini的模型"></a>2）在Dify中使用gemini的模型</h4><p>在Dify中建一个对话应用，选择刚配置好的 Gemini 2.5 Pro 模型进行对话，可以看到对话成功的调用了gemini API使用Gemini 2.5 Pro的模型进行了回复。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/8-%E5%9C%A8Dify%E4%B8%AD%E9%85%8D%E7%BD%AEGemini%E6%A8%A1%E5%9E%8B.png" alt="在Dify中使用"></p>
+<h3 id="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"><a href="#5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问" class="headerlink" title="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"></a>5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问</h3><h4 id="1-在自己的DNS中配置域名解析到netlify的地址"><a href="#1-在自己的DNS中配置域名解析到netlify的地址" class="headerlink" title="1) 在自己的DNS中配置域名解析到netlify的地址"></a>1) 在自己的DNS中配置域名解析到netlify的地址</h4><p>以我的cloud flare域名服务配置为例，在DNS中配置一个netlifygemini的子域名，解析到目标为开始netlify给的服务地址。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/9-DNS%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="配置子域名"></p>
+<h4 id="2）在netlify中配置子域名"><a href="#2）在netlify中配置子域名" class="headerlink" title="2）在netlify中配置子域名"></a>2）在netlify中配置子域名</h4><p>在netlify中可以配置自己的域名对gemini API进行访问。在netlify的项目中找到“domain you already own”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/10-%E5%9C%A8netlify%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="在netlify中配置自己的域名"></p>
+<p>在自定义域名配置界面，输入自己的子域名，它会给出Host和Value的值，这两个值需要在自己的DNS域名服务器中配置校验。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/11-netlify%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="效验信息"></p>
+<p>接下来需要在自己的DNS服务中进行配置，我以自己的cloud flare域名服务配置为例，配置如下：</p>
+<h4 id="3）在-Cloudflare-中添加TXT记录用于校验"><a href="#3）在-Cloudflare-中添加TXT记录用于校验" class="headerlink" title="3）在 Cloudflare 中添加TXT记录用于校验"></a>3）在 Cloudflare 中添加TXT记录用于校验</h4><ol>
+<li>登录你的 Cloudflare 账户，选择我的域名doai8.dpdns.org。</li>
+<li>进入左侧的 “DNS” 菜单。</li>
+<li>点击 “Add record” (添加记录) 按钮。</li>
+<li>根据下面的表格，准确填写每一个字段：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Cloudflare 字段</th>
+<th>你需要填写的内容 (从 Netlify 截图复制)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type (类型)</td>
+<td>TXT</td>
+</tr>
+<tr>
+<td>Name (名称)</td>
+<td>netlify-challenge</td>
+</tr>
+<tr>
+<td>Content (内容)</td>
+<td>4f<strong><strong><strong>*****</strong></strong></strong>062b</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>保持默认的 Auto 即可</td>
+</tr>
+</tbody></table>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/12-%E5%9C%A8DNS%E4%B8%AD%E9%85%8D%E7%BD%AETXT%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="添加TXT记录"></p>
+<h4 id="4）在netify中进行验证，验证通过就可以用自己的域名访问了"><a href="#4）在netify中进行验证，验证通过就可以用自己的域名访问了" class="headerlink" title="4）在netify中进行验证，验证通过就可以用自己的域名访问了"></a>4）在netify中进行验证，验证通过就可以用自己的域名访问了</h4><p>在netify中进行验证，验证通过就可以用自己的域名访问了，在图中可以看到自己的子域名和netlify给的子域名。两个域名都可以用，自己的子域名的好处就是自己容易记忆。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/13-Netlify%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png" alt="自定义域名配好"></p>
+<h4 id="5）用自定义域名进行gemini-API接口的测试"><a href="#5）用自定义域名进行gemini-API接口的测试" class="headerlink" title="5）用自定义域名进行gemini API接口的测试"></a>5）用自定义域名进行gemini API接口的测试</h4><p> 在Cherry Studio中将API地址配置程自定义域名的地址<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/14-%E5%9C%A8cherrystdio%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3.png" alt="配置自定义域名地址"><br>可以看到和gemini 2.5 pro 对话同样也很丝滑。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="测试"></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/4999be0b/" title="国内免代理免费使用Gemini大模型实战">https://xiejava.gitee.io/posts/4999be0b/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># AI机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/a0bb8a4f/" rel="next" title="飞牛NAS本地化部署dify打造私有LLMOps平台">
+                <i class="fa fa-chevron-left"></i> 飞牛NAS本地化部署dify打造私有LLMOps平台
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">202</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、免费申请Gemini-API密钥"><span class="nav-number">1.</span> <span class="nav-text">一、免费申请Gemini API密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用openai-gemini"><span class="nav-number">2.</span> <span class="nav-text">二、使用openai-gemini</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、在github上找到openai-gemini"><span class="nav-number">2.1.</span> <span class="nav-text">1、在github上找到openai-gemini</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、将openai-gemini部署到Netlify"><span class="nav-number">2.2.</span> <span class="nav-text">2、将openai-gemini部署到Netlify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、在Cherry-Studio中配置和使用gemini的模型"><span class="nav-number">2.3.</span> <span class="nav-text">3、在Cherry Studio中配置和使用gemini的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）在Cherry-Studio中配置gemini-API"><span class="nav-number">2.3.1.</span> <span class="nav-text">1）在Cherry Studio中配置gemini API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）在Cherry-Studio中使用gemini-的模型"><span class="nav-number">2.3.2.</span> <span class="nav-text">2）在Cherry Studio中使用gemini 的模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、在Dify中配置和使用gemini的模型"><span class="nav-number">2.4.</span> <span class="nav-text">4、在Dify中配置和使用gemini的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在Dify中配置gemini-API"><span class="nav-number">2.4.1.</span> <span class="nav-text">1) 在Dify中配置gemini API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）在Dify中使用gemini的模型"><span class="nav-number">2.4.2.</span> <span class="nav-text">2）在Dify中使用gemini的模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"><span class="nav-number">2.5.</span> <span class="nav-text">5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在自己的DNS中配置域名解析到netlify的地址"><span class="nav-number">2.5.1.</span> <span class="nav-text">1) 在自己的DNS中配置域名解析到netlify的地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）在netlify中配置子域名"><span class="nav-number">2.5.2.</span> <span class="nav-text">2）在netlify中配置子域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）在-Cloudflare-中添加TXT记录用于校验"><span class="nav-number">2.5.3.</span> <span class="nav-text">3）在 Cloudflare 中添加TXT记录用于校验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4）在netify中进行验证，验证通过就可以用自己的域名访问了"><span class="nav-number">2.5.4.</span> <span class="nav-text">4）在netify中进行验证，验证通过就可以用自己的域名访问了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5）用自定义域名进行gemini-API接口的测试"><span class="nav-number">2.5.5.</span> <span class="nav-text">5）用自定义域名进行gemini API接口的测试</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">417.6k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

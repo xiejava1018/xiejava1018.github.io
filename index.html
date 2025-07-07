@@ -313,6 +313,268 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/4999be0b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/4999be0b/" itemprop="url">国内免代理免费使用Gemini大模型实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-07T19:19:01+08:00">
+                2025-07-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-07-07T19:34:14+08:00">
+                2025-07-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/4999be0b/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4999be0b/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/4999be0b/" class="leancloud_visitors" data-flag-title="国内免代理免费使用Gemini大模型实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>@[TOC]</p>
+<p>谷歌的Gemini API 为开发者提供了具体的免费额度，允许将Gemini模型集成到自己的应用程序中。<br>模型可访问范围：开发者可以免费调用 Gemini 2.5 Pro 模型及其轻量级版本 Gemini 2.5 Flash 。<br>标准免费额度：通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。</p>
+<h2 id="一、免费申请Gemini-API密钥"><a href="#一、免费申请Gemini-API密钥" class="headerlink" title="一、免费申请Gemini API密钥"></a>一、免费申请Gemini API密钥</h2><p>注册google账号就可以免费申请Gemini API密钥。<br>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG" alt="申请密钥"></p>
+<p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。<br>国内上网环境无法直接使用Gemini API，本文介绍能够免代理使用Gemini的方法。</p>
+<h2 id="二、使用openai-gemini"><a href="#二、使用openai-gemini" class="headerlink" title="二、使用openai-gemini"></a>二、使用openai-gemini</h2><h3 id="1、在github上找到openai-gemini"><a href="#1、在github上找到openai-gemini" class="headerlink" title="1、在github上找到openai-gemini"></a>1、在github上找到openai-gemini</h3><p>openai-gemini 是一个 serverless 的代理项目，用于将 Gemini API 转换为 OpenAI API 。<br>项目地址：<a href="https://github.com/PublicAffairs/openai-gemini" target="_blank" rel="noopener">https://github.com/PublicAffairs/openai-gemini</a><br>Gemini API 是免费的， 但有许多工具专门与 OpenAI API 一起使用。该项目可以将Gemini API 转换为 OpenAI API ，并且通过serverless进行调用。我们可以找个国内可以访问的免费serverless服务进行中转满足国内调用使用需求。<br>这里介绍将openai-gemini部署到Netlify<br>Netlify 是一个领先的 Web 开发平台，它专门为构建、部署和管理现代高性能网站和 Web 应用程序提供了一站式解决方案。Netlify 的核心理念是支持 Jamstack 架构（JavaScript, APIs, Markup），该架构强调将网站内容预构建为静态文件，并通过 CDN 快速分发，然后通过 API 调用动态数据和执行后端逻辑。</p>
+<h3 id="2、将openai-gemini部署到Netlify"><a href="#2、将openai-gemini部署到Netlify" class="headerlink" title="2、将openai-gemini部署到Netlify"></a>2、将openai-gemini部署到Netlify</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/2-DeployNetlify.PNG" alt="Deploy to Netlify"></p>
+<p>找到”Deploy to Netlify” 点击就可以一键部署到Netlify,部署完成后Netlify会自动分配一个地址用于访问刚部署的openai-gemini的serverless服务。并且这个地址是在过国内可以正常访问的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/3-NetlifyProjectOvervier.PNG" alt="project overview"></p>
+<h3 id="3、在Cherry-Studio中配置和使用gemini的模型"><a href="#3、在Cherry-Studio中配置和使用gemini的模型" class="headerlink" title="3、在Cherry Studio中配置和使用gemini的模型"></a>3、在Cherry Studio中配置和使用gemini的模型</h3><h4 id="1）在Cherry-Studio中配置gemini-API"><a href="#1）在Cherry-Studio中配置gemini-API" class="headerlink" title="1）在Cherry Studio中配置gemini API"></a>1）在Cherry Studio中配置gemini API</h4><p>通过Netlify中转访问gemini API，我们可以直接在Cherry Studio中配置通过Netlify中转访问gemini API<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini-2.5-pro<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/4-CherryStudio%E9%85%8D%E7%BD%AEGeminiAPI.PNG" alt="Cherry Studio中配置API key"></p>
+<h4 id="2）在Cherry-Studio中使用gemini-的模型"><a href="#2）在Cherry-Studio中使用gemini-的模型" class="headerlink" title="2）在Cherry Studio中使用gemini 的模型"></a>2）在Cherry Studio中使用gemini 的模型</h4><p>在Cherry Studio中选择刚配置的gemini-2.5-pro并和它对话，可以看到gemini-2.5-pro可以流畅的输出。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/5-CherryStudio%E4%B8%AD%E4%BD%BF%E7%94%A8GeminiAPI.png" alt="在cherry Studio中使用gemini"></p>
+<h3 id="4、在Dify中配置和使用gemini的模型"><a href="#4、在Dify中配置和使用gemini的模型" class="headerlink" title="4、在Dify中配置和使用gemini的模型"></a>4、在Dify中配置和使用gemini的模型</h3><h4 id="1-在Dify中配置gemini-API"><a href="#1-在Dify中配置gemini-API" class="headerlink" title="1) 在Dify中配置gemini API"></a>1) 在Dify中配置gemini API</h4><p>  通过openai-gemini将 Gemini API 转换为了 OpenAI API ，所以在dify中应该使用“OpenAI-API-compatible”的插件来配置模型。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/6-%E5%9C%A8dify%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86.png" alt="OpenAI插件"></p>
+<p>如果没有安装“OpenAI-API-compatible”插件需先安装。在模型供应商中选择“OpenAI-API-compatible”,点击“添加模型”。<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini 2.5 pro<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/7-%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E4%B8%AD%E9%85%8D%E7%BD%AEGeminiAPI.png" alt="配置API key"></p>
+<h4 id="2）在Dify中使用gemini的模型"><a href="#2）在Dify中使用gemini的模型" class="headerlink" title="2）在Dify中使用gemini的模型"></a>2）在Dify中使用gemini的模型</h4><p>在Dify中建一个对话应用，选择刚配置好的 Gemini 2.5 Pro 模型进行对话，可以看到对话成功的调用了gemini API使用Gemini 2.5 Pro的模型进行了回复。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/8-%E5%9C%A8Dify%E4%B8%AD%E9%85%8D%E7%BD%AEGemini%E6%A8%A1%E5%9E%8B.png" alt="在Dify中使用"></p>
+<h3 id="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"><a href="#5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问" class="headerlink" title="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"></a>5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问</h3><h4 id="1-在自己的DNS中配置域名解析到netlify的地址"><a href="#1-在自己的DNS中配置域名解析到netlify的地址" class="headerlink" title="1) 在自己的DNS中配置域名解析到netlify的地址"></a>1) 在自己的DNS中配置域名解析到netlify的地址</h4><p>以我的cloud flare域名服务配置为例，在DNS中配置一个netlifygemini的子域名，解析到目标为开始netlify给的服务地址。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/9-DNS%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="配置子域名"></p>
+<h4 id="2）在netlify中配置子域名"><a href="#2）在netlify中配置子域名" class="headerlink" title="2）在netlify中配置子域名"></a>2）在netlify中配置子域名</h4><p>在netlify中可以配置自己的域名对gemini API进行访问。在netlify的项目中找到“domain you already own”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/10-%E5%9C%A8netlify%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="在netlify中配置自己的域名"></p>
+<p>在自定义域名配置界面，输入自己的子域名，它会给出Host和Value的值，这两个值需要在自己的DNS域名服务器中配置校验。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/11-netlify%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="效验信息"></p>
+<p>接下来需要在自己的DNS服务中进行配置，我以自己的cloud flare域名服务配置为例，配置如下：</p>
+<h4 id="3）在-Cloudflare-中添加TXT记录用于校验"><a href="#3）在-Cloudflare-中添加TXT记录用于校验" class="headerlink" title="3）在 Cloudflare 中添加TXT记录用于校验"></a>3）在 Cloudflare 中添加TXT记录用于校验</h4><ol>
+<li>登录你的 Cloudflare 账户，选择我的域名doai8.dpdns.org。</li>
+<li>进入左侧的 “DNS” 菜单。</li>
+<li>点击 “Add record” (添加记录) 按钮。</li>
+<li>根据下面的表格，准确填写每一个字段：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Cloudflare 字段</th>
+<th>你需要填写的内容 (从 Netlify 截图复制)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type (类型)</td>
+<td>TXT</td>
+</tr>
+<tr>
+<td>Name (名称)</td>
+<td>netlify-challenge</td>
+</tr>
+<tr>
+<td>Content (内容)</td>
+<td>4f<strong><strong><strong>*****</strong></strong></strong>062b</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>保持默认的 Auto 即可</td>
+</tr>
+</tbody></table>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/12-%E5%9C%A8DNS%E4%B8%AD%E9%85%8D%E7%BD%AETXT%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="添加TXT记录"></p>
+<h4 id="4）在netify中进行验证，验证通过就可以用自己的域名访问了"><a href="#4）在netify中进行验证，验证通过就可以用自己的域名访问了" class="headerlink" title="4）在netify中进行验证，验证通过就可以用自己的域名访问了"></a>4）在netify中进行验证，验证通过就可以用自己的域名访问了</h4><p>在netify中进行验证，验证通过就可以用自己的域名访问了，在图中可以看到自己的子域名和netlify给的子域名。两个域名都可以用，自己的子域名的好处就是自己容易记忆。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/13-Netlify%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png" alt="自定义域名配好"></p>
+<h4 id="5）用自定义域名进行gemini-API接口的测试"><a href="#5）用自定义域名进行gemini-API接口的测试" class="headerlink" title="5）用自定义域名进行gemini API接口的测试"></a>5）用自定义域名进行gemini API接口的测试</h4><p> 在Cherry Studio中将API地址配置程自定义域名的地址<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/14-%E5%9C%A8cherrystdio%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3.png" alt="配置自定义域名地址"><br>可以看到和gemini 2.5 pro 对话同样也很丝滑。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="测试"></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a0bb8a4f/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2901,240 +3163,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ea8d8762/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ea8d8762/" itemprop="url">vue3+elementplus的表格展示和分页实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-09-02T09:45:22+08:00">
-                2024-09-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-09-02T09:50:33+08:00">
-                2024-09-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/ea8d8762/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ea8d8762/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/ea8d8762/" class="leancloud_visitors" data-flag-title="vue3+elementplus的表格展示和分页实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Element Plus 是一个基于 Vue 3 的现代化 UI 组件库，旨在帮助开发者快速构建美观且功能丰富的 Web 应用程序。它提供了大量的 UI 组件，如按钮、表单、表格、弹出框、标签页、树形控件等，涵盖了 Web 应用开发中常见的大多数场景。本文通过一个实例来说明vue3+elementplus查询、展示和分页实战。</p>
-<h2 id="一、Element-Plus的安装使用"><a href="#一、Element-Plus的安装使用" class="headerlink" title="一、Element Plus的安装使用"></a>一、Element Plus的安装使用</h2><p>要开始使用 Element Plus，首先需要在项目中安装它。如果你正在使用 Vue 3 的项目，可以通过 npm 或 yarn 安装 Element Plus：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install element-plus</span><br></pre></td></tr></table></figure>
-
-<p>然后可以在Vue 项目中全局引入 Element Plus：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入路由</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'./components/tools/Router'</span></span><br><span class="line"><span class="comment">// 导入ElementPlus</span></span><br><span class="line"><span class="keyword">import</span> ElementPlus <span class="keyword">from</span> <span class="string">'element-plus'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'element-plus/dist/index.css'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ElementPlusIconsVue <span class="keyword">from</span> <span class="string">'@element-plus/icons-vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = createApp(App)</span><br><span class="line"><span class="comment">// 遍历ElementPlusIconsVue中的所有组件进行祖册</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, component] <span class="keyword">of</span> <span class="built_in">Object</span>.entries(ElementPlusIconsVue)) &#123;</span><br><span class="line">    <span class="comment">// 向应用实例中全局注册图标组件</span></span><br><span class="line">    app.component(key, component)</span><br><span class="line">&#125;</span><br><span class="line">app.use(ElementPlus) <span class="comment">// 使用ElementPlus</span></span><br><span class="line">app.use(Router); <span class="comment">// 使用路由</span></span><br><span class="line">app.mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、el-table-表格组件"><a href="#二、el-table-表格组件" class="headerlink" title="二、el-table 表格组件"></a>二、el-table 表格组件</h2><p>el-table 是Element Plus 中的一个重要组件，用于展示列表数据。可以通过 <el-table-column> 组件来定义表格中的每一列，包括列标题、列宽、对齐方式等,可以结合 el-pagination 可以实现分页功能。示例代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table</span><br><span class="line">            ref=<span class="string">"multipleTable"</span></span><br><span class="line">            :data=<span class="string">"postList"</span></span><br><span class="line">            tooltip-effect=<span class="string">"dark"</span></span><br><span class="line">            style=<span class="string">"width: 100%"</span></span><br><span class="line">            fit</span><br><span class="line">            :pagination=<span class="string">"pagination"</span></span><br><span class="line">            @selection-change=<span class="string">"handleSelectionChange"</span> &gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                type=<span class="string">"selection"</span></span><br><span class="line">                width=<span class="string">"55"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-table-column</span></span><br><span class="line"><span class="regexp">                label="ID"</span></span><br><span class="line"><span class="regexp">                width="100"</span></span><br><span class="line"><span class="regexp">                prop="id"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>el-table-column&gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                label=<span class="string">"标题"</span></span><br><span class="line">                width=<span class="string">"450"</span></span><br><span class="line">                prop=<span class="string">"title"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-table-column</span></span><br><span class="line"><span class="regexp">                label="是否置顶"</span></span><br><span class="line"><span class="regexp">                width="100"</span></span><br><span class="line"><span class="regexp">                prop="isTop"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>el-table-column&gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                label=<span class="string">"热度"</span></span><br><span class="line">                width=<span class="string">"100"</span></span><br><span class="line">                prop=<span class="string">"viewsCount"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-table-column</span></span><br><span class="line"><span class="regexp">                label="发布时间"</span></span><br><span class="line"><span class="regexp">                width="200"</span></span><br><span class="line"><span class="regexp">                prop="pubTime"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>el-table-column&gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                label=<span class="string">"操作"</span></span><br><span class="line">                &gt;</span><br><span class="line">                    &lt;template #default="scope"&gt;</span><br><span class="line">                        &lt;el-button size=<span class="string">"mini"</span> type=<span class="string">"danger"</span> @click=<span class="string">"deleteItem(scope.$index)"</span>&gt;删除&lt;<span class="regexp">/el-button&gt;         </span></span><br><span class="line"><span class="regexp">                    &lt;/</span>template&gt;     </span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>el-table&gt;</span><br></pre></td></tr></table></figure>
-
-<p>其中<br><code>:data=&quot;postList&quot;</code>  绑定要显示在表格中的数据源，通常是一个对象数组<br><code>fit:</code> 让表格宽度自动填充父容器。<br><code>:pagination=&quot;pagination&quot;</code> 绑定分页的数据对象</p>
-<p>数据定义如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 博客文章列表数据</span></span><br><span class="line">postList:[],</span><br><span class="line"><span class="comment">// 分页</span></span><br><span class="line">pagination: &#123;</span><br><span class="line">    currentPage: <span class="number">1</span>, <span class="comment">// 当前页</span></span><br><span class="line">    pageSize: <span class="number">10</span>, <span class="comment">// 每页显示条数</span></span><br><span class="line">    total: <span class="number">0</span>, <span class="comment">// 总条数</span></span><br><span class="line">    layout: <span class="string">'total,sizes,prev, pager, next, jumper'</span>, <span class="comment">// 分页布局</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、el-pagination-分页组件"><a href="#三、el-pagination-分页组件" class="headerlink" title="三、el-pagination 分页组件"></a>三、el-pagination 分页组件</h2><p>el-pagination Element Plus 中用于实现分页功能的重要组件。它可以与 el-table 组件结合使用，实现数据的分页显示。示例代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-pagination</span><br><span class="line">    @size-change=<span class="string">"handleSizeChange"</span></span><br><span class="line">    @current-change=<span class="string">"handleCurrentChange"</span></span><br><span class="line">    :current-page=<span class="string">"pagination.currentPage"</span></span><br><span class="line">    :page-sizes=<span class="string">"[10, 20, 30, 40]"</span></span><br><span class="line">    :page-size=<span class="string">"pagination.pageSize"</span></span><br><span class="line">    layout=<span class="string">"total, sizes, prev, pager, next, jumper"</span></span><br><span class="line">    :total=<span class="string">"pagination.total"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/el-pagination&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>属性<br>● <code>@size-change=&quot;handleSizeChange&quot;</code> 当每页显示数量变化时触发。<br>● <code>@current-change=&quot;handleCurrentChange&quot;</code> 当当前页变化时触发。<br>● <code>:current-page=&quot;currentPage&quot;</code> 设置当前页。<br>● <code>:page-sizes=&quot;[10, 20, 30, 40]&quot;</code>  设置每页可选的数量。<br>● <code>:page-size=&quot;pageSize&quot;</code> 设置每页显示的数量。<br>● <code>layout=&quot;total, sizes, prev, pager, next, jumper&quot;</code>  设置分页布局。<br>● <code>:total=&quot;tableData.length&quot;</code> 设置总数据量。<br>方法：<br>● <code>handleSelectionChange(val)</code> 处理行选择变化。<br>● <code>deleteItem(index)</code>  删除指定行。<br>● <code>handleSizeChange(val)</code>  处理每页显示数量变化。<br>● <code>handleCurrentChange(val)</code> 处理当前页变化。</p>
-<h2 id="四、全部代码"><a href="#四、全部代码" class="headerlink" title="四、全部代码"></a>四、全部代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-container"</span> direction=<span class="string">"vertical"</span>&gt;</span><br><span class="line">        &lt;!-- input --&gt;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;el-container <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-row"</span>&gt;</span><br><span class="line">                &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"input-tip"</span>&gt;</span><br><span class="line">                    文章标题:</span><br><span class="line">                &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">                &lt;div class="input-field" style="width: 400px;"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;el-input v-model="queryParam.words"&gt;&lt;/</span>el-input&gt;</span><br><span class="line">                &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-button type="primary" @click="getBlogList"&gt;筛选&lt;/</span>el-button&gt;</span><br><span class="line">                &lt;el-button type=<span class="string">"danger"</span> @click=<span class="string">"clear"</span>&gt;清空筛选&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>el-container&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;!-- list --&gt;</span></span><br><span class="line"><span class="regexp">        &lt;div&gt;</span></span><br><span class="line"><span class="regexp">            &lt;el-tabs type="card" @tab-click="handleClick"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-tab-pane label="全部"&gt;&lt;/</span>el-tab-pane&gt;</span><br><span class="line">                &lt;el-tab-pane v-<span class="keyword">for</span>=<span class="string">"(item,index) in blogCategorys"</span></span><br><span class="line">                 :key=<span class="string">"index"</span></span><br><span class="line">                 :label=<span class="string">"item.title"</span></span><br><span class="line">                 :name=<span class="string">"item.id"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-tab-pane&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>el-tabs&gt;</span><br><span class="line">            &lt;el-table</span><br><span class="line">            ref=<span class="string">"multipleTable"</span></span><br><span class="line">            :data=<span class="string">"postList"</span></span><br><span class="line">            tooltip-effect=<span class="string">"dark"</span></span><br><span class="line">            style=<span class="string">"width: 100%"</span></span><br><span class="line">            fit</span><br><span class="line">            :pagination=<span class="string">"pagination"</span></span><br><span class="line">            @selection-change=<span class="string">"handleSelectionChange"</span> &gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                type=<span class="string">"selection"</span></span><br><span class="line">                width=<span class="string">"55"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-table-column</span></span><br><span class="line"><span class="regexp">                label="ID"</span></span><br><span class="line"><span class="regexp">                width="100"</span></span><br><span class="line"><span class="regexp">                prop="id"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>el-table-column&gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                label=<span class="string">"标题"</span></span><br><span class="line">                width=<span class="string">"450"</span></span><br><span class="line">                prop=<span class="string">"title"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-table-column</span></span><br><span class="line"><span class="regexp">                label="是否置顶"</span></span><br><span class="line"><span class="regexp">                width="100"</span></span><br><span class="line"><span class="regexp">                prop="isTop"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>el-table-column&gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                label=<span class="string">"热度"</span></span><br><span class="line">                width=<span class="string">"100"</span></span><br><span class="line">                prop=<span class="string">"viewsCount"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">                &lt;el-table-column</span></span><br><span class="line"><span class="regexp">                label="发布时间"</span></span><br><span class="line"><span class="regexp">                width="200"</span></span><br><span class="line"><span class="regexp">                prop="pubTime"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>el-table-column&gt;</span><br><span class="line">                &lt;el-table-column</span><br><span class="line">                label=<span class="string">"操作"</span></span><br><span class="line">                &gt;</span><br><span class="line">                    &lt;template #default="scope"&gt;</span><br><span class="line">                        &lt;el-button size=<span class="string">"mini"</span> type=<span class="string">"danger"</span> @click=<span class="string">"deleteItem(scope.$index)"</span>&gt;删除&lt;<span class="regexp">/el-button&gt;         </span></span><br><span class="line"><span class="regexp">                    &lt;/</span>template&gt;     </span><br><span class="line">                &lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>el-table&gt;</span><br><span class="line">            &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"pagination-container"</span>&gt;</span><br><span class="line">                &lt;el-pagination</span><br><span class="line">                    @size-change=<span class="string">"handleSizeChange"</span></span><br><span class="line">                    @current-change=<span class="string">"handleCurrentChange"</span></span><br><span class="line">                    :current-page=<span class="string">"pagination.currentPage"</span></span><br><span class="line">                    :page-sizes=<span class="string">"[10, 20, 30, 40]"</span></span><br><span class="line">                    :page-size=<span class="string">"pagination.pageSize"</span></span><br><span class="line">                    layout=<span class="string">"total, sizes, prev, pager, next, jumper"</span></span><br><span class="line">                    :total=<span class="string">"pagination.total"</span>&gt;</span><br><span class="line">                &lt;<span class="regexp">/el-pagination&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>div&gt;</span><br><span class="line">        &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style scoped&gt;</span></span><br><span class="line"><span class="regexp">.pagination-container &#123;</span></span><br><span class="line"><span class="regexp">  margin-top: 20px;</span></span><br><span class="line"><span class="regexp">  text-align: center;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123;getBlogList,getBlogCategory&#125; <span class="keyword">from</span> <span class="string">'@/api'</span> </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="comment">// 博客文章列表数据</span></span><br><span class="line">            postList:[],</span><br><span class="line">            <span class="comment">// 筛选博客的参数</span></span><br><span class="line">            queryParam:&#123;</span><br><span class="line">                words:<span class="string">""</span>,</span><br><span class="line">                cateid:<span class="string">""</span>,</span><br><span class="line">                tag:<span class="string">""</span>,</span><br><span class="line">                search:<span class="string">""</span>,</span><br><span class="line">                page:<span class="number">1</span>,</span><br><span class="line">                size:<span class="number">10</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 分页</span></span><br><span class="line">            pagination: &#123;</span><br><span class="line">                currentPage: <span class="number">1</span>, <span class="comment">// 当前页</span></span><br><span class="line">                pageSize: <span class="number">10</span>, <span class="comment">// 每页显示条数</span></span><br><span class="line">                total: <span class="number">0</span>, <span class="comment">// 总条数</span></span><br><span class="line">                layout: <span class="string">'total,sizes,prev, pager, next, jumper'</span>, <span class="comment">// 分页布局</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 博客分类</span></span><br><span class="line">            blogCategorys:[],</span><br><span class="line">            <span class="comment">// 当前选中的博客分类</span></span><br><span class="line">            selectCategory:<span class="string">""</span>,</span><br><span class="line">            <span class="comment">// 当前选中的博客文章</span></span><br><span class="line">            multipleSelection:[]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line">        <span class="keyword">this</span>.getBlogList();</span><br><span class="line">        <span class="keyword">this</span>.getBlogCategory();</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 路由更新时刷新数据</span></span><br><span class="line">    beforeRouteUpdate (to) &#123;</span><br><span class="line">        <span class="keyword">this</span>.getBlogList();</span><br><span class="line">        <span class="keyword">this</span>.getBlogCategory();</span><br><span class="line">    &#125;,</span><br><span class="line">    methods : &#123;</span><br><span class="line">        <span class="comment">// 获取博客文章列表数据</span></span><br><span class="line">        getBlogList() &#123;</span><br><span class="line">            getBlogList(<span class="keyword">this</span>.queryParam).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.postList = res.data.items</span><br><span class="line">                <span class="keyword">this</span>.pagination.total = res.data.total</span><br><span class="line">                <span class="keyword">this</span>.pagination.currentPage= res.data.page</span><br><span class="line">                    <span class="built_in">console</span>.log(res.data)</span><br><span class="line">                &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(err)</span><br><span class="line">                &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 获取博客分类数据</span></span><br><span class="line">        getBlogCategory() &#123;</span><br><span class="line">            getBlogCategory().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">this</span>.blogCategorys = res.data</span><br><span class="line">                <span class="built_in">console</span>.log(res)</span><br><span class="line">            &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(err)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 改变分页大小</span></span><br><span class="line">        handleSizeChange(val) &#123;</span><br><span class="line">            <span class="keyword">this</span>.pagination.pageSize = val;</span><br><span class="line">            <span class="keyword">this</span>.queryParam.size = val;</span><br><span class="line">            <span class="keyword">this</span>.getBlogList(); </span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 跳到当前页 </span></span><br><span class="line">        handleCurrentChange(val) &#123;</span><br><span class="line">            <span class="keyword">this</span>.pagination.currentPage = val;</span><br><span class="line">            <span class="keyword">this</span>.queryParam.page = val;</span><br><span class="line">            <span class="keyword">this</span>.getBlogList();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 切换Tab 刷新数据</span></span><br><span class="line">        handleClick(tab) &#123;</span><br><span class="line">            <span class="keyword">this</span>.queryParam.cateid = tab.props.name</span><br><span class="line">            <span class="keyword">this</span>.getBlogList();</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 清空筛选项</span></span><br><span class="line">        clear() &#123;</span><br><span class="line">            <span class="keyword">this</span>.queryParam.words=<span class="string">""</span></span><br><span class="line">            <span class="keyword">this</span>.getBlogList();</span><br><span class="line">        &#125;,</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="五、效果"><a href="#五、效果" class="headerlink" title="五、效果"></a>五、效果</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240901/1-elementplus%E8%A1%A8%E6%A0%BC.png" alt="elementplus表格"><br>表格展示及数据分页是前端开发常用的功能，通过vue3+elementplus能够快速是实现对数据的展示及分页。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3191,7 +3219,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">201</span>
+                  <span class="site-state-item-count">202</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3303,7 +3331,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">416.3k</span>
+    <span title="Site words total count">417.6k</span>
   
   
 <!--51la网站应用监控-->
