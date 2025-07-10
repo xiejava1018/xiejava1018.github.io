@@ -119,7 +119,7 @@
 
 
 
-  <meta name="keywords" content="网络安全," />
+  <meta name="keywords" content="AI机器学习," />
 
 
 
@@ -134,22 +134,43 @@
 
 
 
-<meta name="description" content="随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。 在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念： 主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连">
+<meta name="description" content="Gemini是目前好用的免费大模型，通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。虽然免费但有一定的额度，不过通过申请不同的账号可以申请获取多个API密钥。Gemini Balance 就是这么一款工具，允许您管理多个 Gemini API Key">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CWPP与EDR的定义与区别">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/ada9f957/index.html">
+<meta property="og:title" content="使用GeminiBalance让Gemini免费到底">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/d786604d/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
-<meta property="og:description" content="随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。 在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念： 主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png">
+<meta property="og:description" content="Gemini是目前好用的免费大模型，通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。虽然免费但有一定的额度，不过通过申请不同的账号可以申请获取多个API密钥。Gemini Balance 就是这么一款工具，允许您管理多个 Gemini API Key">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/1-APIkey%E7%94%B3%E8%AF%B7.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/2-ClawCloud.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/3-ClawCloudGithub%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/4-github%E7%99%BB%E5%BD%95.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/5-ClowCloud%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/6-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/7-ClowCloud%E7%9A%84Applaunchpad.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/8-ClowCloud%E5%88%9B%E5%BB%BAAPP.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/9-ClowCloud%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/10-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/11-ClowCloud%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/12-ClowCloud%E9%80%89%E6%8B%A9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/13-ClowCloud%E9%80%89%E6%8B%A9Storage.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/14-ClowCloud%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/15-ClowCloud%E7%AD%89%E5%BE%85%E9%83%A8%E7%BD%B2%E7%8A%B6%E6%80%81.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/16-ClowCloud%E7%8A%B6%E6%80%81%E5%8F%98%E4%B8%BAAvailable.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/17-ClowCloud%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/18-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/19-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/20-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/21-Cherrystudio-geminibalance%E9%85%8D%E7%BD%AE1.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/22-Cherrystudio-GeminiBalance%E9%85%8D%E7%BD%AEKey.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/23-CherryStudio-GeminiBalance%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/24-CheryStudio-GeminiBalance%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
-<meta property="article:published_time" content="2022-04-16T06:34:04.000Z">
-<meta property="article:modified_time" content="2024-06-13T14:52:19.661Z">
+<meta property="article:published_time" content="2025-07-10T15:22:18.000Z">
+<meta property="article:modified_time" content="2025-07-10T16:30:07.620Z">
 <meta property="article:author" content="XieJava">
-<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="AI机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/1-APIkey%E7%94%B3%E8%AF%B7.png">
 
 
 
@@ -179,13 +200,13 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/ada9f957/"/>
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/d786604d/"/>
 
 
 
 
 
-  <title>CWPP与EDR的定义与区别 | XieJava's blog</title>
+  <title>使用GeminiBalance让Gemini免费到底 | XieJava's blog</title>
   
 
 
@@ -322,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ada9f957/">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d786604d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -339,7 +360,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CWPP与EDR的定义与区别</h2>
+          <h2 class="post-title" itemprop="name headline">使用GeminiBalance让Gemini免费到底</h2>
         
 
         <div class="post-meta">
@@ -351,8 +372,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-16T14:34:04+08:00">
-                2022-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-10T23:22:18+08:00">
+                2025-07-10
               </time>
             
 
@@ -367,8 +388,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:19+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-07-11T00:30:07+08:00">
+                2025-07-11
               </time>
             
           </span>
@@ -393,17 +414,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -415,8 +425,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/ada9f957/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ada9f957/" itemprop="commentCount"></span>
+                <a href="/posts/d786604d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d786604d/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -424,7 +434,7 @@
 
           
           
-             <span id="/posts/ada9f957/" class="leancloud_visitors" data-flag-title="CWPP与EDR的定义与区别">
+             <span id="/posts/d786604d/" class="leancloud_visitors" data-flag-title="使用GeminiBalance让Gemini免费到底">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -449,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.8k
+                  1.6k
                 </span>
               
 
@@ -465,7 +475,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9
+                  6
                 </span>
               
             </div>
@@ -486,99 +496,141 @@
       
 
       
-        <p>随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。</p>
-<p>在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念：</p>
-<p>主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连接到网络的计算机或其他设备，而服务器是提供服务的软件或硬件设备，日常所说的服务器一般是指提供服务的主机。由此可见，主机安全并不是一个产品，而是对应一个需要被保护的位置，主机安全即主机侧的安全保护。</p>
-<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
-<p>对于一般的应用系统来说，服务器就是提供服务的主机如提供WEB、FTP、数据库等服务的服务器，终端就是访问服务的工作站、个人PC等。</p>
-<h2 id="一、CWPP的定义"><a href="#一、CWPP的定义" class="headerlink" title="一、CWPP的定义"></a>一、CWPP的定义</h2><p> 现代数据中心支持运行在物理设备、虚拟机（VM）、容器以及私有云基础架构中的各种工作负载，并且几乎总是涉及一些在一个或多个公有云基础设施即服务（IaaS）提供商中运行的工作负载。<br><strong>云工作保护平台(Cloud Workload Protection Platform)简称CWPP</strong>，市场定义为基于主机的解决方案，主要满足现代混合数据中心架构中，服务器工作负载的保护要求。它为信息安全领导者提供了一种集成的方式，通过使用单个管理控制台和单一方式表达安全策略来保护这些工作负载，而不用考虑工作负载运行的位置。<br>可以理解成为基于代理（Agent）的底层技术方案，和传统部署在网络边界上的安全产品不一样，CWPP部署在操作系统层，因此可以横跨物理机、公有云、私有云、混合云等多种数据中心环境，部署方式更加灵活、防护层面更加丰富。采用服务端agent+远程控制台的部署模式，agent支持云、物理、混合环境部署，能有效安全加固服务器、抵御黑客攻击和恶意代码。</p>
-<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png" alt="CWPP"></p>
-<p>CWPP的核心能力：</p>
+        <p>Gemini是目前好用的免费大模型，通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。虽然免费但有一定的额度，不过通过申请不同的账号可以申请获取多个API密钥。Gemini Balance 就是这么一款工具，允许您管理多个 Gemini API Key，这样就可以使Gemini免费额度翻N倍。</p>
+<p>Gemini Balance 是一个基于 Python FastAPI 构建的应用程序，旨在提供 Google Gemini API 的代理和负载均衡功能。它允许您管理多个 Gemini API Key，并通过简单的配置实现 Key 的轮询、认证、模型过滤和状态监控。此外，项目还集成了图像生成和多种图床上传功能，并支持 OpenAI API 格式的代理。</p>
+<p>要感谢snailyp大佬开发的gemini-balance 项目地址：<a href="https://github.com/snailyp/gemini-balance" target="_blank" rel="noopener">https://github.com/snailyp/gemini-balance</a><br>《<a href="http://xiejava.ishareread.com/posts/4999be0b/" target="_blank" rel="noopener">国内免代理免费使用Gemini大模型实战</a>》介绍了如何将Gamini中转到国内能够使用，本文介绍如何使用免费的ClawCloud容器化部署gemini-balance配置多个Gemini API Key，不仅在国内可以使用还可以让Gemini免费到底！</p>
+<h2 id="一、申请注册多个Gemini-API-Key"><a href="#一、申请注册多个Gemini-API-Key" class="headerlink" title="一、申请注册多个Gemini API Key"></a>一、申请注册多个Gemini API Key</h2><p>注册google账号就可以免费申请Gemini API密钥。</p>
+<p>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/1-APIkey%E7%94%B3%E8%AF%B7.png" alt="申请密钥"> </p>
+<p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。</p>
+<p>注册多个google账号就可以申请多个Gemini API 密钥。</p>
+<h2 id="二、注册ClawCloud账号"><a href="#二、注册ClawCloud账号" class="headerlink" title="二、注册ClawCloud账号"></a>二、注册ClawCloud账号</h2><p>ClawCloud是一个成立于2024年的云计算平台，总部位于新加坡，ClawCloud旨在简化技术栈的复杂性，帮助用户从编码到生产的整个过程只需几次点击即可完成 。它提供免费的每月5美元GitHub验证赠金，无需信用卡即可开始使用，并承诺在1分钟内完成设置 。</p>
+<p>ClawCloud 在国内可以直接访问，Github 账户注册时间超过 180天就有每个月5美元的赠送额度，足够支撑我们部署gemini-balance的应用了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/2-ClawCloud.png" alt="在这里插入图片描述"></p>
+<p>点击 Github 登录<img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/3-ClawCloudGithub%E7%99%BB%E5%BD%95.png" alt="选择github登录"></p>
+<p>进入 Github 登录界面后，输入账户名、密码，随后点击 Sign in。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/4-github%E7%99%BB%E5%BD%95.png" alt="Github登录"></p>
+<p>登录以后就在用户中心Account Center就可以看到每个月赠送的额度，如果有使用还可以看到目前使用的额度。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/5-ClowCloud%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83.png" alt="ClawCloud的用户中心"></p>
+<h2 id="三、通过-ClawCloud-Run-部署gemini-balance"><a href="#三、通过-ClawCloud-Run-部署gemini-balance" class="headerlink" title="三、通过 ClawCloud Run 部署gemini-balance"></a>三、通过 ClawCloud Run 部署gemini-balance</h2><p>gemini-balance官方有详细的部署文档</p>
+<p><a href="https://gb-docs.snaily.top/guide/setup-clawcloud-sqlite.html" target="_blank" rel="noopener">https://gb-docs.snaily.top/guide/setup-clawcloud-sqlite.html</a></p>
+<p>大家可以按照这个文档一步步部署</p>
+<ol>
+<li>部署项目</li>
+</ol>
 <ul>
-<li>Congurationand  vulnerability management 配置和漏洞管理<br>1.配置，即服务器优化，通过对操作系统进行合理配置，提升操作系统的安全性和抗攻击能力。<br>2.漏洞管理，分为操作系统漏洞管理和应用漏洞管理。目前网络攻击主要是通过web服务器或者web应用漏洞发起，因此CWPP产品要能提供标准化、同时支持制定自定义的web应用漏洞防护策略。</li>
-<li>Networksegmentation, isolation and traffic visibility 网络隔离与流可视<br>要求CWPP产品首先能图形化管理用户的主机业务资产，并且可以跨物理、虚拟架构、网络定于基于角色的访问策略（微隔离）；对于主机之间的访问关系，可以图形化的展示和控制（流可视化）。</li>
-<li>Systemintegrity measurement， attestation and monitoring 系统完整性检测、认证和监测<br>可以保护系统文件或者指定目录、文件不被恶意修改，提供监控模式和防护模式。</li>
-<li>Application control应用防护<br>CWPP产品需要能识别到主机上运行的应用，并对不同的应用提供相应的防护策略，如云锁对web应用提供waf防护，对于sshd、remotedesktop提供防暴力破解防护等。</li>
-<li>Capabilities that augment/verify foundational operational controls 增强及验证基础运维能力<br>CWPP产品要求不能单纯依靠服务器账号、密码来验证管理员，而需要引入账号密码外的第二套验证机制。比如云锁的登陆防护功能，可以限制登陆服务的用户名、IP范围、登陆时间、登陆服务器使用的PC名称，如果不满足限制条件，即使拿到服务器的管理员账号密码也无法登陆服务器。</li>
-<li>Log management and monitoring日志管理和监测<br>要求CWPP产品能提供完整的日志，同时当安全事件发生后，CWPP产品需要关联相关日志最终形成事件IOC，帮助用户回溯攻击过程，快速定位风险点。</li>
+<li>进入主界面后，点击左上角 Region，选择服务器地址。推荐选择 Singapore。选择完成后，网页会刷新，并在服务器地址前☑️。</li>
 </ul>
-<h2 id="二、EDR的定义"><a href="#二、EDR的定义" class="headerlink" title="二、EDR的定义"></a>二、EDR的定义</h2><p>根据Gartner的定义，<strong>EDR端点检测与响应（Endpoint Detection and Response）简称EDR</strong>是一种集成的终端安全解决方案，它将终端数据的实时连续监控和收集与基于规则的自动响应和分析功能相结合。该术语由Gartner的Anton Chuvakin提出，用于描述新兴的安全系统，用于检测和调查终端上的可疑活动，采用高度自动化使安全团队能够快速识别和响应威胁。完全不同于以往的端点被动防护思路，而是通过云端威胁情报、机器学习、异常行为分析、攻击指示器等方式，主动发现来自外部或内部的安全威胁，并进行自动化的阻止、取证、补救和溯源，从而有效对端点进行防护。</p>
-<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png" alt="EDR"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/6-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.png" alt="选择服务器地址"></p>
 <ul>
-<li>资产发现：定期通过主动扫描、被动发现、手工录入和人工排查等多种方法收集当前网络中所有软硬件资产，包括全网所有的端点资产和在用的软件名称、版本，确保整个网络中没有安全盲点。</li>
-<li>系统加固：定期进行漏洞扫描、补丁修复、安全策略设置和更新端点软件清单，通过软件白名单限制未经授权的软件运行，通过主机防火墙限制未经授权的服务端口开放，并定期检查和清理内部人员的账号和授权信息。</li>
-<li>威胁检测：通过端点本地的主机入侵检测和借助云端威胁情报、异常行为分析、攻击指示器等方式，针对各类安全威胁，在其发生前、发生中、发生后进行相应的安全检测动作。</li>
-<li>响应取证：针对全网的安全威胁进行可视化展示，能够针对安全威胁自动化地进行隔离、修复和补救，自动完成安全威胁的调查、分析和取证工作，降低事件响应和取证分析的技术门槛，不需要依赖于外部专家即可完成快速响应和取证分析。</li>
+<li>点击 App Launchpad。</li>
 </ul>
-<h2 id="三、CWPP与EDR的关系与区别"><a href="#三、CWPP与EDR的关系与区别" class="headerlink" title="三、CWPP与EDR的关系与区别"></a>三、CWPP与EDR的关系与区别</h2><p>EDR与CWPP主机安全属于网络安全领域两个不同的方向，前者聚焦于常规的终端侧，后者聚焦于主机侧，两者作用于完全不同的位置。EDR的基因是根植于PC等常规终端的，它天然不适配于主机侧。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/7-ClowCloud%E7%9A%84Applaunchpad.png" alt="选择App Lannchpad"></p>
+<ul>
+<li>进入页面后，点击页面右上角 Create App，进入配置页面。</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/8-ClowCloud%E5%88%9B%E5%BB%BAAPP.png" alt="Create App"></p>
+<ul>
+<li>进入配置页面后，按顺序填写信息（不熟悉项目名称的，请打开在线翻译）。<ul>
+<li>Application Name：为方便识别管理，建议填写本项目名字<code>geminibalance</code></li>
+<li>Image： <code>Public</code><ul>
+<li>Image Name：<code>ghcr.io/snailyp/gemini-balance:latest</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/9-ClowCloud%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F.png" alt="在这里插入图片描述"></p>
+<pre><code>- Usage：`Fixed`；
+- Replicas：`1`
+- CPU：`1`
+- Memory：`512`
+
+&gt; 说明：1. 若登录账号只选择部署 1 个项目，则推荐上述最高免费配置。2.目前免费用户每月流量为 10g，超出部分 0.05 美元/g。可根据流量使用情况选择服务器配置。</code></pre><p> <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/10-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+<pre><code>- Network
+    - Container Port：`8000`
+    - Enable Internet：点选为`Access`状态</code></pre><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/11-ClowCloud%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>Advanced Configura<ul>
+<li>Environment Variables：点击 Add，随后粘贴以下变量。填写完成后点击 Add 完成配置。</li>
+</ul>
+</li>
+</ul>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DATABASE_TYPE&#x3D;sqlite</span><br><span class="line">SQLITE_DATABASE&#x3D;default_db</span><br><span class="line">API_KEYS&#x3D;[&quot;&quot;]</span><br><span class="line">ALLOWED_TOKENS&#x3D;[&quot;&quot;]</span><br><span class="line">AUTH_TOKEN&#x3D;TZ&#x3D;Asia&#x2F;Shanghai</span><br></pre></td></tr></table></figure></code></pre><p>变量说明如下：  </p>
 <table>
 <thead>
 <tr>
-<th>需求场景</th>
-<th>需求求相同点</th>
-<th>需求不同点</th>
+<th>变量名</th>
+<th>说明</th>
+<th>格式及示例</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>终端侧安全</td>
-<td>资产梳理清点<br>统一集中管理<br>风险防护</td>
-<td>安全需求&gt;稳定需求，注重安全防护能力，重防御；<br>关注用户实体行为分析（UEBA），防止PC端成为威胁内网安全的导火索，防止敏感数据歪斜；<br>高危动作或安全风险尽可能自动化完成阻断动作，无需人工介入，确保整体网络的安全可靠。</td>
+<td>API_KEYS</td>
+<td>Gemini API 密钥列表，用于负载均衡</td>
+<td>[“your-gemini-api-key-1”,”your-gemini-api-key-2”]</td>
 </tr>
 <tr>
-<td>主机侧安全</td>
-<td>资产梳理清点<br>统一集中管理<br>风险防护</td>
-<td>稳定需求&gt;安全需求，注重安全检测能力，重检测；<br>更加关注主机上承载的业务应用和数据安全；<br>因业务连续性需要，安全加固工作需人工介入，要在确保业务连续稳定运行的基础上进行加固。</td>
+<td>ALLOWED_TOKENS</td>
+<td>允许访问的 Token 列表</td>
+<td>[“your-access-token-1”,”your-access-token-2”]</td>
+</tr>
+<tr>
+<td>AUTH_TOKEN</td>
+<td>【可选】超级管理员token，具有所有权限，不填默认使用 ALLOWED_TOKENS 的第一个</td>
+<td>sk-123456</td>
 </tr>
 </tbody></table>
-<p>在安全的需求上，PC类的终端侧与主机侧的安全诉求差别很大。所以，面向终端的EDR产品与面向服务器/工作负载的主机安全产品CWPP，这两者之间有本质的区别，并不能混为一谈。主机侧的安全产品实现不了终端侧的安全防护，EDR也不能实现CWPP的防护效果。<br>两种产品的区别如下：</p>
-<table>
-<thead>
-<tr>
-<th>对比项</th>
-<th>CWPP</th>
-<th>EDR</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>产品定位</td>
-<td>主机安全防护</td>
-<td>终端安全防护</td>
-</tr>
-<tr>
-<td>产品部署</td>
-<td>Agent不在内核安装驱动，稳定性高</td>
-<td>Agent安装需要在内核安装驱动，稳定性差，影响业务</td>
-</tr>
-<tr>
-<td>资产清点</td>
-<td>资产清点能力更全面，支持对业务层资产精准识别和动态感知</td>
-<td>资产信息相对比较少，不够全面</td>
-</tr>
-<tr>
-<td>风险发现</td>
-<td>提供全面的风险检查，包括漏洞风险、弱密码、系统风险、应用风险、账号风险检查</td>
-<td>支持漏洞风险检查，不具备其他风险检查能力</td>
-</tr>
-<tr>
-<td>入侵检测与病毒查杀</td>
-<td>不依赖特征库的检测方式，基于行为以及结合威胁情报、大数据、机器学习等方法，提供实时精准的入侵检测和响应能力</td>
-<td>主要功能是病毒查杀，基于特征库或结合威胁情报，能够查杀绝大部分病毒，但仍属于被动防护</td>
-</tr>
-<tr>
-<td>基线合规检查</td>
-<td>提供等保或CIS国标标准的检查基线，支持对系统、应用、数据进行基线合规检查</td>
-<td>通常不具备合基线合规检查能力，或提供少量的基线检查标准。</td>
-</tr>
-</tbody></table>
-<p>CWPP与EDR，一个面向服务器端的防护（CWPP），一个是面向常规终端PC端的防护（EDR）但是对于企业的整体安全防护来说，CWPP和EDR相互作为补充构建企业的云、端防护能力。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/12-ClowCloud%E9%80%89%E6%8B%A9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>添加完环境变量后，再按照下图设置storage</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/13-ClowCloud%E9%80%89%E6%8B%A9Storage.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>返回页面最上方，点击 Deploy Application。弹窗提示Are you sure you want to deploy the application?选择 Yes。</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/14-ClowCloud%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>等待几秒后，跳转至状态界面。此时，请确认页面左上角显示 running。若显示为其他状态，请稍后片刻；仍未显示 running，请确认你配置选项是否正确。需要修改的，可点击页面右下角 Manage Network 选项修改参数，或删除该项目重新部署。</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/15-ClowCloud%E7%AD%89%E5%BE%85%E9%83%A8%E7%BD%B2%E7%8A%B6%E6%80%81.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>将页面滚动到最下方，在 Network 选项卡中，查看右侧公网地址配置情况。一般情况下，显示 pending 表明还在处理当中，需要等待 2～5 分钟，直至pending 状态变为Available。 实际情况下， 2 分钟后即使公网地址前显示pending，亦可尝试在新的浏览器标签中打开该地址。若网页能正常显示本项目登录界面，则正常使用即可。若公网地址前的pending状态超过 10 分钟，且无法打开登录界面，原因可能是服务器过载，需要更长等待时间。建议换区或换服务商重新部署。</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/16-ClowCloud%E7%8A%B6%E6%80%81%E5%8F%98%E4%B8%BAAvailable.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>设置自定义域名</li>
+<li>在cloudflare添加cname记录，如我希望域名为ggg.abc.xyz，cloudflare中这样设置，abc.xyz为托管在cloudflare域名</li>
+<li>在clawcloud这样设置，这样就可以自定义域名访问</li>
+</ul>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/17-ClowCloud%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="在这里插入图片描述"></p>
+<h2 id="四、使用gemini-balance监控配置页面"><a href="#四、使用gemini-balance监控配置页面" class="headerlink" title="四、使用gemini-balance监控配置页面"></a>四、使用gemini-balance监控配置页面</h2><p>gemini-balance贴心的带了一个监控配置页面，在这个界面可以配置多个Gemimi API 也可以监控Gemini API的调用情况。</p>
+<ol>
+<li>gemini-balance监控页面配置<ul>
+<li>复制项目公网访问地址后，在浏览器中打开。随后进入登录界面，输入密码即可进入。（如果没有更改配置，密码是<code>your-access-token-1</code>）</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/18-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt="gemini-balance监控页面登录"></p>
+<p>登录后可以进行相应的配置如添加更多的Gemini API Key<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/19-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt="配置界面"></p>
+<p>也可以监控Gemini API Key的调用情况</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/20-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt="监控Gemini API Key的调用情况"></p>
+<h2 id="五、在-cherry-studio使用GeminiBalance"><a href="#五、在-cherry-studio使用GeminiBalance" class="headerlink" title="五、在 cherry studio使用GeminiBalance"></a>五、在 cherry studio使用GeminiBalance</h2><p> 以 cherry studio 为例<br>    1. 添加提供商。<br>        - 提供商名称：任意填写</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/21-Cherrystudio-geminibalance%E9%85%8D%E7%BD%AE1.png" alt="在这里插入图片描述"></p>
+<pre><code>2. 配置
+    - API 密钥：填写监控面板“API 密钥”选项卡中的“允许的令牌列表”。
+    - API 地址：填写 ClawCloud 中的公网访问地址。注意结尾不要出现“/”。</code></pre><p>  <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/22-Cherrystudio-GeminiBalance%E9%85%8D%E7%BD%AEKey.png" alt="在这里插入图片描述"></p>
+<pre><code>3. 添加模型
+4. 点击“管理”，添加模型。</code></pre><p>   <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/23-CherryStudio-GeminiBalance%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B.png" alt="在这里插入图片描述"></p>
+<p> 至此，部署完成。</p>
+<p>最后看调用效果<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/24-CheryStudio-GeminiBalance%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
 <hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
+<p>关注：微信公众号,一起学习成长！</center></p>
 
       
     </div>
@@ -599,7 +651,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/ada9f957/" title="CWPP与EDR的定义与区别">https://xiejava.gitee.io/posts/ada9f957/</a>
+    <a href="https://xiejava.gitee.io/posts/d786604d/" title="使用GeminiBalance让Gemini免费到底">https://xiejava.gitee.io/posts/d786604d/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -614,7 +666,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+            <a href="/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># AI机器学习</a>
           
         </div>
       
@@ -627,8 +679,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/25e5f55a/" rel="next" title="网络信息安全之APT攻击">
-                <i class="fa fa-chevron-left"></i> 网络信息安全之APT攻击
+              <a href="/posts/4999be0b/" rel="next" title="国内免代理免费使用Gemini大模型实战">
+                <i class="fa fa-chevron-left"></i> 国内免代理免费使用Gemini大模型实战
               </a>
             
           </div>
@@ -636,10 +688,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/88375ea1/" rel="prev" title="网络信息安全之安全风险管理">
-                网络信息安全之安全风险管理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -819,7 +867,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、CWPP的定义"><span class="nav-number">1.</span> <span class="nav-text">一、CWPP的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、EDR的定义"><span class="nav-number">2.</span> <span class="nav-text">二、EDR的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、CWPP与EDR的关系与区别"><span class="nav-number">3.</span> <span class="nav-text">三、CWPP与EDR的关系与区别</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、申请注册多个Gemini-API-Key"><span class="nav-number">1.</span> <span class="nav-text">一、申请注册多个Gemini API Key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、注册ClawCloud账号"><span class="nav-number">2.</span> <span class="nav-text">二、注册ClawCloud账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、通过-ClawCloud-Run-部署gemini-balance"><span class="nav-number">3.</span> <span class="nav-text">三、通过 ClawCloud Run 部署gemini-balance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、使用gemini-balance监控配置页面"><span class="nav-number">4.</span> <span class="nav-text">四、使用gemini-balance监控配置页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、在-cherry-studio使用GeminiBalance"><span class="nav-number">5.</span> <span class="nav-text">五、在 cherry studio使用GeminiBalance</span></a></li></ol></div>
             
 
           </div>
