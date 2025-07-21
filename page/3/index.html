@@ -313,6 +313,246 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8fbbc02f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/8fbbc02f/" itemprop="url">django集成pytest进行自动化单元测试实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-03T17:23:11+08:00">
+                2024-08-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
+                2024-08-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/8fbbc02f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8fbbc02f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/8fbbc02f/" class="leancloud_visitors" data-flag-title="django集成pytest进行自动化单元测试实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在Django项目中集成Pytest进行单元测试可以提高测试的灵活性和效率，相比于Django自带的测试框架，Pytest提供了更为丰富和强大的测试功能。本文通过一个实际项目ishareblog介绍django集成pytest进行自动化单元测试实战。</p>
+<h2 id="一、引入pytest相关的包"><a href="#一、引入pytest相关的包" class="headerlink" title="一、引入pytest相关的包"></a>一、引入pytest相关的包</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install pytest</span><br><span class="line">pip install pytest-django</span><br><span class="line">pip install pytest-html</span><br></pre></td></tr></table></figure>
+
+<p>其中pytest-django插件，它提供了Django和Pytest之间的桥梁，pytest-html 是一个 pytest 的插件，用于生成详细的 HTML 测试报告。这个插件能够将 pytest 运行的结果转化为一个直观、易于阅读的 HTML 格式报告，这对于分享测试结果、审查测试覆盖率以及归档测试历史非常有帮助。</p>
+<h2 id="二、配置pytest"><a href="#二、配置pytest" class="headerlink" title="二、配置pytest"></a>二、配置pytest</h2><h3 id="1、将django的配置区分测试环境、开发环境和生产环境"><a href="#1、将django的配置区分测试环境、开发环境和生产环境" class="headerlink" title="1、将django的配置区分测试环境、开发环境和生产环境"></a>1、将django的配置区分测试环境、开发环境和生产环境</h3><p>因为测试环境、开发环境和生产环境的环境配置参数不一样，一个好的实践是将开发、测试和生产环境通过配置区分开，django的配置主要集中在项目的settings.py文件，这里通过settings.py的配置文件将开发、测试、生产区分开，不同的环境调用不通的配置文件。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/1-django%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+<p>因为大部分的配置参数都是一样的，在这里我将公共的配置参数都抽到了base.py，环境配置中有差异的部分分别放到各自的配置文件中，如开发环境用的是mysql，测试环境用sqlite3，就可以将不同的配置给区分开。<br>测试环境是settings_test.py，这里除了数据库的配置不一样，其他都沿用基础的公共配置。settings_test.py配置如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = []</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'test_db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、配置pytest"><a href="#2、配置pytest" class="headerlink" title="2、配置pytest"></a>2、配置pytest</h3><p>在Django项目根目录下，创建或编辑pytest.ini文件，来配置Pytest。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/2-pytest%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+<p>pytest.ini代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">DJANGO_SETTINGS_MODULE = ishareblog.settings_test</span><br><span class="line"></span><br><span class="line">python_files = tests.py test_*.py *_tests.py</span><br></pre></td></tr></table></figure>
+
+<p>DJANGO_SETTINGS_MODULE = ishareblog.settings_test  指定了pytest用到的环境配置<br>python_files = tests.py test_*.py *_tests.py 指定了pytest将测试以test开头的py文件中的测试用例。</p>
+<h2 id="三、编写测试用例"><a href="#三、编写测试用例" class="headerlink" title="三、编写测试用例"></a>三、编写测试用例</h2><p>接下来，可以在tests.py或test_*.py文件中编写你的测试用例。由于pytest-django插件的存在，你可以像平常一样使用Django的测试机制，同时也能享受Pytest带来的便利。以下以我的ishareblog博客代码通过业务测试和接口测试来编写测试用例。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/3-pytest%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B.png" alt="在这里插入图片描述"></p>
+<h3 id="1、业务测试"><a href="#1、业务测试" class="headerlink" title="1、业务测试"></a>1、业务测试</h3><p>我的isharebog业务相对简单，主要是测试验证业务模型模块的增删改查是否符合预期。<br>业务测试tests.py示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> BlogCategory</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestBlogCategory</span><span class="params">(TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_BogCategoryModel</span><span class="params">(self)</span>:</span></span><br><span class="line">        blog_category = BlogCategory.objects.get(id=self.blogcategory.id)</span><br><span class="line">        self.assertEqual(blog_category.title, <span class="string">"Test Category"</span>)</span><br><span class="line">        self.assertEqual(blog_category.href, <span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_create</span><span class="params">()</span>:</span></span><br><span class="line">    blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line">    category_count = BlogCategory.objects.count()</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt; <span class="number">0</span>, <span class="string">"Blog category was not created category_count=0."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.id &gt; <span class="number">0</span>, <span class="string">"Blog category was not created."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.title == <span class="string">"Test Category"</span>, <span class="string">"Blog category title is wrong."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.href == <span class="string">"/category/1"</span>, <span class="string">"Blog category href is wrong."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_query</span><span class="params">()</span>:</span></span><br><span class="line">    category_count = len(BlogCategory.objects.all())</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt;= <span class="number">0</span>, <span class="string">"Blog category query error."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"blog/tests.py"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>业务测试举了通过测试类和测试方法写的测试用例，分别对博客目录进行添加和查询编写了测试用例。</p>
+<h3 id="2、接口测试"><a href="#2、接口测试" class="headerlink" title="2、接口测试"></a>2、接口测试</h3><p>接口是暴露给前端程序调用的，接口测试主要是测试接口正不正常，接口值是不是符合预期。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line">host = <span class="string">"http://localhost:8000"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestApi</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_getcategory_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">f'<span class="subst">&#123;host&#125;</span>/api/category/'</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">assert</span> response.status_code == <span class="number">200</span>, <span class="string">f'Expected status code 200 but got <span class="subst">&#123;response.status_code&#125;</span>'</span></span><br><span class="line">        <span class="keyword">assert</span> response.json() != <span class="literal">None</span>, <span class="string">f'Expected to get json response but got <span class="subst">&#123;response.text&#125;</span>'</span></span><br><span class="line">        print(response.json())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_getpost_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">f'<span class="subst">&#123;host&#125;</span>/api/post/list'</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">assert</span> response.status_code == <span class="number">200</span>, <span class="string">f'Expected status code 200 but got <span class="subst">&#123;response.status_code&#125;</span>'</span></span><br><span class="line">        <span class="keyword">assert</span> response.json() != <span class="literal">None</span>, <span class="string">f'Expected to get json response but got <span class="subst">&#123;response.text&#125;</span>'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"api/tests.py"</span>])</span><br></pre></td></tr></table></figure>
+
+<p>接口测试部分，对获取目录的API接口和文章列表的API接口编写了测试用例。</p>
+<h2 id="四、进行测试"><a href="#四、进行测试" class="headerlink" title="四、进行测试"></a>四、进行测试</h2><p>最后可以分别在blog目录和api目录下运行test.py 分别进行业务和接口的单元测试。<br>注意在进行测试之前需要执行 <code>python manage.py makemigrations --settings=ishareblog.settings_test</code> 初始化环境。<br>在进行api接口测试之前需要将django的应用服务启动 <code>python manage.py runserver 8000 --settings=ishareblog.settings_test</code> 启动的时候也带上测试环境的配置。<br>可以通过<code>pytest --html=report.html</code> 自动执行所有的单元测试，并生成可读的html的测试报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/4-pytest%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
+<p>pytest生成的report.html测试报告<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/5-pytest%E7%9A%84report%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<p>以上通过一个ishareblog的实际项目介绍django集成pytest进行自动化单元测试实战。<br>ishareblog的所有代码包括pytest的配置见 <a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/b952e40e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2676,248 +2916,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/24bc6ec2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/24bc6ec2/" itemprop="url">安全运营之通行字管理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-26T08:56:55+08:00">
-                2024-04-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/24bc6ec2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/24bc6ec2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/24bc6ec2/" class="leancloud_visitors" data-flag-title="安全运营之通行字管理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、什么是通行字"><a href="#一、什么是通行字" class="headerlink" title="一、什么是通行字"></a>一、什么是通行字</h2><p>安全管理所指的通行字指的是对用于身份验证的账号密码或口令的管理。在计算机系统、网络服务、数据库管理等领域，通行字（或称账号口令、密码）是用于验证用户身份的重要机制。通行字管理的核心目标是确保只有授权用户才能访问系统资源，同时保护敏感信息不被未授权访问。</p>
-<p>通行字除了自然人登录信息系统时所必需的用于鉴别登录者身份和权限信息的账号和口令外，还包括信息系统软件之间互相调用数据所需的账号和口令。</p>
-<h2 id="二、通行字安全管理的重要性"><a href="#二、通行字安全管理的重要性" class="headerlink" title="二、通行字安全管理的重要性"></a>二、通行字安全管理的重要性</h2><p>首先，通行字作为身份验证的关键手段，其安全性直接关系到个人信息、系统资源和数据隐私的保护。一旦通行字被破解或泄露，可能导致未经授权的访问和数据泄露，进而造成财产损失、隐私侵犯甚至法律纠纷。因此，加强通行字安全管理是确保个人和组织信息安全的第一道防线。</p>
-<p>对于企业而言，通行字安全管理更是关乎到整个信息系统的安全稳定。企业内部的敏感数据和关键业务信息都需要得到有效的保护，而通行字作为员工访问系统资源的凭证，其安全性不容忽视。通过实施严格的通行字安全管理措施，企业可以降低内部泄露和外部攻击的风险，维护企业的正常运营和声誉。</p>
-<p>最后，通行字安全管理也是法律法规的要求。许多国家和地区都制定了相关的数据保护和隐私法规，要求企业和组织必须采取必要的安全措施来保护用户的个人信息和数据安全。因此，加强通行字安全管理也是企业和组织履行法律责任的重要体现。</p>
-<p>综上所述，通行字安全管理的重要性不言而喻。无论是个人还是组织，都需要高度重视通行字的安全管理，采取有效的措施来确保通行字的安全性和可用性。</p>
-<h2 id="三、如何做好通行字安全管理"><a href="#三、如何做好通行字安全管理" class="headerlink" title="三、如何做好通行字安全管理"></a>三、如何做好通行字安全管理</h2><h3 id="1、通行字一般要求"><a href="#1、通行字一般要求" class="headerlink" title="1、通行字一般要求"></a>1、通行字一般要求</h3><p>通行字账号和口令严禁使用出厂默认的、易被猜测的字符串，如admin、root、huawei、123456、111111、666666、888888等。<br>通行字口令长度一般应至少8位，系统最高权限通行字口令长度应至少12位。<br>通行字口令应包括数字、小写字母、大写字母、特殊符号4类中至少3类。<br>通行字口令应与用户名无相关性，口令不得包含账号的完整字符串、大小写变位或形似变换的字符串。<br>口令设置应避免键盘排序密码。</p>
-<h3 id="2、通行字管理原则"><a href="#2、通行字管理原则" class="headerlink" title="2、通行字管理原则"></a>2、通行字管理原则</h3><p>通行字管理原则包括以下几个方面：</p>
-<ol>
-<li>职责分离：确保不同的职责和权限得到合理的分离，例如，通行字的创建、修改和删除应该由不同的人员或部门负责，以避免权力滥用和误操作。</li>
-<li>最小授权：通行字的授权应遵循最小权限原则，即每个用户只能获得完成其任务所需的最低权限，这有助于减少潜在的安全风险，防止未经授权的用户访问敏感信息或执行关键操作。</li>
-<li>特殊控制：对于特殊的通行字，如管理员密码或敏感数据的访问密码，应该实施额外的控制措施，例如使用更强的密码策略、定期更换密码或实施多因素身份验证等措施，以增强安全性。</li>
-<li>安全责任：通行字使用人是通行字安全的第一责任人，需要严格遵守通行字安全保护相关规定，如正确填写身份信息、访问权限最小化、及时申请修改或关闭相关权限等。</li>
-<li>操作日志留存：所有系统均留存一定时间（如1年以上）的用户操作日志，定期进行稽核，如有违规违法操作，将立即收回通行字权限并追究相关责任。</li>
-<li>一人一号原则：严格执行“一人一号”，不允许账号转借他人使用，如因转借导致出现违规操作，将由通行字所有人自行承担相关责任。</li>
-</ol>
-<p>通行字管理是网络安全的重要组成部分，它要求系统管理员和用户都采取适当的措施来保护通行字的安全，防止未授权的访问和数据泄露。</p>
-<h3 id="3、通行字安全管理运营建议"><a href="#3、通行字安全管理运营建议" class="headerlink" title="3、通行字安全管理运营建议"></a>3、通行字安全管理运营建议</h3><p>鉴于通行字管理的重要性，通行字安全管理运营建议从通行字的全生命周期进行管理。通行字安全管理包括申请、注册、使用、变注销等环节的全生命周期管理，在必要的环节有监督有审核。<br>1、通行字申请/注册流程由通行字申请人发起，申请人所在部门(通行字使用部门)负责人、申请访问权限的各通行字维护部门负责人、通行字管理员审核，通行字制作员按照结果制作和分配通行字。<br>2、按照“谁使用谁负责”的原则，通行字使用人是通行字安全的第一责任人，通行字使用过程须由通行字管理员督促并通过系统监督通行字使用人遵照本办法执行。<br>3、通行字变更/注销(如通行字使用人因职责发生变化而导致相应通行字权限发生变化)应由通行字申请人、使用人或使用人所在部门主动发起变更或注销需求，通行字管理员或制作员负责实施。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2974,7 +2972,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">203</span>
+                  <span class="site-state-item-count">204</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2985,7 +2983,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3086,7 +3084,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">419.2k</span>
+    <span title="Site words total count">420.8k</span>
   
   
 <!--51la网站应用监控-->
