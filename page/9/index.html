@@ -313,6 +313,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9d6f73eb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9d6f73eb/" itemprop="url">Python将列表中的数据写入csv并正确解析出来</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-16T21:18:15+08:00">
+                2023-12-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:30+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9d6f73eb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9d6f73eb/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9d6f73eb/" class="leancloud_visitors" data-flag-title="Python将列表中的数据写入csv并正确解析出来">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  524
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>用Python做数据处理常常会将数据写到文件中进行保存，又或将保存在文件中的数据读出来进行使用。通过Python将列表中的数据写入到csv文件中很多人都会，可以通过Python直接写文件或借助pandas很方便的实现将列表中的数据写入到csv文件中，但是写进去以后取出有些字段会有变化有些坑还是要避免。本文通过实例来介绍如何将列表中的数据写入文件如csv并正确解析出来使用。</p>
+<p>示例数据如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data = [[<span class="string">'John'</span>, <span class="string">'25'</span>, <span class="string">'Male'</span>,[<span class="number">99</span>,<span class="number">100</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Emily'</span>, <span class="string">'22'</span>, <span class="string">'Female'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">98</span>]],</span><br><span class="line">        [<span class="string">'Michael'</span>, <span class="string">'30'</span>, <span class="string">'Male'</span>,[<span class="number">97</span>,<span class="number">99</span>,<span class="number">100</span>]]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过pandas将数据写入csv"><a href="#通过pandas将数据写入csv" class="headerlink" title="通过pandas将数据写入csv"></a>通过pandas将数据写入csv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.DataFrame(data,columns=[<span class="string">'Name'</span>, <span class="string">'Age'</span>, <span class="string">'Gender'</span>,<span class="string">'Score'</span>])</span><br><span class="line">filename = <span class="string">'data\pd_data.csv'</span></span><br><span class="line">df.to_csv(filename, index=<span class="literal">False</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p>
+<p>我们对原始的数据中的分数Score字段进行求和统计总分TotalScore</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'TotalScore'</span>]=df[<span class="string">'Score'</span>].apply(sum)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p>
+<h2 id="通过pandas将csv文件中的数据读出"><a href="#通过pandas将csv文件中的数据读出" class="headerlink" title="通过pandas将csv文件中的数据读出"></a>通过pandas将csv文件中的数据读出</h2><p>用pandas将csv文件将数据读出也是非常方便的一行代码就可以搞定</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df_read_csv=pd.read_csv(filename)</span><br><span class="line">df_read_csv</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data.png" alt="数据集"></p>
+<p>但是会发现从csv文件中读出数据后形成的dataframe数据集对数据中的分数Score字段进行求和统计总分TotalScore会报错！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df_read_csv[<span class="string">'TotalScore'</span>]=df_read_csv[<span class="string">'Score'</span>].app</span><br><span class="line"></span><br><span class="line">TypeError: unsupported operand type(s) <span class="keyword">for</span> +: <span class="string">'int'</span> <span class="keyword">and</span> <span class="string">'str'</span></span><br></pre></td></tr></table></figure>
+
+<p>原因是原数据中Score字段中的数据是list但是报错至文件读出来后这个字段变成了字符串，字符串不能求和。</p>
+<p><strong>解决方案</strong><br>将字段中为字符串的值进行转换，转换成list，numpy提供了string转list的方法，当然也可以自己写。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">makeArray</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="comment">#return [int(item) for item in text[1:-1].split(',')]  #将字串转换成列表</span></span><br><span class="line">    <span class="keyword">return</span> np.fromstring(text[<span class="number">1</span>:<span class="number">-1</span>], sep=<span class="string">','</span>)  <span class="comment">#用numpy提供的方法将字串转换成列表</span></span><br><span class="line"></span><br><span class="line">df_read_csv[<span class="string">'Score'</span>]=df_read_csv[<span class="string">'Score'</span>].apply(makeArray) <span class="comment">#将Score由字符串转成列表</span></span><br><span class="line">df_read_csv[<span class="string">'TotalScore'</span>]=df_read_csv[<span class="string">'Score'</span>].apply(sum)</span><br><span class="line">df_read_csv</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231216/pd_data_totalscore.png" alt="数据集TotalScore"></p>
+<p>可以看到这下Score字段可以正常的进行求和统计总分TotalScore了。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a><br> <center> </p>
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/41bc24fd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2809,457 +3051,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/994a1838/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/994a1838/" itemprop="url">Python与正则表达式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-10-06T19:44:35+08:00">
-                2023-10-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:28+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/994a1838/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/994a1838/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/994a1838/" class="leancloud_visitors" data-flag-title="Python与正则表达式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们在做机器学习项目的时候，很大部分的精力都在做数据的整理，不管是用爬虫在网上爬取数据还是对已有的数据进行整理，往往需要对一些特定的字符串进行处理，正则表达式则是进行数据处理的利器。</p>
-<h2 id="一、什么是正则表达式"><a href="#一、什么是正则表达式" class="headerlink" title="一、什么是正则表达式"></a>一、什么是正则表达式</h2><p>正则表达式，又称规则表达式,（Regular Expression，在代码中常简写为regex、regexp或RE），是一种文本模式，包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为”元字符”），是计算机科学的一个概念。正则表达式使用单个字符串来描述、匹配一系列匹配某个句法规则的字符串，通常被用来检索、替换那些符合某个模式（规则）的文本。正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
-<p>简单来说，正则表达式就是使用：字符串定义规则，并通过规则去验证字符串是否匹配。<br>比如，验证一个字符串是否是符合条件的电子邮箱地址，只需要配置好正则规则，即可匹配任意邮箱。</p>
-<p>比如通过正则规则： <code>(^[\w-]+(.[\w-]+)*@[\w-]+(.[\w-]+)+$)</code>  即可匹配一个字符串是否是标准邮箱格式。但如果不使用正则，使用if else来对字符串做判断就非常困难了。</p>
-<h2 id="二、Python中如何使用正则表达式"><a href="#二、Python中如何使用正则表达式" class="headerlink" title="二、Python中如何使用正则表达式"></a>二、Python中如何使用正则表达式</h2><p>正则表达式的使用分两部分，一是编写模式（规则）文本，也就是正则表达式；二是通过具体的编程语言来使用正则表达式进行使用，在Python语言中通过re 模块使 Python 语言拥有全部的正则表达式功能。</p>
-<h3 id="1、正则表达式模式的编写"><a href="#1、正则表达式模式的编写" class="headerlink" title="1、正则表达式模式的编写"></a>1、正则表达式模式的编写</h3><p>模式字符串使用特殊的语法来表示一个正则表达，由一些普通字符和一些元字符（metacharacters）组成。</p>
-<p>字母和数字表示他们自身。一个正则表达式模式中的字母和数字匹配同样的字符串。<br>多数字母和数字前加一个反斜杠时会拥有不同的含义。<br>标点符号只有被转义时才匹配自身，否则它们表示特殊的含义。<br>反斜杠本身需要使用反斜杠转义。</p>
-<p>普通字符包括大小写的字母和数字，而元字符则具有特殊的含义，在最简单的情况下，一个正则表达式看上去就是一个普通的字符串。例如，正则表达式<code>&quot;xiejava&quot;</code>中没有包含任何元字符，它可以匹配<code>&quot;xiejava&quot;</code>和<code>&quot;xiejava1018&quot;</code>等字符串，但是不能匹配<code>&quot;XieJava&quot;</code>。</p>
-<p>在刚刚我们只是进行了基础的字符串匹配，正则最强大的功能在于元字符匹配规则，常见的元字符匹配规则如下：</p>
-<ul>
-<li>单字符匹配：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>.</td>
-<td>匹配任意1个字符(除了\n) , .匹配点本身</td>
-</tr>
-<tr>
-<td>[ ]</td>
-<td>匹配[]中列举的字符</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配任意数字，等价于 [0-9]</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意非数字</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任意空白字符，即空格、tab键，等价于 [\t\n\r\f]</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意非空字符</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配单词字符，即a-z、A-Z、0-9、</td>
-</tr>
-<tr>
-<td>\W</td>
-<td>匹配非单词字符</td>
-</tr>
-</tbody></table>
-<ul>
-<li>数量匹配：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配前一个规则的字符出现0至无数次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>匹配前一个规则的字符出现1至无数次</td>
-</tr>
-<tr>
-<td>？</td>
-<td>匹配前一个规则的字符出现0次或1次</td>
-</tr>
-<tr>
-<td>{m}</td>
-<td>匹配前一个规则的字符出现m次</td>
-</tr>
-<tr>
-<td>{m,}</td>
-<td>匹配前一个规则的字符出现最少m次</td>
-</tr>
-<tr>
-<td>{m,n}</td>
-<td>匹配前一个规则的字符出现m到n次</td>
-</tr>
-</tbody></table>
-<ul>
-<li>边界匹配：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>^</td>
-<td>匹配字符串开头</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串结尾</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配一个单词的边界</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配非单词边界</td>
-</tr>
-</tbody></table>
-<ul>
-<li>分组匹配：</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>|</td>
-<td>匹配左右任意一个表达式</td>
-</tr>
-<tr>
-<td>（）</td>
-<td>将括号中字符作为一个分组</td>
-</tr>
-</tbody></table>
-<p><strong>示例：</strong><br>匹配账号，只能由字母和数字组成，长度限制6到10位<br>规则为： <code>[0-9a-zA-Z]{6, 10}$</code></p>
-<p>匹配QQ号，要求纯数字，长度4-10，第一位不为0<br>规则为：<code>[1-9][0-9]{4, 10}</code><br>[1-9]匹配第一位，[0-9]匹配后面4到10位</p>
-<p>匹配邮箱地址，只允许qq、163、189这三种邮箱地址<br>规则为：<code>[a-zA-Z0-9_.]+@[qq|163|189]+[.a-zA-Z]+</code></p>
-<h3 id="2、Python中re模块的基础使用"><a href="#2、Python中re模块的基础使用" class="headerlink" title="2、Python中re模块的基础使用"></a>2、Python中re模块的基础使用</h3><p>Python中re模块常用的正则表达式包括以下四个主要方法：</p>
-<ul>
-<li><strong>使用match()进行准确匹配</strong><br>re.match 尝试从字符串的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match() 就返回 none。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">account_pattern=<span class="string">'^[0-9a-zA-Z]&#123;6,9&#125;$'</span></span><br><span class="line"></span><br><span class="line">account_str1=<span class="string">'xiejava1018'</span></span><br><span class="line">account_str2=<span class="string">'xiejava'</span></span><br><span class="line">account_str3=<span class="string">'xie'</span></span><br><span class="line"></span><br><span class="line">result1=re.match(account_pattern,account_str1)</span><br><span class="line">print(result1)</span><br><span class="line">result2=re.match(account_pattern,account_str2)</span><br><span class="line">print(result2)</span><br><span class="line">result3=re.match(account_pattern,account_str3)</span><br><span class="line">print(result3)</span><br></pre></td></tr></table></figure>
-
-<p>运行结果为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">None</span></span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">7</span>), match=<span class="string">'xiejava'</span>&gt;</span><br><span class="line"><span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-<p>匹配成功 re.match 方法返回一个匹配的对象，否则返回 None。<br>我们可以使用 group(num) 或 groups() 匹配对象函数来获取匹配表达式。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> result2:</span><br><span class="line">    print(result2.group())</span><br></pre></td></tr></table></figure>
-
-<p>运行结果为：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiejava</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>使用search()首次匹配查找</strong><br>match()方法是从字符串的开头开始匹配，一旦起始位置不匹配，match() 就返回 none，整个匹配就失败了，它更适合用来检验某个字符串是否符合某个正则表达式的规则。常用来做格式的校验。如要实现在一段文本中查找符合正则表达式的字符串，可以用re.search()，它扫描整个字符串并返回第一个成功的匹配。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">qq_pattern = <span class="string">'[1-9][0-9]&#123;4,10&#125;'</span></span><br><span class="line"></span><br><span class="line">qq_str1=<span class="string">'我的QQ号是:4002692和3641250'</span></span><br><span class="line"></span><br><span class="line">result_qq_match=re.match(qq_pattern,qq_str1)</span><br><span class="line">print(result_qq_match)</span><br><span class="line">result_qq_search=re.search(qq_pattern,qq_str1)</span><br><span class="line">print(result_qq_search)</span><br><span class="line"><span class="keyword">if</span> result_qq_search:</span><br><span class="line">    print(result_qq_search.group())</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">None</span></span><br><span class="line">&lt;re.Match object; span=(<span class="number">7</span>, <span class="number">14</span>), match=<span class="string">'4002692'</span>&gt;</span><br><span class="line"><span class="number">4002692</span></span><br></pre></td></tr></table></figure>
-
-<p>在这可以看出，match()因为是起始位置匹配所以QQ号4002692没有匹配上，而search()它是扫描整个字符串找到第一个匹配成功的就返回了，实际上在这个例子中还有个3641250的QQ号。如果要找到所有的匹配就要用到re.findall()方法了。</p>
-<ul>
-<li><strong>使用findall()所有匹配查找</strong><br>findall()在字符串中找到正则表达式所匹配的所有子串，并返回一个列表，如果有多个匹配模式，则返回元组列表，如果没有找到匹配的，则返回空列表。<br>注意： match 和 search 是匹配一次 findall 匹配所有。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result_qq_findall=re.findall(qq_pattern,qq_str1)</span><br><span class="line">print(result_qq_findall)</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'4002692'</span>, <span class="string">'3641250'</span>]</span><br></pre></td></tr></table></figure>
-
-<p>可以看到通过re.findall()方法匹配到了两个QQ号。</p>
-<ul>
-<li><strong>使用sub()匹配替换</strong><br>在做数据处理的时候，经常碰到的场景是找到某个匹配项，替换成一个新的字符串。这时就可以用到re.sub()进行匹配替换了。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">email_pattern=<span class="string">'[a-zA-Z0-9_\.]+@[qq|163|189]+[\.a-zA-Z]+'</span></span><br><span class="line">email_str1=<span class="string">'我的email是：xiejava@qq.com、xiejava1018@163.com、xiejava@189.com、xiejava@sohu.com'</span></span><br><span class="line">result_email_findall=re.findall(email_pattern,email_str1)</span><br><span class="line">print(result_email_findall)</span><br><span class="line">email_str2=re.sub(<span class="string">'[a-zA-Z0-9_\.]+@'</span>,<span class="string">'****@'</span>,email_str1)</span><br><span class="line">print(email_str2)</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'xiejava@qq.com'</span>, <span class="string">'xiejava1018@163.com'</span>, <span class="string">'xiejava@189.com'</span>]</span><br><span class="line">我的email是：****@qq.com、****@<span class="number">163.</span>com、****@<span class="number">189.</span>com、****@sohu.com</span><br></pre></td></tr></table></figure>
-
-<p>在这里可以看到，我们通过re.findall()匹配到了qq、163、189的邮箱。通过re.sub()将所有的邮箱的账号匹配后替换成了****进行脱敏处理。</p>
-<p>正则表达式可以包含一些可选标志修饰符来控制匹配的模式。修饰符被指定为一个可选的标志。多个标志可以通过按位 OR(|) 它们来指定。如 re.I | re.M 被设置成 I 和 M 标志：</p>
-<table>
-<thead>
-<tr>
-<th>修饰符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>re.I</td>
-<td>使匹配对大小写不敏感</td>
-</tr>
-<tr>
-<td>re.L</td>
-<td>做本地化识别（locale-aware）匹配</td>
-</tr>
-<tr>
-<td>re.M</td>
-<td>多行匹配，影响 ^ 和 $</td>
-</tr>
-<tr>
-<td>re.S</td>
-<td>使 . 匹配包括换行在内的所有字符</td>
-</tr>
-<tr>
-<td>re.U</td>
-<td>根据Unicode字符集解析字符。这个标志影响 \w, \W, \b, \B.</td>
-</tr>
-<tr>
-<td>re.X</td>
-<td>该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解。</td>
-</tr>
-</tbody></table>
-<p>使用实例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">match_pattern=<span class="string">'xiejava'</span></span><br><span class="line"></span><br><span class="line">account_str1=<span class="string">'XieJava is xiejava'</span></span><br><span class="line">result1=re.match(match_pattern,account_str1)</span><br><span class="line">print(result1)</span><br><span class="line">result2=re.match(match_pattern,account_str1,re.I)</span><br><span class="line">print(result2)</span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">None</span></span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">7</span>), match=<span class="string">'XieJava'</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到在没有指定re.I的时候没有匹配到XieJava，指定re.I后使匹配对大小写不敏感，可以匹配到Xiejava</p>
-<h2 id="三、正则表达式的应用"><a href="#三、正则表达式的应用" class="headerlink" title="三、正则表达式的应用"></a>三、正则表达式的应用</h2><p>给定一个正则表达式和另一个字符串，我们可以达到如下的目的：</p>
-<ol>
-<li><p>判断给定的字符串是否符合正则表达式的过滤逻辑（称作“匹配”）<br>应用场景为格式效验，如身份证、Email、手机号码的数据效验等。</p>
-</li>
-<li><p>可以通过正则表达式，从字符串中获取我们想要的特定部分<br>应用场景如：爬虫程序爬取数据时进行信息的提取，从文本中提取特定的部分。</p>
-</li>
-<li><p>可以通过正则表示式进行查找替换，将字符串中符合匹配条件的项替换成特定的字符<br>应用场景如：机器学习中的数据清洗整理，将某些数据进行查找替换等。</p>
-</li>
-</ol>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
- <center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3316,7 +3107,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">204</span>
+                  <span class="site-state-item-count">205</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3428,7 +3219,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">420.8k</span>
+    <span title="Site words total count">422k</span>
   
   
 <!--51la网站应用监控-->
