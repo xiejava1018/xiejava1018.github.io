@@ -313,6 +313,246 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/fd8c1dd4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/fd8c1dd4/" itemprop="url">一个人活成一个团队：python的django项目devops实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-11T16:54:24+08:00">
+                2024-08-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
+                2024-08-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/fd8c1dd4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/fd8c1dd4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/fd8c1dd4/" class="leancloud_visitors" data-flag-title="一个人活成一个团队：python的django项目devops实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>对于开发团队来说提高软件交付的速度和质量是一个永恒的话题，对于个人开发者来说同样如此。作为一个码农，一定会有几个自己私有的小项目，从需求管理到开发到测试到部署运维都得要自己来，将自己一个人活成一个团队。</p>
+<p>DevOps（Development和Operations的组合），旨在通过自动化、协作和共享责任来提高软件开发和运维的效率、质量和安全性。作为一个人的团队，也可通过devops实践来提高对自己项目的效率和质量，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布新版本。本文就以一个实际的python的django项目来运用阿里的云效devops平台来进行实战。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/1-devops.png" alt="在这里插入图片描述"><br>DevOps平台工具有很多，最常见的就是大名顶顶的Jenkins，作为个人开发者要准备相应的硬件资源，还要要自己维护一套Jenkins有点麻烦。这里直接就选择成熟的阿里云效devops <a href="https://devops.aliyun.com/" target="_blank" rel="noopener">https://devops.aliyun.com/</a> ，这套平台基础版是免费的，对于个人开发者来说已经够用了。</p>
+<h2 id="一、需求规划"><a href="#一、需求规划" class="headerlink" title="一、需求规划"></a>一、需求规划</h2><p>个人项目虽小，但是也得要有相应的规划，至少得有个需求清单来进行需求的规划和跟踪，哪些需求已经完成了，哪些还需要进行开发做到自己心中有数。<br>可以在云效的项目协作中创建一个项目进行管理。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/2-%E4%BA%91%E6%95%88%E5%B7%A5%E4%BD%9C%E5%8F%B0%E9%A1%B9%E7%9B%AE%E5%8D%8F%E4%BD%9C.png" alt="在这里插入图片描述"></p>
+<p>在这里我创建了一个xiejava的博客项目<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/3-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88.png" alt="在这里插入图片描述"></p>
+<p>在这里我们就可以将自己规划的需求录入进来做好自己的需求跟踪清单<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/4-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<p>可以规划自己的版本，将需求跟踪清单里的需求纳入到版本迭代计划。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/5-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%85%B3%E8%81%94.png" alt="在这里插入图片描述"></p>
+<p>在迭代计划中可以看到这个迭代要完成的需求清单。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/6-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92.png" alt="在这里插入图片描述"></p>
+<h2 id="二、代码管理"><a href="#二、代码管理" class="headerlink" title="二、代码管理"></a>二、代码管理</h2><p>即使是最简单的项目，建议还是通过代码仓库进行代码的版本管理，我的代码是放到码云<a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a>  进行托管的，也可以托管到云效自己的代码管理仓库。<br>有了代码仓库，可以通过在云效构建流水线来进行自动构建、自动测试、自动部署了。</p>
+<h2 id="三、创建流水线"><a href="#三、创建流水线" class="headerlink" title="三、创建流水线"></a>三、创建流水线</h2><p>在云效中创建ishareblog的自动发布流水线，整个流水线包括获取代码、测试、构建、部署。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/7-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E6%83%85%E5%86%B5.png" alt="在这里插入图片描述"></p>
+<h3 id="1、配置流水线源"><a href="#1、配置流水线源" class="headerlink" title="1、配置流水线源"></a>1、配置流水线源</h3><p>流水线源可以配置云效自己的代码库，也可以配置其他的代码库，如我里是配置的码云代码库。<br>可以开启代码源触发，开启后一旦代码库有提交操作，就会自动触发流水线工作。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/8-%E4%BA%91%E6%95%88%E4%BB%8E%E7%A0%81%E4%BA%91%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>需要说明的是，如果是外部的代码仓库，需要在外部的代码仓库中添加Webhook触发设置</p>
+</blockquote>
+<p>如我的是码云的仓库，就要在码云的仓库中添加Webhook的配置<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/9-%E4%BA%91%E6%95%88webhooks%E7%AE%A1%E7%90%86.png" alt="在这里插入图片描述"></p>
+<h2 id="四、自动测试"><a href="#四、自动测试" class="headerlink" title="四、自动测试"></a>四、自动测试</h2><p>在测试环节，配置了python代码扫描和Python单元测试。<br>python代码扫描用的是云效默认的配置<br>比较麻烦的是Python单元测试，Python单元测试需要在Python项目中写测试用例，还要配置测试命令。<br>在Python项目中写测试用例见《<a href="https://blog.csdn.net/fullbug/article/details/140893466" target="_blank" rel="noopener">django集成pytest进行自动化单元测试实战</a>》。<br>配置测试命令就是在测试服务其中进行发布测试的所有shell命令<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/10-%E4%BA%91%E6%95%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
+<p>配置测试命令就是在测试服务其中进行发布测试的所有shell命令<br>作为一个django的项目测试命令参考如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pytest default command</span></span><br><span class="line"><span class="comment"># 安装mysql客户端</span></span><br><span class="line">sudo apt<span class="literal">-get</span> update</span><br><span class="line">sudo apt<span class="literal">-get</span> install <span class="literal">-y</span> libmysqlclient<span class="literal">-dev</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装新版本的SQLite3</span></span><br><span class="line"><span class="comment"># wget https://www.sqlite.org/2024/sqlite-autoconf-3460000.tar.gz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">sudo pip install <span class="literal">-r</span> requirements.txt <span class="literal">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">sudo pip install pysqlite3 <span class="literal">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">sudo pip install pysqlite3<span class="literal">-binary</span> <span class="literal">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换Django的sqlite3的驱动文件</span></span><br><span class="line">sudo cp <span class="operator">-f</span> /root/workspace/ishareblog_J18t/change_set/base.py  /usr/local/lib/python3.<span class="number">8</span>/site<span class="literal">-packages</span>/django/db/backends/sqlite3/base.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库</span></span><br><span class="line">sudo python manage.py makemigrations -<span class="literal">-settings</span>=ishareblog.settings_test</span><br><span class="line">sudo python manage.py migrate -<span class="literal">-settings</span>=ishareblog.settings_test</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动django服务</span></span><br><span class="line">sudo nohup python manage.py runserver <span class="number">8000</span> -<span class="literal">-settings</span>=ishareblog.settings_test &amp;</span><br><span class="line"></span><br><span class="line">PORT=<span class="number">8000</span>  <span class="comment"># 替换为您想要检查的端口号</span></span><br><span class="line">NEXT_COMMAND=<span class="string">"sudo pytest --html=report/index.html"</span>  <span class="comment"># 通过pytest进行单元测试</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">until</span> nc <span class="literal">-z</span> localhost <span class="variable">$PORT</span>; <span class="keyword">do</span></span><br><span class="line">    echo <span class="string">"Port <span class="variable">$PORT</span> is not ready - waiting..."</span></span><br><span class="line">    curl http://localhost:<span class="number">8000</span></span><br><span class="line">    sleep <span class="number">1</span></span><br><span class="line">done</span><br><span class="line"> </span><br><span class="line">echo <span class="string">"Port <span class="variable">$PORT</span> is ready"</span></span><br><span class="line">eval <span class="string">"<span class="variable">$NEXT_COMMAND</span>"</span></span><br><span class="line"></span><br><span class="line">ps aux | grep python</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过pytest进行单元测试</span></span><br><span class="line"><span class="comment">#sudo pytest --html=report/index.html</span></span><br><span class="line"></span><br><span class="line">pkill <span class="operator">-f</span> manage.py</span><br><span class="line"></span><br><span class="line">ps aux | grep python</span><br></pre></td></tr></table></figure>
+<p>因为在单元测试中还做了接口测试，这里会要启动djang服务，进行接口测试，测试完成后还要停止服务。<br>可以在流水线执行完后查看扫描报告和测试报告<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/11-%E4%BA%91%E6%95%88%E6%9F%A5%E7%9C%8B%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<p>扫描报告<br>代码扫描报告，报出来的大部分是格式规范的问题。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/12-%E4%BA%91%E6%95%88%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<p>测试报告<br>自动化测试报告是通过pytest测试完成形成的报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/13-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<h2 id="五、自动构建"><a href="#五、自动构建" class="headerlink" title="五、自动构建"></a>五、自动构建</h2><p>自动构建将会将构建好的制品打包上传至构建服务器上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/14-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA.png" alt="在这里插入图片描述"></p>
+<h2 id="六、自动部署"><a href="#六、自动部署" class="headerlink" title="六、自动部署"></a>六、自动部署</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/15-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2.png" alt="在这里插入图片描述"></p>
+<p>也可以配置部署后的通知邮件，比如部署成功或失败后发邮件通知。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/16-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%90%8E%E5%8F%91%E9%80%9A%E7%9F%A5%E9%82%AE%E4%BB%B6.png" alt="在这里插入图片描述"></p>
+<p>最后通过统计报表可以看到流水线近段期间的执行情况</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/17-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>DevOps通过自动化的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠。本文通过一个python的django个人博客应用进行了DevOps的实战，通过DevOps拉通开发和运维，通过应用云效的DevOps平台实现自动化“软件交付”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠，提交研发交付效率。作为个人项目也是可以应用devops提高效率。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/7f9a3a8d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2646,263 +2886,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/5efe604f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/5efe604f/" itemprop="url">研发管理之认识DevOps</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-05-14T14:14:59+08:00">
-                2024-05-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">管理</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">项目管理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/5efe604f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5efe604f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/5efe604f/" class="leancloud_visitors" data-flag-title="研发管理之认识DevOps">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.8k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、什么是DevOps"><a href="#一、什么是DevOps" class="headerlink" title="一、什么是DevOps"></a>一、什么是DevOps</h2><p>DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。这是一种重视“软件开发人员（Dev）”和“IT运维技术人员（Ops）”之间沟通合作的文化、运动或惯例，是一个软件开发方法论。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/2.dev_ops.png" alt="DevOps"></p>
-<p>DevOps的目标是通过自动化“软件交付”和“架构变更”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠。这种方法的出现是因为软件行业日益清晰地认识到，为了按时交付软件产品和服务，开发和运维工作必须紧密合作。</p>
-<p>DevOps它强调开发（Development）和运维（Operations）之间的协作与交流，以提高软件交付的速度和质量。DevOps的核心目标是缩短系统开发生命周期，提供持续的交付和快速的反馈。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/1.devops.png" alt="DevOps"></p>
-<h2 id="二、DevOps的背景和起源"><a href="#二、DevOps的背景和起源" class="headerlink" title="二、DevOps的背景和起源"></a>二、DevOps的背景和起源</h2><p>DevOps的背景和起源可以追溯到软件开发行业面临的一些挑战和变革。</p>
-<p>在传统的软件开发模式中，设计、开发、测试、部署等各个环节往往是顺序进行的又叫瀑布开发模型，每个阶段都有明确的输出和交接点。然而，这种模式在面对快速变化的市场需求时显得捉襟见肘，无法满足用户对软件的快速迭代和持续交付的需求。因此，敏捷开发模式开始受到广泛关注。</p>
-<p>敏捷开发强调跨部门、跨角色的协作与沟通，注重快速响应变化，持续交付价值。在这种模式下，开发团队被划分为多个小团队，每个小团队负责一部分功能或模块的开发，通过短周期的迭代开发方式，逐步实现软件的整体功能。这种模式有效地提高了软件开发的并行度和效率，但也给运维带来了新的挑战。</p>
-<p>持续开发带来的运维问题主要包括：随着软件功能的不断增加和版本迭代速度的加快，运维工作面临巨大的压力。开发团队和运维团队之间往往存在沟通障碍，导致开发完成的功能在部署和运维阶段出现问题。此外，传统的软件开发模式通常将开发、IT运营和质量保障设为各自分离的部门，这种分工方式使得跨部门的协作变得困难，进一步加剧了运维问题。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/3.%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E6%BC%94%E8%BF%9B.png" alt="开发模型演进"></p>
-<p>为了解决这些问题，DevOps应运而生。DevOps（Development和Operations的组合词）是一组过程、方法与系统的统称，用于促进开发（应用程序/软件工程）、技术运营和质量保障（QA）部门之间的沟通、协作与整合。</p>
-<p>DevOps的起源可以追溯到2009年左右，当时一些欧洲的IT企业开始尝试将开发和运维工作结合起来，以提高软件交付的效率和质量。随着这种模式的不断发展和完善，DevOps逐渐成为了全球软件开发行业的一种主流趋势。</p>
-<p>DevOps将开发、测试、运维拉到同一战线，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布新版本。它的目标是打破开发和运维之间的壁垒，实现二者的紧密结合，从而提高软件交付的速度和质量。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/4.%E5%BC%80%E5%8F%91%E6%A8%A1%E5%9E%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="开发模型之间的关系"></p>
-<p>如今，越来越多的企业开始采用DevOps模式来改进软件开发和运维流程，以应对快速变化的市场需求。</p>
-<h2 id="三、DevOps的特点和价值"><a href="#三、DevOps的特点和价值" class="headerlink" title="三、DevOps的特点和价值"></a>三、DevOps的特点和价值</h2><p>DevOps（Development和Operations的组合），旨在通过自动化、协作和共享责任来提高软件开发和运维的效率、质量和安全性。以下是DevOps的主要特点和价值：</p>
-<h3 id="1、特点："><a href="#1、特点：" class="headerlink" title="1、特点："></a>1、特点：</h3><p>● 文化和团队协作：DevOps强调开发（Dev）和运维（Ops）团队之间的紧密合作，打破传统的壁垒，实现跨部门、跨角色的沟通和协作。<br>● 自动化：通过引入自动化工具和流程，DevOps可以显著减少手动操作，提高开发、测试、部署和运维的效率。<br>● 持续集成和持续部署（CI/CD）：CI/CD是DevOps的核心实践之一，通过自动化构建、测试和部署流程，实现快速迭代和交付。<br>● 监控和反馈：DevOps强调对系统性能、安全性和可靠性的实时监控，以便及时发现问题并进行修复。同时，通过收集和分析数据，为决策提供支持。<br>● 共享责任：在DevOps文化中，开发和运维团队共同承担系统质量、稳定性和可靠性的责任，共同推动系统的持续改进和优化。</p>
-<h3 id="2、价值："><a href="#2、价值：" class="headerlink" title="2、价值："></a>2、价值：</h3><p>● 提高交付速度和质量：通过自动化和协作，DevOps可以显著缩短开发周期，提高交付速度。同时，通过引入持续集成和持续部署等实践，可以确保代码质量和系统稳定性。<br>● 降低运维成本：通过自动化运维流程和工具，DevOps可以降低手动操作的错误率，减少故障恢复时间，从而降低运维成本。<br>● 增强安全性：DevOps强调对系统性能的实时监控和数据分析，有助于及时发现潜在的安全风险并进行修复。此外，通过引入自动化安全测试和审计工具，可以确保系统的安全性。<br>● 提高客户满意度：通过快速迭代和交付高质量的产品，DevOps可以满足客户的不断变化的需求，提高客户满意度。<br>● 促进创新和竞争力：DevOps鼓励团队之间的协作和创新，有助于推动组织的持续创新和竞争力提升。</p>
-<p>DevOps将开发、测试、运维拉到同一战线，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布交付新版本。对比前面所说的瀑布式开发和敏捷开发，我们可以明显看出，DevOps贯穿了软件全生命周期。下面这张图，更明显地说明了DevOps所处的位置，还有它的价值：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/5.devops%E4%BB%B7%E5%80%BC.png" alt="devops价值"></p>
-<p>DevOps通过打破传统壁垒、引入自动化和协作实践、实时监控和数据分析等手段，为组织带来了诸多价值和优势。随着技术的不断发展和市场需求的变化，DevOps将在未来继续发挥重要作用。</p>
-<h2 id="四、DevOps如何帮助提高软件交付速度和质量"><a href="#四、DevOps如何帮助提高软件交付速度和质量" class="headerlink" title="四、DevOps如何帮助提高软件交付速度和质量"></a>四、DevOps如何帮助提高软件交付速度和质量</h2><p>DevOps通过一系列的实践和工具，帮助提高软件交付速度和质量，具体体现在以下几个方面：</p>
-<ol>
-<li>持续集成（CI）和持续交付（CD）：<br>○ DevOps强调将代码集成到主干开发分支中，并经过自动化测试，以确保每次提交的代码都是可靠的。持续集成使得开发人员能够频繁地将代码变更集成到共享的主干代码库中，并通过自动化测试和构建流程进行验证。<br>○ 持续交付则通过自动化构建、测试和部署软件，实现快速、可靠的交付流程。当代码通过所有测试后，可以自动部署到生产环境，从而大大缩短了发布周期。</li>
-<li>自动化测试：<br>○ 自动化测试是DevOps中不可或缺的一部分。通过自动化测试，可以快速、高效地发现和解决代码问题，同时减少手动测试的工作量。常见的自动化测试包括单元测试、集成测试和端到端测试等。这些测试可以在代码集成阶段就进行，从而确保代码的质量。</li>
-<li>自动化部署和配置管理：<br>○ DevOps强调自动化部署和配置管理，通过使用工具和脚本自动化应用程序的部署和配置过程。自动化部署可以减少人为错误，确保发布过程的一致性和可重复性。配置管理工具则可以帮助团队管理应用程序的配置，提供版本控制和自动化更新，使得应用程序的部署和配置变得更加灵活和可管理。</li>
-<li>实时监控和快速响应：<br>○ 通过实时监控，DevOps可以及时发现和解决系统问题，减少系统故障和停机时间。同时，快速响应也可以保证在系统出现问题时能够快速解决问题，进一步减少停机时间。这种实时监控和快速响应的机制有助于确保软件的稳定性和可用性。</li>
-<li>文化与团队协作：<br>○ DevOps强调跨团队协作和沟通，打破了传统开发和运维之间的壁垒。它鼓励团队成员共同制定标准、流程和最佳实践，共享知识和经验，从而提高团队整体的工作效率。这种文化和团队协作的氛围有助于加快软件开发和交付的速度。</li>
-<li>反馈迭代循环：<br>○ DevOps通过建立反馈循环，将客户反馈和业务需求纳入产品迭代计划中。这使得团队能够更快地响应客户需求和变化，不断改进产品以满足市场的期望。这种反馈循环有助于确保软件交付的质量符合客户和业务的需求。</li>
-</ol>
-<p>DevOps通过持续集成、自动化测试、自动化部署和配置管理、实时监控和快速响应、文化与团队协作以及反馈循环等手段，帮助提高软件交付速度和质量。这些实践和工具使得软件开发和交付过程更加高效、可靠和灵活。以下是DevOps生态圈中的一些工具，企业可以通过集成这些工具搭建自己的DevOps平台。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240514/devops%E7%94%9F%E6%80%81%E5%9C%88.png" alt="devops生态圈"></p>
-<p>在DevOps的流程下，运维人员会在项目开发期间就介入到开发过程中，了解开发人员使用的系统架构和技术路线，从而制定适当的运维方案。而开发人员也会在运维的初期参与到系统部署中，并提供系统部署的优化建议。除了平台工具外，想要将DevOps真正落地，首先第一点，是<strong>思维转变</strong>，DevOps并不仅仅是组织架构变革，更是企业文化和思想观念的变革。根据DevOps思想重新梳理全流程的<strong>规范和标准</strong>。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2959,7 +2942,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">205</span>
+                  <span class="site-state-item-count">206</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3071,7 +3054,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">422k</span>
+    <span title="Site words total count">423.3k</span>
   
   
 <!--51la网站应用监控-->
