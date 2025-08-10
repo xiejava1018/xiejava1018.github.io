@@ -313,6 +313,310 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9804ee9f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9804ee9f/" itemprop="url">Loki+Alloy+Grafana构建轻量级的日志分析系统</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-08-10T12:50:25+08:00">
+                2025-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T13:28:43+08:00">
+                2025-08-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9804ee9f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9804ee9f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9804ee9f/" class="leancloud_visitors" data-flag-title="Loki+Alloy+Grafana构建轻量级的日志分析系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在现代运维和开发流程中，日志分析是故障排查、性能优化的核心环节。传统的日志系统（如 ELK Stack）虽功能强大，但资源消耗高、配置复杂，对中小规模环境或边缘设备不够友好。Loki+Alloy+Grafana组合则以 “轻量级、低成本、易部署” 为核心优势，成为替代方案的理想选择。</p>
+<p>典型的基于 Loki 的日志记录技术栈由 3 个组件组成：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/1-LAG%E6%9E%B6%E6%9E%84.png" alt="Loki"></p>
+<ul>
+<li>Loki：Grafana Labs 开源的日志聚合系统，借鉴 Prometheus 设计理念，仅索引日志元数据（标签）而非全文，大幅降低存储和计算开销。</li>
+<li>Alloy：代理或客户端，Grafana 官方推荐的新一代数据采集器Alloy（替代 Promtail），支持日志、指标、追踪多信号采集，配置灵活且资源占用低。</li>
+<li>Grafana：强大的可视化平台，原生支持 Loki 数据源，提供丰富的日志查询、过滤和仪表盘功能。</li>
+</ul>
+<p>对网络设备、安全设备等的告警日志进行分析是在网络运维和安全运营中经常遇到的场景，我们可以通过Loki+Alloy+Grafana来搭建一套轻量级的日志分析系统来收集各类网络设备、安全设备的日志进行分析。现在就以采集TP-Link路由器的上网行为日志为例来构建这套日志分析系统。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/2-%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86%E5%AD%98%E5%82%A8%E5%88%86%E6%9E%90.png" alt="日志采集分析"></p>
+<p>本文将详细介绍在Ubuntu 24.04 LTS环境中，从零搭建这套日志分析系统的全过程，确保每个步骤可操作、可复现。</p>
+<p>环境准备：Ubuntu 24.04 系统配置<br>系统要求</p>
+<ul>
+<li>硬件：2 核 CPU、4GB 内存、20GB 磁盘（日志存储根据需求调整）</li>
+<li>系统：Ubuntu 24.04 LTS（已更新至最新版本）</li>
+<li>权限：sudo 权限（用于安装软件和配置服务）</li>
+</ul>
+<p>根据Grafana官网的建议步骤，先安装Loki，再部署采集代理Alloy,再部署Grafana，通过Grafana来分析日志。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/3-LAG%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4.png" alt="日志采集步骤"></p>
+<h2 id="部署Loki日志存储系统"><a href="#部署Loki日志存储系统" class="headerlink" title="部署Loki日志存储系统"></a>部署Loki日志存储系统</h2><p>Loki 是日志的 “后端存储”，负责接收、存储日志并响应查询请求。采用二进制方式部署，步骤如下：</p>
+<h3 id="1-下载Loki二进制文件"><a href="#1-下载Loki二进制文件" class="headerlink" title="1. 下载Loki二进制文件"></a>1. 下载Loki二进制文件</h3><p>通过 GitHub API 获取Loki的二进制安装包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建Loki安装目录并下载二进制包  这里安装的是3.5.1 </span></span><br><span class="line">sudo mkdir -p /opt/loki /etc/loki</span><br><span class="line">wget -qO /opt/loki/loki-linux-amd64.zip <span class="string">"https://github.com/grafana/loki/releases/download/v3.5.1/loki-linux-amd64.zip"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压并设置可执行权限</span></span><br><span class="line">sudo unzip -d /opt/loki /opt/loki/loki-linux-amd64.zip &amp;&amp; rm /opt/loki/loki-linux-amd64.zip</span><br><span class="line">sudo chmod a+x /opt/loki/loki-linux-amd64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建软链接，方便全局调用</span></span><br><span class="line">sudo ln -s /opt/loki/loki-linux-amd64 /usr/<span class="built_in">local</span>/bin/loki</span><br></pre></td></tr></table></figure>
+
+<p>查看Loki版本 <code>loki --version</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">loki --version</span><br><span class="line">loki, version 3.5.1 (branch: release-3.5.x, revision: d4e637ce)</span><br><span class="line">  build user:       root@ceaea196ea87</span><br><span class="line">  build date:       2025-05-19T17:06:03Z</span><br><span class="line">  go version:       go1.24.1</span><br><span class="line">  platform:         linux/amd64</span><br><span class="line">  tags:             netgo</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-配置-Loki"><a href="#2-配置-Loki" class="headerlink" title="2. 配置 Loki"></a>2. 配置 Loki</h3><p>使用官方提供的本地存储配置文件，创建 Loki 配置目录并下载默认配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/loki</span><br><span class="line">sudo wget https://raw.githubusercontent.com/grafana/loki/v3.5.1/cmd/loki/loki-local-config.yaml -O /etc/loki/config.yaml</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-创建-Systemd-服务"><a href="#3-创建-Systemd-服务" class="headerlink" title="3. 创建 Systemd 服务"></a>3. 创建 Systemd 服务</h3><p>为 Loki 创建系统服务，确保开机自启和进程管理：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/systemd/system/loki.service &lt;&lt;EOF</span><br><span class="line">Description=Grafana Loki Log Aggregation System</span><br><span class="line">After=network.target </span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/bin/loki -config.file=/etc/loki/config.yaml</span><br><span class="line">Restart=on-failure </span><br><span class="line">User=root </span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target </span><br><span class="line">EOF<span class="comment"># 重载systemd配置并启动Loki</span></span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start loki</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> loki</span><br><span class="line"><span class="comment"># 验证服务状态（应显示active (running)）</span></span><br><span class="line">sudo systemctl status loki</span><br></pre></td></tr></table></figure>
+
+<p>可以使用 <code>journalctl -u loki -f</code> 查看 Loki 日志以进行故障排除</p>
+<h3 id="4-验证-Loki-运行"><a href="#4-验证-Loki-运行" class="headerlink" title="4.  验证 Loki 运行"></a>4.  验证 Loki 运行</h3><p>通过 HTTP 接口检查 Loki 状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:3100/ready</span><br></pre></td></tr></table></figure>
+
+<p>预期输出：ready（表示 Loki 已就绪）</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/4-loki-ready.png" alt="loki ready"></p>
+<h2 id="部署配置Alloy"><a href="#部署配置Alloy" class="headerlink" title="部署配置Alloy"></a>部署配置Alloy</h2><p>Alloy 是连接日志源与 Loki 的 “桥梁”，负责采集服务器本地日志并发送到 Loki。作为 Grafana Agent 的替代者，Alloy 配置更灵活，支持多信号采集。</p>
+<h3 id="1-安装-Alloy"><a href="#1-安装-Alloy" class="headerlink" title="1. 安装 Alloy"></a>1. 安装 Alloy</h3><p>通过 Grafana 官方仓库安装 Alloy（与 Grafana 使用同一仓库，无需重复添加）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Alloy包</span></span><br><span class="line">sudo apt install -y alloy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">alloy --version</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/5-alloy-version.png" alt="alloy --version"></p>
+<h3 id="2-配置-Alloy-收集日志"><a href="#2-配置-Alloy-收集日志" class="headerlink" title="2. 配置 Alloy 收集日志"></a>2. 配置 Alloy 收集日志</h3><p>Alloy 使用声明式配置文件定义采集规则，默认路径为<code>/etc/alloy/config.alloy</code>。我们需配置：<br>1、 通过syslog采集；2、对日志中的IP进行提取；3、 将日志转发到 Loki。<br>创建配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">otelcol.receiver.syslog <span class="string">"local"</span> &#123;</span><br><span class="line">  udp &#123;</span><br><span class="line">    listen_address = <span class="string">"0.0.0.0:514"</span></span><br><span class="line">    encoding = <span class="string">"GBK"</span></span><br><span class="line">  &#125;</span><br><span class="line">  output &#123;</span><br><span class="line">    logs = [otelcol.exporter.loki.local.input]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">otelcol.exporter.loki <span class="string">"local"</span> &#123;</span><br><span class="line">  forward_to = [loki.process.extract_ip.receiver]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loki.process <span class="string">"extract_ip"</span> &#123;</span><br><span class="line">  stage.regex &#123;</span><br><span class="line">    expression = <span class="string">"a:(?P&lt;ip&gt;\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;)"</span></span><br><span class="line">  &#125;</span><br><span class="line">  stage.labels &#123;</span><br><span class="line">    values = &#123;</span><br><span class="line">      ip = <span class="string">"ip"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  forward_to = [loki.write.local.receiver]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loki.write <span class="string">"local"</span> &#123;</span><br><span class="line">  endpoint &#123;</span><br><span class="line">    url = <span class="string">"http://localhost:3100/loki/api/v1/push"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置说明：</p>
+<blockquote>
+<p>alloy目前对syslog支持并不是特别好，经过多次尝试，用alloy的syslog组件不能支持中文编码，所以改用通过otelcol的syslog来采集日志。<br>listen_address = “0.0.0.0:514” 表示监听所有源的514端口来的upd数据。</p>
+</blockquote>
+<h3 id="3-启动-Alloy-服务"><a href="#3-启动-Alloy-服务" class="headerlink" title="3. 启动 Alloy 服务"></a>3. 启动 Alloy 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动Alloy并设置开机自启</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now alloy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证服务状态（应显示active (running)）</span></span><br><span class="line">sudo systemctl status alloy</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>排查提示若启动失败，通过sudo journalctl -u alloy -f查看日志，常见问题：配置文件语法错误、Loki未启动导致连接失败</p>
+</blockquote>
+<h2 id="部署Grafana"><a href="#部署Grafana" class="headerlink" title="部署Grafana"></a>部署Grafana</h2><p>Grafana 是整个系统的 “前端”，用于日志查询和可视化。通过官方仓库安装可确保自动更新。</p>
+<h3 id="1-添加-Grafana-官方仓库"><a href="#1-添加-Grafana-官方仓库" class="headerlink" title="1. 添加 Grafana 官方仓库"></a>1. 添加 Grafana 官方仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入Grafana GPG密钥（用于验证包完整性）</span></span><br><span class="line">wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加Grafana OSS仓库（稳定版）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main'</span> | sudo tee /etc/apt/sources.list.d/grafana.list</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装并启动-Grafana"><a href="#2-安装并启动-Grafana" class="headerlink" title="2. 安装并启动 Grafana"></a>2. 安装并启动 Grafana</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新包索引并安装Grafana</span></span><br><span class="line">sudo apt update &amp;&amp; sudo apt install -y grafana</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动Grafana服务并设置开机自启</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now grafana-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证服务状态（应显示active (running)）</span></span><br><span class="line">sudo systemctl status grafana-server</span><br></pre></td></tr></table></figure>
+<h3 id="3-验证-Grafana-安装"><a href="#3-验证-Grafana-安装" class="headerlink" title="3.  验证 Grafana 安装"></a>3.  验证 Grafana 安装</h3><p>打开浏览器访问 <code>http://&lt;服务器IP&gt;:3000</code>，首次登录使用默认凭据：</p>
+<ul>
+<li>用户名：admin</li>
+<li>密码：admin</li>
+</ul>
+<p>首次登录会要求修改密码，按提示设置新密码即可。</p>
+<h2 id="接入数据源"><a href="#接入数据源" class="headerlink" title="接入数据源"></a>接入数据源</h2><h3 id="1-在发送端配置采集器的地址"><a href="#1-在发送端配置采集器的地址" class="headerlink" title="1. 在发送端配置采集器的地址"></a>1. 在发送端配置采集器的地址</h3><p>这里我们要接入和分析TP-Link路由器的上网行为日志。所以要在路由器上配置将日志发送到alloy采集节点的服务器。具体的TP-Link路由器的上网行为分析审计的配置参考《<a href="http://xiejava.ishareread.com/posts/e87ac72d/" target="_blank" rel="noopener">通过TPLink路由器进行用户行为审计实战</a>》</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/6-TPLINK%E9%85%8D%E7%BD%AE.png" alt="行为审计"></p>
+<h3 id="2-在采集端看是否收到数据"><a href="#2-在采集端看是否收到数据" class="headerlink" title="2. 在采集端看是否收到数据"></a>2. 在采集端看是否收到数据</h3><p>通过tcpdump命令查看采集节点是否有日志数据进来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i ens2 -A port 514</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/7-tcpdump.png" alt="tcpdump"></p>
+<p>这里可以看到有日志数据通过ens2网卡的514端口进来了。</p>
+<h2 id="用Grafana查询和分析数据"><a href="#用Grafana查询和分析数据" class="headerlink" title="用Grafana查询和分析数据"></a>用Grafana查询和分析数据</h2><p>在用Grafana进行查询之前先要配置Grafana的数据源添加loki的数据源</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/8-new-data-source.png" alt="添加数据源"></p>
+<p>在loki的数据源中设置loki的连接地址</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/9-%E9%85%8D%E7%BD%AEloki%E8%BF%9E%E6%8E%A5%E5%9C%B0%E5%9D%80.png" alt="loki连接"></p>
+<p>设置完成后就可以用Grafana强大的分析查询和可视化来对日志进行分析了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/10-grafana%E5%88%86%E6%9E%90%E5%B1%95%E7%A4%BA.png" alt="日志分析"></p>
+<p>通过本文步骤，我们在 Ubuntu 24.04 上构建了 Loki+Alloy+Grafana 日志分析系统：</p>
+<p>Loki 负责高效存储日志，仅索引元数据降低开销；<br>Alloy 轻量采集系统日志，配置灵活易扩展；<br>Grafana 提供强大的日志查询与可视化能力（支持 LogQL、仪表盘、告警）。</p>
+<p>该架构资源占用低（单节点最低 2 核 4GB 内存即可运行），适合中小规模环境、边缘设备或开发测试场景。后续可扩展至多节点 Loki 集群、添加日志告警规则，或集成 Prometheus 监控指标，构建完整的可观测性平台。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9880bf27/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +664,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-02T22:47:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2025-08-02T22:51:54+08:00">
                 2025-08-02
               </time>
             
@@ -540,7 +844,8 @@
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/9-ssh%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="找到本地的ssh配置文件"></p>
 <p>在config文件中配置User root 和IdentityFile 密钥文件的路径。</p>
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/10-config%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="配置"></p>
-<p>这样就可以通过root进入到任何目录操作编辑任何文件了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/11-%E8%BF%9B%E5%85%A5%E4%BB%BB%E4%BD%95%E7%9B%AE%E5%BD%95%E7%BC%96%E8%BE%91.png" alt="root免密登录"></p>
+<p>这样就可以通过root进入到任何目录操作编辑任何文件了。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/11-%E8%BF%9B%E5%85%A5%E4%BB%BB%E4%BD%95%E7%9B%AE%E5%BD%95%E7%BC%96%E8%BE%91.png" alt="root免密登录"></p>
 <p>最后要提醒大家的是大家在修改任何配置文件的时候要注意备份和确认，因为获得了root权限可以操作编辑任何文件了。</p>
 <hr>
 <p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
@@ -899,8 +1204,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-07-21T22:35:38+08:00">
-                2025-07-21
+              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T12:52:27+08:00">
+                2025-08-10
               </time>
             
           </span>
@@ -918,8 +1223,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">技术 - 网络安全</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
                   </a>
                 </span>
 
@@ -2985,303 +3301,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/75c87f06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/75c87f06/" itemprop="url">网络安全“挂图作战”及其场景</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-02-18T09:40:28+08:00">
-                2025-02-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-02-18T09:45:14+08:00">
-                2025-02-18
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/75c87f06/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/75c87f06/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/75c87f06/" class="leancloud_visitors" data-flag-title="网络安全“挂图作战”及其场景">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、网络安全挂图作战来源与定义"><a href="#一、网络安全挂图作战来源与定义" class="headerlink" title="一、网络安全挂图作战来源与定义"></a>一、网络安全挂图作战来源与定义</h2><h3 id="1、网络安全挂图作战的来源"><a href="#1、网络安全挂图作战的来源" class="headerlink" title="1、网络安全挂图作战的来源"></a>1、网络安全挂图作战的来源</h3><p>网络安全挂图作战的概念源于传统军事作战中的“挂图作战”，即通过地图来指挥和协调作战行动。在网络空间安全领域，这一概念被引入并发展为一种新的网络安全管理和防御策略。其灵感来自于地理学中的“人地”关系理论，通过将网络空间的要素与地理空间相结合，构建网络空间地图。</p>
-<p>在2020年7月，网络安全专家郭启全等在《中国科学院院刊》上发表了《发展网络空间可视化技术支撑网络安全综合防控体系建设》研究文章，论述了网络空间“挂图作战”的基本理念和发展愿景。</p>
-<p>同年公安部印发《贯彻落实网络安全等保制度和关保制度的指导意见》（公网安[2020]1960号），明确提出“要加强网络新技术研究和应用，研究绘制网络空间地理信息图谱(网络地图)，实现挂图作战”。</p>
-<h3 id="2、网络安全挂图作战的定义"><a href="#2、网络安全挂图作战的定义" class="headerlink" title="2、网络安全挂图作战的定义"></a>2、网络安全挂图作战的定义</h3><p><strong>挂图作战</strong>： 按计划、按目标、按进度、按要求实施的一种作战方式或工作方法。<br><strong>网络安全挂图作战的核心思想</strong>：将攻击者的攻击路径和影响范围以图形化方式展现，帮助防守方更直观、全面地理解攻击者的行为以及对组织资产的影响，从而更有效地进行威胁检测、分析、响应等动作。</p>
-<p>网络安全挂图作战是一种通过<strong>可视化技术</strong>将网络安全态势、资产、威胁等信息以图形化方式展示出来的方法。其核心在于通过构建网络空间地图，实现对网络安全事件的全过程展示和管理，通过“<strong>看、管、防、控</strong>”一体化实现主动防御的工作模式。</p>
-<p>其核心价值在于：<br>● 攻防视角可视化：将攻击者的路径、手段及影响范围图形化呈现，辅助防守方快速定位薄弱点。<br>● 全生命周期管理：覆盖威胁检测、分析、响应、复盘的全流程闭环。<br>● 协同作战能力：整合多部门、多工具数据，打破信息孤岛，提升响应效率。</p>
-<p>具体来说，挂图作战包括以下几个方面：</p>
-<ol>
-<li>可视化展示：将网络环境中的各个要素（如资产、漏洞、威胁等）以图形化的方式呈现，提高网络安全的可视化程度。</li>
-<li>态势感知与分析：通过挂图作战平台，实时监测和感知网络安全态势，及时发现和分析安全威胁。</li>
-<li>决策支持：为安全决策提供直观的数据支持，帮助安全团队更好地研判和处置安全事件。</li>
-<li>协同作战：支持多方协同作战，整合不同安全工具和平台的信息，提高安全事件的响应速度和处理效率。</li>
-</ol>
-<p>通过这些功能，网络安全挂图作战能够有效地提升网络安全防护的效率和准确性，帮助组织更好地应对复杂的网络安全挑战。</p>
-<h2 id="二、挂图作战关键技术"><a href="#二、挂图作战关键技术" class="headerlink" title="二、挂图作战关键技术"></a>二、挂图作战关键技术</h2><ol>
-<li>网络空间测绘技术<br>● 资产指纹库：通过主动扫描（如端口探测、协议解析）和被动流量分析（如流量镜像），识别网络中的设备、服务、应用及版本信息。<br>● 拓扑自动发现：利用路由追踪、SNMP协议等，绘制网络节点间的连接关系和通信路径。</li>
-<li>动态可视化引擎<br>● 图数据库（Neo4j、GraphX）：存储复杂的资产关系与攻击链路，支持快速查询和路径分析。<br>● 威胁热力图：根据攻击频率、漏洞严重性等参数生成风险热区，直观标注高危区域。</li>
-<li>攻击链建模（Cyber Kill Chain）<br>● MITRE ATT&amp;CK框架集成：将攻击者的TTPs（战术、技术、过程）映射到网络地图中，预判攻击路径。<br>● 攻击模拟推演：基于红队工具（如Cobalt Strike）模拟攻击行为，验证防御策略有效性。</li>
-<li>自动化响应编排（SOAR）<br>● 剧本（Playbook）驱动：当检测到攻击时，自动触发防火墙封禁、隔离主机、下发补丁等动作。<br>● 人机协同：高风险操作需人工确认，避免误拦截影响业务。</li>
-<li>多源数据融合<br>● 跨平台集成：对接EDR、SIEM、漏洞扫描器等工具，聚合日志、告警和资产数据。<br>● 威胁情报联动：接入外部威胁情报（如恶意IP库、漏洞库），实时更新攻击特征。</li>
-</ol>
-<h2 id="三、挂图作战与传统态势感知的差异"><a href="#三、挂图作战与传统态势感知的差异" class="headerlink" title="三、挂图作战与传统态势感知的差异"></a>三、挂图作战与传统态势感知的差异</h2><table>
-<thead>
-<tr>
-<th>对比维度</th>
-<th>传统态势感知</th>
-<th>挂图作战</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>核心目标</td>
-<td>被动监控全网安全状态</td>
-<td>主动防御，聚焦攻击路径阻断与协同响应</td>
-</tr>
-<tr>
-<td>数据粒度</td>
-<td>宏观指标（如告警数量、风险等级）</td>
-<td>微观到单个资产、漏洞、攻击链节点的精准定位</td>
-</tr>
-<tr>
-<td>可视化方式</td>
-<td>仪表盘（Dashboard）与统计图表</td>
-<td>交互式网络地图，支持攻击链路动态推演</td>
-</tr>
-<tr>
-<td>响应模式</td>
-<td>人工研判后分步处置</td>
-<td>自动化剧本执行 + 跨团队指令同步</td>
-</tr>
-<tr>
-<td>适用场景</td>
-<td>日常监控与合规报告</td>
-<td>实战攻防（如HW行动）、应急响应、红蓝对抗</td>
-</tr>
-<tr>
-<td>技术重心</td>
-<td>大数据分析与告警聚合</td>
-<td>攻击链建模、可视化指挥、自动化编排</td>
-</tr>
-</tbody></table>
-<h2 id="四、挂图作战主要场景"><a href="#四、挂图作战主要场景" class="headerlink" title="四、挂图作战主要场景"></a>四、挂图作战主要场景</h2><ol>
-<li>关键基础设施防护<br>● 场景痛点：能源、交通等行业的OT系统（工控网络）存在大量老旧设备，难以实时监控。<br>● 挂图方案：<br>○ 绘制OT网络拓扑，标注PLC、SCADA系统的物理位置与逻辑连接。<br>○ 当检测到异常指令（如未授权的参数修改）时，地图自动定位受影响设备并隔离。</li>
-<li>重大活动安保<br>● 场景痛点：活动期间网络访问激增，需防范DDoS、网页篡改等针对性攻击。<br>● 挂图方案：<br>○ 构建“活动专属作战地图”，集成CDN节点、票务系统、直播平台等核心资产。<br>○ 实时标注攻击源IP（如来自特定国家的扫描行为），联动云WAF自动封禁。</li>
-<li>供应链攻击防御<br>● 场景痛点：第三方软件或服务漏洞可能成为攻击跳板（如SolarWinds事件）。<br>● 挂图方案：<br>○ 标注供应链厂商的接入点及权限范围，监控异常横向移动。<br>○ 当某供应商账号异常登录时，地图高亮关联资产并触发权限回收。</li>
-<li>红蓝对抗演练<br>● 场景痛点：传统攻防演练中防守方难以快速定位攻击入口。<br>● 挂图方案：<br>○ 红队攻击路径实时映射到地图，蓝队可追溯攻击者从外网渗透到内网提权的全过程。<br>○ 演练结束后生成攻击路径复盘报告，优化防御策略。</li>
-<li>零日漏洞应急响应<br>● 场景痛点：漏洞爆发后（如Log4j），企业需快速定位受影响资产。<br>● 挂图方案：<br>○ 输入漏洞特征（如JNDI调用），地图自动标记存在漏洞的服务实例。<br>○ 联动补丁管理系统，按业务优先级分批修复。</li>
-</ol>
-<h2 id="五、未来趋势"><a href="#五、未来趋势" class="headerlink" title="五、未来趋势"></a>五、未来趋势</h2><ol>
-<li><strong>数字孪生融合</strong>：结合数字孪生技术，实现网络空间与物理世界的1:1映射。</li>
-<li><strong>AI辅助决策</strong>：通过大语言模型（LLM）生成自然语言防御建议，降低操作门槛。</li>
-<li><strong>跨域协同</strong>：与国土安全、城市应急系统联动，构建国家级网络空间地图。</li>
-</ol>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>“挂图作战”标志着网络安全从“被动告警”迈向“主动防御”的范式转变。通过将虚拟攻击映射为可视化的“战场”，企业不仅能看清自身防御盲区，更能在攻防对抗中抢占先机。随着技术的演进，未来的网络安全指挥中心或许将如军事作战室一般，通过一张动态地图掌控全局。</p>
-<hr>
-<p>博客文章：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3338,7 +3357,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">206</span>
+                  <span class="site-state-item-count">207</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3349,7 +3368,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3360,7 +3379,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -3450,7 +3469,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">423.3k</span>
+    <span title="Site words total count">425.3k</span>
   
   
 <!--51la网站应用监控-->
