@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Easytier快速实现异地组网</title>
+      <link href="/posts/d2b2ee39/"/>
+      <url>/posts/d2b2ee39/</url>
+      
+        <content type="html"><![CDATA[<p>玩NAS的小伙伴在安装完NAS系统后都在折腾“回家”，NAS是放在家里的设备，如何在外面方便的访问家里的主机设备是很多小伙伴面临的课题。“回家”的办法有很多，今天主要介绍我个人觉得很方便的Easytier来快速实现异地组网在外面访问家里的设备。</p><h2 id="一、什么是Easytier"><a href="#一、什么是Easytier" class="headerlink" title="一、什么是Easytier"></a>一、什么是Easytier</h2><p>EasyTier 是一款简单、安全、去中心化的内网穿透和异地组网工具，适合远程办公、异地访问、游戏加速等多种场景。无需公网 IP，无需复杂配置，轻松实现不同地点设备间的安全互联。</p><h2 id="二、飞牛NAS安装Easytier"><a href="#二、飞牛NAS安装Easytier" class="headerlink" title="二、飞牛NAS安装Easytier"></a>二、飞牛NAS安装Easytier</h2><p>在飞牛NAS的镜像仓库中找到下载量最大的easytier斤镜像进行安装<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250830/1-%E9%A3%9E%E7%89%9Bnas-docker.png" alt="\[图片\]"></p><p>在启动容器时设置使用高权限执行容器<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250830/2-easytier-docker%E9%AB%98%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE.png" alt="\[图片\]"></p><p>在“命令”输入框中输入</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--network-name &lt;你的虚拟网络名称&gt;</span><br><span class="line">--network-secret &lt;你的网络密码，随便输入，后面加入网络的要用到&gt;</span><br><span class="line">-p tcp://public.easytier.top:11010</span><br><span class="line">--ipv4 10.10.10.3</span><br><span class="line">-n 192.168.0.0/24(这里换成自己的内网的网段)</span><br></pre></td></tr></table></figure><p>这是一个用于连接到一个现有 EasyTier 网络的客户端节点的典型配置。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250830/3-easytier-docker%E5%91%BD%E4%BB%A4%E9%85%8D%E7%BD%AE.png" alt="\[图片\]"></p><h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><ol><li><code>--network-name 你的虚拟网络名称</code> <ul><li>含义： 指定要加入的虚拟网络的名称。</li><li>解释： 所有要组成同一个虚拟局域网（VLAN）的节点（客户端和超级节点）必须使用完全相同的网络名称。如网络名为 xiejava。这相当于一个共享的“房间号”或“频道号”，只有名称相同的节点才能互相发现和通信。</li></ul></li><li><code>--network-secret 你的网络密码</code><ul><li>含义： 用于验证和加密网络通信的密钥（密码）。</li><li>解释： 所有加入同一网络的节点必须使用完全相同的密钥。它有两个主要作用：<ul><li>身份认证： 防止未经授权的节点随意加入你的私有网络。</li><li>通信加密： 对节点之间传输的数据进行加密，保障通信安全。因此，一个强密码非常重要。</li></ul></li></ul></li><li><code>-p tcp://public.easytier.top:11010</code><ul><li>含义： 指定要连接的上层节点（Super Node）的地址。</li><li>解释：<ul><li>-p 是 –peer 的简写形式。</li><li>tcp:// 表示使用 TCP 协议进行连接。</li><li>public.easytier.top:11010 是超级节点的地址和端口。这是一个部署在公网上的服务器，它的作用是帮助位于不同内网中的客户端节点（比如你的这台机器）进行“打洞”和中转连接。</li></ul></li><li>简单来说，这个参数告诉你的客户端：“请去这个地址找中介服务器，它会帮你联系网络里的其他伙伴。”</li></ul></li><li><code>--ipv4 10.10.10.3</code><ul><li>含义： 指定本节点在虚拟网络中使用的静态 IPv4 地址。</li><li>解释： 加入虚拟网络后，你的机器会拥有两个IP地址：一个是物理网卡的真实地址（如 192.168.1.100），另一个就是这个虚拟地址 10.10.10.3。网络中的其他设备将通过这个 10.10.10.3 的地址来访问你的机器。使用静态IP可以方便地管理和访问特定的设备。</li></ul></li><li><code>-n 192.168.0.0/24</code><ul><li>含义： 为虚拟网络添加一条静态路由规则。</li><li>解释：<ul><li>-n 是 –route 的简写形式，用于添加路由。</li><li>192.168.0.0/24 是一个网段。这条命令的意思是：“所有发往 192.168.0.0/24 这个网段的数据包，都请通过本机的 EasyTier 虚拟网卡发送（即通过 EasyTier 虚拟网络来路由）。”</li></ul></li><li>用途： 假设你家里的本地局域网网段是 192.168.0.0/24，你在这台机器上添加了这条路由。那么，当网络中的其他节点（如 10.10.10.2）想访问你内网的服务器（如 192.168.0.100）时，它们的数据包会发到你这台机器（10.10.10.3），然后由你这台机器利用本地物理网络转发到 192.168.0.100。这样就实现了从异地访问公司内网资源的功能。这通常是在作为“网关”或提供路由服务的节点上配置的。</li></ul></li></ol><h3 id="配置总结"><a href="#配置总结" class="headerlink" title="配置总结"></a>配置总结</h3><p>这条完整的命令配置了一个 EasyTier 客户端，其作用是：</p><ol><li>加入一个名为 “虚拟网络名”、密码为 “你的虚拟网络密码” 的私有虚拟网络。</li><li>通过连接公网上的超级节点 public.easytier.top:11010 来与其他节点建立联系。</li><li>它在本虚拟网络中的固定IP地址是 10.10.10.3。</li><li>它同时宣布了自己可以为整个虚拟网络提供到 192.168.0.0/24 网段的路由服务，其他节点要访问这个网段的数据都会经过它。</li></ol><p>简单来说，将这台NAS机器作为家里网络内部的节点，它既加入了虚拟网络（地址 10.10.10.3），又扮演了让外部能够访问内部 192.168.0.x 服务器的“网关”角色。</p><h2 id="三、Easytier快速组网异地访问"><a href="#三、Easytier快速组网异地访问" class="headerlink" title="三、Easytier快速组网异地访问"></a>三、Easytier快速组网异地访问</h2><p>Easytier提供了多种符合各类操作系统的工具包括linux、window、MacOS、Android 等，下面以window为例，到官网<a href="https://easytier.rs/guide/download.html下载window的Easytier" target="_blank" rel="noopener">https://easytier.rs/guide/download.html下载window的Easytier</a> GUI。<br>在window机器上进行安装后打开Easytier GUI界面进行设置<br>在网络名称和网络密码中分别设置成在飞牛NAS中Easytier docker容器中命令中指定的网络名称和网络密码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250830/4-easytier-window%E7%BB%84%E7%BD%91.png" alt="\[图片\]"></p><p>设置完成后点击“运行网络”，稍等一会就发现节点信息中本机和飞牛NAS中的easytier都连上来了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250830/5-easytier-window%E7%BB%84%E7%BD%91%E6%88%90%E5%8A%9F.png" alt="\[图片\]"></p><p>可以看到运行window的Easytier GUI的机器在外面连的是手机热点的网络，可以ping通家里内网的IP，可以畅快的访问家里的网络了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250830/6-easytier%E7%BB%84%E7%BD%91%E6%95%88%E6%9E%9C.png" alt="\[图片\]"></p><h2 id="四、Easytier的适用场景"><a href="#四、Easytier的适用场景" class="headerlink" title="四、Easytier的适用场景"></a>四、Easytier的适用场景</h2><ul><li>远程办公：让公司、家中和外地的电脑像在同一局域网一样互通。</li><li>异地访问：随时随地安全访问家中 NAS、服务器或其他设备。</li><li>游戏加速：组建虚拟局域网，畅玩联机游戏。</li><li>物联网组网：让分布在不同地点的设备安全互联。</li></ul><hr><p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NAS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>为搞清楚凌晨上网都在干啥，我建了一套AI上网行为分析系统</title>
       <link href="/posts/80e87a29/"/>
       <url>/posts/80e87a29/</url>
