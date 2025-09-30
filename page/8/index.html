@@ -313,6 +313,267 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/71d4ad9f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/71d4ad9f/" itemprop="url">安全防御之备份恢复技术</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-10T09:37:59+08:00">
+                2024-01-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:33+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/71d4ad9f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/71d4ad9f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/71d4ad9f/" class="leancloud_visitors" data-flag-title="安全防御之备份恢复技术">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着计算机和网络的不断普及，人们更多的通过网络来传递大量信息。在网络环境下，还有各种各样的病毒感染、系统故障、线路故障等，使得数据信息的安全无法得到保障。由于安全风险的动态性，安全不是绝对的，信息系统不可能保证不出现安全事故，因此，一旦出现安全事件造成信息系统中断或者数据丢失，如果事先采取了必要的备份准备并及时启用，能够最小程度的减少系统重构时间和对业务中断的影响。备份恢复技术是安全防御体系中的重要组成部分，旨在保护数据安全，防止数据丢失或损坏，提高企业的数据安全性和业务连续性水平。</p>
+<h2 id="一、备份恢复的基本概念"><a href="#一、备份恢复的基本概念" class="headerlink" title="一、备份恢复的基本概念"></a>一、备份恢复的基本概念</h2><p>备份恢复的基本概念主要包括备份和恢复两个方面。备份是指将数据或系统进行复制和存储的过程，以便在数据丢失或损坏时能够从备份中恢复。<br>恢复则是指当数据或系统出现问题时，通过备份数据进行数据恢复或系统重建的过程。</p>
+<h2 id="二、备份恢复技术的分类"><a href="#二、备份恢复技术的分类" class="headerlink" title="二、备份恢复技术的分类"></a>二、备份恢复技术的分类</h2><p>备份恢复技术有多种分类和应用场景，可以根据实际需求进行选择和应用。常见的备份恢复技术包括数据备份技术、灾难恢复技术、容灾技术、备份与恢复管理技术、数据归档技术和文件系统快照技术等。</p>
+<ol>
+<li>数据备份技术：是指定期对重要数据或全部数据复制和存储，以防止数据丢失或损坏。数据备份可以分为完整备份、增量备份、差异备份等。</li>
+<li>灾难恢复技术：是指在发生灾难事件时，通过事先制定的灾难恢复计划和流程，快速恢复业务运行。灾难恢复技术包括数据备份、系统恢复、业务恢复等方面的内容。</li>
+<li>容灾技术：是指通过建立异地容灾中心，将重要数据实时或定时复制到容灾中心，确保在主中心发生故障时，数据仍能保持可用性和完整性。容灾技术包括数据同步、异步复制、数据验证等方面的内容。</li>
+<li>备份与恢复管理技术：是指定期对备份数据进行验证和测试，确保备份数据的可用性和完整性。同时，建立完善的备份与恢复管理制度，规范备份与恢复操作，确保备份和恢复工作的顺利进行。</li>
+<li>数据归档技术：是指将不再经常使用的数据迁移到归档设备上，以释放存储空间并降低管理成本。归档设备可以是磁带库、光盘库等。</li>
+<li>文件系统快照技术：是指利用文件系统快照技术，对文件系统进行快速备份。快照技术可以捕获文件系统在某一时刻的状态，以便在发生问题时迅速恢复数据。<br>这些技术可以根据实际需求进行选择和应用，以确保数据的完整性和可用性，提高企业的业务连续性水平，降低企业的风险和成本。</li>
+</ol>
+<h2 id="三、备份恢复的能力等级"><a href="#三、备份恢复的能力等级" class="headerlink" title="三、备份恢复的能力等级"></a>三、备份恢复的能力等级</h2><p>系统备份恢复能力也是信息系统一种重要的安全能力。2007年国家针对备份恢复发布了国家标准《GB/T 20988-2007 信息安全技术 信息系统灾难恢复规范》，《规范》将灾难恢复能力划分为6级：</p>
+<ul>
+<li>等级一：基本支持。要求数据备份系统能够保证每周至少进行一次数据备份，备份介质能够提供场外存放。对于备用数据处理系统和备用网络系统，没有具体要求。</li>
+<li>等级二：备用场地支持。在满足等级一的条件基础上，要求配备灾难恢复所需的部分数据处理设备，或灾难发生后能在预定时间内调配所需的数据处理设备到备用场地；要求配备部分通信线路和相应的网络设备，或灾难发生后能在预定时间内调配所需的通信线路和网络设备到备用场地。</li>
+<li>等级三：电子传输和设备支持。要求每天至少进行一次完全数据备份，备份介质场外存放，同时每天多次利用通信网络将关键数据定时批量传送至备用场地。配备灾难恢复所需的部分数据处理设备、通信线路和相应的网络设备。</li>
+<li>等级四：电子传输及完整设备支持。在等级三的基础上，要求配置灾难恢复所需的所有数据处理设备、通行线路和相应的网络设备，并且处于就绪或运行状态。</li>
+<li>等级五：实时数据传输及完整设备支持。除要求每天至少进行一次完全数据备份，备份介质场外存放外，还要求采用远程数据复制技术，利用通信网络将关键数据实时复制到备用场地。</li>
+<li>等级六：数据零丢失和远程集群支持。要求实现远程实时备份，数据零丢失；备用数据处理系统具备与生产数据处理系统一致的处理能力，应用软件是“集群的”，可实时无缝切换。</li>
+</ul>
+<p>由此可见，灾难恢复能力等级越高，对于信息系统的保护效果越好，但同时成本也会急剧上升。</p>
+<h2 id="四、备份恢复的类型"><a href="#四、备份恢复的类型" class="headerlink" title="四、备份恢复的类型"></a>四、备份恢复的类型</h2><p>备份恢复的基本原理是确保数据的完整性和可用性，防止数据丢失或损坏。在备份过程中，需要对重要数据或全部数据进行拷贝和存储，可以选择不同的备份策略，如完整备份、增量备份、差异备份等，以满足不同场景的需求。在恢复过程中，需要使用备份数据来恢复受损的数据或系统，确保业务能够正常运行。<br>备份通常可以分成下面的这三种类型：</p>
+<h3 id="1、完全备份"><a href="#1、完全备份" class="headerlink" title="1、完全备份"></a>1、完全备份</h3><p>完全备份就是将系统中所有的数据都通过备份进程备份。完全备份需要的时间相比其他集中备份方式要长，但是故障发生时，恢复时间非常快。</p>
+<h3 id="2、差异备份"><a href="#2、差异备份" class="headerlink" title="2、差异备份"></a>2、差异备份</h3><p>通常，系统管理员会每周定期作完全备份，在一周的其他时间针对与完全备份的差异部分作差异备份。<br>这种备份方法的恢复时间较长，我们不但要从全备份中恢复数据，还需要将每天的变化量恢复到系统中。</p>
+<h3 id="3、增量备份"><a href="#3、增量备份" class="headerlink" title="3、增量备份"></a>3、增量备份</h3><p>增量备份是每周定期进行完全备份，每天增加备份当天的数据变化，对于备份时间，增量备份需要的时间最短，但是，回复时间较长且较为复杂。在恢复过程中，我们不但需要恢复第一次的完全备份，还需要使用每天变化量的备份，一次恢复一天的数据，直到最近的一次所做的增量备份为止。</p>
+<h2 id="五、数据备份的方式"><a href="#五、数据备份的方式" class="headerlink" title="五、数据备份的方式"></a>五、数据备份的方式</h2><h3 id="1、远程镜像"><a href="#1、远程镜像" class="headerlink" title="1、远程镜像"></a>1、远程镜像</h3><p>远程镜像技术在主数据中心和数据备份中心之间的数据备份过程中使用。镜像是在两个或多个磁盘或磁盘子系统上产生同一个数据的镜像视图的信息存储过程，一个叫主镜像系统，另一个叫从镜像系统。按主从镜像存储系统所处的位置可分为本地镜像和远程镜像。远程镜像又叫远程复制，是容灾备份的核心技术，同时也是保持远程数据同步和实现灾难恢复的基础。远程镜像按请求镜像的主机是否需要远程镜像站点的确认信息，又可分为同步远程镜像和异步远程镜像。</p>
+<p>同步远程镜像（同步复制技术）是指通过远程镜像软件，将本地数据以完全同步的方式复制到异地，每一本地的I/O事务均需等待远程复制的完成确认信息，方予以释放。同步镜像使远程拷贝总能与本地机要求复制的内容相匹配。当主站点出现故障时，用户的应用程序切换到备份的替代站点后，被镜像的远程副本可以保证业务继续执行而没有数据的丢失。但它存在往返传播造成延时较长的缺点，只限于在相对较近的距离上应用。</p>
+<p>异步远程镜像（异步复制技术）保证在更新远程存储视图前完成向本地存储系统的基本I/O操作，而由本地存储系统提供给请求镜像主机的I/O操作完成确认信息。远程的数据复制是以后台同步的方式进行的，这使本地系统性能受到的影响很小，传输距离长（可达1000公里以上），对网络带宽要求小。但是，许多远程的从属存储子系统的写没有得到确认，当某种因素造成数据传输失败，可能出现数据一致性问题。为了解决这个问题，目前大多采用延迟复制的技术，即在确保本地数据完好无损后进行远程数据更新。</p>
+<h3 id="2、快照技术"><a href="#2、快照技术" class="headerlink" title="2、快照技术"></a>2、快照技术</h3><p>快照是通过软件对要备份的磁盘子系统的数据快速扫描，建立一个要备份数据的快照逻辑单元号LUN和快照cache。在快速扫描时，把备份过程中即将要修改的数据块同时快速拷贝到快照cache中。<br>快照LUN是一组指针，它指向快照cache和磁盘子系统中不变的数据块（在备份过程中）。在正常业务进行的同时，利用快照LUN实现对原数据的一个完全的备份。它可使用户在正常业务不受影响的情况下（主要指容灾备份系统），实时提取当前在线业务数据。其“备份窗口”接近于零，可增加系统业务的连续性，为实现系统真正的7×24运转提供了保证。</p>
+<h3 id="3、互连技术"><a href="#3、互连技术" class="headerlink" title="3、互连技术"></a>3、互连技术</h3><p>现有多种基于IP的SAN的远程数据容灾备份技术。它们是利用基于IP的SAN的互连协议，将主数据中心SAN中的信息通过现有的TCP/IP网络，远程复制到备援中心SAN中。早期方法多通过光纤通道FC连接两个SAN，存在实现成本高、设备的互操作性差、跨越的地理距离短（10公里）等缺点。<br>当备援中心存储的数据量过大时，可利用快照技术将其备份到磁带库或光盘库中。这种基于IP的SAN的远程容灾备份，可以跨越LAN、MAN和WAN，成本低、可扩展性好，具有广阔的发展前景。<br>基于IP的互连协议包括：FCIP、iFCP、Infiniband、iSCSI等。</p>
+<h2 id="六、备份恢复技术应用场景"><a href="#六、备份恢复技术应用场景" class="headerlink" title="六、备份恢复技术应用场景"></a>六、备份恢复技术应用场景</h2><p>备份恢复技术的应用场景有很多，以下是常见的一些场景：</p>
+<ol>
+<li>数据丢失应用场景：包括人为操作失误、软件BUG、硬件故障、安全漏洞被入侵等情况，导致数据被误操作、部分或全部丢失。在这种情况下，备份恢复技术可以用来恢复丢失的数据。</li>
+<li>非数据丢失应用场景：包括特殊应用场景下基于时间点的数据恢复、开发测试环境数据库搭建、相同数据库的新环境搭建、数据库或数据迁移等情况。在这些情况下，备份恢复技术可以用来迁移数据或者在新的环境中快速搭建数据库。</li>
+<li>设备更换场景：当用户的设备损坏或丢失时，可以通过备份恢复技术将备份的数据导入到新设备中，恢复原有的应用程序和设置，避免了重新配置和下载应用的麻烦。</li>
+<li>数据迁移场景：当用户的设备升级或更换时，可以通过备份恢复技术将备份的数据迁移到新设备中，保留原有的数据和设置，提高用户的使用体验。</li>
+</ol>
+<p>备份恢复技术的应用场景非常广泛，可以在各种情况下保护数据安全，降低风险和成本。根据实际需求选择适合的备份恢复技术，可以提高企业的数据安全性和业务连续性水平。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d23a1bb5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2569,432 +2830,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/68430272/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/68430272/" itemprop="url">安全运营之团队人员组织建议</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-12-22T22:35:05+08:00">
-                2023-12-22
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:32+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/68430272/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/68430272/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/68430272/" class="leancloud_visitors" data-flag-title="安全运营之团队人员组织建议">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全运营是一个持续的过程，需要不断地评估风险、监测威胁、改进措施和更新策略，以确保组织的安全性和可靠性。由人员、数据、平台（工具）、流程的共同组合构成安全运营体系。</p>
-<h2 id="一、安全运营团队目标"><a href="#一、安全运营团队目标" class="headerlink" title="一、安全运营团队目标"></a>一、安全运营团队目标</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231222/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F%E7%9B%AE%E6%A0%87.png" alt="安全运营团队目标"></p>
-<center>图-安全运营团队目标</center>
-
-
-<p>安全运营团队是具有日常安全运营及实战化攻防对抗能力的专职安全团队，依托安全运营中心平台，有效使用各项安全工具，以标准化的作业流程驱动，开展各项安全运营活动，实现安全工作持续、主动、精细化、标准化的过程管理，通过持续有效的安全运营活动满足合规要求、降低网络安全风险、保障企业网络安全。</p>
-<h2 id="二、团队人员组织架构"><a href="#二、团队人员组织架构" class="headerlink" title="二、团队人员组织架构"></a>二、团队人员组织架构</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231222/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F%E4%BA%BA%E5%91%98%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84.png" alt="在这里插入图片描述"></p>
-<center>图-安全运营团队人员组织架构</center>
-
-<h2 id="三、运营团队职责分工"><a href="#三、运营团队职责分工" class="headerlink" title="三、运营团队职责分工"></a>三、运营团队职责分工</h2><table border="1" cellspacing="0">
-    <thead  style="background-color: lightgray;" >
-        <td>序号</td> 
-        <td>运营工作内容</td> 
-        <td>运营工作子项</td>
-        <td>频率</td>
-        <td>所属分组</td>
-        <td>相关职责</td>
-        <td>备注</td>
-    </thead>
-    <tr>
-        <td rowspan="2">1</td> 
-        <td rowspan="2">安全资产识别与梳理</td> 
-        <td>安全资产发现和识别</td>
-        <td rowspan="3">按需</td>
-        <td rowspan="3">安全资产管理</td>
-        <td rowspan="2">对已有安全资产和新增安全资产进行管理维护，协调督促业务部门安全资产责任人进行资产数据上报、agent安装。定期对异常资产、未纳管安全资产等进行通报督促整改。</td>
-        <td rowspan="3">常态化</td>
-    </tr>
-    <tr> 
-        <td>安全资产信息梳理与管理</td>
-    </tr>
-    <tr> 
-        <td >2</td> 
-        <td>安全资产脆弱性管理</td>
-        <td>安全资产脆弱性识别与管理</td>
-        <td>对安全资产的脆弱性进行定期的识别，发布存在有脆弱性风险通知到安全资产责任人，督促整改，对脆弱性问题跟踪确认。</td>
-    </tr>
-    <tr> 
-        <td rowspan="6">3</td> 
-        <td rowspan="6">威胁监测</td>
-        <td >威胁监测</td>
-        <td rowspan="8">按需</td>
-        <td rowspan="8">监测研判</td>
-        <td rowspan="8">
-            1.对安全监测平台进行日常的监测运营工作，形成相关交付物。（运营日报、周报、月报等）<br>
-            2.对监测过程中发现的安全告警进行初步筛选，排查是否误报，对非误报告警进行安全级别判断，对判断后的安全告警进行安全事件的升级，并进行专人的研判分析。<br>
-            3.对分析后重要安全事件，进行处置组递交沟通，提供事件分析报告。并对处置执行组反馈的处置情况进行复验审核工作。
-        </td>
-        <td rowspan="8">常态化</td>
-    </tr>
-    <tr> 
-        <td >威胁分析与通告</td> 
-    </tr>
-    <tr> 
-        <td >持续攻击对抗</td> 
-    </tr>
-    <tr> 
-        <td >事件分析与处置</td> 
-    </tr>
-    <tr> 
-        <td >应急响应</td> 
-    </tr>
-    <tr> 
-        <td >安全运营可视化</td> 
-    </tr>
-    <tr>
-        <td rowspan="2">4</td> 
-        <td rowspan="2">人工研判</td> 
-        <td >安全事件人工研判</td> 
-    </tr>
-    <tr> 
-        <td >定期安全运营汇报</td> 
-    </tr>
-    <tr> 
-        <td rowspan="3">5</td> 
-        <td rowspan="3">安全问题处置</td> 
-        <td >安全事件处置</td> 
-        <td rowspan="5">按需</td> 
-        <td rowspan="5">处置执行</td>
-        <td rowspan="5">
-            1.对研判后的安全事件进行处置操作，负责协调相关业务部门及安全资产归属单位，对网络及安全策略进行调整优化控制（含平台策略优化）。<br>
-            2.对责任部门或责任人按处置流程进行通告下发，并跟踪事件处置过程，提供处置建议与咨询。<br>
-            3. 跟踪事件处置情况，并将处置反馈情况同步监测研判组进行复验，负责对安全事件处置进行闭环，归档工作。<br>
-        </td>
-        <td rowspan="5">常态化</td>
-    </tr>
-    <tr> 
-        <td >安全事件归档</td> 
-    </tr>
-    <tr> 
-        <td >安全事件报告</td> 
-    </tr>
-    <tr> 
-        <td >6</td> 
-        <td >安全通告</td> 
-        <td >安全事件通告</td> 
-    </tr>
-    <tr> 
-        <td >7</td> 
-        <td >策略管理</td> 
-        <td >策略管理</td> 
-    </tr>
-    <tr> 
-        <td rowspan="5">8</td> 
-        <td rowspan="5">平台保障</td> 
-        <td >现场处置协调跟踪</td> 
-        <td rowspan="5">按需</td> 
-        <td rowspan="5">平台保障</td> 
-        <td rowspan="5">
-            1.对安全运营中心平台进行日常的巡检维护，对各平台功能，告警数据采集，设备权限，性能消耗进行巡检监控，对巡检过程中发现的问题及时跟踪处理。<br>
-            2.协助处置执行组对安全事件进行处置闭环跟踪及协调工作。<br>
-            3.根据运营需求进行平台规则优化、剧本流程优化。<br>
-        </td> 
-        <td rowspan="5">
-            常态化（平台建设方参与）
-        </td>
-    </tr>
-    <tr> 
-        <td >现场故障应急处理</td> 
-    </tr>
-    <tr> 
-        <td >平台现场运营监测</td> 
-    </tr>
-    <tr> 
-        <td >平台运营日常巡检</td> 
-    </tr>
-    <tr> 
-        <td >平台规则流程优化</td> 
-    </tr>
-    <tr> 
-        <td rowspan="2">9</td> 
-        <td rowspan="2">脆弱性评估与管理</td> 
-        <td >漏洞、弱口令扫描
-            最新漏洞预警和响应
-            </td> 
-        <td rowspan="2">月/次</td> 
-        <td rowspan="7">安全服务</td> 
-        <td rowspan="5">
-            1.负责漏洞管理、渗透测试、应急演练的方案整理及需求确认工作。<br>
-            2.依据各服务内容流程，负责实施相关服务。<br>
-            3.对服务过程发现安全问题进行协助处置工作，并提供处置方案。<br>
-            4.负责方案服务总结，并对发现安全问题进行分析总结，提供加固建议及安全事件处理能力的建议。<br>            
-        </td> 
-        <td rowspan="7">
-            按需，一般以服务外包的方式外包给专业团队
-        </td>
-    </tr>
-    <tr> 
-        <td >漏洞协助处置</td> 
-    </tr>
-    <tr> 
-        <td rowspan="2">10</td>
-        <td rowspan="2">渗透测试</td> 
-        <td >渗透测试方案</td> 
-        <td rowspan="2">按需</td>
-    </tr>
-    <tr> 
-        <td >渗透测试内容</td> 
-    </tr>
-    <tr> 
-        <td >11</td>
-        <td >应急演练</td> 
-        <td >应急演练</td> 
-        <td >一年/次</td>
-    </tr>
-    <tr> 
-        <td rowspan="2">12</td>
-        <td rowspan="2">风险评估</td> 
-        <td >双新评估服务</td> 
-        <td >一年/次</td>
-        <td rowspan="2">负责双新评估、定级备案风险评估等安全风险评估服务。</td>
-    </tr>
-    <tr> 
-        <td >定级备案风险评估</td> 
-        <td >一年/次</td>
-    </tr>
-    <tr> 
-        <td >13</td> 
-        <td >流程优化</td>
-        <td >运营流程及人员调整优化</td>
-        <td rowspan="3">按需</td>
-        <td rowspan="3">安全运营管理</td>
-        <td rowspan="3">
-            流程优化；团队管理；
-            培训组织；工作汇报；
-            质量审核；应急响应。
-        </td>
-        <td rowspan="3">
-            常态化，固定负责人
-        </td>
-    </tr>
-    <tr>
-        <td >14</td> 
-        <td >工作汇报</td>
-        <td >安全监测运营汇报（月报、季报、半年报）</td>
-    </tr>
-    <tr>
-        <td >15</td> 
-        <td >培训组织</td>
-        <td >培训组织</td>
-    </tr>
-</table>
-
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20231222/%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E5%9B%A2%E9%98%9F%E8%81%8C%E8%B4%A3.png" alt="在这里插入图片描述"></h2><p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3051,7 +2886,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">209</span>
+                  <span class="site-state-item-count">210</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3163,7 +2998,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">428.2k</span>
+    <span title="Site words total count">429.8k</span>
   
   
 <!--51la网站应用监控-->
