@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。《开源安全管理平台wazuh-安装与配置》介绍了wazuh的安装和配置，本文基于已经完成的wazuh安装配置基础上通过POC来验证wazuh的功能，通过wazuh来阻止已知的恶意IP的访问。 一、环境准">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开源安全管理平台wazuh-阻止恶意IP访问">
+<meta property="og:url" content="https://xiejava.gitee.io/posts/8d7a03ba/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。《开源安全管理平台wazuh-安装与配置》介绍了wazuh的安装和配置，本文基于已经完成的wazuh安装配置基础上通过POC来验证wazuh的功能，通过wazuh来阻止已知的恶意IP的访问。 一、环境准">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/1-wazuhPOC%E7%8E%AF%E5%A2%83%E6%8B%93%E6%89%91%E5%9B%BE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/2-%E8%AE%BF%E9%97%AEnginx.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/3-nginx%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97%E8%B7%AF%E5%BE%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/4-%E8%AE%BF%E9%97%AEapache2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/5-apache%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97%E8%B7%AF%E5%BE%84.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/6-%E6%81%B6%E6%84%8FIP%E9%BB%91%E5%90%8D%E5%8D%95.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/7-%E6%A8%A1%E6%8B%9F%E6%94%BB%E5%87%BB%E8%AE%BF%E9%97%AEWeb%E6%9C%8D%E5%8A%A1%E5%99%A8.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/8-%E5%A8%81%E8%83%81%E7%8B%A9%E7%8C%8E%E6%A8%A1%E5%9D%97%E6%9F%A5%E8%AF%A2%E5%91%8A%E8%AD%A6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/9-%E6%8B%A6%E6%88%AA%E9%98%BB%E6%96%AD%E5%A4%84%E7%BD%AE%E8%AF%A6%E6%83%85.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2025-10-07T11:46:43.000Z">
+<meta property="article:modified_time" content="2025-10-07T12:28:17.965Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/1-wazuhPOC%E7%8E%AF%E5%A2%83%E6%8B%93%E6%89%91%E5%9B%BE.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://xiejava.gitee.io/posts/8d7a03ba/"/>
+
+
+
+
+
+  <title>开源安全管理平台wazuh-阻止恶意IP访问 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8d7a03ba/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">开源安全管理平台wazuh-阻止恶意IP访问</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-10-07T19:46:43+08:00">
+                2025-10-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-07T20:28:17+08:00">
+                2025-10-07
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/8d7a03ba/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8d7a03ba/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/8d7a03ba/" class="leancloud_visitors" data-flag-title="开源安全管理平台wazuh-阻止恶意IP访问">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。<br>《<a href="https://blog.csdn.net/fullbug/article/details/152279929" target="_blank" rel="noopener">开源安全管理平台wazuh-安装与配置</a>》介绍了wazuh的安装和配置，本文基于已经完成的wazuh安装配置基础上通过POC来验证wazuh的功能，通过wazuh来阻止已知的恶意IP的访问。</p>
+<h2 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h2><p>POC环境如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/1-wazuhPOC%E7%8E%AF%E5%A2%83%E6%8B%93%E6%89%91%E5%9B%BE.png" alt="POC拓扑图"></p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全管理平台wazuh-server<br>(192.168.0.40)</td>
+<td>All in one安装wazuh，监控wazuh-agent上报的告警信息进行可视化展示，并联动wazuh-agent进行主动的拦截阻止</td>
+</tr>
+<tr>
+<td>Nginx服务器<br>（192.168.0.41）</td>
+<td>安装Nginx服务及wazuh-agent</td>
+</tr>
+<tr>
+<td>Apache2服务器<br>（192.168.0.43）</td>
+<td>安装Apache2服务及wazuh-agent</td>
+</tr>
+<tr>
+<td>kali<br>（192.168.0.65）</td>
+<td>Kali (模拟恶意IP主机)</td>
+</tr>
+</tbody></table>
+<p>以上除192.168.0.65是kali linux外，其他主机都是ubuntu。</p>
+<h2 id="二、wazuh配置"><a href="#二、wazuh配置" class="headerlink" title="二、wazuh配置"></a>二、wazuh配置</h2><h3 id="1、wazuh-agent配置"><a href="#1、wazuh-agent配置" class="headerlink" title="1、wazuh-agent配置"></a>1、wazuh-agent配置</h3><h4 id="1）安装nginx服务并配置wazuh-agent"><a href="#1）安装nginx服务并配置wazuh-agent" class="headerlink" title="1）安装nginx服务并配置wazuh-agent"></a>1）安装nginx服务并配置wazuh-agent</h4><p>在192.168.0.41上安装nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt updat</span><br><span class="line">sudo apt install nginx</span><br></pre></td></tr></table></figure>
+
+<p>允许防火墙访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow <span class="string">'Nginx Full'</span></span><br><span class="line">sudo ufw status</span><br><span class="line">sudo ufw app list</span><br></pre></td></tr></table></figure>
+
+<p>验证nginx服务状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status nginx</span><br></pre></td></tr></table></figure>
+
+<p>用浏览器访问<a href="http://192.168.0.41" target="_blank" rel="noopener">http://192.168.0.41</a> 验证nginx服务是否正常访问<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/2-%E8%AE%BF%E9%97%AEnginx.png" alt="nginx"></p>
+<p>将以下内容添加到 <code>/var/ossec/etc/ossec.conf</code> 文件中，以配置 Wazuh 代理并监控 nginx访问日志</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localfile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">log_format</span>&gt;</span>syslog<span class="tag">&lt;/<span class="name">log_format</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">location</span>&gt;</span>/var/log/nginx/access.log<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">localfile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/3-nginx%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97%E8%B7%AF%E5%BE%84.png" alt="nginx访问日志路径"></p>
+<p>重启wazuh-agent使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-安装apach2并配置wazuh-agent"><a href="#2-安装apach2并配置wazuh-agent" class="headerlink" title="2)  安装apach2并配置wazuh-agent"></a>2)  安装apach2并配置wazuh-agent</h4><p>在192.168.0.43上安装apach2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install apache2</span><br></pre></td></tr></table></figure>
+
+<p>允许防火墙访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow <span class="string">'Apache'</span></span><br><span class="line">sudo ufw status</span><br><span class="line">sudo ufw app list</span><br></pre></td></tr></table></figure>
+
+<p>验证nginx服务状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status apache2</span><br></pre></td></tr></table></figure>
+
+<p>用浏览器访问<a href="http://192.168.0.43" target="_blank" rel="noopener">http://192.168.0.43</a> 验证apache2服务是否正常访问</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/4-%E8%AE%BF%E9%97%AEapache2.png" alt="apache2"></p>
+<p>将以下内容添加到 <code>/var/ossec/etc/ossec.conf</code> 文件中，以配置 Wazuh 代理并监控 apache2访问日志</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localfile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">log_format</span>&gt;</span>syslog<span class="tag">&lt;/<span class="name">log_format</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">location</span>&gt;</span>/var/log/apache2/access.log<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">localfile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/5-apache%E8%AE%BF%E9%97%AE%E6%97%A5%E5%BF%97%E8%B7%AF%E5%BE%84.png" alt="apache访问日志路径"></p>
+<p>重启wazuh-agent使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、wazuh-server配置"><a href="#2、wazuh-server配置" class="headerlink" title="2、wazuh-server配置"></a>2、wazuh-server配置</h3><h4 id="1）配置IP信息黑名单"><a href="#1）配置IP信息黑名单" class="headerlink" title="1）配置IP信息黑名单"></a>1）配置IP信息黑名单</h4><p>下载Alienvault IP信誉数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://iplists.firehol.org/files/alienvault_reputation.ipset -O /var/ossec/etc/lists/alienvault_reputation.ipset</span><br></pre></td></tr></table></figure>
+
+<p>将攻击端点的IP地址（kali的IP地址192.168.0.65）添加到IP信誉数据库中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">echo</span> <span class="string">"192.168.0.65"</span> &gt;&gt; /var/ossec/etc/lists/alienvault_reputation.ipset</span><br></pre></td></tr></table></figure>
+
+<p>下载一个将 .ipset 格式转换为 .cdb 列表格式的脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget https://wazuh.com/resources/iplist-to-cdblist.py -O /tmp/iplist-to-cdblist.py</span><br></pre></td></tr></table></figure>
+
+<p>通过运行iplist-to-cdblist.py将ipset转换成.cdb 列表格式blacklist-alienvault</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python3 /tmp/iplist-to-cdblist.py /var/ossec/etc/lists/alienvault_reputation.ipset /var/ossec/etc/lists/blacklist-alienvault</span><br></pre></td></tr></table></figure>
+
+<p>为生成的文件分配正确的权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown wazuh:wazuh /var/ossec/etc/lists/blacklist-alienvault</span><br></pre></td></tr></table></figure>
+
+<p>确认一下恶意IP192.168.0.65是否在黑名单里</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/6-%E6%81%B6%E6%84%8FIP%E9%BB%91%E5%90%8D%E5%8D%95.png" alt="恶意IP在信誉库的黑名单中"></p>
+<h4 id="2）配置响应模块以阻止恶意IP地址"><a href="#2）配置响应模块以阻止恶意IP地址" class="headerlink" title="2）配置响应模块以阻止恶意IP地址"></a>2）配置响应模块以阻止恶意IP地址</h4><p>在Wazuh服务器上的 <code>/var/ossec/etc/rules/local_rules.xml</code> 自定义规则集文件中添加一个自定义规则以触发Wazuh主动响应脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;group name=<span class="string">"attack,"</span>&gt;</span><br><span class="line">  &lt;rule id=<span class="string">"100100"</span> level=<span class="string">"10"</span>&gt;</span><br><span class="line">    &lt;if_group&gt;web|attack|attacks&lt;/if_group&gt;</span><br><span class="line">    &lt;list field=<span class="string">"srcip"</span> lookup=<span class="string">"address_match_key"</span>&gt;etc/lists/blacklist-alienvault&lt;/list&gt;</span><br><span class="line">    &lt;description&gt;IP address found <span class="keyword">in</span> AlienVault reputation database.&lt;/description&gt;</span><br><span class="line">  &lt;/rule&gt;</span><br><span class="line">&lt;/group&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将自定义规则集加入到Wazuh server <code>/var/ossec/etc/ossec.conf</code> 的配置文件中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ossec_config</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ruleset</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Default ruleset --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">decoder_dir</span>&gt;</span>ruleset/decoders<span class="tag">&lt;/<span class="name">decoder_dir</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rule_dir</span>&gt;</span>ruleset/rules<span class="tag">&lt;/<span class="name">rule_dir</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rule_exclude</span>&gt;</span>0215-policy_rules.xml<span class="tag">&lt;/<span class="name">rule_exclude</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span>etc/lists/audit-keys<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span>etc/lists/amazon/aws-eventnames<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span>etc/lists/security-eventchannel<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">list</span>&gt;</span>etc/lists/blacklist-alienvault<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- User-defined ruleset --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">decoder_dir</span>&gt;</span>etc/decoders<span class="tag">&lt;/<span class="name">decoder_dir</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rule_dir</span>&gt;</span>etc/rules<span class="tag">&lt;/<span class="name">rule_dir</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ruleset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ossec_config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>将活动响应块添加到Wazuh服务器<code>/var/ossec/etc/ossec.conf</code> 文件:<br>防火墙丢弃命令与Ubuntu本地iptables防火墙集成，并丢弃来自攻击端点的网络连接60秒</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ossec_config</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">active-response</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">disabled</span>&gt;</span>no<span class="tag">&lt;/<span class="name">disabled</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">command</span>&gt;</span>firewall-drop<span class="tag">&lt;/<span class="name">command</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>local<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rules_id</span>&gt;</span>100100<span class="tag">&lt;/<span class="name">rules_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">timeout</span>&gt;</span>60<span class="tag">&lt;/<span class="name">timeout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">active-response</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ossec_config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>重新启动Wazuh管理器以应用更改生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-manager</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、效果验证"><a href="#三、效果验证" class="headerlink" title="三、效果验证"></a>三、效果验证</h2><h3 id="1、模拟攻击"><a href="#1、模拟攻击" class="headerlink" title="1、模拟攻击"></a>1、模拟攻击</h3><p>用kali(192.168.0.65)访问 <a href="http://192.168.0.41和http://192.168.0.43" target="_blank" rel="noopener">http://192.168.0.41和http://192.168.0.43</a><br>攻击端点首次连接到受害者的Web服务器。首次连接后，Wazuh主动响应模块临时阻止对Web服务器的任何后续连接60秒。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/7-%E6%A8%A1%E6%8B%9F%E6%94%BB%E5%87%BB%E8%AE%BF%E9%97%AEWeb%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="模拟攻击"></p>
+<p>通过浏览器访问可以看到首次访问后每次都会被阻止60秒才能继续访问。</p>
+<p>通过<code>curl  http://192.168.0.41</code>和<code>curl http://192.168.0.43</code> 首次可以返回信息，每次过60秒才能再次返回信息。</p>
+<h3 id="2、可视化效果验证"><a href="#2、可视化效果验证" class="headerlink" title="2、可视化效果验证"></a>2、可视化效果验证</h3><p>可以在Wazuh仪表板中可视化警报数据。在威胁狩猎模块，添加过滤器以查询警报。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/8-%E5%A8%81%E8%83%81%E7%8B%A9%E7%8C%8E%E6%A8%A1%E5%9D%97%E6%9F%A5%E8%AF%A2%E5%91%8A%E8%AD%A6.png" alt="告警信息"></p>
+<p>在威胁狩猎模块可以看到有恶意IP地址在信誉库中被匹配到的告警，被防火墙自动阻断响应的告警以及60秒以后自动解除阻断的处置信息。</p>
+<p>在详情信息中可以看到攻击阻止的详细信息，通过攻击源IP匹配到了信誉库的黑名单，触发了防火墙封堵规则进行了自动封堵。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251007/9-%E6%8B%A6%E6%88%AA%E9%98%BB%E6%96%AD%E5%A4%84%E7%BD%AE%E8%AF%A6%E6%83%85.png" alt="告警详情"></p>
+<p>至此，我们通过一个完整的POC验证了wazuh发现恶意IP攻击到自动封堵阻止攻击的全过程。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiejava.gitee.io/posts/8d7a03ba/" title="开源安全管理平台wazuh-阻止恶意IP访问">https://xiejava.gitee.io/posts/8d7a03ba/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/1ef039a/" rel="next" title="开源安全管理平台wazuh-安装与配置">
+                <i class="fa fa-chevron-left"></i> 开源安全管理平台wazuh-安装与配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">211</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、环境准备"><span class="nav-number">1.</span> <span class="nav-text">一、环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、wazuh配置"><span class="nav-number">2.</span> <span class="nav-text">二、wazuh配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、wazuh-agent配置"><span class="nav-number">2.1.</span> <span class="nav-text">1、wazuh-agent配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）安装nginx服务并配置wazuh-agent"><span class="nav-number">2.1.1.</span> <span class="nav-text">1）安装nginx服务并配置wazuh-agent</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装apach2并配置wazuh-agent"><span class="nav-number">2.1.2.</span> <span class="nav-text">2)  安装apach2并配置wazuh-agent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、wazuh-server配置"><span class="nav-number">2.2.</span> <span class="nav-text">2、wazuh-server配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）配置IP信息黑名单"><span class="nav-number">2.2.1.</span> <span class="nav-text">1）配置IP信息黑名单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）配置响应模块以阻止恶意IP地址"><span class="nav-number">2.2.2.</span> <span class="nav-text">2）配置响应模块以阻止恶意IP地址</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、效果验证"><span class="nav-number">3.</span> <span class="nav-text">三、效果验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、模拟攻击"><span class="nav-number">3.1.</span> <span class="nav-text">1、模拟攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、可视化效果验证"><span class="nav-number">3.2.</span> <span class="nav-text">2、可视化效果验证</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">431.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

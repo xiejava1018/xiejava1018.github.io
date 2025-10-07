@@ -313,6 +313,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9eb05342/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/9eb05342/" itemprop="url">网络安全产品之认识准入控制系统</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-04T16:09:43+08:00">
+                2024-02-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:36+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/9eb05342/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9eb05342/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/9eb05342/" class="leancloud_visitors" data-flag-title="网络安全产品之认识准入控制系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着企业信息化建设的不断深入，企业的各种信息资产越来越多，网络安全问题也越来越突出。如何防止外来电脑、移动设备接入局域网，保护企业信息资产的安全，成为企业网络管理的重要问题。准入控制系统的出现，为企业提供了一种有效的解决方案。本文我们一起来认识一下准入控制系统。</p>
+<h2 id="一、什么是准入控制系统"><a href="#一、什么是准入控制系统" class="headerlink" title="一、什么是准入控制系统"></a>一、什么是准入控制系统</h2><p>准入控制系统是一种用于管理和控制访问权限的安全机制。该系统的原理是通过对用户、设备、应用程序和网络资源的身份验证和授权，限制对受保护资源的访问。重点解决网络的合规性要求，达到“违规不入网、入网必合规”的管理规范，支持包括身份认证、友好WEB重定向引导、基于角色的动态授权访问控制、可配置的安全检查规范库、“一键式”智能修复、实名日志审计等功能，满足等级保护对网络边界、终端防护的相应要求，同时提供更高效、更智能的网络准入防护体系。</p>
+<h2 id="二、准入控制系统的主要功能"><a href="#二、准入控制系统的主要功能" class="headerlink" title="二、准入控制系统的主要功能"></a>二、准入控制系统的主要功能</h2><h3 id="1-接入设备的身份认证"><a href="#1-接入设备的身份认证" class="headerlink" title="1. 接入设备的身份认证"></a>1. 接入设备的身份认证</h3><p>对终端计算机网络访问权限从入口进行检测验证，只允许受信任的设备和用户使用内网，可在很大程度上降低网络安全风险；支持包括MAC地址、IP地址、基于用户名和密码的身份、接入设备端口、所在VLAN等信息，还支持U-KEY、支持智能卡、数字证书认证，LDAP、无缝结合域管理。</p>
+<h3 id="2-接入设备的安全性检查"><a href="#2-接入设备的安全性检查" class="headerlink" title="2. 接入设备的安全性检查"></a>2. 接入设备的安全性检查</h3><p>包括各种防病毒软件版本、终端补丁漏洞、应用软件黑、白、红名单检测、非法外联、非法代理、异常流量、敏感操作行为检测等。</p>
+<ol>
+<li>完善的安全策略管理<br>包括资产安全策略、补丁安装策略、访问策略、应用程序策略、桌面防火墙策略、外设策略和远程维护的策略管理。</li>
+<li>移动存储管理<br>能够对电脑usb接口进行综合管理，设置U盘使用权限（仅写入、仅读取、禁止使用），支持禁用移动硬盘、便携式存储设备和所有usb存储设备，还能够对U盘的插入使用进行日志统计，及U盘中文件的操作行为也能够进行审计记录。</li>
+<li>操作系统补丁及升级<br>能够对内网电脑的操作系统补丁进行统一下发和及时更新，可自动检测终端计算机操作系统漏洞和自动更新安装操作系统补丁。</li>
+</ol>
+<h2 id="三、准入控制系统的工作原理"><a href="#三、准入控制系统的工作原理" class="headerlink" title="三、准入控制系统的工作原理"></a>三、准入控制系统的工作原理</h2><p>准入控制系统的设计有两个基本的理论前提：</p>
+<ol>
+<li>网络安全状态的非稳定性：这意味着系统会随着时间迁移和变迁，可能会从安全状态转移到非安全状态。因此，及时进行系统更新，将系统状态重新调整回安全状态，是减少受攻击可能性的有效方式。</li>
+<li>网络安全状态的可控性：在网络环境中，收集的网络及用户主机的状态信息越多，就越能准确地判断出网络所面临的风险，并及时给出应对措施，控制网络安全状态。</li>
+</ol>
+<p>网络准入控制系统的工作原理主要是通过对接入网络的终端进行身份认证、安全技术测评、权限管理和流量控制等手段，确保只有符合规定要求的终端设备能够接入网络，并保障网络的安全性和稳定性。</p>
+<p>具体来说，网络准入控制系统的工作原理包括以下几个方面：</p>
+<ol>
+<li>用户认证：网络准入控制系统对用户身份进行认证，只有授权的用户才能接入网络。用户认证可以通过多种方式进行，如用户名/密码、动态令牌、智能卡等。通过用户认证，可以防止非法用户访问网络资源。</li>
+<li>安全技术测评：网络准入控制系统对接入网络的用户终端进行安全技术测评，包括操作系统、防病毒软件、防火墙等的安全性进行评估。通过安全技术测评，可以确保用户终端符合安全要求，减少安全威胁和风险。</li>
+<li>权限管理：网络准入控制系统根据不同的用户和设备制定不同的策略，实现灵活的网络准入管理。通过对用户终端的权限进行管理和控制，可以限制用户对网络资源的访问，防止未经授权的访问和数据泄露。</li>
+<li>安全检查：网络准入控制系统对接入终端设备进行杀毒软件安装情况、系统补丁等级、设备漏洞等安全检查，确保接入设备的安全性。通过安全检查，可以及时发现和修复终端上的安全漏洞和隐患。</li>
+<li>流量控制：网络准入控制系统对网络流量进行监控和管理，限制不安全协议和流量的传输，保障网络带宽和稳定性。通过流量控制，可以提高网络的性能和稳定性，防止网络拥塞和攻击。</li>
+</ol>
+<p>网络准入控制系统通过对接入网络的终端进行身份认证、安全技术测评、权限管理和流量控制等手段，实现了对用户终端的全面管理和控制，提高了企业网络的安全性和可靠性。</p>
+<p>准入控制系统有多种准入管控方式，以下是其中一些常见的管控方式：</p>
+<ol>
+<li>802.1X准入控制：基于端口的网络接入控制协议，在接入设备的端口这一级验证用户身份并控制其访问权限。通过EAPoL（局域网可扩展认证协议），实现客户端、设备端和认证服务器之间认证信息的交换。</li>
+<li>DHCP准入控制：通过DHCP服务器的配合，实现基于用户身份的IP地址分配和权限控制。用户通过DHCP获取IP地址，同时需要进行身份认证才能获得相应的网络访问权限。</li>
+<li>网关型准入控制：通过部署专门的网关设备，对经过该设备的网络流量进行安全检查和过滤，并根据用户身份和权限进行控制。网关型准入控制可以对网络流量进行深度分析和控制，提供更加精细化的网络访问控制。</li>
+<li>ARP准入控制：通过ARP协议的特性，实现对ARP请求的拦截和过滤，以防止ARP欺骗攻击。ARP准入控制可以保护网络不受ARP攻击的影响，提高网络的安全性。</li>
+</ol>
+<p>准入控制系统有多种管控方式，每种管控方式都有其特定的应用场景和优缺点。在实际应用中，可以根据企业的安全需求和网络环境选择适合的管控方式，提高企业网络的安全性和可靠性。</p>
+<h2 id="四、准入控制系统的特点"><a href="#四、准入控制系统的特点" class="headerlink" title="四、准入控制系统的特点"></a>四、准入控制系统的特点</h2><p>准入控制系统的特点主要包括以下几点：</p>
+<ol>
+<li>安全性：准入控制系统实现对网络边界准入的控制，对所有入网终端的统一身份认证、未经允许的设备无法进入网络，可以对网络设备和应用进行集中管理和控制，可以批量处理和更新设备或用户的安全策略，大大提高了网络管理的效率。</li>
+<li>合规性：准入控制系统一般采用“不改变网络、不装客户端”的特性，重点解决网络的合规性要求，达到“违规不入网、入网必合规”的管理规范，支持包括身份认证、友好WEB重定向引导、基于角色的动态授权访问控制、可配置的安全检查规范库、“一键式”智能修复、实名日志审计等功能，满足等级保护对网络边界、终端防护的相应要求，同时提供更高效、更智能的网络准入防护体系。</li>
+<li>灵活性：准入控制系统支持多样化的认证方式及多种认证协议，对所有入网设备进行身份认证，支持包括MAC地址、IP地址、基于用户名和密码的身份、接入设备端口、所在VLAN等信息，还支持U-KEY、支持智能卡、数字证书认证，LDAP、无缝结合域管理。</li>
+<li>可靠性：准入控制系统以电信级稳定的、专业化硬件平台，提供更高的可靠性与稳定性。</li>
+<li>高效性：准入控制系统对网络流量进行监控和管理，限制不安全协议和流量的传输，保障网络带宽和稳定性。</li>
+</ol>
+<p>此外，准入控制系统还具有集成性、易用性和可扩展性等特性，可以根据企业网络规模和安全需求进行灵活配置和扩展。</p>
+<h2 id="五、准入控制系统的部署方式"><a href="#五、准入控制系统的部署方式" class="headerlink" title="五、准入控制系统的部署方式"></a>五、准入控制系统的部署方式</h2><h3 id="1-网关模式"><a href="#1-网关模式" class="headerlink" title="1. 网关模式"></a>1. 网关模式</h3><p>采用网关部署模式时，将准入控制系统上行端口（与终端相连的端口）设置为要求通过EAP认证，将其下行端口（与外网相连的端口）设置为不要求通过EAP认证。终端设备发送的数据包全部通过准入控制系统，并由系统要求终端进行EAP认证。NACC根据源IP地址对应的设备的网络准入控制状态来决定是允许、拒绝还是重定向。其部署方式如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240204/1-%E7%BD%91%E5%85%B3%E6%A8%A1%E5%BC%8F.png" alt="网关模式"></p>
+<h3 id="2-控制旁路模式"><a href="#2-控制旁路模式" class="headerlink" title="2. 控制旁路模式"></a>2. 控制旁路模式</h3><p>将准入控制系统部署在网络中的汇聚层或核心层，与汇聚层或核心层的交换路由设备连接。在交换路由设备上（与准入控制相连相连的设备）启用策略路由，将上行数据包（终端设备发送的数据包）路由到准入系统中，由准入控制系统要求终端设备进行EAP认证。系统根据源IP地址对应的设备的网络准入控制状态来决定是允许、拒绝还是重定向。对于经过验证之后允许接入的数据包，其下行的数据包则从正常的路由汇聚层或核心层设备走，不经过准入设备。其部署方式如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240204/2-%E6%8E%A7%E5%88%B6%E6%97%81%E8%B7%AF%E6%A8%A1%E5%BC%8F.png" alt="控制旁路模式"></p>
+<h2 id="六、准入控制系统的应用场景"><a href="#六、准入控制系统的应用场景" class="headerlink" title="六、准入控制系统的应用场景"></a>六、准入控制系统的应用场景</h2><p>准入控制系统可以在多种应用场景中发挥重要作用，以下是一些常见的应用场景：</p>
+<ol>
+<li>无线接入控制：在无线局域网（WLAN）环境中，准入控制系统可以对接入网络的用户终端进行身份认证和安全评估，确保只有符合安全要求的终端才能接入网络。这样可以防止非法终端的接入，保护无线网络的安全。</li>
+<li>有线网络接入控制：对于企业有线网络环境，准入控制系统同样可以对接入网络的用户终端进行身份认证和安全评估。通过控制网络访问权限，限制用户终端对网络资源的访问，保护企业网络资源的安全性。</li>
+<li>远程接入控制：在远程接入企业网络的环境中，准入控制系统可以实施安全策略，对远程用户进行身份认证和安全评估。通过控制远程用户的网络访问行为，保障企业网络的安全性和可靠性。</li>
+<li>虚拟化环境：在云计算和虚拟化环境中，准入控制系统可以对虚拟机进行统一的管理和安全控制。通过实施安全策略和进行安全评估，保障虚拟机的安全性和合规性。</li>
+<li>终端安全管理：准入控制系统可以对接入网络的用户终端进行全面的安全管理，包括软件安装、系统配置、防病毒软件等的安全性进行评估。通过及时发现和修复终端上的安全漏洞，减少安全事件的发生，提高终端的安全性。</li>
+</ol>
+<p>准入控制系统可以在无线接入、有线网络接入、远程接入、虚拟化环境和终端安全管理等多种应用场景中发挥重要作用，提高企业网络的安全性和可靠性。</p>
+<h2 id="七、企业如何利用准入控制系统来保护信息资产的安全？"><a href="#七、企业如何利用准入控制系统来保护信息资产的安全？" class="headerlink" title="七、企业如何利用准入控制系统来保护信息资产的安全？"></a>七、企业如何利用准入控制系统来保护信息资产的安全？</h2><p>企业可以利用准入控制系统来保护信息资产的安全，具体措施如下：</p>
+<ol>
+<li>控制终端接入：通过身份认证、安全技术测评等手段，对接入网络的用户终端进行身份验证和安全评估，确保只有符合安全要求的终端才能接入网络。这样可以防止非法终端的接入，保护企业网络的安全。</li>
+<li>实施终端安全策略：对用户终端实施安全策略，包括软件安装、系统配置、网络访问权限等，确保用户终端的安全性。这样可以及时发现和防止终端上的安全漏洞和隐患，减少安全事件的发生。</li>
+<li>控制网络访问：通过控制网络访问权限，限制用户终端对网络资源的访问，防止未经授权的访问和数据泄露。这样可以保护企业网络资源不被非法获取和使用，保障企业的机密信息安全。</li>
+<li>日志审计：对用户终端的网络访问行为进行日志记录和审计，以便及时发现和处理安全事件。通过审计功能，可以追溯和还原终端的网络访问行为，及时发现和处理安全事件，提高企业网络的安全性和可靠性。</li>
+<li>集成其他安全产品：准入控制系统可以与其他网络安全产品进行集成，实现更全面的网络安全防护。通过与防火墙、入侵检测系统等其他安全产品的集成，可以提供更加完善的安全解决方案，提高企业网络的安全防护能力。</li>
+<li>灵活部署和扩展性：准入控制系统支持多种部署方式，可以根据企业网络规模和安全性要求进行灵活配置。同时，该系统支持可扩展性，可以根据企业网络的发展和变化进行升级和扩展。这样可以满足企业不断发展的需求，提高企业的信息安全管理水平。</li>
+</ol>
+<p>综上所述，企业可以利用准入控制系统来保护信息资产的安全，通过控制终端接入、实施终端安全策略、控制网络访问、日志审计、集成其他安全产品以及灵活部署和扩展性等措施，提高企业网络的安全性和可靠性。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/25495876/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2707,273 +2992,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/afc06be4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/afc06be4/" itemprop="url">网络安全产品之认识防火墙</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-12T10:07:23+08:00">
-                2024-01-12
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:33+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/afc06be4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/afc06be4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/afc06be4/" class="leancloud_visitors" data-flag-title="网络安全产品之认识防火墙">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>防火墙是一种网络安全产品，它设置在不同网络（如可信任的企业内部网和不可信的公共网）或网络安全域之间，通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况，以此来实现网络的安全保护。</p>
-<h2 id="一、什么是防火墙"><a href="#一、什么是防火墙" class="headerlink" title="一、什么是防火墙"></a>一、什么是防火墙</h2><p>防火墙指的是一个由软件和硬件设备组合而成、在内部网和外部网之间、专用网与公共网之间的边界上构造的保护屏障。它可通过监测、限制、更改跨越防火墙的数据流，尽可能地对外部屏蔽网络内部的信息、结构和运行状况，以此来实现网络的安全保护。在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动，保证了内部网络的安全。防火墙（Firewall），是一种硬件设备或软件系统，主要架设在内部网络和外部网络间，为了防止外界恶意程式对内部系统的破坏，或者阻止内部重要信息向外流出，有双向监督功能。防火墙主要由服务访问规则、验证工具、包过滤和应用网关4个部分组成。</p>
-<h2 id="二、防火墙的主要功能"><a href="#二、防火墙的主要功能" class="headerlink" title="二、防火墙的主要功能"></a>二、防火墙的主要功能</h2><ol>
-<li>创建一个阻塞点<br>防火墙在一个公司内部网络和外部网络间建立一个检查点，这种实现要求所有的流量都要通过这个检查点。一旦这些检查点清楚地建立，防火墙设备就可以监视，过滤和检查所有进来和出去的流量。这样一个检查点，在网络安全行业中称之为“阻塞点”。通过强制所有进出流量都通过这些检查点，网络管理员可以集中在较少的地方来实现安全目的。</li>
-<li>隔离不同网络，防止内部信息的外泄<br>这是防火墙的最基本功能，它通过隔离内、外部网络来确保内部网络的安全。使用防火墙就可以隐蔽那些透漏内部细节如Finger，DNS等服务。防火墙可以同样阻塞有关内部网络中的DNS信息，这样一台主机的域名和IP地址就不会被外界所了解。</li>
-<li>强化网络安全策略<br>通过以防火墙为中心的安全方案配置，能将所有安全软件(如口令、加密、身份认证、审计等)配置在防火墙上。与将网络安全问题分散到各个主机上相比，防火墙的集中安全管理更经济。各种安全措施的有机结合，更能有效地对网络安全性能起到加强作用。</li>
-<li>有效地审计和记录内、外部网络上的活动<br>防火墙可以对内、外部网络存取和访问进行监控审计。如果所有的访问都经过防火墙，那么，防火墙就能记录下这些访问并进行日志记录，同时也能提供网络使用情况的统计数据。当发生可疑动作时，防火墙能进行适当的报警，并提供网络是否受到监测和攻击的详细信息。这为网络管理人员提供非常重要的安全管理信息，可以使管理员清楚防火墙是否能够抵挡攻击者的探测和攻击，并且清楚防火墙的控制是否充足。</li>
-</ol>
-<h2 id="三、防火墙的主要类型"><a href="#三、防火墙的主要类型" class="headerlink" title="三、防火墙的主要类型"></a>三、防火墙的主要类型</h2><p>按照防火墙实现技术的不同可以将防火墙为以下几种主要的类型。</p>
-<ol>
-<li>包过滤防火墙<br>数据包过滤是指在网络层对数据包进行分析、选择和过滤。选择的数据是系统内设置的访问控制表（又叫规则表），规则表制定允许哪些类型的数据包可以流入或流出内部网络。通过检查数据流中每一个IP数据包的源地址、目的地址、所用端口号、协议状态等因素或它们的组合来确定是否允许该数据包通过。包过滤防火墙一般可以直接集成在路由器上，在进行路由选择的同时完成数据包的选择与过滤，也可以由一台单独的计算机来完成数据包的过滤。</li>
-<li>应用代理防火墙<br>应用代理防火墙能够将所有跨越防火墙的网络通信链路分为两段，使得网络内部的客户不直接与外部的服务器通信。防火墙内外计算机系统间应用层的连接由两个代理服务器之间的连接来实现。有点是外部计算机的网络链路只能到达代理服务器，从而起到隔离防火墙内外计算机系统的作用：缺点是执行速度慢，操作系统容易遭到攻击。</li>
-<li>状态检测防火墙<br>状态检测防火墙又叫动态包过滤防火墙。状态检测防火墙在网络层由一个检查引擎截获数据包并抽取出与应用状态有关的信息。一次作为数据来决定该数据包是接受还是拒绝。检查引擎维护一个动态的状态信息表并对后续的数据包进行检查，一旦发现任何连接的参数有意外变化，该连接就被终止。状态检测防火墙克服了包过滤防火墙和应用代理防火墙的局限性，能够根据协议、端口及P数据包的源地址、目的地址的具体情况来决定数据包是否可以通过。</li>
-</ol>
-<h2 id="四、部署方式"><a href="#四、部署方式" class="headerlink" title="四、部署方式"></a>四、部署方式</h2><p>防火墙在实际的部署过程中主要有三种模式可供选择，这三种模式分别是：基于TCP/IP协议三层的NAT模式、基于TCP/IP协议三层的路由模式、基于二层协议的透明模式。</p>
-<ol>
-<li>NAT模式<br>当Juniper防火墙入口接口（“内网端口”）处于NAT模式时，防火墙将通往Untrust区（外网或者公网）的IP数据包包头中的两个组件进行转换：源IP地址和源端口号。防火墙使用Untrust区（外网或者公网）接口的IP地址替换始发端主机的源IP地址；同时使用由防火墙生成的任意端口号替换源端口号。</li>
-<li>Route-路由模式<br>当Juniper防火墙接口配置为路由模式时，防火墙在不同安全区间（例如：Trust/Utrust/DMZ）转发信息流时IP数据包包头中的源地址和端口号保持不变（除非明确采用了地址翻译策略）。与NAT模式下不同，防火墙接口都处于路由模式时，防火墙不会自动实施地址翻译；与透明模式下不同，当防火墙接口都处于路由模式时，其所有接口都处于不同的子网中。</li>
-<li>透明模式<br>当Juniper防火墙接口处于“透明”模式时，防火墙将过滤通过的IP数据包，但不会修改IP数据包包头中的任何信息。防火墙的作用更像是处于同一VLAN的2层交换机或者桥接器，防火墙对于用户来说是透明的。</li>
-</ol>
-<h2 id="五、局限性"><a href="#五、局限性" class="headerlink" title="五、局限性"></a>五、局限性</h2><ol>
-<li>不能防止源于内部的攻击，不提供对内部的保护；</li>
-<li>不能防病毒；</li>
-<li>不能根据网络被恶意使用和攻击的情况动态调整自己的策略；</li>
-<li>本身的防攻击能力不够，容易成为被攻击的首要目标。</li>
-</ol>
-<h2 id="六、防火墙与IPS的区别与关系"><a href="#六、防火墙与IPS的区别与关系" class="headerlink" title="六、防火墙与IPS的区别与关系"></a>六、防火墙与IPS的区别与关系</h2><p>防火墙和IPS（入侵防御系统）是两种不同的网络安全产品，它们在保护网络方面有不同的侧重点和功能。</p>
-<p>防火墙主要用于控制网络访问，它可以过滤掉不安全的服务和非法用户，防止入侵者接近防御设施，是第一道的防线。防火墙部署在网络边界，可以隔离内外网，并对进出网络的数据流进行过滤和监测。防火墙通常基于预设的安全策略来允许或拒绝数据流的进出，可以防御常见的网络攻击，但对于一些未知或不断变化的威胁可能效果有限。</p>
-<p>而IPS是一种主动的网络安全防御系统，它可以在网络中实时检测和防御恶意行为。IPS可以检测到攻击者的行为，并在攻击对系统造成损害之前及时阻止。IPS通过分析网络流量和检测异常行为来发现攻击，并可以采取措施来隔离攻击源、修复受损系统、记录攻击信息等。由于IPS需要实时监测网络流量，因此对于大规模的网络流量可能会对性能产生一定影响。</p>
-<p>防火墙和IPS在网络安全中各有侧重，但可以相互配合使用。防火墙可以过滤掉大部分的常见威胁，而IPS可以补充防火墙的不足，提供更深入的检测和防御能力。同时，IPS可以检测和防御那些已经绕过防火墙的攻击，提高整体的网络安全性。</p>
-<h2 id="七、防火墙如何提升防护能力"><a href="#七、防火墙如何提升防护能力" class="headerlink" title="七、防火墙如何提升防护能力"></a>七、防火墙如何提升防护能力</h2><p>防火墙应对不断变化的网络威胁的方法主要包括以下几个方面：</p>
-<ol>
-<li>动态更新和升级：防火墙可以通过动态更新和升级来应对不断变化的网络威胁。厂商会不断发布新的安全漏洞和威胁情报，防火墙可以通过定期更新和升级来修补这些漏洞，并增强对新型威胁的防御能力。</li>
-<li>应用层防护：随着网络威胁的变化，防火墙需要具备应用层防护能力，能够识别和拦截各种应用层的攻击，如SQL注入、跨站脚本等。</li>
-<li>入侵检测与防御：防火墙集成了入侵检测与防御功能，能够实时检测网络流量中的异常行为，并采取相应的防御措施。通过与安全设备的联动，可以进一步增强对网络威胁的应对能力。</li>
-<li>智能分析：借助大数据和人工智能技术，防火墙可以进行智能分析，自动识别和分类网络流量中的威胁，并提供可视化的威胁报表。这有助于企业及时发现和处理潜在的安全风险。</li>
-<li>云安全技术：随着云计算的普及，云安全也成为防火墙的重要功能之一。防火墙需要具备云安全技术，能够防御来自云端的安全威胁，保护企业数据的安全。</li>
-</ol>
-<p>防火墙通过动态更新和升级、应用层防护、入侵检测与防御、智能分析和云安全技术等手段，可以应对不断变化的网络威胁。但需要注意的是，防火墙只是网络安全的一部分，企业还需要结合其他安全措施，如数据加密、身份认证等，来全面提升网络安全防护能力。</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
   </nav>
 
 
@@ -3025,7 +3048,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">210</span>
+                  <span class="site-state-item-count">211</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3137,7 +3160,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">429.8k</span>
+    <span title="Site words total count">431.3k</span>
   
   
 <!--51la网站应用监控-->
