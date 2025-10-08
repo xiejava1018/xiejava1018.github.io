@@ -313,6 +313,329 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f44191db/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/f44191db/" itemprop="url">pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-03T13:05:46+08:00">
+                2022-02-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:16+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/f44191db/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f44191db/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/f44191db/" class="leancloud_visitors" data-flag-title="pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据分析离不开数据运算，在介绍完pandas的数据加载、排序和排名、数据清洗之后，本文通过实例来介绍pandas的常用数据运算，包括逻辑运算、算术运算、统计运算及自定义运算。</p>
+<h1 id="一、逻辑运算"><a href="#一、逻辑运算" class="headerlink" title="一、逻辑运算"></a>一、逻辑运算</h1><p>逻辑运算是程序代码中经常用到的一种运算。pandas的逻辑运算与Python基础语法中的逻辑运算存在一些差异。pandas的逻辑运算主要用于条件过滤根据条件逻辑运算得出的结果过滤检索出相应的数据。<br>我们来看一些例子：<br>数据集为学生数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df = pd.read_excel(<span class="string">'D:\\Python\\study\\pythontest\\pandastest\\数据集\\student.xlsx'</span>)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/student%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="学生数据集"><br>我们要过滤检索出语文成绩大于95分的数据，通过<code>df[&#39;4-语文&#39;]&gt;95</code>的条件语句，可以得到一个结果为bool值的Series，True表示满足语文成绩&gt;95分的，False表示不满足语文成绩&gt;95的。<br>在pandas中，将Series与数值进行比较，会得到一个与自身形状相同且全为布尔值的Series，每个位置的布尔值对应该位置的比较结果。<br>这种进行比较的代码，返回值是布尔值，是一种布尔表达式，也可以被称为逻辑语句，只要代码返回的结果是布尔值，都可以把代码当成逻辑语句。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97.png" alt="语文大于95的逻辑运算"><br>根据逻辑语句的布尔值，可以用来对数据进行筛选，按我们的需要从大量数据中过滤出目标数据。如我们要过滤出语文成绩大于95的数据，就可以用上述逻辑语句的布尔值进行筛选。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[df[<span class="string">'4-语文'</span>]&gt;<span class="number">95</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%BB%93%E6%9E%9C.png" alt="语文大于95的结果"></p>
+<p>除了直接的比较，pandas中有很多函数都会返回布尔值，如all()，any()，isna()等对整个DataFrame或Series的判断结果，eq()，ne()，lt()，gt()等比较函数的结果，都是布尔值。<br>逻辑语句是为逻辑运算服务的，可以直接作为判断条件。在复杂的逻辑关系中，需要使用复合逻辑运算，用逻辑运算符来连接多个逻辑语句，复合逻辑运算包含：逻辑与&amp;、逻辑或|、逻辑非~。</p>
+<h2 id="逻辑与-amp"><a href="#逻辑与-amp" class="headerlink" title="逻辑与&amp;"></a>逻辑与&amp;</h2><p>pandas中用符号 &amp; 表示逻辑与，连接两个逻辑语句，同时为真才为真。在Python基本语法中，使用 and 表示逻辑与，但是Pandas中只能用 &amp; ，不能用and，会报模糊错误。<br>如我们要检索出一班并且语文成绩大于95的数据。可以用 <code>df[(df[&#39;4-语文&#39;]&gt;95) &amp; (df[&#39;班级&#39;]==&#39;一班&#39;)]</code><br>注意两个条件逻辑语句要分别用()括起来然后再用逻辑运算符进行运算。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E4%B8%94%E4%B8%BA%E4%B8%80%E7%8F%AD%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="逻辑与&amp;"></p>
+<h2 id="逻辑或"><a href="#逻辑或" class="headerlink" title="逻辑或|"></a>逻辑或|</h2><p>pandas中用符号 | 表示逻辑或，连接两个逻辑语句，只要其中一个为真就为真。<br>在Python基本语法中，使用 or 表示逻辑或，但是Pandas中只能用 | ，不能用or。<br>如我们要检索出语文成绩大于95或英语成绩大于96的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'4-语文'</span>]&gt;<span class="number">95</span>)|(df[<span class="string">'6-英语'</span>]&gt;<span class="number">96</span>)]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%AF%AD%E6%96%87%E5%A4%A7%E4%BA%8E95%E6%88%96%E8%8B%B1%E8%AF%AD%E5%A4%A7%E4%BA%8E96%E7%9A%84%E6%95%B0%E6%8D%AE.png" alt="逻辑或|"></p>
+<h2 id="逻辑非"><a href="#逻辑非" class="headerlink" title="逻辑非~"></a>逻辑非~</h2><p>pandas中用符号 ~ 表示逻辑非，对逻辑语句取反。<br>在Python基本语法中，使用 not 表示逻辑非，但是Pandas中只能用 ~ ，不能用not。<br>如我们要检索出数据成绩&gt;98并且不是一班的同学</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'5-数学'</span>]&gt;<span class="number">98</span>) &amp; ~(df[<span class="string">'班级'</span>]==<span class="string">'一班'</span>)]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E9%80%BB%E8%BE%91%E9%9D%9E%E8%BF%90%E7%AE%97.png" alt="逻辑非~"></p>
+<p>当然也可以用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[(df[<span class="string">'5-数学'</span>]&gt;<span class="number">98</span>) &amp; (df[<span class="string">'班级'</span>]!=<span class="string">'一班'</span>)]</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E9%80%BB%E8%BE%91%E4%B8%8D%E7%AD%89%E4%BA%8E%E8%BF%90%E7%AE%97.png" alt="逻辑不等于"></p>
+<h1 id="二、算术运算"><a href="#二、算术运算" class="headerlink" title="二、算术运算"></a>二、算术运算</h1><p>pandas最重要的一个功能是，它可以对不同索引的对象进行算术运算也就是（+、-、*、\）。<br>常见的算术云算是加法+运算，如果相加的对象是标量，则数据对象通过广播机制，每个数据值都+标量。如果相加的对象是数据对象则按索引进行算术运算。<br>通过一个数据集来看一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data1=pd.DataFrame(np.arange(<span class="number">16</span>).reshape((<span class="number">4</span>,<span class="number">4</span>)),columns=[<span class="string">'列1'</span>,<span class="string">'列2'</span>,<span class="string">'列3'</span>,<span class="string">'列4'</span>])</span><br><span class="line">data1</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="数据运算数据集"></p>
+<h2 id="1、使用算术运算符"><a href="#1、使用算术运算符" class="headerlink" title="1、使用算术运算符"></a>1、使用算术运算符</h2><p>和标量计算，标量运算会在算术运算过程中传播。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data2=data1+<span class="number">1</span></span><br><span class="line">data2</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/+%E8%BF%90%E7%AE%97.png" alt="加标量"><br>可以看到数据集中每个值都+1了<br>和索引相同的数据对象运算，对每个数据值进行算术运算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data3=pd.DataFrame(np.arange(<span class="number">16</span>).reshape((<span class="number">4</span>,<span class="number">4</span>)),columns=[<span class="string">'列1'</span>,<span class="string">'列2'</span>,<span class="string">'列3'</span>,<span class="string">'列4'</span>])</span><br><span class="line">data4=data2+data3</span><br><span class="line">data4</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/dataframe%E7%9B%B8%E5%8A%A0.png" alt="DataFrame相加"></p>
+<p>在将对象相加时，如果存在不同的索引就是该索引对的并集。自动的数据对齐操作在不重叠的索引引入NA值。缺失值会在算术运算过程中传播。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data5=pd.DataFrame(np.ones([<span class="number">3</span>,<span class="number">3</span>]),columns=[<span class="string">'列1'</span>,<span class="string">'列2'</span>,<span class="string">'列3'</span>])</span><br><span class="line">data5</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E5%85%A8%E4%B8%BA1%E7%9A%84%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="全为1的数据集"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data6=data4+data5</span><br><span class="line">data6</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E5%BD%A2%E7%8A%B6%E4%B8%8D%E7%9B%B8%E5%90%8C%E7%9A%84%E4%B8%A4%E4%B8%AAdataframe%E7%9B%B8%E5%8A%A0.png" alt="形状不同的数据集相加"></p>
+<h2 id="2、使用算数运算函数"><a href="#2、使用算数运算函数" class="headerlink" title="2、使用算数运算函数"></a>2、使用算数运算函数</h2><p>算数运算函数包括add、sub、div、mul等对应于算术运算符如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>add,radd</td>
+<td>用于加法（+）的方法</td>
+</tr>
+<tr>
+<td>sub,rsub</td>
+<td>用于减法（- ）的方法</td>
+</tr>
+<tr>
+<td>div,rdiv</td>
+<td>用于除法（/）的方法</td>
+</tr>
+<tr>
+<td>floordiv,rfloordiv</td>
+<td>用于底除（//）的方法</td>
+</tr>
+<tr>
+<td>mul,rmul</td>
+<td>用于乘法（* ）的方法</td>
+</tr>
+<tr>
+<td>pow,rpow</td>
+<td>用于指数（**）的方法</td>
+</tr>
+</tbody></table>
+<h3 id="加法："><a href="#加法：" class="headerlink" title="加法："></a>加法：</h3><p>在对不同索引的对象进行算术运算时，如果希望当一个对象中某个轴标签在另一个对象中找不到时填充一个特殊值比如0，可以通过算术方法进行填充，然后再相加。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/add%E5%87%BD%E6%95%B0.png" alt="加法函数"><br>上面的例子展示了，因为data5的行索引为3和列索引为列4用0填充后再相加所以行索引为3和列索引为列4的值是data4的值+0</p>
+<h3 id="减法："><a href="#减法：" class="headerlink" title="减法："></a>减法：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data4.sub(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/sub%E5%87%BD%E6%95%B0.png" alt="sub函数"></p>
+<h3 id="乘法："><a href="#乘法：" class="headerlink" title="乘法："></a>乘法：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data4.mul(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/mul%E5%87%BD%E6%95%B0.png" alt="mul函数"></p>
+<h3 id="除法："><a href="#除法：" class="headerlink" title="除法："></a>除法：</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/div%E5%87%BD%E6%95%B0.png" alt="div函数"></p>
+<h1 id="三、统计运算"><a href="#三、统计运算" class="headerlink" title="三、统计运算"></a>三、统计运算</h1><p>统计运算就是我们常用的数据集的求和、算平均值、最大值、最小值、绝对值、标准差等统计数据。在pandas中提供了丰富的统计函数可以方便的进行统计运算。</p>
+<h2 id="1、describe汇总描述统计"><a href="#1、describe汇总描述统计" class="headerlink" title="1、describe汇总描述统计"></a>1、describe汇总描述统计</h2><p>通过np.random.randn(1000,4)生成1000个正态分布的随机数据集看一下describe的汇总描叙统计。<br>包含了数据个数count、均值mean、标准差std、最小值min、最大值等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1000个正态分布的随机数统计信息</span></span><br><span class="line">data=pd.DataFrame(np.random.randn(<span class="number">1000</span>,<span class="number">4</span>))</span><br><span class="line">data.describe()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E8%AE%A1%E7%AE%97%E6%95%B0%E6%8D%AE%E9%9B%86.png" alt="describe汇总描述统计"></p>
+<h2 id="2、统计函数"><a href="#2、统计函数" class="headerlink" title="2、统计函数"></a>2、统计函数</h2><p>pandas常用统计函数如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="常用统计函数"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.max()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/max%E5%87%BD%E6%95%B0.png" alt="max函数"></p>
+<p>可以算出DataFrame中每一列的最大值</p>
+<p>如果只需要计算某一列的最大值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="number">1</span>].max()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E4%B8%80%E5%88%97%E7%9A%84max.png" alt="计算某一列的最大值"></p>
+<p>对单个函数进行统计的时候，坐标轴还是按照这些默认为columns(axis=0, default)，如果要对index进行统计，则要指明(axis=1) 这里的axis取值与axis=0对应index，axis=1对应columns不同</p>
+<ul>
+<li>使用0值表示沿着每一列或行标签\索引值向下执行方法</li>
+<li>使用1值表示沿着每一行或者列标签模向执行对应的方法<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E6%AF%8F%E4%B8%80%E8%A1%8C%E7%9A%84max.png" alt="axis=1"></li>
+</ul>
+<p>如果要计算某一行的最大值<br>用<code>data.loc[0].max()</code>，通过loc[]检索出需要统计的行，再用统计函数进行统计<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E6%9F%90%E4%B8%80%E8%A1%8C%E7%9A%84max.png" alt="计算某一行的最大值"><br>累计统计cumsum,计算前n个数的和<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E7%BB%9F%E8%AE%A1%E7%B4%AF%E8%AE%A1%E5%92%8C.png" alt="计算前n个数的和"></p>
+<h1 id="四、自定义运算"><a href="#四、自定义运算" class="headerlink" title="四、自定义运算"></a>四、自定义运算</h1><p>如果常用的统计运算还不能满足，pandas提供了方法可以进行自定义运算。</p>
+<p> apply(func, axis=0)</p>
+<ul>
+<li>func – 自定义函数 axis=0 – 默认是列（按行标签方向执行方法）</li>
+<li>axis=1为对行进行运算（按列标签方向执行方法）</li>
+</ul>
+<p>如：自定义一个对列求max-min的函数<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/head.png" alt="head()"><br>通过lambda匿名函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.apply(<span class="keyword">lambda</span> x: x.max() - x.min()) <span class="comment"># lambda为匿名函数，x为自变量，冒号后面为函数表达式</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/lambda%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.png" alt="lambda匿名函数"></p>
+<p>通过自定义函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#自定义函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxdivmin</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x.max()-x.min()</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220203/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0.png" alt="自定义函数"><br>至此，本文通过实例简单介绍了pandas数据分析的数据运算包括逻辑运算、算术运算、统计运算、自定义运算，也是平时在实际应用中常用的运算。</p>
+<p>数据集及源代码见：<a href="https://github.com/xiejava1018/pandastest.git" target="_blank" rel="noopener">https://github.com/xiejava1018/pandastest.git</a></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a87a78e2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2868,250 +3191,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8528ed97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/8528ed97/" itemprop="url">新场地，新征程！</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-10T11:23:39+08:00">
-                2021-12-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T21:10:03+08:00">
-                2024-08-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/8528ed97/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8528ed97/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/8528ed97/" class="leancloud_visitors" data-flag-title="新场地，新征程！">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  144
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>服务数字经济，护航美好生活！</p>
-<p>2021年12月09日通服网安研发团队强势入驻岳麓上大学科技城国家网络安全产业园。</p>
-<p>新场地，新征程，数网络安全研发，还看通服网安！</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E6%8F%AD%E7%89%8C.jpg" alt="通服网安揭牌"></p>
-<center>通服网安</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E5%9B%A2%E9%98%9F%E5%90%88%E5%BD%B1.jpg" alt="通服网安研发团队"></p>
-<center>通服网安研发团队</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E9%80%9A%E6%9C%8D%E7%BD%91%E5%AE%89%E7%A0%94%E5%8F%91%E5%A4%A7%E6%A5%BC.jpg" alt="通服网安研发大楼"></p>
-<center>通服网安研发大楼</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E9%80%9A%E6%9C%8D%E7%BD%91%E5%AE%89%E7%A0%94%E5%8F%91%E5%A4%A7%E6%A5%BC%E4%BE%A7%E9%9D%A2.jpg" alt="通服网安研发大楼外景"></p>
-<center>通服网安研发大楼外景</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E9%80%9A%E6%9C%8D%E7%BD%91%E5%AE%89%E5%89%8D%E5%8F%B0.jpg" alt="通服网安前台"></p>
-<center>通服网安前台</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E5%B1%95%E5%8E%85%E5%85%A5%E5%8F%A3.jpg" alt="展厅入口"></p>
-<center>通服网安展厅入口</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E5%B1%95%E5%8E%85.jpg" alt="通服网安展厅"></p>
-<center>通服网安展厅</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E6%80%81%E5%8A%BF%E6%84%9F%E7%9F%A5%E5%B1%95%E7%A4%BA%E5%A4%A7%E5%B1%8F.jpg" alt="通服网安研发楼展厅安全运营中心展示"></p>
-<center>通服网安研发楼展厅安全运营中心展示</center>
-
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20211210/%E6%B2%A1%E6%9C%89%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%B0%B1%E6%B2%A1%E6%9C%89%E5%9B%BD%E5%AE%B6%E5%AE%89%E5%85%A8.jpg" alt="没有网络安全就没有国家安全"></p>
-<center>没有网络安全就没有国家安全</center>
-
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3168,7 +3247,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">211</span>
+                  <span class="site-state-item-count">212</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3280,7 +3359,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">431.3k</span>
+    <span title="Site words total count">432.4k</span>
   
   
 <!--51la网站应用监控-->
