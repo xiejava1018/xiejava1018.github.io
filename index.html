@@ -313,6 +313,571 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/b9af79aa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/b9af79aa/" itemprop="url">开源安全管理平台wazuh-与网络入侵检测系统集成增强威胁检测能力</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-10-12T16:19:42+08:00">
+                2025-10-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-12T16:33:00+08:00">
+                2025-10-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/b9af79aa/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/b9af79aa/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/b9af79aa/" class="leancloud_visitors" data-flag-title="开源安全管理平台wazuh-与网络入侵检测系统集成增强威胁检测能力">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
+<p>Wazuh可以与基于网络的入侵检测系统（NIDS）集成，通过监控和分析网络流量来增强威胁检测。Suricata 是一个开源的高性能网络安全监控工具，由开放信息安全基金会（OISF）开发维护。它被广泛用于实时网络流量分析、威胁检测和防护。Suricata 是现代网络安全架构中的重要组件，特别适合需要高性能实时流量分析的场景，是构建深度防御体系的关键工具。</p>
+<p>本文通过POC展示如何将Suricata与Wazuh集成，并模拟对目标主机进行端口扫描，通过Suricata监控和分析网络流量进行威胁检测与Wazuh集成后在Wazuh的威胁狩猎中及时预警威胁攻击行为。</p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC环境拓扑如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251012/1-POC%E6%8B%93%E6%89%91%E5%9B%BE.png" alt="POC环境拓扑图"></p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全管理平台wazuh-server<br>(192.168.0.40)</td>
+<td>All in one安装wazuh，监控wazuh-agent、suricata上报的告警信息进行威胁检测</td>
+</tr>
+<tr>
+<td>ubuntu应用服务器<br>（192.168.0.30）</td>
+<td>ubuntu应用服务器安装wazuh-agent并与Suricata集成 ,模拟被攻击的服务器</td>
+</tr>
+<tr>
+<td>Kali Linux模拟攻击机器<br>（192.168.0.65）</td>
+<td>Kali linux ,模拟攻击机器，模拟发起恶意端口扫描攻击</td>
+</tr>
+</tbody></table>
+<h1 id="二、安装Suricata"><a href="#二、安装Suricata" class="headerlink" title="二、安装Suricata"></a>二、安装Suricata</h1><h2 id="1、安装Suricata"><a href="#1、安装Suricata" class="headerlink" title="1、安装Suricata"></a>1、安装Suricata</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:oisf/suricata-stable</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install suricata -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、下载Suricata的扩展检测规则集"><a href="#2、下载Suricata的扩展检测规则集" class="headerlink" title="2、下载Suricata的扩展检测规则集"></a>2、下载Suricata的扩展检测规则集</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /tmp/ &amp;&amp; curl -LO https://rules.emergingthreats.net/open/suricata-6.0.8/emerging.rules.tar.gz</span><br><span class="line">sudo tar -xvzf emerging.rules.tar.gz &amp;&amp; sudo mkdir /etc/suricata/rules &amp;&amp; sudo mv rules/*.rules /etc/suricata/rules/</span><br><span class="line">sudo chmod 777 /etc/suricata/rules/*.rules</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、配置Surcata"><a href="#3、配置Surcata" class="headerlink" title="3、配置Surcata"></a>3、配置Surcata</h2><p>在 <code>/etc/suricata/suricata.yaml</code> 文件中修改 Suricata 设置并设置以下变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">HOME_NET: <span class="string">"&lt;UBUNTU_IP&gt;"</span></span><br><span class="line">EXTERNAL_NET: <span class="string">"any"</span></span><br><span class="line"></span><br><span class="line">default-rule-path: /etc/suricata/rules</span><br><span class="line">rule-files:</span><br><span class="line">- <span class="string">"*.rules"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Global stats configuration</span></span><br><span class="line">stats:</span><br><span class="line">enabled: yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux high speed capture support</span></span><br><span class="line">af-packet:</span><br><span class="line">  - interface: ens2</span><br></pre></td></tr></table></figure>
+
+<p>接口表示您想要监控的网络接口。将值替换为 Ubuntu 端点的接口名称。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251012/2-%E8%AE%BE%E7%BD%AE%E4%B8%BA%E6%B5%81%E9%87%8F%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E5%8D%A1.png" alt="设置为流量检测的网卡"></p>
+<p>可以通过ifconfig查看Ubuntu的网络接口，例如，我这里是ens2。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251012/3-ifconfig%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1.png" alt="查看网络接口"></p>
+<h2 id="4、重启Suricata服务"><a href="#4、重启Suricata服务" class="headerlink" title="4、重启Suricata服务"></a>4、重启Suricata服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart suricata</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、wazuh与Suricata集成"><a href="#三、wazuh与Suricata集成" class="headerlink" title="三、wazuh与Suricata集成"></a>三、wazuh与Suricata集成</h1><p>将以下配置添加到Wazuh代理的<code>/var/ossec/etc/ossec.conf</code>文件中。这允许Wazuh代理读取Suricata日志文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ossec_config&gt;</span><br><span class="line">  &lt;localfile&gt;</span><br><span class="line">    &lt;log_format&gt;json&lt;/log_format&gt;</span><br><span class="line">    &lt;location&gt;/var/<span class="built_in">log</span>/suricata/eve.json&lt;/location&gt;</span><br><span class="line">  &lt;/localfile&gt;</span><br><span class="line">&lt;/ossec_config&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251012/4-%E9%85%8D%E7%BD%AEwazuh%E6%8E%A5%E6%94%B6suricata%E6%95%B0%E6%8D%AE.png" alt="配置wazuh接受suricata数据"></p>
+<p>重新启动Wazuh代理以使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、模拟攻击"><a href="#四、模拟攻击" class="headerlink" title="四、模拟攻击"></a>四、模拟攻击</h1><blockquote>
+<p>请注意：本文介绍的模拟攻击仅限于自己搭建测试环境进行POC验证。请不要使用这些工具和方法对其它目标主机进行测试，使用这些工具前，务必获得目标系统的明确书面授权，未经授权的测试属违法行为。</p>
+</blockquote>
+<p>端口扫描是渗透测试的第一步，通过端口扫描可以快速发现目标主机的攻击面。使用 nmap进行端口扫描是网络安全中最基础且关键的操作之一。我们在Kali Linux主机上通过nmap对目标靶机192.168.0.30进行端口扫描看开放有哪些端口。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p- -sV -O -A -T4 -Pn -oX full_scan.xml 192.168.0.30</span><br></pre></td></tr></table></figure>
+
+<h1 id="五、效果验证"><a href="#五、效果验证" class="headerlink" title="五、效果验证"></a>五、效果验证</h1><p>在Kali Linux主机上通过nmap对目标靶机192.168.0.30进行端口扫描的过程中，我们在192.168.0.40的wazuh server的威胁狩猎界面可以看到suricata通过流量检测识别到端口扫描的攻击行为，并通过wazuh的可视化界面进行告警的展示。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251012/5-suricata%E5%91%8A%E8%AD%A6.png" alt="surcata告警"></p>
+<p>点击可以查看告警的详情，可以看到是通过suricata发现的来自源IP192.168.0.65的nmap扫描行为。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251012/6-suricata%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="suricata告警详情"></p>
+<p>至此，我们通过wasuh与网络入侵检测系统（suricata）进行集成，并模拟对目标主机进行端口扫描，验证了通过Suricata监控和分析网络流量进行威胁检测与Wazuh集成后在Wazuh的威胁狩猎中及时预警威胁攻击行为。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/c76cd9e6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/c76cd9e6/" itemprop="url">开源安全管理平台wazuh-暴力破解检测与响应</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-10-11T14:25:00+08:00">
+                2025-10-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-12T16:23:44+08:00">
+                2025-10-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/c76cd9e6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/c76cd9e6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/c76cd9e6/" class="leancloud_visitors" data-flag-title="开源安全管理平台wazuh-暴力破解检测与响应">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
+<p>暴力破解是网络安全领域一种常见且顽固的威胁，像Linux端点的SSH这样的服务通常容易受到暴力破解攻击，攻击者利用它来非法访问端点和服务。有效应对暴力破解需要“侦测”和“防护”双管齐下。Wazuh通过关联多个认证失败事件来识别暴力破解攻击并可以配置主动响应以阻止攻击者的IP地址。</p>
+<p>本文通过POC来验证wazuh对暴力破解检测与响应能力</p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC环境如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251011/1-POC%E6%8B%93%E6%89%91%E5%9B%BE.png" alt="POC拓扑图"></p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全管理平台wazuh-server<br>(192.168.0.40)</td>
+<td>All in one安装wazuh，监控wazuh-agent上报的告警信息进行暴力破解检测并联动wazuh-agent进行封堵响应</td>
+</tr>
+<tr>
+<td>ubuntu应用服务器<br>（192.168.0.30）</td>
+<td>ubuntu应用服务器ssh服务，安装wazuh-agent ,模拟被攻击的服务器</td>
+</tr>
+<tr>
+<td>Kali Linux模拟攻击机器<br>（192.168.0.65）</td>
+<td>Kali linux ,模拟攻击机器</td>
+</tr>
+</tbody></table>
+<h1 id="二、wazuh-配置"><a href="#二、wazuh-配置" class="headerlink" title="二、wazuh 配置"></a>二、wazuh 配置</h1><p>Wazuh使用主动响应模块在受监控端点上运行脚本或可执行文件，对某些触发器采取行动。在本用例中，我们模拟对ubuntu应用服务器端点的SSH暴力破解攻击，并配置主动响应模块以阻止攻击端点的IP地址。目标是防止SSH暴力破解攻击。</p>
+<p>Wazuh附带一套用于主动响应的默认脚本。这些脚本位于Linux/Unix端点的<code>/var/ossec/active-response/bin/</code>目录中。firewall-drop主动响应脚本与Linux/Unix操作系统兼容。它使用iptables来阻止恶意IP地址。</p>
+<h2 id="Wazuh-server配置"><a href="#Wazuh-server配置" class="headerlink" title="Wazuh server配置"></a>Wazuh server配置</h2><p>1、打开Wazuh服务器<code>/var/ossec/etc/ossec.conf</code>文件，并验证在<code>&lt;ossec_config&gt;</code>块中存在名为firewall-drop的<code>&lt;command&gt;</code>块，其配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">command</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>firewall-drop<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">executable</span>&gt;</span>firewall-drop<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">timeout_allowed</span>&gt;</span>yes<span class="tag">&lt;/<span class="name">timeout_allowed</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">command</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;command&gt;</code>块包含有关在Wazuh代理上执行的操作的信息：</p>
+<ul>
+<li><code>&lt;name&gt;</code>：为命令设置名称。在本例中，为firewall-drop。</li>
+<li><code>&lt;executable&gt;</code>：指定在触发时必须运行的响应脚本或可执行文件。在本例中，是firewall-drop可执行文件。</li>
+<li><code>&lt;timeout_allowed&gt;</code>：允许在一段时间后超时。在此处，此标签设置为yes，表示状态性主动响应。</li>
+</ul>
+<p>2、将以下 <code>&lt;active-response&gt;</code> 块添加到 Wazuh 服务器 <code>/var/ossec/etc/ossec.conf</code> 配置文件中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ossec_config</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">active-response</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">disabled</span>&gt;</span>no<span class="tag">&lt;/<span class="name">disabled</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">command</span>&gt;</span>firewall-drop<span class="tag">&lt;/<span class="name">command</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>local<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rules_id</span>&gt;</span>5763<span class="tag">&lt;/<span class="name">rules_id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">timeout</span>&gt;</span>180<span class="tag">&lt;/<span class="name">timeout</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">active-response</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ossec_config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>&lt;comand&gt;</code>：指定要配置的命令。这是在上一步骤中定义的防火墙丢弃命令 firewall-drop。</li>
+<li><code>&lt;location&gt;</code>：指定命令执行的位置。使用本地值表示命令在触发事件发生的监控端点处执行。</li>
+<li><code>&lt;rules_id&gt;</code>：如果规则ID 5763 - SSHD暴力破解尝试访问系统触发，则活动响应模块将执行该命令。</li>
+<li><code>&lt;timeout&gt;</code>：指定活动响应操作必须持续的时间。在本用例中，模块将阻止执行暴力破解攻击的端点IP地址180秒。</li>
+</ul>
+<p>3、重新启动Wazuh管理器服务以应用更改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-manager</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、模拟攻击"><a href="#三、模拟攻击" class="headerlink" title="三、模拟攻击"></a>三、模拟攻击</h1><p>我们通过Kali Linux自带的Hydra进行模拟攻击。</p>
+<blockquote>
+<p>请注意：本文介绍的模拟攻击仅限于自己搭建测试环境进行POC验证。请不要使用这些工具和方法对其它目标主机进行测试，使用这些工具前，务必获得目标系统的明确书面授权，未经授权的测试属违法行为。</p>
+</blockquote>
+<p>Hydra 配合 SecLists 工具包，可以显著提升密码破解测试的效率和成功率。<br>SecLists 是一款在安全测试中非常受欢迎的开源集合项目，提供了各种类型的字典列表，包括但不限于用户名、密码、目录路径、子域名等。Hydra 则是一款强大的网络登录破解工具，支持多种协议。将两者结合，可以针对各种网络服务进行高效的密码暴力破解测试。<br>在 Kali Linux 中，SecLists 通常位于 <code>/usr/share/seclists</code>目录。如果系统未安装，可以使用以下命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install seclists</span><br></pre></td></tr></table></figure>
+
+<p>在Kali Linux（192.168.0.65）上执行hydra 对 192.168.0.30 进行模拟攻击</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hydra -L /usr/share/seclists/Usernames/top-usernames-shortlist.txt -P /usr/share/seclists/Passwords/Common-Credentials/top-20-common-SSH-passwords.txt 192.168.0.30 ssh -t 4 -vV</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、效果验证"><a href="#四、效果验证" class="headerlink" title="四、效果验证"></a>四、效果验证</h1><p>可以看到触发了wazuh的告警规则，在Wazuh仪表板中看到多次的登录失败的告警数据，并生成了试图暴力破解的攻击告警。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251011/2-%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%93%8D%E5%BA%94%E5%91%8A%E8%AD%A6.png" alt="告警"></p>
+<p>在详情中可以清楚的看到多次尝试暴力破解ssh登录<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251011/3-%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="告警详情"></p>
+<p>可以看到wazuh检测到有ssh暴力破解的行为并自动调用防火墙对攻击IP进行封堵，封堵180秒。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251011/4-%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%91%8A%E8%AD%A6%E5%B0%81%E5%A0%B5.png" alt="封堵"></p>
+<p>在Hydra的攻击日志可以看到，被wazuh进行响应封堵后ssh超时报错，说明已经成功阻断阻止了攻击行为。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251011/5-%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%B0%81%E5%A0%B5%E6%95%88%E6%9E%9C.png" alt="阻止效果"></p>
+<p>至此，我们通过一个实际的POC实例验证了wazuh对ssh暴力破解攻击行为的检测和响应，通过“侦测”和“防护”双管齐下能有效减轻ssh暴力破解威胁攻击风险。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/8d366bb0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2617,594 +3182,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e87ac72d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e87ac72d/" itemprop="url">通过TPLink路由器进行用户行为审计实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-21T22:08:26+08:00">
-                2025-07-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T12:52:27+08:00">
-                2025-08-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e87ac72d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e87ac72d/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/e87ac72d/" class="leancloud_visitors" data-flag-title="通过TPLink路由器进行用户行为审计实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>用户行为审计是指对用户在网络平台上的行为进行监控和记录，以便对其行为进行分析和评估的过程。随着互联网的普及和发展，用户行为审计在网络安全和数据隐私保护方面起到了重要的作用。 用户行为审计可以帮助发现和预防网络安全威助。通过对用户的行为进行监控和记录，可以及时发现并阳止恶意攻击、病毒传播等网络安全威胁。例如，当用户的行为异常时，系统可以自动发出警报并采取相应的措施，保护网络平台的安全。<br>本文以家用的TP-Link 路由器为例，来实战一下用户行为审计，看看能发现一些什么异常。<br>TP-Link路由器是家用比较常见的路由器，通过简单的配置就可以实现用户行为管控。</p>
-<h2 id="一、路由器的行为管控配置"><a href="#一、路由器的行为管控配置" class="headerlink" title="一、路由器的行为管控配置"></a>一、路由器的行为管控配置</h2><p>一般的路由器都带有简单行为管控功能，以我的TL-R479GP-AC为例，可以对网站访问、应用控制等进行相应的管控。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/1-tplink%E8%A1%8C%E4%B8%BA%E7%AE%A1%E6%8E%A7.png" alt="路由器行为管控配置"></p>
-<p>这里我们现对网站和应用进行监控记录，对用户的行为进行审计和管控。</p>
-<h3 id="1、网站访问控制"><a href="#1、网站访问控制" class="headerlink" title="1、网站访问控制"></a>1、网站访问控制</h3><p> 网站访问控制可以实现对某些IP，在什么时间段、访问什么网站进行记录和监控。<br>如我们对bilibil网站进行监控，将B站的域名配置到网站分组中，组名为“娱乐视频”。当然还可以加入跟多的需要记录和管控的网站。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/2-%E7%BD%91%E7%AB%99%E5%88%86%E7%BB%84.png" alt="网站分组"></p>
-<p>在网站访问的规则中进行配置，为IP地址组选择受管理的网站，在相应时间段中，与IP地址相匹配的设备在访问“娱乐视频”等类型的网站时受到管理。我这里是配置的是所有的地址段、所有时间段、将“娱乐视频”记录到系统日志。方便我们后续进行上网行为的审计分析。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/3-%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6.png" alt="网站访问控制"></p>
-<h3 id="2、应用控制"><a href="#2、应用控制" class="headerlink" title="2、应用控制"></a>2、应用控制</h3><p>同样可以对应用进行控制，对应用控制就是对APP的移动应用的访问进行监控和控制。在这里我们选择对所有的应用进行监控。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/4-%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E9%80%89%E6%8B%A9.png" alt="应用控制选择"></p>
-<p>配置监控的规则，如所有的IP所有的时间段，多访问所有的应用进行记录<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/5-%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE.png" alt="记录应用访问"></p>
-<p>通过上面的配置，路由器就会根据上面配置的规则来记录相应的日志。但是要进行行为审计还要借助其他的工具如安全审计系统。</p>
-<h2 id="二、用户行为审计"><a href="#二、用户行为审计" class="headerlink" title="二、用户行为审计"></a>二、用户行为审计</h2><h3 id="1、安装安全审计系统"><a href="#1、安装安全审计系统" class="headerlink" title="1、安装安全审计系统"></a>1、安装安全审计系统</h3><p>TP-Link提供了免费的TP-LINK安全审计系统。从官网上下载既可以进行部署和设置。TP-link提供的安全审计系统是以虚拟机镜像方式进行安装的。下载安装包后安装包附有一个比较详细的安装教程。<br>TP-Link官网 <a href="https://www.tp-link.com.cn/" target="_blank" rel="noopener">https://www.tp-link.com.cn/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/6-TPLINK%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png" alt="TPLINK官网下载安全审计系统"></p>
-<p>下载安装包解压后除了有一个虚拟机镜像文件外安装包还附有一个比较详细的安装教程。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/7-SAS%E5%AE%89%E8%A3%85%E5%8C%85%E8%A7%A3%E5%8E%8B.png" alt="解压安装包"></p>
-<p>在正式安装之前需要安装Oracle VirtualBox的虚拟机管理软件，然后根据这个安装手册将虚拟机注册到管理软件进行启动。<br>虚拟机配置如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/8-%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE.png" alt="虚拟机配置"></p>
-<p>启动虚拟机后，就可以访问安全审计平台了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/9-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%99%BB%E5%BD%95.png" alt="安全审计系统登录界面"></p>
-<p>安全审计系统默认用户名和密码都是admin，登录成功后会提示该默认密码。</p>
-<h3 id="2、配置安全审计平台"><a href="#2、配置安全审计平台" class="headerlink" title="2、配置安全审计平台"></a>2、配置安全审计平台</h3><p>如果用对路由器进行安全审计，要进行简单的配置。最关键的配置还是设置IP地址。<br>安全审计系统安装后默认的IP是192.168.1.240，要采集网络中路由器的日志，必须要和路由器在同一网段网络要通。所以要将安全审计平台的IP进行修改。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/10-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E7%9A%84IP.png" alt="修改IP"></p>
-<h3 id="3、配置路由器"><a href="#3、配置路由器" class="headerlink" title="3、配置路由器"></a>3、配置路由器</h3><p>配置路由器的目的是要将路由器的审计日志发送到刚安装和配置好的安全审计平台。<br>登录到TP-Link路由器的配置管理界面，开启行为审计的上传用户上网行为，输入安全审计系统平台的地址，保存配置。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/11-%E8%B7%AF%E7%94%B1%E5%99%A8%E8%A1%8C%E4%B8%BA%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5.png" alt="上报行为审计"></p>
-<p>同样将系统日志也配置报送到安全审计平台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/12-%E8%B7%AF%E7%94%B1%E5%99%A8%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%95%B0%E6%8D%AE%E4%B8%8A%E6%8A%A5.png" alt="上报系统日志"></p>
-<p>将安全审计的日志也送到安全审计平台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/13-%E8%B7%AF%E7%94%B1%E5%99%A8%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5.png" alt="上报安全审计"></p>
-<h3 id="4、日志分析与行为分析"><a href="#4、日志分析与行为分析" class="headerlink" title="4、日志分析与行为分析"></a>4、日志分析与行为分析</h3><p>配置完成后，我们再登录到安全审计系统，就可以看到审计日志都送到系统了可以做相应的审计了。<br>可以看到那个IP什么时候访问了什么，同时也看到了前面我们在路由器的的访问控制也生效了，有效的阻止了企图访问bilibili.com的IP。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/14-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95.png" alt="访问控制效果"></p>
-<p>在行为分析中可以看到用户受管控的排行<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/15-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90.png" alt="行为分析"></p>
-<p>也可以看到具体哪些IP受管控的次数<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/16-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE.png" alt="受管控的次数"></p>
-<p>以及具体被管控的原因<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/17-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E5%8F%97%E7%AE%A1%E6%8E%A7%E8%AE%B0%E5%BD%95.png" alt="具体被管控的原因"></p>
-<h3 id="5、利用AI进行审计与分析"><a href="#5、利用AI进行审计与分析" class="headerlink" title="5、利用AI进行审计与分析"></a>5、利用AI进行审计与分析</h3><p>现在AI大模型已经很强大了，我们可以将安全审计系统的日志导出来给大模型进行审计与分析。发现其他的一些人工审计发现不了的异常。如发现用户的行为特征及偏离平时访问基线的一些访问等。<br>我们将安全审计系统的审计日志导出为Excel，将Excel通过coze空间进行审计分析，可以生成比较完整的审计报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/18-coze%E7%A9%BA%E9%97%B4%E5%AE%A1%E8%AE%A1%E5%88%86%E6%9E%90.png" alt="coze空间进行审计分析"></p>
-<p>可以看到coze空间生成的审计报告还是比较全面美观。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/19-coze%E5%AE%A1%E8%AE%A1%E6%8A%A5%E5%91%8A.jpeg" alt="完整的审计报告"></p>
-<p>也可以用WPS自带的AI数据分析，可以看出对用户的异常行为的分析还是比较专业和详细的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/20-WPSAI%E5%88%86%E6%9E%90.png" alt="WPSAI分析报告"></p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/d786604d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d786604d/" itemprop="url">使用GeminiBalance让Gemini免费到底</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-10T23:22:18+08:00">
-                2025-07-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-07-11T00:30:07+08:00">
-                2025-07-11
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d786604d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d786604d/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d786604d/" class="leancloud_visitors" data-flag-title="使用GeminiBalance让Gemini免费到底">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Gemini是目前好用的免费大模型，通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。虽然免费但有一定的额度，不过通过申请不同的账号可以申请获取多个API密钥。Gemini Balance 就是这么一款工具，允许您管理多个 Gemini API Key，这样就可以使Gemini免费额度翻N倍。</p>
-<p>Gemini Balance 是一个基于 Python FastAPI 构建的应用程序，旨在提供 Google Gemini API 的代理和负载均衡功能。它允许您管理多个 Gemini API Key，并通过简单的配置实现 Key 的轮询、认证、模型过滤和状态监控。此外，项目还集成了图像生成和多种图床上传功能，并支持 OpenAI API 格式的代理。</p>
-<p>要感谢snailyp大佬开发的gemini-balance 项目地址：<a href="https://github.com/snailyp/gemini-balance" target="_blank" rel="noopener">https://github.com/snailyp/gemini-balance</a><br>《<a href="http://xiejava.ishareread.com/posts/4999be0b/" target="_blank" rel="noopener">国内免代理免费使用Gemini大模型实战</a>》介绍了如何将Gamini中转到国内能够使用，本文介绍如何使用免费的ClawCloud容器化部署gemini-balance配置多个Gemini API Key，不仅在国内可以使用还可以让Gemini免费到底！</p>
-<h2 id="一、申请注册多个Gemini-API-Key"><a href="#一、申请注册多个Gemini-API-Key" class="headerlink" title="一、申请注册多个Gemini API Key"></a>一、申请注册多个Gemini API Key</h2><p>注册google账号就可以免费申请Gemini API密钥。</p>
-<p>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/1-APIkey%E7%94%B3%E8%AF%B7.png" alt="申请密钥"> </p>
-<p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。</p>
-<p>注册多个google账号就可以申请多个Gemini API 密钥。</p>
-<h2 id="二、注册ClawCloud账号"><a href="#二、注册ClawCloud账号" class="headerlink" title="二、注册ClawCloud账号"></a>二、注册ClawCloud账号</h2><p>ClawCloud是一个成立于2024年的云计算平台，总部位于新加坡，ClawCloud旨在简化技术栈的复杂性，帮助用户从编码到生产的整个过程只需几次点击即可完成 。它提供免费的每月5美元GitHub验证赠金，无需信用卡即可开始使用，并承诺在1分钟内完成设置 。</p>
-<p>ClawCloud 在国内可以直接访问，Github 账户注册时间超过 180天就有每个月5美元的赠送额度，足够支撑我们部署gemini-balance的应用了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/2-ClawCloud.png" alt="在这里插入图片描述"></p>
-<p>点击 Github 登录<img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/3-ClawCloudGithub%E7%99%BB%E5%BD%95.png" alt="选择github登录"></p>
-<p>进入 Github 登录界面后，输入账户名、密码，随后点击 Sign in。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/4-github%E7%99%BB%E5%BD%95.png" alt="Github登录"></p>
-<p>登录以后就在用户中心Account Center就可以看到每个月赠送的额度，如果有使用还可以看到目前使用的额度。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/5-ClowCloud%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83.png" alt="ClawCloud的用户中心"></p>
-<h2 id="三、通过-ClawCloud-Run-部署gemini-balance"><a href="#三、通过-ClawCloud-Run-部署gemini-balance" class="headerlink" title="三、通过 ClawCloud Run 部署gemini-balance"></a>三、通过 ClawCloud Run 部署gemini-balance</h2><p>gemini-balance官方有详细的部署文档</p>
-<p><a href="https://gb-docs.snaily.top/guide/setup-clawcloud-sqlite.html" target="_blank" rel="noopener">https://gb-docs.snaily.top/guide/setup-clawcloud-sqlite.html</a></p>
-<p>大家可以按照这个文档一步步部署</p>
-<ol>
-<li>部署项目</li>
-</ol>
-<ul>
-<li>进入主界面后，点击左上角 Region，选择服务器地址。推荐选择 Singapore。选择完成后，网页会刷新，并在服务器地址前☑️。</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/6-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.png" alt="选择服务器地址"></p>
-<ul>
-<li>点击 App Launchpad。</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/7-ClowCloud%E7%9A%84Applaunchpad.png" alt="选择App Lannchpad"></p>
-<ul>
-<li>进入页面后，点击页面右上角 Create App，进入配置页面。</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/8-ClowCloud%E5%88%9B%E5%BB%BAAPP.png" alt="Create App"></p>
-<ul>
-<li>进入配置页面后，按顺序填写信息（不熟悉项目名称的，请打开在线翻译）。<ul>
-<li>Application Name：为方便识别管理，建议填写本项目名字<code>geminibalance</code></li>
-<li>Image： <code>Public</code><ul>
-<li>Image Name：<code>ghcr.io/snailyp/gemini-balance:latest</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/9-ClowCloud%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F.png" alt="在这里插入图片描述"></p>
-<pre><code>- Usage：`Fixed`；
-- Replicas：`1`
-- CPU：`1`
-- Memory：`512`
-
-&gt; 说明：1. 若登录账号只选择部署 1 个项目，则推荐上述最高免费配置。2.目前免费用户每月流量为 10g，超出部分 0.05 美元/g。可根据流量使用情况选择服务器配置。</code></pre><p> <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/10-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
-<pre><code>- Network
-    - Container Port：`8000`
-    - Enable Internet：点选为`Access`状态</code></pre><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/11-ClowCloud%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>Advanced Configura<ul>
-<li>Environment Variables：点击 Add，随后粘贴以下变量。填写完成后点击 Add 完成配置。</li>
-</ul>
-</li>
-</ul>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DATABASE_TYPE&#x3D;sqlite</span><br><span class="line">SQLITE_DATABASE&#x3D;default_db</span><br><span class="line">API_KEYS&#x3D;[&quot;&quot;]</span><br><span class="line">ALLOWED_TOKENS&#x3D;[&quot;&quot;]</span><br><span class="line">AUTH_TOKEN&#x3D;TZ&#x3D;Asia&#x2F;Shanghai</span><br></pre></td></tr></table></figure></code></pre><p>变量说明如下：  </p>
-<table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>说明</th>
-<th>格式及示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>API_KEYS</td>
-<td>Gemini API 密钥列表，用于负载均衡</td>
-<td>[“your-gemini-api-key-1”,”your-gemini-api-key-2”]</td>
-</tr>
-<tr>
-<td>ALLOWED_TOKENS</td>
-<td>允许访问的 Token 列表</td>
-<td>[“your-access-token-1”,”your-access-token-2”]</td>
-</tr>
-<tr>
-<td>AUTH_TOKEN</td>
-<td>【可选】超级管理员token，具有所有权限，不填默认使用 ALLOWED_TOKENS 的第一个</td>
-<td>sk-123456</td>
-</tr>
-</tbody></table>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/12-ClowCloud%E9%80%89%E6%8B%A9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>添加完环境变量后，再按照下图设置storage</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/13-ClowCloud%E9%80%89%E6%8B%A9Storage.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>返回页面最上方，点击 Deploy Application。弹窗提示Are you sure you want to deploy the application?选择 Yes。</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/14-ClowCloud%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>等待几秒后，跳转至状态界面。此时，请确认页面左上角显示 running。若显示为其他状态，请稍后片刻；仍未显示 running，请确认你配置选项是否正确。需要修改的，可点击页面右下角 Manage Network 选项修改参数，或删除该项目重新部署。</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/15-ClowCloud%E7%AD%89%E5%BE%85%E9%83%A8%E7%BD%B2%E7%8A%B6%E6%80%81.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>将页面滚动到最下方，在 Network 选项卡中，查看右侧公网地址配置情况。一般情况下，显示 pending 表明还在处理当中，需要等待 2～5 分钟，直至pending 状态变为Available。 实际情况下， 2 分钟后即使公网地址前显示pending，亦可尝试在新的浏览器标签中打开该地址。若网页能正常显示本项目登录界面，则正常使用即可。若公网地址前的pending状态超过 10 分钟，且无法打开登录界面，原因可能是服务器过载，需要更长等待时间。建议换区或换服务商重新部署。</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/16-ClowCloud%E7%8A%B6%E6%80%81%E5%8F%98%E4%B8%BAAvailable.png" alt="在这里插入图片描述"></p>
-<ul>
-<li>设置自定义域名</li>
-<li>在cloudflare添加cname记录，如我希望域名为ggg.abc.xyz，cloudflare中这样设置，abc.xyz为托管在cloudflare域名</li>
-<li>在clawcloud这样设置，这样就可以自定义域名访问</li>
-</ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/17-ClowCloud%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="在这里插入图片描述"></p>
-<h2 id="四、使用gemini-balance监控配置页面"><a href="#四、使用gemini-balance监控配置页面" class="headerlink" title="四、使用gemini-balance监控配置页面"></a>四、使用gemini-balance监控配置页面</h2><p>gemini-balance贴心的带了一个监控配置页面，在这个界面可以配置多个Gemimi API 也可以监控Gemini API的调用情况。</p>
-<ol>
-<li>gemini-balance监控页面配置<ul>
-<li>复制项目公网访问地址后，在浏览器中打开。随后进入登录界面，输入密码即可进入。（如果没有更改配置，密码是<code>your-access-token-1</code>）</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/18-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt="gemini-balance监控页面登录"></p>
-<p>登录后可以进行相应的配置如添加更多的Gemini API Key<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/19-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt="配置界面"></p>
-<p>也可以监控Gemini API Key的调用情况</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/20-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt="监控Gemini API Key的调用情况"></p>
-<h2 id="五、在-cherry-studio使用GeminiBalance"><a href="#五、在-cherry-studio使用GeminiBalance" class="headerlink" title="五、在 cherry studio使用GeminiBalance"></a>五、在 cherry studio使用GeminiBalance</h2><p> 以 cherry studio 为例<br>    1. 添加提供商。<br>        - 提供商名称：任意填写</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/21-Cherrystudio-geminibalance%E9%85%8D%E7%BD%AE1.png" alt="在这里插入图片描述"></p>
-<pre><code>2. 配置
-    - API 密钥：填写监控面板“API 密钥”选项卡中的“允许的令牌列表”。
-    - API 地址：填写 ClawCloud 中的公网访问地址。注意结尾不要出现“/”。</code></pre><p>  <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/22-Cherrystudio-GeminiBalance%E9%85%8D%E7%BD%AEKey.png" alt="在这里插入图片描述"></p>
-<pre><code>3. 添加模型
-4. 点击“管理”，添加模型。</code></pre><p>   <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/23-CherryStudio-GeminiBalance%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B.png" alt="在这里插入图片描述"></p>
-<p> 至此，部署完成。</p>
-<p>最后看调用效果<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/24-CheryStudio-GeminiBalance%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3261,7 +3238,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">212</span>
+                  <span class="site-state-item-count">214</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3373,7 +3350,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">432.4k</span>
+    <span title="Site words total count">434.9k</span>
   
   
 <!--51la网站应用监控-->

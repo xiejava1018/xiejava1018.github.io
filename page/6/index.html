@@ -313,6 +313,522 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/913ab5e4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/913ab5e4/" itemprop="url">Python爬取淘宝商品评价信息实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-16T19:05:58+08:00">
+                2024-03-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:39+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/913ab5e4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/913ab5e4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/913ab5e4/" class="leancloud_visitors" data-flag-title="Python爬取淘宝商品评价信息实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/0-python%E7%88%AC%E8%99%AB.png" alt="Python爬虫"></p>
+<p>前期出了一个《<a href="http://xiejava.ishareread.com/posts/db2fbb43/" target="_blank" rel="noopener">爬取京东商品评价信息实战</a>》的教程，最近又有网友提到要出一个爬淘宝商品评论的教程。说实话淘宝的反爬机制做得比京东要严，所以用爬取京东商品评价信息的方式取爬取淘宝商品评价不太可行。本文还是介绍通过Selenium模拟登录后来进行淘宝商品评价信息的爬取。<br>Selenium安装与配置及如何模拟登录淘宝见《<a href="http://xiejava.ishareread.com/posts/699b1506/" target="_blank" rel="noopener">Selenium安装与配置</a>》及《<a href="http://xiejava.ishareread.com/posts/6e762a1a/" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》</p>
+<h2 id="一、分析需要爬取的页面"><a href="#一、分析需要爬取的页面" class="headerlink" title="一、分析需要爬取的页面"></a>一、分析需要爬取的页面</h2><p>淘宝的商品评价信息在商品详情页面，需要登录淘宝后，访问到商品详情页，并且需要点击“宝贝评价”才能看到相应的商品评价信息。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/1-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%90.png" alt="淘宝商品评价页面分析"></p>
+<p>我们还是要通过chrome浏览器的调试模式来分析需要点击哪个页面元素才能看到具体的评价信息。通过分析可以得知要点击&lt;<code>div class=&quot;Tabs--title--1Ov7S5f Tabs--active--2TTlc9s&quot;&gt;&lt;span data-spm-anchor-id=&quot;pc_detail.27183998/evo365560b447259.202205.i0.65b87dd6RabS41&quot;&gt;宝贝评价&lt;/span&gt;&lt;div class=&quot;Tabs--line--1ibdRMv&quot;&gt;&lt;/div&gt;&lt;/div&gt;</code> 这个元素才能进行切换到宝贝评价。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/2-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%88%86%E6%9E%901.png" alt="页面元素分"></p>
+<p>具体的评价信息是在<code>&lt;div class=&quot;Comment--content--15w7fKj&quot; data-spm-anchor-id=&quot;pc_detail.27183998/evo365560b447259.202207.i0.65b87dd6RabS41&quot;&gt;很好很喜欢下次还会买的，之前在这店买过iPhone12    Air pos pro   iPad Air3   距离上个平板时隔三年又买了iPad Air5 物流也很快，唯一的不足就是要花我自己的钱买😂哈哈哈非常推荐 &lt;/div&gt;</code> 这些<code>&lt;div class=&quot;Comment--content--15w7fKj&quot;&gt;......&lt;/div&gt;</code>元素里。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/3-%E6%B7%98%E5%AE%9D%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%88%86%E6%9E%902.png" alt="页面元素分"></p>
+<p>分析完页面后，就可以开始思考如何编码了。</p>
+<h2 id="二、实现爬取商品评价信息的代码"><a href="#二、实现爬取商品评价信息的代码" class="headerlink" title="二、实现爬取商品评价信息的代码"></a>二、实现爬取商品评价信息的代码</h2><p>通过上面的分析，我们要获取商品评价信息，需要让Selenium进行模拟登录-&gt;访问商品列表页面-&gt;访问商品详情页面-&gt;点击“宝贝评价”-&gt;获取并解析商品评价信息。<br>前面让Selenium进行模拟登录-&gt;访问商品列表页面在《<a href="http://xiejava.ishareread.com/posts/6e762a1a/" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》已有介绍。这里主要介绍后面的部分，访问商品详情页面-&gt;点击“宝贝评价”-&gt;获取并解析商品评价信息。<br>获取并解析商品评价信息有两种方式，一种是通过解析显示评价信息的元素获取，一种是通过mitmproxy代理进行流量抓包获取。</p>
+<h3 id="1、通过解析显示评价信息的元素获取商品评价信息"><a href="#1、通过解析显示评价信息的元素获取商品评价信息" class="headerlink" title="1、通过解析显示评价信息的元素获取商品评价信息"></a>1、通过解析显示评价信息的元素获取商品评价信息</h3><p>selenium_taobao.py的部分代码参考如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">                   <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">                   <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">                   <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">                   <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">                   <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line">        item_href=item.attr(<span class="string">'href'</span>) <span class="comment"># 得到商品的详情访问页面</span></span><br><span class="line">        <span class="keyword">if</span> item_href.find(<span class="string">'https:'</span>)&gt;=<span class="number">0</span>:</span><br><span class="line">            item_url =item_href</span><br><span class="line">            print(item_url)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            item_url = <span class="string">"https:"</span> + item.attr(<span class="string">'href'</span>)</span><br><span class="line">            <span class="comment"># 爬取商品评价</span></span><br><span class="line">            get_prod_comments(item_url)</span><br><span class="line">            time.sleep(sleeptime)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 爬取商品评价</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_prod_comments</span><span class="params">(item_url)</span>:</span></span><br><span class="line">    driver.get(item_url)</span><br><span class="line">    print(<span class="string">'跳转至详情页.......'</span>+item_url)</span><br><span class="line">    ele = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">"//div[@class='Tabs--title--1Ov7S5f ']/span"</span>)))</span><br><span class="line">    time.sleep(sleeptime)</span><br><span class="line">    <span class="comment"># 向下滚动至目标元素可见</span></span><br><span class="line">    js = <span class="string">"arguments[0].scrollIntoView();"</span></span><br><span class="line">    driver.execute_script(js, ele)</span><br><span class="line">    print(<span class="string">'向下滚动至-宝贝评价-元素可见.......'</span>)</span><br><span class="line">    driver.execute_script(<span class="string">"arguments[0].click();"</span>, ele)</span><br><span class="line">    print(<span class="string">'点击-宝贝评价.......'</span>)</span><br><span class="line">    ele_comments=driver.find_elements(By.CSS_SELECTOR,<span class="string">".Comment--content--15w7fKj"</span>)</span><br><span class="line">    print(<span class="string">'提取宝贝评价信息.......'</span>)</span><br><span class="line">    <span class="keyword">for</span> ele_comment <span class="keyword">in</span> ele_comments:</span><br><span class="line">        print(ele_comment.text)</span><br></pre></td></tr></table></figure>
+
+<p>在解析获取商品信息的方法中通过item_href=item.attr(‘href’) # 得到商品的详情访问页面<br>在爬取商品评价get_prod_comments(item_url)的方法中，通过driver.get(item_url)跳转到了商品详情页面。通过ele = wait.until(EC.element_to_be_clickable((By.XPATH, “//div[@class=’Tabs–title–1Ov7S5f ‘]/span”)))定位到“宝贝评价”的点击按钮，通过driver.execute_script(“arguments[0].click();”, ele)进行点击事件，然后通过ele_comments=driver.find_elements(By.CSS_SELECTOR,”.Comment–content–15w7fKj”)找到显示评价信息的元素，循环后解析具体的评价文本信息。<br>效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/4-selenium%E7%88%AC%E5%8F%96%E6%95%88%E6%9E%9C.png" alt="解析获取商品信息"></p>
+<h3 id="2、通过mitmproxy代理进行流量抓包获取商品评价信息"><a href="#2、通过mitmproxy代理进行流量抓包获取商品评价信息" class="headerlink" title="2、通过mitmproxy代理进行流量抓包获取商品评价信息"></a>2、通过mitmproxy代理进行流量抓包获取商品评价信息</h3><p>既然通过Selenium进行模拟点击“宝贝评价”访问了商品评价信息，也可通过流量抓包的方式来获取商品评价信息。<br>同样chrome浏览器的调试模式来分析商品评价是从哪些接口返回的数据，这里可以看到宝贝评价是通过<code>https://h5api.m.taobao.com/h5/mtop.alibaba.review.list.for.new.pc.detail/1.0/....</code>接口返回的数据。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/5-mintproxy%E6%8A%93%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%901.png" alt="调试模式来分析商品评价"></p>
+<p>切换到Response，可以看到接口返回的宝贝评价JSON串。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/6-mitmproxy%E6%8A%93%E5%8F%96%E9%A1%B5%E9%9D%A2%E5%88%86%E6%9E%902.png" alt="宝贝评价JSON串"></p>
+<p>有了这些信息后，就可以写mitmproxy代理抓包的代码了。<br>taobao_scripts.py代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="comment"># 抓取淘宝商品评价信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">response</span><span class="params">(flow)</span>:</span></span><br><span class="line">    url = <span class="string">'https://h5api.m.taobao.com/h5/mtop.alibaba.review.list.for.new.pc.detail'</span></span><br><span class="line">    <span class="keyword">if</span> flow.request.url.startswith(url):</span><br><span class="line">        text = flow.response.text</span><br><span class="line">        json_data = json.loads(text)</span><br><span class="line">        print(json_data)</span><br></pre></td></tr></table></figure>
+
+<p>在控制台运行 mitmdump -s taobao_scripts.py 启动mitmproxy代理服务。具体参考《<a href="https://xiejava.blog.csdn.net/article/details/136296522" target="_blank" rel="noopener">Selenium实战-模拟登录淘宝并爬取商品信息</a>》设置好chrome浏览器的mitmproxy代理。然后运行selenium_taobao.py通过Selenium驱动浏览器，进行自动模拟登录-&gt;访问商品列表页面-&gt;访问商品详情页面-&gt;点击“宝贝评价”。<br>在运行mitmdump的控制台可以看到通过抓包获取的淘宝商品评价的数据信息。<br>效果如下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240316/7-mitmproxy%E6%8A%93%E5%8F%96%E6%B7%98%E5%AE%9D%E8%AF%84%E4%BB%B7%E6%95%B0%E6%8D%AE%E6%95%88%E6%9E%9C.png" alt="抓包获取的淘宝商品评价的数据信息效果"></p>
+<h2 id="三、附-完整代码"><a href="#三、附-完整代码" class="headerlink" title="三、附-完整代码"></a>三、附-完整代码</h2><p>selenium_taobao.py完整代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver <span class="keyword">import</span> Chrome</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.chrome.options <span class="keyword">import</span> Options</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support.wait <span class="keyword">import</span> WebDriverWait</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br><span class="line"><span class="keyword">from</span> selenium.webdriver.support <span class="keyword">import</span> expected_conditions <span class="keyword">as</span> EC</span><br><span class="line"><span class="keyword">from</span> selenium.common <span class="keyword">import</span> TimeoutException, NoSuchElementException</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> quote</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">sleeptime=<span class="number">5</span></span><br><span class="line">chrome_options = Options()</span><br><span class="line">chrome_options.add_experimental_option(<span class="string">"debuggerAddress"</span>, <span class="string">"localhost:9222"</span>) <span class="comment">#此处端口保持和命令行启动的端口一致</span></span><br><span class="line">driver = Chrome(options=chrome_options)</span><br><span class="line">driver.implicitly_wait(<span class="number">5</span>)  <span class="comment"># 隐式等待</span></span><br><span class="line">wait = WebDriverWait(driver, <span class="number">10</span>)  <span class="comment"># 显示等待</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟淘宝登录</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">login_taobao</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'开始登录...'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        login_url=<span class="string">'https://login.taobao.com/member/login.jhtml'</span></span><br><span class="line">        driver.get(login_url)</span><br><span class="line">        check_login_type()</span><br><span class="line">        input_login_id = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">        input_login_password = wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-password'</span>)))</span><br><span class="line">        input_login_id.send_keys(<span class="string">'your account'</span>)</span><br><span class="line">        input_login_password.send_keys(<span class="string">'your password'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit.password-login'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">return</span> is_loging</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'login_taobao TimeoutException'</span>)</span><br><span class="line">        submit = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, <span class="string">'.fm-button.fm-submit'</span>)))</span><br><span class="line">        submit.click()</span><br><span class="line">        is_loging = wait.until(EC.url_changes(login_url))</span><br><span class="line">        <span class="keyword">if</span> is_loging:</span><br><span class="line">            <span class="keyword">return</span> is_loging</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            login_taobao()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断登录模式，如果是扫描登录则切换到用户名密码登录模式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_login_type</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'判断登录模式'</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        wait.until(EC.presence_of_element_located((By.ID, <span class="string">'fm-login-id'</span>)))</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        change_type = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, <span class="string">'.iconfont.icon-password'</span>)))</span><br><span class="line">        change_type.click()  <span class="comment"># 切换到用户密码模式登录</span></span><br><span class="line">        print(<span class="string">'切换到用户密码模式登录...'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析获取商品信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_products</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""提取商品数据"""</span></span><br><span class="line">    html = driver.page_source</span><br><span class="line">    doc = pq(html)</span><br><span class="line">    items = doc(<span class="string">'.Card--doubleCardWrapper--L2XFE73'</span>).items()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        product = &#123;<span class="string">'url'</span>: item.attr(<span class="string">'href'</span>),</span><br><span class="line">                   <span class="string">'price'</span>: item.find(<span class="string">'.Price--priceInt--ZlsSi_M'</span>).text(),</span><br><span class="line">                   <span class="string">'realsales'</span>: item.find(<span class="string">'.Price--realSales--FhTZc7U-cnt'</span>).text(),</span><br><span class="line">                   <span class="string">'title'</span>: item.find(<span class="string">'.Title--title--jCOPvpf'</span>).text(),</span><br><span class="line">                   <span class="string">'shop'</span>: item.find(<span class="string">'.ShopInfo--TextAndPic--yH0AZfx'</span>).text(),</span><br><span class="line">                   <span class="string">'location'</span>: item.find(<span class="string">'.Price--procity--_7Vt3mX'</span>).text()&#125;</span><br><span class="line">        print(product)</span><br><span class="line">        item_href=item.attr(<span class="string">'href'</span>) <span class="comment"># 得到商品的详情访问页面</span></span><br><span class="line">        <span class="keyword">if</span> item_href.find(<span class="string">'https:'</span>)&gt;=<span class="number">0</span>:</span><br><span class="line">            item_url =item_href</span><br><span class="line">            print(item_url)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            item_url = <span class="string">"https:"</span> + item.attr(<span class="string">'href'</span>)</span><br><span class="line">            <span class="comment"># 爬取商品评价</span></span><br><span class="line">            get_prod_comments(item_url)</span><br><span class="line">            time.sleep(sleeptime)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 爬取商品评价</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_prod_comments</span><span class="params">(item_url)</span>:</span></span><br><span class="line">    driver.get(item_url)</span><br><span class="line">    print(<span class="string">'跳转至详情页.......'</span>+item_url)</span><br><span class="line">    ele = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">"//div[@class='Tabs--title--1Ov7S5f ']/span"</span>)))</span><br><span class="line">    time.sleep(sleeptime)</span><br><span class="line">    <span class="comment"># 向下滚动至目标元素可见</span></span><br><span class="line">    js = <span class="string">"arguments[0].scrollIntoView();"</span></span><br><span class="line">    driver.execute_script(js, ele)</span><br><span class="line">    print(<span class="string">'向下滚动至-宝贝评价-元素可见.......'</span>)</span><br><span class="line">    driver.execute_script(<span class="string">"arguments[0].click();"</span>, ele)</span><br><span class="line">    print(<span class="string">'点击-宝贝评价.......'</span>)</span><br><span class="line">    ele_comments=driver.find_elements(By.CSS_SELECTOR,<span class="string">".Comment--content--15w7fKj"</span>)</span><br><span class="line">    print(<span class="string">'提取宝贝评价信息.......'</span>)</span><br><span class="line">    <span class="keyword">for</span> ele_comment <span class="keyword">in</span> ele_comments:</span><br><span class="line">        print(ele_comment.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自动获取商品信息并自动翻页</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_page</span><span class="params">(url,cur_page,max_page)</span>:</span></span><br><span class="line">    print(<span class="string">' 正在爬取：'</span>+url)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        driver.get(url)</span><br><span class="line">        get_products()</span><br><span class="line">        next_page_btn = wait.until(EC.element_to_be_clickable((By.XPATH, <span class="string">'//button/span[contains(text(),"下一页")]'</span>)))</span><br><span class="line">        next_page_btn.click()</span><br><span class="line">        do_change = wait.until(EC.url_changes(url))</span><br><span class="line">        <span class="keyword">if</span> do_change <span class="keyword">and</span> cur_page&lt;max_page:</span><br><span class="line">            new_url=driver.current_url</span><br><span class="line">            cur_page = cur_page + <span class="number">1</span></span><br><span class="line">            index_page(new_url,cur_page,max_page)</span><br><span class="line">    <span class="keyword">except</span> TimeoutException:</span><br><span class="line">        print(<span class="string">'---index_page TimeoutException---'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    is_loging=login_taobao()</span><br><span class="line">    <span class="keyword">if</span> is_loging:</span><br><span class="line">        print(<span class="string">'已经登录'</span>)</span><br><span class="line">        KEYWORD = <span class="string">'iPad'</span></span><br><span class="line">        url = <span class="string">'https://s.taobao.com/search?page=1&amp;q='</span> + quote(KEYWORD) + <span class="string">'&amp;tab=all'</span></span><br><span class="line">        max_page=<span class="number">1</span></span><br><span class="line">        index_page(url,<span class="number">1</span>,max_page)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/dc1cceb8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/dc1cceb8/" itemprop="url">数据安全之认识数据库加密系统</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-15T10:45:24+08:00">
+                2024-03-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:39+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/dc1cceb8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/dc1cceb8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/dc1cceb8/" class="leancloud_visitors" data-flag-title="数据安全之认识数据库加密系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据库作为计算机信息系统的核心组成部分，在整个信息系统的构建中起着关键的作用。自20世纪60年代起，数据库技术经过短短几十年的飞速发展，现已成为整个信息系统的核心内容，并得到了广泛的应用。然而，随着数据库系统集中处理大量数据信息的任务日益繁重，其安全问题也日渐突出。</p>
+<p>信息安全的关键在于数据的安全，而数据的安全则主要通过数据加密技术来实现。随着网上购物等电子商务的兴起和繁荣，以数据库为代表的信息安全已成为很多企业的共识。越来越多的企业和机构开始重视数据库的数据安全问题，因为一旦数据泄露或遭到非法访问，将可能导致严重的经济损失和声誉损害。</p>
+<p>为了增强普通关系数据库管理系统的安全性，数据库加密系统应运而生。其目的是为了提供一个安全适用的数据库加密平台，对通信和数据库存储的内容实施有效保护。通过采用先进的加密技术和严格的密钥管理策略，数据库加密系统可以确保数据在存储和传输过程中的机密性、完整性和可用性，从而有效地防止数据泄露和非法访问。</p>
+<p>本文让我们一起来认识数据库加密系统</p>
+<h2 id="一、什么是数据库加密系统"><a href="#一、什么是数据库加密系统" class="headerlink" title="一、什么是数据库加密系统"></a>一、什么是数据库加密系统</h2><p>数据库加密系统是一款基于透明加密技术和主动防御机制的数据库防泄漏系统。<br>它主要实现对数据库中的敏感数据加密存储、访问控制增强、应用访问安全、安全审计以及三权分立等功能。通过使用特定的加密算法和密钥管理技术，数据库加密系统能够确保数据在存储和传输过程中的安全性，有效防止明文存储引起的数据泄密、外部黑客攻击以及内部高权限用户的数据窃取。数据库加密系统旨在从根本上解决数据库敏感数据泄漏问题，实现数据的高度安全和应用的完全透明。</p>
+<h2 id="二、数据库加密系统的工作原理"><a href="#二、数据库加密系统的工作原理" class="headerlink" title="二、数据库加密系统的工作原理"></a>二、数据库加密系统的工作原理</h2><p>数据库加密系统的原理主要基于加密技术和密钥管理。其核心目的是确保数据库中存储的敏感数据不被未经授权的人员或程序读取或篡改。以下是数据库加密系统原理的详细解释：</p>
+<ol>
+<li>数据加密<br>数据加密是数据库加密系统的核心功能。它使用特定的加密算法，将数据库中的明文数据（即原始数据）转换成密文数据。这个转换过程依赖于一个或多个密钥，这些密钥是加密算法的输入参数，用于控制加密的强度和复杂性。通过这种方式，即使数据被非法获取，没有正确的密钥也无法解密和读取原始数据。</li>
+<li>密钥管理<br>密钥管理是数据库加密系统中至关重要的环节。它涉及到密钥的生成、存储、分发、更新和销毁等过程。密钥的安全性直接关系到整个加密系统的安全性。因此，密钥管理通常采用多种安全措施，如使用硬件安全模块（HSM）存储密钥、实施密钥的定期更换和备份、以及使用强密码保护密钥文件等。</li>
+<li>透明加密<br>透明加密是数据库加密系统的一个重要特性。它允许应用程序在不需要修改的情况下，对数据库中的敏感数据进行加密和解密操作。这意味着应用程序无需关心数据的加密细节，只需像处理普通数据一样处理加密数据。这种透明性大大简化了加密系统的部署和维护过程。</li>
+<li>访问控制<br>除了数据加密外，数据库加密系统还通常实施严格的访问控制策略。这些策略通过身份验证、授权和审计等手段，确保只有经过授权的用户才能访问和操作数据库中的敏感数据。这有助于防止内部人员滥用权限或外部攻击者入侵数据库。</li>
+</ol>
+<p>数据库加密示意图如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="数据库加密示意图"></p>
+<center>数据库加密示意图</center>
+
+<p>数据库加密系统的原理基于数据加密、密钥管理、透明加密和访问控制等多个方面。这些技术和策略共同确保数据库中的敏感数据得到充分的保护，防止未经授权的访问和泄露。</p>
+<h2 id="三、数据库加密系统的核心功能"><a href="#三、数据库加密系统的核心功能" class="headerlink" title="三、数据库加密系统的核心功能"></a>三、数据库加密系统的核心功能</h2><p>数据库加密系统核心功能包括数据加密、数据解密、权限控制、审计跟踪。</p>
+<ol>
+<li>数据加密：通过对数据库中的敏感数据进行加密，使得即使数据被非法获取，也无法直接读取其内容。</li>
+<li>数据解密：对经过加密的数据进行解密，使其能够被正常访问和使用。通常，只有具有特定权限的用户才能进行解密操作。</li>
+<li>权限管理：增强对数据库访问的控制，确保只有经过授权的用户才能访问特定的数据。</li>
+<li>审计跟踪：记录和跟踪数据库的所有操作，包括谁在何时访问了哪些数据，进行了哪些操作，以便在发生安全问题时进行追溯和审计。</li>
+</ol>
+<h2 id="四、数据库加密系统的特点和优势"><a href="#四、数据库加密系统的特点和优势" class="headerlink" title="四、数据库加密系统的特点和优势"></a>四、数据库加密系统的特点和优势</h2><p>数据库加密系统具有以下特点和优势：</p>
+<ol>
+<li>数据安全性增强：通过数据加密技术，数据库加密系统能够确保敏感数据在存储和传输过程中的安全性。即使数据被非法获取，攻击者也无法直接读取其明文内容，从而防止数据泄露和滥用。</li>
+<li>透明性：数据库加密系统通常设计为对最终用户透明，管理员可以根据需要进行明文和密文的转换工作。这使得用户无需改变原有的操作习惯，同时也降低了系统部署和维护的复杂性。</li>
+<li>独立性：加密系统独立于数据库应用系统，这意味着无需改动数据库应用系统就能实现数据加密功能。这种独立性使得数据库加密系统能够灵活地集成到现有的信息系统中。</li>
+<li>性能影响较小：数据库加密系统通常采用高效的加解密算法和优化的处理流程，以确保在加密数据的同时不会对数据库服务器的性能产生显著影响。这使得系统能够在实际应用中保持较高的响应速度和吞吐量。</li>
+<li>灵活的加密方式：数据库加密系统支持多种加密方式，如字段级加密、记录级加密等，以满足不同场景下的安全需求。此外，系统还可以根据业务需求灵活调整加密策略，以适应数据的变化和新的安全威胁。</li>
+<li>完善的密钥管理：密钥是数据加密和解密的关键。数据库加密系统通常具备完善的密钥管理功能，包括密钥的生成、存储、分发、更新和销毁等。这确保了密钥的安全性和可用性，从而提高了整个加密系统的安全性。</li>
+<li>合规性支持：随着数据保护法规的日益严格，数据库加密系统能够帮助企业满足相关的合规性要求。通过实施数据加密和访问控制等安全措施，系统能够确保数据的合规性存储和使用，避免因违反法规而面临的经济和法律风险。</li>
+</ol>
+<p>数据库加密系统通过增强数据安全性、提供透明性、独立性、较小的性能影响、灵活的加密方式、完善的密钥管理以及合规性支持等特点和优势，为企业和机构提供了一个安全、可靠的数据库环境。</p>
+<h2 id="五、数据库加密系统的部署方式"><a href="#五、数据库加密系统的部署方式" class="headerlink" title="五、数据库加密系统的部署方式"></a>五、数据库加密系统的部署方式</h2><h3 id="1、在线透明部署"><a href="#1、在线透明部署" class="headerlink" title="1、在线透明部署"></a>1、在线透明部署</h3><p>通过在线透明的部署方式将数据库加密系统串接在数据库前，对数据库进行透明加密，提高数据库服务的可用性，部署如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/1-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%E4%B8%B2%E8%81%94%E9%83%A8%E7%BD%B2%E5%9B%BE.png" alt="数据库加密系统串联部署图"></p>
+<center>数据库加密系统串联部署图</center>
+
+<h3 id="2、旁路代理模式"><a href="#2、旁路代理模式" class="headerlink" title="2、旁路代理模式"></a>2、旁路代理模式</h3><p>通过旁路部署的方式将数据库透明加密接入到数据库所在网络中，数据库透明加密采用反向代理模式，部署如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240315/2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8A%A0%E5%AF%86%E7%B3%BB%E7%BB%9F%E6%97%81%E8%B7%AF%E4%BB%A3%E7%90%86%E9%83%A8%E7%BD%B2%E5%9B%BE.png" alt="数据库加密系统旁路代理部署图"></p>
+<center>数据库加密系统旁路代理部署图</center>
+
+<h2 id="六、数据库加密系统的应用场景"><a href="#六、数据库加密系统的应用场景" class="headerlink" title="六、数据库加密系统的应用场景"></a>六、数据库加密系统的应用场景</h2><p>数据库加密系统有着广泛的应用场景，主要用于保护敏感数据的安全性和完整性，防止数据泄露和非法访问。以下是一些常见的应用场景：</p>
+<ol>
+<li>金融行业：银行、证券、保险等金融机构在处理客户数据时，涉及大量敏感信息，如个人身份信息、账户信息、交易记录等。数据库加密系统能够确保这些敏感数据在存储和传输过程中的安全，防止被非法获取或篡改。</li>
+<li>医疗领域：医疗机构存储着大量的患者个人信息、病历记录、检查结果等敏感数据。数据库加密系统可以保护这些数据的安全，防止数据泄露和滥用，维护患者的隐私权益。</li>
+<li>政府机构：政府部门在政务处理、人口管理、税务征收等方面积累了大量的公民个人信息和敏感数据。通过数据库加密系统，政府可以确保这些数据的安全存储和合法使用，防止数据被非法获取或滥用。</li>
+<li>电子商务：电商平台涉及大量用户信息、交易数据等敏感信息。数据库加密系统可以保护这些数据的安全，防止黑客攻击和数据泄露，维护电商平台的声誉和用户的信任。</li>
+<li>教育行业：学校和教育机构存储着学生的个人信息、成绩记录、学籍资料等敏感数据。数据库加密系统可以保护这些数据的安全，防止数据被非法访问或篡改，维护教育公平和信息安全。</li>
+</ol>
+<p>数据库加密系统适用于需要保护敏感数据安全的各个领域，确保数据在存储、传输和使用过程中的完整性和机密性。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/db2fbb43/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2399,532 +2915,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/30603dd9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/30603dd9/" itemprop="url">网络安全产品之认识蜜罐</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-14T09:28:29+08:00">
-                2024-02-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:37+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/30603dd9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/30603dd9/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/30603dd9/" class="leancloud_visitors" data-flag-title="网络安全产品之认识蜜罐">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>蜜罐的概念首次由Clifford Stoll在其1988年出版的小说《The Cuckoo’s Egg》中提出。Clifford Stoll不仅是一位著名的计算机安全专家，还是这本小说的作者。他在小说中描述了自己作为一个公司的网络管理员如何追踪并发现一起商业间谍案的故事。在这个过程中，他成功地利用包含虚假信息的文件作为诱饵来检测入侵，这种技术思想就是蜜罐的雏形。因此，可以认为Clifford Stoll是首次提出蜜罐概念的人。随后，在1998年，商用的蜜罐产品开始出现，这标志着蜜罐技术开始从理论走向实际应用。本文让我们一起来认识蜜罐。</p>
-<h2 id="一、什么是蜜罐"><a href="#一、什么是蜜罐" class="headerlink" title="一、什么是蜜罐"></a>一、什么是蜜罐</h2><p>蜜罐（Honeypot）是一种主动防御技术，是一个包含漏洞的诱骗系统。蜜罐技术本质上是一种对攻击方进行欺骗的技术，通过布置一些作为诱饵的主机、网络服务或者信息，诱使攻击方对它们实施攻击，从而可以对攻击行为进行捕获和分析，了解攻击方所使用的工具与方法，推测攻击意图和动机，能够让防御方清晰地了解他们所面对的安全威胁，并通过技术和管理手段来增强实际系统的安全防护能力。<br>蜜罐好比是情报收集系统。蜜罐好像是故意让人攻击的目标，引诱黑客前来攻击。所以攻击者入侵后，你就可以知道他是如何得逞的，随时了解针对服务器发动的最新的攻击和漏洞。还可以通过窃听黑客之间的联系，收集黑客所用的种种工具，并且掌握他们的社交网络。</p>
-<h2 id="二、蜜罐的主要类型"><a href="#二、蜜罐的主要类型" class="headerlink" title="二、蜜罐的主要类型"></a>二、蜜罐的主要类型</h2><p>蜜罐的主要类型可以根据其交互程度和实现方式进行分类：</p>
-<ol>
-<li>根据交互程度的不同，蜜罐可以分为<strong>高交互蜜罐</strong>和<strong>低交互蜜罐</strong>。<br>● 高交互蜜罐：提供一个真实的、可交互的操作系统或服务。这种蜜罐模拟了真实系统的功能，允许攻击者获得完全的访问权限，并能作为跳板实施进一步的网络攻击。然而，高交互蜜罐的部署较为困难，维护成本较高，且一旦服务上存在的漏洞被利用，容易引发新的安全问题。<br>● 低交互蜜罐：只模拟部分系统、端口或服务的功能。这种蜜罐的设计相对简单，主要目的是引诱攻击者进行交互，同时保护真实的系统不受攻击。由于低交互蜜罐的功能有限，攻击者不能通过攻击这些服务获得完全的访问权限。因此，低交互蜜罐相对容易部署和维护。</li>
-<li>从实现方法上来分，蜜罐可分为<strong>物理蜜罐</strong>和<strong>虚拟蜜罐</strong>。<br>● 物理蜜罐：指网络上一台真实的完整计算机，它运行着真实的操作系统和服务，具有较高的逼真度，能够吸引更多的攻击者。然而，物理蜜罐的部署和维护成本较高，且可能面临法律和道德问题。<br>● 虚拟蜜罐：由一台计算机模拟的系统，它可以响应发送给虚拟蜜罐的网络流量。虚拟蜜罐具有成本低、易于部署和管理的优点，同时可以模拟多种操作系统和服务，提高蜜罐的灵活性和多样性。</li>
-</ol>
-<p>此外，根据部署目的的不同，蜜罐还可以分为产品型蜜罐和研究型蜜罐两类。产品型蜜罐主要用于为一个组织的网络提供安全保护，而研究型蜜罐则专门用于对黑客攻击的捕获和分析。</p>
-<h2 id="三、蜜罐的主要功能"><a href="#三、蜜罐的主要功能" class="headerlink" title="三、蜜罐的主要功能"></a>三、蜜罐的主要功能</h2><ol>
-<li>迷惑入侵者，保护服务器<br>一般的客户/服务器模式里，浏览者是直接与网站服务器连接的，换句话说，整个网站服务器都暴露在入侵者面前，如果服务器安全措施不够，那么整个网站数据都有可能被入侵者轻易毁灭。但是如果在客户/服务器模式里嵌入蜜罐，让蜜罐作为服务器角色，真正的网站服务器作为一个内部网络在蜜罐上做网络端口映射，这样可以把网站的安全系数提高，入侵者即使渗透了位于外部的“服务器”，他也得不到任何有价值的资料，因为他入侵的是蜜罐而已。虽然入侵者可以在蜜罐的基础上跳进内部网络，但那要比直接攻下一台外部服务器复杂得多，许多水平不足的入侵者只能望而却步。</li>
-<li>诱捕和追踪攻击者：蜜罐可以记录攻击者的所有活动，并追踪攻击者的来源和身份。通过分析攻击者的IP地址、攻击工具、攻击时间等信息，可以帮助管理员追踪攻击者的真实身份和位置，为后续的应对和处置提供有力支持。</li>
-<li>评估和提升安全防护能力：蜜罐可以模拟实际系统中的漏洞和弱点，帮助管理员评估实际系统的安全防护能力。通过模拟攻击，管理员可以了解实际系统中存在的安全漏洞和弱点，从而采取相应的措施进行修复和加固，提升系统的安全防护能力。</li>
-<li>威胁情报收集：蜜罐可以捕获攻击者的攻击数据和样本，为威胁情报收集提供重要来源。通过分析攻击数据和样本，管理员可以了解最新的攻击方法和工具，及时发现新的安全威胁，并采取相应的应对措施。</li>
-</ol>
-<h2 id="四、蜜罐的主要组成及核心技术"><a href="#四、蜜罐的主要组成及核心技术" class="headerlink" title="四、蜜罐的主要组成及核心技术"></a>四、蜜罐的主要组成及核心技术</h2><p>蜜罐的主要组成部分包括：</p>
-<ol>
-<li>操作系统和应用软件：蜜罐通常会安装一个操作系统和一些常见的应用软件，以模拟真实系统的环境。这些操作系统和应用软件可能包含一些已知的漏洞，以吸引攻击者进行攻击。</li>
-<li>网络服务：蜜罐会开放一些网络服务，如Web服务、FTP服务、数据库服务等，以提供攻击者攻击的目标。这些服务也可能包含一些漏洞，以吸引攻击者进行攻击。</li>
-<li>日志和监控工具：蜜罐会安装日志和监控工具，以记录和分析攻击者的活动。这些工具可以记录攻击者的IP地址、攻击时间、使用的攻击工具和方法等信息，帮助管理员了解攻击者的行为和意图。</li>
-<li>防火墙和安全策略：为了保护蜜罐本身不被攻击者攻破，通常会配置防火墙和安全策略，限制攻击者的访问和攻击手段。这些防火墙和安全策略也会根据需要进行调整和优化。</li>
-<li>数据分析工具：蜜罐收集的攻击数据和样本需要进行深入的分析和处理，以提取有用的信息。数据分析工具可以帮助管理员对攻击数据和样本进行挖掘和分析，发现新的安全威胁和漏洞。</li>
-</ol>
-<p>蜜罐的主要组成部分包括操作系统和应用软件、网络服务、日志和监控工具、防火墙和安全策略以及数据分析工具等。这些组件共同构成了蜜罐的基本架构和功能，使其能够作为一个有效的安全工具来监测和发现攻击。</p>
-<p>蜜罐的核心技术主要包括数据捕获技术、数据控制技术和数据分析技术。</p>
-<ol>
-<li>数据捕获技术：数据捕获是在入侵者无察觉的情况下，完整地记录所有进入蜜罐系统的连接行为及其活动。捕获到的数据日志是数据分析的主要来源，通过对这些数据日志的分析，管理员可以发现入侵者的攻击方法、攻击目的、攻击技术和所使用的攻击工具。数据捕获技术对于蜜罐的有效性至关重要，因为它提供了攻击行为的直接证据。</li>
-<li>数据控制技术：数据控制技术用于管理和控制蜜罐系统中捕获的数据。这包括数据的存储、访问和传输等方面的控制。通过数据控制技术，管理员可以确保捕获的数据的安全性和完整性，防止数据被篡改或泄露。</li>
-<li>数据分析技术：数据分析是对蜜罐系统所捕获到的数据记录进行分析处理的过程。通过数据分析，管理员可以提取入侵规则，分析是否有新的入侵特征。数据分析技术包括网络协议分析、网络行为分析和攻击特征分析等。这些分析技术可以帮助管理员深入了解攻击者的行为模式和攻击意图，为制定相应的防御措施提供依据。</li>
-</ol>
-<p>此外，蜜罐系统中还常常采用一些辅助技术来提高其安全性和有效性，例如伪装技术、诱饵技术、网络流量生成技术等。这些技术可以进一步增强蜜罐的欺骗性，使其更难以被攻击者识别和利用。</p>
-<p>总的来说，蜜罐的主要技术涵盖了数据捕获、数据控制和数据分析等方面，这些技术共同构成了蜜罐的核心功能，使其能够有效地检测和应对网络攻击。</p>
-<h2 id="五、蜜罐的优缺点"><a href="#五、蜜罐的优缺点" class="headerlink" title="五、蜜罐的优缺点"></a>五、蜜罐的优缺点</h2><p>蜜罐技术的优缺点如下：</p>
-<ul>
-<li><strong>优点：</strong></li>
-</ul>
-<ol>
-<li>早期预警：蜜罐可以作为一个早期预警系统，帮助组织及时发现潜在的网络攻击。当攻击者试图访问或利用蜜罐时，管理员可以立即得到通知，从而采取相应的防御措施。</li>
-<li>威胁情报收集：蜜罐可以捕获攻击者的活动信息，包括使用的工具、方法、攻击策略等，为组织提供有价值的威胁情报。通过分析这些信息，管理员可以了解攻击者的行为模式，提高防御能力。</li>
-<li>增强安全防护：蜜罐可以分散攻击者的注意力，使其将资源投入到无用的攻击上，从而保护真实的系统免受攻击。此外，蜜罐还可以作为跳板，帮助管理员追踪攻击者的来源和身份。</li>
-<li>提供培训和学习环境：蜜罐可以为安全人员提供一个安全的培训和学习环境，帮助他们了解攻击者的行为模式、工具和方法，提高安全技能和知识水平。</li>
-</ol>
-<ul>
-<li><strong>缺点：</strong></li>
-</ul>
-<ol>
-<li>数据收集面狭窄：蜜罐只能检测到针对其自身的攻击行为，对于攻击者攻击其他系统的行为则无法感知。因此，蜜罐的数据收集范围相对狭窄，可能无法提供全面的安全威胁信息。</li>
-<li>指纹识别风险：蜜罐在模拟漏洞和弱点时，可能会暴露自身的特征和行为模式，从而被攻击者识别出真实身份。这可能导致蜜罐失去其作用，甚至成为攻击者的攻击目标。</li>
-<li>管理和维护成本：为了保持蜜罐的有效性和安全性，需要对其进行定期更新和维护。这可能会增加组织的管理和维护成本，同时也需要具备一定的技术能力和专业知识。</li>
-</ol>
-<p>蜜罐技术作为一种主动防御手段，在提高组织的安全防护能力方面具有重要作用。然而，其也存在一定的缺点和限制，需要在实际应用中综合考虑其优缺点，并采取相应的措施来确保其有效性和安全性。</p>
-<h2 id="六、蜜罐如何与其他安全工具协同工作？"><a href="#六、蜜罐如何与其他安全工具协同工作？" class="headerlink" title="六、蜜罐如何与其他安全工具协同工作？"></a>六、蜜罐如何与其他安全工具协同工作？</h2><p>蜜罐可以与其他安全工具协同工作，形成一个更加全面和有效的安全防护体系。以下是一些蜜罐与其他安全工具协同工作的方式：</p>
-<ol>
-<li>入侵检测系统（IDS）：蜜罐可以与IDS协同工作，共同监测和防御网络攻击。IDS负责实时监控网络流量，检测异常行为和潜在的攻击模式，而蜜罐则作为诱饵吸引攻击者，并捕获攻击者的行为数据。通过将蜜罐与IDS集成，可以及时发现并响应攻击，提高整体的安全防护能力。</li>
-<li>防火墙：防火墙是网络安全的重要组成部分，负责控制进出网络的流量。蜜罐可以与防火墙协同工作，通过配置特定的防火墙规则，将蜜罐暴露在公网上，同时保护真实的系统不受攻击。防火墙可以过滤掉大部分的恶意流量，而蜜罐则用于捕获和分析剩余的攻击行为。</li>
-<li>端点保护平台：端点保护平台用于保护网络中的终端设备，如计算机、服务器等。蜜罐可以与端点保护平台协同工作，共同防御针对终端设备的攻击。蜜罐可以吸引攻击者，并捕获攻击者的行为数据，而端点保护平台则负责检测和清除终端设备上的恶意软件和其他威胁。</li>
-<li>日志分析工具：蜜罐捕获的攻击行为数据可以与日志分析工具结合使用，对攻击行为进行深入的分析和溯源。日志分析工具可以对蜜罐捕获的日志数据进行挖掘和分析，提取出攻击者的特征、攻击工具、攻击路径等信息，为安全人员提供有价值的情报和线索。</li>
-</ol>
-<p>此外，蜜罐还可以与其他安全工具如安全信息和事件管理（SIEM）系统、网络流量分析工具等协同工作，共同构建一个全面而高效的安全防护体系。通过整合各种安全工具和资源，可以实现对网络攻击的及时发现、快速响应和有效防御。</p>
-<h2 id="七、什么是“蜜网”？与蜜罐的联系和区别是什么？"><a href="#七、什么是“蜜网”？与蜜罐的联系和区别是什么？" class="headerlink" title="七、什么是“蜜网”？与蜜罐的联系和区别是什么？"></a>七、什么是“蜜网”？与蜜罐的联系和区别是什么？</h2><p>蜜网（Honeynet）是一个比蜜罐更为复杂和全面的概念，它不仅仅是一个单一的诱骗系统，而是一个由多个蜜罐和其他安全组件组成的网络。蜜网的主要目的是构建一个高度可控的环境，以收集和分析来自攻击者的信息，同时提供一个平台来研究和应对网络安全威胁。与蜜罐相比，蜜网的区别主要体现在以下几个方面：</p>
-<ol>
-<li>规模与复杂性：蜜网是一个网络，通常包含多个蜜罐以及其他安全组件，如入侵检测系统、防火墙等。而蜜罐则是一个单一的、独立的系统。因此，蜜网在规模和复杂性上通常要大于蜜罐。</li>
-<li>交互性：蜜网中的蜜罐可以模拟各种不同的系统和设备，如Windows、Linux、路由器等，从而提供更具交互性的环境，吸引攻击者进行更深入的攻击。而蜜罐通常只能模拟一个特定的系统或服务。</li>
-<li>数据收集与分析：蜜网通过集中监控和管理所有进出蜜网的数据，可以收集到更丰富的攻击信息，包括攻击者的工具、方法、动机等。同时，蜜网还提供了更强大的数据分析和处理能力，以支持更深入的安全研究。</li>
-</ol>
-<p>联系方面，蜜罐和蜜网都是用于诱捕攻击者的安全工具，它们都是通过模拟漏洞和弱点来吸引攻击者的注意。此外，蜜罐可以作为蜜网的一个组成部分，通过将其集成到蜜网中，可以构建一个更完整、更全面的安全监控体系。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/65245d9c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/65245d9c/" itemprop="url">2023年我都干了啥？</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-07T17:07:44+08:00">
-                2024-02-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:37+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">人生</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%BA%E7%94%9F/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index">
-                    <span itemprop="name">程序人生</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/65245d9c/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/65245d9c/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/65245d9c/" class="leancloud_visitors" data-flag-title="2023年我都干了啥？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>中国人都喜欢过春节，2024年农历新年来临之际，又到了回首过去展望未来的时候。<br>在2023年年初的时候就在《<a href="http://xiejava.ishareread.com/posts/c33148ad/" target="_blank" rel="noopener">写给两年后2025年的自己</a>》立了flag，要练好架子鼓、实现英语阅读的自由、写技术博客，换车等，一年过去了进度怎么样呢？2023年我都干了啥？<br>很多时候我都在问自己，自己的兴趣到底是什么？兴趣是一个人对特定事物或活动的喜好和热爱，它通常表现为一种积极的、自发的、持久的倾向，可以激发人们的热情和动力，使人们愿意投入时间和精力去探索和体验。<br>所以我的兴趣是打鼓、看书、写代码、旅行。</p>
-<h2 id="一、打鼓"><a href="#一、打鼓" class="headerlink" title="一、打鼓"></a>一、打鼓</h2><p>2021年底萌生了学习架子鼓的想法，经过一段时间的努力彻底明白了《<a href="http://xiejava.ishareread.com/posts/ba190f8/" target="_blank" rel="noopener">任何说30天快速学会架子鼓的都是骗人的！</a>》，抛弃了速成的念头。希望通过两到三年的学习能够入个门自娱自乐一下。两年过去了，在2023年有段时间还是练得比较勤快，基本上每天都有练一个小时，无赖是全靠自学且资质平平所以进步比较缓慢，一首《感官先生》练了我两个多月。不过还是可以敲几首简单的歌了。2023年在抖音上发了6首完整的架子鼓演奏视频（抖音号：xiejava）见证我的努力和进步。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240207/1-xiejava%E6%8A%96%E9%9F%B3.jpg" alt="xiejava抖音" title="xiejava抖音"> </p>
-<h2 id="二、看书观影"><a href="#二、看书观影" class="headerlink" title="二、看书观影"></a>二、看书观影</h2><p>我有个习惯就是每看一本书或看一部电影都会在豆瓣上记录一下，2023年工作很忙，很少看电影，看也书不多，在豆瓣上记录了看了9部电影、14本书。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240207/2-%E8%B1%86%E7%93%A3%E8%AF%BB%E4%B9%A6.jpg" alt="看书记录" title="豆瓣看书记录"><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240207/3-%E8%B1%86%E7%93%A3%E8%A7%82%E5%BD%B1.jpg" alt="观影记录" title="豆瓣观影记录"></p>
-<p>2023年重新回味了经典港剧《无间道》，看了国产科幻大片《流浪地球2》及很火的电视剧《狂飙》，感受到了国产剧的崛起。<br>2023年虽然看书不多只记录了14本，但是我做了一些改变，不求数量，重点是主题阅读构建自己的知识架构体系。历史类的书看得比较多，新书看了二战相关的《最长的一天》、《遥远的桥》，科技类看了《芯片战争》、《ChatGPT:人类新纪元》，技术方面的书主要是关于机器学习方面的包括《Python机器学习基础教程》、《数据分析咖哥十话》等，其他还看了《红星照耀中国》、《三体：地球往事》等。<br>主要还是以历史和技术类的为主，很多书看了就忘了，所以2023年重读了一些书，包括《文明之光》系列的4册等。给自己做了个约定，自己认为经典的书，至少要看三遍。</p>
-<h2 id="三、写博客"><a href="#三、写博客" class="headerlink" title="三、写博客"></a>三、写博客</h2><p>2023年写了42篇博客，主要是网络安全和数据分析相关的技术博客。因为目前在从事网络安全相关方面的工作，平时对数据分析机器学习感兴趣，这方面的内容会多一点。技术类的博客主要发表在CSDN，读书及书评发表在豆瓣，当然还有自己的自留地 《<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">xiejava’s blog</a>》 所有的博客文章都会在这里。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240207/3-CSDN1.png" alt="CSDN1" title="CSDN发布的原创博文数"><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240207/3-CSDN2.png" alt="CSDN2" title="CSDN博文上榜数"></p>
-<p>2023年在CSDN发布了37篇原创博文，上榜了273次，每次上榜都坚定了我写博客的心。<br>2023年开通了微信公众号fullbug，经过一年的努力在公众号上发布了116篇文章，公众号订阅用户也到1407，1407个订阅用户就是对我小小的鼓励，激励我持续的输出。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240207/4-fullbug%E5%85%AC%E4%BC%97%E5%8F%B7.png" alt="fullbug微信公众号" title="fullbug微信公众号"></p>
-<h2 id="四、计划"><a href="#四、计划" class="headerlink" title="四、计划"></a>四、计划</h2><p>都2024年了，架子鼓、实现英语阅读的自由、写技术博客，换车等，一年过去了进度怎么样呢？离2025年的目标还差多远呢？</p>
-<p><strong>架子鼓</strong>：目前的水平还只能僵硬的对着动态鼓谱敲几首简单的歌，离架子鼓自由还差很远，2024年将继续努力，持续的在抖音上发布练习视频，让大家监督，让自己看到自己的努力和进步，争取在2025实现几首比较经典歌曲的熟练的演奏。</p>
-<p><strong>英语</strong>：英语和架子鼓一样是靠时间练习和积累的，在写了一篇《<a href="http://xiejava.ishareread.com/posts/a9bec41d/" target="_blank" rel="noopener">学习英语，你认为“长期”的坚持是多长，“大量”的阅读又是多少？</a>》的博文后2023年基本没有怎么看英语，本来就不好的英语越发退步了。对于英语已经放弃治疗了。人的精力毕竟是有限的，同时要做好几件事是非常困难的，所以英语自由的计划估计要缓一缓了，等架子鼓学得差不了再来学英语吧。我想如果能够把架子鼓学会，同样也能够把英语学会。</p>
-<p><strong>博客</strong>：2025年立的flag是CSDN账号的粉丝到10W，经过2023年的努力目前CSDN的粉丝到了3.7W，离10W还有不少的差距，需要在2024年更加努力的持续输出高质量的文章才有可能达到这个目标。</p>
-<p><strong>旅行</strong>：旅行虽然是兴趣之一，一直在憧憬说走就走的旅行，但从来就没有成行过。2023年更是哪里都没有去，2025年的flag之一就是要先换车。在2023年底终于如愿换了台领克08的新能源SUV，见《<a href="http://xiejava.ishareread.com/posts/a0c94fff/" target="_blank" rel="noopener">颜值与实力并存-领克08提车和用车感受</a>》。祖国的大好河山，我想去看看！世界那么大，我想去走走！</p>
-<hr>
-<p> 作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
- <center> 
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2981,7 +2971,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">212</span>
+                  <span class="site-state-item-count">214</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3093,7 +3083,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">432.4k</span>
+    <span title="Site words total count">434.9k</span>
   
   
 <!--51la网站应用监控-->
