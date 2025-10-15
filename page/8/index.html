@@ -313,6 +313,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/ff1920f8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ff1920f8/" itemprop="url">网络安全产品之认识入侵防御系统</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-21T14:57:01+08:00">
+                2024-01-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:35+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ff1920f8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ff1920f8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ff1920f8/" class="leancloud_visitors" data-flag-title="网络安全产品之认识入侵防御系统">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由于网络安全威胁的不断演变和增长。随着网络技术的不断发展和普及，网络攻击的种类和数量也在不断增加，给企业和个人带来了巨大的安全风险。传统的防火墙、入侵检测防护体系等安全产品在面对这些威胁时，存在一定的局限性和不足，无法满足当前网络安全的需求。入侵防御系统(IPS)作为一种主动防御的解决方案应运而生。它可以实时检测和防御网络流量中的恶意攻击和威胁，通过串接的方式部署在网络中，对入侵行为进行实时阻断，从而极大地降低了入侵的危害。入侵防御系统（IPS）的出现弥补了传统安全产品的不足，为网络安全提供了更加全面和有效的防护方案。前面介绍了入侵检测系统（IDS）《<a href="http://xiejava.ishareread.com/posts/e5ea6795/" target="_blank" rel="noopener">网络安全产品之认识入侵检测系统</a>》，本文我们来认识一下入侵防御系统（IPS）。</p>
+<h2 id="一、什么是入侵防御系统"><a href="#一、什么是入侵防御系统" class="headerlink" title="一、什么是入侵防御系统"></a>一、什么是入侵防御系统</h2><p><strong>入侵防御系统（IPS）</strong> 是一种网络安全设施，主要用于监测和防御网络或系统活动中存在的恶意攻击和威胁。IPS能够监视网络流量和系统活动，检测已知和未知的攻击行为，一旦发现威胁，会立即启动防御机制，采取相应的措施来阻止或减轻攻击的影响。IPS倾向于提供主动防护，其设计宗旨是预先对入侵活动和攻击性网络流量进行拦截，避免其造成损失，而不是简单地在恶意流量传送时或传送后才发出警报。能够在保护网络和计算机系统免受攻击方面发挥强大的作用。</p>
+<h2 id="二、入侵防御系统的主要功能"><a href="#二、入侵防御系统的主要功能" class="headerlink" title="二、入侵防御系统的主要功能"></a>二、入侵防御系统的主要功能</h2><ol>
+<li><strong>实时监测和防御</strong>：IPS能够实时监测网络流量和系统活动，一旦发现异常或恶意行为，能够立即启动防御机制，阻断恶意流量，防止攻击扩散。</li>
+<li><strong>网络入侵防护</strong>：IPS能够提供针对多种协议和层面的防护，包括网络层、应用层和系统层，全面防御各种攻击，如缓冲区溢出攻击、木马、蠕虫等。实时、主动拦截黑客攻击、蠕虫、网络病毒、后门木马、Dos等恶意流量，保护企业信息系统和网络架构免受侵害，防止操作系统和应用程序损坏或宕机。</li>
+<li><strong>深度检测和分析</strong>：IPS具备深度包检测（DPI）技术，能够对数据包进行深入分析，识别隐藏在其中的恶意代码、恶意命令或恶意流量模式等。</li>
+<li><strong>威胁情报整合</strong>：IPS能够整合威胁情报数据，了解最新的攻击手段、恶意软件、漏洞利用等信息，从而能够及时更新检测规则和防御策略。</li>
+<li><strong>自定义防护策略</strong>：用户可以根据自己的需求，通过自定义特征码进行防护，使IPS更加适应特定环境下的安全需求。</li>
+<li><strong>Web安全</strong>：基于互联网Web站点的挂马检测结果，结合URL信誉评价技术，保护用户在访问被植入木马等恶意代码的网站时不受侵害，及时、有效地第一时间拦截Web威胁。</li>
+<li><strong>流量控制和优化</strong>：阻断一切非授权用户流量，管理合法网络资源的利用，有效保证关键应用全天候畅通无阻，通过保护关键应用带宽来不断提升企业IT产出率和收益率。</li>
+<li><strong>上网行为监控</strong>：全面监测和管理IM即时通讯、P2P下载、网络游戏、在线视频，以及在线炒股等网络行为，协助企业辨识和限制非授权网络流量，更好地执行企业的安全策略。</li>
+</ol>
+<h2 id="三、入侵防御系统的工作原理"><a href="#三、入侵防御系统的工作原理" class="headerlink" title="三、入侵防御系统的工作原理"></a>三、入侵防御系统的工作原理</h2><p>入侵防御系统（IPS）的工作原理主要基于实时检测和拦截网络流量中的恶意攻击和威胁。IPS通过直接嵌入到网络流量中，对网络流量进行实时检查，对异常活动或可疑内容进行检查后，再通过其他端口将信息传送到内部系统中。如果出现问题的数据包以及其他来自同一源头的后续数据包，都能在IPS设备中预先被过滤掉，这样就可以阻止恶意攻击和威胁进入网络。IPS还可以提供主动保护，针对被明确判断为攻击行为、会对网络、数据造成危害的恶意行为提前进行检测和防御，降低或是减免使用者对异常状况的处理资源开销。</p>
+<p>入侵防御系统的工作原理主要基于以下几个关键技术：</p>
+<ol>
+<li>流量分析：IPS能够实时监控网络流量，并对流量中的数据包进行分类、标记和检测。通过分析流量的协议、端口、流向等信息，以及数据包的载荷内容，IPS能够识别出异常流量和潜在的攻击行为。</li>
+<li>威胁情报：IPS通过收集和分析威胁情报数据，了解最新的攻击手段、恶意软件、漏洞利用等信息，从而能够及时更新检测规则和防御策略。威胁情报可以来自于网络威胁情报平台、安全社区、安全研究机构等。</li>
+<li>深度包检测（DPI）：DPI技术可以对数据包进行深度内容检测，识别出数据包中的各种应用层协议和内容特征。通过DPI技术，IPS能够检测出隐藏在数据包中的恶意代码、恶意命令或恶意流量模式等。</li>
+<li>行为分析：IPS通过分析网络流量中数据包的行为模式，能够识别出异常行为和潜在的攻击行为。例如，IPS可以检测出未经授权的网络扫描、恶意扫描等行为，并采取相应的防御措施。</li>
+<li>防御规则：IPS通过预设的防御规则，能够根据不同的攻击类型和场景，采取不同的防御措施。例如，对于已知的攻击手段，IPS可以采取过滤、阻断、隔离等措施；对于未知的攻击手段，IPS可以采取动态防御、沙箱隔离等措施。</li>
+</ol>
+<p>入侵防御系统通过实时检测、分析网络流量和行为，以及采用威胁情报、深度包检测、行为分析和防御规则等技术手段，实现对网络安全的主动防护和实时防御。</p>
+<h2 id="四、入侵防御系统的分类"><a href="#四、入侵防御系统的分类" class="headerlink" title="四、入侵防御系统的分类"></a>四、入侵防御系统的分类</h2><p>入侵防御系统（IPS）有多种分类方式，以下是常见的几种分类：</p>
+<ol>
+<li>基于部署方式的分类：<br>● 串联部署：IPS串联部署在网络中，能够实时检测并阻断攻击流量，对正常的网络流量不产生影响。<br>● 并联部署：IPS并联部署不会对网络流量产生影响，不会造成数据延迟、丢包等问题。</li>
+<li>基于应用场景的分类：<br>● 网络入侵防御系统（NIPS）：普遍安装在需要保护的网段中，对网段中传输的各种数据包进行实时监视，并对这些数据包进行分析和检测。如果发现入侵行为或可疑事件，入侵防御系统就会发出警报甚至切断网络连接。<br>● 主机入侵防御系统（HIPS）：通过在主机/服务器上安装软件代理程序，防止网络攻击入侵操作系统及应用程序，保护服务器的安全弱点不被不法分子所利用。</li>
+<li>基于防护对象的分类：<br>● 应用入侵防御系统（AIPS）：专门针对应用层进行防护的入侵防御系统。<br>● 数据库入侵防御系统（DBIPS）：专门针对数据库层进行防护的入侵防御系统。</li>
+<li>基于技术原理的分类：<br>● 基于特征的入侵防御系统：通过匹配攻击特征来检测和防御攻击。<br>● 基于行为的入侵防御系统：通过分析网络流量和行为来检测和防御攻击。</li>
+<li>基于安全策略的分类：<br>● 主动防御系统：主动防御系统能够预防、检测并快速响应各种攻击，它通常包括防火墙、入侵检测系统、漏洞扫描器和其他安全组件。<br>● 被动防御系统：被动防御系统主要用于监视和记录网络流量和活动，它通常包括网络监控工具、日志分析器和审计工具等。</li>
+</ol>
+<p>以上分类方式并不是互斥的，有些IPS产品可能同时具备多种分类的特点。在实际应用中，需要根据具体需求选择适合的IPS产品。</p>
+<h2 id="五、入侵防御与防火墙的区别"><a href="#五、入侵防御与防火墙的区别" class="headerlink" title="五、入侵防御与防火墙的区别"></a>五、入侵防御与防火墙的区别</h2><p>入侵防御与防火墙是两种不同的网络安全技术，它们在保护网络安全方面各有侧重。<br>防火墙主要是通过对网络流量进行过滤和阻止，来保护网络免受未经授权的访问和攻击。它是一种被动的防御方式，根据预设的规则对进出网络的数据包进行控制，只允许符合规则的数据包通过。防火墙可以阻止大多数已知的攻击，但对于一些新的、未知的攻击手段，防火墙可能无法进行有效防御。</p>
+<p>入侵防御则是一种更深入的防护方式，它通过对网络流量进行实时监控和分析，发现和阻止潜在的网络攻击行为。与防火墙相比，入侵防御具有更强的主动性和防御能力。它不仅可以检测和防御已知的攻击手段，对于一些未知的攻击，入侵防御系统也可以通过行为分析、深度包检测等技术手段进行检测和防御。此外，入侵防御系统还可以提供实时的检测和响应功能，一旦发现异常流量或攻击行为，可以立即采取相应的防御措施，如隔离、过滤等，从而降低网络受到攻击的风险。</p>
+<p>综上所述，防火墙主要是对网络流量进行过滤和阻止，以防止未经授权的访问和攻击；而入侵防御则通过对网络流量进行实时监控和分析，发现和阻止潜在的网络攻击行为，提供更深入的防护。在实际应用中，可以将防火墙和入侵防御系统结合使用，以实现对网络安全的全面保护。</p>
+<h2 id="六、入侵防御系统的优势和局限性"><a href="#六、入侵防御系统的优势和局限性" class="headerlink" title="六、入侵防御系统的优势和局限性"></a>六、入侵防御系统的优势和局限性</h2><p>入侵防御系统（IPS）的优势主要包括：</p>
+<ol>
+<li>实时阻断攻击：设备采用直路方式部署在网络中，能够在检测到入侵时，实时对入侵活动和攻击性网络流量进行拦截，将对网络的入侵降到最低。</li>
+<li>深层防护：新型的攻击都隐藏在TCP/IP协议的应用层里，入侵防御能检测报文应用层的内容，还可以对网络数据流重组进行协议分析和检测，并根据攻击类型、策略等确定应该被拦截的流量。</li>
+<li>全方位防护：入侵防御可以提供针对蠕虫、病毒、木马、僵尸网络、间谍软件、广告软件、CGI（Common Gateway Interface）攻击、跨站脚本攻击、注入攻击、目录遍历、信息泄露、远程文件包含攻击、溢出攻击、代码执行、拒绝服务、扫描工具、后门等攻击的防护措施，全方位防御各种攻击，保护网络安全。</li>
+<li>内外兼防：入侵防御不但可以防止来自于企业外部的攻击，还可以防止发自于企业内部的攻击。系统对经过的流量都可以进行检测，既可以对服务器进行防护，也可以对客户端进行防护。</li>
+<li>可扩展性：IPS可以提供可扩展的安全性，随着网络流量的增长，IPS可以相应地扩展其能力，以满足不断增长的安全需求。</li>
+</ol>
+<p>然而，入侵防御系统也存在一些局限性：</p>
+<ol>
+<li>误报和漏报：IPS可能会误报或漏报某些正常流量或攻击流量，这可能导致正常业务流量被拦截或攻击流量被漏过。</li>
+<li>处理能力：IPS需要处理大量的网络流量，因此需要高性能的处理能力来确保实时检测和拦截攻击。</li>
+<li>部署复杂性：IPS的部署相对复杂，需要正确配置以确保其正常工作并发挥最佳效果。</li>
+<li>无法防御未知威胁：IPS主要依赖于已知的威胁特征来检测和防御攻击，对于未知威胁的防御能力有限。</li>
+</ol>
+<p>虽然入侵防御系统存在一些局限性，但在提供实时保护和深度防护方面具有显著优势。</p>
+<h2 id="七、入侵防御系统的使用方式"><a href="#七、入侵防御系统的使用方式" class="headerlink" title="七、入侵防御系统的使用方式"></a>七、入侵防御系统的使用方式</h2><p>入侵防御系统（IPS）通常通过串联部署在具有重要业务系统或内部网络安全性、保密性较高的网络出口处。</p>
+<h2 id="八、入侵防御系统与其他安全设备的集成"><a href="#八、入侵防御系统与其他安全设备的集成" class="headerlink" title="八、入侵防御系统与其他安全设备的集成"></a>八、入侵防御系统与其他安全设备的集成</h2><p>入侵防御系统通过高效的集成引擎，实现流量分析、异常或攻击行为的告警及阻断、2～7层安全防护控制等功能，并可以可视化展示用户行为和网络健康状况。与入侵检测系统（IDS）相比，IPS不仅能检测入侵的发生，更能通过一定的响应方式，实时终止入侵行为的发生和发展，实时保护信息系统不受实质性的攻击。</p>
+<p>此外，IPS还可以提供DoS/DDoS检测及预防机制，辨别合法数据包与DoS/DDoS攻击数据包，保证企业在遭受攻击时也能使用网络服务。</p>
+<p>入侵防御系统（IPS）可以与其他多种安全设备集成，以提高整个网络的安全性。以下是一些常见的集成方式：</p>
+<ol>
+<li>与防火墙集成：防火墙是网络安全的基础设施，可以控制网络流量的进出。IPS可以与防火墙集成，利用防火墙的过滤功能，将恶意流量或攻击源阻断在外，从而降低网络受到攻击的风险。</li>
+<li>与反病毒软件集成：反病毒软件可以对网络流量和文件进行病毒扫描和清除。IPS可以与反病毒软件集成，在检测到恶意流量或攻击时，及时清除其中的病毒，保护网络免受病毒的侵害。</li>
+<li>与漏洞扫描器集成：漏洞扫描器可以对网络中的主机和设备进行漏洞扫描和风险评估。IPS可以与漏洞扫描器集成，在检测到漏洞或潜在的攻击时，及时提醒或修复漏洞，提高网络的安全性。</li>
+<li>与日志分析工具集成：日志分析工具可以对网络设备、服务器和应用系统的日志进行分析和处理。IPS可以与日志分析工具集成，将检测到的异常行为和攻击记录到日志中，方便后续的分析和处理。</li>
+<li>与安全事件管理（SIEM）系统集成：SIEM系统可以对各种安全设备和系统的日志进行收集、整合和分析。IPS可以与SIEM系统集成，将检测到的安全事件上报给SIEM系统，实现统一的安全事件管理和响应。</li>
+</ol>
+<p>总的来说，入侵防御系统是一种能够防御防火墙所不能防御的深层入侵威胁的在线部署安全产品，是对防病毒软件和防火墙的补充。在实际应用中，可以根据具体需求和网络环境选择适合的集成方式，以提高整个网络的安全性。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e5ea6795/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2611,259 +2896,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/48309864/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/48309864/" itemprop="url">安全防御之入侵检测与防范技术</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-05T09:33:54+08:00">
-                2024-01-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:32+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/48309864/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/48309864/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/48309864/" class="leancloud_visitors" data-flag-title="安全防御之入侵检测与防范技术">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>安全防御中的入侵检测与防范技术主要涉及到入侵检测系统（IDS）和入侵防御技术（IPS）。<br>入侵检测系统（IDS）是一种对入侵行为自动进行检测、监控和分析的软件与硬件的组合系统。IDS通过从计算机网络或系统中的若干关键点收集信息，并对其进行分析，从中发现网络或系统中是否有违反安全策略的行为和遭到攻击的迹象。<br>入侵防御技术（IPS）是一种主动的安全防御技术，旨在防止恶意软件入侵和数据泄露。它通过实时监测和拦截网络流量中的威胁，保护网络和系统免受攻击。</p>
-<h2 id="一、入侵检测技术（IDS）"><a href="#一、入侵检测技术（IDS）" class="headerlink" title="一、入侵检测技术（IDS）"></a>一、入侵检测技术（IDS）</h2><h3 id="1、入侵检测技术的定义"><a href="#1、入侵检测技术的定义" class="headerlink" title="1、入侵检测技术的定义"></a>1、入侵检测技术的定义</h3><p>通过对计算机网络或计算机系统中的若干关键点收集信息并进行分析，从中发现网络或系统中是否有违反安全策略的行为和被攻击的迹象，进行入侵检测的软件与硬件的组合就是入侵检测系统（IDS）。入侵检测系统（IDS）是一种用于检测、记录和响应计算机系统或网络中未授权活动的软件或硬件工具。它通过实时监控和分析网络流量、系统日志等信息，发现潜在的入侵行为，并及时采取相应的措施来应对。</p>
-<p>IDS执行一般分为三个步骤，依次为信息收集、数据分析、响应（被动响应和主动响应）。</p>
-<ul>
-<li>信息收集：IDS信息收集的内容包括系统、网络、数据及用户活动的状态和行为，信息一般来自系统日志、目录以及文件中的异常改变、程序执行中的异常行为及物理形式的入侵信息四个方面。 </li>
-<li>数据分析：数据分析是IDS的核心。它首先构建分析器，把收集到的信息经过预处理，建立一个行为分析引擎或模型，然后向模型中植入时间数据，在知识库中保存植入数据的模型。数据分析一般通过模式匹配、统计分析和完整性分析3种手段进行，模式匹配和统计分析用于实时入侵检测，而完整性分析则用于事后分析。常用于数据分析的有五种统计模型： 操作模型、方差、多元模型、马尔柯夫过程模型、时间序列分析。</li>
-<li>响应：IDS在发现入侵后会及时作出响应，包括切断网络连接、记录事件和报警等。响应一般分为主动响应和被动响应，主动响应主要来阻止攻击或影响进而改变攻击的进程，由用户驱动或系统本身自动执行，可对入侵者采取断开连接等行动、修正系统环境或收集有用信息；被动响应主要是报告和记录所检测出的问题，包括告警和通知、简单网络管理协议（SNMP）陷阱和插件等。IDS还可以与其他安全系统集成，如防火墙、反病毒软件等，以提供更全面的安全防护。</li>
-</ul>
-<h3 id="2、入侵检测技术的发展趋势和发展历史"><a href="#2、入侵检测技术的发展趋势和发展历史" class="headerlink" title="2、入侵检测技术的发展趋势和发展历史"></a>2、入侵检测技术的发展趋势和发展历史</h3><p>IDS的发展已经历了四个主要阶段：<br>第一阶段是以基于协议解码和模式匹配为主的技术，其优点是对于已知的攻击行为非常有效，各种已知的攻击行为可以对号入座，误报率低；缺点是高超的黑客采用变形手法或者新技术可以轻易躲避检测，漏报率高。<br>第二阶段是以基于模式匹配、简单协议分析和异常统计为主的技术，其优点是能够分析处理一部分协议，可以进行重组；缺点是匹配效率较低，管理功能较弱。这种检测技术实际上是在第一阶段技术的基础上增加了部分对异常行为分析的功能。<br>第三阶段是以基于完全协议分析、模式匹配和异常统计为主的技术，其优点是误报率、漏报率和滥报率较低，效率高，可管理性强，并在此基础上实现了多级分布式的检测管理；缺点是可视化程度不高，防范及管理功能较弱。<br>第四阶段是以基于安全管理、协议分析、模式匹配和异常统计为主的技术，其优点是入侵管理和多项技术协同工作，建立全局的主动保障体系，具有良好的可视化、可控性和可管理性。以该技术为核心，可构造一个积极的动态防御体系，即IMS——入侵管理系统。</p>
-<h3 id="3、入侵检测技术存在的问题"><a href="#3、入侵检测技术存在的问题" class="headerlink" title="3、入侵检测技术存在的问题"></a>3、入侵检测技术存在的问题</h3><p>入侵检测的原理主要包括误用检测和异常检测两种方式。误用检测主要根据已知的攻击模式进行检测，而异常检测则是首先总结正常操作应该具有的特征（用户轮廓），当用户活动与正常行为有重大偏离时即被认为是入侵。异常检测可以发现未知的攻击方法，但误报率较高。</p>
-<p>IDS的特点包括监测速度快、隐蔽性好、视野更宽、较少的监测器、攻击者不易转移证据、操作系统无关性以及不占用被保护的系统资源等。这些特点使得IDS能够有效地发现并应对各种网络攻击。<br>但是，入侵检测技术在实际应用中依然存在很多问题：<br>1）误报<br>误报是指被入侵检测系统测出但其实是正常及合法使用受保护网络和计算机的警报。假警报不但令人讨厌，并且降低入侵检测系统的效率。攻击者可以而且往往是利用包结构伪造无威胁“正常”假警报，以诱使收受人把入侵检测系统关掉。<br>2）精巧及有组织的攻击<br>攻击可以来自四方八面，特别是一群人组织策划且攻击者技术高超的攻击，攻击者花费很长时间准备，并发动全球性攻击，要找出这样复杂的攻击是一件难事。<br>3）数据采集、数据分析方法不足<br>高速网络技术，尤其是交换技术以及加密信道技术的发展，使得通过共享网段侦听的网络数据采集方法显得不足，而巨大的通信量对数据分析也提出了新的要求。<br>4）检测模型始终落后于攻击者的新知识和技术手段</p>
-<p>入侵检测系统构建模型始终落后于攻击者的新知识和技术手段。主要表现在以下几个方面：<br>a、攻击者利用加密技术欺骗IDS，躲避IDS的安全策略；<br>b、攻击者快速发动进攻，使IDS无法反应，大规模的攻击，使IDS判断出错；<br>c、直接破坏IDS；<br>d、智能攻击技术，边攻击边学习，变IDS为攻击者的工具。<br>在安全防御中，IDS与防火墙等其他安全设备协同工作，共同保护网络的安全。防火墙主要用于抵御外部网络的入侵，但对于内部攻击几乎束手无策。而IDS则作为防火墙的合理补充，帮助系统应对网络攻击，扩展了系统管理员在安全审计、监视、进攻识别和响应等方面的安全管理能力，提高了信息安全基础结构的完整性。</p>
-<h2 id="二、入侵防御技术（IPS）"><a href="#二、入侵防御技术（IPS）" class="headerlink" title="二、入侵防御技术（IPS）"></a>二、入侵防御技术（IPS）</h2><h3 id="1、入侵防御技术的定义"><a href="#1、入侵防御技术的定义" class="headerlink" title="1、入侵防御技术的定义"></a>1、入侵防御技术的定义</h3><p>入侵防御系统（IPS： Intrusion Prevention System）是通过直接嵌入到网络流量中，预先对入侵活动和攻击性网络流量进行拦截，避免造成损失的主动防护系统。IPS通过一个网络接口接收来自外部系统的流量，经过检查确认其中不包含异常活动或可疑内容后，再通过另外一个端口将它传送到内部系统中，能够监视网络或网络设备的网络资料传输行为，并能即时中断、调整或隔离一些不正常或是具有伤害性的网络资料传输行为。</p>
-<h3 id="2、IPS的工作原理"><a href="#2、IPS的工作原理" class="headerlink" title="2、IPS的工作原理"></a>2、IPS的工作原理</h3><p>入侵防御技术（IPS）是一种主动的安全防御技术，旨在防止恶意软件入侵和数据泄露。它通过实时监测和拦截网络流量中的威胁，保护网络和系统免受攻击。</p>
-<p>IPS的工作原理包括以下几个步骤：</p>
-<ol>
-<li>数据包捕获：IPS通过在网络接口上捕获数据包来实时监测网络流量。这些数据包可以是流入或流出的，以全面检测潜在的威胁。</li>
-<li>威胁识别：IPS使用先进的检测算法和特征库来识别恶意软件、恶意行为和其他潜在威胁。它还可以识别各种攻击类型，如SQL注入、跨站脚本攻击、缓冲区溢出等。</li>
-<li>威胁拦截：一旦IPS识别到威胁，它会立即采取措施拦截恶意流量，以防止攻击成功。这些措施可能包括丢弃数据包、断开连接、隔离受感染的主机等。</li>
-<li>警报与日志：IPS会生成警报和日志记录，以通知管理员存在威胁并提供详细信息。这些信息对于后续分析和改进安全策略非常有用。</li>
-<li>自我保护：为了防止IPS自身被攻破，它通常具有自我保护机制。这些机制可能包括防火墙规则、白名单功能、进程保护等，以确保IPS的正常运行和有效性。<br>入侵防御技术（IPS）通过实时监测和拦截网络流量中的威胁，提供了一种有效的安全防御手段。它可以保护网络和系统免受各种攻击的侵害，并具有自我保护机制以确保其有效性。</li>
-</ol>
-<h3 id="3、IPS的功能特点和性能扩展"><a href="#3、IPS的功能特点和性能扩展" class="headerlink" title="3、IPS的功能特点和性能扩展"></a>3、IPS的功能特点和性能扩展</h3><h4 id="1）IPS-功能特点"><a href="#1）IPS-功能特点" class="headerlink" title="1）IPS-功能特点"></a>1）IPS-功能特点</h4><p>IPS是一种防御深层入侵行为的串接部署设备。自IPS概念出现以来，用户和厂商的最大困惑就是：如何确保IPS无误报和滥报，在实时发现攻击行为的同时，保证IPS不会成为新的网络故障点。未解决这个问题，IPS具有其独特的功能特点：<br>（1）精确阻断<br>IPS的重点就是要达到精确阻断，即精确判断各种深层的攻击行为，并实现实时的阻断。 确保中断、调整或隔离的是不正常或是具有伤害性的网络行为。<br>（2）深层防御<br>IPS的第二个重点就是防御各种深层入侵行为，这也是IPS系统区别于其他安全产品的本质特点。即在确保精确阻断的基础上，尽量多地发现攻击行为，如SQL注入攻击、缓冲区溢出攻击、恶意代码攻击、后门、木马、间谍软件等达到深层防御。 </p>
-<h4 id="2）IPS-性能扩展"><a href="#2）IPS-性能扩展" class="headerlink" title="2）IPS-性能扩展"></a>2）IPS-性能扩展</h4><p>IPS常用的攻击检测方法有两种：一种方法是通过定义攻击行为的数据特征来实现对已知攻击的检测，其优势是技术上实现简单、易于扩充、可迅速实现对特定新攻击的检测和拦截，但仅能识别已知攻击、抗变种能力弱；另一种方法是通过分析攻击产生原理，定义攻击类型的统一特征，能准确识别基于相同原理的各种攻击、不受攻击变种的影响，但技术门槛高、扩充复杂、应对新攻击速度有限。 </p>
-<h3 id="4、IPS的优势和弱点"><a href="#4、IPS的优势和弱点" class="headerlink" title="4、IPS的优势和弱点"></a>4、IPS的优势和弱点</h3><p>实时检测与主动防御是IPS最为核心的设计理念，也是其区别于防火墙和IDS的立足之本。为实现这一理念，IPS在如下四个方面实现了技术突破，形成了不可低估的优势：<br>1）在线安装<br>IPS保留IDS实时检测的技术与功能，但是却采用了防火墙式的在线安装，即直接嵌入到网络流量中，通过一个网络端口接收来自外部系统的流量，经过检查确认其中不包含异常活动或可疑内容后，再通过另外一个端口将它传送到内部系统中；<br>2）实时阻断<br>IPS具有强有力的实时阻断功能，能够预先对入侵活动和攻击性网络流量进行拦截，避免其造成任何损失；<br>3）先进的检测技术<br>主要是并行处理检测和协议重组分析。所谓并行处理检测是指所有流经IPS的数据包，都采用并行处理方式进行过滤器匹配，实现在一个时钟周期内，遍历所有数据包过滤器；<br>4）特殊规则植入功能<br>IPS允许植入特殊规则以阻止恶意代码。IPS能够辅助实施可接收应用策略（AUP），如禁止使用对等的文件共享应用和占有大量带宽的免费互联网电话服务工具等。</p>
-<p>尽管如此，IPS仍有其不可忽视的弱点：<br>1）总体拥有成本高<br>高可用性实时计算需求决定了IPS必须选用高端的专用计算设备，使其成本相对较高。<br>2）单点故障<br>IPS的阻断能力决定其必须采用网络嵌入模式，而这就可能造成单点故障。<br>3）性能瓶颈<br>即使IPS设备不出现故障，它仍然是一个潜在的网络瓶颈，不仅会增加滞后时间，而且会降低网络的效率，因此，绝大多数高端IPS产品供应商都通过使用自定义硬件（FPGA、网络处理器或者ASIC芯片）来提高IPS的运行效率，以减少其对于业务网络的负面影响。<br>4）误报与漏报<br>在网络流量几乎成几何级数增加的情况下，一旦生成警报，最基本的要求就是不让“误报”有可乘之机，导致合法流量也很有可能被意外拦截。</p>
-<p>入侵检测系统（IDS）和入侵防御系统（IPS）都是重要的网络安全工具，但在工作方式和使用场景上有所不同。<br>IDS被视为审计类产品，主要关注于对网络或系统中的事件进行实时检测，并根据规则进行安全审计。它能够及时发现并警告系统管理员是否有入侵行为，并提供对内部攻击、外部攻击和误操作的实时保护。IDS可以分析计算机网络或系统中的关键信息，检查是否有违反安全策略的行为或被攻击的迹象。当有问题发生时，IDS会产生警报。IDS较多应用在防火墙之后，作为第二道安全闸门来提供额外的安全层。</p>
-<p>相比之下，IPS被视为一种主动的、智能的入侵检测和防范系统。IPS不仅具备IDS的功能，而且能通过响应方式实时地终止入侵行为的发生和发展。它不仅能检测攻击，还能有效阻断攻击，提供实时的保护。IPS注重主动防御，可以设置过滤器来分析数据包，阻断恶意内容的数据包，并接受进一步检查的可疑数据包。IPS的关键技术包括主动防御技术、防火墙与IPS互动技术、集成多种检测技术和硬件加速系统等。</p>
-<p>简而言之，IDS和IPS在网络安全中都发挥着重要作用。IDS主要侧重于检测入侵行为并提供警告，而IPS则更注重主动防御和实时阻断攻击。两者可以结合使用，共同为网络和系统提供更全面和有效的安全保护。</p>
-<hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2920,7 +2952,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">214</span>
+                  <span class="site-state-item-count">215</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3032,7 +3064,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">434.9k</span>
+    <span title="Site words total count">436k</span>
   
   
 <!--51la网站应用监控-->

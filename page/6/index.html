@@ -313,6 +313,244 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a0bac159/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/a0bac159/" itemprop="url">通过jsDelivr实现Github图床CDN加速</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-03-20T17:02:16+08:00">
+                2024-03-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:39+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/a0bac159/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a0bac159/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/a0bac159/" class="leancloud_visitors" data-flag-title="通过jsDelivr实现Github图床CDN加速">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  866
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近小伙伴们是否发现访问我的个人博客<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a>图片显示特别快了？<br>我的博客的图片是放在github上的，众所周知的原因，github访问不是很快，尤其是hexo博客用github做图床经常图片刷不出来。一直想换图床，直到找到了jsDelivr，通过jsDelivr实现Github的图床CDN加速后果然速度快了很多。<br>jsdelivr是一个免费的公共CDN（内容分发网络）服务，它允许网站开发者将他们的代码库、JavaScript库、字体和其他资源托管在jsdelivr上，并通过jsdelivr的CDN网络进行快速分发。使用jsdelivr可以有效地减少用户下载资源的时间，提高网页加载速度，同时减轻原始服务器的负载。<br>jsdelivr支持多种类型的文件托管，包括JavaScript、CSS、字体、图片等。开发者可以将自己的文件上传到jsdelivr，并获取一个指向这些文件的URL。然后，他们可以在自己的网站中引用这些URL，jsdelivr会自动处理文件的缓存、分发和版本控制。<br>jsdelivr的优点包括：</p>
+<ol>
+<li>高速分发：jsdelivr拥有全球分布的CDN网络，可以确保资源在全球范围内都能快速加载。</li>
+<li>可靠性高：jsdelivr提供了高可用性和容错性，确保资源的稳定性和可靠性。</li>
+<li>易于使用：开发者可以简单地通过上传文件或使用现有的库来获取资源的URL，并在网站上引用它们。</li>
+<li>开源和免费：jsdelivr是一个开源项目，提供免费的CDN服务，对开发者非常友好。</li>
+</ol>
+<p>jsdelivr的官网地址jsdelivr.com 对于gitHub的cdn加速说明如下图所示。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240320/1-jsdelivr%E5%AE%98%E7%BD%91%E7%9A%84github%E8%AF%B4%E6%98%8E.png" alt="gitHub的cdn加速说明"></p>
+<p>对于github的图床来说，要用jsdelivr的cdn加速服务很简单<br>GitHub: <code>https://&lt;jsDelivr加速域名&gt;/gh/&lt;用户&gt;/&lt;项目&gt;@&lt;版本&gt;/&lt;资源路径&gt;</code><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240320/2-github%E5%9B%BE%E5%BA%8A%E8%AF%B4%E6%98%8E.png" alt="github图床加速"></p>
+<p>拿一个实例来说明：<br>github的图床地址：<code>https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240320/1-jsdelivr官网的github说明.png</code></p>
+<p>jsdelivr的cdn加速地址为：<code>https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240320/1-jsdelivr官网的github说明.png</code></p>
+<p>对于hexo的博客来说，就是要把原来所有在博客md文件中的<strong>github图床地址换成jsdelivr的cdn加速地址</strong>。<br>写个Python程序很容易就能完成这个工作。<br><strong>代码如下：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> logutils <span class="keyword">import</span> logging</span><br><span class="line">logger=logging.getLogger(__name__)  <span class="comment">#定义模块日志记录器</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改替换文件内容，进行字符串替换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">changfile</span><span class="params">(blog_md_file,old_str,new_str)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> open(blog_md_file, <span class="string">"r+"</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> file:  <span class="comment"># 打开文件</span></span><br><span class="line">            contents = file.read()  <span class="comment"># 读取文件内容</span></span><br><span class="line">            contents = contents.replace(old_str, new_str)  <span class="comment"># 替换字符串</span></span><br><span class="line">            file.seek(<span class="number">0</span>)  <span class="comment"># 定位到文件开头</span></span><br><span class="line">            file.write(contents)  <span class="comment"># 将修改后的内容写入文件</span></span><br><span class="line">            file.truncate()  <span class="comment"># 删除文件剩余部分</span></span><br><span class="line">            logger.info(blog_md_file+<span class="string">'文件中的'</span>+old_str+<span class="string">'已替换成'</span>+new_str)</span><br><span class="line">    <span class="keyword">except</span> PermissionError:</span><br><span class="line">        logger.error(<span class="string">"Permission denied when trying to open the file."</span>)</span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">        logger.error(<span class="string">"File not found."</span>)</span><br><span class="line">    <span class="keyword">except</span> UnicodeDecodeError:</span><br><span class="line">        logger.error(<span class="string">"The file was not decoded correctly."</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取目录解析md文件并进行字符串替换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">changfilebypath</span><span class="params">(filepath=<span class="string">''</span>,old_str=<span class="string">''</span>,new_str=<span class="string">''</span>)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        files = os.listdir(filepath)</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">            <span class="keyword">if</span> file.find(<span class="string">'.md'</span>) &gt; <span class="number">0</span>:</span><br><span class="line">                blog_file = os.path.join(filepath, file)</span><br><span class="line">                changfile(blog_file,old_str,new_str)</span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError <span class="keyword">as</span> e:</span><br><span class="line">        logger.error(<span class="string">'请确认输入是否正确!'</span>,e)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    old_img_url = <span class="string">'https://xiejava1018.github.io/xiejavaimagesrc'</span>  <span class="comment"># Github图床</span></span><br><span class="line">    new_img_url = <span class="string">'https://xiejava1018.github.io/xiejavaimagesrc'</span>  <span class="comment"># jsdelivr加速</span></span><br><span class="line">    changfilebypath(filepath=<span class="string">r'D:\CloudStation\personal\xiejavablog\myhexo\myblog\source\_posts'</span>,old_str=old_img_url,new_str=new_img_url)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/913ab5e4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2627,294 +2865,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/f1b4c47/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/f1b4c47/" itemprop="url">数据安全之认识数据资产管理平台</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-02-18T14:11:32+08:00">
-                2024-02-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:37+08:00">
-                2024-06-13
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/f1b4c47/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/f1b4c47/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/f1b4c47/" class="leancloud_visitors" data-flag-title="数据安全之认识数据资产管理平台">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>随着企业数字化转型的深入，数据已经成为企业的重要资产。企业需要更加有效地管理和利用数据，以支持业务决策、优化运营和提高竞争力。本文让我们一起来认识数据资产及数据资产管理平台。</p>
-<h2 id="一、什么是数据资产"><a href="#一、什么是数据资产" class="headerlink" title="一、什么是数据资产"></a>一、什么是数据资产</h2><p>数据资产是指由个人或企业拥有或控制的，能够为企业带来未来经济利益的，以物理或电子的方式记录的数据资源。这些数据资源需要满足以下条件才能被称为数据资产：</p>
-<ol>
-<li>有价值性：数据资产必须具有价值，能够为企业带来经济利益。这种价值可以表现为直接的经济效益，如提高销售额、降低成本等，也可以表现为间接的经济效益，如提升客户满意度、优化业务流程等。</li>
-<li>可计量性：数据资产的价值必须能够进行量化和计量。这意味着数据资产需要具有可衡量和可评估的属性，可以通过数据分析和挖掘来评估其潜在价值和贡献。</li>
-<li>可读取性：数据资产必须以物理或电子的方式记录，能够被读取、存储和处理。这意味着数据资产需要具有标准化的格式和规范，能够被各种系统和工具所识别和利用。</li>
-<li>权属明确：数据资产必须具有明确的权属关系，即数据的所有权、使用权等需要清晰明确，能够被合法地拥有和控制。这有助于保护企业的数据权益，防止数据泄露和滥用。</li>
-</ol>
-<p><strong>数据资产与普通数据的主要区别在于它们的性质和价值</strong>。数据资产被视为一种有价值的资源，需要得到妥善的管理和保护，以实现其潜在的经济价值。只有满足以上条件的数据资源才能被称为数据资产。数据资产是企业重要的无形资产之一，对于企业的决策制定、业务优化和经济发展具有重要意义。因此，企业需要加强数据资产的管理和保护，提高数据的质量和价值，从而实现数据驱动的业务发展。</p>
-<h2 id="二、什么是数据资产管理平台"><a href="#二、什么是数据资产管理平台" class="headerlink" title="二、什么是数据资产管理平台"></a>二、什么是数据资产管理平台</h2><h3 id="1、什么是数据资产管理平台"><a href="#1、什么是数据资产管理平台" class="headerlink" title="1、什么是数据资产管理平台"></a>1、什么是数据资产管理平台</h3><p>数据资产管理平台是一个用于集中管理、保护和利用组织数据资产的工具。它提供了一个统一的方式来存储、访问、分析和共享数据，旨在帮助组织更好地管理和利用其数据资产。该平台通常包括数据资产盘点、元数据管理、智能数据分析、数据标准管理、数据集成管理、数据质量管理等功能模块，可以实现对数据资产的全面管理和控制。<br>数据资产管理平台的核心能力包括简洁可视化的目录构建流程、数据资产标签、数据资产服务等，可以帮助组织实现数据资产的规范管理和高效利用。同时，该平台还具备数据安全保障能力，可以确保数据的安全性和完整性，防止数据泄露和非法访问。</p>
-<h3 id="2、为什么需要数据资产管理平台"><a href="#2、为什么需要数据资产管理平台" class="headerlink" title="2、为什么需要数据资产管理平台"></a>2、为什么需要数据资产管理平台</h3><p>● <strong>数字化转型趋势</strong>：随着企业数字化转型的深入，数据已经成为企业的重要资产。企业需要更加有效地管理和利用数据，以支持业务决策、优化运营和提高竞争力。数据资产管理平台应运而生，为企业提供数据整合、分析、挖掘和利用的能力。<br>● <strong>数据复杂性增加</strong>：随着企业数据规模的不断扩大和来源的多样化，数据的复杂性也在增加。企业需要解决数据整合、数据质量、数据安全等问题，以确保数据的准确性和可靠性。数据资产管理平台通过提供数据集成、数据清洗、数据治理等功能，帮助企业解决这些问题。<br>● <strong>数据价值挖掘需求</strong>：数据资产中蕴含着巨大的价值，但如何发现并利用这些价值成为企业的挑战。数据资产管理平台通过数据分析和挖掘技术，帮助企业发现数据中的模式、趋势和洞察，从而挖掘数据的潜在价值。<br>● <strong>法规政策要求</strong>：随着数据保护法规的日益严格，企业需要确保数据的安全性和合规性。数据资产管理平台通过提供数据加密、访问控制、审计日志等功能，帮助企业满足法规政策的要求，保护数据的安全和隐私。</p>
-<p>数据资产管理平台对于现代企业来说具有重要的意义。随着大数据时代的到来，数据已经成为企业的重要资产，而如何有效地管理和利用这些数据资产已经成为企业面临的重要挑战。数据资产管理平台可以帮助企业实现数据资产的规范化、标准化和高效化管理，提高数据的质量和价值，从而为企业的发展提供有力的支持。</p>
-<h2 id="三、数据资产管理平台的主要功能"><a href="#三、数据资产管理平台的主要功能" class="headerlink" title="三、数据资产管理平台的主要功能"></a>三、数据资产管理平台的主要功能</h2><p>数据资产管理平台的主要功能包括：</p>
-<ol>
-<li>数据资产盘点：从组织架构、业务、信息系统等不同维度统计数据资产，实现组织级数据资产的电子化管理和动态维护功能，形成数据资产管理账册，是实施数据资产管理的重要步骤。</li>
-<li>元数据管理：主要包括数据源管理、数据对象管理、数据资产构造细节、数据标准版本管理等功能。通过元数据标准化、自动审核、血缘关系分析、影响分析等功能，使元数据管理更加自动化、系统化、规范化。</li>
-<li>智能数据分析：基于统计学、模式识别、机器学习、数据抽象等数据分析工具从数据中发现知识的分析方法，直接或间接提高工作效率，帮助用户在正确的时间拥有正确的数据信息，快速做出正确的决策。</li>
-<li>数据标准管理：数据标准分为基本标准和指标标准。通过数据标准，可以检查落地情况和数据质量问题。</li>
-<li>数据集成管理：基于WEB页面的批量集成、可视化流程设计、任务集群管理的数据集成功能，提供全量、增量、CDC、数据库表复制等不同的数据集成能力。</li>
-<li>数据质量管理：数据安全管理规范文件的集中管理、存储和访问，自动发现和分类敏感数据和权限，发现合规风险，监控敏感数据，监控不当数据询问，了解谁在访问数据，观察异常情况并防止数据丢失。</li>
-<li>数据安全和权限管理：确保数据的安全性和隐私保护，包括数据加密、访问控制、权限管理等。</li>
-<li>数据共享和协作：支持数据的共享和协作，促进不同部门和团队之间的数据共享和交流。<br>数据资产管理平台的主要功能涵盖了数据资产盘点、元数据管理、智能数据分析、数据标准管理、数据集成管理、数据质量管理、数据安全和权限管理以及数据共享和协作等方面，旨在帮助企业全面管理和利用自身的数据资产，提高数据的质量和价值，为企业的发展提供有力的支持。</li>
-</ol>
-<h2 id="四、数据资产管理平台的工作原理"><a href="#四、数据资产管理平台的工作原理" class="headerlink" title="四、数据资产管理平台的工作原理"></a>四、数据资产管理平台的工作原理</h2><p>数据资产管理平台通过资产发现系统对多类型数据的资产数据做识别、分析并采集到资源库。支持数据表技术字段、业务类型、字段业务类型识别，以标准数据格式存储，通过后端服务实现对目录和资源的数据管理。</p>
-<p>技术架构示意图如下：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240218/%E6%95%B0%E6%8D%AE%E8%B5%84%E4%BA%A7%E7%AE%A1%E7%90%86%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84.png" alt="数据资产管理平台技术架构"></p>
-<ol>
-<li>数据收集与整合：平台首先通过各种方式（如数据库接口、文件导入、API等）从企业的各个数据源中收集数据，并对这些数据进行整合和清洗，以确保数据的准确性和一致性。</li>
-<li>元数据提取与管理：平台会自动提取数据的元数据（即描述数据的数据），并对这些元数据进行管理。元数据可以帮助企业理解数据的来源、含义、关系以及使用方式。</li>
-<li>数据资产目录构建：基于元数据，平台会构建一个数据资产目录。这个目录可以清晰地展示企业的所有数据资产，包括它们的类型、位置、状态以及与其他数据资产的关系。</li>
-<li>数据质量监控与提升：平台会对数据的质量进行持续的监控，并提供工具和方法来提升数据质量。例如，平台可以检测数据的完整性、准确性、一致性等，并提供数据清洗和转换的工具。</li>
-<li>数据安全保护：平台会实施严格的数据安全保护措施，包括数据加密、访问控制、审计日志等，以确保数据的安全性和隐私性。</li>
-<li>数据展示与服务提供：平台会提供一系列的数据服务，如数据查询、数据分析、数据挖掘等，以帮助用户更好地利用数据。同时，平台也会支持数据的共享和交换，以促进企业内部以及企业与外部的数据合作。</li>
-</ol>
-<p>数据资产管理平台通过自动化的方式，对企业的数据资产进行全面的管理、保护和利用，从而帮助企业提高数据的质量和价值，实现数据驱动的业务发展。</p>
-<h2 id="五、数据资产管理平台的应用场景"><a href="#五、数据资产管理平台的应用场景" class="headerlink" title="五、数据资产管理平台的应用场景"></a>五、数据资产管理平台的应用场景</h2><p>数据资产管理平台的应用场景非常广泛，主要涵盖以下几个领域：</p>
-<ol>
-<li>企业数据管理：数据资产管理平台可以帮助企业管理和整合各类数据，包括客户数据、产品数据、供应链数据、财务数据等。通过实现数据的一致性和准确性，平台支持企业的决策和业务运营。</li>
-<li>数据分析与洞察：通过数据资产管理平台，企业可以进行数据分析和挖掘，发现数据中的模式、趋势和洞察。这些洞察有助于企业了解市场需求、优化产品设计、改进营销策略等。</li>
-<li>智能决策支持：平台可以提供实时和准确的数据，支持企业进行智能决策。通过数据的可视化和报表生成，企业可以快速获取关键指标和业务洞察，以支持决策制定和执行。</li>
-<li>客户关系管理：数据资产管理平台可以集成和管理客户数据，帮助企业建立完整的客户画像，实现个性化营销、客户维护和客户服务的优化。</li>
-<li>供应链管理：平台可以监控和管理供应链中的各个环节，包括供应商管理、库存管理、物流管理等，从而提高供应链的效率和可靠性。</li>
-<li>金融风控：在金融行业，数据资产管理平台可以集成和分析大量的金融数据，帮助金融机构进行风险评估和风控管理，提高风险管理的准确性和效率。</li>
-</ol>
-<p>此外，随着技术的发展和应用场景的不断扩展，数据资产管理平台还可能应用于更多的领域，如物联网、人工智能、大数据等，以满足企业不断增长的数据管理和利用需求。</p>
-<h2 id="六、安全资产管理平台与数据资产管理平台的区别与关系"><a href="#六、安全资产管理平台与数据资产管理平台的区别与关系" class="headerlink" title="六、安全资产管理平台与数据资产管理平台的区别与关系"></a>六、安全资产管理平台与数据资产管理平台的区别与关系</h2><p>安全资产管理平台和数据资产管理平台在功能和目标上存在一定的区别，但它们之间也存在紧密的联系。</p>
-<h3 id="1、安全资产管理平台与数据资产管理平台的区别"><a href="#1、安全资产管理平台与数据资产管理平台的区别" class="headerlink" title="1、安全资产管理平台与数据资产管理平台的区别"></a>1、安全资产管理平台与数据资产管理平台的区别</h3><ol>
-<li>关注点不同：安全资产管理平台主要关注资产的安全性和风险管理，包括资产识别、风险评估、安全策略制定等。而数据资产管理平台则更侧重于数据的收集、整合、分析和利用，关注数据的完整性、准确性、一致性和可访问性等方面。</li>
-<li>管理对象不同：安全资产管理平台主要管理的是企业的IT资产，包括硬件、软件、网络设备等。而数据资产管理平台则主要管理企业的数据资产，包括结构化数据、非结构化数据、流数据等。</li>
-<li>技术手段不同：安全资产管理平台通常采用安全审计、漏洞扫描、入侵检测等技术手段来确保资产的安全。而数据资产管理平台则利用数据集成、数据清洗、数据挖掘等技术手段来管理和利用数据资产。<h3 id="2、安全资产管理平台与数据资产管理平台的关系"><a href="#2、安全资产管理平台与数据资产管理平台的关系" class="headerlink" title="2、安全资产管理平台与数据资产管理平台的关系"></a>2、安全资产管理平台与数据资产管理平台的关系</h3></li>
-<li>相辅相成：安全资产管理平台和数据资产管理平台在企业的信息化建设中相辅相成。安全资产管理平台为数据资产管理平台提供了安全保障，确保数据资产在收集、传输、存储、使用等过程中的安全性。而数据资产管理平台则通过有效的数据管理和利用，为企业的业务决策和运营提供有力支持，同时也为安全资产管理平台提供了更多的数据源和分析依据。</li>
-<li>相互促进：随着企业信息化程度的不断提高，数据资产的安全性和价值性日益凸显。安全资产管理平台和数据资产管理平台可以通过相互集成和协作，共同提升企业的信息化水平和核心竞争力。例如，通过数据资产管理平台发现的数据异常或风险，可以触发安全资产管理平台进行相应的安全审计和风险评估，从而及时发现和解决潜在的安全隐患。</li>
-</ol>
-<p>安全资产管理平台和数据资产管理平台虽然在功能和目标上存在一定的区别，但它们之间紧密相连、相互促进，共同构成了企业信息化建设的重要组成部分。</p>
-<h2 id="七、企业如何利用数据资产管理平台管理数据"><a href="#七、企业如何利用数据资产管理平台管理数据" class="headerlink" title="七、企业如何利用数据资产管理平台管理数据"></a>七、企业如何利用数据资产管理平台管理数据</h2><p>数据资产管理平台可以通过以下几个方面帮助企业管理数据：</p>
-<ol>
-<li>数据资产盘点：数据资产管理平台可以对企业的数据资产进行全面的盘点，包括数据的来源、存储、使用情况等，从而帮助企业了解自身的数据资产状况，为数据管理和利用提供基础数据。</li>
-<li>元数据管理：元数据是描述数据的数据，通过对元数据的管理，可以帮助企业更好地理解和利用数据。数据资产管理平台可以提供元数据的采集、存储、查询和利用等功能，从而实现元数据的规范化管理。</li>
-<li>智能数据分析：数据资产管理平台可以利用人工智能技术对数据进行分析和挖掘，从而帮助企业发现数据中的规律和趋势，提高数据的利用价值。</li>
-<li>数据标准管理：数据资产管理平台可以制定和管理企业的数据标准，包括数据格式、数据命名、数据分类等，从而确保数据的规范性和一致性，提高数据的质量和可利用性。</li>
-<li>数据集成管理：数据资产管理平台可以实现对企业内部和外部的数据进行集成和整合，从而消除数据孤岛，实现数据的共享和利用。</li>
-<li>数据质量管理：数据资产管理平台可以对数据进行质量检查和管理，包括数据的完整性、准确性、一致性等，从而确保数据的质量和可靠性。</li>
-<li>数据安全保障：数据资产管理平台可以提供数据安全保障能力，包括数据的加密、备份、恢复等，从而确保数据的安全性和完整性，防止数据泄露和非法访问。</li>
-</ol>
-<p>数据资产管理平台可以通过全面的数据管理和利用能力，帮助企业更好地管理和利用自身的数据资产，提高数据的质量和价值，为企业的发展提供有力的支持。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2971,7 +2921,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">214</span>
+                  <span class="site-state-item-count">215</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3083,7 +3033,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">434.9k</span>
+    <span title="Site words total count">436k</span>
   
   
 <!--51la网站应用监控-->

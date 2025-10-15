@@ -313,6 +313,281 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e0557478/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/e0557478/" itemprop="url">开源安全管理平台wazuh-非法可疑进程检测</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-10-15T19:50:52+08:00">
+                2025-10-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-15T19:58:18+08:00">
+                2025-10-15
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/e0557478/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e0557478/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/e0557478/" class="leancloud_visitors" data-flag-title="开源安全管理平台wazuh-非法可疑进程检测">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>@[TOC]<br>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
+<p>Wazuh命令监控功能在端点上运行命令并监控命令的输出。通过监控命令来检测是否有非法可疑进程。</p>
+<p>本文通过POC展示Wazuh如何通过配置来实现对非法可疑进行的检测及时预警威胁攻击行为。</p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC测试环境拓扑如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png" alt="POC测试环境拓扑"></p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全管理平台wazuh-server<br>(192.168.0.40)</td>
+<td>All in one安装wazuh，监控wazuh-agent上报的告警信息进行威胁检测</td>
+</tr>
+<tr>
+<td>被监控Kali主机<br>（192.168.0.65）</td>
+<td>被监控kali主机安装wazuh-agent，运行非法可疑进程。</td>
+</tr>
+</tbody></table>
+<h1 id="二、wazuh配置"><a href="#二、wazuh配置" class="headerlink" title="二、wazuh配置"></a>二、wazuh配置</h1><h2 id="1、kali检测端点配置"><a href="#1、kali检测端点配置" class="headerlink" title="1、kali检测端点配置"></a>1、kali检测端点配置</h2><p>1）按照以下步骤配置命令监控并查询被监控kali主机端点上的所有运行进程。<br>将以下配置块添加到wazuh-agent的<code>/var/ossec/etc/ossec.conf</code>文件，允许wazuh-agent定期获取运行进程列表：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ossec_config</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">localfile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log_format</span>&gt;</span>full_command<span class="tag">&lt;/<span class="name">log_format</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">alias</span>&gt;</span>process list<span class="tag">&lt;/<span class="name">alias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">command</span>&gt;</span>ps -e -o pid,uname,command<span class="tag">&lt;/<span class="name">command</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">frequency</span>&gt;</span>30<span class="tag">&lt;/<span class="name">frequency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">localfile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ossec_config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这段配置告诉 Wazuh 代理：</p>
+<ol>
+<li>做什么：​ 每 30 秒执行一次命令 <code>ps -e -o pid,uname,command</code>。</li>
+<li>捕获什么：​ 捕获该命令的完整输出。</li>
+<li>如何标记：​ 在输出的每一行前面添加一个标准化的头部 <code>ossec: output: &#39;process list: &#39;</code>。</li>
+<li>发送给谁：​ 将处理后的日志行（即带有前缀的进程列表）发送给配置的 Wazuh 服务器。</li>
+</ol>
+<p>这个配置让 Wazuh 代理定期（每 30 秒）抓取一次完整的系统进程快照，并格式化后发送给服务器，为基于进程行为的入侵检测提供基础数据。</p>
+<p>2）重新启动Wazuh代理以使配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
+
+<p>3）在kali上安装Netcat等工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ncat nmap -y</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2、wazuh-server配置"><a href="#2、wazuh-server配置" class="headerlink" title="2、wazuh server配置"></a>2、wazuh server配置</h2><p>1）将以下规则添加到Wazuh服务器上的 /var/ossec/etc/rules/local_rules.xml 文件中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">group</span> <span class="attr">name</span>=<span class="string">"ossec,"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rule</span> <span class="attr">id</span>=<span class="string">"100050"</span> <span class="attr">level</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if_sid</span>&gt;</span>530<span class="tag">&lt;/<span class="name">if_sid</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">match</span>&gt;</span>^ossec: output: 'process list'<span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>List of running processes.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">group</span>&gt;</span>process_monitor,<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">rule</span> <span class="attr">id</span>=<span class="string">"100051"</span> <span class="attr">level</span>=<span class="string">"7"</span> <span class="attr">ignore</span>=<span class="string">"900"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if_sid</span>&gt;</span>100050<span class="tag">&lt;/<span class="name">if_sid</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">match</span>&gt;</span>nc -l<span class="tag">&lt;/<span class="name">match</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>netcat listening for incoming connections.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">group</span>&gt;</span>process_monitor,<span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rule</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个配置片段定义了一个监控逻辑，专门用于在系统进程列表中检测监听模式的 netcat(<code>nc -l</code>)，一旦发现就产生高优先级告警。规则 100050 负责捕获进程列表数据，规则 100051 负责在其中搜索特定的威胁指标 (<code>nc -l</code>)。</p>
+<p>2）重新启动Wazuh管理器以使配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-manager</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、模拟攻击"><a href="#三、模拟攻击" class="headerlink" title="三、模拟攻击"></a>三、模拟攻击</h1><p>在被监控的Kali主机（192.168.0.65）端点上，运行<code>nc -l 8000</code> 30秒。</p>
+<p>netcat​（网络工具中的“瑞士军刀”）的命令，它的核心作用是：​在你的计算机上启动一个临时的 TCP 服务端，监听端口 8000，等待其他计算机连接并与之通信。</p>
+<p>监听模式的 netcat常被用作后门、端口监听器或进行未经授权的文件传输，是攻击者建立持久访问或进行横向移动的常见工具。</p>
+<h1 id="四、效果验证"><a href="#四、效果验证" class="headerlink" title="四、效果验证"></a>四、效果验证</h1><p>我们可以在Wazuh威胁狩猎模块仪表板中可看到检测到kali主机上有netcat 进行正在监听的告警并可视化展示出来。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/2-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6.png" alt="非法可疑进程检测告警"></p>
+<p>我们点开告警详情可以看到日志中显示通过<code>ps -e -o pid,uname,command</code>，检测到有<code>nc -l 8000</code>的非法进程在运行，进行了<code>netcat listening for incoming connections.</code>告警输出。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/3-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="非法可疑进程检测告警详情"></p>
+<p>至此，我们通过一个完整的POC实例验证了wuzuh对非法可疑进程的检测，能够有效发现潜在的威胁。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/b9af79aa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +635,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-10-12T16:33:00+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-12T16:33:56+08:00">
                 2025-10-12
               </time>
             
@@ -2928,260 +3203,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e20e4b6a/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/e20e4b6a/" itemprop="url">飞牛NAS本地化部署n8n打造个人AI工作流中心</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-27T22:31:38+08:00">
-                2025-07-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-07-27T22:46:06+08:00">
-                2025-07-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/e20e4b6a/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e20e4b6a/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/e20e4b6a/" class="leancloud_visitors" data-flag-title="飞牛NAS本地化部署n8n打造个人AI工作流中心">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>n8n是一个开源的工作流自动化工具，类似于Zapier和IFTTT，但它更加灵活和强大 。它允许用户通过图形化界面，以拖拽的形式构建自动化工作流，将不同的应用程序和服务连接起来，实现各种自动化任务 。<br>n8n最初的用途是自动化日常工作流，帮助用户节省时间，提高工作效率。在AI技术出现后，n8n更是成为了连接AI与数字世界的桥梁，因为它能够让AI与超过1000种不同的服务进行交互，几乎使AI能与赛博世界中的任何其他主体畅通无阻。</p>
-<p>n8n的主要优势包括：</p>
-<ul>
-<li><strong>部署简单</strong>：支持Docker一键私有化部署，也提供云服务选项。</li>
-<li><strong>可接入服务强</strong>：集成了超过1000种第三方服务，且自部署版本具备丰富的本地调用能力，可以对本地数据库、文件等进行操作，甚至作为寄生系统为现有业务增添自动化和AI功能。</li>
-<li><strong>对大模型友好</strong>：内置图形可视化的LangChain节点，能够方便地集成各种AI模型、记忆、工具和解析器，支持BYOK（Bring Your Own Key）模式，即用户可以自备API Key来调用AI服务。</li>
-<li><strong>支持半封装模式</strong>：在低代码和代码之间实现了平衡。对于已有的节点，可以拖拽完成接入；对于没有现成节点的功能，支持通过HTTP Request接入几乎任何开放API的第三方服务。同时，其Code节点支持运行JavaScript和Python代码，非常适合与ChatGPT进行结对编程。</li>
-</ul>
-<p>对于个人用户来说，在NAS（网络附加存储）上部署n8n具有多方面的优势：</p>
-<ul>
-<li><strong>完全掌控数据和流程</strong>：n8n是开源的，可以选择将其部署在自己的NAS服务器上，从而完全掌控您的数据和自动化流程，无需担心数据泄露或被供应商锁定。</li>
-<li><strong>部署简单</strong>：n8n的部署过程相对简单，可以通过Docker一键私有化部署，即使是不懂代码的用户也能通过可视化的界面快速上手。</li>
-<li><strong>常态化运行</strong>：NAS通常是7x24小时开机的设备，结合n8n的AI工作流能力，可以帮助个人用户完成日常工作中大量的重复性劳动，例如自动生成日报、周报等，从而释放更多时间用于其他活动。</li>
-<li><strong>随时随地访问</strong>：NAS虽然部署在家里，但是一般都通过ddns或其他方式打通了与外网的连接，可以随时随地方便的构建和调试自己AI工作流应用。</li>
-</ul>
-<p>本文就以我的飞牛NAS为例来部署n8n打造人工的AI工作流中心。</p>
-<h2 id="一、下载n8n的镜像"><a href="#一、下载n8n的镜像" class="headerlink" title="一、下载n8n的镜像"></a>一、下载n8n的镜像</h2><p>在飞牛NAS的Docker镜像仓库中找到n8n的镜像，下载这个下载量和标星最多的n8nio/n8n的镜像。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/1-%E4%B8%8B%E8%BD%BDn8n%E9%95%9C%E5%83%8F.png" alt="下载n8n镜像"></p>
-<p>下载后就可以在飞牛NAS的本地镜像库中看到这个n8nio/n8n镜像。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/2-%E6%9C%AC%E5%9C%B0n8n%E9%95%9C%E5%83%8F.png" alt="本地镜像"></p>
-<h2 id="二、启动镜像创建n8n容器"><a href="#二、启动镜像创建n8n容器" class="headerlink" title="二、启动镜像创建n8n容器"></a>二、启动镜像创建n8n容器</h2><p>点击本地n8nio/n8n镜像的启动按钮，弹出创建容器的配置界面，在配置界面中输入容器的名称n8n勾选开机自启动。 </p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/3-%E5%88%9B%E5%BB%BAn8n%E5%AE%B9%E5%99%A8.png" alt="创建容器"></p>
-<p>在进行存储位置配置之前，在NAS的文件管理中创建用于存储n8n数据文件的文件夹。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/4-%E5%88%9B%E5%BB%BANAS%E7%9A%84n8n%E5%AD%98%E5%82%A8%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="创建存储位置"></p>
-<p>在创建容器详情的配置界面其他的配置项都可以默认，在存储位置的配置项中一定要配置将容器的存储空间映射到NAS上的文件夹，这个文件夹就是刚在NAS文件管理中建的文件夹（也就是将docker容器中的/home/node/.n8n映射到NAS中的n8n/n8n_data）。否则docker重启n8n的配置数据会丢失。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/5-%E6%98%A0%E5%B0%84docker%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="存储空间映射"></p>
-<p>配置完成后，勾选创建后启动容器，点击“创建”。容器创建启动后就可以通过本地的5678端口访问n8n的应用了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/6-%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8.png" alt="启动容器"></p>
-<h2 id="三、访问使用n8n"><a href="#三、访问使用n8n" class="headerlink" title="三、访问使用n8n"></a>三、访问使用n8n</h2><p>在浏览器中输入你的主机和端口就可以访问n8n，我这里是 <a href="http://192.168.0.18:5678/" target="_blank" rel="noopener">http://192.168.0.18:5678/</a><br>第一次访问有可能会出现如下图所示的提示，n8n用到了安全的cookie，要不就要配置HTTPS，要不就在环境变量中配置<code>N8N_SECURE_COOKIE</code>为<code>false</code></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/7-%E8%AE%BF%E9%97%AEn8n%E5%91%8A%E8%AD%A6%E6%8F%90%E7%A4%BA.png" alt="警告"></p>
-<p>这里，我们在容器设置里添加变量，设置N8N_SECURE_COOKIE为false</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/8-%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E8%AF%A6%E6%83%85.png" alt="设置N8N_SECURE_COOKIE为false"></p>
-<p>这样再次访问 <a href="http://192.168.0.18:5678/" target="_blank" rel="noopener">http://192.168.0.18:5678/</a> 就可以正常访问了。第一次用n8n要设置自己的用户名和密码。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/9-%E6%B3%A8%E5%86%8C%E8%B4%A6%E5%8F%B7%E5%90%8D.png" alt="设置自己的用户名和密码"></p>
-<p>设置完用户名密码就可以使用n8n了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/10-n8n%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="使用n8n"></p>
-<p>我们可以导入一个已经配置好的n8n工作流实例。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/11-%E5%AF%BC%E5%85%A5n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9E%E4%BE%8B.png" alt="导入n8n工作流实例"></p>
-<p>可以看到正常导入，将配置修改为自己的配置就可以直接使用别人已经配置好的工作流了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/12-%E4%BD%BF%E7%94%A8n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9E%E4%BE%8B.png" alt="使用效果"></p>
-<p>至此我们在飞牛NAS上成功部署了n8n，可以方便的随时随地构建自己的AI工作流应用了。</p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3238,7 +3259,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">214</span>
+                  <span class="site-state-item-count">215</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3350,7 +3371,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">434.9k</span>
+    <span title="Site words total count">436k</span>
   
   
 <!--51la网站应用监控-->
