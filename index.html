@@ -313,6 +313,277 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/52b3e2de/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/52b3e2de/" itemprop="url">开源安全管理平台wazuh-检测SQL注入攻击</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-10-22T16:33:12+08:00">
+                2025-10-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-22T16:40:54+08:00">
+                2025-10-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/52b3e2de/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/52b3e2de/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/52b3e2de/" class="leancloud_visitors" data-flag-title="开源安全管理平台wazuh-检测SQL注入攻击">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  742
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
+<p>SQL 注入是一种攻击，在这种攻击中，威胁行为者将恶意代码插入传输到数据库服务器的字符串中进行解析和执行。成功的 SQL 注入攻击可以未经授权访问数据库中包含的机密信息。</p>
+<p>我们可以使用 Wazuh 从 Web 服务器日志中检测 SQL 注入攻击，这些日志包含 select、union 和其他常见 SQL 注入模式等模式。本文通过POC来验证wazuh检测SQL注入攻击。</p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC测试环境拓扑如下图所示：</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/1-POC%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%8B%93%E6%89%91.png" alt="POC测试环境拓扑"></p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全管理平台wazuh-server<br>(192.168.0.40)</td>
+<td>All in one安装wazuh，监控wazuh-agent上报的告警信息进行威胁检测</td>
+</tr>
+<tr>
+<td>DVWA靶机<br>（192.168.0.43）</td>
+<td>被监控主机安装wazuh-agent，安装DVWA靶机，模拟被攻击</td>
+</tr>
+</tbody></table>
+<p>DVWA靶机安装参考《<a href="https://blog.csdn.net/fullbug/article/details/129879670" target="_blank" rel="noopener">CentOS7+LAMP+DVWA靶机搭建</a>》<br>首先安装LAMP环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install -y apache2 mariadb-server mariadb-client php php-mysqli php-gd libapache2-mod-php</span><br></pre></td></tr></table></figure>
+
+<p>下载DVWA的软件包<br>进入到默认的web发布目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/digininja/DVWA.git</span><br></pre></td></tr></table></figure>
+
+<p>将config/config.inc.php.dist复制成config/config.inc.php并配置环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp config.inc.php.dist config.inc.php</span><br></pre></td></tr></table></figure>
+
+<p>用root用户登录数据库，然后执行以下命令创建dvwa数据库:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database dvwa;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create user dvwa@localhost identified by <span class="string">'p@ssw0rd'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on dvwa.* to dvwa@localhost;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>默认用户 = <code>admin</code><br>默认密码 = <code>password</code><br>将安全级别设为 Low（最易注入）</p>
+<h1 id="二、wazuh配置"><a href="#二、wazuh配置" class="headerlink" title="二、wazuh配置"></a>二、wazuh配置</h1><p>将以下行添加到 Wazuh 代理 <code>/var/ossec/etc/ossec.conf</code> 文件中。允许 Wazuh-agent 代理监控 Apache 服务器的访问日志：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ossec_config&gt;</span><br><span class="line">  &lt;localfile&gt;</span><br><span class="line">    &lt;log_format&gt;apache&lt;/log_format&gt;</span><br><span class="line">    &lt;location&gt;/var/<span class="built_in">log</span>/apache2/access.log&lt;/location&gt;</span><br><span class="line">  &lt;/localfile&gt;</span><br><span class="line">&lt;/ossec_config&gt;</span><br></pre></td></tr></table></figure>
+
+<p>重新启动 Wazuh 代理以使应用配置更改生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、模拟攻击"><a href="#三、模拟攻击" class="headerlink" title="三、模拟攻击"></a>三、模拟攻击</h1><p>访问DVWA的靶机地址<a href="http://192.168.0.43/DVWA/login.php" target="_blank" rel="noopener">http://192.168.0.43/DVWA/login.php</a><br>默认用户 = admin<br>默认密码 = password<br>登录后找到SQL Injection 输入例如”<code>1&#39; UNION SELECT database(), version()</code>“ 等SQL注入Payload</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/2-dvwaSQL%E6%B3%A8%E5%85%A5.png" alt="DVWA-SQL注入"></p>
+<h1 id="四、效果验证"><a href="#四、效果验证" class="headerlink" title="四、效果验证"></a>四、效果验证</h1><p>在wazuh此处的预期结果是规则 ID 为 31164  <code>SQL injection attempt</code> 的告警，但成功的 SQL 注入尝试会生成规则 ID 为 31106  <code>A web attack returned code 200 (success)</code>的告警。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/3-wazuhSQL%E6%B3%A8%E5%85%A5%E5%91%8A%E8%AD%A6.png" alt="sql注入检测"></p>
+<p>我们可以点击详情看到具体的SQL注入攻击日志</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/4-wazuhSQL%E6%B3%A8%E5%85%A5%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="SQL注入检测日志详情"></p>
+<p>至此，我们通过POC验证了wazuh检测SQL注入攻击场景。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e0557478/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,7 +631,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-10-15T19:58:18+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2025-10-15T20:08:07+08:00">
                 2025-10-15
               </time>
             
@@ -481,7 +752,7 @@
       
         
           
-            <p>@[TOC]<br>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
+            <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
 <p>Wazuh命令监控功能在端点上运行命令并监控命令的输出。通过监控命令来检测是否有非法可疑进程。</p>
 <p>本文通过POC展示Wazuh如何通过配置来实现对非法可疑进行的检测及时预警威胁攻击行为。</p>
 <h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC测试环境拓扑如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png" alt="POC测试环境拓扑"></p>
@@ -2917,292 +3188,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/9880bf27/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/9880bf27/" itemprop="url">VScode对Ubuntu用root账号进行SSH远程连接开发</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-08-02T21:19:42+08:00">
-                2025-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-02T22:51:54+08:00">
-                2025-08-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/9880bf27/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9880bf27/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/9880bf27/" class="leancloud_visitors" data-flag-title="VScode对Ubuntu用root账号进行SSH远程连接开发">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>由于linux服务器大部分都是基于命令行的操作，缺乏比较方便好用的编辑工具，对于经常在linux服务器上做开发的同学来说直接在服务器上进行开发或配置文件的修改还不是特别的方便。虽然linux上有vi或vim比起图形化的编辑工具体验感还是不是很好。作为程序员常用的宇宙第一的VScode就提供了相应的插件可以通过ssh远程连接到服务器上直接编辑服务器上相应的文件，极大提高了在服务器上开发或修改配置文件的效率和体验感。本文就来介绍通过VScode对Ubuntu用root账号进行SSH远程连接直接在服务器上进行开发。</p>
-<h2 id="一、安装VScode的ssh扩展插件"><a href="#一、安装VScode的ssh扩展插件" class="headerlink" title="一、安装VScode的ssh扩展插件"></a>一、安装VScode的ssh扩展插件</h2><p>Remote-SSH 扩展 允许你将任何带有 SSH 服务器的远程机器用作你的开发环境。这可以在多种情况下极大地简化开发和故障排除：</p>
-<ul>
-<li>在部署目标操作系统上开发​，或者使用比本地机器更大、更快或更专业化的硬件进行开发。</li>
-<li>轻松切换不同的远程开发环境，并安全地进行更新​，而无需担心影响本地机器。</li>
-<li>从多台机器或不同位置访问现有的开发环境。</li>
-<li>调试运行在其他地方（例如客户现场或云端​）的应用程序。</li>
-</ul>
-<p>在VScode的编辑器界面在Extension中搜索ssh排名前三的Remote-SSH、Remote - SSH: Editing Configuration Files、Remote Explorer是微软官方的ssh扩展插件，都安装一下。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/1-ssh-remote.png" alt="ssh扩展插件"></p>
-<p>安装好了后就会在左侧的导航看到Remote Exploer</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/2-remoteExplorer.png" alt="Remote Exploer"></p>
-<p>在SSH中点“+” 后就可以在上面的导航输入框中输入要ssh连接服务器的命令。如:<code>ssh xiejava@192.168.0.30</code> 意思就是通过xiejava的用户名ssh登录到192.168.0.30的服务器。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/3-NewRemote.png" alt="New Remote"></p>
-<p>输入正确的口令后，表示服务器的图标变亮就意味着已经通过SSH连上了服务器了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/4-SSH%E8%BF%9E%E4%B8%8A%E4%BA%86%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="SSH连上了服务器"></p>
-<p>连上服务器后就可以通过命令来对服务器进行操作，也可以直接打开服务器上的文件进行操作了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/5-%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C.png" alt="直接打开服务器上的文件进行操作"></p>
-<p>这样就可以直接在服务器上直接编辑文件，直接在命令行中输入命令执行，直接看到执行结果，简直不要太爽。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/6-%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6.png" alt="直接编辑文件"></p>
-<p>一般的教程到这里就结束了。但是有些Linux是默认不能使用root用户登录的如Ubuntu，如果不用root用户登录只能访问到登录用户的文件夹，如我是用xiejava登录的就只能访问到/home/xiejava的目录，只能在这个目录下新建和编辑相应的文件，而且每次打开编辑操作文件都要输入登录密码，作为服务器上的开发来说这显然是不可接受的。所以我们要用root账号进行ssh进行远程连接。</p>
-<h2 id="二、开启Ubuntu的root账号免密登录"><a href="#二、开启Ubuntu的root账号免密登录" class="headerlink" title="二、开启Ubuntu的root账号免密登录"></a>二、开启Ubuntu的root账号免密登录</h2><h3 id="1、生成SSH密钥对，并部署到服务器"><a href="#1、生成SSH密钥对，并部署到服务器" class="headerlink" title="1、生成SSH密钥对，并部署到服务器"></a>1、生成SSH密钥对，并部署到服务器</h3><p>要使 root 用户成功登录，需先在客户端生成 SSH 密钥对，并将公钥部署到服务器：</p>
-<ol>
-<li>客户端生成密钥 (在本地PC执行)：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C <span class="string">"root_ssh_key"</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>按提示选择保存路径（默认 C:\Users\你的用户名.ssh\id_ed25519）。</li>
-<li>连续按 3 次回车​，不设密码（实现完全免密）<br>最后在文件夹中生成SSH密钥对<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/7-%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成SSH密钥对"></li>
-</ul>
-<ol start="2">
-<li>部署公钥到服务器​：<br>登录 Ubuntu<br>创建 .ssh 目录并写入公钥</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.ssh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"粘贴复制的公钥内容，也就是id_ed25519.pub文件里面的内容"</span> &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、测试免密登录"><a href="#2、测试免密登录" class="headerlink" title="2、测试免密登录"></a>2、测试免密登录</h3><p>在 Windows PowerShell 执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 用户名@Ubuntu_IP</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>成功标志​：直接登录 Ubuntu，无需输入密码。</li>
-<li>失败表现​：提示输入密码或返回 Permission denied。</li>
-</ul>
-<h3 id="3、启用root用户"><a href="#3、启用root用户" class="headerlink" title="3、启用root用户"></a>3、启用root用户</h3><p>使用当前具有 sudo 权限的用户登录系统。执行密码修改命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>输入当前用户的密码​（用于 sudo 提权）。</li>
-<li>输入新的 root 密码​（输入时不会显示字符）。</li>
-<li>再次确认新密码。<br>禁用root密码登录（增强安全）​</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
-
-<p>设置<code>PermitRootLogin prohibit-password</code><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/8-PermitRootLogin.png" alt="PermitRootLogin prohibit-password"></p>
-<p>重启<code>systemctl restart ssh</code></p>
-<h3 id="4、找到本地的ssh配置文件并配置密钥登录"><a href="#4、找到本地的ssh配置文件并配置密钥登录" class="headerlink" title="4、找到本地的ssh配置文件并配置密钥登录"></a>4、找到本地的ssh配置文件并配置密钥登录</h3><p>在vscode中点击SSH旁边的配置按钮就会出现ssh本地的配置文件，一般是<code>C:\Users\你的用户名\.ssh\config</code></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/9-ssh%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="找到本地的ssh配置文件"></p>
-<p>在config文件中配置User root 和IdentityFile 密钥文件的路径。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/10-config%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="配置"></p>
-<p>这样就可以通过root进入到任何目录操作编辑任何文件了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/11-%E8%BF%9B%E5%85%A5%E4%BB%BB%E4%BD%95%E7%9B%AE%E5%BD%95%E7%BC%96%E8%BE%91.png" alt="root免密登录"></p>
-<p>最后要提醒大家的是大家在修改任何配置文件的时候要注意备份和确认，因为获得了root权限可以操作编辑任何文件了。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3259,7 +3244,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">215</span>
+                  <span class="site-state-item-count">216</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3371,7 +3356,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">436k</span>
+    <span title="Site words total count">436.7k</span>
   
   
 <!--51la网站应用监控-->

@@ -313,6 +313,239 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/6b94b28d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/6b94b28d/" itemprop="url">如何理解企业安全能力框架(IPDRR)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-17T16:49:08+08:00">
+                2021-06-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:12+08:00">
+                2024-06-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/6b94b28d/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/6b94b28d/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/6b94b28d/" class="leancloud_visitors" data-flag-title="如何理解企业安全能力框架(IPDRR)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>企业安全能力框架(IPDRR)是美国国家标准与技术研究所（National Institute of Standards and Technology）的网络安全框架（简称NISTCSF )。第一个版本于2014年发布，旨在为寻求加强网咯安全防御的组织提供指导。企业可以根据自身需求加强网络安全防御。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210617/IPDRR%E6%A8%A1%E5%9E%8B.png" alt="企业网络安全系统框架"><br>企业网络安全系统框架（参考IPDRR）</p>
+<p>随着社会数字化转型的深入，网络攻击事件日益增多、破坏力逐步增强。安全方法论也正逐步从”针对威胁的安全防御”向“面向业务的安全治理”（IPDRR）等演进。</p>
+<p>IPDRR能力框架模型包括风险识别（Identify）、安全防御（Protect）、安全检测（Detect）、安全响应（Response）和安全恢复（Recovery）五大能力，从以防护为核心的模型，转向以检测和业务连续性管理的模型，变被动为主动，最终达成自适应的安全能力。</p>
+<p>IPDRR模型体现了安全保障系统化的思想，管理与技术结合来有效保障系统核心业务的安全。通过持续的安全检测来实现IPDRR的闭环安全，为用户提供完善的安全能力框架和支撑体系。</p>
+<p>具体来说IPDRR主要包含了五个部分：<br><strong>识别（Identify）</strong>：识别网络资产及风险，是指对系统、资产、数据和网络所面临的安全风险的认识及确认<br><strong>保护（Protect）</strong>：保护网络，是指制定和实施合适的安全措施，确保能够提供关键基础设施服务。<br><strong>检测（Detect）</strong>：发现攻击，在攻击产生时即时监测，同时监控业务和保护措施是否正常运行，制定和实施恰当的行动以发现网络安全事件<br><strong>响应（Respond）</strong>：响应和处理事件，指对已经发现的网络安全事件采取合适的行动。具体程序依据事件的影响程度来进行抉择，主要包括：事件调查、评估损害、收集证据、报告事件和恢复系统<br><strong>恢复（Recover）</strong>：恢复系统和修复漏洞，将系统恢复至正常状态，同时找到事件的根本原因，并进行预防和修复</p>
+<p>可以参考大家对实体财物是怎么保护的就很容易理解了。举个例子，大家如何对自己的私有财产是怎么保护的呢？<br>第一步识别（Identify）肯定是识别出有哪些资产分别都有什么风险吧，比如家里的现金、金银珠宝、贵重电器、房产证、82年的拉菲、92年的茅台等等对于我们来说都是属于我们要保护的资产，这些都有被小偷偷走，被破坏等风险。所以我们需要采取一定的措施将这些资产给保护起来。<br>比如现金、金银珠宝、房产证等放在保险柜里，82年的拉菲、92年的茅台等搞个酒窖上好锁，家里的房子装好防护门、防盗窗等，这些就是第二步保护（Protect），对需要保护的资产做好基本的防护。做到了这些够不够呢？显然是不够的，这只是做好被动防御，我们还要做好主动防御，也就是第三步检测（Detect），这时候我们可以装一些监控设备摄像头、传感器等等，看时时刻刻监控我们所要保护的资产看有没有什么情况，还可以雇佣一批保安7*24小时巡逻实时监测。响应（Respond）也就是发现了什么风吹草动，就采取响应的措施，比如如果是有人破门而入就及时的告警，制止，报警。恢复（Recover）就是对易发生的损失进行恢复，如有人破门而入把门给搞坏了，就得把门重新修好或换一个新的级别更高更安全的门。</p>
+<p>企业的网络安全也是一样的。首先要识别自己企业的网络安全资产如重要系统、服务器等都部署在哪里，有没有漏洞，基线配置有没有合规。然后需要做好基本的防护，比如在出入口部署防火墙、主机装EDR、Web服务器要在WAF的保护下、做好访问控制、部署IPS设备等等。有了基础的防护设备以后要做好检测响应比如部署NTA做好流量检测分析、部署SIEM或日志分析系统将这些基础防护设备的告警精心接入做好安全告警的检测分析。通过检测设备发现网络安全事件以后要采取响应的响应措施，比如发现漏洞要进行补洞加固等、发现攻击封堵IP等，可以通过SOAR安全编排与自动化响应平台对人、工具、流程进行协同提高对于安全事件的响应能力。最后是恢复，也就是对已经造成的破坏进行恢复至正常状态，对于失陷的主机进行离网、杀毒、重装、恢复等。</p>
+<p>本文试图对市面上常见的安全产品进行分类来映射到IPDRR的五大能力<br><strong>识别（Identify）</strong>提供识别能力的产品包括资产管理平台、资产测绘平台、基线管理平台、漏洞扫描工具等。<br><strong>保护（Protect）</strong>提供保护能力的产品包括主机防御类EDR、VPN、4A、防火墙、IPS、WAF、抗DOS等<br><strong>检测（Detect）</strong> 提供威胁检测能力的产品包括IDS、NTA、蜜罐、恶意代码检测、用户异常行为检测等。<br><strong>响应（Respond）</strong>：提供响应能力的产品包括SIEM、安全审计、态势感知、SOAR等<br><strong>恢复（Recover）</strong>：提供恢复能力的产品包括NG-SOC，NG-SOC理论上应该是覆盖了IPDRR所有的能力。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2021/20210617/IPDRR%E4%B8%8E%E4%BA%A7%E5%93%81%E6%98%A0%E5%B0%84.png" alt="IPDRR产品能力映射"></p>
+<p>当然企业安全能力不能够仅仅的依靠工具，是人、策略、流程、工具综合能力的体现。企业可以根据自身需求参考IPDRR能力框架模型加强网络安全能力建设，哪里欠缺补哪里，通过管理与技术结合来有效保障系统核心业务的安全。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/e5fab05b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2554,230 +2787,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/431cf122/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/431cf122/" itemprop="url">《暗时间》读书笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-28T13:55:55+08:00">
-                2020-03-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T21:10:03+08:00">
-                2024-08-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/431cf122/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/431cf122/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/431cf122/" class="leancloud_visitors" data-flag-title="《暗时间》读书笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  6
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>刘未鹏说——</p>
-<p><strong>写博客这件事情给我最大的体会就是，一件事情如果你能够坚持做8年，那么不管效率和频率多低，最终总能取得一些很可观的收益。而另一个体会就是，一件事情只要你坚持得足够久，“坚持”就会慢慢变成“习惯”。原本需要费力去驱动的事情便成了家常便饭，云淡风轻。</strong></p>
-<p>这本书便是从刘未鹏8年的博客文章中精选出来的，主要关于心智模式、学习方法和时间利用，《暗时间》的书名便来自于此。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/20200328/blogimage/%E3%80%8A%E6%9A%97%E6%97%B6%E9%97%B4%E3%80%8B.png" alt="《暗时间》"></p>
-<h1 id="第一章-暗时间"><a href="#第一章-暗时间" class="headerlink" title="第一章 暗时间"></a>第一章 暗时间</h1><p>善于利用思维时间的人，可以无形中比别人多出很多时间，从而实际意义上能比别人多活很多年。<br>学习一门专业应该是投入之间和效率的乘积。<br>你可以“投入”很多时间在一件事情上面，却发现毫无进展，因为你没有整天把你要做的事情，要学习的东西常驻在你的大脑中，时刻给予它最高的优先级。<br>如果你有做总结的习惯，你在度过一段时间之后总结自己在某某领域投入了多少时间，建议千万不要粗略地去计算有多少天下班后拿起书来翻看过，因为这样你也许会发现书倒是常翻，但领悟却不见得多深，表面上花的时间不少，收益却不见得那么大。因为<strong>看书并记住书中的东西只是记忆，并没有涉及推理，只有靠推理才能深入理解一个事物，看到别人看都不到的地方，这部分推理的过程就是你的思维时间，也是人一生中占据一个显著比例的“暗时间”</strong>，你走路、买菜、洗脸洗手、坐公车、逛街、出游、吃饭、睡觉，所有这些时间都可以成为“暗时间”，你可以充分利用这些时间进行思考，反刍和消化平时看和读的东西，让你的认识能够脱离照本宣科的层面。</p>
-<h1 id="第二章-设计你自己的进度条"><a href="#第二章-设计你自己的进度条" class="headerlink" title="第二章 设计你自己的进度条"></a>第二章 设计你自己的进度条</h1><p>如果没有进度提示，我们无法判断这个等待什么时候才是个尽头。如果有不断增长的进度条，那么我们对于什么时候会达到100%就会有一个粗略的估计。做事情也是同样的道理，善于规划的人，会将目标分割成一个个的里程碑，再将里程碑分割成TODO列表。<br>过早退出是一切失败的根源。<br>兴趣遍地都是，专注和持之以恒才是真正稀缺的。<br>靠专业技能的成功是最具可复制性的。它需要的只是你在一个领域坚持不懈地专注下午，只需要选择一个不算太靠谱的方向，然后专心致志的专下去，最后必然能成为高手或绝顶高手。<br>反思是让人得以改进自己的最重要的思维品质。<br>一生的知识积累，自学的起码占90%</p>
-<h1 id="第三章-如何有效地记忆与学习"><a href="#第三章-如何有效地记忆与学习" class="headerlink" title="第三章 如何有效地记忆与学习"></a>第三章 如何有效地记忆与学习</h1><p>你所拥有的知识并不取决于你记得多少，而在于它们能否在恰当的时候被回忆起来。<br> 如何有效的总结知识，学以致用<br>1）养成习惯，经常主动回顾一段时间学到的东西。<br>2）创造回忆的机会<br>  2.1）经常与别人讨论，或者讲给别人听。“教是最好的学”<br>  2.2）整理笔记。<br>  2.3）书写。“书写是更好的思考”<br>3）设身处地的“虚拟经历”别人经历过的事情。<br>4）抽象和推广<br>5）联系/比较自身的经历</p>
-<h1 id="第五章-学习习惯"><a href="#第五章-学习习惯" class="headerlink" title="第五章 学习习惯"></a>第五章 学习习惯</h1><h2 id="一、学习与思考"><a href="#一、学习与思考" class="headerlink" title="一、学习与思考"></a>一、学习与思考</h2><p>1、Google&amp;Wiki 遇到问题先上网搜索，自己找答案。<br>2、看书只看经典。<br>3、做读书笔记。便于回顾、加深理解<br>     a.将自己阅读时候的思考总结下来。<br>     b.将书中的好例子摘抄下来。<br>4、无时不可不思考。思考可以避免焦虑。<br>5、要事优先<br>6、重要的事情营造比较大的时间块来完成。<br>7、多看心理学与思维的书。<br>8、学习一项知识三问（a.它的本质是什么。b.它的第一原则是什么。c.它的知识结构是怎样的）<br>9、获得的多少并不取决于读了多少，而取决于思考了多少，多深。<br>10、善于利用小块时间。<br>11、养成好习惯。</p>
-<h2 id="二、时间管理"><a href="#二、时间管理" class="headerlink" title="二、时间管理"></a>二、时间管理</h2><p>1、学习和思考过程中常问自己几个问题<br>    a.你的问题到底是什么？（提醒自己思考不要偏离问题）<br>    b.到现在为止，我到底有了什么收获呢？（提醒自己时不时去总结，整理学习的东西）<br>    c.设想自己正在将东西讲给别人听。<br>    d.时常反省和注意自己的思维过程。（将思维的大致脉络写下来是个很好的习惯）<br>    e.养成反驳自己的想法的习惯。<br>    f.人的思维天生就是极易流于表面来理解事物的。觉得自己理解了一个问题了吗？条件反射的问自己：你真的理解了吗？你真的理解了问题的本质吗？问题的本质到底是什么？目前我的理解是什么？我对这个理解感到满意吗？这样的理解到底有什么建设性呢？等等。<br>2、重视知识的本质<br>3、重视积累的强大力量，万事提前准备。<br>4、抬起头来：时不时抬起头来审视一下自己正在做的事情，自问一下有什么价值，是不是你真正希望做的。它们重要吗？你需要在这个时候学这些吗？你的时间就是你的资源，你投入这些资源来掌握知识，所以到底用来掌握哪些知识是一个很重要的问题。</p>
-<h2 id="三-知识结构"><a href="#三-知识结构" class="headerlink" title="三 知识结构"></a>三 知识结构</h2><p>抓住不变量<br>知识分为essential(必要)和non-essential（非必要）的。对于前者提前深入掌握牢靠，对于后者采取待用到的时刻RTM(Read the manual)方法。</p>
-<h1 id="第八章-书写是为了更好的思考"><a href="#第八章-书写是为了更好的思考" class="headerlink" title="第八章 书写是为了更好的思考"></a>第八章 书写是为了更好的思考</h1><p>1、书写是对思维的备忘<br>2、书写是对思维的缓存<br>3、书写是与自己的对话<br>4、书写是与别人的交流<br>如果你着自己将一些不成熟的想法写下来，看着自己写的内容，试着进一步拓展它们，就有可能在理性的道路上走得很远，很远。</p>
-<h1 id="第九章-为什么你从现在开始就应该写博客"><a href="#第九章-为什么你从现在开始就应该写博客" class="headerlink" title="第九章 为什么你从现在开始就应该写博客"></a>第九章 为什么你从现在开始就应该写博客</h1><p>用博客的形式来记录下你有价值的思考，会带来很多好处，却没有任何明显的坏处。<br>价值博客的几点好处<br>1、能交到很多志同道合的朋友。<br>2、书写是为了更好的思考<br>3、教是最好的学<br>4、讨论是绝佳的反思<br>5、激励你去持续学习和思考<br>6、学会持之以恒地做一件事情。<br>7、一个长期的价值博客是一份很好的简历。</p>
-<h1 id="第十二章-什么才是你的不可替代性-amp-核心竞争力"><a href="#第十二章-什么才是你的不可替代性-amp-核心竞争力" class="headerlink" title="第十二章 什么才是你的不可替代性&amp;核心竞争力"></a>第十二章 什么才是你的不可替代性&amp;核心竞争力</h1><p>1、专业领域技能：成为一个专业领域的专家，你的专业技能越强，在这个领域的不可替代性就越高。<br>2、跨领域的技能：解决问题的能力，创新思维，判断与决策能力，批判性思维能力，表达沟通能力等等。<br>3、学习能力：持续学习和思考<br>4、性格要素：专注、持之以恒、自信、自省、好奇心。等等。</p>
-<hr>
-<center>
-关注：“爱分享读书”微信公众号 
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/%E7%88%B1%E5%88%86%E4%BA%AB%E8%AF%BB%E4%B9%A6%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“爱分享读书”微信公众号" title="“爱分享读书”微信公众号"></p>
-<p>读书我们是认真的</p>
-</center>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2834,7 +2843,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">215</span>
+                  <span class="site-state-item-count">216</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2946,7 +2955,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">436k</span>
+    <span title="Site words total count">436.7k</span>
   
   
 <!--51la网站应用监控-->
