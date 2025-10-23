@@ -5,9 +5,9 @@
   <subtitle>记录最好的自己</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://xiejava.gitee.io/"/>
-  <updated>2025-10-22T08:40:54.350Z</updated>
-  <id>https://xiejava.gitee.io/</id>
+  <link href="http://xiejava.ishareread.com/"/>
+  <updated>2025-10-22T08:41:21.138Z</updated>
+  <id>http://xiejava.ishareread.com/</id>
   
   <author>
     <name>XieJava</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>开源安全管理平台wazuh-检测SQL注入攻击</title>
-    <link href="https://xiejava.gitee.io/posts/52b3e2de/"/>
-    <id>https://xiejava.gitee.io/posts/52b3e2de/</id>
+    <link href="http://xiejava.ishareread.com/posts/52b3e2de/"/>
+    <id>http://xiejava.ishareread.com/posts/52b3e2de/</id>
     <published>2025-10-22T08:33:12.000Z</published>
-    <updated>2025-10-22T08:40:54.350Z</updated>
+    <updated>2025-10-22T08:41:21.138Z</updated>
     
     <content type="html"><![CDATA[<p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p><p>SQL 注入是一种攻击，在这种攻击中，威胁行为者将恶意代码插入传输到数据库服务器的字符串中进行解析和执行。成功的 SQL 注入攻击可以未经授权访问数据库中包含的机密信息。</p><p>我们可以使用 Wazuh 从 Web 服务器日志中检测 SQL 注入攻击，这些日志包含 select、union 和其他常见 SQL 注入模式等模式。本文通过POC来验证wazuh检测SQL注入攻击。</p><h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC测试环境拓扑如下图所示：</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/1-POC%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83%E6%8B%93%E6%89%91.png" alt="POC测试环境拓扑"></p><table><thead><tr><th>主机</th><th>说明</th></tr></thead><tbody><tr><td>安全管理平台wazuh-server<br>(192.168.0.40)</td><td>All in one安装wazuh，监控wazuh-agent上报的告警信息进行威胁检测</td></tr><tr><td>DVWA靶机<br>（192.168.0.43）</td><td>被监控主机安装wazuh-agent，安装DVWA靶机，模拟被攻击</td></tr></tbody></table><p>DVWA靶机安装参考《<a href="https://blog.csdn.net/fullbug/article/details/129879670" target="_blank" rel="noopener">CentOS7+LAMP+DVWA靶机搭建</a>》<br>首先安装LAMP环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install -y apache2 mariadb-server mariadb-client php php-mysqli php-gd libapache2-mod-php</span><br></pre></td></tr></table></figure><p>下载DVWA的软件包<br>进入到默认的web发布目录</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /var/www/html</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/digininja/DVWA.git</span><br></pre></td></tr></table></figure><p>将config/config.inc.php.dist复制成config/config.inc.php并配置环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp config.inc.php.dist config.inc.php</span><br></pre></td></tr></table></figure><p>用root用户登录数据库，然后执行以下命令创建dvwa数据库:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database dvwa;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create user dvwa@localhost identified by <span class="string">'p@ssw0rd'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; grant all on dvwa.* to dvwa@localhost;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure><p>默认用户 = <code>admin</code><br>默认密码 = <code>password</code><br>将安全级别设为 Low（最易注入）</p><h1 id="二、wazuh配置"><a href="#二、wazuh配置" class="headerlink" title="二、wazuh配置"></a>二、wazuh配置</h1><p>将以下行添加到 Wazuh 代理 <code>/var/ossec/etc/ossec.conf</code> 文件中。允许 Wazuh-agent 代理监控 Apache 服务器的访问日志：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ossec_config&gt;</span><br><span class="line">  &lt;localfile&gt;</span><br><span class="line">    &lt;log_format&gt;apache&lt;/log_format&gt;</span><br><span class="line">    &lt;location&gt;/var/<span class="built_in">log</span>/apache2/access.log&lt;/location&gt;</span><br><span class="line">  &lt;/localfile&gt;</span><br><span class="line">&lt;/ossec_config&gt;</span><br></pre></td></tr></table></figure><p>重新启动 Wazuh 代理以使应用配置更改生效：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure><h1 id="三、模拟攻击"><a href="#三、模拟攻击" class="headerlink" title="三、模拟攻击"></a>三、模拟攻击</h1><p>访问DVWA的靶机地址<a href="http://192.168.0.43/DVWA/login.php" target="_blank" rel="noopener">http://192.168.0.43/DVWA/login.php</a><br>默认用户 = admin<br>默认密码 = password<br>登录后找到SQL Injection 输入例如”<code>1&#39; UNION SELECT database(), version()</code>“ 等SQL注入Payload</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/2-dvwaSQL%E6%B3%A8%E5%85%A5.png" alt="DVWA-SQL注入"></p><h1 id="四、效果验证"><a href="#四、效果验证" class="headerlink" title="四、效果验证"></a>四、效果验证</h1><p>在wazuh此处的预期结果是规则 ID 为 31164  <code>SQL injection attempt</code> 的告警，但成功的 SQL 注入尝试会生成规则 ID 为 31106  <code>A web attack returned code 200 (success)</code>的告警。</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/3-wazuhSQL%E6%B3%A8%E5%85%A5%E5%91%8A%E8%AD%A6.png" alt="sql注入检测"></p><p>我们可以点击详情看到具体的SQL注入攻击日志</p><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251022/4-wazuhSQL%E6%B3%A8%E5%85%A5%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="SQL注入检测日志详情"></p><p>至此，我们通过POC验证了wazuh检测SQL注入攻击场景。</p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
     
@@ -36,19 +36,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>开源安全管理平台wazuh-非法可疑进程检测</title>
-    <link href="https://xiejava.gitee.io/posts/e0557478/"/>
-    <id>https://xiejava.gitee.io/posts/e0557478/</id>
+    <link href="http://xiejava.ishareread.com/posts/e0557478/"/>
+    <id>http://xiejava.ishareread.com/posts/e0557478/</id>
     <published>2025-10-15T11:50:52.000Z</published>
     <updated>2025-10-15T12:08:07.057Z</updated>
     
@@ -65,19 +65,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>开源安全管理平台wazuh-与网络入侵检测系统集成增强威胁检测能力</title>
-    <link href="https://xiejava.gitee.io/posts/b9af79aa/"/>
-    <id>https://xiejava.gitee.io/posts/b9af79aa/</id>
+    <link href="http://xiejava.ishareread.com/posts/b9af79aa/"/>
+    <id>http://xiejava.ishareread.com/posts/b9af79aa/</id>
     <published>2025-10-12T08:19:42.000Z</published>
     <updated>2025-10-12T08:33:56.052Z</updated>
     
@@ -94,19 +94,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>开源安全管理平台wazuh-暴力破解检测与响应</title>
-    <link href="https://xiejava.gitee.io/posts/c76cd9e6/"/>
-    <id>https://xiejava.gitee.io/posts/c76cd9e6/</id>
+    <link href="http://xiejava.ishareread.com/posts/c76cd9e6/"/>
+    <id>http://xiejava.ishareread.com/posts/c76cd9e6/</id>
     <published>2025-10-11T06:25:00.000Z</published>
     <updated>2025-10-12T08:23:44.008Z</updated>
     
@@ -123,19 +123,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>开源安全管理平台wazuh-文件完整性监控FIM</title>
-    <link href="https://xiejava.gitee.io/posts/8d366bb0/"/>
-    <id>https://xiejava.gitee.io/posts/8d366bb0/</id>
+    <link href="http://xiejava.ishareread.com/posts/8d366bb0/"/>
+    <id>http://xiejava.ishareread.com/posts/8d366bb0/</id>
     <published>2025-10-08T12:26:53.000Z</published>
     <updated>2025-10-08T12:46:31.945Z</updated>
     
@@ -151,19 +151,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>开源安全管理平台wazuh-阻止恶意IP访问</title>
-    <link href="https://xiejava.gitee.io/posts/8d7a03ba/"/>
-    <id>https://xiejava.gitee.io/posts/8d7a03ba/</id>
+    <link href="http://xiejava.ishareread.com/posts/8d7a03ba/"/>
+    <id>http://xiejava.ishareread.com/posts/8d7a03ba/</id>
     <published>2025-10-07T11:46:43.000Z</published>
     <updated>2025-10-07T12:28:17.965Z</updated>
     
@@ -179,19 +179,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>开源安全管理平台wazuh-安装与配置</title>
-    <link href="https://xiejava.gitee.io/posts/1ef039a/"/>
-    <id>https://xiejava.gitee.io/posts/1ef039a/</id>
+    <link href="http://xiejava.ishareread.com/posts/1ef039a/"/>
+    <id>http://xiejava.ishareread.com/posts/1ef039a/</id>
     <published>2025-09-29T11:49:14.000Z</published>
     <updated>2025-09-30T02:55:11.979Z</updated>
     
@@ -210,19 +210,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>Easytier快速实现异地组网</title>
-    <link href="https://xiejava.gitee.io/posts/d2b2ee39/"/>
-    <id>https://xiejava.gitee.io/posts/d2b2ee39/</id>
+    <link href="http://xiejava.ishareread.com/posts/d2b2ee39/"/>
+    <id>http://xiejava.ishareread.com/posts/d2b2ee39/</id>
     <published>2025-08-30T07:51:04.000Z</published>
     <updated>2025-08-30T08:05:23.195Z</updated>
     
@@ -239,17 +239,17 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="NAS" scheme="https://xiejava.gitee.io/tags/NAS/"/>
+      <category term="NAS" scheme="http://xiejava.ishareread.com/tags/NAS/"/>
     
   </entry>
   
   <entry>
     <title>为搞清楚凌晨上网都在干啥，我建了一套AI上网行为分析系统</title>
-    <link href="https://xiejava.gitee.io/posts/80e87a29/"/>
-    <id>https://xiejava.gitee.io/posts/80e87a29/</id>
+    <link href="http://xiejava.ishareread.com/posts/80e87a29/"/>
+    <id>http://xiejava.ishareread.com/posts/80e87a29/</id>
     <published>2025-08-10T10:57:20.000Z</published>
     <updated>2025-08-10T11:34:51.480Z</updated>
     
@@ -266,21 +266,21 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
-      <category term="AI机器学习" scheme="https://xiejava.gitee.io/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>Loki+Alloy+Grafana构建轻量级的日志分析系统</title>
-    <link href="https://xiejava.gitee.io/posts/9804ee9f/"/>
-    <id>https://xiejava.gitee.io/posts/9804ee9f/</id>
+    <link href="http://xiejava.ishareread.com/posts/9804ee9f/"/>
+    <id>http://xiejava.ishareread.com/posts/9804ee9f/</id>
     <published>2025-08-10T04:50:25.000Z</published>
     <updated>2025-08-10T05:29:36.422Z</updated>
     
@@ -296,19 +296,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="日志分析" scheme="https://xiejava.gitee.io/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
+      <category term="日志分析" scheme="http://xiejava.ishareread.com/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
   <entry>
     <title>VScode对Ubuntu用root账号进行SSH远程连接开发</title>
-    <link href="https://xiejava.gitee.io/posts/9880bf27/"/>
-    <id>https://xiejava.gitee.io/posts/9880bf27/</id>
+    <link href="http://xiejava.ishareread.com/posts/9880bf27/"/>
+    <id>http://xiejava.ishareread.com/posts/9880bf27/</id>
     <published>2025-08-02T13:19:42.000Z</published>
     <updated>2025-08-02T14:51:54.765Z</updated>
     
@@ -324,19 +324,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="开发" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
+      <category term="开发" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="运维" scheme="https://xiejava.gitee.io/tags/%E8%BF%90%E7%BB%B4/"/>
+      <category term="运维" scheme="http://xiejava.ishareread.com/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
     <title>飞牛NAS本地化部署n8n打造个人AI工作流中心</title>
-    <link href="https://xiejava.gitee.io/posts/e20e4b6a/"/>
-    <id>https://xiejava.gitee.io/posts/e20e4b6a/</id>
+    <link href="http://xiejava.ishareread.com/posts/e20e4b6a/"/>
+    <id>http://xiejava.ishareread.com/posts/e20e4b6a/</id>
     <published>2025-07-27T14:31:38.000Z</published>
     <updated>2025-07-27T14:46:06.039Z</updated>
     
@@ -352,19 +352,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="AI机器学习" scheme="https://xiejava.gitee.io/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="NAS" scheme="https://xiejava.gitee.io/tags/NAS/"/>
+      <category term="NAS" scheme="http://xiejava.ishareread.com/tags/NAS/"/>
     
   </entry>
   
   <entry>
     <title>通过TPLink路由器进行用户行为审计实战</title>
-    <link href="https://xiejava.gitee.io/posts/e87ac72d/"/>
-    <id>https://xiejava.gitee.io/posts/e87ac72d/</id>
+    <link href="http://xiejava.ishareread.com/posts/e87ac72d/"/>
+    <id>http://xiejava.ishareread.com/posts/e87ac72d/</id>
     <published>2025-07-21T14:08:26.000Z</published>
     <updated>2025-08-10T04:52:27.577Z</updated>
     
@@ -380,19 +380,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>使用GeminiBalance让Gemini免费到底</title>
-    <link href="https://xiejava.gitee.io/posts/d786604d/"/>
-    <id>https://xiejava.gitee.io/posts/d786604d/</id>
+    <link href="http://xiejava.ishareread.com/posts/d786604d/"/>
+    <id>http://xiejava.ishareread.com/posts/d786604d/</id>
     <published>2025-07-10T15:22:18.000Z</published>
     <updated>2025-07-10T16:30:07.620Z</updated>
     
@@ -408,17 +408,17 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="AI机器学习" scheme="https://xiejava.gitee.io/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>国内免代理免费使用Gemini大模型实战</title>
-    <link href="https://xiejava.gitee.io/posts/4999be0b/"/>
-    <id>https://xiejava.gitee.io/posts/4999be0b/</id>
+    <link href="http://xiejava.ishareread.com/posts/4999be0b/"/>
+    <id>http://xiejava.ishareread.com/posts/4999be0b/</id>
     <published>2025-07-07T11:19:01.000Z</published>
     <updated>2025-07-07T11:41:40.178Z</updated>
     
@@ -434,17 +434,17 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="AI机器学习" scheme="https://xiejava.gitee.io/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>飞牛NAS本地化部署dify打造私有LLMOps平台</title>
-    <link href="https://xiejava.gitee.io/posts/a0bb8a4f/"/>
-    <id>https://xiejava.gitee.io/posts/a0bb8a4f/</id>
+    <link href="http://xiejava.ishareread.com/posts/a0bb8a4f/"/>
+    <id>http://xiejava.ishareread.com/posts/a0bb8a4f/</id>
     <published>2025-06-14T03:25:43.000Z</published>
     <updated>2025-06-14T07:00:09.100Z</updated>
     
@@ -460,19 +460,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="AI机器学习" scheme="https://xiejava.gitee.io/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="NAS" scheme="https://xiejava.gitee.io/tags/NAS/"/>
+      <category term="NAS" scheme="http://xiejava.ishareread.com/tags/NAS/"/>
     
   </entry>
   
   <entry>
     <title>什么是RACI矩阵，应用在什么场景？</title>
-    <link href="https://xiejava.gitee.io/posts/a95e359b/"/>
-    <id>https://xiejava.gitee.io/posts/a95e359b/</id>
+    <link href="http://xiejava.ishareread.com/posts/a95e359b/"/>
+    <id>http://xiejava.ishareread.com/posts/a95e359b/</id>
     <published>2025-04-08T02:58:36.000Z</published>
     <updated>2025-04-08T05:57:29.363Z</updated>
     
@@ -488,21 +488,21 @@
     </summary>
     
     
-      <category term="管理" scheme="https://xiejava.gitee.io/categories/%E7%AE%A1%E7%90%86/"/>
+      <category term="管理" scheme="http://xiejava.ishareread.com/categories/%E7%AE%A1%E7%90%86/"/>
     
-      <category term="项目管理" scheme="https://xiejava.gitee.io/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+      <category term="项目管理" scheme="http://xiejava.ishareread.com/categories/%E7%AE%A1%E7%90%86/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
     
     
-      <category term="项目管理" scheme="https://xiejava.gitee.io/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+      <category term="项目管理" scheme="http://xiejava.ishareread.com/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
     
-      <category term="学习方法" scheme="https://xiejava.gitee.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
+      <category term="学习方法" scheme="http://xiejava.ishareread.com/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>什么是互联网暴露面？什么是攻击面？暴露面与攻击面有什么区别？</title>
-    <link href="https://xiejava.gitee.io/posts/6e957ca9/"/>
-    <id>https://xiejava.gitee.io/posts/6e957ca9/</id>
+    <link href="http://xiejava.ishareread.com/posts/6e957ca9/"/>
+    <id>http://xiejava.ishareread.com/posts/6e957ca9/</id>
     <published>2025-02-24T03:28:04.000Z</published>
     <updated>2025-02-24T04:44:56.682Z</updated>
     
@@ -518,19 +518,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>一文搞懂什么是攻击面管理（ASM）</title>
-    <link href="https://xiejava.gitee.io/posts/9aafe860/"/>
-    <id>https://xiejava.gitee.io/posts/9aafe860/</id>
+    <link href="http://xiejava.ishareread.com/posts/9aafe860/"/>
+    <id>http://xiejava.ishareread.com/posts/9aafe860/</id>
     <published>2025-02-19T04:24:11.000Z</published>
     <updated>2025-02-19T04:28:30.174Z</updated>
     
@@ -547,19 +547,19 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
   <entry>
     <title>网络安全“挂图作战”及其场景</title>
-    <link href="https://xiejava.gitee.io/posts/75c87f06/"/>
-    <id>https://xiejava.gitee.io/posts/75c87f06/</id>
+    <link href="http://xiejava.ishareread.com/posts/75c87f06/"/>
+    <id>http://xiejava.ishareread.com/posts/75c87f06/</id>
     <published>2025-02-18T01:40:28.000Z</published>
     <updated>2025-02-18T01:45:14.719Z</updated>
     
@@ -575,12 +575,12 @@
     </summary>
     
     
-      <category term="技术" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="网络安全" scheme="https://xiejava.gitee.io/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   

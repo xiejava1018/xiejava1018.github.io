@@ -137,7 +137,7 @@
 <meta name="description" content="一、logstash是什么Logstash 是开源的服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送到您最喜欢的“存储库”中。官方介绍：Logstash is an open source data collection engine with real-time pipelining capabilities。简单来说logstash就是一根具备实时数据传输能力的管道，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="logstash简明实用教程">
-<meta property="og:url" content="https://xiejava.gitee.io/posts/a59d6c21/index.html">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/a59d6c21/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="一、logstash是什么Logstash 是开源的服务器端数据处理管道，能够同时从多个来源采集数据，转换数据，然后将数据发送到您最喜欢的“存储库”中。官方介绍：Logstash is an open source data collection engine with real-time pipelining capabilities。简单来说logstash就是一根具备实时数据传输能力的管道，">
 <meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/1.png">
@@ -193,7 +193,7 @@
 
 
 
-  <link rel="canonical" href="https://xiejava.gitee.io/posts/a59d6c21/"/>
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/a59d6c21/"/>
 
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xiejava.gitee.io/posts/a59d6c21/">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/a59d6c21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="XieJava">
@@ -559,8 +559,8 @@
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/11.png" alt="updsend发送日志"></p>
 <p>在控制台可以看到192.168.2.185，接收到了192.168.2.173转发过来的日志<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/12.png" alt="控制台日志"></p>
 <h2 id="2、通过rsyslog、logstash采集nginx等中间件的日志送到ES"><a href="#2、通过rsyslog、logstash采集nginx等中间件的日志送到ES" class="headerlink" title="2、通过rsyslog、logstash采集nginx等中间件的日志送到ES"></a>2、通过rsyslog、logstash采集nginx等中间件的日志送到ES</h2><p>logstash可以与rsyslog、filebeat等无缝结合采集nginx等中间件日志，送给数据存储。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/13.png" alt="通过rsyslog、logstash采集nginx等中间件的日志送到ES"></p>
-<p>具体参见：<a href="https://xiejava.gitee.io/posts/f3e97829/">https://xiejava.gitee.io/posts/f3e97829/</a></p>
-<h2 id="3、通过logstash将日志入kafka再入mysql或ES"><a href="#3、通过logstash将日志入kafka再入mysql或ES" class="headerlink" title="3、通过logstash将日志入kafka再入mysql或ES"></a>3、通过logstash将日志入kafka再入mysql或ES</h2><p>数据先放到kafka队列里缓存削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/14.png" alt="logstash将日志入kafka再入mysql或ES"><br>具体参见：<a href="https://xiejava.gitee.io/posts/54e4fd14/">https://xiejava.gitee.io/posts/54e4fd14/</a></p>
+<p>具体参见：<a href="https://xiejava.gitee.io/posts/f3e97829/" target="_blank" rel="noopener">https://xiejava.gitee.io/posts/f3e97829/</a></p>
+<h2 id="3、通过logstash将日志入kafka再入mysql或ES"><a href="#3、通过logstash将日志入kafka再入mysql或ES" class="headerlink" title="3、通过logstash将日志入kafka再入mysql或ES"></a>3、通过logstash将日志入kafka再入mysql或ES</h2><p>数据先放到kafka队列里缓存削峰，然后从kafka队列里读取数据到mysql或其他存储系统中进行保存。<img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/14.png" alt="logstash将日志入kafka再入mysql或ES"><br>具体参见：<a href="https://xiejava.gitee.io/posts/54e4fd14/" target="_blank" rel="noopener">https://xiejava.gitee.io/posts/54e4fd14/</a></p>
 <h2 id="4、通过logstash进行日志补全后再转发或入库"><a href="#4、通过logstash进行日志补全后再转发或入库" class="headerlink" title="4、通过logstash进行日志补全后再转发或入库"></a>4、通过logstash进行日志补全后再转发或入库</h2><p>采集原始日志以后，需要对原始日志进行调整合补齐，比如最常见的是根据IP来补齐IP的经纬度等信息。</p>
 <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200414/15.png" alt="logstash进行日志补全"></p>
 <p>这里就可以用logstash的geotip，也可以用其他的外部API接口，为了更具代表性的说明，这里调用的是第三方的http接口（<a href="http://ip-api.com/json/），这个接口也是可以自己定义的。" target="_blank" rel="noopener">http://ip-api.com/json/），这个接口也是可以自己定义的。</a><br>参考配置文件如下：</p>
@@ -596,7 +596,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xiejava.gitee.io/posts/a59d6c21/" title="logstash简明实用教程">https://xiejava.gitee.io/posts/a59d6c21/</a>
+    <a href="http://xiejava.ishareread.com/posts/a59d6c21/" title="logstash简明实用教程">http://xiejava.ishareread.com/posts/a59d6c21/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
