@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-04T13:05:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-04T14:11:19+08:00">
                 2025-12-04
               </time>
             
@@ -487,7 +487,9 @@
 <li>企业级： 这意味着它不仅仅是一个简单的存储服务器。它提供了企业所需的高级功能，如权限控制、安全扫描、镜像复制、图形化操作界面等。</li>
 <li>镜像仓库： 它是专门用来存储、管理和分发 Docker 镜像的地方。你可以向 Harbor 中推送（上传）镜像，也可以从 Harbor 中拉取（下载）镜像。</li>
 </ul>
-<p>目前国内的上网环境公共的Docker Hub不能直接访问了，对于公司和个人开发者来说有必要搭建私有的Docker镜像仓库，使用 Harbor 几乎是必须的。公司自己开发的应用程序镜像可能包含敏感代码和配置，绝不能放到公共仓库。Harbor 提供了一个安全的私有环境来存放这些资产。Harbor 可以配置为 Docker Hub、Google Container Registry（GCR）等公有仓库的代理缓存。当公司内第一个开发者拉取某个公有镜像（如 nginx:latest）时，Harbor 会从公网下载并缓存到本地。后续所有开发者再拉取这个镜像时，都会直接从内网的 Harbor 服务器高速获取，极大地节省了公网带宽，加快了拉取速度。<br>Harbor 将一个简单的镜像存储服务，升级为一个安全、高效、可靠的企业级镜像生命周期管理平台，是现代云原生应用开发和运维不可或缺的基础设施组件。<br>本文介绍如何通过Harbor搭建和使用自己的私有镜像仓库。</p>
+<p>目前国内的上网环境公共的Docker Hub不能直接访问了，对于公司和个人开发者来说有必要搭建私有的Docker镜像仓库，使用 Harbor 几乎是必须的。公司自己开发的应用程序镜像可能包含敏感代码和配置，绝不能放到公共仓库。Harbor 提供了一个安全的私有环境来存放这些资产。Harbor 可以配置为 Docker Hub、Google Container Registry（GCR）等公有仓库的代理缓存。当公司内第一个开发者拉取某个公有镜像（如 nginx:latest）时，Harbor 会从公网下载并缓存到本地。后续所有开发者再拉取这个镜像时，都会直接从内网的 Harbor 服务器高速获取，极大地节省了公网带宽，加快了拉取速度。</p>
+<p>Harbor 将一个简单的镜像存储服务，升级为一个安全、高效、可靠的企业级镜像生命周期管理平台，是现代云原生应用开发和运维不可或缺的基础设施组件。</p>
+<p>本文介绍如何通过Harbor搭建和使用自己的私有镜像仓库。</p>
 <h1 id="二、安装Harbor"><a href="#二、安装Harbor" class="headerlink" title="二、安装Harbor"></a>二、安装Harbor</h1><p>准备一台linux的服务器，我这里是ubuntu 24.04  IP地址是192.168.0.49<br>Harbor的docker安装要求<br>On a Linux host: docker 20.10.10-ce+ and docker-compose 1.18.0+ .</p>
 <h2 id="1、安装docker"><a href="#1、安装docker" class="headerlink" title="1、安装docker"></a>1、安装docker</h2><p>执行以下命令一键安装docker </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
