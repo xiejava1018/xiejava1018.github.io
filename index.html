@@ -313,6 +313,299 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/3ea90a75/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/3ea90a75/" itemprop="url">企业级私有docker镜像仓库Harbor的搭建和使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-12-04T11:22:22+08:00">
+                2025-12-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-04T13:05:14+08:00">
+                2025-12-04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">架构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/3ea90a75/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/3ea90a75/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/3ea90a75/" class="leancloud_visitors" data-flag-title="企业级私有docker镜像仓库Harbor的搭建和使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一、什么是Harbor"><a href="#一、什么是Harbor" class="headerlink" title="一、什么是Harbor"></a>一、什么是Harbor</h1><p>简单来说，Harbor 是一个开源的企业级私有 Docker 镜像仓库服务。我们可以把它理解成一个 “私有的、安全的、功能强大的 Docker Hub”。</p>
+<ul>
+<li>私有： 它部署在你自己的基础设施（如公司的数据中心或私有云）上，你完全掌控其中的所有镜像，不对外公开。</li>
+<li>企业级： 这意味着它不仅仅是一个简单的存储服务器。它提供了企业所需的高级功能，如权限控制、安全扫描、镜像复制、图形化操作界面等。</li>
+<li>镜像仓库： 它是专门用来存储、管理和分发 Docker 镜像的地方。你可以向 Harbor 中推送（上传）镜像，也可以从 Harbor 中拉取（下载）镜像。</li>
+</ul>
+<p>目前国内的上网环境公共的Docker Hub不能直接访问了，对于公司和个人开发者来说有必要搭建私有的Docker镜像仓库，使用 Harbor 几乎是必须的。公司自己开发的应用程序镜像可能包含敏感代码和配置，绝不能放到公共仓库。Harbor 提供了一个安全的私有环境来存放这些资产。Harbor 可以配置为 Docker Hub、Google Container Registry（GCR）等公有仓库的代理缓存。当公司内第一个开发者拉取某个公有镜像（如 nginx:latest）时，Harbor 会从公网下载并缓存到本地。后续所有开发者再拉取这个镜像时，都会直接从内网的 Harbor 服务器高速获取，极大地节省了公网带宽，加快了拉取速度。<br>Harbor 将一个简单的镜像存储服务，升级为一个安全、高效、可靠的企业级镜像生命周期管理平台，是现代云原生应用开发和运维不可或缺的基础设施组件。<br>本文介绍如何通过Harbor搭建和使用自己的私有镜像仓库。</p>
+<h1 id="二、安装Harbor"><a href="#二、安装Harbor" class="headerlink" title="二、安装Harbor"></a>二、安装Harbor</h1><p>准备一台linux的服务器，我这里是ubuntu 24.04  IP地址是192.168.0.49<br>Harbor的docker安装要求<br>On a Linux host: docker 20.10.10-ce+ and docker-compose 1.18.0+ .</p>
+<h2 id="1、安装docker"><a href="#1、安装docker" class="headerlink" title="1、安装docker"></a>1、安装docker</h2><p>执行以下命令一键安装docker </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+
+<p>配置国内镜像加速</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"https://docker.1ms.run"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、安装Harbor"><a href="#2、安装Harbor" class="headerlink" title="2、安装Harbor"></a>2、安装Harbor</h2><p>下载harbor安装包，下载地址如下：<br><a href="https://github.com/goharbor/harbor/releases/download/v2.14.1/harbor-offline-installer-v2.14.1.tgz" target="_blank" rel="noopener">https://github.com/goharbor/harbor/releases/download/v2.14.1/harbor-offline-installer-v2.14.1.tgz</a><br>将下载的harbor安装包上传到安装harbor的目标服务器的目录下<br>如/home/app/harbor<br>解压上传的harbor安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf harbor-offline-installer-v2.14.1.tgz</span><br></pre></td></tr></table></figure>
+
+<p>备份配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp harbor.yml.tmpl harbor.yml</span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim harbor.yml</span><br></pre></td></tr></table></figure>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/1-%E4%BF%AE%E6%94%B9harbor%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="修改harbor.yml配置文件"></p>
+<p> 执行安装脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后通过浏览器即可以访问harbor的管理界面<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/2-harbor%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png" alt="harbor登录界面"></p>
+<p>默认的用户名和密码是<code>admin/Harbor12345</code></p>
+<h1 id="三、使用Harbor"><a href="#三、使用Harbor" class="headerlink" title="三、使用Harbor"></a>三、使用Harbor</h1><h2 id="1、通过Harbor代理拉取镜像"><a href="#1、通过Harbor代理拉取镜像" class="headerlink" title="1、通过Harbor代理拉取镜像"></a>1、通过Harbor代理拉取镜像</h2><p>先在仓库管理中建一个目标，目标是从docker的加速镜像站点去拉取镜像，我这里配置目标URL是<code>https://docker.1ms.run</code>，点击测试链接，提示“测试连接成功”表示目标URL站点没有问题，就可以点击确定。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/3-harbor%E6%96%B0%E5%BB%BA%E7%9B%AE%E6%A0%87.png" alt="新建目标"></p>
+<p>这样我们就有了一个目标的加速仓库<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/4-%E6%88%90%E5%8A%9F%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93%E7%AE%A1%E7%90%86%E7%9B%AE%E6%A0%87.png" alt="新建目标成功"></p>
+<p>在“项目”中点击“新建项目”，在镜像代理中<strong>开启</strong>“镜像代理”，选择我们开始在仓库管理中新建的目标仓库。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/5-%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF%E9%95%9C%E5%83%8F%E4%BB%A3%E7%90%86.png" alt="开启镜像代理"></p>
+<p>在配置管理生成软件物料清单中勾选“在推送镜像时自动生成软件物料清单”，这样我们在拉取镜像时harbor会自动帮我们缓存镜像到本地的harbor仓库，下次拉取时速度就非常快了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/6-%E5%BC%80%E5%90%AF%E6%8E%A8%E9%80%81%E7%94%9F%E6%88%90%E7%89%A9%E6%96%99%E6%B8%85%E5%8D%95.png" alt="勾选物料清单"></p>
+<p>在另外一台需要拉取镜像的机器上配置docker的镜像仓库，将地址配置为Harbor的地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"registry-mirrors"</span>: [</span><br><span class="line">        <span class="string">"http://192.168.0.49"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"insecure-registries"</span>: [<span class="string">"192.168.0.49"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重启docker服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service docker restart</span><br></pre></td></tr></table></figure>
+
+<p>拉取目标镜像，这里要带上harbor中的项目名称，<code>docker1ms/nginx:1.22</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull docker1ms/nginx:1.22</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/7-docker%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F.png" alt="拉取镜像"></p>
+<p>在harbor的管理界面可以看到，通过拉取镜像，harbor通过代理镜像源对镜像进行了拉取并缓存到harbor仓库，下次拉取速度更快了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/8-harbor%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F%E6%88%90%E5%8A%9F.png" alt="harbor镜像缓存"></p>
+<h2 id="2、上传镜像到Harbor仓库"><a href="#2、上传镜像到Harbor仓库" class="headerlink" title="2、上传镜像到Harbor仓库"></a>2、上传镜像到Harbor仓库</h2><p>另一个在工作中最常用的场景就是将自己的镜像上传到镜像仓库，以便其他人拉取使用。<br>下面就以在本地已经存在的docker1ms/busybox:latest为例，上传到自己的harbor仓库。<br>我的harbor仓库的地址是192.168.0.49,上传到默认的library项目中<br>为镜像打上带仓库地址和项目名的tag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag docker1ms/busybox:latest 192.168.0.49/library/busybox:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/9-%E7%BB%99%E9%95%9C%E5%83%8F%E6%89%93%E6%A0%87%E7%AD%BE.png" alt="为镜像打标签"></p>
+<p>客户端登录到harbor</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login 192.168.0.49</span><br></pre></td></tr></table></figure>
+
+<p>输入harbor的用户名和口令进行登录<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/10-%E7%99%BB%E5%BD%95%E5%88%B0harbor.png" alt="登录到harbor仓"></p>
+<p>登录成功后，通过push命令上传镜像到本地harbor仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 192.168.0.49/library/busybox:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/11-push%E9%95%9C%E5%83%8F.png" alt="push镜像"></p>
+<p>到harbor管理界面查看push到仓库中的镜像<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/12-%E6%9F%A5%E7%9C%8Bpush%E7%9A%84%E9%A1%B9%E7%9B%AE.png" alt="push到仓库中的镜像"></p>
+<p>可以看到busybox镜像已经成功push到harbor的library项目中了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/13-%E6%9F%A5%E7%9C%8Bpush%E7%9A%84%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93.png" alt="成功push"></p>
+<p>在Artifacts中可以看到push上来的镜像物料详情，可看到这个busybox镜像的大小是2.1MB<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/14-%E6%9F%A5%E7%9C%8Bpush%E9%95%9C%E5%83%8F%E7%9A%84%E7%89%A9%E6%96%99.png" alt="物料清单"></p>
+<p>我们可以直接拉取harbor中我们刚push上去的镜像<br>可以看到如果是默认仓库library项目直接可以docker pull 镜像名就可以拉取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull busybox:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251204/15-%E7%9B%B4%E6%8E%A5%E6%8B%89%E5%8F%96harbor%E5%BA%93%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F.png" alt="拉取镜像"></p>
+<p>至此，我们通过安装自己私有的镜像仓库Harbor，实现了docker镜像代理下载和上传自己的镜像到Harbor仓库，覆盖了我们平时工作中的大部分场景。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/52b3e2de/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2884,310 +3177,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/9804ee9f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/9804ee9f/" itemprop="url">Loki+Alloy+Grafana构建轻量级的日志分析系统</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-08-10T12:50:25+08:00">
-                2025-08-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T13:29:36+08:00">
-                2025-08-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/9804ee9f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/9804ee9f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/9804ee9f/" class="leancloud_visitors" data-flag-title="Loki+Alloy+Grafana构建轻量级的日志分析系统">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在现代运维和开发流程中，日志分析是故障排查、性能优化的核心环节。传统的日志系统（如 ELK Stack）虽功能强大，但资源消耗高、配置复杂，对中小规模环境或边缘设备不够友好。Loki+Alloy+Grafana组合则以 “轻量级、低成本、易部署” 为核心优势，成为替代方案的理想选择。</p>
-<p>典型的基于 Loki 的日志记录技术栈由 3 个组件组成：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/1-LAG%E6%9E%B6%E6%9E%84.png" alt="Loki"></p>
-<ul>
-<li>Loki：Grafana Labs 开源的日志聚合系统，借鉴 Prometheus 设计理念，仅索引日志元数据（标签）而非全文，大幅降低存储和计算开销。</li>
-<li>Alloy：代理或客户端，Grafana 官方推荐的新一代数据采集器Alloy（替代 Promtail），支持日志、指标、追踪多信号采集，配置灵活且资源占用低。</li>
-<li>Grafana：强大的可视化平台，原生支持 Loki 数据源，提供丰富的日志查询、过滤和仪表盘功能。</li>
-</ul>
-<p>对网络设备、安全设备等的告警日志进行分析是在网络运维和安全运营中经常遇到的场景，我们可以通过Loki+Alloy+Grafana来搭建一套轻量级的日志分析系统来收集各类网络设备、安全设备的日志进行分析。现在就以采集TP-Link路由器的上网行为日志为例来构建这套日志分析系统。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/2-%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86%E5%AD%98%E5%82%A8%E5%88%86%E6%9E%90.png" alt="日志采集分析"></p>
-<p>本文将详细介绍在Ubuntu 24.04 LTS环境中，从零搭建这套日志分析系统的全过程，确保每个步骤可操作、可复现。</p>
-<p>环境准备：Ubuntu 24.04 系统配置<br>系统要求</p>
-<ul>
-<li>硬件：2 核 CPU、4GB 内存、20GB 磁盘（日志存储根据需求调整）</li>
-<li>系统：Ubuntu 24.04 LTS（已更新至最新版本）</li>
-<li>权限：sudo 权限（用于安装软件和配置服务）</li>
-</ul>
-<p>根据Grafana官网的建议步骤，先安装Loki，再部署采集代理Alloy,再部署Grafana，通过Grafana来分析日志。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/3-LAG%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4.png" alt="日志采集步骤"></p>
-<h2 id="部署Loki日志存储系统"><a href="#部署Loki日志存储系统" class="headerlink" title="部署Loki日志存储系统"></a>部署Loki日志存储系统</h2><p>Loki 是日志的 “后端存储”，负责接收、存储日志并响应查询请求。采用二进制方式部署，步骤如下：</p>
-<h3 id="1-下载Loki二进制文件"><a href="#1-下载Loki二进制文件" class="headerlink" title="1. 下载Loki二进制文件"></a>1. 下载Loki二进制文件</h3><p>通过 GitHub API 获取Loki的二进制安装包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建Loki安装目录并下载二进制包  这里安装的是3.5.1 </span></span><br><span class="line">sudo mkdir -p /opt/loki /etc/loki</span><br><span class="line">wget -qO /opt/loki/loki-linux-amd64.zip <span class="string">"https://github.com/grafana/loki/releases/download/v3.5.1/loki-linux-amd64.zip"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压并设置可执行权限</span></span><br><span class="line">sudo unzip -d /opt/loki /opt/loki/loki-linux-amd64.zip &amp;&amp; rm /opt/loki/loki-linux-amd64.zip</span><br><span class="line">sudo chmod a+x /opt/loki/loki-linux-amd64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建软链接，方便全局调用</span></span><br><span class="line">sudo ln -s /opt/loki/loki-linux-amd64 /usr/<span class="built_in">local</span>/bin/loki</span><br></pre></td></tr></table></figure>
-
-<p>查看Loki版本 <code>loki --version</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">loki --version</span><br><span class="line">loki, version 3.5.1 (branch: release-3.5.x, revision: d4e637ce)</span><br><span class="line">  build user:       root@ceaea196ea87</span><br><span class="line">  build date:       2025-05-19T17:06:03Z</span><br><span class="line">  go version:       go1.24.1</span><br><span class="line">  platform:         linux/amd64</span><br><span class="line">  tags:             netgo</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-配置-Loki"><a href="#2-配置-Loki" class="headerlink" title="2. 配置 Loki"></a>2. 配置 Loki</h3><p>使用官方提供的本地存储配置文件，创建 Loki 配置目录并下载默认配置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/loki</span><br><span class="line">sudo wget https://raw.githubusercontent.com/grafana/loki/v3.5.1/cmd/loki/loki-local-config.yaml -O /etc/loki/config.yaml</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-创建-Systemd-服务"><a href="#3-创建-Systemd-服务" class="headerlink" title="3. 创建 Systemd 服务"></a>3. 创建 Systemd 服务</h3><p>为 Loki 创建系统服务，确保开机自启和进程管理：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo tee /etc/systemd/system/loki.service &lt;&lt;EOF</span><br><span class="line">Description=Grafana Loki Log Aggregation System</span><br><span class="line">After=network.target </span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/bin/loki -config.file=/etc/loki/config.yaml</span><br><span class="line">Restart=on-failure </span><br><span class="line">User=root </span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target </span><br><span class="line">EOF<span class="comment"># 重载systemd配置并启动Loki</span></span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start loki</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> loki</span><br><span class="line"><span class="comment"># 验证服务状态（应显示active (running)）</span></span><br><span class="line">sudo systemctl status loki</span><br></pre></td></tr></table></figure>
-
-<p>可以使用 <code>journalctl -u loki -f</code> 查看 Loki 日志以进行故障排除</p>
-<h3 id="4-验证-Loki-运行"><a href="#4-验证-Loki-运行" class="headerlink" title="4.  验证 Loki 运行"></a>4.  验证 Loki 运行</h3><p>通过 HTTP 接口检查 Loki 状态：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:3100/ready</span><br></pre></td></tr></table></figure>
-
-<p>预期输出：ready（表示 Loki 已就绪）</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/4-loki-ready.png" alt="loki ready"></p>
-<h2 id="部署配置Alloy"><a href="#部署配置Alloy" class="headerlink" title="部署配置Alloy"></a>部署配置Alloy</h2><p>Alloy 是连接日志源与 Loki 的 “桥梁”，负责采集服务器本地日志并发送到 Loki。作为 Grafana Agent 的替代者，Alloy 配置更灵活，支持多信号采集。</p>
-<h3 id="1-安装-Alloy"><a href="#1-安装-Alloy" class="headerlink" title="1. 安装 Alloy"></a>1. 安装 Alloy</h3><p>通过 Grafana 官方仓库安装 Alloy（与 Grafana 使用同一仓库，无需重复添加）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Alloy包</span></span><br><span class="line">sudo apt install -y alloy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">alloy --version</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/5-alloy-version.png" alt="alloy --version"></p>
-<h3 id="2-配置-Alloy-收集日志"><a href="#2-配置-Alloy-收集日志" class="headerlink" title="2. 配置 Alloy 收集日志"></a>2. 配置 Alloy 收集日志</h3><p>Alloy 使用声明式配置文件定义采集规则，默认路径为<code>/etc/alloy/config.alloy</code>。我们需配置：<br>1、 通过syslog采集；2、对日志中的IP进行提取；3、 将日志转发到 Loki。<br>创建配置文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">otelcol.receiver.syslog <span class="string">"local"</span> &#123;</span><br><span class="line">  udp &#123;</span><br><span class="line">    listen_address = <span class="string">"0.0.0.0:514"</span></span><br><span class="line">    encoding = <span class="string">"GBK"</span></span><br><span class="line">  &#125;</span><br><span class="line">  output &#123;</span><br><span class="line">    logs = [otelcol.exporter.loki.local.input]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">otelcol.exporter.loki <span class="string">"local"</span> &#123;</span><br><span class="line">  forward_to = [loki.process.extract_ip.receiver]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loki.process <span class="string">"extract_ip"</span> &#123;</span><br><span class="line">  stage.regex &#123;</span><br><span class="line">    expression = <span class="string">"a:(?P&lt;ip&gt;\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;)"</span></span><br><span class="line">  &#125;</span><br><span class="line">  stage.labels &#123;</span><br><span class="line">    values = &#123;</span><br><span class="line">      ip = <span class="string">"ip"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  forward_to = [loki.write.local.receiver]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loki.write <span class="string">"local"</span> &#123;</span><br><span class="line">  endpoint &#123;</span><br><span class="line">    url = <span class="string">"http://localhost:3100/loki/api/v1/push"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>配置说明：</p>
-<blockquote>
-<p>alloy目前对syslog支持并不是特别好，经过多次尝试，用alloy的syslog组件不能支持中文编码，所以改用通过otelcol的syslog来采集日志。<br>listen_address = “0.0.0.0:514” 表示监听所有源的514端口来的upd数据。</p>
-</blockquote>
-<h3 id="3-启动-Alloy-服务"><a href="#3-启动-Alloy-服务" class="headerlink" title="3. 启动 Alloy 服务"></a>3. 启动 Alloy 服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动Alloy并设置开机自启</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now alloy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证服务状态（应显示active (running)）</span></span><br><span class="line">sudo systemctl status alloy</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>排查提示若启动失败，通过sudo journalctl -u alloy -f查看日志，常见问题：配置文件语法错误、Loki未启动导致连接失败</p>
-</blockquote>
-<h2 id="部署Grafana"><a href="#部署Grafana" class="headerlink" title="部署Grafana"></a>部署Grafana</h2><p>Grafana 是整个系统的 “前端”，用于日志查询和可视化。通过官方仓库安装可确保自动更新。</p>
-<h3 id="1-添加-Grafana-官方仓库"><a href="#1-添加-Grafana-官方仓库" class="headerlink" title="1. 添加 Grafana 官方仓库"></a>1. 添加 Grafana 官方仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入Grafana GPG密钥（用于验证包完整性）</span></span><br><span class="line">wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor | sudo tee /etc/apt/keyrings/grafana.gpg &gt; /dev/null</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加Grafana OSS仓库（稳定版）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://packages.grafana.com/oss/deb stable main'</span> | sudo tee /etc/apt/sources.list.d/grafana.list</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-安装并启动-Grafana"><a href="#2-安装并启动-Grafana" class="headerlink" title="2. 安装并启动 Grafana"></a>2. 安装并启动 Grafana</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新包索引并安装Grafana</span></span><br><span class="line">sudo apt update &amp;&amp; sudo apt install -y grafana</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动Grafana服务并设置开机自启</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> --now grafana-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证服务状态（应显示active (running)）</span></span><br><span class="line">sudo systemctl status grafana-server</span><br></pre></td></tr></table></figure>
-<h3 id="3-验证-Grafana-安装"><a href="#3-验证-Grafana-安装" class="headerlink" title="3.  验证 Grafana 安装"></a>3.  验证 Grafana 安装</h3><p>打开浏览器访问 <code>http://&lt;服务器IP&gt;:3000</code>，首次登录使用默认凭据：</p>
-<ul>
-<li>用户名：admin</li>
-<li>密码：admin</li>
-</ul>
-<p>首次登录会要求修改密码，按提示设置新密码即可。</p>
-<h2 id="接入数据源"><a href="#接入数据源" class="headerlink" title="接入数据源"></a>接入数据源</h2><h3 id="1-在发送端配置采集器的地址"><a href="#1-在发送端配置采集器的地址" class="headerlink" title="1. 在发送端配置采集器的地址"></a>1. 在发送端配置采集器的地址</h3><p>这里我们要接入和分析TP-Link路由器的上网行为日志。所以要在路由器上配置将日志发送到alloy采集节点的服务器。具体的TP-Link路由器的上网行为分析审计的配置参考《<a href="http://xiejava.ishareread.com/posts/e87ac72d/" target="_blank" rel="noopener">通过TPLink路由器进行用户行为审计实战</a>》</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/6-TPLINK%E9%85%8D%E7%BD%AE.png" alt="行为审计"></p>
-<h3 id="2-在采集端看是否收到数据"><a href="#2-在采集端看是否收到数据" class="headerlink" title="2. 在采集端看是否收到数据"></a>2. 在采集端看是否收到数据</h3><p>通过tcpdump命令查看采集节点是否有日志数据进来</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i ens2 -A port 514</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/7-tcpdump.png" alt="tcpdump"></p>
-<p>这里可以看到有日志数据通过ens2网卡的514端口进来了。</p>
-<h2 id="用Grafana查询和分析数据"><a href="#用Grafana查询和分析数据" class="headerlink" title="用Grafana查询和分析数据"></a>用Grafana查询和分析数据</h2><p>在用Grafana进行查询之前先要配置Grafana的数据源添加loki的数据源</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/8-new-data-source.png" alt="添加数据源"></p>
-<p>在loki的数据源中设置loki的连接地址</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/9-%E9%85%8D%E7%BD%AEloki%E8%BF%9E%E6%8E%A5%E5%9C%B0%E5%9D%80.png" alt="loki连接"></p>
-<p>设置完成后就可以用Grafana强大的分析查询和可视化来对日志进行分析了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/10-grafana%E5%88%86%E6%9E%90%E5%B1%95%E7%A4%BA.png" alt="日志分析"></p>
-<p>通过本文步骤，我们在 Ubuntu 24.04 上构建了 Loki+Alloy+Grafana 日志分析系统：</p>
-<p>Loki 负责高效存储日志，仅索引元数据降低开销；<br>Alloy 轻量采集系统日志，配置灵活易扩展；<br>Grafana 提供强大的日志查询与可视化能力（支持 LogQL、仪表盘、告警）。</p>
-<p>该架构资源占用低（单节点最低 2 核 4GB 内存即可运行），适合中小规模环境、边缘设备或开发测试场景。后续可扩展至多节点 Loki 集群、添加日志告警规则，或集成 Prometheus 监控指标，构建完整的可观测性平台。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3244,7 +3233,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">216</span>
+                  <span class="site-state-item-count">217</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3356,7 +3345,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">436.7k</span>
+    <span title="Site words total count">438.2k</span>
   
   
 <!--51la网站应用监控-->
