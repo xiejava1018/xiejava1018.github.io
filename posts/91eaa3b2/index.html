@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI机器学习,产品体验," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一直以来都想把我的文档都集中起来建一套知识库，方便统一的搜索查询和调用。我用过很多的文档编写管理工具有在线的、离线的，包括有有道云笔记、语雀、飞书、Notion、Obsidian等。这些工具编写管理文档还可以但是要做为一个知识库还远远不够。我认为知识库不但要解决“知识存哪里” 的问题，更要解决 “知识怎么用” 的痛点，能够将多源的知识内容进行聚合，方便检索查询和使用。 我需要的知识库系统能够具备以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5分钟，我搭了一套AI知识库">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/91eaa3b2/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="一直以来都想把我的文档都集中起来建一套知识库，方便统一的搜索查询和调用。我用过很多的文档编写管理工具有在线的、离线的，包括有有道云笔记、语雀、飞书、Notion、Obsidian等。这些工具编写管理文档还可以但是要做为一个知识库还远远不够。我认为知识库不但要解决“知识存哪里” 的问题，更要解决 “知识怎么用” 的痛点，能够将多源的知识内容进行聚合，方便检索查询和使用。 我需要的知识库系统能够具备以">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/1-PandaWiki.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/2-%E5%AE%89%E8%A3%85%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/3-%E5%AE%89%E8%A3%85docker.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/4-%E8%BE%93%E5%85%A5%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/5-PandaWiki%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/6-%E9%85%8D%E7%BD%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/7-%E5%88%9B%E5%BB%BA%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/8-%E8%AE%BF%E9%97%AE%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/9-%E9%80%89%E6%8B%A9%E5%AF%BC%E5%85%A5%E7%A6%BB%E7%BA%BF%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/10-%E5%AF%BC%E5%85%A5%E7%A6%BB%E7%BA%BF%E6%96%87%E4%BB%B6%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/11-%E5%AF%BC%E5%85%A5%E7%A6%BB%E7%BA%BF%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/12-%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/13-%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E4%B8%AD.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/14-%E5%AD%A6%E4%B9%A0%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/15-%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86%E7%8A%B6%E6%80%81.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/16-%E7%A1%AE%E8%AE%A4%E5%AD%A6%E4%B9%A0.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/17-%E5%90%91AI%E6%8F%90%E9%97%AE.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/18-AI%E6%A3%80%E7%B4%A2%E7%9F%A5%E8%AF%86%E5%BA%93.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/19-AI-Wiki.png">
+<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2025-12-09T12:00:42.000Z">
+<meta property="article:modified_time" content="2025-12-10T00:58:41.400Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="AI机器学习">
+<meta property="article:tag" content="产品体验">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/1-PandaWiki.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/91eaa3b2/"/>
+
+
+
+
+
+  <title>5分钟，我搭了一套AI知识库 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/91eaa3b2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">5分钟，我搭了一套AI知识库</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-12-09T20:00:42+08:00">
+                2025-12-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T08:58:41+08:00">
+                2025-12-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/AI/" itemprop="url" rel="index">
+                    <span itemprop="name">AI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/91eaa3b2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/91eaa3b2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/91eaa3b2/" class="leancloud_visitors" data-flag-title="5分钟，我搭了一套AI知识库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一直以来都想把我的文档都集中起来建一套知识库，方便统一的搜索查询和调用。我用过很多的文档编写管理工具有在线的、离线的，包括有有道云笔记、语雀、飞书、Notion、Obsidian等。这些工具编写管理文档还可以但是要做为一个知识库还远远不够。我认为知识库不但要解决“知识存哪里” 的问题，更要解决 “知识怎么用” 的痛点，能够将多源的知识内容进行聚合，方便检索查询和使用。</p>
+<p>我需要的知识库系统能够具备以下能力：</p>
+<ul>
+<li>多源内容聚合的能力：能够将我的博客网站、飞书、语雀、离线的文档等都能导入到知识库中。</li>
+<li>方便快捷的搜索能力：AI辅助搜索，能够随时快速找到我想要的东西，AI辅助问答，能够基于已有的知识快速给出比较靠谱的答案。</li>
+<li>便捷强大的编辑能力：能够通过富文本、Markdown随时记录文本，通过AI来辅助创作。</li>
+</ul>
+<p>几番比较找到了PandaWiki，这款开源AI大模型驱动的知识库搭建系统，我觉得满足了目前我对知识库的要求，其安装方便、使用便捷、免费开源，零成本就能拥有自己的AI知识库，目前在github上斩获了8.4K的Star说明了受欢迎的程度。</p>
+<h1 id="一、什么是PandaWiki"><a href="#一、什么是PandaWiki" class="headerlink" title="一、什么是PandaWiki"></a>一、什么是PandaWiki</h1><p>PandaWiki 是一款 AI 大模型驱动的开源知识库搭建系统，帮助你快速构建智能化的 产品文档、技术文档、FAQ、博客系统，借助大模型的力量为你提供 AI 创作、AI 问答、AI 搜索等能力，具备富文本编辑、第三方集成和内容导入能力，采用AGPL-3.0开源协议。</p>
+<p>它的核心价值在于将 AI 能力与知识库深度融合，不仅解决了 “知识存哪里” 的问题，更攻克了 “知识怎么用” 的痛点。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/1-PandaWiki.png" alt="PandaWiki"><br>PandaWiki 的功能设计围绕 “智能化” 与 “便捷性” 展开，核心可概括为三大 AI 功能与五大实用特性，覆盖知识库从搭建到使用的全场景需求：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>具体功能</th>
+<th>价值说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI 核心功能</td>
+<td>AI 创作</td>
+<td>辅助生成、优化文档内容，降低内容生产门槛，提升写作效率</td>
+</tr>
+<tr>
+<td></td>
+<td>AI 问答</td>
+<td>支持用户以自然语言提问，AI 基于知识库内容精准作答，而非返回杂乱链接</td>
+</tr>
+<tr>
+<td></td>
+<td>AI 搜索</td>
+<td>依托 AI 大模型实现语义化搜索，精准匹配用户需求，解决传统关键词搜索的局限性</td>
+</tr>
+<tr>
+<td>实用特性</td>
+<td>富文本编辑</td>
+<td>支持 Markdown 与 HTML 语法，满足不同用户编辑习惯；文档可导出为 Word、PDF、Markdown 格式</td>
+</tr>
+<tr>
+<td></td>
+<td>多渠道内容导入</td>
+<td>支持通过飞书文档、Notion、URL、Sitemap、RSS 及离线文件导入内容，省去重复复制粘贴操作</td>
+</tr>
+<tr>
+<td></td>
+<td>第三方平台集成</td>
+<td>可接入钉钉、飞书、企业微信、Discord 等平台的聊天机器人，实现 “随处查知识”</td>
+</tr>
+<tr>
+<td></td>
+<td>高度自定义</td>
+<td>支持配置 Wiki 网站配色、背景图、水印、页脚（企业名称、ICP 备案、品牌 Logo 等），打造专属风格</td>
+</tr>
+<tr>
+<td></td>
+<td>数据统计与反馈</td>
+<td>管理后台可实时查看 Wiki 网站的访问次数、用户分布、问答记录及反馈信息，便于优化内容</td>
+</tr>
+</tbody></table>
+<p>PandaWiki 的最大优势之一是 “低门槛”—— 无需复杂代码开发，提供了一键部署安装脚本，全程耗时不超过 5 分钟，即使是非技术人员也能轻松上手。</p>
+<h1 id="二、PandaWiki的安装部署"><a href="#二、PandaWiki的安装部署" class="headerlink" title="二、PandaWiki的安装部署"></a>二、PandaWiki的安装部署</h1><h2 id="1、部署前的准备"><a href="#1、部署前的准备" class="headerlink" title="1、部署前的准备"></a>1、部署前的准备</h2><p>PandaWiki的官方文档见 <a href="https://pandawiki.docs.baizhi.cloud/node/01971602-bb4e-7c90-99df-6d3c38cfd6d5" target="_blank" rel="noopener">https://pandawiki.docs.baizhi.cloud/node/01971602-bb4e-7c90-99df-6d3c38cfd6d5</a></p>
+<p>PandaWiki安装需Linux系统、x86_64架构，依赖Docker 20.10.14+和Docker Compose 2.0.0+，推荐1核2G内存10G磁盘。<br>安装 PandaWiki 系统环境要求如下：</p>
+<ul>
+<li>操作系统：Linux</li>
+<li>CPU 指令架构：x86_64、aarch64</li>
+<li>软件依赖：Docker 20.10.14 版本以上</li>
+<li>软件依赖：Docker Compose 2.0.0 版本以上</li>
+<li>推荐配置：2 核 CPU / 4 GB 内存 / 20 GB 磁盘</li>
+<li>最低配置：1 核 CPU / 2 GB 内存 / 5 GB 磁盘</li>
+</ul>
+<p>我的配置是ubuntu系统2核CPU/4GB内存/100GB磁盘。</p>
+<h2 id="2、安装PandaWiki"><a href="#2、安装PandaWiki" class="headerlink" title="2、安装PandaWiki"></a>2、安装PandaWiki</h2><p>官方提供了一键自动安装命令，可以非常便捷无脑的就把系统给装上。<br>使用 root 权限登录你的服务器，然后执行以下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c <span class="string">"<span class="variable">$(curl -fsSLk https://release.baizhi.cloud/panda-wiki/manager.sh)</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/2-%E5%AE%89%E8%A3%85%E7%95%8C%E9%9D%A2.png" alt="安装界面"><br>选择“安装”，回车<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/3-%E5%AE%89%E8%A3%85docker.png" alt="安装"><br>系统检测到没有安装docker，输入“y”,系统自动安装docker<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/4-%E8%BE%93%E5%85%A5%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95.png" alt="自动安装docker"></p>
+<p>默认安装路径位于 <code>/data/pandawiki</code><br>到显示所有容器安装完成并启动就会显示如下信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SUCCESS  控制台信息:</span><br><span class="line">SUCCESS    访问地址(内网): https://*.*.*.*:2443</span><br><span class="line">SUCCESS    访问地址(外网): https://*.*.*.*:2443</span><br><span class="line">SUCCESS    用户名: admin</span><br><span class="line">SUCCESS    密码: **********************</span><br></pre></td></tr></table></figure>
+
+<p>修改默认密码</p>
+<blockquote>
+<p>如果需要修改admin的密码可以修改安装目录下.env文件中的 ADMIN_PASSWORD 后，执行</p>
+<p><code>bash docker compose up -d</code></p>
+<p>即可生效。</p>
+</blockquote>
+<p>使用浏览器打开上述内容中的 “访问地址”，就可以看到 PandaWiki 的控制台登录入口。</p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/5-PandaWiki%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png" alt="Panda登录地址"></p>
+<h1 id="三、PandaWiki的使用"><a href="#三、PandaWiki的使用" class="headerlink" title="三、PandaWiki的使用"></a>三、PandaWiki的使用</h1><h2 id="1、配置-AI-大模型"><a href="#1、配置-AI-大模型" class="headerlink" title="1、配置 AI 大模型"></a>1、配置 AI 大模型</h2><p>由于 PandaWiki 的 AI 功能（创作、问答、搜索）均依赖 AI 大模型，首次使用需先完成模型配置，否则相关功能无法正常使用。其支持的模型类型及推荐方案如下：</p>
+<ul>
+<li>Chat 模型：用于对话与内容生成，如 ChatGPT-4、Deepseek-r1、Deepseek-v3 等</li>
+<li>Embedding 模型：将文档转化为向量，支撑智能搜索与内容关联，如 BGE-M3</li>
+<li>Reranker 模型：对搜索结果二次排序，提升检索精准度，如 BGE-Reranker-V2-M3</li>
+</ul>
+<p>我这里直接使用PandaWiki默认的模型“自动配置”。自动配置需要点击“获取百智云API Key”来获取API Key，注册登录百智云就可以获取5元的免费额度。当然通过手动配置用其他的模型API也可以。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/6-%E9%85%8D%E7%BD%AE%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%95%8C%E9%9D%A2.png" alt="配置大模型"></p>
+<h2 id="2、启用创建门户网站"><a href="#2、启用创建门户网站" class="headerlink" title="2、启用创建门户网站"></a>2、启用创建门户网站</h2><p>启用创建门户网站PandaWiki会自动帮创建一个门户网站，可以自定义门户网站的模板，“启用HTTP”输入暴露的端口80就可以开启门户网站，注意不要和2443端口重了，2443是后台admin的管理服务。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/7-%E5%88%9B%E5%BB%BA%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99.png" alt="创建门户网站"></p>
+<p>通过简单的配置就可以生成一个wiki网站，如果有域名就可以通过域名访问了，没有域名就通过IP访问。<br>我这里配了域名，可以通过wiki.xiejava.dpdns.org访问。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/8-%E8%AE%BF%E9%97%AE%E9%97%A8%E6%88%B7%E7%BD%91%E7%AB%99.png" alt="wiki门户网站"></p>
+<h2 id="3、导入文档到PandaWiki创建知识库"><a href="#3、导入文档到PandaWiki创建知识库" class="headerlink" title="3、导入文档到PandaWiki创建知识库"></a>3、导入文档到PandaWiki创建知识库</h2><p>PandaWiki 支持从第三方文档中导入文档，目前支持以下几种方式</p>
+<ul>
+<li>通过离线文件导入</li>
+<li>通过 URL 导入</li>
+<li>通过 RSS 导入</li>
+<li>通过 Sitemap 导入</li>
+<li>通过 Notion 导入</li>
+<li>通过 Epub 导入</li>
+<li>通过 MiniDoc 导入</li>
+<li>通过 Wiki.js 导入</li>
+<li>通过 Confluence 导入</li>
+<li>通过飞书文档导入</li>
+<li>通过语雀导入</li>
+<li>通过思源笔记导入</li>
+</ul>
+<p>官方都有详细的说明文档<br>我这里将我的博客文档通过离线方式进行导入。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/9-%E9%80%89%E6%8B%A9%E5%AF%BC%E5%85%A5%E7%A6%BB%E7%BA%BF%E6%96%87%E4%BB%B6.png" alt="离线导入文件"></p>
+<p>在离线文件导入界面选择要导入的文件，支持的格式包括<code>.txt、.md、.xlx、.xlsx、.docx、.pdf</code> 。<br>注意：每个文件的大小不能超过 20 MB。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/10-%E5%AF%BC%E5%85%A5%E7%A6%BB%E7%BA%BF%E6%96%87%E4%BB%B6%E7%95%8C%E9%9D%A2.png" alt="导入文件"></p>
+<p>选择要导入的文件后，会对.md文件自动进行解析。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/11-%E5%AF%BC%E5%85%A5%E7%A6%BB%E7%BA%BF%E6%96%87%E4%BB%B6.png" alt="解析文件"></p>
+<p>解析完了点击“批量导入”，就可以将文件导入到知识库，并且展示的是解析后的富文本形式。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/12-%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E6%96%87%E4%BB%B6.png" alt="批量导入"></p>
+<p>批量导入处理中<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/13-%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E4%B8%AD.png" alt="批量导入中"></p>
+<p>新导入的文件虽然是可以被可见、被访问、被问答，但是还没有进行增强学习处理需要进一步的学习<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/14-%E5%AD%A6%E4%B9%A0%E6%96%87%E4%BB%B6.png" alt="发布和学习"></p>
+<p>PandaWiki的文档处理状态如下图：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/15-%E6%96%87%E6%A1%A3%E5%A4%84%E7%90%86%E7%8A%B6%E6%80%81.png" alt="文档处理状态"></p>
+<p>选择需要学习的文档点“确认”进行学习<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/16-%E7%A1%AE%E8%AE%A4%E5%AD%A6%E4%B9%A0.png" alt="学习和发布"></p>
+<p>当学习和发布完成后，可以在web门户网站进行AI检索和AI问答了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/17-%E5%90%91AI%E6%8F%90%E9%97%AE.png" alt="AI问答"></p>
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/18-AI%E6%A3%80%E7%B4%A2%E7%9F%A5%E8%AF%86%E5%BA%93.png" alt="AI问答"></p>
+<p>我们可以将pandawiki直接当一个博客网站来使用，它对markdown的解析和展示还挺好的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251209/19-AI-Wiki.png" alt="pandawiki博客站点"></p>
+<p>欢迎访问我的wiki站点 <a href="https://wiki.xiejava.dpdns.org" target="_blank" rel="noopener">https://wiki.xiejava.dpdns.org</a> 在这里我将和你一起分享IT技术，感受AI带来的便捷。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiejava.ishareread.com/posts/91eaa3b2/" title="5分钟，我搭了一套AI知识库">http://xiejava.ishareread.com/posts/91eaa3b2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># AI机器学习</a>
+          
+            <a href="/tags/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C/" rel="tag"># 产品体验</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/3ea90a75/" rel="next" title="企业级私有docker镜像仓库Harbor的搭建和使用">
+                <i class="fa fa-chevron-left"></i> 企业级私有docker镜像仓库Harbor的搭建和使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">218</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、什么是PandaWiki"><span class="nav-number">1.</span> <span class="nav-text">一、什么是PandaWiki</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、PandaWiki的安装部署"><span class="nav-number">2.</span> <span class="nav-text">二、PandaWiki的安装部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、部署前的准备"><span class="nav-number">2.1.</span> <span class="nav-text">1、部署前的准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装PandaWiki"><span class="nav-number">2.2.</span> <span class="nav-text">2、安装PandaWiki</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、PandaWiki的使用"><span class="nav-number">3.</span> <span class="nav-text">三、PandaWiki的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、配置-AI-大模型"><span class="nav-number">3.1.</span> <span class="nav-text">1、配置 AI 大模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、启用创建门户网站"><span class="nav-number">3.2.</span> <span class="nav-text">2、启用创建门户网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、导入文档到PandaWiki创建知识库"><span class="nav-number">3.3.</span> <span class="nav-text">3、导入文档到PandaWiki创建知识库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">440.3k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
