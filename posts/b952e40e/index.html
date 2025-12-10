@@ -140,15 +140,15 @@
 <meta property="og:url" content="http://xiejava.ishareread.com/posts/b952e40e/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).的错。  从报错的提示看是sqlite3的版本太">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%992.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%991.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%992.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2024-07-23T09:23:11.000Z">
-<meta property="article:modified_time" content="2024-08-17T12:47:37.986Z">
+<meta property="article:modified_time" content="2025-12-10T07:13:18.776Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%991.png">
 
 
 
@@ -366,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:37+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -486,9 +486,9 @@
 
       
         <p>今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报<code>django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).</code>的错。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p>
 <p>从报错的提示看是sqlite3的版本太低，期望是3.9.0但是当前版本是3.8.2<br>在网上找了很多资料，也都是说django与sqlite3的版本不兼容，需要升级sqlite3的版本。<br>于是将sqlite3升级到目前的稳定版本3.46.0，然而发现并没有什么用，还是报<code>sqlite3.NotSupportedError: deterministic=True requires SQLite 3.8.3 or higher</code> 。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p>
 <p>通过sqlite3 –version 查看版本号已经是3.46.0了，但还是提示要求SQLite版本在3.8.3以上。重装django4和python3.8的环境都没有用。<br>最后在网上找到解决办法。使用第三方包pysqlite3运行SQLite3<br>具体方法如下：<br>1、安装pysqlite3和pysqlite3-binary</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pysqlite3</span><br><span class="line">pip install pysqlite3<span class="literal">-binary</span></span><br></pre></td></tr></table></figure>
 
@@ -497,12 +497,12 @@
 
 <p>历经周折终于解决。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

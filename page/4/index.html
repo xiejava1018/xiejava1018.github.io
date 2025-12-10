@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -480,22 +480,22 @@
 <p>遇到<code>FATAL Something&#39;s wrong TypeError: mode must be int32 or null/undefined</code>这类错误通常是在使用Hexo生成静态文件时出现的。这个问题通常与Hexo的一些插件不兼容或配置不当有关。</p>
 <h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><p>一般来说因为node.js和hexo存在版本适配的关系，所以当可能是一个版本过高一个版本过低导致的出现问题。<br>解决这个问题可以降低node.js的版本，可以将hexo更新至适配的高版本。这里介绍如何将hexo更新至适配的高版本。</p>
 <h3 id="1、查看哪些包需要更新"><a href="#1、查看哪些包需要更新" class="headerlink" title="1、查看哪些包需要更新"></a>1、查看哪些包需要更新</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm outdated</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240815/1-%E6%9F%A5%E7%9C%8B%E5%93%AA%E4%BA%9B%E5%8C%85%E8%A6%81%E6%9B%B4%E6%96%B0.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240815/1-%E6%9F%A5%E7%9C%8B%E5%93%AA%E4%BA%9B%E5%8C%85%E8%A6%81%E6%9B%B4%E6%96%B0.png" alt="在这里插入图片描述"></p>
 <p>通过npm outdated 列出了所有需要升级的组件包，这里还给出了npm也需要升级的信息，需要将npm从10.8.1升级到10.8.2，具体的升级命令是 npm install -g <a href="mailto:npm@10.8.2">npm@10.8.2</a><br>执行 <code>npm install -g npm@10.8.2</code> 完成npm的升级</p>
 <h3 id="2、升级更新需要升级的包"><a href="#2、升级更新需要升级的包" class="headerlink" title="2、升级更新需要升级的包"></a>2、升级更新需要升级的包</h3><p>升级hexo和hexo-cli</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update hexo<span class="literal">-cli</span> hexo -<span class="literal">-latest</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240815/2-%E6%9B%B4%E6%96%B0hexo%E5%8C%85.png" alt="在这里插入图片描述"></p>
-<p>重新执行npm outdated<br>可以看到hexo 的版本从4.2.0升级到了4.2.1<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240815/3-%E6%9F%A5%E7%9C%8Bhexo%E6%98%AF%E5%90%A6%E6%9B%B4%E6%96%B0.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240815/2-%E6%9B%B4%E6%96%B0hexo%E5%8C%85.png" alt="在这里插入图片描述"></p>
+<p>重新执行npm outdated<br>可以看到hexo 的版本从4.2.0升级到了4.2.1<br><img src="http://image2.ishareread.com/images/2024/20240815/3-%E6%9F%A5%E7%9C%8Bhexo%E6%98%AF%E5%90%A6%E6%9B%B4%E6%96%B0.png" alt="在这里插入图片描述"></p>
 <p>重新执行<code>hexo d</code>，发现不报错了，并且可以成功部署。<br>这里还有hexo-abbrlink和hexo-generator-search 不是适配的版本，虽然不影响hexo部署，但也可以用同样的方法将其升为最新适配的版本。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update hexo<span class="literal">-abbrlink</span> hexo<span class="literal">-generator</span><span class="literal">-search</span> -<span class="literal">-latest</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240815/4-%E6%9B%B4%E6%96%B0%E5%85%B6%E4%BB%96%E5%8C%85.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240815/4-%E6%9B%B4%E6%96%B0%E5%85%B6%E4%BB%96%E5%8C%85.png" alt="在这里插入图片描述"></p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -592,8 +592,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -718,7 +718,7 @@
 
 <p>在博客文章的模型中，文章内容需要支持markdown,所以<code>content = MDTextField(verbose_name=&#39;内容&#39;)</code></p>
 <h3 id="5、查看效果"><a href="#5、查看效果" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>用django自带的后台管理admin就可以看到效果了</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png" alt="django自带的后台管理admin"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png" alt="django自带的后台管理admin"></p>
 <h2 id="二、前台支持markdown解析及代码高亮"><a href="#二、前台支持markdown解析及代码高亮" class="headerlink" title="二、前台支持markdown解析及代码高亮"></a>二、前台支持markdown解析及代码高亮</h2><p>在后台支持markdown编辑后，前台页面的博客文章页面也得要支持对markdown得解析。</p>
 <h3 id="1、安装依赖-1"><a href="#1、安装依赖-1" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><p>在Django项目中使用markdown2库实现代码高亮，安装markdown2和pygments这两个Python库。markdown2用于解析Markdown文本，而pygments用于代码高亮。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install markdown2 pygments</span><br></pre></td></tr></table></figure>
@@ -741,15 +741,15 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123;% static 'blog/css/markdown_highlighy.css' %&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="5、查看效果-1"><a href="#5、查看效果-1" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>可以看到markdown可以正常解析，代码也可以高亮显示了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png" alt="在这里插入图片描述"></p>
 <h2 id="三、全套代码"><a href="#三、全套代码" class="headerlink" title="三、全套代码"></a>三、全套代码</h2><p><a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -846,8 +846,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -957,39 +957,39 @@
         
           
             <p>对于开发团队来说提高软件交付的速度和质量是一个永恒的话题，对于个人开发者来说同样如此。作为一个码农，一定会有几个自己私有的小项目，从需求管理到开发到测试到部署运维都得要自己来，将自己一个人活成一个团队。</p>
-<p>DevOps（Development和Operations的组合），旨在通过自动化、协作和共享责任来提高软件开发和运维的效率、质量和安全性。作为一个人的团队，也可通过devops实践来提高对自己项目的效率和质量，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布新版本。本文就以一个实际的python的django项目来运用阿里的云效devops平台来进行实战。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/1-devops.png" alt="在这里插入图片描述"><br>DevOps平台工具有很多，最常见的就是大名顶顶的Jenkins，作为个人开发者要准备相应的硬件资源，还要要自己维护一套Jenkins有点麻烦。这里直接就选择成熟的阿里云效devops <a href="https://devops.aliyun.com/" target="_blank" rel="noopener">https://devops.aliyun.com/</a> ，这套平台基础版是免费的，对于个人开发者来说已经够用了。</p>
-<h2 id="一、需求规划"><a href="#一、需求规划" class="headerlink" title="一、需求规划"></a>一、需求规划</h2><p>个人项目虽小，但是也得要有相应的规划，至少得有个需求清单来进行需求的规划和跟踪，哪些需求已经完成了，哪些还需要进行开发做到自己心中有数。<br>可以在云效的项目协作中创建一个项目进行管理。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/2-%E4%BA%91%E6%95%88%E5%B7%A5%E4%BD%9C%E5%8F%B0%E9%A1%B9%E7%9B%AE%E5%8D%8F%E4%BD%9C.png" alt="在这里插入图片描述"></p>
-<p>在这里我创建了一个xiejava的博客项目<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/3-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88.png" alt="在这里插入图片描述"></p>
-<p>在这里我们就可以将自己规划的需求录入进来做好自己的需求跟踪清单<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/4-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
-<p>可以规划自己的版本，将需求跟踪清单里的需求纳入到版本迭代计划。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/5-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%85%B3%E8%81%94.png" alt="在这里插入图片描述"></p>
-<p>在迭代计划中可以看到这个迭代要完成的需求清单。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/6-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92.png" alt="在这里插入图片描述"></p>
+<p>DevOps（Development和Operations的组合），旨在通过自动化、协作和共享责任来提高软件开发和运维的效率、质量和安全性。作为一个人的团队，也可通过devops实践来提高对自己项目的效率和质量，使产品持续开发、持续集成、持续测试、持续部署、持续监控，非常频繁地发布新版本。本文就以一个实际的python的django项目来运用阿里的云效devops平台来进行实战。<br><img src="http://image2.ishareread.com/images/2024/20240811/1-devops.png" alt="在这里插入图片描述"><br>DevOps平台工具有很多，最常见的就是大名顶顶的Jenkins，作为个人开发者要准备相应的硬件资源，还要要自己维护一套Jenkins有点麻烦。这里直接就选择成熟的阿里云效devops <a href="https://devops.aliyun.com/" target="_blank" rel="noopener">https://devops.aliyun.com/</a> ，这套平台基础版是免费的，对于个人开发者来说已经够用了。</p>
+<h2 id="一、需求规划"><a href="#一、需求规划" class="headerlink" title="一、需求规划"></a>一、需求规划</h2><p>个人项目虽小，但是也得要有相应的规划，至少得有个需求清单来进行需求的规划和跟踪，哪些需求已经完成了，哪些还需要进行开发做到自己心中有数。<br>可以在云效的项目协作中创建一个项目进行管理。<br><img src="http://image2.ishareread.com/images/2024/20240811/2-%E4%BA%91%E6%95%88%E5%B7%A5%E4%BD%9C%E5%8F%B0%E9%A1%B9%E7%9B%AE%E5%8D%8F%E4%BD%9C.png" alt="在这里插入图片描述"></p>
+<p>在这里我创建了一个xiejava的博客项目<br><img src="http://image2.ishareread.com/images/2024/20240811/3-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%A7%88.png" alt="在这里插入图片描述"></p>
+<p>在这里我们就可以将自己规划的需求录入进来做好自己的需求跟踪清单<br><img src="http://image2.ishareread.com/images/2024/20240811/4-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E5%88%97%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<p>可以规划自己的版本，将需求跟踪清单里的需求纳入到版本迭代计划。<br><img src="http://image2.ishareread.com/images/2024/20240811/5-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E9%9C%80%E6%B1%82%E4%B8%8E%E8%BF%AD%E4%BB%A3%E5%85%B3%E8%81%94.png" alt="在这里插入图片描述"></p>
+<p>在迭代计划中可以看到这个迭代要完成的需求清单。<br><img src="http://image2.ishareread.com/images/2024/20240811/6-%E4%BA%91%E6%95%88%E9%A1%B9%E7%9B%AE%E8%BF%AD%E4%BB%A3%E8%AE%A1%E5%88%92.png" alt="在这里插入图片描述"></p>
 <h2 id="二、代码管理"><a href="#二、代码管理" class="headerlink" title="二、代码管理"></a>二、代码管理</h2><p>即使是最简单的项目，建议还是通过代码仓库进行代码的版本管理，我的代码是放到码云<a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a>  进行托管的，也可以托管到云效自己的代码管理仓库。<br>有了代码仓库，可以通过在云效构建流水线来进行自动构建、自动测试、自动部署了。</p>
-<h2 id="三、创建流水线"><a href="#三、创建流水线" class="headerlink" title="三、创建流水线"></a>三、创建流水线</h2><p>在云效中创建ishareblog的自动发布流水线，整个流水线包括获取代码、测试、构建、部署。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/7-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E6%83%85%E5%86%B5.png" alt="在这里插入图片描述"></p>
-<h3 id="1、配置流水线源"><a href="#1、配置流水线源" class="headerlink" title="1、配置流水线源"></a>1、配置流水线源</h3><p>流水线源可以配置云效自己的代码库，也可以配置其他的代码库，如我里是配置的码云代码库。<br>可以开启代码源触发，开启后一旦代码库有提交操作，就会自动触发流水线工作。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/8-%E4%BA%91%E6%95%88%E4%BB%8E%E7%A0%81%E4%BA%91%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81.png" alt="在这里插入图片描述"></p>
+<h2 id="三、创建流水线"><a href="#三、创建流水线" class="headerlink" title="三、创建流水线"></a>三、创建流水线</h2><p>在云效中创建ishareblog的自动发布流水线，整个流水线包括获取代码、测试、构建、部署。<br><img src="http://image2.ishareread.com/images/2024/20240811/7-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%89%A7%E8%A1%8C%E6%83%85%E5%86%B5.png" alt="在这里插入图片描述"></p>
+<h3 id="1、配置流水线源"><a href="#1、配置流水线源" class="headerlink" title="1、配置流水线源"></a>1、配置流水线源</h3><p>流水线源可以配置云效自己的代码库，也可以配置其他的代码库，如我里是配置的码云代码库。<br>可以开启代码源触发，开启后一旦代码库有提交操作，就会自动触发流水线工作。<br><img src="http://image2.ishareread.com/images/2024/20240811/8-%E4%BA%91%E6%95%88%E4%BB%8E%E7%A0%81%E4%BA%91%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%BB%A3%E7%A0%81.png" alt="在这里插入图片描述"></p>
 <blockquote>
 <p>需要说明的是，如果是外部的代码仓库，需要在外部的代码仓库中添加Webhook触发设置</p>
 </blockquote>
-<p>如我的是码云的仓库，就要在码云的仓库中添加Webhook的配置<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/9-%E4%BA%91%E6%95%88webhooks%E7%AE%A1%E7%90%86.png" alt="在这里插入图片描述"></p>
-<h2 id="四、自动测试"><a href="#四、自动测试" class="headerlink" title="四、自动测试"></a>四、自动测试</h2><p>在测试环节，配置了python代码扫描和Python单元测试。<br>python代码扫描用的是云效默认的配置<br>比较麻烦的是Python单元测试，Python单元测试需要在Python项目中写测试用例，还要配置测试命令。<br>在Python项目中写测试用例见《<a href="https://blog.csdn.net/fullbug/article/details/140893466" target="_blank" rel="noopener">django集成pytest进行自动化单元测试实战</a>》。<br>配置测试命令就是在测试服务其中进行发布测试的所有shell命令<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/10-%E4%BA%91%E6%95%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
+<p>如我的是码云的仓库，就要在码云的仓库中添加Webhook的配置<br><img src="http://image2.ishareread.com/images/2024/20240811/9-%E4%BA%91%E6%95%88webhooks%E7%AE%A1%E7%90%86.png" alt="在这里插入图片描述"></p>
+<h2 id="四、自动测试"><a href="#四、自动测试" class="headerlink" title="四、自动测试"></a>四、自动测试</h2><p>在测试环节，配置了python代码扫描和Python单元测试。<br>python代码扫描用的是云效默认的配置<br>比较麻烦的是Python单元测试，Python单元测试需要在Python项目中写测试用例，还要配置测试命令。<br>在Python项目中写测试用例见《<a href="https://blog.csdn.net/fullbug/article/details/140893466" target="_blank" rel="noopener">django集成pytest进行自动化单元测试实战</a>》。<br>配置测试命令就是在测试服务其中进行发布测试的所有shell命令<br><img src="http://image2.ishareread.com/images/2024/20240811/10-%E4%BA%91%E6%95%88%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
 <p>配置测试命令就是在测试服务其中进行发布测试的所有shell命令<br>作为一个django的项目测试命令参考如下：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pytest default command</span></span><br><span class="line"><span class="comment"># 安装mysql客户端</span></span><br><span class="line">sudo apt<span class="literal">-get</span> update</span><br><span class="line">sudo apt<span class="literal">-get</span> install <span class="literal">-y</span> libmysqlclient<span class="literal">-dev</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装新版本的SQLite3</span></span><br><span class="line"><span class="comment"># wget https://www.sqlite.org/2024/sqlite-autoconf-3460000.tar.gz</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">sudo pip install <span class="literal">-r</span> requirements.txt <span class="literal">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">sudo pip install pysqlite3 <span class="literal">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">sudo pip install pysqlite3<span class="literal">-binary</span> <span class="literal">-i</span> https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换Django的sqlite3的驱动文件</span></span><br><span class="line">sudo cp <span class="operator">-f</span> /root/workspace/ishareblog_J18t/change_set/base.py  /usr/local/lib/python3.<span class="number">8</span>/site<span class="literal">-packages</span>/django/db/backends/sqlite3/base.py</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化数据库</span></span><br><span class="line">sudo python manage.py makemigrations -<span class="literal">-settings</span>=ishareblog.settings_test</span><br><span class="line">sudo python manage.py migrate -<span class="literal">-settings</span>=ishareblog.settings_test</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动django服务</span></span><br><span class="line">sudo nohup python manage.py runserver <span class="number">8000</span> -<span class="literal">-settings</span>=ishareblog.settings_test &amp;</span><br><span class="line"></span><br><span class="line">PORT=<span class="number">8000</span>  <span class="comment"># 替换为您想要检查的端口号</span></span><br><span class="line">NEXT_COMMAND=<span class="string">"sudo pytest --html=report/index.html"</span>  <span class="comment"># 通过pytest进行单元测试</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">until</span> nc <span class="literal">-z</span> localhost <span class="variable">$PORT</span>; <span class="keyword">do</span></span><br><span class="line">    echo <span class="string">"Port <span class="variable">$PORT</span> is not ready - waiting..."</span></span><br><span class="line">    curl http://localhost:<span class="number">8000</span></span><br><span class="line">    sleep <span class="number">1</span></span><br><span class="line">done</span><br><span class="line"> </span><br><span class="line">echo <span class="string">"Port <span class="variable">$PORT</span> is ready"</span></span><br><span class="line">eval <span class="string">"<span class="variable">$NEXT_COMMAND</span>"</span></span><br><span class="line"></span><br><span class="line">ps aux | grep python</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过pytest进行单元测试</span></span><br><span class="line"><span class="comment">#sudo pytest --html=report/index.html</span></span><br><span class="line"></span><br><span class="line">pkill <span class="operator">-f</span> manage.py</span><br><span class="line"></span><br><span class="line">ps aux | grep python</span><br></pre></td></tr></table></figure>
-<p>因为在单元测试中还做了接口测试，这里会要启动djang服务，进行接口测试，测试完成后还要停止服务。<br>可以在流水线执行完后查看扫描报告和测试报告<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/11-%E4%BA%91%E6%95%88%E6%9F%A5%E7%9C%8B%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
-<p>扫描报告<br>代码扫描报告，报出来的大部分是格式规范的问题。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/12-%E4%BA%91%E6%95%88%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
-<p>测试报告<br>自动化测试报告是通过pytest测试完成形成的报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/13-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
-<h2 id="五、自动构建"><a href="#五、自动构建" class="headerlink" title="五、自动构建"></a>五、自动构建</h2><p>自动构建将会将构建好的制品打包上传至构建服务器上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/14-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA.png" alt="在这里插入图片描述"></p>
-<h2 id="六、自动部署"><a href="#六、自动部署" class="headerlink" title="六、自动部署"></a>六、自动部署</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/15-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2.png" alt="在这里插入图片描述"></p>
+<p>因为在单元测试中还做了接口测试，这里会要启动djang服务，进行接口测试，测试完成后还要停止服务。<br>可以在流水线执行完后查看扫描报告和测试报告<br><img src="http://image2.ishareread.com/images/2024/20240811/11-%E4%BA%91%E6%95%88%E6%9F%A5%E7%9C%8B%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<p>扫描报告<br>代码扫描报告，报出来的大部分是格式规范的问题。<br><img src="http://image2.ishareread.com/images/2024/20240811/12-%E4%BA%91%E6%95%88%E4%BB%A3%E7%A0%81%E6%89%AB%E6%8F%8F%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<p>测试报告<br>自动化测试报告是通过pytest测试完成形成的报告。<br><img src="http://image2.ishareread.com/images/2024/20240811/13-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<h2 id="五、自动构建"><a href="#五、自动构建" class="headerlink" title="五、自动构建"></a>五、自动构建</h2><p>自动构建将会将构建好的制品打包上传至构建服务器上。<br><img src="http://image2.ishareread.com/images/2024/20240811/14-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA.png" alt="在这里插入图片描述"></p>
+<h2 id="六、自动部署"><a href="#六、自动部署" class="headerlink" title="六、自动部署"></a>六、自动部署</h2><p><img src="http://image2.ishareread.com/images/2024/20240811/15-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2.png" alt="在这里插入图片描述"></p>
 <p>也可以配置部署后的通知邮件，比如部署成功或失败后发邮件通知。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/16-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%90%8E%E5%8F%91%E9%80%9A%E7%9F%A5%E9%82%AE%E4%BB%B6.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240811/16-%E4%BA%91%E6%95%88%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%90%8E%E5%8F%91%E9%80%9A%E7%9F%A5%E9%82%AE%E4%BB%B6.png" alt="在这里插入图片描述"></p>
 <p>最后通过统计报表可以看到流水线近段期间的执行情况</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240811/17-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240811/17-%E4%BA%91%E6%95%88%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8.png" alt="在这里插入图片描述"></p>
 <h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>DevOps通过自动化的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠。本文通过一个python的django个人博客应用进行了DevOps的实战，通过DevOps拉通开发和运维，通过应用云效的DevOps平台实现自动化“软件交付”的流程，使得构建、测试、发布软件能够更加地快捷、频繁和可靠，提交研发交付效率。作为个人项目也是可以应用devops提高效率。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1086,8 +1086,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1197,7 +1197,7 @@
         
           
             <p>Django作为一款成熟的Python Web开发框架提供了丰富的内置功能，如ORM（对象关系映射）、Admin管理界面、URL分发、模板系统、表单处理等，使得开发者能够快速搭建Web应用，大幅提高了开发效率。以前写过一篇博文《<a href="https://xiejava.blog.csdn.net/article/details/125939504" target="_blank" rel="noopener">Django+Vue快速实现博客网站</a>》介绍了通过Djang+Vue快速实现博客网站，django+vue作为个人博客来说稍显复杂，部署起来也比较麻烦，Vue的单页面架构也不利于SEO，更简单的解决方案其实还是用django的模板系统快速构建web应用，对于个人博客来说部署和运维更加简单也利于SEO。下面介绍如何快速的通过django模板系统快速实现个人博客。</p>
-<h2 id="一、工程目录组织结构"><a href="#一、工程目录组织结构" class="headerlink" title="一、工程目录组织结构"></a>一、工程目录组织结构</h2><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240810/1-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="在这里插入图片描述"></p>
+<h2 id="一、工程目录组织结构"><a href="#一、工程目录组织结构" class="headerlink" title="一、工程目录组织结构"></a>一、工程目录组织结构</h2><p><img src="http://image2.ishareread.com/images/2024/20240810/1-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B7%A5%E7%A8%8B%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84.png" alt="在这里插入图片描述"></p>
 <h2 id="二、模型及管理实现"><a href="#二、模型及管理实现" class="headerlink" title="二、模型及管理实现"></a>二、模型及管理实现</h2><p>模型及管理端的实现沿用《<a href="https://xiejava.blog.csdn.net/article/details/125939504" target="_blank" rel="noopener">Django+Vue快速实现博客网站</a>》文章中的实现，用Django搭建很快很简单。<br>模型很简单，根据博客要显示的内容包括有‘文章分类’、‘文章标签’、‘博客文章’、‘站点信息’、‘社交信息’、‘聚焦’，模型定义分别如下： 这里要说明的是因为博客文章内容准备用markdown编写，所以引入了<code>mdeditor from mdeditor.fields import MDTextField</code> 内容字段<code>content=MDTextField(verbose_name=&#39;内容&#39;)</code><br>模型代码示例如下：</p>
 <h3 id="1、模型"><a href="#1、模型" class="headerlink" title="1、模型"></a>1、模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> common.basemodel <span class="keyword">import</span> BaseModel</span><br><span class="line"><span class="keyword">from</span> mdeditor.fields <span class="keyword">import</span> MDTextField</span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="string">'''文章分类'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogCategory</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">50</span>,verbose_name=<span class="string">'分类名称'</span>,default=<span class="string">''</span>)</span><br><span class="line">    href = models.CharField(max_length=<span class="number">100</span>,verbose_name=<span class="string">'分类路径'</span>,default=<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'文章分类'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'文章分类'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''文章标签'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tag</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id=models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    tag=models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标签'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.tag</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name=<span class="string">'标签'</span></span><br><span class="line">        verbose_name_plural=<span class="string">'标签'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''博客文章'''</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlogPost</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'文章标题'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    category = models.ForeignKey(BlogCategory, blank=<span class="literal">True</span>,null=<span class="literal">True</span>, verbose_name=<span class="string">'文章分类'</span>, on_delete=models.DO_NOTHING)</span><br><span class="line">    isTop = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否置顶'</span>)</span><br><span class="line">    isHot = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否热门'</span>)</span><br><span class="line">    isShow = models.BooleanField(default=<span class="literal">False</span>, verbose_name=<span class="string">'是否显示'</span>)</span><br><span class="line">    summary = models.TextField(max_length=<span class="number">500</span>, verbose_name=<span class="string">'内容摘要'</span>, default=<span class="string">''</span>)</span><br><span class="line">    content = MDTextField(verbose_name=<span class="string">'内容'</span>)</span><br><span class="line">    viewsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"查看数"</span>)</span><br><span class="line">    commentsCount = models.IntegerField(default=<span class="number">0</span>, verbose_name=<span class="string">"评论数"</span>)</span><br><span class="line">    tags = models.ManyToManyField(to=Tag, related_name=<span class="string">"tag_post"</span>, blank=<span class="literal">True</span>, default=<span class="literal">None</span>, verbose_name=<span class="string">"标签"</span>)</span><br><span class="line">    blogSource = models.CharField(max_length=<span class="number">200</span>, blank=<span class="literal">True</span>, null=<span class="literal">True</span>, default=<span class="string">''</span>,verbose_name=<span class="string">'文章来源'</span>)</span><br><span class="line">    pubTime = models.DateTimeField(blank=<span class="literal">True</span>, null=<span class="literal">True</span>, verbose_name=<span class="string">'发布日期'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tag_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">','</span>.join([i.tag <span class="keyword">for</span> i <span class="keyword">in</span> self.tags.all()])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'博客文章'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'博客文章'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''站点信息'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    name = models.CharField(max_length=<span class="number">50</span>, verbose_name=<span class="string">'站点名称'</span>, unique = <span class="literal">True</span>)</span><br><span class="line">    avatar = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点图标'</span>)</span><br><span class="line">    slogan = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点标语'</span>)</span><br><span class="line">    domain = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点域名'</span>)</span><br><span class="line">    notice = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点备注'</span>)</span><br><span class="line">    desc = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'站点描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.name</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'站点信息'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'站点信息'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''社交信息'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Social</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标题'</span>)</span><br><span class="line">    icon = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'图标'</span>)</span><br><span class="line">    color = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'颜色'</span>)</span><br><span class="line">    href = models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'社交信息'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'社交信息'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''聚焦'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Focus</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    title = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'标题'</span>)</span><br><span class="line">    img = models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'路径'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'聚焦'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'聚焦'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">'''友链'''</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Friend</span><span class="params">(BaseModel)</span>:</span></span><br><span class="line">    id = models.AutoField(primary_key=<span class="literal">True</span>)</span><br><span class="line">    siteName = models.CharField(max_length=<span class="number">20</span>, verbose_name=<span class="string">'友链站点名称'</span>)</span><br><span class="line">    path = models.CharField(max_length=<span class="number">100</span>, verbose_name=<span class="string">'地址路径'</span>)</span><br><span class="line">    desc = models.CharField(max_length=<span class="number">200</span>, verbose_name=<span class="string">'描述'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.siteName</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        verbose_name = <span class="string">'友链'</span></span><br><span class="line">        verbose_name_plural = <span class="string">'友链'</span></span><br></pre></td></tr></table></figure>
 
@@ -1216,16 +1216,16 @@
 <p>博客详情页post.html</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123; % extends 'blog/base.html' % &#125;</span><br><span class="line"><span class="comment">&lt;!-- 文章阅读 --&gt;</span></span><br><span class="line"></span><br><span class="line">&#123; % block content % &#125;</span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">article</span> <span class="attr">class</span>=<span class="string">"lyear-arc"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arc-header"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"arc-title"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>&#123;  &#123; post_obj.title  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"arc-meta"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-calendar"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> &#123;  &#123; post_obj.pubTime  &#125;  &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span> &#123; % for tag in post_obj.tags.all % &#125;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123; % url 'index' % &#125;?tag=&#123;  &#123; tag.id  &#125;  &#125;"</span>&gt;</span>&#123;  &#123; tag.tag  &#125;  &#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span>&#123; % endfor % &#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;li&gt;&lt;i class="mdi mdi-comment-multiple-outline"&gt;&lt;/i&gt; &lt;a href="#"&gt;3 评论&lt;/a&gt;&lt;/li&gt;--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"mdi mdi-heart-outline"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>&#123;  &#123; post_obj.viewsCount  &#125;  &#125; 喜欢<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            </span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"arc-preview"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"images/blog/post-1.png"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"img-fluid rounded"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lyear-arc-detail"</span>&gt;</span></span><br><span class="line">               &#123;  &#123; html_content|safe  &#125;  &#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;/<span class="name">article</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123; % endblock % &#125;</span><br><span class="line"><span class="comment">&lt;!-- 内容 end --&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="四、部署及效果"><a href="#四、部署及效果" class="headerlink" title="四、部署及效果"></a>四、部署及效果</h2><p>在部署之前执行<code>python manage.py collectstatic</code> 将admin等其他模块用到的静态文件统一输出到static的目录。<br>通过  <code>python manage.py runserver</code> 启动应用就可以看到效果。<br>实际效果见 <a href="http://iblog.ishareread.com/" target="_blank" rel="noopener">http://iblog.ishareread.com/</a><br><strong>博客首页</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240810/2-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5.png" alt="在这里插入图片描述"></p>
-<p><strong>博客详情页</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240810/3-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5.png" alt="在这里插入图片描述"></p>
+<h2 id="四、部署及效果"><a href="#四、部署及效果" class="headerlink" title="四、部署及效果"></a>四、部署及效果</h2><p>在部署之前执行<code>python manage.py collectstatic</code> 将admin等其他模块用到的静态文件统一输出到static的目录。<br>通过  <code>python manage.py runserver</code> 启动应用就可以看到效果。<br>实际效果见 <a href="http://iblog.ishareread.com/" target="_blank" rel="noopener">http://iblog.ishareread.com/</a><br><strong>博客首页</strong><br><img src="http://image2.ishareread.com/images/2024/20240810/2-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5.png" alt="在这里插入图片描述"></p>
+<p><strong>博客详情页</strong><br><img src="http://image2.ishareread.com/images/2024/20240810/3-django%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E8%AF%A6%E6%83%85%E9%A1%B5.png" alt="在这里插入图片描述"></p>
 <h2 id="五、源代码"><a href="#五、源代码" class="headerlink" title="五、源代码"></a>五、源代码</h2><p>所有源代码及说明见 <a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1322,8 +1322,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1437,17 +1437,17 @@
 
 <p>其中pytest-django插件，它提供了Django和Pytest之间的桥梁，pytest-html 是一个 pytest 的插件，用于生成详细的 HTML 测试报告。这个插件能够将 pytest 运行的结果转化为一个直观、易于阅读的 HTML 格式报告，这对于分享测试结果、审查测试覆盖率以及归档测试历史非常有帮助。</p>
 <h2 id="二、配置pytest"><a href="#二、配置pytest" class="headerlink" title="二、配置pytest"></a>二、配置pytest</h2><h3 id="1、将django的配置区分测试环境、开发环境和生产环境"><a href="#1、将django的配置区分测试环境、开发环境和生产环境" class="headerlink" title="1、将django的配置区分测试环境、开发环境和生产环境"></a>1、将django的配置区分测试环境、开发环境和生产环境</h3><p>因为测试环境、开发环境和生产环境的环境配置参数不一样，一个好的实践是将开发、测试和生产环境通过配置区分开，django的配置主要集中在项目的settings.py文件，这里通过settings.py的配置文件将开发、测试、生产区分开，不同的环境调用不通的配置文件。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/1-django%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240803/1-django%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
 <p>因为大部分的配置参数都是一样的，在这里我将公共的配置参数都抽到了base.py，环境配置中有差异的部分分别放到各自的配置文件中，如开发环境用的是mysql，测试环境用sqlite3，就可以将不同的配置给区分开。<br>测试环境是settings_test.py，这里除了数据库的配置不一样，其他都沿用基础的公共配置。settings_test.py配置如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> .base <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># SECURITY WARNING: don't run with debug turned on in production!</span></span><br><span class="line">DEBUG = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = []</span><br><span class="line"></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'test_db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2、配置pytest"><a href="#2、配置pytest" class="headerlink" title="2、配置pytest"></a>2、配置pytest</h3><p>在Django项目根目录下，创建或编辑pytest.ini文件，来配置Pytest。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/2-pytest%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+<h3 id="2、配置pytest"><a href="#2、配置pytest" class="headerlink" title="2、配置pytest"></a>2、配置pytest</h3><p>在Django项目根目录下，创建或编辑pytest.ini文件，来配置Pytest。<br><img src="http://image2.ishareread.com/images/2024/20240803/2-pytest%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
 <p>pytest.ini代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[pytest]</span><br><span class="line">DJANGO_SETTINGS_MODULE = ishareblog.settings_test</span><br><span class="line"></span><br><span class="line">python_files = tests.py test_*.py *_tests.py</span><br></pre></td></tr></table></figure>
 
 <p>DJANGO_SETTINGS_MODULE = ishareblog.settings_test  指定了pytest用到的环境配置<br>python_files = tests.py test_*.py *_tests.py 指定了pytest将测试以test开头的py文件中的测试用例。</p>
 <h2 id="三、编写测试用例"><a href="#三、编写测试用例" class="headerlink" title="三、编写测试用例"></a>三、编写测试用例</h2><p>接下来，可以在tests.py或test_*.py文件中编写你的测试用例。由于pytest-django插件的存在，你可以像平常一样使用Django的测试机制，同时也能享受Pytest带来的便利。以下以我的ishareblog博客代码通过业务测试和接口测试来编写测试用例。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/3-pytest%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240803/3-pytest%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B.png" alt="在这里插入图片描述"></p>
 <h3 id="1、业务测试"><a href="#1、业务测试" class="headerlink" title="1、业务测试"></a>1、业务测试</h3><p>我的isharebog业务相对简单，主要是测试验证业务模型模块的增删改查是否符合预期。<br>业务测试tests.py示例代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</span><br><span class="line"><span class="keyword">from</span> blog.models <span class="keyword">import</span> BlogCategory</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestBlogCategory</span><span class="params">(TestCase)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setUp</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_BogCategoryModel</span><span class="params">(self)</span>:</span></span><br><span class="line">        blog_category = BlogCategory.objects.get(id=self.blogcategory.id)</span><br><span class="line">        self.assertEqual(blog_category.title, <span class="string">"Test Category"</span>)</span><br><span class="line">        self.assertEqual(blog_category.href, <span class="string">'/category/1'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_create</span><span class="params">()</span>:</span></span><br><span class="line">    blogcategory = BlogCategory.objects.create(id=<span class="number">1</span>,title=<span class="string">"Test Category"</span>, href=<span class="string">'/category/1'</span>)</span><br><span class="line">    category_count = BlogCategory.objects.count()</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt; <span class="number">0</span>, <span class="string">"Blog category was not created category_count=0."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.id &gt; <span class="number">0</span>, <span class="string">"Blog category was not created."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.title == <span class="string">"Test Category"</span>, <span class="string">"Blog category title is wrong."</span></span><br><span class="line">    <span class="keyword">assert</span> blogcategory.href == <span class="string">"/category/1"</span>, <span class="string">"Blog category href is wrong."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.django_db</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_blog_category_query</span><span class="params">()</span>:</span></span><br><span class="line">    category_count = len(BlogCategory.objects.all())</span><br><span class="line">    <span class="keyword">assert</span> category_count &gt;= <span class="number">0</span>, <span class="string">"Blog category query error."</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"blog/tests.py"</span>])</span><br></pre></td></tr></table></figure>
 
@@ -1456,16 +1456,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> pytest</span><br><span class="line"></span><br><span class="line">host = <span class="string">"http://localhost:8000"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestApi</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_getcategory_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">f'<span class="subst">&#123;host&#125;</span>/api/category/'</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">assert</span> response.status_code == <span class="number">200</span>, <span class="string">f'Expected status code 200 but got <span class="subst">&#123;response.status_code&#125;</span>'</span></span><br><span class="line">        <span class="keyword">assert</span> response.json() != <span class="literal">None</span>, <span class="string">f'Expected to get json response but got <span class="subst">&#123;response.text&#125;</span>'</span></span><br><span class="line">        print(response.json())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_getpost_list</span><span class="params">(self)</span>:</span></span><br><span class="line">        url = <span class="string">f'<span class="subst">&#123;host&#125;</span>/api/post/list'</span></span><br><span class="line">        response = requests.get(url)</span><br><span class="line">        <span class="keyword">assert</span> response.status_code == <span class="number">200</span>, <span class="string">f'Expected status code 200 but got <span class="subst">&#123;response.status_code&#125;</span>'</span></span><br><span class="line">        <span class="keyword">assert</span> response.json() != <span class="literal">None</span>, <span class="string">f'Expected to get json response but got <span class="subst">&#123;response.text&#125;</span>'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pytest.main([<span class="string">"-s"</span>, <span class="string">"-v"</span>, <span class="string">"-p"</span>, <span class="string">"no:warnings"</span>, <span class="string">"--tb=short"</span>, <span class="string">"--html=report.html"</span>, <span class="string">"api/tests.py"</span>])</span><br></pre></td></tr></table></figure>
 
 <p>接口测试部分，对获取目录的API接口和文章列表的API接口编写了测试用例。</p>
-<h2 id="四、进行测试"><a href="#四、进行测试" class="headerlink" title="四、进行测试"></a>四、进行测试</h2><p>最后可以分别在blog目录和api目录下运行test.py 分别进行业务和接口的单元测试。<br>注意在进行测试之前需要执行 <code>python manage.py makemigrations --settings=ishareblog.settings_test</code> 初始化环境。<br>在进行api接口测试之前需要将django的应用服务启动 <code>python manage.py runserver 8000 --settings=ishareblog.settings_test</code> 启动的时候也带上测试环境的配置。<br>可以通过<code>pytest --html=report.html</code> 自动执行所有的单元测试，并生成可读的html的测试报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/4-pytest%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
-<p>pytest生成的report.html测试报告<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240803/5-pytest%E7%9A%84report%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
+<h2 id="四、进行测试"><a href="#四、进行测试" class="headerlink" title="四、进行测试"></a>四、进行测试</h2><p>最后可以分别在blog目录和api目录下运行test.py 分别进行业务和接口的单元测试。<br>注意在进行测试之前需要执行 <code>python manage.py makemigrations --settings=ishareblog.settings_test</code> 初始化环境。<br>在进行api接口测试之前需要将django的应用服务启动 <code>python manage.py runserver 8000 --settings=ishareblog.settings_test</code> 启动的时候也带上测试环境的配置。<br>可以通过<code>pytest --html=report.html</code> 自动执行所有的单元测试，并生成可读的html的测试报告。<br><img src="http://image2.ishareread.com/images/2024/20240803/4-pytest%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95.png" alt="在这里插入图片描述"></p>
+<p>pytest生成的report.html测试报告<br><img src="http://image2.ishareread.com/images/2024/20240803/5-pytest%E7%9A%84report%E6%8A%A5%E5%91%8A.png" alt="在这里插入图片描述"></p>
 <p>以上通过一个ishareblog的实际项目介绍django集成pytest进行自动化单元测试实战。<br>ishareblog的所有代码包括pytest的配置见 <a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1562,8 +1562,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:37+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1684,9 +1684,9 @@
         
           
             <p>今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报<code>django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).</code>的错。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%991.png" alt="在这里插入图片描述"></p>
 <p>从报错的提示看是sqlite3的版本太低，期望是3.9.0但是当前版本是3.8.2<br>在网上找了很多资料，也都是说django与sqlite3的版本不兼容，需要升级sqlite3的版本。<br>于是将sqlite3升级到目前的稳定版本3.46.0，然而发现并没有什么用，还是报<code>sqlite3.NotSupportedError: deterministic=True requires SQLite 3.8.3 or higher</code> 。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240721/%E6%8A%A5%E9%94%992.png" alt="在这里插入图片描述"></p>
 <p>通过sqlite3 –version 查看版本号已经是3.46.0了，但还是提示要求SQLite版本在3.8.3以上。重装django4和python3.8的环境都没有用。<br>最后在网上找到解决办法。使用第三方包pysqlite3运行SQLite3<br>具体方法如下：<br>1、安装pysqlite3和pysqlite3-binary</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pysqlite3</span><br><span class="line">pip install pysqlite3<span class="literal">-binary</span></span><br></pre></td></tr></table></figure>
 
@@ -1695,12 +1695,12 @@
 
 <p>历经周折终于解决。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1797,8 +1797,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:37+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1967,12 +1967,12 @@
 <p>SDSec通过软件定义的方式提供了更灵活、智能和高效的安全解决方案，尤其适合于需要频繁更新和动态调整安全策略的现代网络环境。然而，与传统安全产品相比，SDSec在技术成熟度、部署复杂性和对网络基础设施的依赖性等方面可能存在一些挑战和限制。</p>
 <p>需要注意的是，软件定义安全理念从逻辑上和架构上是涵盖了传统安全与云计算安全的，前者是从改变安全技术架构去提高安全管理效率，提升安全运营的 价值，而后者则是区别于安全落地的不同场景。因此软件定义安全同样适用于传统 IT 环境，如果做到了构建统一的上层管理平台，使其具备开放接口，下层各类安全 组件资源可受上层管理应用进行编排、计量等手段统一关联起来，那么这套安全防 护体系也可认为是由软件定义的。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2069,8 +2069,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:37+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2229,12 +2229,12 @@
 <h2 id="8-挖矿木马"><a href="#8-挖矿木马" class="headerlink" title="8. 挖矿木马"></a>8. 挖矿木马</h2><p>由于区块链技术热炒以及数字货币的推广运营，如比特币、以太币等层出不穷的数字货币各种热炒，在这些的利益驱使下便出现各种模式的挖矿木马程序，挖矿木马主要就是通过利用各种手段，将挖矿程序植入到用户的计算机中，在用户不知情的情况下，偷偷利用用户的计算机进行执行挖矿功能，从而获取收益。<br><strong>用户中木马的常见方式：</strong><br>1.用户往往在不注意的时候，下载并运行了来历不明的破解软件或不安全软件<br>2.用户点击运行了钓鱼邮件中的附件的文件<br>3.用户没有做好系统及时更新，通过系统漏洞传播<br>4.用户浏览了植入挖矿脚本的网页，浏览器就解析脚本进行挖矿<br><strong>防护方法：</strong><br>1.在计算机中安装病毒查杀软件(火绒、360杀毒)，并及时更新病毒查杀软件的病毒库，还需做好定时全盘查杀病毒。<br>2.及时做好计算机系统补丁的更新。<br>3.服务器、主机、数据库等使用高强度的密码口令，切勿使用弱口令，防止被暴力破解。<br>4.网络上不要去随意下载、运行来历不明的程序或者破解程序，不随意点击来历不明的链接。</p>
 <h2 id="9-0day攻击"><a href="#9-0day攻击" class="headerlink" title="9. 0day攻击"></a>9. 0day攻击</h2><p>0day漏洞是指攻击者最新发现的，厂家还未发布补丁，在网络上还未公布的系统或应用程序新漏洞。<br><strong>防护方法：</strong><br>1.安装实时监控和主动防御设备<br>2.实施网络边界防范<br>3.加固终端系统<br>4.加强网络基础设施的安全</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2331,8 +2331,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:42+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2454,12 +2454,12 @@
           
             <h2 id="一、什么是漏洞管理"><a href="#一、什么是漏洞管理" class="headerlink" title="一、什么是漏洞管理"></a>一、什么是漏洞管理</h2><p>安全漏洞是网络或网络资产的结构、功能或实现中的任何缺陷或弱点，黑客可以利用这些缺陷或弱点发起网络攻击，获得对系统或数据的未经授权的访问，或以其他方式损害组织。常见漏洞的示例包括可能允许某些类型的恶意软件进入网络的防火墙配置错误，或可能允许黑客接管设备的操作系统远程桌面协议中未修补的错误。</p>
 <p>漏洞管理是指通过对网络系统中的漏洞进行识别、评估、修复、验证等一系列操作，以保障系统的安全性。这一过程是IT风险管理的一个子领域，主要关注组织IT基础设施和软件中的安全漏洞。</p>
-<p>关于漏洞的分类及漏洞管理参见《<a href="http://xiejava.ishareread.com/posts/a937cbf5/" target="_blank" rel="noopener">安全运营之漏洞管理</a>》</p>
+<p>关于漏洞的分类及漏洞管理参见《<a href="http://xiejava.ishareread.com/posts/a937cbf5/">安全运营之漏洞管理</a>》</p>
 <h2 id="二、什么是基于风险的漏洞管理RBVM"><a href="#二、什么是基于风险的漏洞管理RBVM" class="headerlink" title="二、什么是基于风险的漏洞管理RBVM"></a>二、什么是基于风险的漏洞管理RBVM</h2><p>传统的漏洞管理方法通常依赖于扫描工具来发现漏洞，然后按照某种顺序（如时间顺序或严重程度）进行修复。随着技术的快速发展和数字化转型的推进，网络系统和应用程序的复杂性日益增加，导致安全漏洞的数量也呈现爆炸式增长。面对不断增长的漏洞列表和警报，安全团队很容易陷入警报疲劳，难以判断哪些漏洞是真正需要优先处理的。</p>
 <p>而<strong>RBVM（Risk-based Vulnerability Management）是基于风险的漏洞管理</strong>，RBVM方法不是简单地修补所有漏洞，而是关注那些实际可利用的、对组织构成风险的漏洞。这种方法通过分析内部资产、攻击者活动以及威胁情报馈送（特别是漏洞情报），来确定哪些漏洞是需要优先处理的。是一种更加智能化和策略性的方法来识别、评估、优先级排序和修复组织中的安全漏洞。</p>
 <p>RBVM的核心在于更好地了解和评估风险，通过综合考虑漏洞的严重性、可利用性、资产价值等因素，确定每个漏洞的风险等级，并据此制定修复策略。这种方法能够帮助安全团队集中资源处理那些真正高风险的漏洞，提高漏洞管理的效率和效果。</p>
 <h2 id="三、RBVM的基本流程"><a href="#三、RBVM的基本流程" class="headerlink" title="三、RBVM的基本流程"></a>三、RBVM的基本流程</h2><p>RBVM（基于风险的漏洞管理）与传统漏洞管理的识别、评估、修复、验证相比是多了资产识别、风险评估和优先级排序。RBVM的基本流程如下：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240613/RBVM%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="RBVM的基本流程"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240613/RBVM%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="RBVM的基本流程"></p>
 <p><strong>1. 资产识别</strong></p>
 <ul>
 <li>列出组织内的所有关键资产，包括硬件、软件、数据和网络等。</li>
@@ -2515,12 +2515,12 @@
 <p>RBVM 在传统漏洞管理的基础上，进一步引入了资产攻击面、 漏洞情报、威胁情报等多维度数据 ，以脆弱性优先级技术（Vulnerability Prioritize Technology – VPT）对漏洞进行打分 与评级。如此一来，安全团队需要面对的“高危”、“严重”漏洞的范围与数量大大缩小，漏洞不再只是漏洞，而是与业务连续性、 资产关键性等联系更加紧密的脆弱点。安全团队可以更加主动地协调运维、业务部门率先修复高优先级的脆弱点。</p>
 <p><strong>RBVM 的主要价值在于</strong>，避免那些最需要优先被关注的可能带来巨大风险的漏洞淹没在海量漏洞告警中，转而<strong>让安全团队能够优先考虑优先级更高的关键漏洞</strong>。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2617,8 +2617,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:41+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2741,22 +2741,22 @@
             <h2 id="一、问题现象"><a href="#一、问题现象" class="headerlink" title="一、问题现象"></a>一、问题现象</h2><p>今天在迁移hexo的.md博客文件到django的博客程序的时候报错了，具体报错信息如下。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\django\db\backends\mysql\base.py"</span>, line 75, <span class="keyword">in</span> execute</span><br><span class="line">    <span class="built_in">return</span> self.cursor.execute(query, args)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 206, <span class="keyword">in</span> execute</span><br><span class="line">    res = self._query(query)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\cursors.py"</span>, line 319, <span class="keyword">in</span> _query</span><br><span class="line">    db.query(q)</span><br><span class="line">  File <span class="string">"D:\project\pythonproject\work\ishareblog\venv\lib\site-packages\MySQLdb\connections.py"</span>, line 254, <span class="keyword">in</span> query</span><br><span class="line">    _mysql.connection.query(self, query)</span><br><span class="line">django.db.utils.OperationalError: (1366, <span class="string">"Incorrect string value: '\\xF0\\x9F\\x98\\x82\\xE5\\x93...' for column 'content' at row 1"</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/1-%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1.png" alt="报错现象"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240529/1-%E6%8A%A5%E9%94%99%E7%8E%B0%E8%B1%A1.png" alt="报错现象"></p>
 <p>后来发现是因为.md文件中的内容含有mysql不能识别4个字节的utf8编码的字符，抛出了异常。类似于这种4个字节☺、��</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/2-%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0.png" alt="报错原因"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240529/2-%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0.png" alt="报错原因"></p>
 <h2 id="二、解决办法"><a href="#二、解决办法" class="headerlink" title="二、解决办法"></a>二、解决办法</h2><h3 id="1、修改mysql的数据库的字符集和的字符集"><a href="#1、修改mysql的数据库的字符集和的字符集" class="headerlink" title="1、修改mysql的数据库的字符集和的字符集"></a>1、修改mysql的数据库的字符集和的字符集</h3><p>修改数据库的字符集为utf8mb4</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240529/3-%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p>
 <p>修改字段的字符集为utf8mb4</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/4-%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p>
-<h3 id="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"><a href="#2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置" class="headerlink" title="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"></a>2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240529/5-%E4%BF%AE%E6%94%B9django%E8%BF%9E%E6%8E%A5%E4%B8%B2%E5%AD%97%E7%AC%A6%E9%9B%86%E8%AE%BE%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240529/4-%E4%BF%AE%E6%94%B9%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AD%97%E7%AC%A6%E9%9B%86.png" alt="在这里插入图片描述"></p>
+<h3 id="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"><a href="#2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置" class="headerlink" title="2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置"></a>2、在djanog的mysql连接串属性中加入字符集为utf8mb4的设置</h3><p><img src="http://image2.ishareread.com/images/2024/20240529/5-%E4%BF%AE%E6%94%B9django%E8%BF%9E%E6%8E%A5%E4%B8%B2%E5%AD%97%E7%AC%A6%E9%9B%86%E8%AE%BE%E7%BD%AE.png" alt="在这里插入图片描述"></p>
 <p>修改完成后，插入正常。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           

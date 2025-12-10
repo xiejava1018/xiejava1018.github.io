@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T19:34:51+08:00">
-                2025-08-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -484,49 +484,49 @@
             <p>近期小孩放假在家，发现晚上还抱着平板不放，每天搞到凌晨。这得要劝说有正常的作息时间，少拿平板做与学习无关的事情，但又不能强制拿平板检查看在哪些时间段都在干啥。于是为了搞清楚其凌晨上网都在干啥，我建了一套AI上网行为分析系统，随时收到上网行为的分析报告。</p>
 <p>原理很简单，通过Alloy采集路由器的上网行为日志，用Loki进行日志存储，然后通过n8n建立AI分析工作流，通过Loki的API接口定期获取上网行为日志，给AI大模型进行分析整理然后自动将上网行为分析结果整理发邮件出来。</p>
 <p>原理图如下：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/1-%E7%94%A8%E6%88%B7%E4%B8%8A%E7%BD%91%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90%E5%8E%9F%E7%90%86%E5%9B%BE.png" alt="上网行为分析系统"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/1-%E7%94%A8%E6%88%B7%E4%B8%8A%E7%BD%91%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90%E5%8E%9F%E7%90%86%E5%9B%BE.png" alt="上网行为分析系统"></p>
 <p>接下来看如何实现的完整过程。</p>
 <h2 id="一、上网行为的日志采集"><a href="#一、上网行为的日志采集" class="headerlink" title="一、上网行为的日志采集"></a>一、上网行为的日志采集</h2><p>要采集上网行为的日志，需要在路由器上进行配置，将上网行为的日志通过syslog的方式外发出来。这里可以参考《<a href="https://xiejava.blog.csdn.net/article/details/149515943" target="_blank" rel="noopener">通过TPLink路由器进行用户行为审计实战</a>》<br>另外需要有一套日志分析系统进行采集、存储。这里可以参考《<a href="https://xiejava.blog.csdn.net/article/details/150145269" target="_blank" rel="noopener">Loki+Alloy+Grafana构建轻量级的日志分析系统</a>》</p>
 <h2 id="二、上网行为的自动分析"><a href="#二、上网行为的自动分析" class="headerlink" title="二、上网行为的自动分析"></a>二、上网行为的自动分析</h2><p>基于前面介绍的采集到的上网行为数据，我们基于n8n来构建利用LLM大模型的分析能力实现上网行为的分析和整理。<br>关于如何搭建本地的n8n平台可以参考《<a href="https://blog.csdn.net/fullbug/article/details/149696653" target="_blank" rel="noopener">飞牛NAS本地化部署n8n打造个人AI工作流中心</a>》<br>整个n8n的工作流如下图所示：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/2-n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="n8n工作流"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/2-n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="n8n工作流"></p>
 <h3 id="1、获取上网行为的数据-HTTP-Request"><a href="#1、获取上网行为的数据-HTTP-Request" class="headerlink" title="1、获取上网行为的数据(HTTP Request)"></a>1、获取上网行为的数据(HTTP Request)</h3><p>n8n提供了Http Request节点，可以很方便的调用Http的API接口获取数据。而Loki也是很贴心的提供Http的API接口进行数据的查询。<br>n8n的Http Request节点配置如下，通过Get方法调用loki的查询接口地址<code>http://192.168.0.30:3100/loki/api/v1/query_range</code>，查询条件设置<code>{exporter=&quot;OTLP&quot;} != &quot;apptype:网络基础协议&quot;</code> 意思是排除掉apptype:网络基础协议，因为这部分不是用户的上网行为信息。设置查近2个小时的2000条日志信息。因为用的是开源LLM大模型，一次性处理token的数量有限。如果模型能力强可以设置查更多的数据。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/3-httpRequst%E9%85%8D%E7%BD%AE.png" alt="HTTP Request"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/3-httpRequst%E9%85%8D%E7%BD%AE.png" alt="HTTP Request"></p>
 <p>点击“Execute step”就可以看到通过loki的API接口查到的上网行为的结果数据。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/4-httpRequst%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E5%9B%BE.png" alt="API接口查到的上网行为的结果数据"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/4-httpRequst%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E5%9B%BE.png" alt="API接口查到的上网行为的结果数据"></p>
 <h3 id="2、通过AI智能体进行行为分析-AI-Agent"><a href="#2、通过AI智能体进行行为分析-AI-Agent" class="headerlink" title="2、通过AI智能体进行行为分析(AI Agent)"></a>2、通过AI智能体进行行为分析(AI Agent)</h3><p>我们要将上网行为的数据交给LLM大模型来进行分析，所以要引入AI智能体的节点。在AI Agent接口，把HTTP Request的结果给AI Agent，然后给出提示词。提示词就是告诉AI大模型要做什么。<br>我的提示词如下：</p>
 <blockquote>
 <p>“你是一个安全分析专家，根据日志信息能够分析用户的异常行为，请根据得到信息进行用户行为分析，分析发现是否有异常的行为。请特别注意分析凌晨0点至5点时间段，如有用户在此时间段有上网行为，请详细分析在该时间段用了多少时间做了什么。”</p>
 </blockquote>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/5-AIAgent%E9%85%8D%E7%BD%AE.png" alt="AI Agent配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/5-AIAgent%E9%85%8D%E7%BD%AE.png" alt="AI Agent配置"></p>
 <p>在这里我用的大模型是google的Gemini2.5flash。 </p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/6-LLM%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE.png" alt="大模型配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/6-LLM%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE.png" alt="大模型配置"></p>
 <p>配置Gemini2.5flash的API key就可以使用了Gemini2.5了。如何白嫖Gemini可以参考《<a href="https://xiejava.blog.csdn.net/article/details/149178997" target="_blank" rel="noopener">国内免代理免费使用Gemini大模型实战</a>》和《<a href="https://xiejava.blog.csdn.net/article/details/149257107" target="_blank" rel="noopener">使用Gemini Balance让Gemini免费到底</a>》</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/7-Gemini%E7%9A%84APIKey%E9%85%8D%E7%BD%AE.png" alt="API key配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/7-Gemini%E7%9A%84APIKey%E9%85%8D%E7%BD%AE.png" alt="API key配置"></p>
 <p>当然也可以配置成其他的大模型。</p>
 <h3 id="3、整理分析结果-Markdown"><a href="#3、整理分析结果-Markdown" class="headerlink" title="3、整理分析结果(Markdown)"></a>3、整理分析结果(Markdown)</h3><p>通过Markdown节点将大模型分析出来的结果进行美化整理成HTML的格式</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/8-markdown%E8%BD%AChtml.png" alt="Markdown节点"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/8-markdown%E8%BD%AChtml.png" alt="Markdown节点"></p>
 <h3 id="4、自动发邮件报告-Send-Mail"><a href="#4、自动发邮件报告-Send-Mail" class="headerlink" title="4、自动发邮件报告(Send Mail)"></a>4、自动发邮件报告(Send Mail)</h3><p>加入自动发邮件的节点，将用户上网行为的分析报告通过邮件的方式发送出来。<br>配置SMTP account信息。<br>关于如何配置SMTP 信息可以参考以前的博文《<a href="https://xiejava.blog.csdn.net/article/details/128495415" target="_blank" rel="noopener">通过Django发送邮件</a>》里面有详细的介绍。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/9-SMTPaccount%E9%85%8D%E7%BD%AE.png" alt="SMTP配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/9-SMTPaccount%E9%85%8D%E7%BD%AE.png" alt="SMTP配置"></p>
 <p>配置邮件的发送者和接收者，邮件主题等信息。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/10-sendmail%E9%85%8D%E7%BD%AE.png" alt="配置sendmail"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/10-sendmail%E9%85%8D%E7%BD%AE.png" alt="配置sendmail"></p>
 <h3 id="5、配置AI工作流定时启动-Schedule-Trigger"><a href="#5、配置AI工作流定时启动-Schedule-Trigger" class="headerlink" title="5、配置AI工作流定时启动(Schedule Trigger)"></a>5、配置AI工作流定时启动(Schedule Trigger)</h3><p>将n8n的工作流配置为Schedule Trigger根据周期定时触发，我这里设置的是每两个小时触发一次。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/11-ScheduleTrigger%E9%85%8D%E7%BD%AE.png" alt="Schedule Trigger"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/11-ScheduleTrigger%E9%85%8D%E7%BD%AE.png" alt="Schedule Trigger"></p>
 <h2 id="三、上网行为分析报告及效果"><a href="#三、上网行为分析报告及效果" class="headerlink" title="三、上网行为分析报告及效果"></a>三、上网行为分析报告及效果</h2><p>将n8n的工作流激活后，AI用户上网行为分析系统就开始勤勤恳恳的工作了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/12-%E6%BF%80%E6%B4%BBn8n%E5%B7%A5%E4%BD%9C%E6%B5%81.png" alt="activate工作流"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/12-%E6%BF%80%E6%B4%BBn8n%E5%B7%A5%E4%BD%9C%E6%B5%81.png" alt="activate工作流"></p>
 <p>每两个小时从路由器获取上网行为的日志，通过大模型进行上网行为的分析，整理后自动发邮件进行报告了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/13-n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5.png" alt="执行情况"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/13-n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E8%BF%90%E8%A1%8C%E6%83%85%E5%86%B5.png" alt="执行情况"></p>
 <p>最后看一下经过大模型分析的上网行为分析报告</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/14-AI%E4%B8%8A%E7%BD%91%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.png" alt="上网行为分析报告"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/14-AI%E4%B8%8A%E7%BD%91%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.png" alt="上网行为分析报告"></p>
 <p>也可以配置到网易邮箱大师通过手机收到上网行为分析报告的邮件通知了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/2025081002/14-%E6%89%8B%E6%9C%BA%E7%AB%AF%E7%9A%84%E4%B8%8A%E7%BD%91%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.png" alt="手机端报告"></p>
+<p><img src="http://image2.ishareread.com/images/2025/2025081002/14-%E6%89%8B%E6%9C%BA%E7%AB%AF%E7%9A%84%E4%B8%8A%E7%BD%91%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A.png" alt="手机端报告"></p>
 <p>至此，我们通过综合运用alloy+loki构建了日志采集系统采集路由器的用户行为日志，通过n8n构建AI工作流调用Gemini大模型进行用户行为的分析自动发送上网行为的分析报告，构建了自动化的上网行为分析系统。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -623,8 +623,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T13:29:36+08:00">
-                2025-08-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -746,14 +746,14 @@
           
             <p>在现代运维和开发流程中，日志分析是故障排查、性能优化的核心环节。传统的日志系统（如 ELK Stack）虽功能强大，但资源消耗高、配置复杂，对中小规模环境或边缘设备不够友好。Loki+Alloy+Grafana组合则以 “轻量级、低成本、易部署” 为核心优势，成为替代方案的理想选择。</p>
 <p>典型的基于 Loki 的日志记录技术栈由 3 个组件组成：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/1-LAG%E6%9E%B6%E6%9E%84.png" alt="Loki"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/1-LAG%E6%9E%B6%E6%9E%84.png" alt="Loki"></p>
 <ul>
 <li>Loki：Grafana Labs 开源的日志聚合系统，借鉴 Prometheus 设计理念，仅索引日志元数据（标签）而非全文，大幅降低存储和计算开销。</li>
 <li>Alloy：代理或客户端，Grafana 官方推荐的新一代数据采集器Alloy（替代 Promtail），支持日志、指标、追踪多信号采集，配置灵活且资源占用低。</li>
 <li>Grafana：强大的可视化平台，原生支持 Loki 数据源，提供丰富的日志查询、过滤和仪表盘功能。</li>
 </ul>
 <p>对网络设备、安全设备等的告警日志进行分析是在网络运维和安全运营中经常遇到的场景，我们可以通过Loki+Alloy+Grafana来搭建一套轻量级的日志分析系统来收集各类网络设备、安全设备的日志进行分析。现在就以采集TP-Link路由器的上网行为日志为例来构建这套日志分析系统。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/2-%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86%E5%AD%98%E5%82%A8%E5%88%86%E6%9E%90.png" alt="日志采集分析"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/2-%E6%97%A5%E5%BF%97%E9%87%87%E9%9B%86%E5%AD%98%E5%82%A8%E5%88%86%E6%9E%90.png" alt="日志采集分析"></p>
 <p>本文将详细介绍在Ubuntu 24.04 LTS环境中，从零搭建这套日志分析系统的全过程，确保每个步骤可操作、可复现。</p>
 <p>环境准备：Ubuntu 24.04 系统配置<br>系统要求</p>
 <ul>
@@ -762,7 +762,7 @@
 <li>权限：sudo 权限（用于安装软件和配置服务）</li>
 </ul>
 <p>根据Grafana官网的建议步骤，先安装Loki，再部署采集代理Alloy,再部署Grafana，通过Grafana来分析日志。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/3-LAG%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4.png" alt="日志采集步骤"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/3-LAG%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4.png" alt="日志采集步骤"></p>
 <h2 id="部署Loki日志存储系统"><a href="#部署Loki日志存储系统" class="headerlink" title="部署Loki日志存储系统"></a>部署Loki日志存储系统</h2><p>Loki 是日志的 “后端存储”，负责接收、存储日志并响应查询请求。采用二进制方式部署，步骤如下：</p>
 <h3 id="1-下载Loki二进制文件"><a href="#1-下载Loki二进制文件" class="headerlink" title="1. 下载Loki二进制文件"></a>1. 下载Loki二进制文件</h3><p>通过 GitHub API 获取Loki的二进制安装包：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建Loki安装目录并下载二进制包  这里安装的是3.5.1 </span></span><br><span class="line">sudo mkdir -p /opt/loki /etc/loki</span><br><span class="line">wget -qO /opt/loki/loki-linux-amd64.zip <span class="string">"https://github.com/grafana/loki/releases/download/v3.5.1/loki-linux-amd64.zip"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压并设置可执行权限</span></span><br><span class="line">sudo unzip -d /opt/loki /opt/loki/loki-linux-amd64.zip &amp;&amp; rm /opt/loki/loki-linux-amd64.zip</span><br><span class="line">sudo chmod a+x /opt/loki/loki-linux-amd64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建软链接，方便全局调用</span></span><br><span class="line">sudo ln -s /opt/loki/loki-linux-amd64 /usr/<span class="built_in">local</span>/bin/loki</span><br></pre></td></tr></table></figure>
@@ -781,11 +781,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:3100/ready</span><br></pre></td></tr></table></figure>
 
 <p>预期输出：ready（表示 Loki 已就绪）</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/4-loki-ready.png" alt="loki ready"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/4-loki-ready.png" alt="loki ready"></p>
 <h2 id="部署配置Alloy"><a href="#部署配置Alloy" class="headerlink" title="部署配置Alloy"></a>部署配置Alloy</h2><p>Alloy 是连接日志源与 Loki 的 “桥梁”，负责采集服务器本地日志并发送到 Loki。作为 Grafana Agent 的替代者，Alloy 配置更灵活，支持多信号采集。</p>
 <h3 id="1-安装-Alloy"><a href="#1-安装-Alloy" class="headerlink" title="1. 安装 Alloy"></a>1. 安装 Alloy</h3><p>通过 Grafana 官方仓库安装 Alloy（与 Grafana 使用同一仓库，无需重复添加）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Alloy包</span></span><br><span class="line">sudo apt install -y alloy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">alloy --version</span><br></pre></td></tr></table></figure>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/5-alloy-version.png" alt="alloy --version"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/5-alloy-version.png" alt="alloy --version"></p>
 <h3 id="2-配置-Alloy-收集日志"><a href="#2-配置-Alloy-收集日志" class="headerlink" title="2. 配置 Alloy 收集日志"></a>2. 配置 Alloy 收集日志</h3><p>Alloy 使用声明式配置文件定义采集规则，默认路径为<code>/etc/alloy/config.alloy</code>。我们需配置：<br>1、 通过syslog采集；2、对日志中的IP进行提取；3、 将日志转发到 Loki。<br>创建配置文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">otelcol.receiver.syslog <span class="string">"local"</span> &#123;</span><br><span class="line">  udp &#123;</span><br><span class="line">    listen_address = <span class="string">"0.0.0.0:514"</span></span><br><span class="line">    encoding = <span class="string">"GBK"</span></span><br><span class="line">  &#125;</span><br><span class="line">  output &#123;</span><br><span class="line">    logs = [otelcol.exporter.loki.local.input]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">otelcol.exporter.loki <span class="string">"local"</span> &#123;</span><br><span class="line">  forward_to = [loki.process.extract_ip.receiver]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loki.process <span class="string">"extract_ip"</span> &#123;</span><br><span class="line">  stage.regex &#123;</span><br><span class="line">    expression = <span class="string">"a:(?P&lt;ip&gt;\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;\\.\\d&#123;1,3&#125;)"</span></span><br><span class="line">  &#125;</span><br><span class="line">  stage.labels &#123;</span><br><span class="line">    values = &#123;</span><br><span class="line">      ip = <span class="string">"ip"</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  forward_to = [loki.write.local.receiver]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">loki.write <span class="string">"local"</span> &#123;</span><br><span class="line">  endpoint &#123;</span><br><span class="line">    url = <span class="string">"http://localhost:3100/loki/api/v1/push"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -808,29 +808,29 @@
 <li>密码：admin</li>
 </ul>
 <p>首次登录会要求修改密码，按提示设置新密码即可。</p>
-<h2 id="接入数据源"><a href="#接入数据源" class="headerlink" title="接入数据源"></a>接入数据源</h2><h3 id="1-在发送端配置采集器的地址"><a href="#1-在发送端配置采集器的地址" class="headerlink" title="1. 在发送端配置采集器的地址"></a>1. 在发送端配置采集器的地址</h3><p>这里我们要接入和分析TP-Link路由器的上网行为日志。所以要在路由器上配置将日志发送到alloy采集节点的服务器。具体的TP-Link路由器的上网行为分析审计的配置参考《<a href="http://xiejava.ishareread.com/posts/e87ac72d/" target="_blank" rel="noopener">通过TPLink路由器进行用户行为审计实战</a>》</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/6-TPLINK%E9%85%8D%E7%BD%AE.png" alt="行为审计"></p>
+<h2 id="接入数据源"><a href="#接入数据源" class="headerlink" title="接入数据源"></a>接入数据源</h2><h3 id="1-在发送端配置采集器的地址"><a href="#1-在发送端配置采集器的地址" class="headerlink" title="1. 在发送端配置采集器的地址"></a>1. 在发送端配置采集器的地址</h3><p>这里我们要接入和分析TP-Link路由器的上网行为日志。所以要在路由器上配置将日志发送到alloy采集节点的服务器。具体的TP-Link路由器的上网行为分析审计的配置参考《<a href="http://xiejava.ishareread.com/posts/e87ac72d/">通过TPLink路由器进行用户行为审计实战</a>》</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/6-TPLINK%E9%85%8D%E7%BD%AE.png" alt="行为审计"></p>
 <h3 id="2-在采集端看是否收到数据"><a href="#2-在采集端看是否收到数据" class="headerlink" title="2. 在采集端看是否收到数据"></a>2. 在采集端看是否收到数据</h3><p>通过tcpdump命令查看采集节点是否有日志数据进来</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i ens2 -A port 514</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/7-tcpdump.png" alt="tcpdump"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/7-tcpdump.png" alt="tcpdump"></p>
 <p>这里可以看到有日志数据通过ens2网卡的514端口进来了。</p>
 <h2 id="用Grafana查询和分析数据"><a href="#用Grafana查询和分析数据" class="headerlink" title="用Grafana查询和分析数据"></a>用Grafana查询和分析数据</h2><p>在用Grafana进行查询之前先要配置Grafana的数据源添加loki的数据源</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/8-new-data-source.png" alt="添加数据源"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/8-new-data-source.png" alt="添加数据源"></p>
 <p>在loki的数据源中设置loki的连接地址</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/9-%E9%85%8D%E7%BD%AEloki%E8%BF%9E%E6%8E%A5%E5%9C%B0%E5%9D%80.png" alt="loki连接"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/9-%E9%85%8D%E7%BD%AEloki%E8%BF%9E%E6%8E%A5%E5%9C%B0%E5%9D%80.png" alt="loki连接"></p>
 <p>设置完成后就可以用Grafana强大的分析查询和可视化来对日志进行分析了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250810/10-grafana%E5%88%86%E6%9E%90%E5%B1%95%E7%A4%BA.png" alt="日志分析"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250810/10-grafana%E5%88%86%E6%9E%90%E5%B1%95%E7%A4%BA.png" alt="日志分析"></p>
 <p>通过本文步骤，我们在 Ubuntu 24.04 上构建了 Loki+Alloy+Grafana 日志分析系统：</p>
 <p>Loki 负责高效存储日志，仅索引元数据降低开销；<br>Alloy 轻量采集系统日志，配置灵活易扩展；<br>Grafana 提供强大的日志查询与可视化能力（支持 LogQL、仪表盘、告警）。</p>
 <p>该架构资源占用低（单节点最低 2 核 4GB 内存即可运行），适合中小规模环境、边缘设备或开发测试场景。后续可扩展至多节点 Loki 集群、添加日志告警规则，或集成 Prometheus 监控指标，构建完整的可观测性平台。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -927,8 +927,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-02T22:51:54+08:00">
-                2025-08-02
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1057,17 +1057,17 @@
 <li>调试运行在其他地方（例如客户现场或云端​）的应用程序。</li>
 </ul>
 <p>在VScode的编辑器界面在Extension中搜索ssh排名前三的Remote-SSH、Remote - SSH: Editing Configuration Files、Remote Explorer是微软官方的ssh扩展插件，都安装一下。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/1-ssh-remote.png" alt="ssh扩展插件"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/1-ssh-remote.png" alt="ssh扩展插件"></p>
 <p>安装好了后就会在左侧的导航看到Remote Exploer</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/2-remoteExplorer.png" alt="Remote Exploer"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/2-remoteExplorer.png" alt="Remote Exploer"></p>
 <p>在SSH中点“+” 后就可以在上面的导航输入框中输入要ssh连接服务器的命令。如:<code>ssh xiejava@192.168.0.30</code> 意思就是通过xiejava的用户名ssh登录到192.168.0.30的服务器。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/3-NewRemote.png" alt="New Remote"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/3-NewRemote.png" alt="New Remote"></p>
 <p>输入正确的口令后，表示服务器的图标变亮就意味着已经通过SSH连上了服务器了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/4-SSH%E8%BF%9E%E4%B8%8A%E4%BA%86%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="SSH连上了服务器"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/4-SSH%E8%BF%9E%E4%B8%8A%E4%BA%86%E6%9C%8D%E5%8A%A1%E5%99%A8.png" alt="SSH连上了服务器"></p>
 <p>连上服务器后就可以通过命令来对服务器进行操作，也可以直接打开服务器上的文件进行操作了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/5-%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C.png" alt="直接打开服务器上的文件进行操作"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/5-%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C.png" alt="直接打开服务器上的文件进行操作"></p>
 <p>这样就可以直接在服务器上直接编辑文件，直接在命令行中输入命令执行，直接看到执行结果，简直不要太爽。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/6-%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6.png" alt="直接编辑文件"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/6-%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6.png" alt="直接编辑文件"></p>
 <p>一般的教程到这里就结束了。但是有些Linux是默认不能使用root用户登录的如Ubuntu，如果不用root用户登录只能访问到登录用户的文件夹，如我是用xiejava登录的就只能访问到/home/xiejava的目录，只能在这个目录下新建和编辑相应的文件，而且每次打开编辑操作文件都要输入登录密码，作为服务器上的开发来说这显然是不可接受的。所以我们要用root账号进行ssh进行远程连接。</p>
 <h2 id="二、开启Ubuntu的root账号免密登录"><a href="#二、开启Ubuntu的root账号免密登录" class="headerlink" title="二、开启Ubuntu的root账号免密登录"></a>二、开启Ubuntu的root账号免密登录</h2><h3 id="1、生成SSH密钥对，并部署到服务器"><a href="#1、生成SSH密钥对，并部署到服务器" class="headerlink" title="1、生成SSH密钥对，并部署到服务器"></a>1、生成SSH密钥对，并部署到服务器</h3><p>要使 root 用户成功登录，需先在客户端生成 SSH 密钥对，并将公钥部署到服务器：</p>
 <ol>
@@ -1077,7 +1077,7 @@
 
 <ul>
 <li>按提示选择保存路径（默认 C:\Users\你的用户名.ssh\id_ed25519）。</li>
-<li>连续按 3 次回车​，不设密码（实现完全免密）<br>最后在文件夹中生成SSH密钥对<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/7-%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成SSH密钥对"></li>
+<li>连续按 3 次回车​，不设密码（实现完全免密）<br>最后在文件夹中生成SSH密钥对<br><img src="http://image2.ishareread.com/images/2025/20250802/7-%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9.png" alt="生成SSH密钥对"></li>
 </ul>
 <ol start="2">
 <li>部署公钥到服务器​：<br>登录 Ubuntu<br>创建 .ssh 目录并写入公钥</li>
@@ -1101,22 +1101,22 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
 
-<p>设置<code>PermitRootLogin prohibit-password</code><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/8-PermitRootLogin.png" alt="PermitRootLogin prohibit-password"></p>
+<p>设置<code>PermitRootLogin prohibit-password</code><br><img src="http://image2.ishareread.com/images/2025/20250802/8-PermitRootLogin.png" alt="PermitRootLogin prohibit-password"></p>
 <p>重启<code>systemctl restart ssh</code></p>
 <h3 id="4、找到本地的ssh配置文件并配置密钥登录"><a href="#4、找到本地的ssh配置文件并配置密钥登录" class="headerlink" title="4、找到本地的ssh配置文件并配置密钥登录"></a>4、找到本地的ssh配置文件并配置密钥登录</h3><p>在vscode中点击SSH旁边的配置按钮就会出现ssh本地的配置文件，一般是<code>C:\Users\你的用户名\.ssh\config</code></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/9-ssh%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="找到本地的ssh配置文件"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/9-ssh%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="找到本地的ssh配置文件"></p>
 <p>在config文件中配置User root 和IdentityFile 密钥文件的路径。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/10-config%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/10-config%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="配置"></p>
 <p>这样就可以通过root进入到任何目录操作编辑任何文件了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250802/11-%E8%BF%9B%E5%85%A5%E4%BB%BB%E4%BD%95%E7%9B%AE%E5%BD%95%E7%BC%96%E8%BE%91.png" alt="root免密登录"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250802/11-%E8%BF%9B%E5%85%A5%E4%BB%BB%E4%BD%95%E7%9B%AE%E5%BD%95%E7%BC%96%E8%BE%91.png" alt="root免密登录"></p>
 <p>最后要提醒大家的是大家在修改任何配置文件的时候要注意备份和确认，因为获得了root权限可以操作编辑任何文件了。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1213,8 +1213,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-07-27T22:46:06+08:00">
-                2025-07-27
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1340,37 +1340,37 @@
 </ul>
 <p>本文就以我的飞牛NAS为例来部署n8n打造人工的AI工作流中心。</p>
 <h2 id="一、下载n8n的镜像"><a href="#一、下载n8n的镜像" class="headerlink" title="一、下载n8n的镜像"></a>一、下载n8n的镜像</h2><p>在飞牛NAS的Docker镜像仓库中找到n8n的镜像，下载这个下载量和标星最多的n8nio/n8n的镜像。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/1-%E4%B8%8B%E8%BD%BDn8n%E9%95%9C%E5%83%8F.png" alt="下载n8n镜像"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/1-%E4%B8%8B%E8%BD%BDn8n%E9%95%9C%E5%83%8F.png" alt="下载n8n镜像"></p>
 <p>下载后就可以在飞牛NAS的本地镜像库中看到这个n8nio/n8n镜像。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/2-%E6%9C%AC%E5%9C%B0n8n%E9%95%9C%E5%83%8F.png" alt="本地镜像"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/2-%E6%9C%AC%E5%9C%B0n8n%E9%95%9C%E5%83%8F.png" alt="本地镜像"></p>
 <h2 id="二、启动镜像创建n8n容器"><a href="#二、启动镜像创建n8n容器" class="headerlink" title="二、启动镜像创建n8n容器"></a>二、启动镜像创建n8n容器</h2><p>点击本地n8nio/n8n镜像的启动按钮，弹出创建容器的配置界面，在配置界面中输入容器的名称n8n勾选开机自启动。 </p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/3-%E5%88%9B%E5%BB%BAn8n%E5%AE%B9%E5%99%A8.png" alt="创建容器"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/3-%E5%88%9B%E5%BB%BAn8n%E5%AE%B9%E5%99%A8.png" alt="创建容器"></p>
 <p>在进行存储位置配置之前，在NAS的文件管理中创建用于存储n8n数据文件的文件夹。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/4-%E5%88%9B%E5%BB%BANAS%E7%9A%84n8n%E5%AD%98%E5%82%A8%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="创建存储位置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/4-%E5%88%9B%E5%BB%BANAS%E7%9A%84n8n%E5%AD%98%E5%82%A8%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="创建存储位置"></p>
 <p>在创建容器详情的配置界面其他的配置项都可以默认，在存储位置的配置项中一定要配置将容器的存储空间映射到NAS上的文件夹，这个文件夹就是刚在NAS文件管理中建的文件夹（也就是将docker容器中的/home/node/.n8n映射到NAS中的n8n/n8n_data）。否则docker重启n8n的配置数据会丢失。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/5-%E6%98%A0%E5%B0%84docker%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="存储空间映射"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/5-%E6%98%A0%E5%B0%84docker%E6%96%87%E4%BB%B6%E5%A4%B9.png" alt="存储空间映射"></p>
 <p>配置完成后，勾选创建后启动容器，点击“创建”。容器创建启动后就可以通过本地的5678端口访问n8n的应用了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/6-%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8.png" alt="启动容器"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/6-%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8.png" alt="启动容器"></p>
 <h2 id="三、访问使用n8n"><a href="#三、访问使用n8n" class="headerlink" title="三、访问使用n8n"></a>三、访问使用n8n</h2><p>在浏览器中输入你的主机和端口就可以访问n8n，我这里是 <a href="http://192.168.0.18:5678/" target="_blank" rel="noopener">http://192.168.0.18:5678/</a><br>第一次访问有可能会出现如下图所示的提示，n8n用到了安全的cookie，要不就要配置HTTPS，要不就在环境变量中配置<code>N8N_SECURE_COOKIE</code>为<code>false</code></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/7-%E8%AE%BF%E9%97%AEn8n%E5%91%8A%E8%AD%A6%E6%8F%90%E7%A4%BA.png" alt="警告"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/7-%E8%AE%BF%E9%97%AEn8n%E5%91%8A%E8%AD%A6%E6%8F%90%E7%A4%BA.png" alt="警告"></p>
 <p>这里，我们在容器设置里添加变量，设置N8N_SECURE_COOKIE为false</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/8-%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E8%AF%A6%E6%83%85.png" alt="设置N8N_SECURE_COOKIE为false"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/8-%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E8%AF%A6%E6%83%85.png" alt="设置N8N_SECURE_COOKIE为false"></p>
 <p>这样再次访问 <a href="http://192.168.0.18:5678/" target="_blank" rel="noopener">http://192.168.0.18:5678/</a> 就可以正常访问了。第一次用n8n要设置自己的用户名和密码。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/9-%E6%B3%A8%E5%86%8C%E8%B4%A6%E5%8F%B7%E5%90%8D.png" alt="设置自己的用户名和密码"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/9-%E6%B3%A8%E5%86%8C%E8%B4%A6%E5%8F%B7%E5%90%8D.png" alt="设置自己的用户名和密码"></p>
 <p>设置完用户名密码就可以使用n8n了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/10-n8n%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="使用n8n"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/10-n8n%E4%B8%BB%E7%95%8C%E9%9D%A2.png" alt="使用n8n"></p>
 <p>我们可以导入一个已经配置好的n8n工作流实例。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/11-%E5%AF%BC%E5%85%A5n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9E%E4%BE%8B.png" alt="导入n8n工作流实例"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/11-%E5%AF%BC%E5%85%A5n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9E%E4%BE%8B.png" alt="导入n8n工作流实例"></p>
 <p>可以看到正常导入，将配置修改为自己的配置就可以直接使用别人已经配置好的工作流了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250727/12-%E4%BD%BF%E7%94%A8n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9E%E4%BE%8B.png" alt="使用效果"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250727/12-%E4%BD%BF%E7%94%A8n8n%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%AE%9E%E4%BE%8B.png" alt="使用效果"></p>
 <p>至此我们在飞牛NAS上成功部署了n8n，可以方便的随时随地构建自己的AI工作流应用了。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1467,8 +1467,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-08-10T12:52:27+08:00">
-                2025-08-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1589,36 +1589,36 @@
         
           
             <p>用户行为审计是指对用户在网络平台上的行为进行监控和记录，以便对其行为进行分析和评估的过程。随着互联网的普及和发展，用户行为审计在网络安全和数据隐私保护方面起到了重要的作用。 用户行为审计可以帮助发现和预防网络安全威助。通过对用户的行为进行监控和记录，可以及时发现并阳止恶意攻击、病毒传播等网络安全威胁。例如，当用户的行为异常时，系统可以自动发出警报并采取相应的措施，保护网络平台的安全。<br>本文以家用的TP-Link 路由器为例，来实战一下用户行为审计，看看能发现一些什么异常。<br>TP-Link路由器是家用比较常见的路由器，通过简单的配置就可以实现用户行为管控。</p>
-<h2 id="一、路由器的行为管控配置"><a href="#一、路由器的行为管控配置" class="headerlink" title="一、路由器的行为管控配置"></a>一、路由器的行为管控配置</h2><p>一般的路由器都带有简单行为管控功能，以我的TL-R479GP-AC为例，可以对网站访问、应用控制等进行相应的管控。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/1-tplink%E8%A1%8C%E4%B8%BA%E7%AE%A1%E6%8E%A7.png" alt="路由器行为管控配置"></p>
+<h2 id="一、路由器的行为管控配置"><a href="#一、路由器的行为管控配置" class="headerlink" title="一、路由器的行为管控配置"></a>一、路由器的行为管控配置</h2><p>一般的路由器都带有简单行为管控功能，以我的TL-R479GP-AC为例，可以对网站访问、应用控制等进行相应的管控。<br><img src="http://image2.ishareread.com/images/2025/20250721/1-tplink%E8%A1%8C%E4%B8%BA%E7%AE%A1%E6%8E%A7.png" alt="路由器行为管控配置"></p>
 <p>这里我们现对网站和应用进行监控记录，对用户的行为进行审计和管控。</p>
-<h3 id="1、网站访问控制"><a href="#1、网站访问控制" class="headerlink" title="1、网站访问控制"></a>1、网站访问控制</h3><p> 网站访问控制可以实现对某些IP，在什么时间段、访问什么网站进行记录和监控。<br>如我们对bilibil网站进行监控，将B站的域名配置到网站分组中，组名为“娱乐视频”。当然还可以加入跟多的需要记录和管控的网站。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/2-%E7%BD%91%E7%AB%99%E5%88%86%E7%BB%84.png" alt="网站分组"></p>
-<p>在网站访问的规则中进行配置，为IP地址组选择受管理的网站，在相应时间段中，与IP地址相匹配的设备在访问“娱乐视频”等类型的网站时受到管理。我这里是配置的是所有的地址段、所有时间段、将“娱乐视频”记录到系统日志。方便我们后续进行上网行为的审计分析。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/3-%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6.png" alt="网站访问控制"></p>
-<h3 id="2、应用控制"><a href="#2、应用控制" class="headerlink" title="2、应用控制"></a>2、应用控制</h3><p>同样可以对应用进行控制，对应用控制就是对APP的移动应用的访问进行监控和控制。在这里我们选择对所有的应用进行监控。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/4-%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E9%80%89%E6%8B%A9.png" alt="应用控制选择"></p>
-<p>配置监控的规则，如所有的IP所有的时间段，多访问所有的应用进行记录<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/5-%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE.png" alt="记录应用访问"></p>
+<h3 id="1、网站访问控制"><a href="#1、网站访问控制" class="headerlink" title="1、网站访问控制"></a>1、网站访问控制</h3><p> 网站访问控制可以实现对某些IP，在什么时间段、访问什么网站进行记录和监控。<br>如我们对bilibil网站进行监控，将B站的域名配置到网站分组中，组名为“娱乐视频”。当然还可以加入跟多的需要记录和管控的网站。<br><img src="http://image2.ishareread.com/images/2025/20250721/2-%E7%BD%91%E7%AB%99%E5%88%86%E7%BB%84.png" alt="网站分组"></p>
+<p>在网站访问的规则中进行配置，为IP地址组选择受管理的网站，在相应时间段中，与IP地址相匹配的设备在访问“娱乐视频”等类型的网站时受到管理。我这里是配置的是所有的地址段、所有时间段、将“娱乐视频”记录到系统日志。方便我们后续进行上网行为的审计分析。<br><img src="http://image2.ishareread.com/images/2025/20250721/3-%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6.png" alt="网站访问控制"></p>
+<h3 id="2、应用控制"><a href="#2、应用控制" class="headerlink" title="2、应用控制"></a>2、应用控制</h3><p>同样可以对应用进行控制，对应用控制就是对APP的移动应用的访问进行监控和控制。在这里我们选择对所有的应用进行监控。<br><img src="http://image2.ishareread.com/images/2025/20250721/4-%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E9%80%89%E6%8B%A9.png" alt="应用控制选择"></p>
+<p>配置监控的规则，如所有的IP所有的时间段，多访问所有的应用进行记录<br><img src="http://image2.ishareread.com/images/2025/20250721/5-%E5%BA%94%E7%94%A8%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE.png" alt="记录应用访问"></p>
 <p>通过上面的配置，路由器就会根据上面配置的规则来记录相应的日志。但是要进行行为审计还要借助其他的工具如安全审计系统。</p>
-<h2 id="二、用户行为审计"><a href="#二、用户行为审计" class="headerlink" title="二、用户行为审计"></a>二、用户行为审计</h2><h3 id="1、安装安全审计系统"><a href="#1、安装安全审计系统" class="headerlink" title="1、安装安全审计系统"></a>1、安装安全审计系统</h3><p>TP-Link提供了免费的TP-LINK安全审计系统。从官网上下载既可以进行部署和设置。TP-link提供的安全审计系统是以虚拟机镜像方式进行安装的。下载安装包后安装包附有一个比较详细的安装教程。<br>TP-Link官网 <a href="https://www.tp-link.com.cn/" target="_blank" rel="noopener">https://www.tp-link.com.cn/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/6-TPLINK%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png" alt="TPLINK官网下载安全审计系统"></p>
-<p>下载安装包解压后除了有一个虚拟机镜像文件外安装包还附有一个比较详细的安装教程。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/7-SAS%E5%AE%89%E8%A3%85%E5%8C%85%E8%A7%A3%E5%8E%8B.png" alt="解压安装包"></p>
-<p>在正式安装之前需要安装Oracle VirtualBox的虚拟机管理软件，然后根据这个安装手册将虚拟机注册到管理软件进行启动。<br>虚拟机配置如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/8-%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE.png" alt="虚拟机配置"></p>
-<p>启动虚拟机后，就可以访问安全审计平台了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/9-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%99%BB%E5%BD%95.png" alt="安全审计系统登录界面"></p>
+<h2 id="二、用户行为审计"><a href="#二、用户行为审计" class="headerlink" title="二、用户行为审计"></a>二、用户行为审计</h2><h3 id="1、安装安全审计系统"><a href="#1、安装安全审计系统" class="headerlink" title="1、安装安全审计系统"></a>1、安装安全审计系统</h3><p>TP-Link提供了免费的TP-LINK安全审计系统。从官网上下载既可以进行部署和设置。TP-link提供的安全审计系统是以虚拟机镜像方式进行安装的。下载安装包后安装包附有一个比较详细的安装教程。<br>TP-Link官网 <a href="https://www.tp-link.com.cn/" target="_blank" rel="noopener">https://www.tp-link.com.cn/</a><br><img src="http://image2.ishareread.com/images/2025/20250721/6-TPLINK%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD.png" alt="TPLINK官网下载安全审计系统"></p>
+<p>下载安装包解压后除了有一个虚拟机镜像文件外安装包还附有一个比较详细的安装教程。<br><img src="http://image2.ishareread.com/images/2025/20250721/7-SAS%E5%AE%89%E8%A3%85%E5%8C%85%E8%A7%A3%E5%8E%8B.png" alt="解压安装包"></p>
+<p>在正式安装之前需要安装Oracle VirtualBox的虚拟机管理软件，然后根据这个安装手册将虚拟机注册到管理软件进行启动。<br>虚拟机配置如下图所示：<br><img src="http://image2.ishareread.com/images/2025/20250721/8-%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%85%8D%E7%BD%AE.png" alt="虚拟机配置"></p>
+<p>启动虚拟机后，就可以访问安全审计平台了。<br><img src="http://image2.ishareread.com/images/2025/20250721/9-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%99%BB%E5%BD%95.png" alt="安全审计系统登录界面"></p>
 <p>安全审计系统默认用户名和密码都是admin，登录成功后会提示该默认密码。</p>
-<h3 id="2、配置安全审计平台"><a href="#2、配置安全审计平台" class="headerlink" title="2、配置安全审计平台"></a>2、配置安全审计平台</h3><p>如果用对路由器进行安全审计，要进行简单的配置。最关键的配置还是设置IP地址。<br>安全审计系统安装后默认的IP是192.168.1.240，要采集网络中路由器的日志，必须要和路由器在同一网段网络要通。所以要将安全审计平台的IP进行修改。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/10-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E7%9A%84IP.png" alt="修改IP"></p>
-<h3 id="3、配置路由器"><a href="#3、配置路由器" class="headerlink" title="3、配置路由器"></a>3、配置路由器</h3><p>配置路由器的目的是要将路由器的审计日志发送到刚安装和配置好的安全审计平台。<br>登录到TP-Link路由器的配置管理界面，开启行为审计的上传用户上网行为，输入安全审计系统平台的地址，保存配置。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/11-%E8%B7%AF%E7%94%B1%E5%99%A8%E8%A1%8C%E4%B8%BA%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5.png" alt="上报行为审计"></p>
-<p>同样将系统日志也配置报送到安全审计平台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/12-%E8%B7%AF%E7%94%B1%E5%99%A8%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%95%B0%E6%8D%AE%E4%B8%8A%E6%8A%A5.png" alt="上报系统日志"></p>
-<p>将安全审计的日志也送到安全审计平台。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/13-%E8%B7%AF%E7%94%B1%E5%99%A8%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5.png" alt="上报安全审计"></p>
-<h3 id="4、日志分析与行为分析"><a href="#4、日志分析与行为分析" class="headerlink" title="4、日志分析与行为分析"></a>4、日志分析与行为分析</h3><p>配置完成后，我们再登录到安全审计系统，就可以看到审计日志都送到系统了可以做相应的审计了。<br>可以看到那个IP什么时候访问了什么，同时也看到了前面我们在路由器的的访问控制也生效了，有效的阻止了企图访问bilibili.com的IP。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/14-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95.png" alt="访问控制效果"></p>
-<p>在行为分析中可以看到用户受管控的排行<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/15-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90.png" alt="行为分析"></p>
-<p>也可以看到具体哪些IP受管控的次数<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/16-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE.png" alt="受管控的次数"></p>
-<p>以及具体被管控的原因<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/17-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E5%8F%97%E7%AE%A1%E6%8E%A7%E8%AE%B0%E5%BD%95.png" alt="具体被管控的原因"></p>
-<h3 id="5、利用AI进行审计与分析"><a href="#5、利用AI进行审计与分析" class="headerlink" title="5、利用AI进行审计与分析"></a>5、利用AI进行审计与分析</h3><p>现在AI大模型已经很强大了，我们可以将安全审计系统的日志导出来给大模型进行审计与分析。发现其他的一些人工审计发现不了的异常。如发现用户的行为特征及偏离平时访问基线的一些访问等。<br>我们将安全审计系统的审计日志导出为Excel，将Excel通过coze空间进行审计分析，可以生成比较完整的审计报告。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/18-coze%E7%A9%BA%E9%97%B4%E5%AE%A1%E8%AE%A1%E5%88%86%E6%9E%90.png" alt="coze空间进行审计分析"></p>
-<p>可以看到coze空间生成的审计报告还是比较全面美观。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/19-coze%E5%AE%A1%E8%AE%A1%E6%8A%A5%E5%91%8A.jpeg" alt="完整的审计报告"></p>
-<p>也可以用WPS自带的AI数据分析，可以看出对用户的异常行为的分析还是比较专业和详细的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250721/20-WPSAI%E5%88%86%E6%9E%90.png" alt="WPSAI分析报告"></p>
+<h3 id="2、配置安全审计平台"><a href="#2、配置安全审计平台" class="headerlink" title="2、配置安全审计平台"></a>2、配置安全审计平台</h3><p>如果用对路由器进行安全审计，要进行简单的配置。最关键的配置还是设置IP地址。<br>安全审计系统安装后默认的IP是192.168.1.240，要采集网络中路由器的日志，必须要和路由器在同一网段网络要通。所以要将安全审计平台的IP进行修改。<br><img src="http://image2.ishareread.com/images/2025/20250721/10-%E9%85%8D%E7%BD%AE%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E7%9A%84IP.png" alt="修改IP"></p>
+<h3 id="3、配置路由器"><a href="#3、配置路由器" class="headerlink" title="3、配置路由器"></a>3、配置路由器</h3><p>配置路由器的目的是要将路由器的审计日志发送到刚安装和配置好的安全审计平台。<br>登录到TP-Link路由器的配置管理界面，开启行为审计的上传用户上网行为，输入安全审计系统平台的地址，保存配置。<br><img src="http://image2.ishareread.com/images/2025/20250721/11-%E8%B7%AF%E7%94%B1%E5%99%A8%E8%A1%8C%E4%B8%BA%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5.png" alt="上报行为审计"></p>
+<p>同样将系统日志也配置报送到安全审计平台。<br><img src="http://image2.ishareread.com/images/2025/20250721/12-%E8%B7%AF%E7%94%B1%E5%99%A8%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E6%95%B0%E6%8D%AE%E4%B8%8A%E6%8A%A5.png" alt="上报系统日志"></p>
+<p>将安全审计的日志也送到安全审计平台。<br><img src="http://image2.ishareread.com/images/2025/20250721/13-%E8%B7%AF%E7%94%B1%E5%99%A8%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5.png" alt="上报安全审计"></p>
+<h3 id="4、日志分析与行为分析"><a href="#4、日志分析与行为分析" class="headerlink" title="4、日志分析与行为分析"></a>4、日志分析与行为分析</h3><p>配置完成后，我们再登录到安全审计系统，就可以看到审计日志都送到系统了可以做相应的审计了。<br>可以看到那个IP什么时候访问了什么，同时也看到了前面我们在路由器的的访问控制也生效了，有效的阻止了企图访问bilibili.com的IP。<br><img src="http://image2.ishareread.com/images/2025/20250721/14-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95.png" alt="访问控制效果"></p>
+<p>在行为分析中可以看到用户受管控的排行<br><img src="http://image2.ishareread.com/images/2025/20250721/15-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90.png" alt="行为分析"></p>
+<p>也可以看到具体哪些IP受管控的次数<br><img src="http://image2.ishareread.com/images/2025/20250721/16-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E8%AE%BF%E9%97%AE%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE.png" alt="受管控的次数"></p>
+<p>以及具体被管控的原因<br><img src="http://image2.ishareread.com/images/2025/20250721/17-%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1%E7%B3%BB%E7%BB%9F%E5%8F%97%E7%AE%A1%E6%8E%A7%E8%AE%B0%E5%BD%95.png" alt="具体被管控的原因"></p>
+<h3 id="5、利用AI进行审计与分析"><a href="#5、利用AI进行审计与分析" class="headerlink" title="5、利用AI进行审计与分析"></a>5、利用AI进行审计与分析</h3><p>现在AI大模型已经很强大了，我们可以将安全审计系统的日志导出来给大模型进行审计与分析。发现其他的一些人工审计发现不了的异常。如发现用户的行为特征及偏离平时访问基线的一些访问等。<br>我们将安全审计系统的审计日志导出为Excel，将Excel通过coze空间进行审计分析，可以生成比较完整的审计报告。<br><img src="http://image2.ishareread.com/images/2025/20250721/18-coze%E7%A9%BA%E9%97%B4%E5%AE%A1%E8%AE%A1%E5%88%86%E6%9E%90.png" alt="coze空间进行审计分析"></p>
+<p>可以看到coze空间生成的审计报告还是比较全面美观。<br><img src="http://image2.ishareread.com/images/2025/20250721/19-coze%E5%AE%A1%E8%AE%A1%E6%8A%A5%E5%91%8A.jpeg" alt="完整的审计报告"></p>
+<p>也可以用WPS自带的AI数据分析，可以看出对用户的异常行为的分析还是比较专业和详细的。<br><img src="http://image2.ishareread.com/images/2025/20250721/20-WPSAI%E5%88%86%E6%9E%90.png" alt="WPSAI分析报告"></p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1715,8 +1715,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-07-11T00:30:07+08:00">
-                2025-07-11
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1827,19 +1827,19 @@
           
             <p>Gemini是目前好用的免费大模型，通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。虽然免费但有一定的额度，不过通过申请不同的账号可以申请获取多个API密钥。Gemini Balance 就是这么一款工具，允许您管理多个 Gemini API Key，这样就可以使Gemini免费额度翻N倍。</p>
 <p>Gemini Balance 是一个基于 Python FastAPI 构建的应用程序，旨在提供 Google Gemini API 的代理和负载均衡功能。它允许您管理多个 Gemini API Key，并通过简单的配置实现 Key 的轮询、认证、模型过滤和状态监控。此外，项目还集成了图像生成和多种图床上传功能，并支持 OpenAI API 格式的代理。</p>
-<p>要感谢snailyp大佬开发的gemini-balance 项目地址：<a href="https://github.com/snailyp/gemini-balance" target="_blank" rel="noopener">https://github.com/snailyp/gemini-balance</a><br>《<a href="http://xiejava.ishareread.com/posts/4999be0b/" target="_blank" rel="noopener">国内免代理免费使用Gemini大模型实战</a>》介绍了如何将Gamini中转到国内能够使用，本文介绍如何使用免费的ClawCloud容器化部署gemini-balance配置多个Gemini API Key，不仅在国内可以使用还可以让Gemini免费到底！</p>
+<p>要感谢snailyp大佬开发的gemini-balance 项目地址：<a href="https://github.com/snailyp/gemini-balance" target="_blank" rel="noopener">https://github.com/snailyp/gemini-balance</a><br>《<a href="http://xiejava.ishareread.com/posts/4999be0b/">国内免代理免费使用Gemini大模型实战</a>》介绍了如何将Gamini中转到国内能够使用，本文介绍如何使用免费的ClawCloud容器化部署gemini-balance配置多个Gemini API Key，不仅在国内可以使用还可以让Gemini免费到底！</p>
 <h2 id="一、申请注册多个Gemini-API-Key"><a href="#一、申请注册多个Gemini-API-Key" class="headerlink" title="一、申请注册多个Gemini API Key"></a>一、申请注册多个Gemini API Key</h2><p>注册google账号就可以免费申请Gemini API密钥。</p>
 <p>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/1-APIkey%E7%94%B3%E8%AF%B7.png" alt="申请密钥"> </p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/1-APIkey%E7%94%B3%E8%AF%B7.png" alt="申请密钥"> </p>
 <p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。</p>
 <p>注册多个google账号就可以申请多个Gemini API 密钥。</p>
 <h2 id="二、注册ClawCloud账号"><a href="#二、注册ClawCloud账号" class="headerlink" title="二、注册ClawCloud账号"></a>二、注册ClawCloud账号</h2><p>ClawCloud是一个成立于2024年的云计算平台，总部位于新加坡，ClawCloud旨在简化技术栈的复杂性，帮助用户从编码到生产的整个过程只需几次点击即可完成 。它提供免费的每月5美元GitHub验证赠金，无需信用卡即可开始使用，并承诺在1分钟内完成设置 。</p>
 <p>ClawCloud 在国内可以直接访问，Github 账户注册时间超过 180天就有每个月5美元的赠送额度，足够支撑我们部署gemini-balance的应用了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/2-ClawCloud.png" alt="在这里插入图片描述"></p>
-<p>点击 Github 登录<img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/3-ClawCloudGithub%E7%99%BB%E5%BD%95.png" alt="选择github登录"></p>
-<p>进入 Github 登录界面后，输入账户名、密码，随后点击 Sign in。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/4-github%E7%99%BB%E5%BD%95.png" alt="Github登录"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/2-ClawCloud.png" alt="在这里插入图片描述"></p>
+<p>点击 Github 登录<img src="http://image2.ishareread.com/images/2025/20250710/3-ClawCloudGithub%E7%99%BB%E5%BD%95.png" alt="选择github登录"></p>
+<p>进入 Github 登录界面后，输入账户名、密码，随后点击 Sign in。<br><img src="http://image2.ishareread.com/images/2025/20250710/4-github%E7%99%BB%E5%BD%95.png" alt="Github登录"></p>
 <p>登录以后就在用户中心Account Center就可以看到每个月赠送的额度，如果有使用还可以看到目前使用的额度。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/5-ClowCloud%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83.png" alt="ClawCloud的用户中心"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/5-ClowCloud%E7%94%A8%E6%88%B7%E4%B8%AD%E5%BF%83.png" alt="ClawCloud的用户中心"></p>
 <h2 id="三、通过-ClawCloud-Run-部署gemini-balance"><a href="#三、通过-ClawCloud-Run-部署gemini-balance" class="headerlink" title="三、通过 ClawCloud Run 部署gemini-balance"></a>三、通过 ClawCloud Run 部署gemini-balance</h2><p>gemini-balance官方有详细的部署文档</p>
 <p><a href="https://gb-docs.snaily.top/guide/setup-clawcloud-sqlite.html" target="_blank" rel="noopener">https://gb-docs.snaily.top/guide/setup-clawcloud-sqlite.html</a></p>
 <p>大家可以按照这个文档一步步部署</p>
@@ -1849,15 +1849,15 @@
 <ul>
 <li>进入主界面后，点击左上角 Region，选择服务器地址。推荐选择 Singapore。选择完成后，网页会刷新，并在服务器地址前☑️。</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/6-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.png" alt="选择服务器地址"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/6-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80.png" alt="选择服务器地址"></p>
 <ul>
 <li>点击 App Launchpad。</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/7-ClowCloud%E7%9A%84Applaunchpad.png" alt="选择App Lannchpad"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/7-ClowCloud%E7%9A%84Applaunchpad.png" alt="选择App Lannchpad"></p>
 <ul>
 <li>进入页面后，点击页面右上角 Create App，进入配置页面。</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/8-ClowCloud%E5%88%9B%E5%BB%BAAPP.png" alt="Create App"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/8-ClowCloud%E5%88%9B%E5%BB%BAAPP.png" alt="Create App"></p>
 <ul>
 <li>进入配置页面后，按顺序填写信息（不熟悉项目名称的，请打开在线翻译）。<ul>
 <li>Application Name：为方便识别管理，建议填写本项目名字<code>geminibalance</code></li>
@@ -1868,16 +1868,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/9-ClowCloud%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/9-ClowCloud%E9%80%89%E6%8B%A9%E9%95%9C%E5%83%8F.png" alt="在这里插入图片描述"></p>
 <pre><code>- Usage：`Fixed`；
 - Replicas：`1`
 - CPU：`1`
 - Memory：`512`
 
-&gt; 说明：1. 若登录账号只选择部署 1 个项目，则推荐上述最高免费配置。2.目前免费用户每月流量为 10g，超出部分 0.05 美元/g。可根据流量使用情况选择服务器配置。</code></pre><p> <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/10-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
+&gt; 说明：1. 若登录账号只选择部署 1 个项目，则推荐上述最高免费配置。2.目前免费用户每月流量为 10g，超出部分 0.05 美元/g。可根据流量使用情况选择服务器配置。</code></pre><p> <img src="http://image2.ishareread.com/images/2025/20250710/10-ClowCloud%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE.png" alt="在这里插入图片描述"></p>
 <pre><code>- Network
     - Container Port：`8000`
-    - Enable Internet：点选为`Access`状态</code></pre><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/11-ClowCloud%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C.png" alt="在这里插入图片描述"></p>
+    - Enable Internet：点选为`Access`状态</code></pre><p><img src="http://image2.ishareread.com/images/2025/20250710/11-ClowCloud%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>Advanced Configura<ul>
 <li>Environment Variables：点击 Add，随后粘贴以下变量。填写完成后点击 Add 完成配置。</li>
@@ -1909,29 +1909,29 @@
 <td>sk-123456</td>
 </tr>
 </tbody></table>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/12-ClowCloud%E9%80%89%E6%8B%A9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/12-ClowCloud%E9%80%89%E6%8B%A9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>添加完环境变量后，再按照下图设置storage</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/13-ClowCloud%E9%80%89%E6%8B%A9Storage.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/13-ClowCloud%E9%80%89%E6%8B%A9Storage.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>返回页面最上方，点击 Deploy Application。弹窗提示Are you sure you want to deploy the application?选择 Yes。</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/14-ClowCloud%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/14-ClowCloud%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>等待几秒后，跳转至状态界面。此时，请确认页面左上角显示 running。若显示为其他状态，请稍后片刻；仍未显示 running，请确认你配置选项是否正确。需要修改的，可点击页面右下角 Manage Network 选项修改参数，或删除该项目重新部署。</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/15-ClowCloud%E7%AD%89%E5%BE%85%E9%83%A8%E7%BD%B2%E7%8A%B6%E6%80%81.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/15-ClowCloud%E7%AD%89%E5%BE%85%E9%83%A8%E7%BD%B2%E7%8A%B6%E6%80%81.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>将页面滚动到最下方，在 Network 选项卡中，查看右侧公网地址配置情况。一般情况下，显示 pending 表明还在处理当中，需要等待 2～5 分钟，直至pending 状态变为Available。 实际情况下， 2 分钟后即使公网地址前显示pending，亦可尝试在新的浏览器标签中打开该地址。若网页能正常显示本项目登录界面，则正常使用即可。若公网地址前的pending状态超过 10 分钟，且无法打开登录界面，原因可能是服务器过载，需要更长等待时间。建议换区或换服务商重新部署。</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/16-ClowCloud%E7%8A%B6%E6%80%81%E5%8F%98%E4%B8%BAAvailable.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/16-ClowCloud%E7%8A%B6%E6%80%81%E5%8F%98%E4%B8%BAAvailable.png" alt="在这里插入图片描述"></p>
 <ul>
 <li>设置自定义域名</li>
 <li>在cloudflare添加cname记录，如我希望域名为ggg.abc.xyz，cloudflare中这样设置，abc.xyz为托管在cloudflare域名</li>
 <li>在clawcloud这样设置，这样就可以自定义域名访问</li>
 </ul>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/17-ClowCloud%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/17-ClowCloud%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="在这里插入图片描述"></p>
 <h2 id="四、使用gemini-balance监控配置页面"><a href="#四、使用gemini-balance监控配置页面" class="headerlink" title="四、使用gemini-balance监控配置页面"></a>四、使用gemini-balance监控配置页面</h2><p>gemini-balance贴心的带了一个监控配置页面，在这个界面可以配置多个Gemimi API 也可以监控Gemini API的调用情况。</p>
 <ol>
 <li>gemini-balance监控页面配置<ul>
@@ -1939,26 +1939,26 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/18-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt="gemini-balance监控页面登录"></p>
-<p>登录后可以进行相应的配置如添加更多的Gemini API Key<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/19-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt="配置界面"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/18-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A21.png" alt="gemini-balance监控页面登录"></p>
+<p>登录后可以进行相应的配置如添加更多的Gemini API Key<br><img src="http://image2.ishareread.com/images/2025/20250710/19-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A22.png" alt="配置界面"></p>
 <p>也可以监控Gemini API Key的调用情况</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/20-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt="监控Gemini API Key的调用情况"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/20-GeminiBalance%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A23.png" alt="监控Gemini API Key的调用情况"></p>
 <h2 id="五、在-cherry-studio使用GeminiBalance"><a href="#五、在-cherry-studio使用GeminiBalance" class="headerlink" title="五、在 cherry studio使用GeminiBalance"></a>五、在 cherry studio使用GeminiBalance</h2><p> 以 cherry studio 为例<br>    1. 添加提供商。<br>        - 提供商名称：任意填写</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/21-Cherrystudio-geminibalance%E9%85%8D%E7%BD%AE1.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250710/21-Cherrystudio-geminibalance%E9%85%8D%E7%BD%AE1.png" alt="在这里插入图片描述"></p>
 <pre><code>2. 配置
     - API 密钥：填写监控面板“API 密钥”选项卡中的“允许的令牌列表”。
-    - API 地址：填写 ClawCloud 中的公网访问地址。注意结尾不要出现“/”。</code></pre><p>  <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/22-Cherrystudio-GeminiBalance%E9%85%8D%E7%BD%AEKey.png" alt="在这里插入图片描述"></p>
+    - API 地址：填写 ClawCloud 中的公网访问地址。注意结尾不要出现“/”。</code></pre><p>  <img src="http://image2.ishareread.com/images/2025/20250710/22-Cherrystudio-GeminiBalance%E9%85%8D%E7%BD%AEKey.png" alt="在这里插入图片描述"></p>
 <pre><code>3. 添加模型
-4. 点击“管理”，添加模型。</code></pre><p>   <img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/23-CherryStudio-GeminiBalance%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B.png" alt="在这里插入图片描述"></p>
+4. 点击“管理”，添加模型。</code></pre><p>   <img src="http://image2.ishareread.com/images/2025/20250710/23-CherryStudio-GeminiBalance%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B.png" alt="在这里插入图片描述"></p>
 <p> 至此，部署完成。</p>
-<p>最后看调用效果<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250710/24-CheryStudio-GeminiBalance%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
+<p>最后看调用效果<br><img src="http://image2.ishareread.com/images/2025/20250710/24-CheryStudio-GeminiBalance%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="在这里插入图片描述"></p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2055,8 +2055,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-07-07T19:41:40+08:00">
-                2025-07-07
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2166,19 +2166,19 @@
         
           
             <p>谷歌的Gemini API 为开发者提供了具体的免费额度，允许将Gemini模型集成到自己的应用程序中。<br>模型可访问范围：开发者可以免费调用 Gemini 2.5 Pro 模型及其轻量级版本 Gemini 2.5 Flash 。<br>标准免费额度：通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。</p>
-<h2 id="一、免费申请Gemini-API密钥"><a href="#一、免费申请Gemini-API密钥" class="headerlink" title="一、免费申请Gemini API密钥"></a>一、免费申请Gemini API密钥</h2><p>注册google账号就可以免费申请Gemini API密钥。<br>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG" alt="申请密钥"></p>
+<h2 id="一、免费申请Gemini-API密钥"><a href="#一、免费申请Gemini-API密钥" class="headerlink" title="一、免费申请Gemini API密钥"></a>一、免费申请Gemini API密钥</h2><p>注册google账号就可以免费申请Gemini API密钥。<br>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a><br><img src="http://image2.ishareread.com/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG" alt="申请密钥"></p>
 <p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。<br>国内上网环境无法直接使用Gemini API，本文介绍能够免代理使用Gemini的方法。</p>
 <h2 id="二、使用openai-gemini"><a href="#二、使用openai-gemini" class="headerlink" title="二、使用openai-gemini"></a>二、使用openai-gemini</h2><h3 id="1、在github上找到openai-gemini"><a href="#1、在github上找到openai-gemini" class="headerlink" title="1、在github上找到openai-gemini"></a>1、在github上找到openai-gemini</h3><p>openai-gemini 是一个 serverless 的代理项目，用于将 Gemini API 转换为 OpenAI API 。<br>项目地址：<a href="https://github.com/PublicAffairs/openai-gemini" target="_blank" rel="noopener">https://github.com/PublicAffairs/openai-gemini</a><br>Gemini API 是免费的， 但有许多工具专门与 OpenAI API 一起使用。该项目可以将Gemini API 转换为 OpenAI API ，并且通过serverless进行调用。我们可以找个国内可以访问的免费serverless服务进行中转满足国内调用使用需求。<br>这里介绍将openai-gemini部署到Netlify<br>Netlify 是一个领先的 Web 开发平台，它专门为构建、部署和管理现代高性能网站和 Web 应用程序提供了一站式解决方案。Netlify 的核心理念是支持 Jamstack 架构（JavaScript, APIs, Markup），该架构强调将网站内容预构建为静态文件，并通过 CDN 快速分发，然后通过 API 调用动态数据和执行后端逻辑。</p>
-<h3 id="2、将openai-gemini部署到Netlify"><a href="#2、将openai-gemini部署到Netlify" class="headerlink" title="2、将openai-gemini部署到Netlify"></a>2、将openai-gemini部署到Netlify</h3><p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/2-DeployNetlify.PNG" alt="Deploy to Netlify"></p>
-<p>找到”Deploy to Netlify” 点击就可以一键部署到Netlify,部署完成后Netlify会自动分配一个地址用于访问刚部署的openai-gemini的serverless服务。并且这个地址是在过国内可以正常访问的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/3-NetlifyProjectOvervier.PNG" alt="project overview"></p>
-<h3 id="3、在Cherry-Studio中配置和使用gemini的模型"><a href="#3、在Cherry-Studio中配置和使用gemini的模型" class="headerlink" title="3、在Cherry Studio中配置和使用gemini的模型"></a>3、在Cherry Studio中配置和使用gemini的模型</h3><h4 id="1）在Cherry-Studio中配置gemini-API"><a href="#1）在Cherry-Studio中配置gemini-API" class="headerlink" title="1）在Cherry Studio中配置gemini API"></a>1）在Cherry Studio中配置gemini API</h4><p>通过Netlify中转访问gemini API，我们可以直接在Cherry Studio中配置通过Netlify中转访问gemini API<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini-2.5-pro<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/4-CherryStudio%E9%85%8D%E7%BD%AEGeminiAPI.PNG" alt="Cherry Studio中配置API key"></p>
-<h4 id="2）在Cherry-Studio中使用gemini-的模型"><a href="#2）在Cherry-Studio中使用gemini-的模型" class="headerlink" title="2）在Cherry Studio中使用gemini 的模型"></a>2）在Cherry Studio中使用gemini 的模型</h4><p>在Cherry Studio中选择刚配置的gemini-2.5-pro并和它对话，可以看到gemini-2.5-pro可以流畅的输出。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/5-CherryStudio%E4%B8%AD%E4%BD%BF%E7%94%A8GeminiAPI.png" alt="在cherry Studio中使用gemini"></p>
-<h3 id="4、在Dify中配置和使用gemini的模型"><a href="#4、在Dify中配置和使用gemini的模型" class="headerlink" title="4、在Dify中配置和使用gemini的模型"></a>4、在Dify中配置和使用gemini的模型</h3><h4 id="1-在Dify中配置gemini-API"><a href="#1-在Dify中配置gemini-API" class="headerlink" title="1) 在Dify中配置gemini API"></a>1) 在Dify中配置gemini API</h4><p>  通过openai-gemini将 Gemini API 转换为了 OpenAI API ，所以在dify中应该使用“OpenAI-API-compatible”的插件来配置模型。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/6-%E5%9C%A8dify%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86.png" alt="OpenAI插件"></p>
-<p>如果没有安装“OpenAI-API-compatible”插件需先安装。在模型供应商中选择“OpenAI-API-compatible”,点击“添加模型”。<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini 2.5 pro<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/7-%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E4%B8%AD%E9%85%8D%E7%BD%AEGeminiAPI.png" alt="配置API key"></p>
-<h4 id="2）在Dify中使用gemini的模型"><a href="#2）在Dify中使用gemini的模型" class="headerlink" title="2）在Dify中使用gemini的模型"></a>2）在Dify中使用gemini的模型</h4><p>在Dify中建一个对话应用，选择刚配置好的 Gemini 2.5 Pro 模型进行对话，可以看到对话成功的调用了gemini API使用Gemini 2.5 Pro的模型进行了回复。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/8-%E5%9C%A8Dify%E4%B8%AD%E9%85%8D%E7%BD%AEGemini%E6%A8%A1%E5%9E%8B.png" alt="在Dify中使用"></p>
-<h3 id="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"><a href="#5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问" class="headerlink" title="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"></a>5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问</h3><h4 id="1-在自己的DNS中配置域名解析到netlify的地址"><a href="#1-在自己的DNS中配置域名解析到netlify的地址" class="headerlink" title="1) 在自己的DNS中配置域名解析到netlify的地址"></a>1) 在自己的DNS中配置域名解析到netlify的地址</h4><p>以我的cloud flare域名服务配置为例，在DNS中配置一个netlifygemini的子域名，解析到目标为开始netlify给的服务地址。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/9-DNS%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="配置子域名"></p>
-<h4 id="2）在netlify中配置子域名"><a href="#2）在netlify中配置子域名" class="headerlink" title="2）在netlify中配置子域名"></a>2）在netlify中配置子域名</h4><p>在netlify中可以配置自己的域名对gemini API进行访问。在netlify的项目中找到“domain you already own”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/10-%E5%9C%A8netlify%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="在netlify中配置自己的域名"></p>
-<p>在自定义域名配置界面，输入自己的子域名，它会给出Host和Value的值，这两个值需要在自己的DNS域名服务器中配置校验。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/11-netlify%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="效验信息"></p>
+<h3 id="2、将openai-gemini部署到Netlify"><a href="#2、将openai-gemini部署到Netlify" class="headerlink" title="2、将openai-gemini部署到Netlify"></a>2、将openai-gemini部署到Netlify</h3><p><img src="http://image2.ishareread.com/images/2025/20250707/2-DeployNetlify.PNG" alt="Deploy to Netlify"></p>
+<p>找到”Deploy to Netlify” 点击就可以一键部署到Netlify,部署完成后Netlify会自动分配一个地址用于访问刚部署的openai-gemini的serverless服务。并且这个地址是在过国内可以正常访问的。<br><img src="http://image2.ishareread.com/images/2025/20250707/3-NetlifyProjectOvervier.PNG" alt="project overview"></p>
+<h3 id="3、在Cherry-Studio中配置和使用gemini的模型"><a href="#3、在Cherry-Studio中配置和使用gemini的模型" class="headerlink" title="3、在Cherry Studio中配置和使用gemini的模型"></a>3、在Cherry Studio中配置和使用gemini的模型</h3><h4 id="1）在Cherry-Studio中配置gemini-API"><a href="#1）在Cherry-Studio中配置gemini-API" class="headerlink" title="1）在Cherry Studio中配置gemini API"></a>1）在Cherry Studio中配置gemini API</h4><p>通过Netlify中转访问gemini API，我们可以直接在Cherry Studio中配置通过Netlify中转访问gemini API<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini-2.5-pro<br><img src="http://image2.ishareread.com/images/2025/20250707/4-CherryStudio%E9%85%8D%E7%BD%AEGeminiAPI.PNG" alt="Cherry Studio中配置API key"></p>
+<h4 id="2）在Cherry-Studio中使用gemini-的模型"><a href="#2）在Cherry-Studio中使用gemini-的模型" class="headerlink" title="2）在Cherry Studio中使用gemini 的模型"></a>2）在Cherry Studio中使用gemini 的模型</h4><p>在Cherry Studio中选择刚配置的gemini-2.5-pro并和它对话，可以看到gemini-2.5-pro可以流畅的输出。<br><img src="http://image2.ishareread.com/images/2025/20250707/5-CherryStudio%E4%B8%AD%E4%BD%BF%E7%94%A8GeminiAPI.png" alt="在cherry Studio中使用gemini"></p>
+<h3 id="4、在Dify中配置和使用gemini的模型"><a href="#4、在Dify中配置和使用gemini的模型" class="headerlink" title="4、在Dify中配置和使用gemini的模型"></a>4、在Dify中配置和使用gemini的模型</h3><h4 id="1-在Dify中配置gemini-API"><a href="#1-在Dify中配置gemini-API" class="headerlink" title="1) 在Dify中配置gemini API"></a>1) 在Dify中配置gemini API</h4><p>  通过openai-gemini将 Gemini API 转换为了 OpenAI API ，所以在dify中应该使用“OpenAI-API-compatible”的插件来配置模型。<br><img src="http://image2.ishareread.com/images/2025/20250707/6-%E5%9C%A8dify%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86.png" alt="OpenAI插件"></p>
+<p>如果没有安装“OpenAI-API-compatible”插件需先安装。在模型供应商中选择“OpenAI-API-compatible”,点击“添加模型”。<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini 2.5 pro<br><img src="http://image2.ishareread.com/images/2025/20250707/7-%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E4%B8%AD%E9%85%8D%E7%BD%AEGeminiAPI.png" alt="配置API key"></p>
+<h4 id="2）在Dify中使用gemini的模型"><a href="#2）在Dify中使用gemini的模型" class="headerlink" title="2）在Dify中使用gemini的模型"></a>2）在Dify中使用gemini的模型</h4><p>在Dify中建一个对话应用，选择刚配置好的 Gemini 2.5 Pro 模型进行对话，可以看到对话成功的调用了gemini API使用Gemini 2.5 Pro的模型进行了回复。<br><img src="http://image2.ishareread.com/images/2025/20250707/8-%E5%9C%A8Dify%E4%B8%AD%E9%85%8D%E7%BD%AEGemini%E6%A8%A1%E5%9E%8B.png" alt="在Dify中使用"></p>
+<h3 id="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"><a href="#5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问" class="headerlink" title="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"></a>5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问</h3><h4 id="1-在自己的DNS中配置域名解析到netlify的地址"><a href="#1-在自己的DNS中配置域名解析到netlify的地址" class="headerlink" title="1) 在自己的DNS中配置域名解析到netlify的地址"></a>1) 在自己的DNS中配置域名解析到netlify的地址</h4><p>以我的cloud flare域名服务配置为例，在DNS中配置一个netlifygemini的子域名，解析到目标为开始netlify给的服务地址。<br><img src="http://image2.ishareread.com/images/2025/20250707/9-DNS%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="配置子域名"></p>
+<h4 id="2）在netlify中配置子域名"><a href="#2）在netlify中配置子域名" class="headerlink" title="2）在netlify中配置子域名"></a>2）在netlify中配置子域名</h4><p>在netlify中可以配置自己的域名对gemini API进行访问。在netlify的项目中找到“domain you already own”<br><img src="http://image2.ishareread.com/images/2025/20250707/10-%E5%9C%A8netlify%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="在netlify中配置自己的域名"></p>
+<p>在自定义域名配置界面，输入自己的子域名，它会给出Host和Value的值，这两个值需要在自己的DNS域名服务器中配置校验。<br><img src="http://image2.ishareread.com/images/2025/20250707/11-netlify%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="效验信息"></p>
 <p>接下来需要在自己的DNS服务中进行配置，我以自己的cloud flare域名服务配置为例，配置如下：</p>
 <h4 id="3）在-Cloudflare-中添加TXT记录用于校验"><a href="#3）在-Cloudflare-中添加TXT记录用于校验" class="headerlink" title="3）在 Cloudflare 中添加TXT记录用于校验"></a>3）在 Cloudflare 中添加TXT记录用于校验</h4><ol>
 <li>登录你的 Cloudflare 账户，选择我的域名doai8.dpdns.org。</li>
@@ -2210,16 +2210,16 @@
 <td>保持默认的 Auto 即可</td>
 </tr>
 </tbody></table>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/12-%E5%9C%A8DNS%E4%B8%AD%E9%85%8D%E7%BD%AETXT%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="添加TXT记录"></p>
-<h4 id="4）在netify中进行验证，验证通过就可以用自己的域名访问了"><a href="#4）在netify中进行验证，验证通过就可以用自己的域名访问了" class="headerlink" title="4）在netify中进行验证，验证通过就可以用自己的域名访问了"></a>4）在netify中进行验证，验证通过就可以用自己的域名访问了</h4><p>在netify中进行验证，验证通过就可以用自己的域名访问了，在图中可以看到自己的子域名和netlify给的子域名。两个域名都可以用，自己的子域名的好处就是自己容易记忆。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/13-Netlify%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png" alt="自定义域名配好"></p>
-<h4 id="5）用自定义域名进行gemini-API接口的测试"><a href="#5）用自定义域名进行gemini-API接口的测试" class="headerlink" title="5）用自定义域名进行gemini API接口的测试"></a>5）用自定义域名进行gemini API接口的测试</h4><p> 在Cherry Studio中将API地址配置程自定义域名的地址<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/14-%E5%9C%A8cherrystdio%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3.png" alt="配置自定义域名地址"><br>可以看到和gemini 2.5 pro 对话同样也很丝滑。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250707/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="测试"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250707/12-%E5%9C%A8DNS%E4%B8%AD%E9%85%8D%E7%BD%AETXT%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="添加TXT记录"></p>
+<h4 id="4）在netify中进行验证，验证通过就可以用自己的域名访问了"><a href="#4）在netify中进行验证，验证通过就可以用自己的域名访问了" class="headerlink" title="4）在netify中进行验证，验证通过就可以用自己的域名访问了"></a>4）在netify中进行验证，验证通过就可以用自己的域名访问了</h4><p>在netify中进行验证，验证通过就可以用自己的域名访问了，在图中可以看到自己的子域名和netlify给的子域名。两个域名都可以用，自己的子域名的好处就是自己容易记忆。<br><img src="http://image2.ishareread.com/images/2025/20250707/13-Netlify%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png" alt="自定义域名配好"></p>
+<h4 id="5）用自定义域名进行gemini-API接口的测试"><a href="#5）用自定义域名进行gemini-API接口的测试" class="headerlink" title="5）用自定义域名进行gemini API接口的测试"></a>5）用自定义域名进行gemini API接口的测试</h4><p> 在Cherry Studio中将API地址配置程自定义域名的地址<br><img src="http://image2.ishareread.com/images/2025/20250707/14-%E5%9C%A8cherrystdio%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3.png" alt="配置自定义域名地址"><br>可以看到和gemini 2.5 pro 对话同样也很丝滑。<br><img src="http://image2.ishareread.com/images/2025/20250707/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="测试"></p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2316,8 +2316,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-06-14T15:00:09+08:00">
-                2025-06-14
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2430,47 +2430,47 @@
 <p>由于 Dify 内置了构建 LLM 应用所需的关键技术栈，包括对数百个模型的支持、直观的 Prompt 编排界面、高质量的 RAG 引擎、稳健的 Agent 框架、灵活的流程编排，并同时提供了一套易用的界面和 API。这为开发者节省了许多重复造轮子的时间，使其可以专注在创新和业务需求上。</p>
 <p>NAS作为私有化的个人数据中心，基本保持不停机的状态并且功耗小，比较适合作为私有化的开发平台载体。本文介绍如何在家庭飞牛NAS上本地化部署dify打造属于自己的私有化LLMOps平台，可以随时随地的通过Dify来构建自己的AI应用。</p>
 <h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、环境介绍"><a href="#1、环境介绍" class="headerlink" title="1、环境介绍"></a>1、环境介绍</h3><p>我的NAS设备为零刻ME mini全闪小主机，CPU intel N200,内存12G，装了fnOS作为NAS用。这个配置如果仅仅只是存存相片、文件等还是有点过剩了，所以为了充分发挥迷你主机的效用决定把它打造为私有的LLMOps平台。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/1-nas%E9%85%8D%E7%BD%AE.png" alt="NAS的硬件配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/1-nas%E9%85%8D%E7%BD%AE.png" alt="NAS的硬件配置"></p>
 <h3 id="2、打开飞牛OS的SSH登录"><a href="#2、打开飞牛OS的SSH登录" class="headerlink" title="2、打开飞牛OS的SSH登录"></a>2、打开飞牛OS的SSH登录</h3><p>登录到飞牛OS，在“系统设置”中找到“SSH”，打开SSH功能</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/2-%E6%89%93%E5%BC%80SSH.png" alt="打开SSH"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/2-%E6%89%93%E5%BC%80SSH.png" alt="打开SSH"></p>
 <h3 id="3、通过SSH客户端连上NAS主机"><a href="#3、通过SSH客户端连上NAS主机" class="headerlink" title="3、通过SSH客户端连上NAS主机"></a>3、通过SSH客户端连上NAS主机</h3><p>打开SSH后就可以通过SSH的客户端工具连到fnOS</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/3-SSH%E8%BF%9E%E6%8E%A5%E4%B8%BB%E6%9C%BA.png" alt="SSH连接主机"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/3-SSH%E8%BF%9E%E6%8E%A5%E4%B8%BB%E6%9C%BA.png" alt="SSH连接主机"></p>
 <h2 id="二、在飞牛NAS上安装Dify"><a href="#二、在飞牛NAS上安装Dify" class="headerlink" title="二、在飞牛NAS上安装Dify"></a>二、在飞牛NAS上安装Dify</h2><h3 id="1、找到Dify的安装源"><a href="#1、找到Dify的安装源" class="headerlink" title="1、找到Dify的安装源"></a>1、找到Dify的安装源</h3><p>在github或gitee上找到dify的项目地址<br><a href="https://github.com/langgenius/dify/" target="_blank" rel="noopener">https://github.com/langgenius/dify/</a><br><a href="https://gitee.com/dify_ai/dify" target="_blank" rel="noopener">https://gitee.com/dify_ai/dify</a><br>在国内访问github比较慢，可以访问gitee上的difyi项目地址。<br>这里有安装Dify的硬件要求和安装步骤。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/4-gitee%E7%9A%84dify%E9%A1%B9%E7%9B%AE.png" alt="gitee的dify项目"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/4-gitee%E7%9A%84dify%E9%A1%B9%E7%9B%AE.png" alt="gitee的dify项目"></p>
 <h3 id="2、在飞牛NAS上创建存储目录"><a href="#2、在飞牛NAS上创建存储目录" class="headerlink" title="2、在飞牛NAS上创建存储目录"></a>2、在飞牛NAS上创建存储目录</h3><p>在飞牛NAS上创建一个用户clone和安装dify的目录</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/5-nas%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95.png" alt="NAS上创建Dify目录"><br>右键点击dify文件夹，点击“详细信息”。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/6-%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AD%98%E5%82%A8%E8%AF%A6%E6%83%85.png" alt="查看目录详情"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/5-nas%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95.png" alt="NAS上创建Dify目录"><br>右键点击dify文件夹，点击“详细信息”。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/6-%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AD%98%E5%82%A8%E8%AF%A6%E6%83%85.png" alt="查看目录详情"></p>
 <p>在详细信息中找到“复制原始路径”，这里复制的原始路径就是该文件夹在fnOS操作系统的实际路径。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/7-%E5%A4%8D%E5%88%B6%E5%8E%9F%E5%A7%8B%E8%B7%AF%E5%BE%84.png" alt="找到实际路径"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/7-%E5%A4%8D%E5%88%B6%E5%8E%9F%E5%A7%8B%E8%B7%AF%E5%BE%84.png" alt="找到实际路径"></p>
 <h3 id="3、开始安装Dify"><a href="#3、开始安装Dify" class="headerlink" title="3、开始安装Dify"></a>3、开始安装Dify</h3><p>安装Dify需要docker环境，fnOS本身就已经安装好了docker环境，所以可以直接clone后进行安装<br>通过<code>sudo -i</code> 切换到 root 用户，进入到开始复制的原始路径。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/8-%E5%88%87%E6%8D%A2root%E7%94%A8%E6%88%B7%E8%BF%9B%E5%85%A5dify%E7%9B%AE%E5%BD%95.png" alt="切换root用户"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/8-%E5%88%87%E6%8D%A2root%E7%94%A8%E6%88%B7%E8%BF%9B%E5%85%A5dify%E7%9B%AE%E5%BD%95.png" alt="切换root用户"></p>
 <p>通过<code>git clone https://gitee.com/dify_ai/dify</code> 命令clone项目</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/9-clonedify.png" alt="clone项目"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/9-clonedify.png" alt="clone项目"></p>
 <p>进入到dify下的docker目录，将.env.example 复制成.env文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dify/docker</span><br><span class="line">cp .env.example .env</span><br></pre></td></tr></table></figure>
 
 <p>.env文件中配置的是dify的一些环境变量，dify默认的web端口是80，为了避免80端口冲突，我们把dify的默认端口改成8080，修改.env的配置文件，将docker输出的Nginx端口改成8080，Nginx的SSL端口改成8443。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE_NGINX_PORT=8080</span><br><span class="line">EXPOSE_NGINX_SSL_PORT=8080</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/10-%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3.png" alt="修改端口"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/10-%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3.png" alt="修改端口"></p>
 <p>然后执行 <code>docker compose up -d</code> 就可以完成dify的安装</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/11-%E5%AE%89%E8%A3%85dify.png" alt="安装dify"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/11-%E5%AE%89%E8%A3%85dify.png" alt="安装dify"></p>
 <p>安装完成后通过NAS的内网IP就可以访问到dify的初始化界面<br><a href="http://192.168.0.18:8080/install" target="_blank" rel="noopener">http://192.168.0.18:8080/install</a><br>通过简单的配置，配置用户名、口令就可以正式使用dify了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/12-%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="内网访问dify"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/12-%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="内网访问dify"></p>
 <h2 id="三、设置外网访问"><a href="#三、设置外网访问" class="headerlink" title="三、设置外网访问"></a>三、设置外网访问</h2><p>为了随时随地的访问和使用dify我们要对dify进行端口映射，使用nas的ddns来进行外网访问。</p>
 <h3 id="1、外网端口映射"><a href="#1、外网端口映射" class="headerlink" title="1、外网端口映射"></a>1、外网端口映射</h3><p>在路由器上添加一条映射规则，将内网的8080端口映射到外网的某个端口上。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/12-%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="外网端口映射"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/12-%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="外网端口映射"></p>
 <h3 id="2、在飞牛nas上进行ddns配置"><a href="#2、在飞牛nas上进行ddns配置" class="headerlink" title="2、在飞牛nas上进行ddns配置"></a>2、在飞牛nas上进行ddns配置</h3><p>如有域名就可以配置阿里云或Cloudflare的ddns服务</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/13-DDNS%E9%85%8D%E7%BD%AE.png" alt="DDNS配置"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/13-DDNS%E9%85%8D%E7%BD%AE.png" alt="DDNS配置"></p>
 <p>这样就可以通过域名+端口直接访问NAS上的dify应用，随时随地构建和调试自己的AI应用了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250614/14-%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="外网访问"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/14-%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="外网访问"></p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2567,8 +2567,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-04-08T13:57:29+08:00">
-                2025-04-08
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2894,12 +2894,12 @@
 </ul>
 <p>从以上看出，RACI矩阵适用于‌任何<strong>需要明确角色分工的场景‌</strong>，尤其适合跨职能、多利益相关方的复杂任务。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2996,8 +2996,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-02-24T12:44:56+08:00">
-                2025-02-24
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -3152,7 +3152,7 @@
 </li>
 </ul>
 <h2 id="二、区别与关联"><a href="#二、区别与关联" class="headerlink" title="二、区别与关联"></a>二、区别与关联</h2><p><strong>关系</strong>：从定义上看，攻击面包含暴露面，并且更加广泛。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20250224001/%E6%9A%B4%E9%9C%B2%E9%9D%A2%E4%B8%8E%E6%94%BB%E5%87%BB%E9%9D%A2%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="暴露面与攻击面的关系"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20250224001/%E6%9A%B4%E9%9C%B2%E9%9D%A2%E4%B8%8E%E6%94%BB%E5%87%BB%E9%9D%A2%E7%9A%84%E5%85%B3%E7%B3%BB.png" alt="暴露面与攻击面的关系"></p>
 <p><strong>区别：</strong></p>
 <table>
 <thead>
@@ -3203,12 +3203,12 @@
 </ul>
 <h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>‌<strong>暴露面是攻击面的子集‌</strong>，两者区别在于：暴露面聚焦“对外可见性”，攻击面覆盖“可利用性”；前者是静态防御的基础，后者需动态应对综合风险‌。缩小暴露面可降低被攻击概率，而减少攻击面则能全面降低风险。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           

@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:21+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:13+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -485,12 +485,12 @@
 <h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><p>1、独立版本<br>直接下载并用<code>&lt;script&gt;</code>标签引入<br>官网下载地址：<a href="https://cn.vuejs.org/js/vue.js" target="_blank" rel="noopener">https://cn.vuejs.org/js/vue.js</a><br>2、使用CDN<br>和独立版本类似，与独立版本的区别就是不用下载到本地应用，直接引用CDN加速以后的地址。缺点是如果是内网封闭环境不能用，国内CDN也不稳定，国外的CDN有时无法访问。如官网的<br><code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js&quot;&gt;&lt;/script&gt;</code> 就无法访问。<br>几个比较稳定的CDN<br>Staticfile CDN（国内） : <a href="https://cdn.staticfile.org/vue/2.2.2/vue.min.js" target="_blank" rel="noopener">https://cdn.staticfile.org/vue/2.2.2/vue.min.js</a><br>unpkg：<a href="https://unpkg.com/vue@2.6.14/dist/vue.min.js。" target="_blank" rel="noopener">https://unpkg.com/vue@2.6.14/dist/vue.min.js。</a><br>cdnjs : <a href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js" target="_blank" rel="noopener">https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js</a><br>3、命令行工具<br>Vue 提供了一个官方的 CLI，为单页面应用 (SPA) 快速搭建繁杂的脚手架。它为现代前端工作流提供了开箱即用的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 Vue CLI 的文档。</p>
 <h2 id="三、第一个Vue"><a href="#三、第一个Vue" class="headerlink" title="三、第一个Vue"></a>三、第一个Vue</h2><p>程序员学一门新的语音或框架，都是从hello world！开始的。来看一下Vue的hello world!<br>将vue.min.js下载到本地，在vue.min.js的目录下新建一个hellovue.html的文件，代码如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src=<span class="string">"vue.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">&lt;div id="app"&gt;</span></span><br><span class="line"><span class="regexp">  &#123;&#123; message &#125;&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
-<p>用浏览器打开，hello Vue! 成功的展现出来，第一个Vue就这么简单。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/hellovue.png" alt="hello Vue!"></p>
+<p>用浏览器打开，hello Vue! 成功的展现出来，第一个Vue就这么简单。<br><img src="http://image2.ishareread.com/images/2022/20220703/hellovue.png" alt="hello Vue!"></p>
 <p>在这里我们通过<code>&lt;script src=&quot;vue.min.js&quot;&gt;&lt;/script&gt;</code>引入了本地的vue.min.js，就可以用vue框架了。<br>通过<code>&lt;div id=&quot;app&quot;&gt;</code>构建了一个DOM元素div标签元素，id为app，`{{message}}` 是占位符，类似于大多数的模板语法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &#123;&#123; message &#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>在javascript代码中，定义了一个Vue对象，对象中构造了el和data两个参数。el是元素选择器，通过<code>#app</code>选择了<code>id=&quot;app&quot;</code>的div，data用来定义数据属性，这里定义了<code>massage:&#39;hellow Vue!&#39;</code>,通过`{{message}}`将数据hellow Vue显示输出。<br>可以用chrome浏览器的开发者工具打开控制台看到app.message的值为’hellow Vue!’。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/%E8%B0%83%E8%AF%95hellovue.png" alt="chrome浏览器的开发者工具调试"></p>
-<p>可以通过修改这个变量的值而改变显示在浏览器的值。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/%E4%BF%AE%E6%94%B9hellovue.png" alt="修改值"></p>
+<p>在javascript代码中，定义了一个Vue对象，对象中构造了el和data两个参数。el是元素选择器，通过<code>#app</code>选择了<code>id=&quot;app&quot;</code>的div，data用来定义数据属性，这里定义了<code>massage:&#39;hellow Vue!&#39;</code>,通过`{{message}}`将数据hellow Vue显示输出。<br>可以用chrome浏览器的开发者工具打开控制台看到app.message的值为’hellow Vue!’。<br><img src="http://image2.ishareread.com/images/2022/20220703/%E8%B0%83%E8%AF%95hellovue.png" alt="chrome浏览器的开发者工具调试"></p>
+<p>可以通过修改这个变量的值而改变显示在浏览器的值。<br><img src="http://image2.ishareread.com/images/2022/20220703/%E4%BF%AE%E6%94%B9hellovue.png" alt="修改值"></p>
 <h2 id="四、常用基本语法"><a href="#四、常用基本语法" class="headerlink" title="四、常用基本语法"></a>四、常用基本语法</h2><p>模板语法<br>Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。<br>Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统。<br>结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上</p>
 <h3 id="插值文本"><a href="#插值文本" class="headerlink" title="插值文本"></a>插值文本</h3><p>数据绑定最常见的形式就是使用 `{{xxx}}`（双大括号）的文本插值：<br>正如我们的第一的Vue通过`{{ message }}`将文本值插入到占位符进行数据绑定</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
@@ -498,53 +498,53 @@
 <h3 id="绑定输出html"><a href="#绑定输出html" class="headerlink" title="绑定输出html"></a>绑定输出html</h3><p>使用v-html 指令用于输出 html 代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app2:v-html指令输出html代码</span><br><span class="line">&lt;div id=<span class="string">"app2"</span>&gt;</span><br><span class="line">    &lt;div v-html=<span class="string">"message"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">var app2 = new Vue(&#123;</span></span><br><span class="line"><span class="regexp">  el: '#app2',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    message: '&lt;b&gt;Hello Vue!&lt;/</span>b&gt;<span class="string">'</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
 
-<p>效果如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/v-html.png" alt="v-html"></p>
+<p>效果如下图所示：<br><img src="http://image2.ishareread.com/images/2022/20220703/v-html.png" alt="v-html"></p>
 <p>如果不用v-html插入，将<code>&lt;div id=&quot;app2&quot;&gt;</code>标签内容改成用文本插入</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app2"</span>&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br></pre></td></tr></table></figure>
 
-<p>显示效果如下，直接将html代码给显示出来了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/%E7%9B%B4%E6%8E%A5%E6%98%BE%E7%A4%BAhtml%E4%BB%A3%E7%A0%81.png" alt="直接显示HTML代码"></p>
+<p>显示效果如下，直接将html代码给显示出来了。<br><img src="http://image2.ishareread.com/images/2022/20220703/%E7%9B%B4%E6%8E%A5%E6%98%BE%E7%A4%BAhtml%E4%BB%A3%E7%A0%81.png" alt="直接显示HTML代码"></p>
 <h3 id="绑定属性"><a href="#绑定属性" class="headerlink" title="绑定属性"></a>绑定属性</h3><p>HTML 属性中的值应使用 v-bind 指令。<br>如插入绑定 a 标签的href属性</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app3:v-bind指令绑定属性值</span><br><span class="line">&lt;div id=<span class="string">"app3"</span>&gt;</span><br><span class="line">    &lt;a target=<span class="string">"_blank"</span> v-bind:href=<span class="string">"url"</span>&gt;click me go to myblog&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"><span class="keyword">var</span> app3 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app3'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    url: <span class="string">'http://xiejava.ishareread.com/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/v-bind%E5%B1%9E%E6%80%A7.png" alt="绑定属性"></p>
+<p>效果如下：<br><img src="http://image2.ishareread.com/images/2022/20220703/v-bind%E5%B1%9E%E6%80%A7.png" alt="绑定属性"></p>
 <h3 id="绑定样式"><a href="#绑定样式" class="headerlink" title="绑定样式"></a>绑定样式</h3><p>class 与 style 是 HTML 元素的属性，用于设置元素的样式，可以用 v-bind 来绑定设置样式属性</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">app4:v-band:<span class="class"><span class="keyword">class</span>指令绑定样式</span></span><br><span class="line"><span class="class">&lt;<span class="title">div</span> <span class="title">id</span></span>=<span class="string">"app4"</span>&gt;</span><br><span class="line">  &lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; 'active': isActive &#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp">var app4=new Vue(</span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp"> el: '#app4',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    isActive:true</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
 
 <p>定义样式</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-class">.active</span> &#123;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">background</span>: red;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
-<p>效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/v-bind%E6%A0%B7%E5%BC%8F.png" alt="v-band:class"></p>
+<p>效果如下：<br><img src="http://image2.ishareread.com/images/2022/20220703/v-bind%E6%A0%B7%E5%BC%8F.png" alt="v-band:class"></p>
 <h3 id="插值Javascript表达式"><a href="#插值Javascript表达式" class="headerlink" title="插值Javascript表达式"></a>插值Javascript表达式</h3><p>vue.js插值支持javascript表达式</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">app5:vue.js插值的javascript表达式支持</span><br><span class="line">&lt;div id=<span class="string">"app5"</span>&gt;</span><br><span class="line">    &#123;&#123;<span class="number">5</span>+<span class="number">5</span>&#125;&#125;&lt;br&gt;</span><br><span class="line">    &#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;&lt;br&gt;</span><br><span class="line">    &#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line">    &lt;div v-bind:id=<span class="string">"'list-' + id"</span>&gt;xiejava&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"><span class="keyword">var</span> app5 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app5'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    ok: <span class="literal">true</span>,</span><br><span class="line">    message: <span class="string">'XIEJAVA'</span>,</span><br><span class="line">    id : <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>效果如下：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/Javascript%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="vue.js插值支持javascript表达式"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220703/Javascript%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="vue.js插值支持javascript表达式"></p>
 <p>常用语句</p>
 <h3 id="v-if-v-else-（条件语句）"><a href="#v-if-v-else-（条件语句）" class="headerlink" title="v-if v-else （条件语句）"></a>v-if v-else （条件语句）</h3><p>条件判断使用 v-if 指令，可以用 v-else 指令给 v-if 添加一个 “else” 块：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app6:v-<span class="keyword">if</span>条件语句</span><br><span class="line">&lt;div id=<span class="string">"app6"</span>&gt;</span><br><span class="line">	&lt;div v-<span class="keyword">if</span>=<span class="string">"ok"</span>&gt;YES&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">	&lt;div v-else&gt;NO&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">var app6 = new Vue(&#123;</span></span><br><span class="line"><span class="regexp"> el:"#app6",</span></span><br><span class="line"><span class="regexp"> data:&#123;</span></span><br><span class="line"><span class="regexp">	 ok:false,</span></span><br><span class="line"><span class="regexp"> &#125;</span></span><br><span class="line"><span class="regexp"> &#125;);</span></span><br></pre></td></tr></table></figure>
 
 <p> 效果如下：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/v-if.png" alt="v-if v-else （条件语句）"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220703/v-if.png" alt="v-if v-else （条件语句）"></p>
 <h3 id="for循环语句"><a href="#for循环语句" class="headerlink" title="for循环语句"></a>for循环语句</h3><p>循环使用 v-for 指令，v-for 可以绑定数据到数组来渲染一个列表</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app7"</span>&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"code in codes"</span>&gt;</span><br><span class="line">      &#123;&#123; code.name &#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>ol&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp">var app7=new Vue(</span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp"> el: '#app7',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    codes: [</span></span><br><span class="line"><span class="regexp">      &#123; name: 'java' &#125;,</span></span><br><span class="line"><span class="regexp">      &#123; name: 'python' &#125;,</span></span><br><span class="line"><span class="regexp">      &#123; name: 'php' &#125;</span></span><br><span class="line"><span class="regexp">    ]</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
 
-<p>效果如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/v-for.png" alt="for循环语句"></p>
+<p>效果如下：<br><img src="http://image2.ishareread.com/images/2022/20220703/v-for.png" alt="for循环语句"></p>
 <h3 id="v-on绑定事件"><a href="#v-on绑定事件" class="headerlink" title="v-on绑定事件"></a>v-on绑定事件</h3><p>事件监听可以使用 v-on 指令进行绑定</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"app8"</span>&gt;</span><br><span class="line">  &lt;button v-on:click=<span class="string">"counter += 1"</span>&gt;+<span class="number">1</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;p&gt;加了 &#123;&#123; counter &#125;&#125; 次1。&lt;/</span>p&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">var app8=new Vue(</span></span><br><span class="line"><span class="regexp">&#123;</span></span><br><span class="line"><span class="regexp"> el: '#app8',</span></span><br><span class="line"><span class="regexp">  data: &#123;</span></span><br><span class="line"><span class="regexp">    counter:0</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br></pre></td></tr></table></figure>
 
 <p>效果如下：</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220703/v-on%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6.png" alt="v-on绑定事件"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220703/v-on%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6.png" alt="v-on绑定事件"></p>
 <p><strong>以上全部示例代码如下：</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.staticfile.org/vue/2.2.2/vue.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">app1:hello Vue!</span></span><br><span class="line"><span class="regexp">&lt;div id="app1"&gt;</span></span><br><span class="line"><span class="regexp">  &#123;&#123; message &#125;&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">app2:v-html指令输出html代码</span><br><span class="line">&lt;div id=<span class="string">"app2"</span>&gt;</span><br><span class="line">    &lt;div v-html=<span class="string">"message"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app3:v-bind指令绑定属性值</span></span><br><span class="line"><span class="regexp">&lt;div id="app3"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;a target="_blank" v-bind:href="url"&gt;click me go to myblog&lt;/</span>a&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app4:v-band:class指令绑定样式</span></span><br><span class="line"><span class="regexp">&lt;div id="app4"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div v-bind:class="&#123; 'active': isActive &#125;"&gt;&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app5:vue.js插值的javascript表达式支持</span></span><br><span class="line"><span class="regexp">&lt;div id="app5"&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123;5+5&#125;&#125;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123; ok ? 'YES' : 'NO' &#125;&#125;&lt;br&gt;</span></span><br><span class="line"><span class="regexp">    &#123;&#123; message.split('').reverse().join('') &#125;&#125;</span></span><br><span class="line"><span class="regexp">    &lt;div v-bind:id="'list-' + id"&gt;xiejava&lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app6:v-if条件语句</span></span><br><span class="line"><span class="regexp">&lt;div id="app6"&gt;</span></span><br><span class="line"><span class="regexp">	&lt;div v-if="ok"&gt;YES&lt;/</span>div&gt;</span><br><span class="line">	&lt;div v-<span class="keyword">else</span>&gt;NO&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">app7:<span class="keyword">for</span>循环语句</span><br><span class="line">&lt;div id=<span class="string">"app7"</span>&gt;</span><br><span class="line">  &lt;ol&gt;</span><br><span class="line">    &lt;li v-<span class="keyword">for</span>=<span class="string">"code in codes"</span>&gt;</span><br><span class="line">      &#123;&#123; code.name &#125;&#125;</span><br><span class="line">    &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>ol&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;br&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">app8:v-on绑定事件</span></span><br><span class="line"><span class="regexp">&lt;div id="app8"&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button v-on:click="counter += 1"&gt;+1&lt;/</span>button&gt;</span><br><span class="line">  &lt;p&gt;加了 &#123;&#123; counter &#125;&#125; 次<span class="number">1</span>。&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line">&lt;br&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="keyword">var</span> app1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app1'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'&lt;b&gt;Hello Vue!&lt;/b&gt;'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app3 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app3'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    url: <span class="string">'http://xiejava.ishareread.com/'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app4=<span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line"> el: <span class="string">'#app4'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    isActive:<span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app5 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app5'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    ok: <span class="literal">true</span>,</span><br><span class="line">    message: <span class="string">'XIEJAVA'</span>,</span><br><span class="line">    id : <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app6 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line"> el:<span class="string">"#app6"</span>,</span><br><span class="line"> data:&#123;</span><br><span class="line">	 ok:<span class="literal">false</span>,</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">var</span> app7=<span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line"> el: <span class="string">'#app7'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    codes: [</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'java'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'python'</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">name</span>: <span class="string">'php'</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app8=<span class="keyword">new</span> Vue(</span><br><span class="line">&#123;</span><br><span class="line"> el: <span class="string">'#app8'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    counter:<span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">.active &#123;</span></span><br><span class="line"><span class="regexp">	width: 100px;</span></span><br><span class="line"><span class="regexp">	height: 100px;</span></span><br><span class="line"><span class="regexp">	background: red;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br><span class="line">&lt;<span class="regexp">/body&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>html&gt;</span><br></pre></td></tr></table></figure>
 
 
 <p>通过上面的快速入门，基本了解什么是VUE、VUE的安装及基本的使用，常用的语法。后面还要更深入的学习VUE的组件、路由、后台接口调用等。</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -641,8 +641,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:13+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -763,17 +763,17 @@
         
           
             <p>初次用Django开发web应用，在试图用Pycharm进行debug的时候，出现了一个奇怪的问题。以正常模式启动或者在terminal启动都没有问题。但是以debug模式启动时，显示<code>can&#39;t find &#39;__main__&#39; module”</code>报错。在网上找了很久都没有看到解决方法，最后在某乎上看到一篇文章，在启动时加上<code>--noreload</code>参数，既可以debug模式启动。</p>
-<p><strong>报错信息：</strong><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png" alt="报错信息"><br><strong>解决方法：</strong><br>在启动时加上 <code>--noreload</code> 参数可以正常启动调试<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/--noreload.png" alt="加入不重新加载参数"></p>
-<p>debug启动正常也可以调试了。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png" alt="debug正常启动"></p>
+<p><strong>报错信息：</strong><br><img src="http://image2.ishareread.com/images/2022/20220605/debug%E6%8A%A5%E9%94%99.png" alt="报错信息"><br><strong>解决方法：</strong><br>在启动时加上 <code>--noreload</code> 参数可以正常启动调试<br><img src="http://image2.ishareread.com/images/2022/20220605/--noreload.png" alt="加入不重新加载参数"></p>
+<p>debug启动正常也可以调试了。<br><img src="http://image2.ishareread.com/images/2022/20220605/debug%E5%90%AF%E5%8A%A8%E6%AD%A3%E5%B8%B8.png" alt="debug正常启动"></p>
 <p>踩过的坑记录一下，希望能帮到碰到同样问题的人。</p>
 <p>感谢大佬的文章 <a href="https://zhuanlan.zhihu.com/p/443763989" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/443763989</a> </p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1111,8 +1111,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:13+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1235,12 +1235,12 @@
             <h2 id="一、什么是运维安全管理与审计系统"><a href="#一、什么是运维安全管理与审计系统" class="headerlink" title="一、什么是运维安全管理与审计系统"></a>一、什么是运维安全管理与审计系统</h2><p>运维安全管理与审计系统（俗称 “堡垒机”）：是采用新一代智能运维技术框架，基于认证、授权、访问、审计的管理流程设计理念，实现对企事业IT中心的网络设备、数据库、安全设备、主机系统、中间件等资源统一运维管理和审计；通过集中化运维管控、运维过程实时监管、运维访问合规性控制、运维过程图形化审计等功能，为企事业IT中心运维构建一套事前预防、事中监控、事后审计完善的安全管理体系。</p>
 <p>简单的说，运维安全管理与审计系统（堡垒机）就是用来控制哪些人可以登录哪些资产（事先防范和控制），以及录像记录登录资产后做了什么事情（事中监控和事后溯源）的系统。其核心是<strong>可控及审计</strong>。可控是指权限可控、行为可控。权限可控指可以方便的设置、回收运维操作人员的权限；行为可控，比如需要集中禁用某个危险命令；可审计，指有权限操作的人员对资产的所有操作都有记录，能够被监控和审计。</p>
 <h2 id="二、为什么需要运维安全管理与审计系统"><a href="#二、为什么需要运维安全管理与审计系统" class="headerlink" title="二、为什么需要运维安全管理与审计系统"></a>二、为什么需要运维安全管理与审计系统</h2><p>当企业的IT资产越来越多，当参与运维的岗位越来越多样性，运维团队达到一定的规模，不同的人员如运维人员、开发人员、第三方代维、厂商支撑人员需要控制访问不同的资产及权限，如果没有一套好的机制，就会产生混乱。无法有效的做到“哪些人允许以什么样的身份访问哪些设备”，更加没有办法知道“哪些人登录设备后做了哪些事情”，出了问题以后无法回溯。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E8%BF%90%E7%BB%B4%E6%B7%B7%E4%B9%B1.png" alt="运维混乱"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220511/%E8%BF%90%E7%BB%B4%E6%B7%B7%E4%B9%B1.png" alt="运维混乱"></p>
 <p>运维安全管理与审计系统（堡垒机）是从跳板机（也叫前置机）的概念演变过来的。早在2000年左右，一些中大型企业为了能对运维人员的远程登录进行集中管理，会在机房部署一台跳板机。跳板机其实就是一台unix/linux/windows操作系统的服务器，所有运维人员都需要先远程登录跳板机，然后再从跳板机登录其他服务器中进行运维操作。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E8%B7%B3%E6%9D%BF%E6%9C%BA.png" alt="跳板机"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220511/%E8%B7%B3%E6%9D%BF%E6%9C%BA.png" alt="跳板机"></p>
 <p>跳板机解决了远程登录集中管理访问的问题，但跳板机并没有实现对运维人员操作行为的控制和审计，使用跳板机过程中还是会有误操作、违规操作导致的操作事故，一旦出现操作事故很难快速定位原因和责任人。此外，跳板机存在严重的安全风险，一旦跳板机系统被攻入，则将后端资源风险完全暴露无遗。同时，对于个别资源（如telnet）可以通过跳板机来完成一定的内控，但是对于更多更特殊的资源（ftp、rdp等）来讲就显得力不从心了。</p>
 <p>人们逐渐认识到跳板机的不足，进而需要更新、更好的安全技术理念来实现运维操作管理。需要一种能满足角色管理与授权审批、信息资源访问控制、操作记录和审计、系统变更和维护控制要求，并生成一些统计报表配合管理规范来不断提升IT内控的合规性的产品。在这些理念的指导下，2005年前后，运维安全管理与审计系统（堡垒机）开始以一个独立的产品形态被广泛部署，有效地降低了运维操作风险，使得运维操作管理变得更简单、更安全。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E5%A0%A1%E5%9E%92%E6%9C%BA.png" alt="堡垒机"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220511/%E5%A0%A1%E5%9E%92%E6%9C%BA.png" alt="堡垒机"></p>
 <p>运维安全管理与审计系统（堡垒机）承担了运维人员在运维过程中唯一的入口，通过精细化授权以明确“哪些人以什么身份访问了哪些设备”，从而让运维混乱变得有序起来，堡垒机不仅可以明确每一个运维人员的访问路径，还可以将每一次访问及操作过程变得可以“审计”，就像飞机中的黑匣子，汽车上的行车记录仪，能够做到针对运维人员的每次一操作均可以录像、全程审计，一但出了问题，可以追踪溯源。</p>
 <p>运维安全管理与审计系统的目标可以概括为5W，主要是为了降低运维风险。具体如下：</p>
 <ul>
@@ -1263,18 +1263,18 @@
 <li>集中帐号（account）管理<br>为用户提供统一集中的帐号管理，支持管理的资源包括主流的操作系统、网络设备和应用系统；不仅能够实现被管理资源帐号的创建、删除及同步等帐号管理生命周期所包含的基本功能，而且也可以通过平台进行帐号密码策略，密码强度、生存周期的设定。</li>
 <li>集中审计 (audit) 管理<br>将用户所有的操作日志集中记录管理和分析，不仅可以对用户行为进行监控，并且可以通过集中的审计数据进行数据挖掘，以便于事后的安全事故责任的认定。</li>
 </ul>
-<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><p>实现的技术架构如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84.png" alt="堡垒机技术架构"></p>
+<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><p>实现的技术架构如下：<br><img src="http://image2.ishareread.com/images/2022/20220511/%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84.png" alt="堡垒机技术架构"></p>
 <h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><p>主要核心功能包括：<br><strong>1、访问控制</strong><br>通过对访问资源的严格控制，堡垒机可以确保运维人员在其账号有效权限、期限内合法访问操作资源，降低操作风险，以实现安全监管目的，保障运维操作人员的安全、合法合规、可控制性。<br><strong>2、账号管理</strong><br>当运维人员在使用堡垒机时，无论是使用云主机还是局域网的主机，都可以同步导入堡垒机进行账号集中管理与密码的批量修改，并可一键批量设置SSH秘钥对等。<br><strong>3、资源授权</strong><br>支持云主机、局域网主机等多种形式的主机资源授权，并且堡垒机采用基于角色的访问控制模型，能够对用户、资源、功能作用进行细致化的授权管理，解决人员众多、权限交叉、资产繁琐、各类权限复制等众多运维人员遇到的运维难题。<br><strong>4、指令审核</strong><br>对运维人员的账号使用情况，包括登录、资源访问、资源使用等。针对敏感指令，堡垒机可以对非法操作进行阻断响应或触发审核的操作情况，审核未通过的敏感指令，堡垒机将进行拦截。<br><strong>5、审计录像</strong><br>除了可以提供安全层面外，还可以利用堡垒机的事前权限授权、事中敏感指令拦截外，以及堡垒机事后运维审计的特性。运维人员在堡垒机中所进行的运维操作均会以日志的形式记录，管理者即通过日志对微云人员的操作进行安全审计录像。<br><strong>6、身份认证</strong><br>为运维人员提供不同强度的认证方式，既可以保持原有的静态口令方式，还可以提供微信、短信等认证方式。堡垒机不仅可以实现用户认证的统一管理，还能为运维人员提供统一一致的认证门户，实现企业的信息资源访问的单点登录。<br><strong>7、操作审计</strong><br>将运维人员所有操作日志集中管理与分析，不仅可以对用户行为进行监控与拦截，还可以通过集中的安全审计数据进行数据挖掘，以便于运维人员对安全事故的操作审计认定。</p>
-<h2 id="四、运维安全管理与审计系统部署方式"><a href="#四、运维安全管理与审计系统部署方式" class="headerlink" title="四、运维安全管理与审计系统部署方式"></a>四、运维安全管理与审计系统部署方式</h2><h3 id="1、单机部署"><a href="#1、单机部署" class="headerlink" title="1、单机部署"></a>1、单机部署</h3><p>堡垒机主要都是旁路部署，旁挂在交换机旁边，只要能访问所有设备即可。<br>部署特点：<br>旁路部署，逻辑串联。<br>不影响现有网络结构。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2.png" alt="单机部署"></p>
-<h3 id="2、HA高可靠部署"><a href="#2、HA高可靠部署" class="headerlink" title="2、HA高可靠部署"></a>2、HA高可靠部署</h3><p>旁路部署两台堡垒机，中间有心跳线连接，同步数据。对外提供一个虚拟IP。用户通过堡垒机虚拟IP进行访问，堡垒机自动进行会话负载分配和数据同步、冗余存储。<br>部署特点：<br>两台硬件堡垒机，一主一备/提供VIP。<br>当主机出现故障时，备机自动接管服务。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220511/HA%E9%AB%98%E5%8F%AF%E9%9D%A0%E9%83%A8%E7%BD%B2.png" alt="HA高可靠部署"></p>
+<h2 id="四、运维安全管理与审计系统部署方式"><a href="#四、运维安全管理与审计系统部署方式" class="headerlink" title="四、运维安全管理与审计系统部署方式"></a>四、运维安全管理与审计系统部署方式</h2><h3 id="1、单机部署"><a href="#1、单机部署" class="headerlink" title="1、单机部署"></a>1、单机部署</h3><p>堡垒机主要都是旁路部署，旁挂在交换机旁边，只要能访问所有设备即可。<br>部署特点：<br>旁路部署，逻辑串联。<br>不影响现有网络结构。<br><img src="http://image2.ishareread.com/images/2022/20220511/%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2.png" alt="单机部署"></p>
+<h3 id="2、HA高可靠部署"><a href="#2、HA高可靠部署" class="headerlink" title="2、HA高可靠部署"></a>2、HA高可靠部署</h3><p>旁路部署两台堡垒机，中间有心跳线连接，同步数据。对外提供一个虚拟IP。用户通过堡垒机虚拟IP进行访问，堡垒机自动进行会话负载分配和数据同步、冗余存储。<br>部署特点：<br>两台硬件堡垒机，一主一备/提供VIP。<br>当主机出现故障时，备机自动接管服务。<br><img src="http://image2.ishareread.com/images/2022/20220511/HA%E9%AB%98%E5%8F%AF%E9%9D%A0%E9%83%A8%E7%BD%B2.png" alt="HA高可靠部署"></p>
 <h2 id="五、常见运维安全管理与审计系统产品"><a href="#五、常见运维安全管理与审计系统产品" class="headerlink" title="五、常见运维安全管理与审计系统产品"></a>五、常见运维安全管理与审计系统产品</h2><h3 id="商用"><a href="#商用" class="headerlink" title="商用"></a>商用</h3><p>奇安信[运维安全管理与审计系统]：<a href="https://www.qianxin.com/product/detail/pid/385" target="_blank" rel="noopener">https://www.qianxin.com/product/detail/pid/385</a><br>亚信安全[信磐堡垒机]：<a href="https://www.asiainfo-sec.com/product/detail-27.html" target="_blank" rel="noopener">https://www.asiainfo-sec.com/product/detail-27.html</a><br>绿盟[绿盟运维安全管理系统]：<a href="https://www.nsfocus.com.cn/html/2019/212_0926/20.html" target="_blank" rel="noopener">https://www.nsfocus.com.cn/html/2019/212_0926/20.html</a><br>启明星辰[堡垒机]：<a href="https://www.venustech.com.cn/new_type/blj/" target="_blank" rel="noopener">https://www.venustech.com.cn/new_type/blj/</a></p>
 <h3 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h3><p>麒麟堡垒机：<a href="http://www.secvpn.com.cn/" target="_blank" rel="noopener">http://www.secvpn.com.cn/</a><br>飞致JumpServer堡垒机：<a href="https://fit2cloud.com/jumpserver/index.html" target="_blank" rel="noopener">https://fit2cloud.com/jumpserver/index.html</a></p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1371,8 +1371,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:13+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1494,9 +1494,9 @@
           
             <h2 id="一、信息系统安全保障相关概念"><a href="#一、信息系统安全保障相关概念" class="headerlink" title="一、信息系统安全保障相关概念"></a>一、信息系统安全保障相关概念</h2><p>信息系统是用于采集、处理、存储、传输、分发和部署信息的整个基础设施、组织结构、人员和组件的总和。随着当前社会信息化程度的不断提高，各类信息系统越来越成为其所从属的组织机构生存和发展的关键因素，信息系统的安全风险也成为组织风险的一部分。同时，信息系统受来自于组织内部与外部环境的约束，信息系统的安全保障除了要充分分析信息系统本身的技术、业务、管理等特性，还要考虑这些约束条件所产生的要求。为了保障组织机构完成使命，系统安全管理人员必须针对信息系统面临的各种各样的风险制定相应的策略。</p>
 <p>信息系统安全保障是在信息系统的整个生命周期中，通过对信息系统的风险分析，制定并执行相应的安全保障策略，从技术、管理、工程和人员等方面提出信息安全保障要求，确保信息系统的保密性、完整性和可用性，把安全风险降到可接受的程度，从而保障系统能够顺利实现组织机构的使命。</p>
-<p>信息系统安全保障工作就是针对信息系统在运行环境中所面临的各种风险，制定信息安全保障策略体系，在策略指导下，设计并实现信息安全保障架构或模型，采取技术、管理等安全保障措施，将风险降至预定可接受的程度，从而保障其使命要求。策略体系是组织机构在对风险、资产和使命综合理解的基础上所做出的指导文件。策略体系的制定，反映了组织机构对信息系统安全保障及其目标的理解，它的制定和贯彻执行对组织机构信息系统安全保障起着纲领性的指导作用。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220429/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%85%B3%E7%B3%BB.png" alt="信息系统安全概念和关系" title="信息系统安全概念和关系"></p>
+<p>信息系统安全保障工作就是针对信息系统在运行环境中所面临的各种风险，制定信息安全保障策略体系，在策略指导下，设计并实现信息安全保障架构或模型，采取技术、管理等安全保障措施，将风险降至预定可接受的程度，从而保障其使命要求。策略体系是组织机构在对风险、资产和使命综合理解的基础上所做出的指导文件。策略体系的制定，反映了组织机构对信息系统安全保障及其目标的理解，它的制定和贯彻执行对组织机构信息系统安全保障起着纲领性的指导作用。<br><img src="http://image2.ishareread.com/images/2022/20220429/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%85%B3%E7%B3%BB.png" alt="信息系统安全概念和关系" title="信息系统安全概念和关系"></p>
 <p>信息系统安全保障工作的基础和前提是风险管理。信息安全策略必须以风险管理为基础，针对可能存在的各种威胁和自身存在的弱点，采取有针对性的防范措施。</p>
-<h2 id="二、信息系统安全保障模型"><a href="#二、信息系统安全保障模型" class="headerlink" title="二、信息系统安全保障模型"></a>二、信息系统安全保障模型</h2><p>信息系统安全保障模型包含保障要素、生命周期和安全特征3个方面。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220429/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E6%A8%A1%E5%9E%8B.png" alt="信息系统安全保障模型" title="信息系统安全保障模型"></p>
+<h2 id="二、信息系统安全保障模型"><a href="#二、信息系统安全保障模型" class="headerlink" title="二、信息系统安全保障模型"></a>二、信息系统安全保障模型</h2><p>信息系统安全保障模型包含保障要素、生命周期和安全特征3个方面。<br><img src="http://image2.ishareread.com/images/2022/20220429/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E6%A8%A1%E5%9E%8B.png" alt="信息系统安全保障模型" title="信息系统安全保障模型"></p>
 <p>信息系统安全保障模型的主要思路是以风险和策略为基础，在整个信息系统的生命周期中实施技术、管理、工程和人员保障要素。通过信息系统安全保障实现信息安全的安全特征：信息的保密性、完整性和可用性特征，从而达到保障组织机构执行其使命的根本目的。</p>
 <p>模型特点：</p>
 <ul>
@@ -1504,7 +1504,7 @@
 <li>强调信息系统安全保障应贯穿于整个信息系统生命周期的全过程。</li>
 <li>强调综合保障的观念。通过综合技术、管理、工程和人员要素来保障信息系统安全。</li>
 </ul>
-<h3 id="1、基于信息系统生命周期的信息安全保障"><a href="#1、基于信息系统生命周期的信息安全保障" class="headerlink" title="1、基于信息系统生命周期的信息安全保障"></a>1、基于信息系统生命周期的信息安全保障</h3><p>信息系统的生命周期层面和保障要素层面不是相互孤立的，而是相互关联、密不可分的。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220429/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E8%A6%81%E7%B4%A0.png" alt="信息系统安全保障生命周期的安全保障要素" title="信息系统安全保障生命周期的安全保障要素"></p>
+<h3 id="1、基于信息系统生命周期的信息安全保障"><a href="#1、基于信息系统生命周期的信息安全保障" class="headerlink" title="1、基于信息系统生命周期的信息安全保障"></a>1、基于信息系统生命周期的信息安全保障</h3><p>信息系统的生命周期层面和保障要素层面不是相互孤立的，而是相互关联、密不可分的。<br><img src="http://image2.ishareread.com/images/2022/20220429/%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E5%AE%89%E5%85%A8%E4%BF%9D%E9%9A%9C%E8%A6%81%E7%B4%A0.png" alt="信息系统安全保障生命周期的安全保障要素" title="信息系统安全保障生命周期的安全保障要素"></p>
 <p>在信息系统生命周期模型中，将信息系统的整个生命周期抽象成计划组织、开发采购、实施交付、运行维护和废弃5个阶段，加上在运行维护阶段的变更产生的反馈，形成信息系统生命周期完整的闭环结构。在信息系统生命周期中的任何时间点上，都需要综合信息系统安全保障的技术、管理、工程和人员保障要素。</p>
 <ul>
 <li>计划组织阶段 ：根据组织机构的业务要求、法律法规的要求、系统所存在的风险等因素，产生了信息系统安全保障需求。在此阶段，信息安全策略应加入信息系统建设和使用的决策中。从信息系统建设开始，就应该综合考虑系统的安全保障要求，确保信息系统建设和信息系统安全保障建设同步规划、同步实施。也就是我们平时讲的信息系统和安全保障要“三同步”–同步规划、同步建设、同步使用。</li>
@@ -1537,12 +1537,12 @@
 </ul>
 <p>本文节选自：<br>《信息安全技术 信息系统安全保障评估框架：简介和一般模型》GB_T 20274.1 200<br>《CISP培训教材》</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -1639,8 +1639,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:13+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1763,13 +1763,13 @@
             <p>1947年冯·诺依曼建立计算机系统结构理论时认为，计算机系统也有天生的类似基因的缺陷，也可能在使用和发展过程中产生意想不到的问题。20世纪七八十年代，早期黑客的出现和第一个计算机病毒的产生，软件漏洞逐渐引起人们的关注。在各种产品、主机、网络和复杂信息系统中，安全漏洞以不同形式存在，而且数量逐年增加，利用漏洞造成的各类安全事件层出不穷。攻击行为或网络安全事件的发生正越来越多地受到利益驱动的影响，这种“黑色产业链”的兴起，导致越来越多的网络终端受害，大量机密信息被窃取，敏感数据信息在互联网上传播，并在黑市中待价而沽。工业控制领域以及新技术新应用的安全漏洞，特别是基础核心系统的安全漏洞已经成为危害国家经济和发展安全的重要因素。在安全运营过程中一个最重要的工作就是漏洞管理。</p>
 <h2 id="一、什么是安全漏洞"><a href="#一、什么是安全漏洞" class="headerlink" title="一、什么是安全漏洞"></a>一、什么是安全漏洞</h2><p><strong>安全漏洞（Vulnerability）也被称为脆弱性</strong>。<br>根据国标-信息安全技术-安全漏洞标识与描述规范[GB/T 28458-2012]对安全漏洞的定义，安全漏洞是计算机信息系统在需求、设计、实现、配置运行等过程中，有意或无意产生的缺陷。这些缺陷以不同形式存在于计算机信息系统的各个层次和环节之中，一旦被恶意主体所利用，就会对计算机信息系统的安全造成损害，从而影响计算机信息系统的正常运行，危害信息产品或系统及信息的安全属性。</p>
 <p>有时漏洞也被称作错误( Error)、缺陷 ( Fault)、 弱点( Weakness )或是故障( Failure )等，这些术语很容易引起混淆。在许多情况下，人们习惯于将错误、缺陷、弱点都简单地称为漏洞。需要指出的是，严格地说，错误、缺陷、弱点和故障并不等于漏洞。错误、缺陷和弱点是产生漏洞的条件，漏洞被利用后必然会破坏安全属性，但不一定能引起产品或系统故障。</p>
-<h2 id="二、安全漏洞标识与描述"><a href="#二、安全漏洞标识与描述" class="headerlink" title="二、安全漏洞标识与描述"></a>二、安全漏洞标识与描述</h2><p>以下为国标-信息安全技术-安全漏洞标识与描述规范[GB/T 28458-2012] 对安全漏洞标识与描述的定义：<br>安全漏洞描述项包括标识号、名称、发布时间、发布单位、类别、等级、影响系统等必须的描述项，并可更具需要扩充（但不限于）相关编号、利用方法、解决方案建议、其他描述等描述项。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220425/%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0.png" alt="安全漏洞描述"></p>
+<h2 id="二、安全漏洞标识与描述"><a href="#二、安全漏洞标识与描述" class="headerlink" title="二、安全漏洞标识与描述"></a>二、安全漏洞标识与描述</h2><p>以下为国标-信息安全技术-安全漏洞标识与描述规范[GB/T 28458-2012] 对安全漏洞标识与描述的定义：<br>安全漏洞描述项包括标识号、名称、发布时间、发布单位、类别、等级、影响系统等必须的描述项，并可更具需要扩充（但不限于）相关编号、利用方法、解决方案建议、其他描述等描述项。<br><img src="http://image2.ishareread.com/images/2022/20220425/%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E6%8F%8F%E8%BF%B0.png" alt="安全漏洞描述"></p>
 <p><strong>标识号</strong><br>CVD-YYYY-NNNNNN格式为标识号。CVD为Common V ulnerabilities Description 的缩写；YYYY为4位十进制数字，表示产生本安全漏洞的年份；NNNNNN为6位十进制数字,表示当年内产生的安全漏洞的序号。<br><strong>名称</strong><br>安全漏洞标题，概括性描述安全漏洞信息的短语,例如InternetExplorer8.0缓冲区溢出漏洞。<br><strong>发布时间</strong><br>安全漏洞信息发布日期。<br><strong>发布单位</strong><br>发布安全漏洞的单位全称。<br><strong>类别</strong><br>安全漏洞所属分类，说明安全漏洞分类归属的信息。<br><strong>等级</strong><br>安全漏洞危害级别，说明安全漏洞能够造成的危害程度。<br><strong>影响系统</strong><br>安全漏洞所影响系统的信息，例如厂商、产品名称和版本号等。<br><strong>相关编号</strong><br>安全漏洞的其他相关编号,例如Bugtraq编号、CVE编号等。<br><strong>利用方法</strong><br>安全漏洞利用的方法，例如安全漏洞攻击方案或利用代码。<br><strong>解决方案建议</strong><br>安全漏洞的解决方案，例如补丁信息等。<br><strong>其他描述</strong><br>安全漏洞描述需要说明的其他相关信息，例如安全漏洞产生的具体原因。</p>
-<h2 id="三、安全漏洞的分类分级"><a href="#三、安全漏洞的分类分级" class="headerlink" title="三、安全漏洞的分类分级"></a>三、安全漏洞的分类分级</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>网络安全漏洞分类是基于漏洞产生或触发的技术原因对漏洞进行划分，分类如下：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220425/%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB.png" alt="安全漏洞分类"></p>
+<h2 id="三、安全漏洞的分类分级"><a href="#三、安全漏洞的分类分级" class="headerlink" title="三、安全漏洞的分类分级"></a>三、安全漏洞的分类分级</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>网络安全漏洞分类是基于漏洞产生或触发的技术原因对漏洞进行划分，分类如下：<br><img src="http://image2.ishareread.com/images/2022/20220425/%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB.png" alt="安全漏洞分类"></p>
 <h3 id="分级"><a href="#分级" class="headerlink" title="分级"></a>分级</h3><p>网络安全漏洞分级是指采用分级的方式对网络安全漏洞潜在危害的程度进行描述，包括技术分级<br>和综合分级两种分级方式，每种方式均分为超危（严重）、高危、中危和低危四个等级,具体内容如下:<br><strong>超危（严重）</strong>：漏洞可以非常容易地对目标对象造成特别严重后果；<br><strong>高危</strong>：漏洞可以容易地对目标对象造成严重后果；<br><strong>中危</strong>：漏洞可以对目标对象造成一般后果，或者比较困难地对目标造成严重后果；<br><strong>低危</strong>：漏洞可以对目标对象造成轻微后果，或者比较困难地对目标对象造成一般严重后果，或<br>者非常困难地对目标对象造成严重后果。</p>
 <h2 id="四、安全漏洞的生命周期"><a href="#四、安全漏洞的生命周期" class="headerlink" title="四、安全漏洞的生命周期"></a>四、安全漏洞的生命周期</h2><p>依据信息安全漏洞从产生到消亡的整个过程，信息安全漏洞生命周期分以下几个阶段：<br>a)漏洞的发现：通过人工或者自动的方法分析、挖掘漏洞的过程，并且该漏洞可以被验证和重现。<br>b)漏洞的利用：利用漏洞对计算机信息系统的保密性、完整性和可用性造成损害的过程。<br>c)漏洞的修复：通过补丁、升级版本或配置策略等对漏洞进行修补的过程，使得该漏洞不能够被<br>恶意主体所利用。<br>d)漏洞的公开：通过公开渠道(如网站、邮件列表等)公布漏洞信息的过程。</p>
-<h2 id="五、安全漏洞的闭环管理"><a href="#五、安全漏洞的闭环管理" class="headerlink" title="五、安全漏洞的闭环管理"></a>五、安全漏洞的闭环管理</h2><p>根据漏洞生命周期中漏洞所处的不同状态，将漏洞管理行为对应为<strong>预防</strong>、<strong>收集</strong>、<strong>消减</strong>和<strong>发布</strong>等活动。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220425/%E6%BC%8F%E6%B4%9E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="漏洞生命周期"></p>
-<p>预防是指通过各种安全手段提高信息系统的安全水平，避免漏洞的产生和恶意利用。<br>收集是针对已发现的漏洞进行信息的及时跟踪与获取。<br>消减是指在漏洞被发现后积极采取补救措施,最大限度减少漏洞带来的损失。<br>发布是指在遵循一定的发布策略的前提下,对漏洞及其修复信息进行发布。<br>用户、厂商和漏洞管理组织可以根据漏洞的状态及管理活动建立符合自身特点的漏洞处理策略和处理流程。<br>对于企业组织安全运营来说可以参考以下漏洞处理流程：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220425/%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="漏洞处理流程"></p>
+<h2 id="五、安全漏洞的闭环管理"><a href="#五、安全漏洞的闭环管理" class="headerlink" title="五、安全漏洞的闭环管理"></a>五、安全漏洞的闭环管理</h2><p>根据漏洞生命周期中漏洞所处的不同状态，将漏洞管理行为对应为<strong>预防</strong>、<strong>收集</strong>、<strong>消减</strong>和<strong>发布</strong>等活动。<br><img src="http://image2.ishareread.com/images/2022/20220425/%E6%BC%8F%E6%B4%9E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" alt="漏洞生命周期"></p>
+<p>预防是指通过各种安全手段提高信息系统的安全水平，避免漏洞的产生和恶意利用。<br>收集是针对已发现的漏洞进行信息的及时跟踪与获取。<br>消减是指在漏洞被发现后积极采取补救措施,最大限度减少漏洞带来的损失。<br>发布是指在遵循一定的发布策略的前提下,对漏洞及其修复信息进行发布。<br>用户、厂商和漏洞管理组织可以根据漏洞的状态及管理活动建立符合自身特点的漏洞处理策略和处理流程。<br>对于企业组织安全运营来说可以参考以下漏洞处理流程：<br><img src="http://image2.ishareread.com/images/2022/20220425/%E6%BC%8F%E6%B4%9E%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B.png" alt="漏洞处理流程"></p>
 <h3 id="发现漏洞"><a href="#发现漏洞" class="headerlink" title="发现漏洞"></a>发现漏洞</h3><p>一般由渗透测试工程师通过漏洞扫描工具或渗透测试发现系统漏洞，提交渗透测试报告。由安全工程师进行漏洞验证，确定系统漏洞是否真实存在。</p>
 <h3 id="漏洞录入"><a href="#漏洞录入" class="headerlink" title="漏洞录入"></a>漏洞录入</h3><p>在漏洞验证完成后，安全工程师需要根据企业内部的漏洞等级划分标准，将存在的漏洞录入漏洞管理系统。</p>
 <h3 id="漏洞分发"><a href="#漏洞分发" class="headerlink" title="漏洞分发"></a>漏洞分发</h3><p>漏洞管理系统根据漏洞所影响的业务系统、主机IP等匹配到系统负责部门和修复人。通知系统负责人进行修复加固等。</p>
@@ -1807,12 +1807,12 @@
 <h3 id="漏洞数据分析"><a href="#漏洞数据分析" class="headerlink" title="漏洞数据分析"></a>漏洞数据分析</h3><p>对于漏洞管理整个流程来说，漏洞缓解或已解决后，关闭工单不是最终的目的，需要对漏洞数据进行分析，持续运营，可以从以下几个方面考虑：<br>1）统计一段时间内，外网系统出现的次数最多的Top10漏洞排名，分析漏洞出现的原因；<br>如外网系统中出现多次SQL注入漏洞，可以检查WAF的规则库是否及时更新？规则是否生效？此外网系统是否在WAF的防护之内？对外的系统为何不做严格的字符过滤机制等。<br>2）统计一段时间内，自主开发系统中漏洞数量最多的Top10系统排名，分析造成的原因；<br>如弱口令次数过多，是安全意识宣传不够？研发人员不重视？<br>3）哪些供应商的开发的系统漏洞数量最多？分析存在的原因；<br>是否需要约谈供应商沟通，是安全开发能力的问题，还是研发安全意识不够？<br>4）哪些框架被利用造成的漏洞过多？<br>是情报问题？还是应急响应机制的原因？是否可以替换为其他框架？</p>
 <hr>
 <p>参考资料<br>信息安全技术 安全漏洞分类 GBT 33561-2017<br>信息安全技术 安全漏洞标识与描述规范 GB∕T 28458-2012<br>信息安全技术 安全漏洞等级划分指南 GB∕T 30279-2013<br>信息安全技术 信息安全漏洞管理规范 GB/T 30276-2013<br>安惞《浅谈企业内部安全漏洞的运营（一）：规范化》</p>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1909,8 +1909,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2032,13 +2032,13 @@
           
             <p>基于时间的安全模型是基于”<strong>任何安全防护措施都是基于时间的，超过该时间段，这种防护措施是可能被攻破的</strong>“这样的前提。该模型主要给出了信息系统的攻防时间表。攻击时间指的是在系统采取某种防守措施，通过不同的攻击手段来计算攻破该防守措施所需要的时间。防守时间指的是，对于某种固定攻击手法，通过采取不同的安全防护措施，来计算该防护措施所能坚守的时间。</p>
 <p>基于时间的安全模型主要包括PDR和后来改进的PPDR模型，PDR模型是源自美国国际互联网安全系统公司ISS提出的自适应网络安全模型ANSM（AdaptiveNetwork Security Model），是一个可量化、可数学证明、基于时间的安全模型。美国ISS公司（后被IBM收购）提出的。PPDR模型是PDR的模型上发展起来的，也称P2DR，加入的P是Policy策略。</p>
-<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PDR.png" alt="PDR模型"></p>
+<h2 id="一、PDR模型"><a href="#一、PDR模型" class="headerlink" title="一、PDR模型"></a>一、PDR模型</h2><p>保护-检测-响应( Protection-Detection-Response, PDR )模型是信息安全保障工作中常用的模型，是最早体现主动防御思想的一种网络安全模型，其思想是承认信息系统中漏洞的存在，正视信息系统面临的威胁，通过采取适度防护、加强检测工作、落实对安全事件的响应、建立对威胁的防护来保障系统的安全。<br>模型图如下图所示：<br><img src="http://image2.ishareread.com/images/2022/20220423/PDR.png" alt="PDR模型"></p>
 <p>P-protection，保护就是采用一切可能的措施来保护网络、系统以及信息的安全。通常采用的技术及方法主要包括加密、认证、访问控制、防火墙及防病毒等。</p>
 <p>D-detect，检测可以了解和评估网络和系统的安全状态，为安全防护和安全响应提供依据。常用的检测技术主要包括入侵检测、漏洞检测及网络扫描等技术。</p>
 <p> R-response，应急响应在安全模型中占有重要地位，是解决安全问题的最有效办法。解决安全问题就是解决紧急响应和异常处理问题，因此，建立应急响应机制，形成快速安全响应的能力，对网络和系统至关重要。</p>
 <p>PDR模型直观、实用，建立了一个所谓的基于时间的可证明的安全模型，定义了防护时间Pt(攻击者发起攻击时，保护系统不被攻破的时间)、检测时间Dt(从发起攻击到检测到攻击的时间)和响应时间Rt(从发现攻击到做出有效响应的时间)3个概念，并给出了评定系统安全的计算方式，<strong>当Pt&gt;Dt+Rt时，即认为系统是安全的</strong>，也就是说，如果在攻击者攻破系统之前发现并阻止了攻击的行为，那么系统就是安全的。</p>
 <p>局限性：系统的Pt、Dt、Rt 很难准确定义，面对不同攻击者和不同种类的攻击，这些时间都是变化的，其实还是不能有效证明-一个系统是否安全。并且该模型对系统的安全隐患和安全措施采取相对固定的前提假设，难于适应网络安全环境的快速变化。</p>
-<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220423/PPDR.png" alt="PPDR模型"></p>
+<h2 id="二、PPDR模型"><a href="#二、PPDR模型" class="headerlink" title="二、PPDR模型"></a>二、PPDR模型</h2><p>策略-保护检测-响应模型( Policy-Protection-Detection-Response, PPDR )是在PDR模型的基础_上发展出来的模型，也称为P2DR模型。模型的核心思想是所有的防护、检测、响应都是依据安全策略实施的，模型包括4个主要部分: Policy (策略)、Protection ( 保护)、Detection(检测)和Response(响应)。<br>模型图如下图所示：<br><img src="http://image2.ishareread.com/images/2022/20220423/PPDR.png" alt="PPDR模型"></p>
 <p>策略（Policy）：模型的核心，所有的防护、检测和响应都是依据安全策略实施的。安全策略一般由总体安全策略和具体安全策略两部分组成。<br>保护（Protection）：保护是根据系统可能出现的安全问题而采取的预防措施，这些措施通过传统的静态安全技术实现。采用的防护技术通常包括数据加密、身份认证、访问控制、授权和虚拟专用网(VPN)技术、防火墙、安全扫描和数据备份等。<br>检测（Detection）：当攻击者穿透防护系统时，检测功能就发挥作用，与防护系统形成互补。检测是动态响应的依据。<br>响应（Response）：系统一旦检测到人侵，响应系统就开始工作，进行事件处理。响应包括应急响应和恢复处理，恢复处理又包括系统恢复和信息恢复。</p>
 <p>PPDR模型是在整体的安全策略的控制和指导下，在综合运用防护工具(如防火墙、操作系统身份认证、加密等)的同时，利用检测工具(如漏洞评估、人侵检测等)了解和评估系统的安全状态，通过适当的反应将系统调整到“最安全”和“风险最低”的状态。保护、检测和响应组成了一个完整的、动态的安全循环，在安全策略的指导下保证信息系统的安全。</p>
 <p>该理论的最基本原理就是信息安全相关的所有活动，不管是攻击行为、防护行为、检测行为和响应行为等都要消耗时间,因此可以用时间来衡量一个体系的安全性和安全能力。假设系统的防护、检测和反应时间分别是Pt、Dt和Rt。系统被对手成功攻击后的时间为暴露时间(Et)，那么PPDR模型就可以用典型的数学公式来表达安全的要求：如果Pt&gt;Dt+Rt,那么系统是安全的。</p>
@@ -2076,12 +2076,12 @@
 </tbody></table>
 <p>不管是PDR还是PPDR，总体来说还是局限于从技术上考虑信息安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木块构成的“木桶”，木桶的容量由最短的那块板决定。在处理信息安全问题时，必须全面考虑各方面的因素，任何一个方面的遗漏都有可能形成“短板”。</p>
 <hr>
-<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
+<p>作者博客:<a href="http://xiejava.ishareread.com">http://xiejava.ishareread.com</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2178,8 +2178,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:20+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2307,12 +2307,12 @@
 <p>在零信任理念下，网络位置不再决定访问权限，在访问被允许之前，所有访问主体都需要经过身份认证和授权。身份认证不再仅仅针对用户，还将对终端设备、应用软件等多种身份进行多维度、关联性的识别和认证，并且在访问过程中可以根据需要多次发起身份认证。授权决策不再仅仅基于网络位置、用户角色或属性等传统静态访问控制模型，而是通过持续的安全监测和信任评估，进行动态、细粒度的授权。安全监测和信任评估结论是基于尽可能多的数据源计算出来的。</p>
 <p>零信任理念的基本假设、基本原则如下：<br>1、零信任理念的基本假设<br>a) 内部威胁不可避免；<br>b) 从空间上，资源访问的过程中涉及到的所有对象（用户、终端设备、应用、网络、资源等）默认都不信任，其安全不再由网络位置决定；<br>c) 从时间上，每个对象的安全性是动态变化的（非全时段不变的）。<br>2、零信任的基本原则<br>a）任何访问主体（人/设备/应用等），在访问被允许之前，都必须要经过身份认证和授权，避免过度的信任；<br>b）访问主体对资源的访问权限是动态的（非静止不变的）；<br>c）分配访问权限时应遵循最小权限原则；<br>d）尽可能减少资源非必要的网络暴露，以减少攻击面；<br>e）尽可能确保所有的访问主体、资源、通信链路处于最安全状态；<br>f）尽可能多的和及时的获取可能影响授权的所有信息，并根据这些信息进行持续的信任评估和安全响应。</p>
 <p>零信任在所有需要对资源访问进行安全防护的场景都可以使用，但是否采用，应根据企业可接受的安全风险水平和投入综合考虑决定。</p>
-<h2 id="三、零信任技术体系"><a href="#三、零信任技术体系" class="headerlink" title="三、零信任技术体系"></a>三、零信任技术体系</h2><p>目前零信任主要有三大技术体系，分别是<strong>SDP（软件定义安全）</strong>、<strong>IAM（增强身份管理）</strong>和<strong>MSG（微隔离）</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/SIM.png" alt="零信任三大技术体系"></p>
-<h3 id="1、软件定义安全（SDP）"><a href="#1、软件定义安全（SDP）" class="headerlink" title="1、软件定义安全（SDP）"></a>1、软件定义安全（SDP）</h3><p>SDP即“软件定义边界”,是国际云安全联盟CSA于2014年提出的基于零信任(Zero Trust)理念的新一代网络安全模型。SDP在使应用程序所有者能够在需要时部署安全边界,以便将服务与不安全的网络隔离开来。SDP将物理设备替换为在应用程序所有者控制下运行的逻辑组件。SDP仅允许在设备验证和身份验证后访问企业应用程序基础架构。SDP的体系结构由两部分组成:SDP主机和SDP控制器。SDP主机可以发起连接或接受连接。这些操作通过安全控制通道与SDP 控制器交互来管理。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/SDP.png" alt="SDP软件定义边界"></p>
+<h2 id="三、零信任技术体系"><a href="#三、零信任技术体系" class="headerlink" title="三、零信任技术体系"></a>三、零信任技术体系</h2><p>目前零信任主要有三大技术体系，分别是<strong>SDP（软件定义安全）</strong>、<strong>IAM（增强身份管理）</strong>和<strong>MSG（微隔离）</strong>。<br><img src="http://image2.ishareread.com/images/2022/20220421/SIM.png" alt="零信任三大技术体系"></p>
+<h3 id="1、软件定义安全（SDP）"><a href="#1、软件定义安全（SDP）" class="headerlink" title="1、软件定义安全（SDP）"></a>1、软件定义安全（SDP）</h3><p>SDP即“软件定义边界”,是国际云安全联盟CSA于2014年提出的基于零信任(Zero Trust)理念的新一代网络安全模型。SDP在使应用程序所有者能够在需要时部署安全边界,以便将服务与不安全的网络隔离开来。SDP将物理设备替换为在应用程序所有者控制下运行的逻辑组件。SDP仅允许在设备验证和身份验证后访问企业应用程序基础架构。SDP的体系结构由两部分组成:SDP主机和SDP控制器。SDP主机可以发起连接或接受连接。这些操作通过安全控制通道与SDP 控制器交互来管理。<br><img src="http://image2.ishareread.com/images/2022/20220421/SDP.png" alt="SDP软件定义边界"></p>
 <p>SDP安全优势：<br>1.SDP最大限度地减少攻击面，降低安全风险；<br>2.SDP通过分离访问控制和数据通道来保护关键资产和基础设施，从而防止潜在的基于网络的攻击；<br>3.SDP提供了现有安全设备难以实现的整体集成安全架构。<br>4.SDP提供了一种基于连接的安全体系结构，而不是基于IP的替代方案。由于整个IT环境的爆炸式增长，云环境中缺乏边界使得基于IP的安全性变得脆弱。<br>5.SDP允许对所有连接进行预检查和控制，从这些连接可以连接设备、服务和设施，因此其整体安全性比传统架构更有利。</p>
-<h3 id="2、增强身份管理（IAM）"><a href="#2、增强身份管理（IAM）" class="headerlink" title="2、增强身份管理（IAM）"></a>2、增强身份管理（IAM）</h3><p>增强身份管理IAM是大多数组织实现安全和IT运营策略的核心。它使企业可以自动访问越来越多的技术资产,同时管理潜在的安全和合规风险。身份管理为所有用户,应用程序和数据启用并保护数字身份。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/IAM.png" alt="零信任身份与访问管理"></p>
+<h3 id="2、增强身份管理（IAM）"><a href="#2、增强身份管理（IAM）" class="headerlink" title="2、增强身份管理（IAM）"></a>2、增强身份管理（IAM）</h3><p>增强身份管理IAM是大多数组织实现安全和IT运营策略的核心。它使企业可以自动访问越来越多的技术资产,同时管理潜在的安全和合规风险。身份管理为所有用户,应用程序和数据启用并保护数字身份。<br><img src="http://image2.ishareread.com/images/2022/20220421/IAM.png" alt="零信任身份与访问管理"></p>
 <p>身份管理可以帮助组织有效解决复杂业务带来的挑战，并平衡四个关键目标：<br>1.加强安全，降低风险。<br>2.提高合规性和审计绩效。<br>3.提供快速有效的业务访问。<br>4.降低运营成本。</p>
-<h3 id="3、微隔离（MSG）"><a href="#3、微隔离（MSG）" class="headerlink" title="3、微隔离（MSG）"></a>3、微隔离（MSG）</h3><p>微隔离是一种网络安全技术，它可以将数据中心在逻辑上划分为各个工作负载级别的不同安全段，然后定义安全控制并为每个唯一段提供服务。微隔离使IT人员可以使用网络虚拟化技术在数据中心内部部署灵活的安全策略,而不必安装多个物理防火墙。微隔离可用于保护每个虚拟机(VM)在具有策略驱动的应用程序级安全控制的企业网络中。微隔离技术可以大大增强企业的抵御能力。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220421/MSG.png" alt="威隔离MSG"></p>
+<h3 id="3、微隔离（MSG）"><a href="#3、微隔离（MSG）" class="headerlink" title="3、微隔离（MSG）"></a>3、微隔离（MSG）</h3><p>微隔离是一种网络安全技术，它可以将数据中心在逻辑上划分为各个工作负载级别的不同安全段，然后定义安全控制并为每个唯一段提供服务。微隔离使IT人员可以使用网络虚拟化技术在数据中心内部部署灵活的安全策略,而不必安装多个物理防火墙。微隔离可用于保护每个虚拟机(VM)在具有策略驱动的应用程序级安全控制的企业网络中。微隔离技术可以大大增强企业的抵御能力。<br><img src="http://image2.ishareread.com/images/2022/20220421/MSG.png" alt="威隔离MSG"></p>
 <p>微隔离是在数据中心和云部署中创建安全区域的一种方法。这种方法使企业组织能够分离工作负载并分别保护它们，从而使网络安全更加完善，从而更加有效。<br>以下是微隔离的一些优点：<br>1.减少攻击面<br>2.提高横向运动的安全性<br>3.安全关键应用<br>4.提高合规性</p>
 <h2 id="四、如何实现零信任体系"><a href="#四、如何实现零信任体系" class="headerlink" title="四、如何实现零信任体系"></a>四、如何实现零信任体系</h2><p>零信任的覆盖范围很广，根据企业的实际情况，可参考如下过程执行逐步建立零信任安全体系。</p>
 <p><strong>1、建立统一的认证平台，提升基础安全及执行能力</strong><br>建立统一的认证能力平台，为所有业务系统提供认证能力。所有业务平台对接认证能力平台以获得中级及以上认证能力，大幅降低因认证方式带来的风险。<br>可结合已经建立的 4A 系统，升级 4A 系统认证体系。使用多因素认证提高安全等级。收集并绑定设备指纹，将每台设备（PC 端或移动 端）与账户关联绑定。通过账号与设备的绑定，实现用 户、账号、设备三位一体的认证体系。建立以零信任网关为核心的控制体系，该方式将大大提高对用户访问行为的控制，弥补现有业务系统在访 控制方面的安全短板。建立采集系统，在用户使用业务系统时，采集行为和环境信息。零信任网关体系可以与 4A 系统和其它业务系统结合，通过代理技术隐藏所有被代理系统的 IP 和端口，并对用户的访问行为进行鉴权检测。</p>
@@ -2320,12 +2320,12 @@
 <p><strong>3、引入智能工具，从传统安全向智慧安全转变</strong><br>建立机器学习平台，引入齐全的人工智能模型和可视化工具，利用前期收集的用户数据，训练适配的模型，建立智能规则引擎，对用户请求的行为信息和环境信息进行自动化评估，关联前期部署的规则引擎，验证并改良智能规则和引擎。通过机器学习平台建立无感知认证模型，作为辅助认证方式进一步提高用户体验，从“有认证”升华至“无认证”。通过大数据和机器学习模型，结合深度挖掘技术建立用户画像库，识别用户行为习惯，践行“行为即指纹”理念，实现“零信任”的终极目标。</p>
 <p>参考资料来源：<br>零信任产业标准工作组《零信任实战白皮书》<br>《零信任架构的3大核心技术》<br>《零信任网络安全》<br>《零信任技术系统规范》</p>
 <hr>
-<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
+<p>作者博客:<a href="http://xiejava.ishareread.com">http://xiejava.ishareread.com</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           
@@ -2422,8 +2422,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:19+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2544,8 +2544,8 @@
         
           
             <p>在信息时代，信息已经成为第一战略资源，信息对组织使命的完成、组织目标的实现起着至关重要的作用，因此信息资产的安全是关系到该组织能否完成其使命的重大因素。资产与风险是对矛盾共同体，资产价值越高，面临的风险就越大。而对于目前的组织机构而言，由于组织的业务运营越来越依赖于信息资产，信息安全相关风险在组织整体风险中所占的比例也越来越高。信息安全风险管理的目的就是将风险控制到可接受的程度，保护信息及其相关资产，最终保障组织能够完成其使命，实现其目标。</p>
-<h2 id="一、什么是安全风险"><a href="#一、什么是安全风险" class="headerlink" title="一、什么是安全风险"></a>一、什么是安全风险</h2><p>风险定义为事态的概率及其结果的组合。风险的目标可能有很多不同的方面，如财务目标、健康和人身安全目标、信息安全目标和环境目标等；目标也可能有不同的级别，如战略目标、组织目标、项目目标、产品目标和过程目标等。风险经常通过引用潜在事态和后果或这些的组合来描述。影响，是对一个预期的偏离，正面的或负面的偏离。<br>风险是客观存在的，与不确定性紧密相连，但又不能完全等同。风险带来的影响，通常都是负面的(正面的影响通常不被称为风险)。风险强调的是损害的潜在可能性，而不是事实上的损害。风险不能消除殆尽，包括人为因素带来的风险，也一样不能消除殆尽。衡量风险的两个基本要素就是事件的概率和影响。<br>威胁利用脆弱性作用于资产产生影响，威胁增加了组织资产的风险，脆弱点能够暴露资产，脆弱性本身不会构成对资产的损害，但是脆弱性被威胁利用就会增加组织资产的风险。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220419/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%85%B3%E7%B3%BB.png" alt="安全风险与资产、脆弱性、威胁之间的关系"></p>
-<h2 id="二、如何评估安全风险"><a href="#二、如何评估安全风险" class="headerlink" title="二、如何评估安全风险"></a>二、如何评估安全风险</h2><p>根据《信息安全技术信息安全风险评估规范》（GB/T 20984-2007），对评估对象进行安全风险评估分析，风险分析中涉及评估对象的影响范围、威胁、脆弱性三个基本要素。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220419/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0.png" alt="风险评估"><br>以下参考互联网新技术新业务安全风险评估可以分为<strong>确定影响范围-&gt;确定威胁-&gt;确定脆弱性-&gt;计算分险值-&gt;形成评估结论</strong>，通过定量和定性相结合的方式进行安全风险评估。</p>
+<h2 id="一、什么是安全风险"><a href="#一、什么是安全风险" class="headerlink" title="一、什么是安全风险"></a>一、什么是安全风险</h2><p>风险定义为事态的概率及其结果的组合。风险的目标可能有很多不同的方面，如财务目标、健康和人身安全目标、信息安全目标和环境目标等；目标也可能有不同的级别，如战略目标、组织目标、项目目标、产品目标和过程目标等。风险经常通过引用潜在事态和后果或这些的组合来描述。影响，是对一个预期的偏离，正面的或负面的偏离。<br>风险是客观存在的，与不确定性紧密相连，但又不能完全等同。风险带来的影响，通常都是负面的(正面的影响通常不被称为风险)。风险强调的是损害的潜在可能性，而不是事实上的损害。风险不能消除殆尽，包括人为因素带来的风险，也一样不能消除殆尽。衡量风险的两个基本要素就是事件的概率和影响。<br>威胁利用脆弱性作用于资产产生影响，威胁增加了组织资产的风险，脆弱点能够暴露资产，脆弱性本身不会构成对资产的损害，但是脆弱性被威胁利用就会增加组织资产的风险。<br><img src="http://image2.ishareread.com/images/2022/20220419/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%85%B3%E7%B3%BB.png" alt="安全风险与资产、脆弱性、威胁之间的关系"></p>
+<h2 id="二、如何评估安全风险"><a href="#二、如何评估安全风险" class="headerlink" title="二、如何评估安全风险"></a>二、如何评估安全风险</h2><p>根据《信息安全技术信息安全风险评估规范》（GB/T 20984-2007），对评估对象进行安全风险评估分析，风险分析中涉及评估对象的影响范围、威胁、脆弱性三个基本要素。<br><img src="http://image2.ishareread.com/images/2022/20220419/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0.png" alt="风险评估"><br>以下参考互联网新技术新业务安全风险评估可以分为<strong>确定影响范围-&gt;确定威胁-&gt;确定脆弱性-&gt;计算分险值-&gt;形成评估结论</strong>，通过定量和定性相结合的方式进行安全风险评估。</p>
 <h3 id="1、确定影响范围"><a href="#1、确定影响范围" class="headerlink" title="1、确定影响范围"></a>1、确定影响范围</h3><p>影响范围是指评估对象涉及的传播影响，按评估对象支持的用户数计。<br>对于运营于互联网上的应用系统，参考下表进行赋值。</p>
 <table>
 <thead>
@@ -2812,7 +2812,7 @@
 <blockquote>
 <p>风险值=影响范围 * 威胁可能性 * 脆弱严重性</p>
 </blockquote>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220419/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%BD%A9%E8%99%B9%E5%9B%BE.png" alt="风险评估彩虹图"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220419/%E9%A3%8E%E9%99%A9%E8%AF%84%E4%BC%B0%E5%BD%A9%E8%99%B9%E5%9B%BE.png" alt="风险评估彩虹图"></p>
 <p>根据风险计算公式得出风险值后可以对应其风险等级，如风险值在55-75分，表示风险极高</p>
 <h3 id="5、评估结论"><a href="#5、评估结论" class="headerlink" title="5、评估结论"></a>5、评估结论</h3><p>评估报告以风险计算得分形式呈现，即：不仅呈现脆弱性问题，并且对于不符合评估标准的项，根据面临威胁赋值和脆弱性赋值，结合评估对象的影响范围计算出风险得分，依据得分给出风险等级（极高、高、中、低、极低）。 任一评估要点匹配对应的企业安全保障能力的脆弱性测算值＞0时，须及时记录并反馈至本级信息安全部门进行报备。任一评估要点的风险值的对应等级为中及其以上程度时，必须纳入整改事项严格贯彻执行，并密切跟踪把握风险变化、持续健全更新与之匹配对应的信息安全管理措施和技术保障手段，根据业务上线后的经营发展情况适时开展安全评估，以确保将信息安全风险控制在中级以下范围内。评估管理部门应组织评估专家审查小组，对“评估结论”进行审核，通过后出具评审结论。</p>
 <h2 id="三、为什么要管理安全风险"><a href="#三、为什么要管理安全风险" class="headerlink" title="三、为什么要管理安全风险"></a>三、为什么要管理安全风险</h2><p>风险管理的目的是确保不确定性不会使企业的业务目标发生变化。风险管理是风险的识别、评估和优化，然后协调和经济地应用资源，以最小化监测和控制不良事件的可能性及影响，最大限度地实现业务。</p>
@@ -2836,12 +2836,12 @@
 <h3 id="4、批准监督"><a href="#4、批准监督" class="headerlink" title="4、批准监督"></a>4、批准监督</h3><p>批准监督包括批准和持续监督两部分。<br>批准，是指机构的决策层依据风险评估和风险处理的结果是否满足信息系统的安全要求，做出是否认可风险管理活动的决定。批准应由机构内部或更高层的主管机构的决策层来执行。<br>持续监督，是指检查机构及其信息系统以及信息安全相关的环境有无变化，监督变化因素是否有可能引入新的安全隐患并影响到信息系统的安全保障级别。监督通常由机构内部管理层和执行层完成，必要时也可以委托支持层的外部专业机构提供支持，这主要取决于信息系统的性质和机构自身的专业能力。<br>对风险评估和风险处理的结果的批准和持续监督，不能仅依据相关标准进行僵化的对比，而是需要紧紧围绕信息系统所承载的业务，通过对业务的重要性和业务遭受损失后所带来的影响来开展相关工作。批准通过的依据( 原则)有两个：一是信息系统的残余风险是可接受的；二是安全措施能够满足信息系统当前业务的安全需求。</p>
 <p>参考资料：<br>《CISP培训教材》<br>《信息安全工程师教程（第2版）》<br>《信息安全技术信息安全风险评估规范》</p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -2938,8 +2938,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:19+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -3062,10 +3062,10 @@
             <p>随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。</p>
 <p>在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念：</p>
 <p>主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连接到网络的计算机或其他设备，而服务器是提供服务的软件或硬件设备，日常所说的服务器一般是指提供服务的主机。由此可见，主机安全并不是一个产品，而是对应一个需要被保护的位置，主机安全即主机侧的安全保护。</p>
-<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
+<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="http://image2.ishareread.com/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
 <p>对于一般的应用系统来说，服务器就是提供服务的主机如提供WEB、FTP、数据库等服务的服务器，终端就是访问服务的工作站、个人PC等。</p>
 <h2 id="一、CWPP的定义"><a href="#一、CWPP的定义" class="headerlink" title="一、CWPP的定义"></a>一、CWPP的定义</h2><p> 现代数据中心支持运行在物理设备、虚拟机（VM）、容器以及私有云基础架构中的各种工作负载，并且几乎总是涉及一些在一个或多个公有云基础设施即服务（IaaS）提供商中运行的工作负载。<br><strong>云工作保护平台(Cloud Workload Protection Platform)简称CWPP</strong>，市场定义为基于主机的解决方案，主要满足现代混合数据中心架构中，服务器工作负载的保护要求。它为信息安全领导者提供了一种集成的方式，通过使用单个管理控制台和单一方式表达安全策略来保护这些工作负载，而不用考虑工作负载运行的位置。<br>可以理解成为基于代理（Agent）的底层技术方案，和传统部署在网络边界上的安全产品不一样，CWPP部署在操作系统层，因此可以横跨物理机、公有云、私有云、混合云等多种数据中心环境，部署方式更加灵活、防护层面更加丰富。采用服务端agent+远程控制台的部署模式，agent支持云、物理、混合环境部署，能有效安全加固服务器、抵御黑客攻击和恶意代码。</p>
-<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/CWPP.png" alt="CWPP"></p>
+<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="http://image2.ishareread.com/images/2022/20220416/CWPP.png" alt="CWPP"></p>
 <p>CWPP的核心能力：</p>
 <ul>
 <li>Congurationand  vulnerability management 配置和漏洞管理<br>1.配置，即服务器优化，通过对操作系统进行合理配置，提升操作系统的安全性和抗攻击能力。<br>2.漏洞管理，分为操作系统漏洞管理和应用漏洞管理。目前网络攻击主要是通过web服务器或者web应用漏洞发起，因此CWPP产品要能提供标准化、同时支持制定自定义的web应用漏洞防护策略。</li>
@@ -3076,7 +3076,7 @@
 <li>Log management and monitoring日志管理和监测<br>要求CWPP产品能提供完整的日志，同时当安全事件发生后，CWPP产品需要关联相关日志最终形成事件IOC，帮助用户回溯攻击过程，快速定位风险点。</li>
 </ul>
 <h2 id="二、EDR的定义"><a href="#二、EDR的定义" class="headerlink" title="二、EDR的定义"></a>二、EDR的定义</h2><p>根据Gartner的定义，<strong>EDR端点检测与响应（Endpoint Detection and Response）简称EDR</strong>是一种集成的终端安全解决方案，它将终端数据的实时连续监控和收集与基于规则的自动响应和分析功能相结合。该术语由Gartner的Anton Chuvakin提出，用于描述新兴的安全系统，用于检测和调查终端上的可疑活动，采用高度自动化使安全团队能够快速识别和响应威胁。完全不同于以往的端点被动防护思路，而是通过云端威胁情报、机器学习、异常行为分析、攻击指示器等方式，主动发现来自外部或内部的安全威胁，并进行自动化的阻止、取证、补救和溯源，从而有效对端点进行防护。</p>
-<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220416/EDR.png" alt="EDR"></p>
+<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="http://image2.ishareread.com/images/2022/20220416/EDR.png" alt="EDR"></p>
 <ul>
 <li>资产发现：定期通过主动扫描、被动发现、手工录入和人工排查等多种方法收集当前网络中所有软硬件资产，包括全网所有的端点资产和在用的软件名称、版本，确保整个网络中没有安全盲点。</li>
 <li>系统加固：定期进行漏洞扫描、补丁修复、安全策略设置和更新端点软件清单，通过软件白名单限制未经授权的软件运行，通过主机防火墙限制未经授权的服务端口开放，并定期检查和清理内部人员的账号和授权信息。</li>
@@ -3145,12 +3145,12 @@
 </tbody></table>
 <p>CWPP与EDR，一个面向服务器端的防护（CWPP），一个是面向常规终端PC端的防护（EDR）但是对于企业的整体安全防护来说，CWPP和EDR相互作为补充构建企业的云、端防护能力。</p>
 <hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           

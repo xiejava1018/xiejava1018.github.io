@@ -140,17 +140,17 @@
 <meta property="og:url" content="http://xiejava.ishareread.com/posts/d670c9b8/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="Supervisor是用Python开发的一套通用的进程管理程序，能将一个普通的命令行进程变为后台daemon，并监控进程状态，异常退出时能自动重启。它是通过fork&#x2F;exec的方式把这些被管理的进程当作supervisor的子进程来启动，这样只要在supervisor的配置文件中，把要管理的进程的可执行文件的路径写进去即可。也实现当子进程挂掉的时候，父进程可以准确获取子进程挂掉的信息的，可以选择">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/1.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/2.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/3.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/4.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="http://image2.ishareread.com/images/2020/20200518/1.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2020/20200518/2.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2020/20200518/3.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2020/20200518/4.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2020-05-18T03:35:36.000Z">
-<meta property="article:modified_time" content="2024-06-13T14:52:12.237Z">
+<meta property="article:modified_time" content="2025-12-10T07:13:10.661Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="运维">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/1.png">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2020/20200518/1.png">
 
 
 
@@ -368,8 +368,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:12+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:10+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -513,13 +513,13 @@
 <h1 id="四、离线安装包使用"><a href="#四、离线安装包使用" class="headerlink" title="四、离线安装包使用"></a>四、离线安装包使用</h1><p>下载离线安包，解压</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf supervisor_install_pack.tar.gz</span><br></pre></td></tr></table></figure>
 
-<p>解压后看到supervisor的目录，在supervisor的目录中找到install_supervisor.sh的脚本<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/1.png" alt="supervisor离线包安装目录"><br>执行install_supervisor.sh的脚本，默认安装/app/supervisor下，可以带参数指定安装目录。也可以修改install_supervisor.sh脚本自定义默认的安装路径。<br>执行完安装脚本，就可以在/app/supervisor目录下看到有相应的启动脚本、配置文件目录、日志目录及临时文件目录。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/2.png" alt="supervisor运行目录"><br>执行run_supervisor.sh就可以启动supervisor</p>
+<p>解压后看到supervisor的目录，在supervisor的目录中找到install_supervisor.sh的脚本<br><img src="http://image2.ishareread.com/images/2020/20200518/1.png" alt="supervisor离线包安装目录"><br>执行install_supervisor.sh的脚本，默认安装/app/supervisor下，可以带参数指定安装目录。也可以修改install_supervisor.sh脚本自定义默认的安装路径。<br>执行完安装脚本，就可以在/app/supervisor目录下看到有相应的启动脚本、配置文件目录、日志目录及临时文件目录。<br><img src="http://image2.ishareread.com/images/2020/20200518/2.png" alt="supervisor运行目录"><br>执行run_supervisor.sh就可以启动supervisor</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./run_supervisor.sh</span><br></pre></td></tr></table></figure>
 
 <h1 id="五、验证和使用supervisor"><a href="#五、验证和使用supervisor" class="headerlink" title="五、验证和使用supervisor"></a>五、验证和使用supervisor</h1><p>ps -ef|grep supervisor  查看supervisor是否已经启动</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/3.png" alt="查看supervisor是否已经启动"></p>
+<p><img src="http://image2.ishareread.com/images/2020/20200518/3.png" alt="查看supervisor是否已经启动"></p>
 <p>通过web界面的9001看web界面控制台<a href="http://127.0.0.1:9001" target="_blank" rel="noopener">http://127.0.0.1:9001</a></p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2020/20200518/4.png" alt="web界面控制台"></p>
+<p><img src="http://image2.ishareread.com/images/2020/20200518/4.png" alt="web界面控制台"></p>
 <ul>
 <li><p>supervisord<br>运行 Supervisor 时会启动一个进程 supervisord，它负责启动所管理的进程，并将所管理的进程作为自己的子进程来启动，而且可以在所管理的进程出现崩溃时自动重启。<br>supervisord -v 查看supervisor版本号</p>
 </li>
@@ -536,12 +536,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#项目名</span></span><br><span class="line">[program:logstash-test]</span><br><span class="line"><span class="comment">#脚本目录</span></span><br><span class="line">directory=/app/elk/logstash-7.6.0</span><br><span class="line"><span class="comment">#脚本执行命令</span></span><br><span class="line"><span class="built_in">command</span>=/app/elk/logstash-7.6.0/bin/logstash -f /app/elk/logstash-7.6.0/bin/<span class="built_in">test</span>-pipeline.conf</span><br><span class="line"><span class="comment">#进程数</span></span><br><span class="line">numprocs=1</span><br><span class="line"><span class="comment">#supervisor启动的时候是否随着同时启动，默认True</span></span><br><span class="line">autostart=<span class="literal">true</span></span><br><span class="line"><span class="comment">#当程序exit的时候，这个program不会自动重启,默认unexpected，设置子进程挂掉后自动重启的情况，有三个选项，false,unexpected和true。如果为false的时候，无论什么情况下，都不会被重新启动，如果为unexpected，只有当进程的退出码不在下面的exitcodes里面定义的</span></span><br><span class="line">autorestart=<span class="literal">false</span></span><br><span class="line"><span class="comment">#这个选项是子进程启动多少秒之后，此时状态如果是running，则我们认为启动成功了。默认值为1</span></span><br><span class="line">startsecs=1</span><br><span class="line"><span class="comment">#脚本运行的用户身份 </span></span><br><span class="line">user = root</span><br><span class="line"><span class="comment">#把stderr重定向到stdout，默认 false</span></span><br><span class="line">redirect_stderr = <span class="literal">true</span></span><br><span class="line"><span class="comment">#stdout日志文件大小，默认 50MB</span></span><br><span class="line">stdout_logfile_maxbytes = 10M</span><br><span class="line"><span class="comment">#stdout日志文件备份数</span></span><br><span class="line">stdout_logfile_backups = 10</span><br><span class="line"><span class="comment">#日志输出 </span></span><br><span class="line">stderr_logfile=/app/elk/logstash-7.6.0/logs/logstash_test_error.log</span><br><span class="line">stdout_logfile=/app/elk/logstash-7.6.0/logs/logstash_test_out.log</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>作者博客:<a href="http://xiejava.ishareread.com" target="_blank" rel="noopener">http://xiejava.ishareread.com</a></p>
+<p>作者博客:<a href="http://xiejava.ishareread.com">http://xiejava.ishareread.com</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

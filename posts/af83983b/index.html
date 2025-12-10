@@ -140,16 +140,16 @@
 <meta property="og:url" content="http://xiejava.ishareread.com/posts/af83983b/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="随着markdown的流行，web应用系统常常会要碰到有使用markdown编辑器进行富文本编辑，然后在前台web页面进行显示。常见的博客系统当然也需要支持markdown的编辑与显示。本文就通过一个真实的博客系统来说明django+markdown2+pygments实现markdown解析及代码高亮。 一、后台管理支持markdown编辑django应用的后台管理支持markdown可以用dj">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="http://image2.ishareread.com/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2024-08-14T10:38:22.000Z">
-<meta property="article:modified_time" content="2024-08-17T12:47:38.077Z">
+<meta property="article:modified_time" content="2025-12-10T07:13:19.147Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png">
 
 
 
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-08-17T20:47:38+08:00">
-                2024-08-17
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -491,7 +491,7 @@
 
 <p>在博客文章的模型中，文章内容需要支持markdown,所以<code>content = MDTextField(verbose_name=&#39;内容&#39;)</code></p>
 <h3 id="5、查看效果"><a href="#5、查看效果" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>用django自带的后台管理admin就可以看到效果了</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png" alt="django自带的后台管理admin"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240814/1-django%E7%9A%84admin%E7%9A%84markdown%E7%BC%96%E8%BE%91%E6%95%88%E6%9E%9C.png" alt="django自带的后台管理admin"></p>
 <h2 id="二、前台支持markdown解析及代码高亮"><a href="#二、前台支持markdown解析及代码高亮" class="headerlink" title="二、前台支持markdown解析及代码高亮"></a>二、前台支持markdown解析及代码高亮</h2><p>在后台支持markdown编辑后，前台页面的博客文章页面也得要支持对markdown得解析。</p>
 <h3 id="1、安装依赖-1"><a href="#1、安装依赖-1" class="headerlink" title="1、安装依赖"></a>1、安装依赖</h3><p>在Django项目中使用markdown2库实现代码高亮，安装markdown2和pygments这两个Python库。markdown2用于解析Markdown文本，而pygments用于代码高亮。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install markdown2 pygments</span><br></pre></td></tr></table></figure>
@@ -514,15 +514,15 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"&#123;% static 'blog/css/markdown_highlighy.css' %&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="5、查看效果-1"><a href="#5、查看效果-1" class="headerlink" title="5、查看效果"></a>5、查看效果</h3><p>可以看到markdown可以正常解析，代码也可以高亮显示了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png" alt="在这里插入图片描述"></p>
+<p><img src="http://image2.ishareread.com/images/2024/20240814/2-django%E5%8D%9A%E5%AE%A2markdown%E8%A7%A3%E6%9E%90%E4%B8%8E%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA.png" alt="在这里插入图片描述"></p>
 <h2 id="三、全套代码"><a href="#三、全套代码" class="headerlink" title="三、全套代码"></a>三、全套代码</h2><p><a href="https://gitee.com/xiejava/ishareblog" target="_blank" rel="noopener">https://gitee.com/xiejava/ishareblog</a></p>
 <hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

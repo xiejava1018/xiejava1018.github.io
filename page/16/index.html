@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:19+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -482,7 +482,7 @@
         
           
             <h1 id="一、什么是APT攻击"><a href="#一、什么是APT攻击" class="headerlink" title="一、什么是APT攻击"></a>一、什么是APT攻击</h1><p>当今，网络系统面临着越来越严重的安全挑战，在众多的安全挑战中，一种具有组织性、特定目标以及长时间持续性的新型网络攻击日益猖獗，国际上常称之为<strong>APT（Advanced Persistent Threat高级持续性威胁）攻击</strong>。<br>APT攻击是一种以商业或者政治目的为前提的特定攻击，其通过一系列具有针对性的攻击行为以获取某个组织甚至国家的重要信息，特别是针对国家重要的基础设施和单位开展攻击，包括能源、电力、金融、国防等等。APT攻击常常采用多种攻击技术手段，包括一些最为先进的手段和社会工程学方法，并通过长时间持续性的网络渗透，一步步的获取内部网络权限，此后便长期潜伏在内部网络，不断地收集各种信息，直至窃取到重要情报。<br>对于APT攻击比较权威的定义是由美国国家标准与技术研究所( NIST)提出的，该定义给出了APT攻击的4个要素，具体如下。<br>(1)攻击者：拥有高水平专业知识和丰富资源的敌对方。<br>(2)攻击目的：破坏某组织的关键设施，或阻碍某项任务的正常进行。<br>(3)攻击手段：利用多种攻击方式，通过在目标基础设施上建立并扩展立足点来获取信息。<br>(4)攻击过程：在一个很长的时间段内潜伏并反复对目标进行攻击,同时适应安全系统的防御措施,通过保持高水平的交互来达到攻击目的。</p>
-<h1 id="二、APT攻击过程"><a href="#二、APT攻击过程" class="headerlink" title="二、APT攻击过程"></a>二、APT攻击过程</h1><p>一般APT攻击过程可概括为3个阶段：<strong>攻击前准备</strong>阶段、<strong>攻击入侵</strong>阶段和<strong>持续攻击</strong>阶段，又可细分为5个步骤：<strong>情报收集、防线突破、通道建立、横向渗透、信息收集及外传</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220402/APT%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B.png" alt="APT攻击过程"></p>
+<h1 id="二、APT攻击过程"><a href="#二、APT攻击过程" class="headerlink" title="二、APT攻击过程"></a>二、APT攻击过程</h1><p>一般APT攻击过程可概括为3个阶段：<strong>攻击前准备</strong>阶段、<strong>攻击入侵</strong>阶段和<strong>持续攻击</strong>阶段，又可细分为5个步骤：<strong>情报收集、防线突破、通道建立、横向渗透、信息收集及外传</strong>。<br><img src="http://image2.ishareread.com/images/2022/20220402/APT%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B.png" alt="APT攻击过程"></p>
 <h2 id="1-情报收集"><a href="#1-情报收集" class="headerlink" title="1.情报收集"></a>1.情报收集</h2><p>在实施攻击之前，攻击者会针对特定组织的网络系统和相关员工展开大量的信息搜集。信息搜集方法多种多样，通常包括搜索引擎、爬网系统、网络隐蔽扫描、社会工程学方法等方式。信息来源包括相关员工的微博、博客、社交网站、公司网站，甚至通过某些渠道购买相关信息(如公司通讯录等)。攻击者通过对这些信息的分析，可以清晰地了解攻击目标所使用的应用、防御软件，组织内部架构和人员关系，核心资产存放情况等等。于是，攻击者针对特定目标(一般是内部员工)所使用的应用软件寻找漏洞，并结合特定目标所使用的杀毒软件、防火墙等设计特定木马/恶意代码以绕过防御。同时，攻击者搭建好入侵服务器，开展技术准备工作。</p>
 <h2 id="2-防线突破"><a href="#2-防线突破" class="headerlink" title="2.防线突破"></a>2.防线突破</h2><p>攻击者在完成情报收集和技术准备后，开始采用木马/恶意代码攻击特定员工的个人电脑，攻击方法主要有：①社会工程学方法，如电子邮件攻击，攻击者窃取与特定员工有关系的人员(如领导、同事、朋友等)电子邮箱，冒充发件人给该员工发送带有恶意代码附件的邮件，一旦该员 工打开附件，员工电脑便感染了恶意软件。②远程漏洞攻击方法，如网站挂马攻击，攻击者在员工常访问的网站上放置木马，当员工再次访问该网站时，个人电脑便受到网页代码攻击。由于这些恶意软件针对的是系统未知漏洞并被特殊处理，因此现有的杀毒软件和防火墙均无法察觉，攻击者便能逐渐获取个人电脑权限，最后直至控制个人电脑。</p>
 <h2 id="3-通道建立"><a href="#3-通道建立" class="headerlink" title="3.通道建立"></a>3.通道建立</h2><p>攻击者在突破防线并控制员工电脑后，在员工电脑与入侵服务器之间开始建立命令控制通道。通常，命令控制通道采用HTTP/HTTPS等协议构建，以突破电脑系统防火墙等安全设备。一旦攻击者完成通道建立，攻击者通过发送控制命令检查植入的恶意软件是否遭受查杀，并在恶意软件被安全软件检测到前，对恶意软件进行版本升级，以降低被发现的概率。</p>
@@ -532,12 +532,12 @@
 <h2 id="6、大数据分析技术"><a href="#6、大数据分析技术" class="headerlink" title="6、大数据分析技术"></a>6、大数据分析技术</h2><p>APT攻击防御离不开大数据分析技术，无论是网络系统本身产生的大量日志数据，还是SOC安管平台产生的大量日志信息，均可以利用大数据分析技术进行大数据再分析，运用数据统计、数据挖掘、关联分析、态势分析等从记录的历史数据中发现APT攻击的痕迹，以弥补传统安全防御技术的不足。</p>
 <p>我们熟知的APT防御产品主要针对的都是APT攻击链上的某个环节来展开防御，目前来说这是远远不够的。APT攻击防御应该是覆盖APT攻击所有环节，未来发展的趋势，是需要构建基于APT攻击链的多层次、多维度、多角度的纵深防御体系，如态势感知平台等。</p>
 <hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -634,8 +634,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:19+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -763,18 +763,18 @@
  <tr> <td>通信网络安全</td></tr>
 </table>
 
-<p>网络信息系统安全随着通信技术和信息技术的发展，大致经历了通信保密年代、计算机系统安全年代、信息系统网络安全年代、网络空间安全年代。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220402/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%9A%84%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98.png" alt="网络信息系统安全的发展演变"></p>
+<p>网络信息系统安全随着通信技术和信息技术的发展，大致经历了通信保密年代、计算机系统安全年代、信息系统网络安全年代、网络空间安全年代。<br><img src="http://image2.ishareread.com/images/2022/20220402/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E7%9A%84%E5%8F%91%E5%B1%95%E6%BC%94%E5%8F%98.png" alt="网络信息系统安全的发展演变"></p>
 <h2 id="一、通信保密年代"><a href="#一、通信保密年代" class="headerlink" title="一、通信保密年代"></a>一、通信保密年代</h2><p>1906年，美国物理学家费森登( Fessenden )成功地研究出无线电广播。法国人克拉维尔建立了英法第一条商用无线电线路，推动了无线电技术的进一步发展。<br>进入20世纪，尤其是在“二战”时期，军事和外交方面的巨大需求，使得无线通信技术得到飞速发展，被广泛用来传递军事情报、作战指令、外交政策等各种关键信息。21世纪，通信技术突飞猛进的发展，移动通信和数字通信成为通信技术的主流，现代世界中通信技术成为支撑整个社会的命脉和根本。<br>在通信保密年代，网络信息安全面临的主要威胁是攻击者对通信内容的窃取:有线通信容易被搭线窃听、无线通信由于电磁波在空间传播易被监听。保密成为通信安全阶段的核心安全需求。这阶段主要通过密码技术对通信的内容进行加密，保证数据的保密性和完整性，而破译成为攻击者对这种安全措施的反制。</p>
 <h2 id="二、计算机系统安全年代"><a href="#二、计算机系统安全年代" class="headerlink" title="二、计算机系统安全年代"></a>二、计算机系统安全年代</h2><p>计算机经历了电子计算机、晶体管计算机、集成电路计算机等几个阶段。尤其是在进入20世纪70年代后,随着个人计算机的普及，各行各业都迅速采用计算机处理各种业务。计算机在处理、存储信息数据等方面的应用越来越广泛。美国国家标准局公布了《数据加密标准》( Data Encryption Standard,DES )，标志着信息安全由通信保密阶段进人计算机安全阶段。这个时期，计算机网络尚未大规模普及，相对于电话电报，计算机对信息的处理和存储能力强大，但数据长距离、大容量的传输方式较单一，功能相对较弱(主要通过软盘等形式传输)。因此，计算机阶段主要威胁来自于非授权用户对计算资源的非法使用、对信息的修改和破坏。<br>20世纪80年代计算机安全的概念开始成熟。计算机安全的主要目的是采取措施和控制以确保信息系统资产(包括硬件、软件、固件和通信、存储和处理的信息)的保密性、完整性和可用性。典型代表措施是通过操作系统的访问控制手段来防止非授权用户的访问。</p>
 <h2 id="三、信息系统网络安全年代"><a href="#三、信息系统网络安全年代" class="headerlink" title="三、信息系统网络安全年代"></a>三、信息系统网络安全年代</h2><p>计算机网络尤其是互联网的出现是信息技术发展中一个里程碑事件。计算机网络将通信技术和计算机技术结合起来。信息在计算机上产生、处理，并在网络中传输。信息技术由此进人网络阶段，网络阶段利用通信技术将分布的计算机连接在一起，形成覆盖整个组织机构甚至整个世界的信息系统。信息系统安全是通信安全和计算机安全的综合，信息安全需求已经全面覆盖了信息资产的生成、处理、传输和存储等各阶段,确保信息系统的保密性、完整性和可用性。信息系统安全也曾被称为网络安全，主要是保护信息在存储、处理和传输过程中免受非授权的访问，防止授权用户的拒绝服务，同时检测、记录和对抗此类威胁。为了抵御这些威胁，人们开始使用防火墙、防病毒、PKI、 VPN等安全产品。此阶段的主要标志是发布了《信息技术安全性评估通用准则》，此准则即通常所说的通用准则( Common Criteria,CC)，后转变为国际标准ISO/IEC 15408,我国等同采纳此国际标准为国家标准GB/T 18336。</p>
 <h2 id="四、网络空间安全年代"><a href="#四、网络空间安全年代" class="headerlink" title="四、网络空间安全年代"></a>四、网络空间安全年代</h2><p>随着互联网的不断发展，越来越多的设备被接人并融合，技术的融合将传统的虚拟世界与物理世界相互连接，共同构成了一个新的IT世界。互联网成为个人生活、组织机构甚至国家运行不可或缺的一部分，网络空间随之诞生，信息化发展进人网络空间阶段。网络空间作为新兴的第五空间，已经成为新的国家竞争领域,威胁来源从个人上升到犯罪组织，甚至上升到国家力量的层面。<br>“网络空间( Cyberspace)”一词，由加拿大作家威廉●吉布森在其短篇科幻小说《燃烧的铬》中创造出来，原意指由计算机创建的虚拟信息空间，体现了Cyberspace 不仅是信息的简单聚合体，也包含了信息对人类思想认知的影响。此后，随着信息技术的快速发展和互联网的广泛应用，Cyberspace 的概念不断丰富和演化。<br>随着信息化的不断深人，信息系统成为组织机构工作和生活不可或缺的一部分，信息安全威胁来源从个人上升到犯罪组织，甚至国家力量。在这个阶段，人们认识到信息安全保障不能仅仅依赖于技术措施，开始意识到管理的重要性和信息系统的动态发展性，信息安全保障的概念逐渐形成和成熟。<br>信息安全保障把信息系统安全从技术扩展到管理，从静态扩展到动态，通过各种安全保障技术和安全保障管理措施的综合融合至信息化中，形成对信息、信息系统乃至业务以及使命的保障。信息安全保障时代，其主要标志是《信息保障技术框架》（IATF）。如果说对信息的保护，主要还是处于从传统安全理念到信息化安全理念的转变过程中，那么面向业务的安全保障，就完全是从信息化的角度来考虑信息的安全了。体系性的安全保障理念，不仅是关注系统的漏洞，而且是从业务的生命周期着手，对业务流程进行分析，找出流程中的关键控制点，从安全事件出现的前、中、后三个阶段进行安全保障。面向业务的安全保障不是只建立防护屏障，而是建立一个“深度防御体系”，通过更多的技术手段把安全管理与技术防护联系起来，不再是被动地保护自己，而是主动地防御攻击。也就是说，面向业务的安全防护已经从被动走向主动，安全保障理念从风险承受模式走向安全保障模式。信息安全阶段也转化为从整体角度考虑其体系建设的信息安全保障时代。<br>2009年5月29日，美国发布《网络空间政策评估:确保信息和通信系统的可靠性和韧性》报告。云计算、虚拟化、物联网、移动互联网、大数据、人工智能等新技术的出现，使得网络空间安全的问题无比复杂。<br>2016年12月，我国发布了《国家网络空间安全战略》，明确了网络空间是国家安全的新疆域，已经成为与陆地、海洋、天空、太空同等重要的人类活动新领域，国家主权拓展延伸到网络空间，网络空间主权成为国家主权的重要组成部分。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -871,8 +871,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -992,22 +992,22 @@
       
         
           
-            <p>自建hexo博客xiejava.ishareread.com一直在用CNZZ的网站流量统计，每天登陆到CNZZ的网站流量统计后台看博客的访问量成了建站以来的习惯。3月23日以后突然发现CNZZ的统计没有数据了，查了半天才知道CNZZ的U-Web统计分析产品停服了，计划要收费了。最开始用百度统计也是的，原来用得好好的，突然也是要收费了才开始转向用CNZZ的，现在CNZZ也要开始收费了。看来互联网公司日子比较难过了，免费时代已经一去不复返了。对于个人博客网站来说要付费买个网站流量统计又有点划不来。本来流量就很少，每年域名要付费、主机要付费，再弄个流量统计也要付费实在是有点承受不了。但是没有网站流量统计，不能看到自己的站点的访问量，对于个人自建网站来讲失去了大部分的乐趣。<br>所以这几天一直在寻找其他的网站流量统计的工具，只到找到了51LA。以前只知道百度和CNZZ的网站流量统计工具，最近才了解到51LA统计，它是15年老牌网站统计工具，是互联网上最早基于ASP编写的网站数据统计工具，拥有一大批忠实老站长，后来历经改造，推出新版51LA统计目前是网站统计V6，界面较以往有了较大的改动更加友好直观。<br>51LA网站统计V6的产品链接是 <a href="https://v6.51.la/" target="_blank" rel="noopener">https://v6.51.la/</a><br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/51LA%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1V6.png" alt="我要啦网站统计V6"></p>
+            <p>自建hexo博客xiejava.ishareread.com一直在用CNZZ的网站流量统计，每天登陆到CNZZ的网站流量统计后台看博客的访问量成了建站以来的习惯。3月23日以后突然发现CNZZ的统计没有数据了，查了半天才知道CNZZ的U-Web统计分析产品停服了，计划要收费了。最开始用百度统计也是的，原来用得好好的，突然也是要收费了才开始转向用CNZZ的，现在CNZZ也要开始收费了。看来互联网公司日子比较难过了，免费时代已经一去不复返了。对于个人博客网站来说要付费买个网站流量统计又有点划不来。本来流量就很少，每年域名要付费、主机要付费，再弄个流量统计也要付费实在是有点承受不了。但是没有网站流量统计，不能看到自己的站点的访问量，对于个人自建网站来讲失去了大部分的乐趣。<br>所以这几天一直在寻找其他的网站流量统计的工具，只到找到了51LA。以前只知道百度和CNZZ的网站流量统计工具，最近才了解到51LA统计，它是15年老牌网站统计工具，是互联网上最早基于ASP编写的网站数据统计工具，拥有一大批忠实老站长，后来历经改造，推出新版51LA统计目前是网站统计V6，界面较以往有了较大的改动更加友好直观。<br>51LA网站统计V6的产品链接是 <a href="https://v6.51.la/" target="_blank" rel="noopener">https://v6.51.la/</a><br><img src="http://image2.ishareread.com/images/2022/20220401/51LA%E7%BD%91%E7%AB%99%E7%BB%9F%E8%AE%A1V6.png" alt="我要啦网站统计V6"></p>
 <p>看到”<strong>免费使用</strong>“几个大字的时候我的眼睛已经发光了。迫不及待的点击“注册”，进行使用。</p>
-<h2 id="一、注册登录"><a href="#一、注册登录" class="headerlink" title="一、注册登录"></a>一、注册登录</h2><p>注册流程很简单，要注册的信息很少，基本上就是手机号和登录密码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E6%B3%A8%E5%86%8C.png" alt="注册"></p>
+<h2 id="一、注册登录"><a href="#一、注册登录" class="headerlink" title="一、注册登录"></a>一、注册登录</h2><p>注册流程很简单，要注册的信息很少，基本上就是手机号和登录密码。<br><img src="http://image2.ishareread.com/images/2022/20220401/%E6%B3%A8%E5%86%8C.png" alt="注册"></p>
 <p>注册过程很友好，注册完就可以登录了。</p>
-<h2 id="二、添加应用"><a href="#二、添加应用" class="headerlink" title="二、添加应用"></a>二、添加应用</h2><p>在正式使用网站统计服务之前要添加应用。也就是要将要统计的站点域名登记到应用里，生成统计代码。<br>点击“添加应用”按钮。要填的信息也就是你要统计的站点域名，可以是多个域名。我的hexo博客除了用到xiejava.ishareread.com外还在github和gited上都生成了。所以把这几个访问的域名都加上。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8.png" alt="添加应用"></p>
-<h2 id="三、加入网站流量统计代码"><a href="#三、加入网站流量统计代码" class="headerlink" title="三、加入网站流量统计代码"></a>三、加入网站流量统计代码</h2><p>添加应用后下一步就是生成统计代码，将统计代码加入到自己的hexo站点。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E7%94%9F%E6%88%90%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81.png" alt="生成统计代码"><br>标签页后面还有“图标引用”、“数据挂件”的代码，如果有需要也可以加入。<br>找到自己的hexo站点的文件目录的<code>footer.swig</code>文件，具体在<code>themes\hexo-theme-next\layout\_partials</code>目录下。编辑footer.swig文件，加入统计代码，根据需要加入图标引用、数据挂件的代码。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E5%8A%A0%E5%85%A5%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81.png" alt="加入统计代码"></p>
-<h2 id="四、查看统计效果"><a href="#四、查看统计效果" class="headerlink" title="四、查看统计效果"></a>四、查看统计效果</h2><p>加入统计代码、图标引用、数据挂件代码后，大约5分钟刷新hexo站点，就可以在网站底部看到图标和数据挂件。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E7%BB%9F%E8%AE%A1%E6%98%BE%E7%A4%BA.png" alt="网站底部统计显示"></p>
-<p>登录到<a href="https://v6.51.la/user/application" target="_blank" rel="noopener">https://v6.51.la/user/application</a> 的管理后台，可以看到代码安装状态为“安装成功”<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8.png" alt="应用列表"></p>
-<p>点击“查看报表”可以查看网站的流量统计分析信息。各种统计图表直观易懂，数据详实，感觉比CNZZ 及百度统计更加实用和方便。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220401/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86.png" alt="管理后台"><br>51LA可免费添加应用30个，每日应用统计总PV在3000000，对于个人站点或小型企业足足够用了。</p>
+<h2 id="二、添加应用"><a href="#二、添加应用" class="headerlink" title="二、添加应用"></a>二、添加应用</h2><p>在正式使用网站统计服务之前要添加应用。也就是要将要统计的站点域名登记到应用里，生成统计代码。<br>点击“添加应用”按钮。要填的信息也就是你要统计的站点域名，可以是多个域名。我的hexo博客除了用到xiejava.ishareread.com外还在github和gited上都生成了。所以把这几个访问的域名都加上。<br><img src="http://image2.ishareread.com/images/2022/20220401/%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8.png" alt="添加应用"></p>
+<h2 id="三、加入网站流量统计代码"><a href="#三、加入网站流量统计代码" class="headerlink" title="三、加入网站流量统计代码"></a>三、加入网站流量统计代码</h2><p>添加应用后下一步就是生成统计代码，将统计代码加入到自己的hexo站点。<br><img src="http://image2.ishareread.com/images/2022/20220401/%E7%94%9F%E6%88%90%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81.png" alt="生成统计代码"><br>标签页后面还有“图标引用”、“数据挂件”的代码，如果有需要也可以加入。<br>找到自己的hexo站点的文件目录的<code>footer.swig</code>文件，具体在<code>themes\hexo-theme-next\layout\_partials</code>目录下。编辑footer.swig文件，加入统计代码，根据需要加入图标引用、数据挂件的代码。<br><img src="http://image2.ishareread.com/images/2022/20220401/%E5%8A%A0%E5%85%A5%E7%BB%9F%E8%AE%A1%E4%BB%A3%E7%A0%81.png" alt="加入统计代码"></p>
+<h2 id="四、查看统计效果"><a href="#四、查看统计效果" class="headerlink" title="四、查看统计效果"></a>四、查看统计效果</h2><p>加入统计代码、图标引用、数据挂件代码后，大约5分钟刷新hexo站点，就可以在网站底部看到图标和数据挂件。<br><img src="http://image2.ishareread.com/images/2022/20220401/%E7%BD%91%E7%AB%99%E5%BA%95%E9%83%A8%E7%BB%9F%E8%AE%A1%E6%98%BE%E7%A4%BA.png" alt="网站底部统计显示"></p>
+<p>登录到<a href="https://v6.51.la/user/application" target="_blank" rel="noopener">https://v6.51.la/user/application</a> 的管理后台，可以看到代码安装状态为“安装成功”<br><img src="http://image2.ishareread.com/images/2022/20220401/%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8.png" alt="应用列表"></p>
+<p>点击“查看报表”可以查看网站的流量统计分析信息。各种统计图表直观易懂，数据详实，感觉比CNZZ 及百度统计更加实用和方便。<br><img src="http://image2.ishareread.com/images/2022/20220401/%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86.png" alt="管理后台"><br>51LA可免费添加应用30个，每日应用统计总PV在3000000，对于个人站点或小型企业足足够用了。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1104,8 +1104,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1227,11 +1227,11 @@
           
             <p>什么是“纵深防御”？很多人和资料都有不同的解释，有许多资料将“纵深防御”和“分层防护”等同起来，<br>上次文章介绍了“<a href="https://xiejava.blog.csdn.net/article/details/123794343" target="_blank" rel="noopener">分层防护</a>”，分层防护是根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理等各个层级，在每个层级实施相应的防护策略和手段。“纵深防御”与“分层防护”既有区别又有联系。</p>
 <p>“纵深防御”实际上并不是一个网络安全领域的专属名词，早在二十世纪初，前苏联元帅米·尼·图哈切夫斯基就在对第一次世界大战以及国内战争经验的基础上，提出了一种名为“大纵深作战理论”的思想。由于网络安全的本质就是黑客与开发者之间的攻防战，所以信息安全领域中的“纵深防御”概念确与战争学上的思想有着共通之处，其核心都是多点布防、以点带面、多面成体，以形成一个多层次的、立体的全方位防御体系来挫伤敌人、保障自身的整体安全。</p>
-<p>根据《信息安全工程师教程（第2版）》的描述，<strong>纵深防御模型的基本思路就是将信息网络安全防护措施有机组合起来，针对保护对象，部署合适的安全措施，形成多道保护线，各安全防护措施能够相互支持和补救，尽可能地阻断攻击者的威胁</strong>。目前，安全业界认为网络需要建立四道防线：安全保护是网络的第一道防线，能够阻止对网络的入侵和危害；安全监测是网络的第二道防线，可以及时发现入侵和破坏；实施响应是网络的第三道防线，当攻击发生时维持网络”打不垮”；恢复是网络的第四道防线，使网络在遭受攻击后能够以最快的速度“起死回升”，最大限度地降低安全事件带来的损失。看描述基本上是对应美国国防部提出的PDRR模型，即（Protection防护、Detection检测、Recovery恢复、Response响应）。PDRR改进了传统的只有防护的单一安全防御思想，强调信息安全保障的四个重要环节。<br>保护（Protection）的内容主要有加密机制、数据签名机制、访问控制机制、认证机制、信息隐藏、防火墙技术等。<br>检测（Detection）的内容主要有入侵检测、系统脆弱性检测、数据完整性检测、攻击性检测等。<br>恢复（Recovery）的内容主要有数据备份、数据修复、系统恢复等。<br>响应（Response）的内容主要有应急策略、应急机制、应急手段、入侵过程分析及安全状态评估等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220330/PDRR.png" alt="PDRR"></p>
+<p>根据《信息安全工程师教程（第2版）》的描述，<strong>纵深防御模型的基本思路就是将信息网络安全防护措施有机组合起来，针对保护对象，部署合适的安全措施，形成多道保护线，各安全防护措施能够相互支持和补救，尽可能地阻断攻击者的威胁</strong>。目前，安全业界认为网络需要建立四道防线：安全保护是网络的第一道防线，能够阻止对网络的入侵和危害；安全监测是网络的第二道防线，可以及时发现入侵和破坏；实施响应是网络的第三道防线，当攻击发生时维持网络”打不垮”；恢复是网络的第四道防线，使网络在遭受攻击后能够以最快的速度“起死回升”，最大限度地降低安全事件带来的损失。看描述基本上是对应美国国防部提出的PDRR模型，即（Protection防护、Detection检测、Recovery恢复、Response响应）。PDRR改进了传统的只有防护的单一安全防御思想，强调信息安全保障的四个重要环节。<br>保护（Protection）的内容主要有加密机制、数据签名机制、访问控制机制、认证机制、信息隐藏、防火墙技术等。<br>检测（Detection）的内容主要有入侵检测、系统脆弱性检测、数据完整性检测、攻击性检测等。<br>恢复（Recovery）的内容主要有数据备份、数据修复、系统恢复等。<br>响应（Response）的内容主要有应急策略、应急机制、应急手段、入侵过程分析及安全状态评估等。<br><img src="http://image2.ishareread.com/images/2022/20220330/PDRR.png" alt="PDRR"></p>
 <p>但是PPDR模型总体还是比较局限与从技术上考虑安全问题。随着信息化的发展，人们越来越意识到信息安全涉及面非常广，除了技术，管理、制度、人员和法律等方面也是信息安全必须考虑的因素，就像一个由多块木板构成的“木桶”，木桶的容量由最短的那块短板决定。在处理信息安全问题是，需要全面考虑各方面的因素。</p>
-<p>所以美国国家安全局（NSA）发布的信息安全保障技术框架IATF（Information Assurance Technical Framework）提出了纵深防御战略思想，其3个核心要素就是人、技术和操作。信息系统安全保障依赖于人、技术和操作来共同实现组织机构的职能。<br>IATF用一句话概括起来就是：<strong>一个核心思想、三个核心要素、四个焦点领域</strong>。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220330/IATF%E7%BA%B5%E6%B7%B1%E9%98%B2%E5%BE%A1.png" alt="IATF纵深防御"></p>
+<p>所以美国国家安全局（NSA）发布的信息安全保障技术框架IATF（Information Assurance Technical Framework）提出了纵深防御战略思想，其3个核心要素就是人、技术和操作。信息系统安全保障依赖于人、技术和操作来共同实现组织机构的职能。<br>IATF用一句话概括起来就是：<strong>一个核心思想、三个核心要素、四个焦点领域</strong>。<br><img src="http://image2.ishareread.com/images/2022/20220330/IATF%E7%BA%B5%E6%B7%B1%E9%98%B2%E5%BE%A1.png" alt="IATF纵深防御"></p>
 <p><strong>一个核心思想</strong><br>一个核心思想就是”纵深防御”，<strong>纵深防御也被称为深度防护战略（Defense-in-Depth），是指网络安全需要采用一个多层次、纵深的安全措施来保障信息安全。因为网络信息的安全不是仅仅依靠一两种技术或简单的安全防御设施就能实现，必须在各个层次、不同技术框架区域中实施保障机制，才能最大程度地降低风险，应对攻击并保护信息系统的安全</strong>。在一个规范的信息系统网络中，我们可以看到在网络出口有防火墙，在DMZ区有防火墙，在服务器前端还有防火墙，这就是纵深防御思想的一个体现。需要在多个位置部署安全措施，看似重复，但是因其面对不同的业务、其安全策略有很大的差异。</p>
-<p><strong>三个核心要素</strong><br>三个核心要素是人、技术、操作。网络安全三分靠技术、七分靠管理，三要素中的“人”指的就是加强管理。<br>人是信息系统的主题，包括信息系统的拥有者、管理者和使用者，是信息安全保障的核心；<br>技术是重要手段，需要通过技术机制来保障各项业务的安全，是一种被动防御；<br>操作也称为运行或运营安全，是一种主动防御的体系和机制，包括风险评估、监控、审计、入侵检测等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220330/%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0.png" alt="三个核心要素"></p>
+<p><strong>三个核心要素</strong><br>三个核心要素是人、技术、操作。网络安全三分靠技术、七分靠管理，三要素中的“人”指的就是加强管理。<br>人是信息系统的主题，包括信息系统的拥有者、管理者和使用者，是信息安全保障的核心；<br>技术是重要手段，需要通过技术机制来保障各项业务的安全，是一种被动防御；<br>操作也称为运行或运营安全，是一种主动防御的体系和机制，包括风险评估、监控、审计、入侵检测等。<br><img src="http://image2.ishareread.com/images/2022/20220330/%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0.png" alt="三个核心要素"></p>
 <p><strong>四个焦点领域</strong><br>网络和基础设施、区域边界、计算环境、支撑性基础设施4个焦点领域。基于这4个焦点领域，结合IATF纵深防御的思想进行信息安全防御从而形成保障框架。</p>
 <p>1.保护网络和基础设施</p>
 <p>网络和其他基础设施是信息系统及业务的支撑，是整个信息系统安全的基础。应采取措施确保网络和基础设施能稳定可靠运行，不会因故障和外界影响导致服务的中断或数据延迟，确保在网络中进行传输的公共的、私人的信息能正确地被接收者获取，不会导致未受权的访问、更改等。保护网络和基础设施防护措施包括但并不限于以下方式。</p>
@@ -1271,12 +1271,12 @@
 <p>可见，<strong>纵深防御是战略思想、分层防护是具体的战术实现</strong>。</p>
 <p>资料来源：<br>《信息安全工程师教程（第2版）》<br>《CISP培训教材》</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1373,8 +1373,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1494,19 +1494,19 @@
       
         
           
-            <p>作为全方位的、整体的网络安全防范体系也是分层次的，不同层次反映了不同的安全问题，根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220328/%E5%88%86%E5%B1%82%E9%98%B2%E6%8A%A4.png" alt="分层防护"></p>
+            <p>作为全方位的、整体的网络安全防范体系也是分层次的，不同层次反映了不同的安全问题，根据网络的应用现状情况和网络的结构，将安全防范体系的层次划分为物理层安全、系统层安全、网络层安全、应用层安全和安全管理。<br><img src="http://image2.ishareread.com/images/2022/20220328/%E5%88%86%E5%B1%82%E9%98%B2%E6%8A%A4.png" alt="分层防护"></p>
 <h2 id="1-物理环境的安全性-物理层安全"><a href="#1-物理环境的安全性-物理层安全" class="headerlink" title="1.物理环境的安全性(物理层安全)"></a>1.物理环境的安全性(物理层安全)</h2><p>该层次的安全包括通信线路的安全，物理设备的安全，机房的安全等。物理层的安全主要体现在通信线路的可靠性(线路备份、网管软件、传输介质)，软硬件设备安全性(替换设备、拆卸设备、增加设备)，设备的备份，防灾害能力、防干扰能力，设备的运行环境(温度、湿度、烟尘)，不间断电源保障，等等。</p>
 <h2 id="2-操作系统的安全性-系统层安全"><a href="#2-操作系统的安全性-系统层安全" class="headerlink" title="2.操作系统的安全性(系统层安全)"></a>2.操作系统的安全性(系统层安全)</h2><p>该层次的安全问题来自网络内使用的操作系统的安全，如Windows NT，Windows 2000等。主要表现在三方面，一是操作系统本身的缺陷带来的不安全因素，主要包括身份认证、访问控制、系统漏洞等。二是对操作系统的安全配置问题。三是病毒对操作系统的威胁。</p>
 <h2 id="3-网络的安全性-网络层安全"><a href="#3-网络的安全性-网络层安全" class="headerlink" title="3.网络的安全性(网络层安全)"></a>3.网络的安全性(网络层安全)</h2><p>该层次的安全问题主要体现在网络方面的安全性，包括网络层身份认证，网络资源的访问控制，数据传输的保密与完整性，远程接入的安全，域名系统的安全，路由系统的安全，入侵检测的手段，网络设施防病毒等。</p>
 <h2 id="4-应用的安全性-应用层安全"><a href="#4-应用的安全性-应用层安全" class="headerlink" title="4.应用的安全性(应用层安全)"></a>4.应用的安全性(应用层安全)</h2><p>该层次的安全问题主要由提供服务所采用的应用软件和数据的安全性产生，包括Web服务、电子邮件系统、DNS等。此外，还包括病毒对系统的威胁。</p>
 <h2 id="5-管理的安全性-管理层安全"><a href="#5-管理的安全性-管理层安全" class="headerlink" title="5.管理的安全性(管理层安全)"></a>5.管理的安全性(管理层安全)</h2><p>安全管理包括安全技术和设备的管理、安全管理制度、部门与人员的组织规则等。管理的制度化极大程度地影响着整个网络的安全，严格的安全管理制度、明确的部门安全职责划分、合理的人员角色配置都可以在很大程度上降低其它层次的安全漏洞。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1603,8 +1603,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -1724,7 +1724,7 @@
       
         
           
-            <h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>数字新时代正在加速全面到来，网络环境变得更加多元、人员变得更复杂、接入方式多种多样，网络边界逐渐模糊甚至消失，同时伴随着企业数据的激增。数字化转型促进组织的业务发展的同时，也带来了重大的网络安全挑战。<br>1.越来越多的外部攻击，包括被利益驱动或国家驱动的难以察觉的高级攻击；<br>2.心怀恶意的内鬼、疏忽大意的员工、失陷账号与失陷主机导致的各种内部威胁；<br>3.数字化基础设施的脆弱性和风险暴露面越来越多，业务需求多变持续加剧的问题；<br>4.安全团队人员不足或能力有限，深陷不对称的“安全战争”之中。<br>在数字化带来的巨大变化下，传统的安全威胁发现能力受到了巨大的挑战。传统安全产品、技术、方案基本上都是基于已知特征进行规则匹配来进行分析和检测，基于特征、规则和人工分析，以“特征”为核心的检测分析存在安全可见性盲区，有严重的滞后效应、无力检测未知攻击、容易被绕过，以及难以适应攻防对抗的网络现实和快速变化的企业环境、外部威胁等问题。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220324/%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90.png" alt="特征分析与行为分析"></p>
+            <h1 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h1><p>数字新时代正在加速全面到来，网络环境变得更加多元、人员变得更复杂、接入方式多种多样，网络边界逐渐模糊甚至消失，同时伴随着企业数据的激增。数字化转型促进组织的业务发展的同时，也带来了重大的网络安全挑战。<br>1.越来越多的外部攻击，包括被利益驱动或国家驱动的难以察觉的高级攻击；<br>2.心怀恶意的内鬼、疏忽大意的员工、失陷账号与失陷主机导致的各种内部威胁；<br>3.数字化基础设施的脆弱性和风险暴露面越来越多，业务需求多变持续加剧的问题；<br>4.安全团队人员不足或能力有限，深陷不对称的“安全战争”之中。<br>在数字化带来的巨大变化下，传统的安全威胁发现能力受到了巨大的挑战。传统安全产品、技术、方案基本上都是基于已知特征进行规则匹配来进行分析和检测，基于特征、规则和人工分析，以“特征”为核心的检测分析存在安全可见性盲区，有严重的滞后效应、无力检测未知攻击、容易被绕过，以及难以适应攻防对抗的网络现实和快速变化的企业环境、外部威胁等问题。<br><img src="http://image2.ishareread.com/images/2022/20220324/%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E4%B8%8E%E8%A1%8C%E4%B8%BA%E5%88%86%E6%9E%90.png" alt="特征分析与行为分析"></p>
 <p>安全是人和人攻防对抗的游戏，一切的意图都需要通过行为表达，这是安全运营中最重要也最有价值的一块拼图，同时也是传统方式最欠缺的。针对传统方式的不足，安全行业逐步加强基于大数据驱动，机器学习、概率分析、模式识别等的以“行为”为核心的检测分析。<br>用户实体行为分析（UEBA）应运而生。</p>
 <h1 id="二、UEBA是什么"><a href="#二、UEBA是什么" class="headerlink" title="二、UEBA是什么"></a>二、UEBA是什么</h1><p><strong>UEBA全名User and Entity Behavior Analytics ，即为用户实体行为分析。</strong><br>Gartner 对 UEBA 的定义是“UEBA 提供画像及基于各种分析方法的异常检测，通常是基本分析方法（利用签名的规则、模式匹配、简单统计、阈值等）和高级分析方法（监督和无监督的机器学习等），用打包分析来评估用户和其他实体（主机、应用程序、网络、数据库等），发现与用户或实体标准画像或行为相异常的活动所相关的潜在事件。这些活动包括受信内部或第三方人员对系统的异常访问（用户异常），或外部攻击者绕过安全控制措施的入侵（异常用户）</p>
 <p>用户行为分析(UBA)关联了用户活动和相关实体（用户相关的应用和终端等）信息构建人物角色与群组，进一步定义这些个体与群组的合法和正常行为，把这些人物角色在群体与群体、群体与个体、个体与个体（那些远离合法和正常行为的群体与个体）维度上相互比对分析，将异常用户（失陷账号）和用户异常（非法行为）检测出来，从而达到检测业务欺诈、敏感数据泄露、内部恶意用户、有针对性攻击等高级威胁的目的。</p>
@@ -1738,7 +1738,7 @@
 </ol>
 <h2 id="3-数据渗漏"><a href="#3-数据渗漏" class="headerlink" title="3 数据渗漏"></a>3 数据渗漏</h2><p>一般而言，各类攻击的主要意图是窃取组织中最重要的数据资产。组织一般会部署监控数据流向的 DLP 产品，数据库安全或者应用访问类产品以保护公司的核心数据资产。这类数据防护类产品往往误报很多，每天产生的海量报警让安全团队难以真正聚焦重点。UEBA 可以对应用访问以及 DLP 日志做更深层次的多维分析，从而定位出真正的高风险数据泄漏风险。具体的场景设计可以从以下维度考虑。<br>应用系统访问监控/风险分析 – 对存储敏感数据的应用系统、文件服务器等的访问进行行为监控，通过与用户过去行为或其同组行为异常行相比较，自动识别并持续监控与此数据相关的高风险访问和活动。<br>DLP 事件评估 – 将 DLP 事件做多维度关联分析，比如说发生 DLP 事件的人，他的风险等级、是否有离职倾向、敏感数据下载/外发/打印的数量、频次、数据外流的目的地是否为竞争对手等等，从而进一步定位高风险。高风险人群的 DLP 事件优先处置，并且通过多维度分析往往也能进一步定位这些数据泄漏企图背后的动机。</p>
 <h2 id="4-失陷主机"><a href="#4-失陷主机" class="headerlink" title="4 失陷主机"></a>4 失陷主机</h2><p>除了人员行为异常以外，重要的 IT 资产比如说各种应用服务器、重要的终端等行为异常检测对很多组织也是至关重要。例如，一个重要的应用服务器执行了一个非业务的应用或进程，打开了一个新的端口，外连了从未外连的地址/端口，忽然有长链接的 SSH 会话，系统目录下忽然出现新的可疑文件等等。这些异常行为往往是服务器被攻击的征兆，需要进一步分析与取证。<br>用 UEBA 技术定位失陷主机通常的思路是，基于相应设备和主机执行的高风险异常事件和活动，建立异常时间线，然后关联各种实体参数，包括：端点安全警报、漏洞扫描结果（常见漏洞评分系统[CVSS]）、用户或帐户的风险级别、访问的目标、请求的有效负载的数据包级别等等，从多维度检测任何异常活动或事件以确定风险评分。</p>
-<h1 id="四、UEBA主要实现技术"><a href="#四、UEBA主要实现技术" class="headerlink" title="四、UEBA主要实现技术"></a>四、UEBA主要实现技术</h1><p>UEBA 是一个完整的系统，涉及到算法、工程等检测部分，以及用户实体风险评分排序、调查等用户交互、反馈。从架构上来看，UEBA 系统一般包含三个层次，分别是数据中心层、算法分析层、场景应用层。其中，算法分析层一般大数据计算平台之上运行实时分析、统计分析、关联分析、机器学习等分析引擎。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220324/UEBA%E6%9E%B6%E6%9E%84.png" alt="UEBA架构"></p>
+<h1 id="四、UEBA主要实现技术"><a href="#四、UEBA主要实现技术" class="headerlink" title="四、UEBA主要实现技术"></a>四、UEBA主要实现技术</h1><p>UEBA 是一个完整的系统，涉及到算法、工程等检测部分，以及用户实体风险评分排序、调查等用户交互、反馈。从架构上来看，UEBA 系统一般包含三个层次，分别是数据中心层、算法分析层、场景应用层。其中，算法分析层一般大数据计算平台之上运行实时分析、统计分析、关联分析、机器学习等分析引擎。<br><img src="http://image2.ishareread.com/images/2022/20220324/UEBA%E6%9E%B6%E6%9E%84.png" alt="UEBA架构"></p>
 <p>机器学习引擎实现，如基线及群组分析、异常检测、集成学习风险评分、安全知识图谱、强化学习等UEBA 核心技术。</p>
 <h2 id="基线及群组分析"><a href="#基线及群组分析" class="headerlink" title="基线及群组分析"></a>基线及群组分析</h2><p>历史基线，是行为分析的重要部分，通过构建群组分析，可以跨越单个用户、实体的局限，看到更大的事实；通过对比群组，易于异常检测；通过概率评估可以降低误报，提升信噪比；组合基线分析、群组分析，可以构成全时空的上下文环境。</p>
 <h2 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h2><p>异常检测关注发现统计指标异常、时序异常、序列异常、模式异常等异常信号，采用的技术包括孤立森林、K 均值聚类、时序分析、异常检测、变点检测等传统机器学习算法。现代的异常检测也利用深度学习技术，包括基于变分自编码器（VAE）的深度表征重建异常检测、基于循环神经网络（RNN）和长短时记忆网络（LSTM）的序列深度网络异常检测、图神经网络（GNN）的模式异常检测等。针对标记数据缺乏的现状，某些UEBA 系统能够采用主动学习技术（Active Learning）、自学习（Self Learning），充分发掘标记数据和无标记数据的价值。</p>
@@ -1749,12 +1749,12 @@
 <p>IndustryARC《UEBA Market - Forecast(2020 - 2025)》报告：<br>到2025年，用户和实体行为分析市场预计将达到49亿美元，从2020年到2025年，复合年增长率为41.5％。<br>UEBA是一种用于检测内部风险，财务欺诈和针对性攻击的机制。该方法用于分析人类行为模式，然后使用统计分析和算法来识别差异。<br>UEBA是一种机器学习模型，可以通过检测保护异常来帮助阻止网络攻击者。UEBA使用高级分析，汇总日志和报告数据，并分析数据包，流，文件和其他类型的信息以及其他类型的威胁数据，以评估某些形式的活动和动作是否可能构成网络攻击。<br>UEBA的优势包括–内部威胁识别，防止数据泄露，识别和防止欺诈，可操作的风险信息以及IP数据的安全性。<br>UEBA逐渐成为对全面网络威胁和欺诈的最有希望的回应。软件提供商更专注于确保可靠的算法和集成分析，以及开发应用程序系统。</p>
 <p>综合上述报告可以看出：<br>UEBA市场价值正在飞速上升，UEBA技术研究前景广阔。<br>UEBA发展方向不再是一个独立个体，而是倾向于将UEBA技术嵌入到其他高级安全解决方案中。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -1851,8 +1851,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2028,12 +2028,12 @@
 <p><strong>质量评价（Quality evaluation）</strong><br>对实体满足规定要求程度而进行的系统性检查</p>
 <p><strong>威胁评估（Threat assessment）</strong><br>识别或评估具有或表明可能危害生命，信息，操作和/或财产的实体，动作或事件（自然或人为）的产品或过程。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -2130,8 +2130,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2252,7 +2252,7 @@
         
           
             <p>常见的网络信息安全基本属性主要有机密性、完整性、可用性、不可抵赖性和可控性等，其中<strong>机密性（Confidentiality）、完整性（Integrity）、可用性（Availability）被称为网络信息系统核心的CIA安全属性</strong>，此外还有其他的安全属性包括：真实性、时效性、合规性、隐私性等。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220317/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7.png" alt="网络信息安全基本属性"></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220317/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%9F%BA%E6%9C%AC%E5%B1%9E%E6%80%A7.png" alt="网络信息安全基本属性"></p>
 <h2 id="机密性"><a href="#机密性" class="headerlink" title="机密性"></a>机密性</h2><p>机密性（Confidentiality）是指网络信息不泄露给非授权的用户、实体或程序，能够防止非授权者获取信息。这些信息不仅包括国家机密，也包括企业和社会团体的商业机密和工作机密，还包括个人信息。例如，网络信息系统上传递口令敏感信息，若一旦攻击者通过监听手段获取到，就有可能危及网络系统的整体安全。人们在应用网络时很自然地要求网络能提供保密性服务，而被保密的信息既包括在网络中传输的信息，也包括存储在计算机系统中的信息。就像电话可以被窃听一样，网络传输信息也可以被窃听，解决的办法就是对传输信息进行加密处理。存储信息的机密性主要通过访问控制来实现，不同用户对不同数据拥有不同的权限。</p>
 <h2 id="完整性"><a href="#完整性" class="headerlink" title="完整性"></a>完整性</h2><p>完整性（Integrity）是指网络信息或系统未经授权不能进行改变的特性。即信息在存储或传输过程中保持不被修改、不被破坏和丢失的特性。数据的完整性是指保证计算机系统上的数据和信息处于一种完整和未受损害的状态，这就是说数据不会因为有意或无意的事件而被改变或丢失。除了数据本身不能被破坏外，数据的完整性还要求数据的来源具有正确性和可信性，也就是说需要首先验证数据是真实可信的，然后再验证数据是否被破坏。影响数据完整性的主要因素是人为的蓄意破坏，也包括设备的故障和自然灾害等因素对数据造成的破坏。</p>
 <h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><p>可用性（Availability）是指合法许可的用户能够及时获取网络信息或服务的特征，即可授权实体或用户访问并按要求使用信息的特性。简单地说，就是保证信息在需要时能为授权者所用，防止由于主客观因素造成的系统拒绝服务。例如，网站能够给用户提供正常的网页访问服务，防止拒绝服务攻击。</p>
@@ -2275,12 +2275,12 @@
 </ul>
 <p>本文整理自《信息安全工程师教程第2版》</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -2377,8 +2377,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:18+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2623,12 +2623,12 @@
 <li>沙箱防护<br>云端沙箱检查结果查询，用户本地上传文件至沙箱。</li>
 </ul>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注微信公众号,一起学习、成长！</center></p>
 
           
@@ -2725,8 +2725,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:17+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -2846,7 +2846,7 @@
       
         
           
-            <p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220223/pandas_logo.png" alt="pandas"></p>
+            <p><img src="http://image2.ishareread.com/images/2022/20220223/pandas_logo.png" alt="pandas"></p>
 <p>Pandas 是一个开源的第三方 Python 库，从 Numpy 和 Matplotlib 的基础上构建而来，享有数据分析“三剑客之一”的盛名（NumPy、Matplotlib、Pandas）。是学习数据分析、AI机器学习必学组件之一。<br>Pandas 这个名字来源于面板数据（Panel Data）与数据分析（data analysis）这两个名词的组合。在经济学中，Panel Data 是一个关于多维数据集的术语。Pandas 对数据的处理是为数据的分析服务的，它所提供的各种数据处理方法、工具是基于数理统计学出发，包含了日常应用中的众多数据分析方法。</p>
 <p>Pandas 可以实现复杂的处理逻辑，这些往往是 Excel 等工具无法处理的，还可以自动化、批量化，对于相同的大量的数据处理我们不需要重复去工作。Pandas 的出现使得 Python 做数据分析的能力得到了大幅度提升，它主要实现了数据分析的五个重要环节：</p>
 <ul>
@@ -2867,27 +2867,27 @@
 <li>提供了多种处理数据集的方式，比如构建子集、切片、过滤、分组以及重新排序等。</li>
 </ul>
 <p>本教程梳理了快速入门pandas的一些知识点。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2022/20220223/pandas.png" alt="pandas快速入门"></p>
-<p><a href="http://xiejava.ishareread.com/posts/531458d5/" target="_blank" rel="noopener">一、pandas数据结构(Series和DataFrame)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/4864590d/" target="_blank" rel="noopener">二、pandas数据加载(csv、excel、json、mysql、webAPI)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/808d8fe8/" target="_blank" rel="noopener">三、pandas基本操作之数据访问(查看与检索)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/16c9fc17/" target="_blank" rel="noopener">四、pandas数据分析之排序和排名(sort和rank)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/a87a78e2/" target="_blank" rel="noopener">五、pandas数据清洗之处理缺失、重复、异常数据</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/2c80aac2/" target="_blank" rel="noopener">六、pandas数据处理之数据转换(映射map、替换replace、重命名rename)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/f44191db/" target="_blank" rel="noopener">七、pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/e7d4d6e1/" target="_blank" rel="noopener">八、pandas数据处理之合并与拼接</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/dd24116d/" target="_blank" rel="noopener">九、pandas数据分析之分组聚合</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/bc5826bd/" target="_blank" rel="noopener">十、pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/e8cac912/" target="_blank" rel="noopener">十一、pandas数据分析之数据绘图</a></p>
+<p><img src="http://image2.ishareread.com/images/2022/20220223/pandas.png" alt="pandas快速入门"></p>
+<p><a href="http://xiejava.ishareread.com/posts/531458d5/">一、pandas数据结构(Series和DataFrame)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/4864590d/">二、pandas数据加载(csv、excel、json、mysql、webAPI)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/808d8fe8/">三、pandas基本操作之数据访问(查看与检索)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/16c9fc17/">四、pandas数据分析之排序和排名(sort和rank)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/a87a78e2/">五、pandas数据清洗之处理缺失、重复、异常数据</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/2c80aac2/">六、pandas数据处理之数据转换(映射map、替换replace、重命名rename)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/f44191db/">七、pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/e7d4d6e1/">八、pandas数据处理之合并与拼接</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/dd24116d/">九、pandas数据分析之分组聚合</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/bc5826bd/">十、pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)</a></p>
+<p><a href="http://xiejava.ishareread.com/posts/e8cac912/">十一、pandas数据分析之数据绘图</a></p>
 <p>学习pandas最好的资料肯定是pandas的官网  <a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank" rel="noopener">https://pandas.pydata.org/docs/user_guide/index.html</a></p>
 <p>书籍推荐pandas的作者写的《利用python进行数据分析》</p>
 <hr>
-<p>本教程作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>本教程作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
           

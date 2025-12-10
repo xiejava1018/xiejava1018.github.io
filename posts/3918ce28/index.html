@@ -140,15 +140,15 @@
 <meta property="og:url" content="http://xiejava.ishareread.com/posts/3918ce28/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="在有些项目中需要对信号进行滤波处理，尤其是在医疗的设备中如心跳、脉搏等设备的采样后进行处理。滤波的目的就是除去某些频率的信号如噪声。常见的包括有低通滤波、高通滤波、带通滤波。 低通滤波指的是去除高于某一阈值频率的信号；高通滤波去除低于某一频率的信号；带通滤波指的是类似低通高通的结合保留中间频率信号；带阻滤波也是低通高通的结合只是过滤掉的是中间部分。通过滤波可以过滤到一些无用的噪音，得到的比较平滑的">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="http://image2.ishareread.com/images/2023/20230313/signal1.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2023-03-13T07:19:26.000Z">
-<meta property="article:modified_time" content="2024-06-13T14:52:25.492Z">
+<meta property="article:modified_time" content="2025-12-10T07:13:14.383Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="数据处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2023/20230313/signal1.png">
 
 
 
@@ -366,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-06-13T22:52:25+08:00">
-                2024-06-13
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:14+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -492,15 +492,15 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pip install scipy</span><br><span class="line"><span class="comment">#低通滤波</span></span><br><span class="line"><span class="comment">#假设采样频率为1000hz,信号本身最大的频率为500hz，要滤除400hz以上频率成分，即截至频率为400hz,则wn=2*400/1000=0.8。Wn=0.8</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.8</span>, <span class="string">'lowpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#高通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.2</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带通滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line"><span class="comment">#带阻滤波</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, [<span class="number">0.2</span>,<span class="number">0.8</span>], <span class="string">'bandstop'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, data)  <span class="comment">#data为要过滤的信号</span></span><br></pre></td></tr></table></figure>
 <h2 id="三、信号滤波实战"><a href="#三、信号滤波实战" class="headerlink" title="三、信号滤波实战"></a>三、信号滤波实战</h2><p>这里以一个真实的心电数据为例，来实战对心电图某一段时间采样的信号数据进行高通滤波处理，对比一下原始的信号和高通滤波后的信号波形，然后输出成图片文件。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#引入包</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> signal</span><br><span class="line"><span class="comment">#读取心电图数据文件</span></span><br><span class="line">bspfile=<span class="string">'data/1.txt'</span></span><br><span class="line">bsp_f = open(bspfile, <span class="string">"r"</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">bsp_content = bsp_f.read()</span><br><span class="line">ary=bsp_content.split(<span class="string">' '</span>)</span><br><span class="line">ary=[float(s) <span class="keyword">for</span> s <span class="keyword">in</span> bsp_content.split(<span class="string">' '</span>)]</span><br><span class="line">ary_data=ary[<span class="number">0</span>:<span class="number">10000</span>] <span class="comment">#取前10秒数据</span></span><br><span class="line">b, a = signal.butter(<span class="number">8</span>, <span class="number">0.3</span>, <span class="string">'highpass'</span>)   <span class="comment">#配置滤波器 8 表示滤波器的阶数</span></span><br><span class="line"><span class="comment">#绘图</span></span><br><span class="line">filtedData = signal.filtfilt(b, a, ary_data)  <span class="comment">#data为要过滤的信号</span></span><br><span class="line">fig, axes = plt.subplots(<span class="number">2</span>, <span class="number">1</span>, figsize=(<span class="number">32</span>, <span class="number">4</span>))</span><br><span class="line">axes[<span class="number">0</span>].plot(ary_data)</span><br><span class="line">axes[<span class="number">0</span>].set(title=<span class="string">'Source signal'</span>)</span><br><span class="line">axes[<span class="number">1</span>].plot(filtedData)</span><br><span class="line">axes[<span class="number">1</span>].set(title=<span class="string">'highpass signal'</span>)</span><br><span class="line"><span class="comment">#保存图片</span></span><br><span class="line">plt.savefig(<span class="string">'./signal1.png'</span>, <span class="comment"># ⽂件名：png、jpg、pdf</span></span><br><span class="line">dpi = <span class="number">80</span>, <span class="comment"># 保存图⽚像素密度</span></span><br><span class="line">bbox_inches = <span class="string">'tight'</span>)<span class="comment"># 保存图⽚完整</span></span><br></pre></td></tr></table></figure>
-<p>效果：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
+<p>效果：<br><img src="http://image2.ishareread.com/images/2023/20230313/signal1.png" alt="心电图高通滤波后的效果"></p>
 <hr>
-<p>博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <p>微信公众号：fullbug  关注微信公众号，回复“信号滤波”获取全部代码+数据集</p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

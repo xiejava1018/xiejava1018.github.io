@@ -140,16 +140,16 @@
 <meta property="og:url" content="http://xiejava.ishareread.com/posts/e0557478/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。 Wazuh命令监控功能在端点上运行命令并监控命令的输出。通过监控命令来检测是否有非法可疑进程。 本文通过POC展示Wazuh如何通过配置来实现对非法可疑进行的检测及时预警威胁攻击行为。 一、环境准备P">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/2-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/3-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251015/2-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251015/3-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2025-10-15T11:50:52.000Z">
-<meta property="article:modified_time" content="2025-10-15T12:08:07.057Z">
+<meta property="article:modified_time" content="2025-12-10T07:13:20.924Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png">
 
 
 
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-10-15T20:08:07+08:00">
-                2025-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -489,7 +489,7 @@
         <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。</p>
 <p>Wazuh命令监控功能在端点上运行命令并监控命令的输出。通过监控命令来检测是否有非法可疑进程。</p>
 <p>本文通过POC展示Wazuh如何通过配置来实现对非法可疑进行的检测及时预警威胁攻击行为。</p>
-<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC测试环境拓扑如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png" alt="POC测试环境拓扑"></p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC测试环境拓扑如下图所示：<br><img src="http://image2.ishareread.com/images/2025/20251015/1-wazuh%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B.png" alt="POC测试环境拓扑"></p>
 <table>
 <thead>
 <tr>
@@ -534,16 +534,16 @@
 <h1 id="三、模拟攻击"><a href="#三、模拟攻击" class="headerlink" title="三、模拟攻击"></a>三、模拟攻击</h1><p>在被监控的Kali主机（192.168.0.65）端点上，运行<code>nc -l 8000</code> 30秒。</p>
 <p>netcat​（网络工具中的“瑞士军刀”）的命令，它的核心作用是：​在你的计算机上启动一个临时的 TCP 服务端，监听端口 8000，等待其他计算机连接并与之通信。</p>
 <p>监听模式的 netcat常被用作后门、端口监听器或进行未经授权的文件传输，是攻击者建立持久访问或进行横向移动的常见工具。</p>
-<h1 id="四、效果验证"><a href="#四、效果验证" class="headerlink" title="四、效果验证"></a>四、效果验证</h1><p>我们可以在Wazuh威胁狩猎模块仪表板中可看到检测到kali主机上有netcat 进行正在监听的告警并可视化展示出来。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/2-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6.png" alt="非法可疑进程检测告警"></p>
-<p>我们点开告警详情可以看到日志中显示通过<code>ps -e -o pid,uname,command</code>，检测到有<code>nc -l 8000</code>的非法进程在运行，进行了<code>netcat listening for incoming connections.</code>告警输出。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251015/3-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="非法可疑进程检测告警详情"></p>
+<h1 id="四、效果验证"><a href="#四、效果验证" class="headerlink" title="四、效果验证"></a>四、效果验证</h1><p>我们可以在Wazuh威胁狩猎模块仪表板中可看到检测到kali主机上有netcat 进行正在监听的告警并可视化展示出来。<br><img src="http://image2.ishareread.com/images/2025/20251015/2-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6.png" alt="非法可疑进程检测告警"></p>
+<p>我们点开告警详情可以看到日志中显示通过<code>ps -e -o pid,uname,command</code>，检测到有<code>nc -l 8000</code>的非法进程在运行，进行了<code>netcat listening for incoming connections.</code>告警输出。<br><img src="http://image2.ishareread.com/images/2025/20251015/3-%E9%9D%9E%E6%B3%95%E5%8F%AF%E7%96%91%E8%BF%9B%E7%A8%8B%E6%A3%80%E6%B5%8B%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="非法可疑进程检测告警详情"></p>
 <p>至此，我们通过一个完整的POC实例验证了wuzuh对非法可疑进程的检测，能够有效发现潜在的威胁。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       

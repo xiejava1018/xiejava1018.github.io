@@ -140,26 +140,26 @@
 <meta property="og:url" content="http://xiejava.ishareread.com/posts/8d366bb0/index.html">
 <meta property="og:site_name" content="XieJava&#39;s blog">
 <meta property="og:description" content="Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。文件完整性监控（File integrity monitoring FIM）有助于审计敏感文件和满足合规性要求。Wazuh内置了一个FIM模块，用于监控文件系统变化，以检测文件的创建、修改和删除。本文通">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/2-wazuh%E9%83%A8%E7%BD%B2agent%E7%95%8C%E9%9D%A2.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/3-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%83%A8%E7%BD%B2agent%E7%9A%84%E8%84%9A%E6%9C%AC.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/4-%E8%BF%90%E8%A1%8Cagent%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/5-%E6%B3%A8%E5%86%8Cagent.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/6-%E9%85%8D%E7%BD%AEwindow%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/7-%E9%85%8D%E7%BD%AEubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/8-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/9-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/10-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E4%BA%8B%E4%BB%B6.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/11-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIMDashboard.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/12-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E5%88%97%E8%A1%A8.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/13-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png">
-<meta property="og:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/2-wazuh%E9%83%A8%E7%BD%B2agent%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/3-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%83%A8%E7%BD%B2agent%E7%9A%84%E8%84%9A%E6%9C%AC.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/4-%E8%BF%90%E8%A1%8Cagent%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/5-%E6%B3%A8%E5%86%8Cagent.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/6-%E9%85%8D%E7%BD%AEwindow%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/7-%E9%85%8D%E7%BD%AEubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/8-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/9-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/10-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E4%BA%8B%E4%BB%B6.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/11-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIMDashboard.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/12-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E5%88%97%E8%A1%A8.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2025/20251008/13-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2025-10-08T12:26:53.000Z">
-<meta property="article:modified_time" content="2025-10-08T12:46:31.945Z">
+<meta property="article:modified_time" content="2025-12-10T07:13:20.776Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="网络安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png">
 
 
 
@@ -377,8 +377,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-10-08T20:46:31+08:00">
-                2025-10-08
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:20+08:00">
+                2025-12-10
               </time>
             
           </span>
@@ -497,7 +497,7 @@
 
       
         <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。<br>文件完整性监控（File integrity monitoring FIM）有助于审计敏感文件和满足合规性要求。Wazuh内置了一个FIM模块，用于监控文件系统变化，以检测文件的创建、修改和删除。<br>本文通过POC来验证Wazuh的FIM功能，使用Wazuh FIM模块来检测Ubuntu和Windows端点上监控目录的变化。Wazuh FIM模块通过使用who-data审计获取有关更改用户和进程的信息来丰富告警数据。</p>
-<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC环境如下图所示：<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png" alt="POC环境拓扑图"></p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC环境如下图所示：<br><img src="http://image2.ishareread.com/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png" alt="POC环境拓扑图"></p>
 <table>
 <thead>
 <tr>
@@ -519,45 +519,45 @@
 </tr>
 </tbody></table>
 <h1 id="二、wazuh配置"><a href="#二、wazuh配置" class="headerlink" title="二、wazuh配置"></a>二、wazuh配置</h1><h2 id="1、window机器安装wazuh并配置"><a href="#1、window机器安装wazuh并配置" class="headerlink" title="1、window机器安装wazuh并配置"></a>1、window机器安装wazuh并配置</h2><h3 id="1）安装wazuh-agent"><a href="#1）安装wazuh-agent" class="headerlink" title="1）安装wazuh-agent"></a>1）安装wazuh-agent</h3><p>在wazuh的管理端找到部署agent界面，选择window的agent安装包</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/2-wazuh%E9%83%A8%E7%BD%B2agent%E7%95%8C%E9%9D%A2.png" alt="wazuh部署agent界面"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/2-wazuh%E9%83%A8%E7%BD%B2agent%E7%95%8C%E9%9D%A2.png" alt="wazuh部署agent界面"></p>
 <p>wazuh会自动生成部署agent的脚本</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/3-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%83%A8%E7%BD%B2agent%E7%9A%84%E8%84%9A%E6%9C%AC.png" alt="自动生成部署agent的脚本"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/3-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%83%A8%E7%BD%B2agent%E7%9A%84%E8%84%9A%E6%9C%AC.png" alt="自动生成部署agent的脚本"></p>
 <p>在window11（192.168.0.16）机器上以管理员权限运行powershell,在powershell中运行agent安装脚本</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.13.0-1.msi -OutFile <span class="variable">$env</span>:tmp\wazuh-agent; msiexec.exe /i <span class="variable">$env</span>:tmp\wazuh-agent /q WAZUH_MANAGER=<span class="string">'192.168.0.40'</span> WAZUH_AGENT_NAME=<span class="string">'Lenovo-L13-agent'</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/4-%E8%BF%90%E8%A1%8Cagent%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC.png" alt="运行agent安装脚本"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/4-%E8%BF%90%E8%A1%8Cagent%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC.png" alt="运行agent安装脚本"></p>
 <p>运行<code>NET START Wazuh</code>启动wazuh-agent，过一会就可以在wazuh服务端的dashboard中看到window 11的wazuh-agent注册上来了。</p>
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/5-%E6%B3%A8%E5%86%8Cagent.png" alt="注册agent"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/5-%E6%B3%A8%E5%86%8Cagent.png" alt="注册agent"></p>
 <h3 id="2）-配置window端点的wazuh-agent"><a href="#2）-配置window端点的wazuh-agent" class="headerlink" title="2） 配置window端点的wazuh-agent"></a>2） 配置window端点的wazuh-agent</h3><p>按照以下步骤配置Wazuh代理以监控以下目录的文件系统更改。如监控<code>C:\Users\xiejava\Desktop</code>的文件更改。<br>在受监控的Windows端点上编辑<code>C:\Program Files (x86)\ossec-agent\ossec.conf</code>配置文件。在<code>&lt;syscheck&gt;</code>块内添加监控目录。配置Wazuh监控<code>C:\Users\xiejava\Desktop</code>目录。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">directories</span> <span class="attr">check_all</span>=<span class="string">"yes"</span> <span class="attr">report_changes</span>=<span class="string">"yes"</span> <span class="attr">realtime</span>=<span class="string">"yes"</span>&gt;</span>C:\Users\xiejava\Desktop<span class="tag">&lt;/<span class="name">directories</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/6-%E9%85%8D%E7%BD%AEwindow%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png" alt="配置FIM监控"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/6-%E9%85%8D%E7%BD%AEwindow%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png" alt="配置FIM监控"></p>
 <p>使用具有管理员权限的PowerShell重新启动Wazuh代理以使配置更改生效。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Restart-Service -Name wazuh</span><br></pre></td></tr></table></figure>
 
 <h2 id="2、ubuntu主机的wazuh-agent配置"><a href="#2、ubuntu主机的wazuh-agent配置" class="headerlink" title="2、ubuntu主机的wazuh-agent配置"></a>2、ubuntu主机的wazuh-agent配置</h2><p>由于ubuntu主机（192.168.0.41）已经安装了wazuh-agent，只需要对wazuh-agent进行配置就可以了。<br>执行以下步骤以配置Wazuh代理以监控<code>/root</code>目录中的文件系统更改。<br>编辑Wazuh代理的<code>/var/ossec/etc/ossec.conf</code>配置文件。在<code>&lt;syscheck&gt;</code>块中添加监控的目录。配置Wazuh监控<code>/root</code>目录。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">directories</span> <span class="attr">check_all</span>=<span class="string">"yes"</span> <span class="attr">report_changes</span>=<span class="string">"yes"</span> <span class="attr">realtime</span>=<span class="string">"yes"</span>&gt;</span>/root<span class="tag">&lt;/<span class="name">directories</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/7-%E9%85%8D%E7%BD%AEubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png" alt="配置ubuntu端点的FIM监控"></p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/7-%E9%85%8D%E7%BD%AEubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png" alt="配置ubuntu端点的FIM监控"></p>
 <p>重新启动Wazuh代理以使配置生效</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
 
 <h1 id="三、效果验证"><a href="#三、效果验证" class="headerlink" title="三、效果验证"></a>三、效果验证</h1><h2 id="1、windows端点文件完整性监控"><a href="#1、windows端点文件完整性监控" class="headerlink" title="1、windows端点文件完整性监控"></a>1、windows端点文件完整性监控</h2><h3 id="1）文件增、删、改"><a href="#1）文件增、删、改" class="headerlink" title="1）文件增、删、改"></a>1）文件增、删、改</h3><p>在window 11(192.168.0.16)的机器的桌面上新建一个.txt文件，然后重命名为test-win11.txt，再修改test-win11.txt的内容。</p>
-<h3 id="2）可视化告警监控"><a href="#2）可视化告警监控" class="headerlink" title="2）可视化告警监控"></a>2）可视化告警监控</h3><p>在wazuh的dashboard中可以看到window 11机器的完整性监控告警。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/8-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6.png" alt="win11的FIM告警"></p>
-<p>在详情中可以看到window11机器c:\users\xiejava\desktop\下文件变更的详情。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/9-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="win11的FIM告警详情"></p>
+<h3 id="2）可视化告警监控"><a href="#2）可视化告警监控" class="headerlink" title="2）可视化告警监控"></a>2）可视化告警监控</h3><p>在wazuh的dashboard中可以看到window 11机器的完整性监控告警。<br><img src="http://image2.ishareread.com/images/2025/20251008/8-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6.png" alt="win11的FIM告警"></p>
+<p>在详情中可以看到window11机器c:\users\xiejava\desktop\下文件变更的详情。<br><img src="http://image2.ishareread.com/images/2025/20251008/9-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="win11的FIM告警详情"></p>
 <h2 id="2、ubuntu主机文件完整性监控"><a href="#2、ubuntu主机文件完整性监控" class="headerlink" title="2、ubuntu主机文件完整性监控"></a>2、ubuntu主机文件完整性监控</h2><h3 id="1）文件增、删、改-1"><a href="#1）文件增、删、改-1" class="headerlink" title="1）文件增、删、改"></a>1）文件增、删、改</h3><p>  在ubuntu(192.168.0.41)的机器的/root新建一个test.txt文件，然后重命名为test-ubuntu.txt，再修改test-ubuntu.txt的内容。</p>
-<h3 id="2）可视化告警监控-1"><a href="#2）可视化告警监控-1" class="headerlink" title="2）可视化告警监控"></a>2）可视化告警监控</h3><p>在wazuh的dashboard中可以看到ubuntu(192.168.0.41)主机的文件完整性监控告警。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/10-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E4%BA%8B%E4%BB%B6.png" alt="ubuntu端点的FIM告警事件"></p>
-<p>在Dashboard中可以看到FIM的统计信息包括对文件的新增、删除、修改等。<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/11-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIMDashboard.png" alt="ubuntu端点的FIMDashboard"></p>
-<p>在Events中可以看到文件被修改触发的事件<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/12-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E5%88%97%E8%A1%A8.png" alt="ubuntu端点的FIM告警列表"></p>
-<p>可以查看具体的事件详情<br><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/2025/20251008/13-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="ubuntu端点的FIM告警详情"></p>
+<h3 id="2）可视化告警监控-1"><a href="#2）可视化告警监控-1" class="headerlink" title="2）可视化告警监控"></a>2）可视化告警监控</h3><p>在wazuh的dashboard中可以看到ubuntu(192.168.0.41)主机的文件完整性监控告警。<br><img src="http://image2.ishareread.com/images/2025/20251008/10-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E4%BA%8B%E4%BB%B6.png" alt="ubuntu端点的FIM告警事件"></p>
+<p>在Dashboard中可以看到FIM的统计信息包括对文件的新增、删除、修改等。<br><img src="http://image2.ishareread.com/images/2025/20251008/11-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIMDashboard.png" alt="ubuntu端点的FIMDashboard"></p>
+<p>在Events中可以看到文件被修改触发的事件<br><img src="http://image2.ishareread.com/images/2025/20251008/12-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E5%88%97%E8%A1%A8.png" alt="ubuntu端点的FIM告警列表"></p>
+<p>可以查看具体的事件详情<br><img src="http://image2.ishareread.com/images/2025/20251008/13-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="ubuntu端点的FIM告警详情"></p>
 <p>至此，我们通过POC实例来验证了Wazuh的文件完整性监控FIM功能，使用Wazuh FIM模块来检测Ubuntu和Windows端点上监控目录的变化。</p>
 <hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/" target="_blank" rel="noopener">http://xiejava.ishareread.com/</a></p>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
 <center> 
 
 <br>
 
-<p><img src="https://xiejava1018.github.io/xiejavaimagesrc/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
 <p>关注：微信公众号,一起学习成长！</center></p>
 
       
