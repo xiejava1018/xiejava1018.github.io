@@ -313,6 +313,315 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/ada9f957/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ada9f957/" itemprop="url">CWPP与EDR的定义与区别</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-16T14:34:04+08:00">
+                2022-04-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
+                2025-12-10
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/ada9f957/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/ada9f957/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/ada9f957/" class="leancloud_visitors" data-flag-title="CWPP与EDR的定义与区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>随着信息系统的发展，大家都在说网络安全要覆盖“云”、“管”、“端”，CWPP与EDR是目前非常火的产品，一个面向云端服务器的防护，一个是面向常规终端PC端的防护。</p>
+<p>在介绍CWPP与EDR两个产品概念之前，先来简单说明一下主机、服务器、终端几个位置概念：</p>
+<p>主机VS服务器。主机是一个统称，所有服务器（虚拟机）都是主机，但并非所有主机都是服务器，也就是主机覆盖服务器。主机和服务器的主要差别在于，主机是连接到网络的计算机或其他设备，而服务器是提供服务的软件或硬件设备，日常所说的服务器一般是指提供服务的主机。由此可见，主机安全并不是一个产品，而是对应一个需要被保护的位置，主机安全即主机侧的安全保护。</p>
+<p>终端VS服务器。终端和服务器是两类东西。这里的终端指桌面电脑、笔记本、个人设备等用于访问网络、数据和应用的设备，而服务器则是提供服务、存储、计算的设备。当然，某种程度上来说，广义上的终端概念也可以包括服务器，但常规意义的终端不包括服务器。<br><img src="http://image2.ishareread.com/images/2022/20220416/%E7%BB%88%E7%AB%AF%E5%92%8C%E4%B8%BB%E6%9C%BA.png" alt="终端主机"></p>
+<p>对于一般的应用系统来说，服务器就是提供服务的主机如提供WEB、FTP、数据库等服务的服务器，终端就是访问服务的工作站、个人PC等。</p>
+<h2 id="一、CWPP的定义"><a href="#一、CWPP的定义" class="headerlink" title="一、CWPP的定义"></a>一、CWPP的定义</h2><p> 现代数据中心支持运行在物理设备、虚拟机（VM）、容器以及私有云基础架构中的各种工作负载，并且几乎总是涉及一些在一个或多个公有云基础设施即服务（IaaS）提供商中运行的工作负载。<br><strong>云工作保护平台(Cloud Workload Protection Platform)简称CWPP</strong>，市场定义为基于主机的解决方案，主要满足现代混合数据中心架构中，服务器工作负载的保护要求。它为信息安全领导者提供了一种集成的方式，通过使用单个管理控制台和单一方式表达安全策略来保护这些工作负载，而不用考虑工作负载运行的位置。<br>可以理解成为基于代理（Agent）的底层技术方案，和传统部署在网络边界上的安全产品不一样，CWPP部署在操作系统层，因此可以横跨物理机、公有云、私有云、混合云等多种数据中心环境，部署方式更加灵活、防护层面更加丰富。采用服务端agent+远程控制台的部署模式，agent支持云、物理、混合环境部署，能有效安全加固服务器、抵御黑客攻击和恶意代码。</p>
+<p>Gartner定义的产品能力(需求)的金子塔说明了对CWPP产品能力的定义，越是靠近基座的功能越重要，越是靠近塔尖的功能越次要。<br><img src="http://image2.ishareread.com/images/2022/20220416/CWPP.png" alt="CWPP"></p>
+<p>CWPP的核心能力：</p>
+<ul>
+<li>Congurationand  vulnerability management 配置和漏洞管理<br>1.配置，即服务器优化，通过对操作系统进行合理配置，提升操作系统的安全性和抗攻击能力。<br>2.漏洞管理，分为操作系统漏洞管理和应用漏洞管理。目前网络攻击主要是通过web服务器或者web应用漏洞发起，因此CWPP产品要能提供标准化、同时支持制定自定义的web应用漏洞防护策略。</li>
+<li>Networksegmentation, isolation and traffic visibility 网络隔离与流可视<br>要求CWPP产品首先能图形化管理用户的主机业务资产，并且可以跨物理、虚拟架构、网络定于基于角色的访问策略（微隔离）；对于主机之间的访问关系，可以图形化的展示和控制（流可视化）。</li>
+<li>Systemintegrity measurement， attestation and monitoring 系统完整性检测、认证和监测<br>可以保护系统文件或者指定目录、文件不被恶意修改，提供监控模式和防护模式。</li>
+<li>Application control应用防护<br>CWPP产品需要能识别到主机上运行的应用，并对不同的应用提供相应的防护策略，如云锁对web应用提供waf防护，对于sshd、remotedesktop提供防暴力破解防护等。</li>
+<li>Capabilities that augment/verify foundational operational controls 增强及验证基础运维能力<br>CWPP产品要求不能单纯依靠服务器账号、密码来验证管理员，而需要引入账号密码外的第二套验证机制。比如云锁的登陆防护功能，可以限制登陆服务的用户名、IP范围、登陆时间、登陆服务器使用的PC名称，如果不满足限制条件，即使拿到服务器的管理员账号密码也无法登陆服务器。</li>
+<li>Log management and monitoring日志管理和监测<br>要求CWPP产品能提供完整的日志，同时当安全事件发生后，CWPP产品需要关联相关日志最终形成事件IOC，帮助用户回溯攻击过程，快速定位风险点。</li>
+</ul>
+<h2 id="二、EDR的定义"><a href="#二、EDR的定义" class="headerlink" title="二、EDR的定义"></a>二、EDR的定义</h2><p>根据Gartner的定义，<strong>EDR端点检测与响应（Endpoint Detection and Response）简称EDR</strong>是一种集成的终端安全解决方案，它将终端数据的实时连续监控和收集与基于规则的自动响应和分析功能相结合。该术语由Gartner的Anton Chuvakin提出，用于描述新兴的安全系统，用于检测和调查终端上的可疑活动，采用高度自动化使安全团队能够快速识别和响应威胁。完全不同于以往的端点被动防护思路，而是通过云端威胁情报、机器学习、异常行为分析、攻击指示器等方式，主动发现来自外部或内部的安全威胁，并进行自动化的阻止、取证、补救和溯源，从而有效对端点进行防护。</p>
+<p>相比于传统端点安全防护采用预设安全策略的静态防御技术，EDR加强了威胁检测和响应取证能力，能够快速检测、识别、监控和处理端点事件，从而在威胁尚未造成危害前进行检测和阻止，帮助受保护网络免受零日威胁和各种新出现的威胁。安全模型如图所示：<br><img src="http://image2.ishareread.com/images/2022/20220416/EDR.png" alt="EDR"></p>
+<ul>
+<li>资产发现：定期通过主动扫描、被动发现、手工录入和人工排查等多种方法收集当前网络中所有软硬件资产，包括全网所有的端点资产和在用的软件名称、版本，确保整个网络中没有安全盲点。</li>
+<li>系统加固：定期进行漏洞扫描、补丁修复、安全策略设置和更新端点软件清单，通过软件白名单限制未经授权的软件运行，通过主机防火墙限制未经授权的服务端口开放，并定期检查和清理内部人员的账号和授权信息。</li>
+<li>威胁检测：通过端点本地的主机入侵检测和借助云端威胁情报、异常行为分析、攻击指示器等方式，针对各类安全威胁，在其发生前、发生中、发生后进行相应的安全检测动作。</li>
+<li>响应取证：针对全网的安全威胁进行可视化展示，能够针对安全威胁自动化地进行隔离、修复和补救，自动完成安全威胁的调查、分析和取证工作，降低事件响应和取证分析的技术门槛，不需要依赖于外部专家即可完成快速响应和取证分析。</li>
+</ul>
+<h2 id="三、CWPP与EDR的关系与区别"><a href="#三、CWPP与EDR的关系与区别" class="headerlink" title="三、CWPP与EDR的关系与区别"></a>三、CWPP与EDR的关系与区别</h2><p>EDR与CWPP主机安全属于网络安全领域两个不同的方向，前者聚焦于常规的终端侧，后者聚焦于主机侧，两者作用于完全不同的位置。EDR的基因是根植于PC等常规终端的，它天然不适配于主机侧。</p>
+<table>
+<thead>
+<tr>
+<th>需求场景</th>
+<th>需求求相同点</th>
+<th>需求不同点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>终端侧安全</td>
+<td>资产梳理清点<br>统一集中管理<br>风险防护</td>
+<td>安全需求&gt;稳定需求，注重安全防护能力，重防御；<br>关注用户实体行为分析（UEBA），防止PC端成为威胁内网安全的导火索，防止敏感数据歪斜；<br>高危动作或安全风险尽可能自动化完成阻断动作，无需人工介入，确保整体网络的安全可靠。</td>
+</tr>
+<tr>
+<td>主机侧安全</td>
+<td>资产梳理清点<br>统一集中管理<br>风险防护</td>
+<td>稳定需求&gt;安全需求，注重安全检测能力，重检测；<br>更加关注主机上承载的业务应用和数据安全；<br>因业务连续性需要，安全加固工作需人工介入，要在确保业务连续稳定运行的基础上进行加固。</td>
+</tr>
+</tbody></table>
+<p>在安全的需求上，PC类的终端侧与主机侧的安全诉求差别很大。所以，面向终端的EDR产品与面向服务器/工作负载的主机安全产品CWPP，这两者之间有本质的区别，并不能混为一谈。主机侧的安全产品实现不了终端侧的安全防护，EDR也不能实现CWPP的防护效果。<br>两种产品的区别如下：</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>CWPP</th>
+<th>EDR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>产品定位</td>
+<td>主机安全防护</td>
+<td>终端安全防护</td>
+</tr>
+<tr>
+<td>产品部署</td>
+<td>Agent不在内核安装驱动，稳定性高</td>
+<td>Agent安装需要在内核安装驱动，稳定性差，影响业务</td>
+</tr>
+<tr>
+<td>资产清点</td>
+<td>资产清点能力更全面，支持对业务层资产精准识别和动态感知</td>
+<td>资产信息相对比较少，不够全面</td>
+</tr>
+<tr>
+<td>风险发现</td>
+<td>提供全面的风险检查，包括漏洞风险、弱密码、系统风险、应用风险、账号风险检查</td>
+<td>支持漏洞风险检查，不具备其他风险检查能力</td>
+</tr>
+<tr>
+<td>入侵检测与病毒查杀</td>
+<td>不依赖特征库的检测方式，基于行为以及结合威胁情报、大数据、机器学习等方法，提供实时精准的入侵检测和响应能力</td>
+<td>主要功能是病毒查杀，基于特征库或结合威胁情报，能够查杀绝大部分病毒，但仍属于被动防护</td>
+</tr>
+<tr>
+<td>基线合规检查</td>
+<td>提供等保或CIS国标标准的检查基线，支持对系统、应用、数据进行基线合规检查</td>
+<td>通常不具备合基线合规检查能力，或提供少量的基线检查标准。</td>
+</tr>
+</tbody></table>
+<p>CWPP与EDR，一个面向服务器端的防护（CWPP），一个是面向常规终端PC端的防护（EDR）但是对于企业的整体安全防护来说，CWPP和EDR相互作为补充构建企业的云、端防护能力。</p>
+<hr>
+<p>博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/25e5f55a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2665,265 +2974,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/17215b2c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/17215b2c/" itemprop="url">pandas快速入门指南</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-23T10:29:43+08:00">
-                2022-02-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:12+08:00">
-                2025-12-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/17215b2c/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/17215b2c/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/17215b2c/" class="leancloud_visitors" data-flag-title="pandas快速入门指南">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  742
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://image2.ishareread.com/images/2022/20220223/pandas_logo.png" alt="pandas"></p>
-<p>Pandas 是一个开源的第三方 Python 库，从 Numpy 和 Matplotlib 的基础上构建而来，享有数据分析“三剑客之一”的盛名（NumPy、Matplotlib、Pandas）。是学习数据分析、AI机器学习必学组件之一。<br>Pandas 这个名字来源于面板数据（Panel Data）与数据分析（data analysis）这两个名词的组合。在经济学中，Panel Data 是一个关于多维数据集的术语。Pandas 对数据的处理是为数据的分析服务的，它所提供的各种数据处理方法、工具是基于数理统计学出发，包含了日常应用中的众多数据分析方法。</p>
-<p>Pandas 可以实现复杂的处理逻辑，这些往往是 Excel 等工具无法处理的，还可以自动化、批量化，对于相同的大量的数据处理我们不需要重复去工作。Pandas 的出现使得 Python 做数据分析的能力得到了大幅度提升，它主要实现了数据分析的五个重要环节：</p>
-<ul>
-<li>加载数据 </li>
-<li>整理数据 </li>
-<li>操作数据 </li>
-<li>构建数据模型 </li>
-<li>分析数据</li>
-</ul>
-<p>主要特点</p>
-<ul>
-<li>它提供了一个简单、高效、带有默认标签（也可以自定义标签）的 DataFrame 对象。 </li>
-<li>能够快速得从不同格式的文件中加载数据（比如<br>Excel、CSV 、SQL文件），然后将其转换为可处理的对象； </li>
-<li>能够按数据的行、列标签进行分组，并对分组后的对象执行聚合和转换操作；</li>
-<li>能够很方便地实现数据归一化操作和缺失值处理； </li>
-<li>能够很方便地对 DataFrame 的数据列进行增加、修改或者删除的操作；</li>
-<li>能够处理不同格式的数据集，比如矩阵数据、异构数据表、时间序列等；</li>
-<li>提供了多种处理数据集的方式，比如构建子集、切片、过滤、分组以及重新排序等。</li>
-</ul>
-<p>本教程梳理了快速入门pandas的一些知识点。</p>
-<p><img src="http://image2.ishareread.com/images/2022/20220223/pandas.png" alt="pandas快速入门"></p>
-<p><a href="http://xiejava.ishareread.com/posts/531458d5/">一、pandas数据结构(Series和DataFrame)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/4864590d/">二、pandas数据加载(csv、excel、json、mysql、webAPI)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/808d8fe8/">三、pandas基本操作之数据访问(查看与检索)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/16c9fc17/">四、pandas数据分析之排序和排名(sort和rank)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/a87a78e2/">五、pandas数据清洗之处理缺失、重复、异常数据</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/2c80aac2/">六、pandas数据处理之数据转换(映射map、替换replace、重命名rename)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/f44191db/">七、pandas数据分析之数据运算(逻辑运算、算术运算、统计运算、自定义运算)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/e7d4d6e1/">八、pandas数据处理之合并与拼接</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/dd24116d/">九、pandas数据分析之分组聚合</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/bc5826bd/">十、pandas数据分析之数据重塑透视(stack、unstack、melt、pivot)</a></p>
-<p><a href="http://xiejava.ishareread.com/posts/e8cac912/">十一、pandas数据分析之数据绘图</a></p>
-<p>学习pandas最好的资料肯定是pandas的官网  <a href="https://pandas.pydata.org/docs/user_guide/index.html" target="_blank" rel="noopener">https://pandas.pydata.org/docs/user_guide/index.html</a></p>
-<p>书籍推荐pandas的作者写的《利用python进行数据分析》</p>
-<hr>
-<p>本教程作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2980,7 +3030,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">218</span>
+                  <span class="site-state-item-count">219</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2991,7 +3041,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3092,7 +3142,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">440.3k</span>
+    <span title="Site words total count">441.2k</span>
   
   
 <!--51la网站应用监控-->
