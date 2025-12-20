@@ -146,7 +146,7 @@
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/4_@shared_task.png">
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/5_views%E5%8F%91%E5%B8%83%E4%BB%BB%E5%8A%A1.png">
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/6_urls%E5%8A%A0%E5%85%A5%E8%B7%AF%E7%94%B1%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%B8%83.png">
-<meta property="og:image" content="http://image2.ishareread.com/images/images/2023/20230112/7_%E4%B8%BBurls%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%AD%90%E9%A1%B9%E7%9B%AE%E7%9A%84urls.png">
+<meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/7_%E4%B8%BBurls%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%AD%90%E9%A1%B9%E7%9B%AE%E7%9A%84urls.png">
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/8_%E5%90%AF%E5%8A%A8celery.png">
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/9.%E6%9F%A5%E7%9C%8B%E5%BC%82%E6%AD%A5%E6%95%88%E6%9E%9C.png">
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/10_%E6%9F%A5%E7%9C%8B%E4%BB%BB%E5%8A%A1.png">
@@ -173,7 +173,7 @@
 <meta property="og:image" content="http://image2.ishareread.com/images/2023/20230112/31_%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E5%BC%82%E5%B8%B8%E5%91%8A%E8%AD%A6%E9%80%9A%E7%9F%A5.png">
 <meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
 <meta property="article:published_time" content="2023-01-06T13:00:15.000Z">
-<meta property="article:modified_time" content="2025-12-10T07:13:14.058Z">
+<meta property="article:modified_time" content="2025-12-20T09:51:10.769Z">
 <meta property="article:author" content="XieJava">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Django">
@@ -396,8 +396,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:14+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-20T17:51:10+08:00">
+                2025-12-20
               </time>
             
           </span>
@@ -545,7 +545,7 @@
 <p>在urls中加入路由进行发布</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> taskapp <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">'task'</span>, views.runtask),</span><br><span class="line">    path(<span class="string">'runscheduletask'</span>, views.runscheduletask),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p><img src="http://image2.ishareread.com/images/2023/20230112/6_urls%E5%8A%A0%E5%85%A5%E8%B7%AF%E7%94%B1%E8%BF%9B%E8%A1%8C%E5%8F%91%E5%B8%83.png" alt="在这里插入图片描述"></p>
-<p>在项目的主urls中加入子项目的urls<br><img src="http://image2.ishareread.com/images/images/2023/20230112/7_%E4%B8%BBurls%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%AD%90%E9%A1%B9%E7%9B%AE%E7%9A%84urls.png" alt="在这里插入图片描述"></p>
+<p>在项目的主urls中加入子项目的urls<br><img src="http://image2.ishareread.com/images/2023/20230112/7_%E4%B8%BBurls%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%AD%90%E9%A1%B9%E7%9B%AE%E7%9A%84urls.png" alt="在这里插入图片描述"></p>
 <h3 id="2、启动celery"><a href="#2、启动celery" class="headerlink" title="2、启动celery"></a>2、启动celery</h3><blockquote>
 <p>在启动celery之前，先要启动redis服务，因为celery在settings中配置要用到redis作为消息中间件和结果存储。<br>windows环境下启动redis的命令为redis-server.exe redis.windows.conf</p>
 </blockquote>
