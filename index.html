@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2026-01-21T21:27:12+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2026-01-21T22:19:36+08:00">
                 2026-01-21
               </time>
             
@@ -442,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  8k
+                  7.6k
                 </span>
               
 
@@ -458,7 +458,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  36
+                  35
                 </span>
               
             </div>
@@ -744,18 +744,6 @@
 <li>清晰的emoji状态指示，一眼就能看出问题所在</li>
 <li>详细的阈值配置，便于追溯和调整</li>
 </ul>
-<h3 id="4-2-安全检查实战案例"><a href="#4-2-安全检查实战案例" class="headerlink" title="4.2 安全检查实战案例"></a>4.2 安全检查实战案例</h3><p>在一次安全审计中，发现了某主机上的可疑活动：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 🔒 安全检查报告</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 异常进程检测</span></span><br><span class="line">❌ 发现挖矿进程：</span><br><span class="line">  PID 12345: xmrig (CPU: 98.5%, Memory: 2.3%)</span><br><span class="line">  用户: nobody</span><br><span class="line">  命令: ./xmrig -o pool.supportxmr.com:3333 -u wallet123</span><br><span class="line"></span><br><span class="line">⚠️ 高资源占用进程：</span><br><span class="line">  PID 6789: java (CPU: 85.2%, Memory: 45.6%)</span><br><span class="line">  PID 9012: python3 (CPU: 45.1%, Memory: 12.3%)</span><br><span class="line"></span><br><span class="line">⚠️ /tmp 中发现 3 个可执行文件：</span><br><span class="line">  /tmp/.X11-unix/.sshd (权限: 755, 大小: 2.3MB)</span><br><span class="line">  /tmp/systemd-private-.sh (权限: 777, 大小: 156KB)</span><br><span class="line">  /tmp/.ICE-unix/.backup (权限: 755, 大小: 512KB)</span><br><span class="line"></span><br><span class="line"><span class="section">### 网络安全</span></span><br><span class="line">⚠️ 可疑连接：远程 203.0.113.45:54321 -&gt; 本地端口 55123</span><br><span class="line">外部连接的独立IP数：15</span><br><span class="line">连接最多的外部IP：</span><br><span class="line"><span class="bullet">  - </span>203.0.113.45: 1,245 次连接</span><br><span class="line"><span class="bullet">  - </span>198.51.100.23: 89 次连接</span><br><span class="line"></span><br><span class="line"><span class="section">### 文件系统安全</span></span><br><span class="line">⚠️ /etc: 12 个文件在最近7天被修改</span><br><span class="line"><span class="bullet">  - </span>/etc/passwd (权限: 644)</span><br><span class="line"><span class="bullet">  - </span>/etc/shadow (权限: 000)</span><br><span class="line"><span class="bullet">  - </span>/etc/sudoers.d/90-user (权限: 440)</span><br><span class="line"></span><br><span class="line"><span class="section">### 账户安全</span></span><br><span class="line">最近登录记录（最近10次）：</span><br><span class="line"><span class="bullet">  - </span>hacker from 203.0.113.45 - 2026-01-18 15:30</span><br><span class="line"><span class="bullet">  - </span>admin from 192.168.0.100 - 2026-01-18 09:00</span><br><span class="line"></span><br><span class="line">⚠️ 发现最近30天新增的用户：</span><br><span class="line"><span class="bullet">  - </span>hacker (UID: 1001, HOME: /home/hacker, SHELL: /bin/bash)</span><br></pre></td></tr></table></figure>
-
-<p><strong>响应措施</strong>：</p>
-<ol>
-<li>立即终止挖矿进程：<code>kill -9 12345</code></li>
-<li>删除可疑文件：<code>rm -f /tmp/.X11-unix/.sshd</code></li>
-<li>封禁恶意IP：<code>iptables -A INPUT -s 203.0.113.45 -j DROP</code></li>
-<li>删除未授权用户：<code>userdel hacker</code></li>
-<li>修改所有密码，检查SSH公钥</li>
-</ol>
-<p>这个案例展示了深度安全检查在实际威胁检测中的价值。</p>
 <h2 id="五、总结与展望"><a href="#五、总结与展望" class="headerlink" title="五、总结与展望"></a>五、总结与展望</h2><h3 id="5-1-实现成果"><a href="#5-1-实现成果" class="headerlink" title="5.1 实现成果"></a>5.1 实现成果</h3><p>本次开发成功构建了一个生产级运维健康检查系统：</p>
 <p>✅ <strong>三大核心模块</strong></p>
 <ul>
@@ -3656,7 +3644,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">449.2k</span>
+    <span title="Site words total count">448.8k</span>
   
   
 <!--51la网站应用监控-->
