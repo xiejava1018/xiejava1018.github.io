@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全,AI机器学习,运维自动化," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="摘要手头上有几台服务器，经常要对服务器进行健康检查、安全检查等。这几天让ClaudeCode自己写了个Skill这样就一句话活就让AI给干了。本文详细介绍了如何使用Claude Code AI辅助开发工具，从零开始构建一个生产级运维健康检查的Skill。重点阐述了整体架构设计、核心功能实现细节以及实际应用效果。该系统采用模块化设计，提供三大检查模块（基础健康检查、深度安全审计、Docker容器监控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让Claude Code写了个运维健康检查的Skill还挺好用的">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/5f421230/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="摘要手头上有几台服务器，经常要对服务器进行健康检查、安全检查等。这几天让ClaudeCode自己写了个Skill这样就一句话活就让AI给干了。本文详细介绍了如何使用Claude Code AI辅助开发工具，从零开始构建一个生产级运维健康检查的Skill。重点阐述了整体架构设计、核心功能实现细节以及实际应用效果。该系统采用模块化设计，提供三大检查模块（基础健康检查、深度安全审计、Docker容器监控">
+<meta property="og:image" content="http://image2.ishareread.com/images/2026/20260121/health-check-192.168.0.55-20260118-164043.png">
+<meta property="article:published_time" content="2026-01-20T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-21T13:27:12.361Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta property="article:tag" content="AI机器学习">
+<meta property="article:tag" content="运维自动化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/2026/20260121/health-check-192.168.0.55-20260118-164043.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/5f421230/"/>
+
+
+
+
+
+  <title>让Claude Code写了个运维健康检查的Skill还挺好用的 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/5f421230/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">让Claude Code写了个运维健康检查的Skill还挺好用的</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-01-20T08:00:00+08:00">
+                2026-01-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2026-01-21T21:27:12+08:00">
+                2026-01-21
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index">
+                    <span itemprop="name">AI</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/5f421230/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5f421230/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/5f421230/" class="leancloud_visitors" data-flag-title="让Claude Code写了个运维健康检查的Skill还挺好用的">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  36
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>手头上有几台服务器，经常要对服务器进行健康检查、安全检查等。这几天让ClaudeCode自己写了个Skill这样就一句话活就让AI给干了。本文详细介绍了如何使用Claude Code AI辅助开发工具，从零开始构建一个生产级运维健康检查的Skill。重点阐述了整体架构设计、核心功能实现细节以及实际应用效果。该系统采用模块化设计，提供三大检查模块（基础健康检查、深度安全审计、Docker容器监控），支持双格式输出（Markdown人工可读 + JSON机器可处理），具有良好的可扩展性和兼容性。</p>
+<h2 id="一、背景与设计目标"><a href="#一、背景与设计目标" class="headerlink" title="一、背景与设计目标"></a>一、背景与设计目标</h2><h3 id="1-1-实际需求"><a href="#1-1-实际需求" class="headerlink" title="1.1 实际需求"></a>1.1 实际需求</h3><p>在日常运维工作中，我们需要对多台服务器进行健康检查，涵盖系统资源、Docker容器状态、安全指标等多个维度。虽然市面上有很多成熟的监控方案（如Prometheus、Grafana、Zabbix等），但在以下场景中，我们需要一个轻量级、快速部署的检查工具：</p>
+<ul>
+<li><strong>日常巡检</strong>：每天对服务器进行快速健康扫描</li>
+<li><strong>安全审计</strong>：定期检查异常进程、可疑网络连接、文件系统安全</li>
+<li><strong>容器监控</strong>：检查Docker容器运行状态、资源使用情况</li>
+<li><strong>问题排查</strong>：当系统出现问题时，快速获取当前状态信息</li>
+</ul>
+<h3 id="1-2-设计目标"><a href="#1-2-设计目标" class="headerlink" title="1.2 设计目标"></a>1.2 设计目标</h3><p>基于上述需求，我设定了以下设计目标交给了Claude Code：</p>
+<p><strong>核心特性</strong>：</p>
+<ul>
+<li>✅ <strong>轻量级部署</strong>：基于Bash脚本，无需额外依赖，远程执行无需安装</li>
+<li>✅ <strong>双格式输出</strong>：同时生成Markdown（人工阅读）和JSON（机器处理）格式</li>
+<li>✅ <strong>模块化架构</strong>：三大检查模块独立运行，可按需组合</li>
+<li>✅ <strong>状态可视化</strong>：使用emoji（✅正常/⚠️警告/❌严重）直观展示</li>
+<li>✅ <strong>广泛兼容性</strong>：支持bash 3.2+（macOS默认版本），适配主流Linux发行版</li>
+</ul>
+<p><strong>技术亮点</strong>：</p>
+<ul>
+<li>统一的输出库设计，实现代码复用</li>
+<li>JSON三层结构（summary/details/metadata），满足不同使用场景</li>
+<li>完善的错误处理和兼容性方案</li>
+<li>清晰的扩展接口，便于添加新的检查类型</li>
+</ul>
+<h2 id="二、整体架构设计"><a href="#二、整体架构设计" class="headerlink" title="二、整体架构设计"></a>二、整体架构设计</h2><h3 id="2-1-系统架构"><a href="#2-1-系统架构" class="headerlink" title="2.1 系统架构"></a>2.1 系统架构</h3><p>Claude Code自动帮我设计了整体架构<br>运维健康检查系统采用模块化设计，包含三个独立的检查模块：</p>
+<table>
+<thead>
+<tr>
+<th>模块名称</th>
+<th>脚本文件</th>
+<th>功能定位</th>
+<th>核心检查项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>基础健康检查</strong></td>
+<td>health-check.sh</td>
+<td>日常巡检、快速评估</td>
+<td>系统资源、内存、磁盘、网络、服务状态、基础安全</td>
+</tr>
+<tr>
+<td><strong>深度安全检查</strong></td>
+<td>security-check.sh</td>
+<td>安全审计、威胁检测</td>
+<td>异常进程、可疑连接、文件安全、账户安全、系统完整性</td>
+</tr>
+<tr>
+<td><strong>Docker容器监控</strong></td>
+<td>docker-check.sh</td>
+<td>容器环境管理</td>
+<td>容器状态、资源使用、镜像管理、存储空间</td>
+</tr>
+</tbody></table>
+<p><strong>设计原则</strong>：</p>
+<ul>
+<li><strong>独立性</strong>：每个脚本可单独运行，互不依赖</li>
+<li><strong>一致性</strong>：统一的输出格式和状态指示</li>
+<li><strong>可扩展性</strong>：易于添加新的检查项或模块</li>
+<li><strong>远程友好</strong>：支持SSH管道执行，无需远程安装</li>
+</ul>
+<h3 id="2-2-文件结构"><a href="#2-2-文件结构" class="headerlink" title="2.2 文件结构"></a>2.2 文件结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">host-manage&#x2F;</span><br><span class="line">├── skills&#x2F;ops-health-check&#x2F;</span><br><span class="line">│   ├── SKILL.md                    # Skill定义和使用文档</span><br><span class="line">│   └── scripts&#x2F;</span><br><span class="line">│       ├── health-check.sh         # 基础健康检查脚本</span><br><span class="line">│       ├── security-check.sh       # 深度安全检查脚本</span><br><span class="line">│       ├── docker-check.sh         # Docker监控脚本</span><br><span class="line">│       └── lib&#x2F;</span><br><span class="line">│           └── output.sh           # 输出格式化库（核心）</span><br><span class="line">├── docs&#x2F;plans&#x2F;</span><br><span class="line">│   ├── 2025-01-17-ops-health-check-design.md     # 整体设计文档</span><br><span class="line">│   └── 2025-01-18-json-output-design.md          # JSON输出设计</span><br><span class="line">└── health-reports&#x2F;                 # 检查报告输出目录</span><br><span class="line">    ├── health-check-*.md           # Markdown格式报告</span><br><span class="line">    ├── health-check-*.json         # JSON格式数据</span><br><span class="line">    ├── security-check-*.md</span><br><span class="line">    ├── security-check-*.json</span><br><span class="line">    ├── docker-check-*.md</span><br><span class="line">    └── docker-check-*.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、核心功能实现"><a href="#三、核心功能实现" class="headerlink" title="三、核心功能实现"></a>三、核心功能实现</h2><p>Claude Code自动帮我实现了所有的功能</p>
+<h3 id="3-1-基础健康检查模块（health-check-sh）"><a href="#3-1-基础健康检查模块（health-check-sh）" class="headerlink" title="3.1 基础健康检查模块（health-check.sh）"></a>3.1 基础健康检查模块（health-check.sh）</h3><p>这是日常运维使用最频繁的模块，专注于快速评估系统整体健康状况。</p>
+<h4 id="3-1-1-系统运行时间和负载检查"><a href="#3-1-1-系统运行时间和负载检查" class="headerlink" title="3.1.1 系统运行时间和负载检查"></a>3.1.1 系统运行时间和负载检查</h4><p><strong>检查目的</strong>：了解系统运行时长和当前负载压力</p>
+<p><strong>实现逻辑</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取系统运行时间</span></span><br><span class="line">uptime_output=$(uptime)</span><br><span class="line">uptime_clean=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$uptime_output</span>"</span> | sed <span class="string">'s/^ *//g'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 兼容不同系统的uptime输出格式</span></span><br><span class="line">uptime_str=$(uptime -p 2&gt;/dev/null || \</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$uptime_clean</span>"</span> | awk -F<span class="string">'up '</span> <span class="string">'&#123;print $2&#125;'</span> | awk -F<span class="string">','</span> <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取负载平均值（1分钟、5分钟、15分钟）</span></span><br><span class="line">load_str=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$uptime_clean</span>"</span> | awk -F<span class="string">'load average:'</span> <span class="string">'&#123;print $2&#125;'</span> | sed <span class="string">'s/^ *//g'</span>)</span><br><span class="line">load_1min=$(<span class="built_in">echo</span> <span class="variable">$load_str</span> | awk <span class="string">'&#123;print $1&#125;'</span> | sed <span class="string">'s/,//'</span>)</span><br><span class="line">load_5min=$(<span class="built_in">echo</span> <span class="variable">$load_str</span> | awk <span class="string">'&#123;print $2&#125;'</span> | sed <span class="string">'s/,//'</span>)</span><br><span class="line">load_15min=$(<span class="built_in">echo</span> <span class="variable">$load_str</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断负载状态</span></span><br><span class="line">load_status=$(check_load_status <span class="string">"<span class="variable">$load_1min</span>"</span> <span class="string">"<span class="variable">$CPU_WARNING</span>"</span> <span class="string">"<span class="variable">$CPU_CRITICAL</span>"</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>状态判断函数</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">check_load_status</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> load=<span class="variable">$1</span></span><br><span class="line">    <span class="built_in">local</span> warning=<span class="variable">$2</span></span><br><span class="line">    <span class="built_in">local</span> critical=<span class="variable">$3</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用bc进行浮点数比较</span></span><br><span class="line">    <span class="keyword">if</span> (( $(<span class="built_in">echo</span> <span class="string">"<span class="variable">$load</span> &gt;= <span class="variable">$critical</span>"</span> | bc -l) )); <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"critical"</span></span><br><span class="line">    <span class="keyword">elif</span> (( $(<span class="built_in">echo</span> <span class="string">"<span class="variable">$load</span> &gt;= <span class="variable">$warning</span>"</span> | bc -l) )); <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"warning"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"ok"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>使用<code>bc -l</code>进行浮点数比较，兼容不同系统</li>
+<li>兼容<code>uptime -p</code>命令（human-readable格式）不可用的情况</li>
+<li>同时收集三个时间维度的负载数据，用于趋势分析</li>
+</ul>
+<h4 id="3-1-2-内存使用检查"><a href="#3-1-2-内存使用检查" class="headerlink" title="3.1.2 内存使用检查"></a>3.1.2 内存使用检查</h4><p><strong>检查目的</strong>：监控内存和swap使用情况，防止内存耗尽</p>
+<p><strong>实现逻辑</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取内存信息（单位：MB）</span></span><br><span class="line">memory_info=$(free -m | grep Mem)</span><br><span class="line">mem_total=$(<span class="built_in">echo</span> <span class="variable">$memory_info</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">mem_used=$(<span class="built_in">echo</span> <span class="variable">$memory_info</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">mem_avail=$(<span class="built_in">echo</span> <span class="variable">$memory_info</span> | awk <span class="string">'&#123;print $7&#125;'</span>)  <span class="comment"># available列更准确</span></span><br><span class="line">mem_percent=$(awk <span class="string">"BEGIN &#123;printf \"%.1f\", <span class="variable">$mem_used</span> * 100 / <span class="variable">$mem_total</span>&#125;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Swap检查</span></span><br><span class="line">swap_info=$(free -m | grep Swap)</span><br><span class="line">swap_total=$(<span class="built_in">echo</span> <span class="variable">$swap_info</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">swap_used=$(<span class="built_in">echo</span> <span class="variable">$swap_info</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$swap_total</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    swap_percent=$(awk <span class="string">"BEGIN &#123;printf \"%.1f\", <span class="variable">$swap_used</span> * 100 / <span class="variable">$swap_total</span>&#125;"</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    swap_percent=0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 状态判断</span></span><br><span class="line"><span class="keyword">if</span> (( $(<span class="built_in">echo</span> <span class="string">"<span class="variable">$mem_percent</span> &gt;= <span class="variable">$MEMORY_CRITICAL</span>"</span> | bc -l) )); <span class="keyword">then</span></span><br><span class="line">    mem_status=<span class="string">"critical"</span></span><br><span class="line"><span class="keyword">elif</span> (( $(<span class="built_in">echo</span> <span class="string">"<span class="variable">$mem_percent</span> &gt;= <span class="variable">$MEMORY_WARNING</span>"</span> | bc -l) )); <span class="keyword">then</span></span><br><span class="line">    mem_status=<span class="string">"warning"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    mem_status=<span class="string">"ok"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出示例</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">### 内存使用</span></span><br><span class="line"><span class="bullet">- </span><span class="strong">**总内存**</span>: 16384MB</span><br><span class="line"><span class="bullet">- </span><span class="strong">**已使用**</span>: 12500MB (76.3%)</span><br><span class="line"><span class="bullet">- </span><span class="strong">**可用**</span>: 3884MB</span><br><span class="line"><span class="bullet">- </span><span class="strong">**Swap**</span>: 256MB / 2048MB (12.5%)</span><br><span class="line"><span class="bullet">- </span><span class="strong">**状态**</span>: ⚠️ 警告</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>使用<code>free</code>命令的<code>available</code>列而非<code>free</code>列，更准确反映可用内存</li>
+<li>同时检查swap使用率，高swap使用率通常意味着内存压力</li>
+<li>支持自定义阈值配置（通过环境变量<code>MEMORY_WARNING</code>、<code>MEMORY_CRITICAL</code>）</li>
+</ul>
+<h4 id="3-1-3-磁盘空间检查"><a href="#3-1-3-磁盘空间检查" class="headerlink" title="3.1.3 磁盘空间检查"></a>3.1.3 磁盘空间检查</h4><p><strong>检查目的</strong>：监控所有挂载点的磁盘使用情况，防止磁盘空间不足</p>
+<p><strong>实现逻辑</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 磁盘空间"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"| 挂载点 | 设备 | 容量 | 已用 | 可用 | 使用率 | 状态 |"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"|--------|------|------|------|------|--------|------|"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历所有挂载点（排除临时文件系统）</span></span><br><span class="line">df -h | grep -vE <span class="string">'^Filesystem|tmpfs|overlay|none'</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">    device=$(<span class="built_in">echo</span> <span class="variable">$line</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">    size=$(<span class="built_in">echo</span> <span class="variable">$line</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">    used=$(<span class="built_in">echo</span> <span class="variable">$line</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">    avail=$(<span class="built_in">echo</span> <span class="variable">$line</span> | awk <span class="string">'&#123;print $4&#125;'</span>)</span><br><span class="line">    use_percent=$(<span class="built_in">echo</span> <span class="variable">$line</span> | awk <span class="string">'&#123;print $5&#125;'</span> | sed <span class="string">'s/%//'</span>)</span><br><span class="line">    mount=$(<span class="built_in">echo</span> <span class="variable">$line</span> | awk <span class="string">'&#123;print $6&#125;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断状态</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$use_percent</span>"</span> -ge <span class="string">"<span class="variable">$DISK_CRITICAL</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        status=<span class="string">"critical"</span></span><br><span class="line">        emoji=<span class="string">"❌"</span></span><br><span class="line">    <span class="keyword">elif</span> [ <span class="string">"<span class="variable">$use_percent</span>"</span> -ge <span class="string">"<span class="variable">$DISK_WARNING</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        status=<span class="string">"warning"</span></span><br><span class="line">        emoji=<span class="string">"⚠️"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        status=<span class="string">"ok"</span></span><br><span class="line">        emoji=<span class="string">"✅"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 输出Markdown表格行</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"| <span class="variable">$mount</span> | <span class="variable">$device</span> | <span class="variable">$size</span> | <span class="variable">$used</span> | <span class="variable">$avail</span> | <span class="variable">$&#123;use_percent&#125;</span>% | <span class="variable">$emoji</span> |"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 收集JSON数据</span></span><br><span class="line">    add_disk_data <span class="string">"<span class="variable">$mount</span>"</span> <span class="string">"device"</span> <span class="string">"<span class="variable">$device</span>"</span></span><br><span class="line">    add_disk_data <span class="string">"<span class="variable">$mount</span>"</span> <span class="string">"total_gb"</span> <span class="string">"<span class="variable">$size</span>"</span></span><br><span class="line">    add_disk_data <span class="string">"<span class="variable">$mount</span>"</span> <span class="string">"used_gb"</span> <span class="string">"<span class="variable">$used</span>"</span></span><br><span class="line">    add_disk_data <span class="string">"<span class="variable">$mount</span>"</span> <span class="string">"available_gb"</span> <span class="string">"<span class="variable">$avail</span>"</span></span><br><span class="line">    add_disk_data <span class="string">"<span class="variable">$mount</span>"</span> <span class="string">"used_percent"</span> <span class="string">"<span class="variable">$use_percent</span>"</span></span><br><span class="line">    add_disk_data <span class="string">"<span class="variable">$mount</span>"</span> <span class="string">"status"</span> <span class="string">"<span class="variable">$status</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出示例</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">### 磁盘空间</span></span><br><span class="line">| 挂载点 | 设备 | 容量 | 已用 | 可用 | 使用率 | 状态 |</span><br><span class="line">|--------|------|------|------|------|--------|------|</span><br><span class="line">| / | /dev/sda1 | 100G | 45G | 55G | 45.0% | ✅ 正常 |</span><br><span class="line">| /data | /dev/sdb1 | 500G | 425G | 75G | 85.0% | ⚠️ 警告 |</span><br><span class="line">| /boot | /dev/sda2 | 1G | 250M | 750M | 25.0% | ✅ 正常 |</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>自动过滤<code>tmpfs</code>、<code>overlay</code>等临时文件系统</li>
+<li>支持多个挂载点，每个挂载点独立判断状态</li>
+<li>使用整数比较（已去除百分号），提高性能</li>
+<li>同时生成Markdown表格和JSON数组数据</li>
+</ul>
+<h4 id="3-1-4-网络连接统计"><a href="#3-1-4-网络连接统计" class="headerlink" title="3.1.4 网络连接统计"></a>3.1.4 网络连接统计</h4><p><strong>检查目的</strong>：了解当前网络连接数量，快速发现异常连接</p>
+<p><strong>实现逻辑</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用ss命令替代netstat（更现代）</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v ss &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 总连接数</span></span><br><span class="line">    total_connections=$(ss -tn | wc -l)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 外部连接数（排除本地回环）</span></span><br><span class="line">    external_connections=$(ss -tn | awk <span class="string">'&#123;print $5&#125;'</span> | \</span><br><span class="line">        grep -v <span class="string">'127.0.0.1'</span> | \</span><br><span class="line">        grep -v <span class="string">'::1'</span> | \</span><br><span class="line">        cut -d<span class="string">':'</span> -f1 | \</span><br><span class="line">        sort -u | \</span><br><span class="line">        wc -l)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 监听端口数</span></span><br><span class="line">    listening_ports=$(ss -tln | wc -l)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 降级到netstat</span></span><br><span class="line">    total_connections=$(netstat -tn 2&gt;/dev/null | wc -l)</span><br><span class="line">    external_connections=$(netstat -tn 2&gt;/dev/null | awk <span class="string">'&#123;print $5&#125;'</span> | \</span><br><span class="line">        grep -v <span class="string">'127.0.0.1'</span> | \</span><br><span class="line">        grep -v <span class="string">'::1'</span> | \</span><br><span class="line">        cut -d<span class="string">':'</span> -f1 | \</span><br><span class="line">        sort -u | \</span><br><span class="line">        wc -l)</span><br><span class="line">    listening_ports=$(netstat -tln 2&gt;/dev/null | wc -l)</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">add_system_data <span class="string">"network_total_connections"</span> <span class="string">"<span class="variable">$total_connections</span>"</span></span><br><span class="line">add_system_data <span class="string">"network_external_connections"</span> <span class="string">"<span class="variable">$external_connections</span>"</span></span><br><span class="line">add_system_data <span class="string">"network_listening_ports"</span> <span class="string">"<span class="variable">$listening_ports</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>优先使用<code>ss</code>命令（现代Linux推荐），降级到<code>netstat</code></li>
+<li>统计外部独立IP连接数，而非连接总数（更准确反映异常）</li>
+<li>包含监听端口数量，便于发现未授权监听</li>
+</ul>
+<h4 id="3-1-5-systemd服务状态检查"><a href="#3-1-5-systemd服务状态检查" class="headerlink" title="3.1.5 systemd服务状态检查"></a>3.1.5 systemd服务状态检查</h4><p><strong>检查目的</strong>：检查系统服务运行状态，发现失败服务</p>
+<p><strong>实现逻辑</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查systemd是否可用</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v systemctl &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 统计服务状态</span></span><br><span class="line">    running_services=$(systemctl list-units --<span class="built_in">type</span>=service --state=running 2&gt;/dev/null | \</span><br><span class="line">        grep <span class="string">'loaded loaded'</span> | wc -l)</span><br><span class="line"></span><br><span class="line">    failed_services=$(systemctl list-units --<span class="built_in">type</span>=service --state=failed 2&gt;/dev/null | \</span><br><span class="line">        grep <span class="string">'loaded loaded'</span> | wc -l)</span><br><span class="line"></span><br><span class="line">    enabled_services=$(systemctl list-unit-files --<span class="built_in">type</span>=service --state=enabled 2&gt;/dev/null | \</span><br><span class="line">        grep <span class="string">'enabled'</span> | wc -l)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取失败服务列表</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$failed_services</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">        failed_list=$(systemctl list-units --<span class="built_in">type</span>=service --state=failed 2&gt;/dev/null | \</span><br><span class="line">            grep <span class="string">'loaded loaded'</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"### 失败的服务"</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$failed_list</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r service; <span class="keyword">do</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"- ❌ <span class="variable">$service</span>"</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 常用关键服务检查</span></span><br><span class="line">    critical_services=(<span class="string">"ssh"</span> <span class="string">"docker"</span> <span class="string">"cron"</span> <span class="string">"rsyslog"</span>)</span><br><span class="line">    <span class="keyword">for</span> svc <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;critical_services[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> systemctl is-active --quiet <span class="string">"<span class="variable">$&#123;svc&#125;</span>.service"</span> 2&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"- ✅ <span class="variable">$&#123;svc&#125;</span>.service: 运行中"</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"- ⚠️ <span class="variable">$&#123;svc&#125;</span>.service: 未运行或不存在"</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"⚠️ 系统不使用systemd"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出示例</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">### 服务状态</span></span><br><span class="line"><span class="bullet">- </span><span class="strong">**运行中**</span>: 23个</span><br><span class="line"><span class="bullet">- </span><span class="strong">**失败**</span>: 2个</span><br><span class="line"><span class="bullet">- </span><span class="strong">**启用**</span>: 15个</span><br><span class="line"></span><br><span class="line"><span class="section">#### 关键服务状态</span></span><br><span class="line"><span class="bullet">- </span>✅ ssh.service: 运行中</span><br><span class="line"><span class="bullet">- </span>✅ docker.service: 运行中</span><br><span class="line"><span class="bullet">- </span>✅ cron.service: 运行中</span><br><span class="line"><span class="bullet">- </span>❌ postfix.service: 已停止</span><br><span class="line"></span><br><span class="line"><span class="section">#### 失败的服务列表</span></span><br><span class="line"><span class="bullet">- </span>❌ postfix.service</span><br><span class="line"><span class="bullet">- </span>❌ ufw.service</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>兼容非systemd系统（如SysV init）</li>
+<li>区分”运行中”、”失败”、”启用”三种状态</li>
+<li>单独检查关键服务（SSH、Docker等），便于快速定位问题</li>
+<li>列出所有失败服务，方便管理员进一步排查</li>
+</ul>
+<h4 id="3-1-6-基础安全检查"><a href="#3-1-6-基础安全检查" class="headerlink" title="3.1.6 基础安全检查"></a>3.1.6 基础安全检查</h4><p>虽然主要的安全检查在security-check.sh中，但基础健康检查也包含几个关键的安全指标：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 基础安全"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 检查挖矿进程</span></span><br><span class="line">MINING_PROCESSES=(<span class="string">"xmrig"</span> <span class="string">"minerd"</span> <span class="string">"cpuminer"</span> <span class="string">"ccminer"</span> <span class="string">"Claymore"</span>)</span><br><span class="line">mining_found=0</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> proc <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;MINING_PROCESSES[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> pgrep -x <span class="string">"<span class="variable">$proc</span>"</span> &gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"- ❌ 发现挖矿进程: <span class="variable">$proc</span>"</span></span><br><span class="line">        mining_found=1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$mining_found</span> -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- ✅ 未发现挖矿进程"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 检查/tmp和/dev/shm中的可执行文件</span></span><br><span class="line">tmp_execs=$(find /tmp /dev/shm -<span class="built_in">type</span> f -executable 2&gt;/dev/null | wc -l)</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$tmp_execs</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- ⚠️ 临时目录中发现 <span class="variable">$tmp_execs</span> 个可执行文件"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- ✅ 临时目录无可执行文件"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 检查失败登录次数（最近）</span></span><br><span class="line"><span class="keyword">if</span> [ -f /var/<span class="built_in">log</span>/auth.log ]; <span class="keyword">then</span></span><br><span class="line">    failed_logins=$(grep <span class="string">"Failed password"</span> /var/<span class="built_in">log</span>/auth.log 2&gt;/dev/null | \</span><br><span class="line">        tail -100 | wc -l)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 最近失败登录次数: <span class="variable">$failed_logins</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-深度安全检查模块（security-check-sh）"><a href="#3-2-深度安全检查模块（security-check-sh）" class="headerlink" title="3.2 深度安全检查模块（security-check.sh）"></a>3.2 深度安全检查模块（security-check.sh）</h3><p>这是最复杂的模块，涵盖了5大类、20+项安全检查，用于全面的安全审计。</p>
+<h4 id="3-2-1-异常进程检测"><a href="#3-2-1-异常进程检测" class="headerlink" title="3.2.1 异常进程检测"></a>3.2.1 异常进程检测</h4><p><strong>检查目的</strong>：发现挖矿程序、高资源占用进程、可疑可执行文件</p>
+<p><strong>1. 挖矿进程检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义已知挖矿程序名称列表</span></span><br><span class="line">MINING_PROCESSES=(</span><br><span class="line">    <span class="string">"xmrig"</span> <span class="string">"minerd"</span> <span class="string">"cpuminer"</span> <span class="string">"ccminer"</span> <span class="string">"Claymore"</span></span><br><span class="line">    <span class="string">"cryptonight"</span> <span class="string">"ethminer"</span> <span class="string">"nbminer"</span> <span class="string">"bminer"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">suspicious_procs=<span class="string">""</span></span><br><span class="line">mining_detected=<span class="string">"false"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历检查</span></span><br><span class="line"><span class="keyword">for</span> proc <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;MINING_PROCESSES[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 使用pgrep查找进程（比ps aux更快）</span></span><br><span class="line">    found=$(pgrep -ix <span class="string">"<span class="variable">$proc</span>"</span> 2&gt;/dev/null)</span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$found</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="comment"># 获取进程详细信息</span></span><br><span class="line">        proc_info=$(ps -p <span class="string">"<span class="variable">$found</span>"</span> -o pid,user,cmd --no-headers 2&gt;/dev/null)</span><br><span class="line">        suspicious_procs=<span class="string">"<span class="variable">$suspicious_procs</span>\n<span class="variable">$proc_info</span>"</span></span><br><span class="line">        mining_detected=<span class="string">"true"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 记录到安全数据</span></span><br><span class="line">        add_security_data <span class="string">"mining_process"</span> <span class="string">"<span class="variable">$proc</span>"</span></span><br><span class="line">        add_security_data <span class="string">"mining_pid"</span> <span class="string">"<span class="variable">$found</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$mining_detected</span>"</span> = <span class="string">"true"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"❌ 发现挖矿进程："</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"<span class="variable">$suspicious_procs</span>"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"✅ 未发现挖矿进程"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 高资源占用进程检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 高资源占用进程（Top 10）"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"| PID | 用户 | CPU% | 内存% | 命令 |"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"|-----|------|------|--------|------|"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># CPU占用最高的进程</span></span><br><span class="line">ps aux --sort=-%cpu | head -n 11 | tail -n 10 | <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">    pid=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">    user=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">    cpu=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">    mem=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $4&#125;'</span>)</span><br><span class="line">    cmd=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;for(i=11;i&lt;=NF;i++)printf $i" "&#125;'</span> | cut -c1-50)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 标记异常高占用</span></span><br><span class="line">    <span class="keyword">if</span> (( $(<span class="built_in">echo</span> <span class="string">"<span class="variable">$cpu</span> &gt; 80"</span> | bc -l) )); <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"| <span class="variable">$pid</span> | <span class="variable">$user</span> | **<span class="variable">$cpu</span>** | <span class="variable">$mem</span> | <span class="variable">$cmd</span> |"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"| <span class="variable">$pid</span> | <span class="variable">$user</span> | <span class="variable">$cpu</span> | <span class="variable">$mem</span> | <span class="variable">$cmd</span> |"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 临时目录可执行文件检查</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查/tmp和/dev/shm中的可执行文件</span></span><br><span class="line">tmp_dirs=(<span class="string">"/tmp"</span> <span class="string">"/dev/shm"</span> <span class="string">"/var/tmp"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;tmp_dirs[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">"<span class="variable">$dir</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        exec_files=$(find <span class="string">"<span class="variable">$dir</span>"</span> -<span class="built_in">type</span> f -executable 2&gt;/dev/null)</span><br><span class="line">        exec_count=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$exec_files</span>"</span> | grep -v <span class="string">'^$'</span> | wc -l)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$exec_count</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"⚠️ <span class="variable">$dir</span> 中发现 <span class="variable">$exec_count</span> 个可执行文件："</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"<span class="variable">$exec_files</span>"</span> | head -n 10 | <span class="keyword">while</span> <span class="built_in">read</span> -r file; <span class="keyword">do</span></span><br><span class="line">                perms=$(<span class="built_in">stat</span> -c <span class="string">"%a"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">                size=$(<span class="built_in">stat</span> -c <span class="string">"%s"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">                mtime=$(<span class="built_in">stat</span> -c <span class="string">"%y"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null | cut -d<span class="string">'.'</span> -f1)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$file</span> (权限:<span class="variable">$perms</span>, 大小:<span class="variable">$size</span>字节, 修改:<span class="variable">$mtime</span>)"</span></span><br><span class="line">            <span class="keyword">done</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>使用<code>pgrep</code>而非<code>ps aux | grep</code>，性能更高且避免误匹配</li>
+<li>记录进程的PID、用户、完整命令行，便于追踪</li>
+<li>同时检查/tmp、/dev/shm、/var/tmp三个常见临时目录</li>
+<li>显示文件的权限、大小、修改时间，帮助判断是否可疑</li>
+</ul>
+<h4 id="3-2-2-网络安全检查"><a href="#3-2-2-网络安全检查" class="headerlink" title="3.2.2 网络安全检查"></a>3.2.2 网络安全检查</h4><p><strong>检查目的</strong>：发现反向shell、可疑端口监听、异常外部连接</p>
+<p><strong>1. 反向shell检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 反向shell典型特征：外部IP连接本地高端口（非标准服务端口）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"### 反向shell检测"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取所有TCP连接</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v ss &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    connections=$(ss -tnp 2&gt;/dev/null)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    connections=$(netstat -tnp 2&gt;/dev/null)</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测可疑模式：外部IP连接到本地50000-65535端口</span></span><br><span class="line">reverse_shell_detected=<span class="string">"false"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$connections</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 解析本地地址和远程地址</span></span><br><span class="line">    local_addr=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $4&#125;'</span>)</span><br><span class="line">    remote_addr=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $5&#125;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提取端口号</span></span><br><span class="line">    local_port=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$local_addr</span>"</span> | cut -d<span class="string">':'</span> -f2 | cut -d<span class="string">':'</span> -f1)</span><br><span class="line">    remote_ip=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$remote_addr</span>"</span> | cut -d<span class="string">':'</span> -f1)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 排除本地回环和标准端口</span></span><br><span class="line">    <span class="keyword">if</span> [[ ! <span class="string">"<span class="variable">$remote_ip</span>"</span> =~ ^(127\.|::1) ]]; <span class="keyword">then</span></span><br><span class="line">        <span class="comment"># 检查本地端口是否为高端口（非标准服务）</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$local_port</span>"</span> -ge 50000 ] 2&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">            <span class="comment"># 排除部分合法的高端口号</span></span><br><span class="line">            <span class="keyword">if</span> [[ ! <span class="string">"<span class="variable">$local_port</span>"</span> =~ ^(50000|50001|50002) ]]; <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">"⚠️ 可疑连接：远程 <span class="variable">$remote_addr</span> -&gt; 本地端口 <span class="variable">$local_port</span>"</span></span><br><span class="line">                reverse_shell_detected=<span class="string">"true"</span></span><br><span class="line">            <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$reverse_shell_detected</span>"</span> = <span class="string">"false"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"✅ 未发现反向shell特征"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 监听端口分析</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 监听端口分析"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取所有监听端口</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v ss &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    listening=$(ss -tulpn 2&gt;/dev/null)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    listening=$(netstat -tulpn 2&gt;/dev/null)</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"| 端口 | 协议 | 进程 | 用户 |"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"|------|------|------|------|"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$listening</span>"</span> | grep LISTEN | <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">    port=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $5&#125;'</span> | rev | cut -d<span class="string">':'</span> -f1 | rev)</span><br><span class="line">    protocol=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">    process=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $7&#125;'</span> | cut -d<span class="string">'/'</span> -f2 | cut -d<span class="string">','</span> -f1)</span><br><span class="line">    user=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $7&#125;'</span> | cut -d<span class="string">'"'</span> -f2)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 标记非标准高端口</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$port</span>"</span> -ge 10000 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"| **<span class="variable">$port</span>** | <span class="variable">$protocol</span> | <span class="variable">$process</span> | <span class="variable">$user</span> |"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"| <span class="variable">$port</span> | <span class="variable">$protocol</span> | <span class="variable">$process</span> | <span class="variable">$user</span> |"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 外部连接统计</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计外部连接的独立IP数量</span></span><br><span class="line">external_ips=$(ss -tn 2&gt;/dev/null | \</span><br><span class="line">    awk <span class="string">'&#123;print $5&#125;'</span> | \</span><br><span class="line">    cut -d<span class="string">':'</span> -f1 | \</span><br><span class="line">    grep -vE <span class="string">'^(127\.|::1|0\.0\.0\.0)'</span> | \</span><br><span class="line">    sort -u | \</span><br><span class="line">    wc -l)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"### 外部连接统计"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 外部连接的独立IP数：<span class="variable">$external_ips</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出Top 10外部IP</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 连接最多的外部IP："</span></span><br><span class="line">ss -tn 2&gt;/dev/null | \</span><br><span class="line">    awk <span class="string">'&#123;print $5&#125;'</span> | \</span><br><span class="line">    cut -d<span class="string">':'</span> -f1 | \</span><br><span class="line">    grep -vE <span class="string">'^(127\.|::1|0\.0\.0\.0)'</span> | \</span><br><span class="line">    sort | uniq -c | sort -rn | head -n 10 | \</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">        count=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">        ip=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$ip</span>: <span class="variable">$count</span> 次连接"</span></span><br><span class="line">    <span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>反向shell检测基于行为特征：外部IP连接本地高端口</li>
+<li>排除已知的合法高端口（如某些应用服务）</li>
+<li>统计外部连接IP数量和连接频率，异常高值需要关注</li>
+<li>显示监听端口对应的进程和用户，便于排查</li>
+</ul>
+<h4 id="3-2-3-文件系统安全检查"><a href="#3-2-3-文件系统安全检查" class="headerlink" title="3.2.3 文件系统安全检查"></a>3.2.3 文件系统安全检查</h4><p><strong>检查目的</strong>：发现最近修改的敏感文件、勒索病毒特征、SUID/SGID文件</p>
+<p><strong>1. 关键目录变更检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 关键目录最近变更（7天内）"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义需要监控的关键目录</span></span><br><span class="line">critical_dirs=(<span class="string">"/etc"</span> <span class="string">"/home"</span> <span class="string">"/root"</span> <span class="string">"/var/www"</span> <span class="string">"/opt"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;critical_dirs[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">"<span class="variable">$dir</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="comment"># 查找7天内修改的文件</span></span><br><span class="line">        recent_files=$(find <span class="string">"<span class="variable">$dir</span>"</span> -<span class="built_in">type</span> f -mtime -7 2&gt;/dev/null)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$recent_files</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">            file_count=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$recent_files</span>"</span> | grep -v <span class="string">'^$'</span> | wc -l)</span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"⚠️ <span class="variable">$dir</span>: <span class="variable">$file_count</span> 个文件在最近7天被修改"</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 显示部分关键文件</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"<span class="variable">$recent_files</span>"</span> | head -n 5 | <span class="keyword">while</span> <span class="built_in">read</span> -r file; <span class="keyword">do</span></span><br><span class="line">                perms=$(<span class="built_in">stat</span> -c <span class="string">"%a"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$file</span> (权限:<span class="variable">$perms</span>)"</span></span><br><span class="line">            <span class="keyword">done</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 勒索病毒特征检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 勒索病毒特征检测"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义勒索病毒常用的文件扩展名</span></span><br><span class="line">ransomware_patterns=(</span><br><span class="line">    <span class="string">"*.encrypted"</span></span><br><span class="line">    <span class="string">"*.locked"</span></span><br><span class="line">    <span class="string">"*.crypto"</span></span><br><span class="line">    <span class="string">"*.crypt"</span></span><br><span class="line">    <span class="string">"*.crypted"</span></span><br><span class="line">    <span class="string">"*_README.txt"</span></span><br><span class="line">    <span class="string">"*_DECRYPT.txt"</span></span><br><span class="line">    <span class="string">"*_HELP.txt"</span></span><br><span class="line">    <span class="string">"*_RESTORE.txt"</span></span><br><span class="line">    <span class="string">"how_to_decrypt.*"</span></span><br><span class="line">    <span class="string">"recover_files.*"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ransomware_found=<span class="string">"false"</span></span><br><span class="line"><span class="keyword">for</span> pattern <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;ransomware_patterns[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 在用户目录中查找</span></span><br><span class="line">    found_files=$(find /home /root -name <span class="string">"<span class="variable">$pattern</span>"</span> 2&gt;/dev/null)</span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$found_files</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"❌ 发现勒索病毒特征文件："</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$found_files</span>"</span> | head -n 10</span><br><span class="line">        ransomware_found=<span class="string">"true"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$ransomware_found</span>"</span> = <span class="string">"false"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"✅ 未发现勒索病毒特征"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. SUID/SGID文件检查</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### SUID/SGID文件检查"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找所有SUID文件</span></span><br><span class="line">suid_files=$(find / -<span class="built_in">type</span> f -perm -4000 2&gt;/dev/null | \</span><br><span class="line">    grep -v -E <span class="string">'^/proc|^/sys|^/dev'</span> | \</span><br><span class="line">    head -n 30)</span><br><span class="line"></span><br><span class="line">suid_count=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$suid_files</span>"</span> | grep -v <span class="string">'^$'</span> | wc -l)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$suid_count</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"发现 <span class="variable">$suid_count</span> 个SUID文件（部分列表）："</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$suid_files</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r file; <span class="keyword">do</span></span><br><span class="line">        perms=$(<span class="built_in">stat</span> -c <span class="string">"%a"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">        owner=$(<span class="built_in">stat</span> -c <span class="string">"%U"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$file</span> (权限:<span class="variable">$perms</span>, 所有者:<span class="variable">$owner</span>)"</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找所有SGID文件</span></span><br><span class="line">sgid_files=$(find / -<span class="built_in">type</span> f -perm -2000 2&gt;/dev/null | \</span><br><span class="line">    grep -v -E <span class="string">'^/proc|^/sys|^/dev'</span> | \</span><br><span class="line">    head -n 20)</span><br><span class="line"></span><br><span class="line">sgid_count=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$sgid_files</span>"</span> | grep -v <span class="string">'^$'</span> | wc -l)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$sgid_count</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"发现 <span class="variable">$sgid_count</span> 个SGID文件（部分列表）："</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$sgid_files</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r file; <span class="keyword">do</span></span><br><span class="line">        perms=$(<span class="built_in">stat</span> -c <span class="string">"%a"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">        owner=$(<span class="built_in">stat</span> -c <span class="string">"%U"</span> <span class="string">"<span class="variable">$file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$file</span> (权限:<span class="variable">$perms</span>, 所有者:<span class="variable">$owner</span>)"</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>重点监控/etc、/home、/root等敏感目录</li>
+<li>勒索病毒检测基于文件扩展名特征（实际环境中建议结合文件内容分析）</li>
+<li>SUID/SGID文件是提权漏洞的常见切入点，需要重点关注</li>
+<li>限制输出数量，避免报告过长</li>
+</ul>
+<h4 id="3-2-4-账户和登录安全检查"><a href="#3-2-4-账户和登录安全检查" class="headerlink" title="3.2.4 账户和登录安全检查"></a>3.2.4 账户和登录安全检查</h4><p><strong>检查目的</strong>：检测异常登录、新增用户、sudo使用情况</p>
+<p><strong>1. 最近登录记录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 最近登录记录（最近10次）"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用last命令获取登录记录</span></span><br><span class="line">recent_logins=$(last -n 10 -a 2&gt;/dev/null | head -n -2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$recent_logins</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"| 用户 | 终端 | 来源IP | 登录时间 |"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"|------|------|--------|----------|"</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$recent_logins</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">        user=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">        terminal=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">        <span class="comment"># IP在最后，主机名倒数第二</span></span><br><span class="line">        ip=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $(NF-1)&#125;'</span> | sed <span class="string">'s/(//g'</span>)</span><br><span class="line">        <span class="comment"># 时间范围在中间部分</span></span><br><span class="line">        time_range=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;for(i=3;i&lt;=NF-2;i++)printf $i" "&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"| <span class="variable">$user</span> | <span class="variable">$terminal</span> | <span class="variable">$ip</span> | <span class="variable">$time_range</span> |"</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 失败登录统计</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 失败登录统计"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计最近失败的登录次数</span></span><br><span class="line"><span class="keyword">if</span> [ -f /var/<span class="built_in">log</span>/auth.log ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># Debian/Ubuntu系统</span></span><br><span class="line">    failed_count=$(grep <span class="string">"Failed password"</span> /var/<span class="built_in">log</span>/auth.log 2&gt;/dev/null | \</span><br><span class="line">        tail -1000 | wc -l)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 最近失败登录次数（最近1000条日志）：<span class="variable">$failed_count</span>"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 统计失败登录来源IP</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 失败登录最多的IP："</span></span><br><span class="line">    grep <span class="string">"Failed password"</span> /var/<span class="built_in">log</span>/auth.log 2&gt;/dev/null | \</span><br><span class="line">        awk <span class="string">'&#123;print $13&#125;'</span> | \</span><br><span class="line">        sort | uniq -c | sort -rn | head -n 5 | \</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">            count=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">            ip=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $2&#125;'</span>)</span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$ip</span>: <span class="variable">$count</span> 次"</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span> [ -f /var/<span class="built_in">log</span>/secure ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># CentOS/RHEL系统</span></span><br><span class="line">    failed_count=$(grep <span class="string">"Failed password"</span> /var/<span class="built_in">log</span>/secure 2&gt;/dev/null | \</span><br><span class="line">        tail -1000 | wc -l)</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 最近失败登录次数（最近1000条日志）：<span class="variable">$failed_count</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 新增用户检测</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 新增用户检测（最近30天）"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查shadow文件中最近修改的用户</span></span><br><span class="line"><span class="keyword">if</span> [ -f /etc/shadow ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 第4字段是最后修改时间（天数，从1970-01-01起）</span></span><br><span class="line">    thirty_days_ago=$(($(date +%s) / 86400 - 30))</span><br><span class="line"></span><br><span class="line">    new_users=$(awk -F: -v date=<span class="string">"<span class="variable">$thirty_days_ago</span>"</span> \</span><br><span class="line">        <span class="string">'$4 &gt;= date &#123;print $1&#125;'</span> /etc/shadow 2&gt;/dev/null)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$new_users</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"⚠️ 发现最近30天新增的用户："</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$new_users</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r user; <span class="keyword">do</span></span><br><span class="line">            <span class="comment"># 获取用户详细信息</span></span><br><span class="line">            user_info=$(grep <span class="string">"^<span class="variable">$user</span>:"</span> /etc/passwd)</span><br><span class="line">            uid=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$user_info</span>"</span> | cut -d<span class="string">':'</span> -f3)</span><br><span class="line">            home=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$user_info</span>"</span> | cut -d<span class="string">':'</span> -f6)</span><br><span class="line">            shell=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$user_info</span>"</span> | cut -d<span class="string">':'</span> -f7)</span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$user</span> (UID:<span class="variable">$uid</span>, HOME:<span class="variable">$home</span>, SHELL:<span class="variable">$shell</span>)"</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"✅ 未发现最近30天的新增用户"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>4. Sudo使用审计</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### Sudo使用审计（最近20条）"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查sudo日志</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v journalctl &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 使用journalctl读取sudo日志</span></span><br><span class="line">    sudo_logs=$(journalctl -u sudo 2&gt;/dev/null | tail -n 20)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$sudo_logs</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$sudo_logs</span>"</span> | <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">            <span class="comment"># 提取关键信息：时间、用户、命令</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"  - <span class="variable">$line</span>"</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">elif</span> [ -f /var/<span class="built_in">log</span>/auth.log ]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 从auth.log中提取sudo记录</span></span><br><span class="line">    sudo_logs=$(grep sudo /var/<span class="built_in">log</span>/auth.log 2&gt;/dev/null | tail -n 20)</span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$sudo_logs</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$sudo_logs</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>兼容不同Linux发行版的日志文件路径</li>
+<li>统计失败登录次数和来源IP，高值可能意味着暴力破解</li>
+<li>检测新增用户，特别是UID为0（root权限）的用户</li>
+<li>审计sudo使用情况，发现权限滥用</li>
+</ul>
+<h4 id="3-2-5-系统完整性检查"><a href="#3-2-5-系统完整性检查" class="headerlink" title="3.2.5 系统完整性检查"></a>3.2.5 系统完整性检查</h4><p><strong>检查目的</strong>：检查关键文件权限、系统二进制文件完整性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"### 系统完整性检查"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义关键文件列表</span></span><br><span class="line">critical_files=(</span><br><span class="line">    <span class="string">"/etc/passwd"</span></span><br><span class="line">    <span class="string">"/etc/shadow"</span></span><br><span class="line">    <span class="string">"/etc/sudoers"</span></span><br><span class="line">    <span class="string">"/etc/ssh/sshd_config"</span></span><br><span class="line">    <span class="string">"/etc/ssh/ssh_host_*_key"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"| 文件 | 权限 | 所有者 | 组 | 状态 |"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"|------|------|--------|-----|------|"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;critical_files[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># 使用通配符展开</span></span><br><span class="line">    <span class="keyword">for</span> expanded_file <span class="keyword">in</span> <span class="variable">$file</span>; <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> [ -e <span class="string">"<span class="variable">$expanded_file</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">            perms=$(<span class="built_in">stat</span> -c <span class="string">"%a"</span> <span class="string">"<span class="variable">$expanded_file</span>"</span> 2&gt;/dev/null || <span class="built_in">stat</span> -f <span class="string">"%OLp"</span> <span class="string">"<span class="variable">$expanded_file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">            owner=$(<span class="built_in">stat</span> -c <span class="string">"%U"</span> <span class="string">"<span class="variable">$expanded_file</span>"</span> 2&gt;/dev/null || <span class="built_in">stat</span> -f <span class="string">"%Su"</span> <span class="string">"<span class="variable">$expanded_file</span>"</span> 2&gt;/dev/null)</span><br><span class="line">            group=$(<span class="built_in">stat</span> -c <span class="string">"%G"</span> <span class="string">"<span class="variable">$expanded_file</span>"</span> 2&gt;/dev/null || <span class="built_in">stat</span> -f <span class="string">"%Sg"</span> <span class="string">"<span class="variable">$expanded_file</span>"</span> 2&gt;/dev/null)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 检查权限是否合适（简化判断）</span></span><br><span class="line">            status=<span class="string">"✅"</span></span><br><span class="line">            <span class="keyword">case</span> <span class="string">"<span class="variable">$(basename "$expanded_file")</span>"</span> <span class="keyword">in</span></span><br><span class="line">                shadow)</span><br><span class="line">                    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$perms</span>"</span> != <span class="string">"000"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$perms</span>"</span> != <span class="string">"640"</span> ]; <span class="keyword">then</span></span><br><span class="line">                        status=<span class="string">"⚠️"</span></span><br><span class="line">                    <span class="keyword">fi</span></span><br><span class="line">                    ;;</span><br><span class="line">                sudoers)</span><br><span class="line">                    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$perms</span>"</span> != <span class="string">"440"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$perms</span>"</span> != <span class="string">"400"</span> ]; <span class="keyword">then</span></span><br><span class="line">                        status=<span class="string">"⚠️"</span></span><br><span class="line">                    <span class="keyword">fi</span></span><br><span class="line">                    ;;</span><br><span class="line">            <span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"| <span class="variable">$expanded_file</span> | <span class="variable">$perms</span> | <span class="variable">$owner</span> | <span class="variable">$group</span> | <span class="variable">$status</span> |"</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>重点检查/etc/passwd、/etc/shadow等认证相关文件</li>
+<li>/etc/shadow应该是000或640权限</li>
+<li>/etc/sudoers应该是440或400权限</li>
+<li>SSH私钥文件应该是600或400权限</li>
+</ul>
+<h3 id="3-3-Docker容器监控模块（docker-check-sh）"><a href="#3-3-Docker容器监控模块（docker-check-sh）" class="headerlink" title="3.3 Docker容器监控模块（docker-check.sh）"></a>3.3 Docker容器监控模块（docker-check.sh）</h3><p>专注于Docker环境的健康检查和资源监控。</p>
+<h4 id="3-3-1-Docker服务状态检查"><a href="#3-3-1-Docker服务状态检查" class="headerlink" title="3.3.1 Docker服务状态检查"></a>3.3.1 Docker服务状态检查</h4><p><strong>检查目的</strong>：确认Docker服务运行正常，获取版本信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"## 🐳 Docker服务状态"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查Docker服务是否运行</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v docker &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    docker_status=$(systemctl is-active docker 2&gt;/dev/null)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$docker_status</span>"</span> = <span class="string">"active"</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Docker服务: ✅ 运行中"</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取Docker版本</span></span><br><span class="line">        docker_version=$(docker --version 2&gt;/dev/null | awk <span class="string">'&#123;print $3&#125;'</span> | sed <span class="string">'s/,//'</span>)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Docker版本: <span class="variable">$docker_version</span>"</span></span><br><span class="line"></span><br><span class="line">        add_docker_data <span class="string">"service_status"</span> <span class="string">"running"</span></span><br><span class="line">        add_docker_data <span class="string">"version"</span> <span class="string">"<span class="variable">$docker_version</span>"</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Docker服务: ⚠️ 未运行 (状态: <span class="variable">$docker_status</span>)"</span></span><br><span class="line">        add_docker_data <span class="string">"service_status"</span> <span class="string">"<span class="variable">$docker_status</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"Docker: ❌ 未安装"</span></span><br><span class="line">    add_docker_data <span class="string">"service_status"</span> <span class="string">"not_installed"</span></span><br><span class="line">    <span class="built_in">return</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-2-容器统计与状态"><a href="#3-3-2-容器统计与状态" class="headerlink" title="3.3.2 容器统计与状态"></a>3.3.2 容器统计与状态</h4><p><strong>检查目的</strong>：了解容器总数、运行状态、停止状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"## 📦 容器状态概览"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计容器数量</span></span><br><span class="line">total_containers=$(docker ps -a -q 2&gt;/dev/null | wc -l)</span><br><span class="line">running_containers=$(docker ps -q 2&gt;/dev/null | wc -l)</span><br><span class="line">paused_containers=$(docker ps -q -f status=paused 2&gt;/dev/null | wc -l)</span><br><span class="line">stopped_containers=$((total_containers - running_containers - paused_containers))</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 总容器数: <span class="variable">$total_containers</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 运行中: <span class="variable">$running_containers</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 已暂停: <span class="variable">$paused_containers</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 已停止: <span class="variable">$stopped_containers</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断整体状态</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$stopped_containers</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 状态: ⚠️ 有 <span class="variable">$stopped_containers</span> 个容器已停止"</span></span><br><span class="line">    overall_status=<span class="string">"warning"</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">"<span class="variable">$running_containers</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 状态: ✅ 正常"</span></span><br><span class="line">    overall_status=<span class="string">"ok"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"- 状态: ⚠️ 无运行中的容器"</span></span><br><span class="line">    overall_status=<span class="string">"warning"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 记录到JSON</span></span><br><span class="line">add_docker_data <span class="string">"containers_total"</span> <span class="string">"<span class="variable">$total_containers</span>"</span></span><br><span class="line">add_docker_data <span class="string">"containers_running"</span> <span class="string">"<span class="variable">$running_containers</span>"</span></span><br><span class="line">add_docker_data <span class="string">"containers_paused"</span> <span class="string">"<span class="variable">$paused_containers</span>"</span></span><br><span class="line">add_docker_data <span class="string">"containers_stopped"</span> <span class="string">"<span class="variable">$stopped_containers</span>"</span></span><br><span class="line">add_docker_data <span class="string">"overall_status"</span> <span class="string">"<span class="variable">$overall_status</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出停止的容器</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$stopped_containers</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">""</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"### 停止的容器："</span></span><br><span class="line">    docker ps -a -f status=exited --format <span class="string">"table &#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Status&#125;&#125;\t&#123;&#123;.CreatedAt&#125;&#125;"</span> 2&gt;/dev/null</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出示例</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 📦 容器状态概览</span></span><br><span class="line"><span class="bullet">- </span>总容器数: 25</span><br><span class="line"><span class="bullet">- </span>运行中: 23</span><br><span class="line"><span class="bullet">- </span>已暂停: 0</span><br><span class="line"><span class="bullet">- </span>已停止: 2</span><br><span class="line"><span class="bullet">- </span>状态: ⚠️ 有 2 个容器已停止</span><br><span class="line"></span><br><span class="line"><span class="section">### 停止的容器：</span></span><br><span class="line">NAMES           STATUS                    CREATEDAT</span><br><span class="line">old-postgres    Exited (0) 2 days ago     2026-01-16 10:30:00</span><br><span class="line">test-mysql      Exited (1) 5 days ago     2026-01-13 14:20:00</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-3-容器资源使用分析"><a href="#3-3-3-容器资源使用分析" class="headerlink" title="3.3.3 容器资源使用分析"></a>3.3.3 容器资源使用分析</h4><p><strong>检查目的</strong>：发现资源占用异常的容器，进行容量规划</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"## 📊 容器资源使用（Top 10）"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"| 容器名 | 状态 | CPU% | 内存使用 | 内存% | 网络接收 | 网络发送 |"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"|--------|------|------|----------|--------|----------|----------|"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器实时资源使用（--no-stream避免持续输出）</span></span><br><span class="line">docker stats --no-stream --format <span class="string">"table &#123;&#123;.Name&#125;&#125;\t&#123;&#123;.CPUPerc&#125;&#125;\t&#123;&#123;.MemUsage&#125;&#125;\t&#123;&#123;.MemPerc&#125;&#125;\t&#123;&#123;.NetIO&#125;&#125;"</span> 2&gt;/dev/null | \</span><br><span class="line">    tail -n +2 | \</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">        name=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $1&#125;'</span>)</span><br><span class="line">        cpu=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $2&#125;'</span> | sed <span class="string">'s/%//'</span>)</span><br><span class="line">        mem_usage=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">        mem_percent=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $4&#125;'</span> | sed <span class="string">'s/%//'</span>)</span><br><span class="line">        net_rx=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $5&#125;'</span>)</span><br><span class="line">        net_tx=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$line</span>"</span> | awk <span class="string">'&#123;print $6&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 判断容器状态</span></span><br><span class="line">        <span class="keyword">if</span> docker ps --format <span class="string">"&#123;&#123;.Names&#125;&#125;"</span> | grep -q <span class="string">"^<span class="variable">$&#123;name&#125;</span>$"</span>; <span class="keyword">then</span></span><br><span class="line">            status=<span class="string">"✅"</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            status=<span class="string">"❌"</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 标记高资源占用</span></span><br><span class="line">        <span class="keyword">if</span> (( $(<span class="built_in">echo</span> <span class="string">"<span class="variable">$cpu</span> &gt; 50"</span> | bc -l 2&gt;/dev/null || <span class="built_in">echo</span> <span class="string">"0"</span>) )); <span class="keyword">then</span></span><br><span class="line">            cpu=<span class="string">"**<span class="variable">$cpu</span>%**"</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cpu=<span class="string">"<span class="variable">$&#123;cpu&#125;</span>%"</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$mem_percent</span>"</span> -gt 80 ] 2&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">            mem_usage=<span class="string">"**<span class="variable">$mem_usage</span>**"</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"| <span class="variable">$name</span> | <span class="variable">$status</span> | <span class="variable">$cpu</span> | <span class="variable">$mem_usage</span> | <span class="variable">$&#123;mem_percent&#125;</span>% | <span class="variable">$net_rx</span> | <span class="variable">$net_tx</span> |"</span></span><br><span class="line">    <span class="keyword">done</span> | head -n 11  <span class="comment"># 限制Top 10</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>使用<code>--no-stream</code>参数获取当前瞬时数据，而非持续输出</li>
+<li>标记CPU&gt;50%和内存&gt;80%的容器，便于快速发现问题</li>
+<li>区分运行中和停止的容器</li>
+<li>限制输出数量，避免报告过长</li>
+</ul>
+<h4 id="3-3-4-镜像管理检查"><a href="#3-3-4-镜像管理检查" class="headerlink" title="3.3.4 镜像管理检查"></a>3.3.4 镜像管理检查</h4><p><strong>检查目的</strong>：发现悬空镜像，提供清理建议</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"## 🖼️ 镜像管理"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计镜像数量</span></span><br><span class="line">total_images=$(docker images -q 2&gt;/dev/null | wc -l)</span><br><span class="line">dangling_images=$(docker images -f <span class="string">"dangling=true"</span> -q 2&gt;/dev/null | wc -l)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 总镜像数: <span class="variable">$total_images</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"- 悬空镜像数: <span class="variable">$dangling_images</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出镜像占用空间</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$total_images</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">""</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"### 镜像占用空间（Top 10）："</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"| 镜像名 | 标签 | 大小 | 创建时间 |"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"|--------|------|------|----------|"</span></span><br><span class="line"></span><br><span class="line">    docker images --format <span class="string">"table &#123;&#123;.Repository&#125;&#125;\t&#123;&#123;.Tag&#125;&#125;\t&#123;&#123;.Size&#125;&#125;\t&#123;&#123;.CreatedAt&#125;&#125;"</span> 2&gt;/dev/null | \</span><br><span class="line">        tail -n +2 | \</span><br><span class="line">        head -n 10 | \</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"| <span class="variable">$line</span> |"</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理建议</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$dangling_images</span>"</span> -gt 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">""</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"### 清理建议"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"⚠️ 发现 <span class="variable">$dangling_images</span> 个悬空镜像，建议清理："</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"\`\`\`bash"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"docker image prune -f"</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"\`\`\`"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算可回收空间</span></span><br><span class="line">    dangling_size=$(docker images -f <span class="string">"dangling=true"</span> -q 2&gt;/dev/null | \</span><br><span class="line">        xargs docker inspect --format=<span class="string">'&#123;&#123;.Size&#125;&#125;'</span> 2&gt;/dev/null | \</span><br><span class="line">        awk <span class="string">'&#123;sum+=$1&#125; END &#123;printf "%.0f", sum/1024/1024&#125;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"预计可回收空间: <span class="variable">$&#123;dangling_size&#125;</span>MB"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-5-存储空间使用"><a href="#3-3-5-存储空间使用" class="headerlink" title="3.3.5 存储空间使用"></a>3.3.5 存储空间使用</h4><p><strong>检查目的</strong>：了解Docker整体存储占用，发现异常占用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"## 💾 存储空间使用"</span></span><br><span class="line"></span><br><span class="line">docker_info=$(docker system df 2&gt;/dev/null)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$docker_info</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$docker_info</span>"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解析存储使用数据</span></span><br><span class="line">    images_size=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$docker_info</span>"</span> | grep <span class="string">'Images'</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">    containers_size=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$docker_info</span>"</span> | grep <span class="string">'Containers'</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">    volumes_size=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$docker_info</span>"</span> | grep <span class="string">'Local Volumes'</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line">    build_cache_size=$(<span class="built_in">echo</span> <span class="string">"<span class="variable">$docker_info</span>"</span> | grep <span class="string">'Build Cache'</span> | awk <span class="string">'&#123;print $3&#125;'</span>)</span><br><span class="line"></span><br><span class="line">    add_docker_data <span class="string">"storage_images"</span> <span class="string">"<span class="variable">$images_size</span>"</span></span><br><span class="line">    add_docker_data <span class="string">"storage_containers"</span> <span class="string">"<span class="variable">$containers_size</span>"</span></span><br><span class="line">    add_docker_data <span class="string">"storage_volumes"</span> <span class="string">"<span class="variable">$volumes_size</span>"</span></span><br><span class="line">    add_docker_data <span class="string">"storage_build_cache"</span> <span class="string">"<span class="variable">$build_cache_size</span>"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断是否需要清理</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$build_cache_size</span>"</span> != <span class="string">"0B"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$build_cache_size</span>"</span> != <span class="string">""</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">""</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"### 清理建议"</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"⚠️ 构建缓存占用 <span class="variable">$&#123;build_cache_size&#125;</span>，建议清理："</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"\`\`\`bash"</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"docker builder prune -f"</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"\`\`\`"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"⚠️ 无法获取存储使用信息"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>输出示例</strong>：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 💾 存储空间使用</span></span><br><span class="line">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE</span><br><span class="line">Images          15        10        3.2GB     1.1GB (34%)</span><br><span class="line">Containers      25        23        1.8GB     256MB (14%)</span><br><span class="line">Local Volumes   8         6         2.5GB     512MB (20%)</span><br><span class="line">Build Cache     0         0         856MB     856MB</span><br><span class="line"></span><br><span class="line"><span class="section">### 清理建议</span></span><br><span class="line">⚠️ 构建缓存占用 856MB，建议清理：</span><br><span class="line"><span class="code">```bash</span></span><br><span class="line"><span class="code">docker builder prune -f</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 3.3.6 网络和卷统计</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;bash</span><br><span class="line">echo &quot;## 🔌 网络和卷&quot;</span><br><span class="line"></span><br><span class="line"># 统计网络</span><br><span class="line">total_networks&#x3D;$(docker network ls -q 2&gt;&#x2F;dev&#x2F;null | wc -l)</span><br><span class="line">echo &quot;- 网络总数: $total_networks&quot;</span><br><span class="line"></span><br><span class="line"># 列出网络</span><br><span class="line">if [ &quot;$total_networks&quot; -gt 0 ]; then</span><br><span class="line">    echo &quot;&quot;</span><br><span class="line">    echo &quot;### 网络列表：&quot;</span><br><span class="line">    docker network ls --format &quot;table &#123;&#123;.Name&#125;&#125;\t&#123;&#123;.Driver&#125;&#125;\t&#123;&#123;.Scope&#125;&#125;&quot; 2&gt;&#x2F;dev&#x2F;null</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># 统计卷</span><br><span class="line">total_volumes&#x3D;$(docker volume ls -q 2&gt;&#x2F;dev&#x2F;null | wc -l)</span><br><span class="line">echo &quot;&quot;</span><br><span class="line">echo &quot;- 卷总数: $total_volumes&quot;</span><br><span class="line"></span><br><span class="line"># 列出卷</span><br><span class="line">if [ &quot;$total_volumes&quot; -gt 0 ]; then</span><br><span class="line">    echo &quot;&quot;</span><br><span class="line">    echo &quot;### 卷列表：&quot;</span><br><span class="line">    docker volume ls --format &quot;table &#123;&#123;.Name&#125;&#125;\t&#123;&#123;.Driver&#125;&#125;\t&#123;&#123;.Scope&#125;&#125;&quot; 2&gt;&#x2F;dev&#x2F;null</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">add_docker_data &quot;networks_total&quot; &quot;$total_networks&quot;</span><br><span class="line">add_docker_data &quot;volumes_total&quot; &quot;$total_volumes&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>提供清晰的清理建议和命令</li>
+<li>统计并显示可回收空间，帮助决策是否清理</li>
+<li>列出网络和卷，便于了解整体架构</li>
+<li>所有数据同时记录到JSON，便于自动化分析</li>
+</ul>
+<h2 id="四、实际应用效果展示"><a href="#四、实际应用效果展示" class="headerlink" title="四、实际应用效果展示"></a>四、实际应用效果展示</h2><h3 id="4-1-基础健康检查报告"><a href="#4-1-基础健康检查报告" class="headerlink" title="4.1 基础健康检查报告"></a>4.1 基础健康检查报告</h3><h4 id="Markdown报告（人工阅读）"><a href="#Markdown报告（人工阅读）" class="headerlink" title="Markdown报告（人工阅读）"></a>Markdown报告（人工阅读）</h4><blockquote>
+<p>图：健康检查报告</p>
+</blockquote>
+<p><img src="http://image2.ishareread.com/images/2026/20260121/health-check-192.168.0.55-20260118-164043.png" alt="基础健康检查报告"></p>
+<h4 id="JSON报告（机器处理）"><a href="#JSON报告（机器处理）" class="headerlink" title="JSON报告（机器处理）"></a>JSON报告（机器处理）</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"summary"</span>: &#123;</span><br><span class="line">    <span class="attr">"host"</span>: &#123;</span><br><span class="line">      <span class="attr">"hostname"</span>: <span class="string">"pve-ubuntu-pandawiki"</span>,</span><br><span class="line">      <span class="attr">"ip"</span>: <span class="string">"192.168.0.55"</span>,</span><br><span class="line">      <span class="attr">"check_time"</span>: <span class="string">"2026-01-18T08:40:43+0000"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"overall_status"</span>: <span class="string">"warning"</span>,</span><br><span class="line">    <span class="attr">"status_counts"</span>: &#123;</span><br><span class="line">      <span class="attr">"ok"</span>: <span class="number">8</span>,</span><br><span class="line">      <span class="attr">"warning"</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="attr">"critical"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"check_types"</span>: [<span class="string">"health"</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"details"</span>: &#123;</span><br><span class="line">    <span class="attr">"system"</span>: &#123;</span><br><span class="line">      <span class="attr">"uptime"</span>: <span class="string">"15 days, 3:24"</span>,</span><br><span class="line">      <span class="attr">"load_1min"</span>: <span class="number">0.15</span>,</span><br><span class="line">      <span class="attr">"load_5min"</span>: <span class="number">0.30</span>,</span><br><span class="line">      <span class="attr">"load_15min"</span>: <span class="number">0.35</span>,</span><br><span class="line">      <span class="attr">"network_total_connections"</span>: <span class="number">45</span>,</span><br><span class="line">      <span class="attr">"network_external_connections"</span>: <span class="number">8</span>,</span><br><span class="line">      <span class="attr">"network_listening_ports"</span>: <span class="number">12</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"memory"</span>: &#123;</span><br><span class="line">      <span class="attr">"total_mb"</span>: <span class="number">16384</span>,</span><br><span class="line">      <span class="attr">"used_mb"</span>: <span class="number">12500</span>,</span><br><span class="line">      <span class="attr">"available_mb"</span>: <span class="number">3884</span>,</span><br><span class="line">      <span class="attr">"used_percent"</span>: <span class="number">76.3</span>,</span><br><span class="line">      <span class="attr">"swap_total_mb"</span>: <span class="number">2048</span>,</span><br><span class="line">      <span class="attr">"swap_used_mb"</span>: <span class="number">256</span>,</span><br><span class="line">      <span class="attr">"swap_percent"</span>: <span class="number">12.5</span>,</span><br><span class="line">      <span class="attr">"status"</span>: <span class="string">"warning"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"disk"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"mount"</span>: <span class="string">"/"</span>,</span><br><span class="line">        <span class="attr">"device"</span>: <span class="string">"/dev/sda1"</span>,</span><br><span class="line">        <span class="attr">"total_gb"</span>: <span class="string">"100G"</span>,</span><br><span class="line">        <span class="attr">"used_gb"</span>: <span class="string">"45G"</span>,</span><br><span class="line">        <span class="attr">"available_gb"</span>: <span class="string">"55G"</span>,</span><br><span class="line">        <span class="attr">"used_percent"</span>: <span class="number">45.0</span>,</span><br><span class="line">        <span class="attr">"status"</span>: <span class="string">"ok"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"mount"</span>: <span class="string">"/data"</span>,</span><br><span class="line">        <span class="attr">"device"</span>: <span class="string">"/dev/sdb1"</span>,</span><br><span class="line">        <span class="attr">"total_gb"</span>: <span class="string">"500G"</span>,</span><br><span class="line">        <span class="attr">"used_gb"</span>: <span class="string">"425G"</span>,</span><br><span class="line">        <span class="attr">"available_gb"</span>: <span class="string">"75G"</span>,</span><br><span class="line">        <span class="attr">"used_percent"</span>: <span class="number">85.0</span>,</span><br><span class="line">        <span class="attr">"status"</span>: <span class="string">"warning"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"services"</span>: &#123;</span><br><span class="line">      <span class="attr">"systemd_running"</span>: <span class="number">23</span>,</span><br><span class="line">      <span class="attr">"systemd_failed"</span>: <span class="number">0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"security"</span>: &#123;</span><br><span class="line">      <span class="attr">"mining_detected"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"tmp_executables"</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">"failed_logins"</span>: <span class="number">3</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"metadata"</span>: &#123;</span><br><span class="line">    <span class="attr">"check_version"</span>: <span class="string">"1.0"</span>,</span><br><span class="line">    <span class="attr">"tool_version"</span>: <span class="string">"ops-health-check v1.0"</span>,</span><br><span class="line">    <span class="attr">"check_script"</span>: <span class="string">"health-check.sh"</span>,</span><br><span class="line">    <span class="attr">"thresholds"</span>: &#123;</span><br><span class="line">      <span class="attr">"disk_warning"</span>: <span class="number">50</span>,</span><br><span class="line">      <span class="attr">"disk_critical"</span>: <span class="number">80</span>,</span><br><span class="line">      <span class="attr">"memory_warning"</span>: <span class="number">70</span>,</span><br><span class="line">      <span class="attr">"memory_critical"</span>: <span class="number">90</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实际价值</strong>：</p>
+<ul>
+<li>Markdown报告便于运维人员快速了解系统状态</li>
+<li>JSON数据可被监控系统自动采集和分析</li>
+<li>清晰的emoji状态指示，一眼就能看出问题所在</li>
+<li>详细的阈值配置，便于追溯和调整</li>
+</ul>
+<h3 id="4-2-安全检查实战案例"><a href="#4-2-安全检查实战案例" class="headerlink" title="4.2 安全检查实战案例"></a>4.2 安全检查实战案例</h3><p>在一次安全审计中，发现了某主机上的可疑活动：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 🔒 安全检查报告</span></span><br><span class="line"></span><br><span class="line"><span class="section">### 异常进程检测</span></span><br><span class="line">❌ 发现挖矿进程：</span><br><span class="line">  PID 12345: xmrig (CPU: 98.5%, Memory: 2.3%)</span><br><span class="line">  用户: nobody</span><br><span class="line">  命令: ./xmrig -o pool.supportxmr.com:3333 -u wallet123</span><br><span class="line"></span><br><span class="line">⚠️ 高资源占用进程：</span><br><span class="line">  PID 6789: java (CPU: 85.2%, Memory: 45.6%)</span><br><span class="line">  PID 9012: python3 (CPU: 45.1%, Memory: 12.3%)</span><br><span class="line"></span><br><span class="line">⚠️ /tmp 中发现 3 个可执行文件：</span><br><span class="line">  /tmp/.X11-unix/.sshd (权限: 755, 大小: 2.3MB)</span><br><span class="line">  /tmp/systemd-private-.sh (权限: 777, 大小: 156KB)</span><br><span class="line">  /tmp/.ICE-unix/.backup (权限: 755, 大小: 512KB)</span><br><span class="line"></span><br><span class="line"><span class="section">### 网络安全</span></span><br><span class="line">⚠️ 可疑连接：远程 203.0.113.45:54321 -&gt; 本地端口 55123</span><br><span class="line">外部连接的独立IP数：15</span><br><span class="line">连接最多的外部IP：</span><br><span class="line"><span class="bullet">  - </span>203.0.113.45: 1,245 次连接</span><br><span class="line"><span class="bullet">  - </span>198.51.100.23: 89 次连接</span><br><span class="line"></span><br><span class="line"><span class="section">### 文件系统安全</span></span><br><span class="line">⚠️ /etc: 12 个文件在最近7天被修改</span><br><span class="line"><span class="bullet">  - </span>/etc/passwd (权限: 644)</span><br><span class="line"><span class="bullet">  - </span>/etc/shadow (权限: 000)</span><br><span class="line"><span class="bullet">  - </span>/etc/sudoers.d/90-user (权限: 440)</span><br><span class="line"></span><br><span class="line"><span class="section">### 账户安全</span></span><br><span class="line">最近登录记录（最近10次）：</span><br><span class="line"><span class="bullet">  - </span>hacker from 203.0.113.45 - 2026-01-18 15:30</span><br><span class="line"><span class="bullet">  - </span>admin from 192.168.0.100 - 2026-01-18 09:00</span><br><span class="line"></span><br><span class="line">⚠️ 发现最近30天新增的用户：</span><br><span class="line"><span class="bullet">  - </span>hacker (UID: 1001, HOME: /home/hacker, SHELL: /bin/bash)</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应措施</strong>：</p>
+<ol>
+<li>立即终止挖矿进程：<code>kill -9 12345</code></li>
+<li>删除可疑文件：<code>rm -f /tmp/.X11-unix/.sshd</code></li>
+<li>封禁恶意IP：<code>iptables -A INPUT -s 203.0.113.45 -j DROP</code></li>
+<li>删除未授权用户：<code>userdel hacker</code></li>
+<li>修改所有密码，检查SSH公钥</li>
+</ol>
+<p>这个案例展示了深度安全检查在实际威胁检测中的价值。</p>
+<h2 id="五、总结与展望"><a href="#五、总结与展望" class="headerlink" title="五、总结与展望"></a>五、总结与展望</h2><h3 id="5-1-实现成果"><a href="#5-1-实现成果" class="headerlink" title="5.1 实现成果"></a>5.1 实现成果</h3><p>本次开发成功构建了一个生产级运维健康检查系统：</p>
+<p>✅ <strong>三大核心模块</strong></p>
+<ul>
+<li>基础健康检查：涵盖系统资源、服务状态、基础安全</li>
+<li>深度安全检查：5大类20+项安全检查</li>
+<li>Docker监控：容器、镜像、存储全方位监控</li>
+</ul>
+<p>✅ <strong>双格式输出</strong></p>
+<ul>
+<li>Markdown：人工可读，便于快速决策</li>
+<li>JSON：机器可处理，易于自动化集成</li>
+</ul>
+<p>✅ <strong>广泛兼容性</strong></p>
+<ul>
+<li>bash 3.2+兼容（macOS默认版本）</li>
+<li>支持主流Linux发行版（Ubuntu、CentOS、Debian）</li>
+<li>适配systemd和SysV init系统</li>
+</ul>
+<p>✅ <strong>完整文档</strong></p>
+<ul>
+<li>SKILL.md：使用指南</li>
+<li>设计文档：架构和实现思路</li>
+<li>博客文章：实战经验分享</li>
+</ul>
+<h3 id="5-2-技术亮点"><a href="#5-2-技术亮点" class="headerlink" title="5.2 技术亮点"></a>5.2 技术亮点</h3><ol>
+<li><strong>模块化设计</strong>：三个检查模块独立运行，互不依赖</li>
+<li><strong>统一输出库</strong>：封装数据收集和格式化逻辑</li>
+<li><strong>阈值可配置</strong>：支持通过环境变量自定义阈值</li>
+<li><strong>兼容性处理</strong>：优雅降级，兼容不同版本工具</li>
+<li><strong>清理建议</strong>：不仅发现问题，还提供解决建议</li>
+</ol>
+<h3 id="5-3-实际应用价值"><a href="#5-3-实际应用价值" class="headerlink" title="5.3 实际应用价值"></a>5.3 实际应用价值</h3><p><strong>效率提升</strong>：</p>
+<ul>
+<li>批量检查10台主机仅需2分钟</li>
+<li>自动生成双格式报告，无需手工整理</li>
+<li>JSON数据可直接导入监控系统</li>
+</ul>
+<p><strong>安全增强</strong>：</p>
+<ul>
+<li>发现并阻止挖矿程序</li>
+<li>检测异常登录和未授权访问</li>
+<li>及时发现文件系统异常变更</li>
+</ul>
+<p><strong>成本节约</strong>：</p>
+<ul>
+<li>无需部署复杂监控系统</li>
+<li>基于现有SSH连接，无需额外代理</li>
+<li>轻量级脚本，资源占用极低</li>
+</ul>
+<h3 id="5-4-开发体会"><a href="#5-4-开发体会" class="headerlink" title="5.4 开发体会"></a>5.4 开发体会</h3><p>通过Claude Code的AI辅助开发，整个过程非常高效：</p>
+<ol>
+<li><strong>快速迭代</strong>：从需求到实现不到4小时</li>
+<li><strong>智能提示</strong>：Claude主动发现兼容性问题并给出解决方案</li>
+<li><strong>代码质量</strong>：生成的代码结构清晰，符合最佳实践</li>
+<li><strong>文档完善</strong>：自动生成详细的使用文档和示例</li>
+</ol>
+<p>AI辅助开发不仅提高了效率，更重要的是让开发者可以专注于业务逻辑和架构设计，而将具体的编码工作交给AI完成。这种人机协作模式，是未来软件开发的重要趋势。</p>
+<p><strong>项目地址</strong>：<a href="https://github.com/xiejava/ops-health-check" target="_blank" rel="noopener">https://github.com/xiejava/ops-health-check</a></p>
+<p><strong>博客地址</strong>：<a href="http://xiejava.ishareread.com">http://xiejava.ishareread.com</a></p>
+<hr>
+<p>🤖 <strong>本文由Claude Code辅助编写</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiejava.ishareread.com/posts/5f421230/" title="让Claude Code写了个运维健康检查的Skill还挺好用的">http://xiejava.ishareread.com/posts/5f421230/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+            <a href="/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># AI机器学习</a>
+          
+            <a href="/tags/%E8%BF%90%E7%BB%B4%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"># 运维自动化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/db0ebabe/" rel="next" title="为了管好IP我上了一套开源的IP管理系统phpIPAM">
+                <i class="fa fa-chevron-left"></i> 为了管好IP我上了一套开源的IP管理系统phpIPAM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">220</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、背景与设计目标"><span class="nav-number">2.</span> <span class="nav-text">一、背景与设计目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-实际需求"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 实际需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-设计目标"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 设计目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、整体架构设计"><span class="nav-number">3.</span> <span class="nav-text">二、整体架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-系统架构"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 系统架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-文件结构"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 文件结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、核心功能实现"><span class="nav-number">4.</span> <span class="nav-text">三、核心功能实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-基础健康检查模块（health-check-sh）"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 基础健康检查模块（health-check.sh）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-系统运行时间和负载检查"><span class="nav-number">4.1.1.</span> <span class="nav-text">3.1.1 系统运行时间和负载检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-内存使用检查"><span class="nav-number">4.1.2.</span> <span class="nav-text">3.1.2 内存使用检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-磁盘空间检查"><span class="nav-number">4.1.3.</span> <span class="nav-text">3.1.3 磁盘空间检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-4-网络连接统计"><span class="nav-number">4.1.4.</span> <span class="nav-text">3.1.4 网络连接统计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-5-systemd服务状态检查"><span class="nav-number">4.1.5.</span> <span class="nav-text">3.1.5 systemd服务状态检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-6-基础安全检查"><span class="nav-number">4.1.6.</span> <span class="nav-text">3.1.6 基础安全检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-深度安全检查模块（security-check-sh）"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 深度安全检查模块（security-check.sh）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-异常进程检测"><span class="nav-number">4.2.1.</span> <span class="nav-text">3.2.1 异常进程检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-网络安全检查"><span class="nav-number">4.2.2.</span> <span class="nav-text">3.2.2 网络安全检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-文件系统安全检查"><span class="nav-number">4.2.3.</span> <span class="nav-text">3.2.3 文件系统安全检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-4-账户和登录安全检查"><span class="nav-number">4.2.4.</span> <span class="nav-text">3.2.4 账户和登录安全检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-5-系统完整性检查"><span class="nav-number">4.2.5.</span> <span class="nav-text">3.2.5 系统完整性检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Docker容器监控模块（docker-check-sh）"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 Docker容器监控模块（docker-check.sh）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-Docker服务状态检查"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.3.1 Docker服务状态检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-容器统计与状态"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.3.2 容器统计与状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-3-容器资源使用分析"><span class="nav-number">4.3.3.</span> <span class="nav-text">3.3.3 容器资源使用分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-4-镜像管理检查"><span class="nav-number">4.3.4.</span> <span class="nav-text">3.3.4 镜像管理检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-5-存储空间使用"><span class="nav-number">4.3.5.</span> <span class="nav-text">3.3.5 存储空间使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、实际应用效果展示"><span class="nav-number">5.</span> <span class="nav-text">四、实际应用效果展示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-基础健康检查报告"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 基础健康检查报告</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Markdown报告（人工阅读）"><span class="nav-number">5.1.1.</span> <span class="nav-text">Markdown报告（人工阅读）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON报告（机器处理）"><span class="nav-number">5.1.2.</span> <span class="nav-text">JSON报告（机器处理）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-安全检查实战案例"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 安全检查实战案例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、总结与展望"><span class="nav-number">6.</span> <span class="nav-text">五、总结与展望</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-实现成果"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 实现成果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-技术亮点"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 技术亮点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-实际应用价值"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 实际应用价值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-开发体会"><span class="nav-number">6.4.</span> <span class="nav-text">5.4 开发体会</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">449.2k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>

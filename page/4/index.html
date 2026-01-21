@@ -313,6 +313,263 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/e9ff8595/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/e9ff8595/" itemprop="url">vue3+vite+axios+mock从接口获取模拟数据实战</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-24T14:44:23+08:00">
+                2024-08-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:51+08:00">
+                2025-12-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/e9ff8595/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/e9ff8595/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/e9ff8595/" class="leancloud_visitors" data-flag-title="vue3+vite+axios+mock从接口获取模拟数据实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在用Vue.js开发前端应用时通常要与后端服务进行交互，例如通过API接口获取数据，在后端服务接口还没有具备之前，可以通过mock(模拟)数据来进行开发。使用mock数据可以让前端开发人员独立于后端开发人员工作，加快开发速度。在没有真实数据的情况下，mock数据可以帮助开发者更快地看到UI的呈现效果和交互逻辑。</p>
+<p>本文通过vue3+vite+axios+mock来介绍如何实现Vue.js的前端应用从接口获取模拟数据。</p>
+<h2 id="一、安装相关组件"><a href="#一、安装相关组件" class="headerlink" title="一、安装相关组件"></a>一、安装相关组件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install axios -S</span><br><span class="line">npm install mockjs vite-plugin-mock -D</span><br></pre></td></tr></table></figure>
+
+<p> 其中<code>axios</code> 是一个基于 Promise 非常强大且灵活的 HTTP 客户端，适用于 Vue.js 应用程序中的数据获取和后端交互。它可以简化 HTTP 请求的处理，并提供丰富的功能来满足不同的需求。我们用axios来实现与接口服务的http请求。</p>
+<p><code>Mock.js</code> 是一个用于生成随机数据的 JavaScript 库，它主要用于前端开发过程中模拟后端接口数据。Mock.js 提供了一套简洁易用的 API，可以帮助开发者快速生成符合特定规则的假数据，从而在没有后端支持的情况下进行前端开发和测试。</p>
+<p><code>vite-plugin-mock</code> 是一个专为 Vite 设计的插件，用于在 Vite 项目中模拟数据。它简化了使用 Mock.js 的过程，让开发者能够更加方便地管理模拟数据。</p>
+<p>简单来说，就是mock.js提供mock数据，通过vite-plugin-mock，将管理mock发布成服务，通过axios通过http请求接口的方式获取mock数据。</p>
+<p>安装相关组件后，在package.json中看到相关的组件信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">package.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"mocktest"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.0.0"</span>,</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"vite"</span>,</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"vite --mode test"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vite build"</span>,</span><br><span class="line">    <span class="string">"preview"</span>: <span class="string">"vite preview"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"axios"</span>: <span class="string">"^1.7.5"</span>,</span><br><span class="line">    <span class="string">"vue"</span>: <span class="string">"^3.4.29"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"@vitejs/plugin-vue"</span>: <span class="string">"^5.0.5"</span>,</span><br><span class="line">    <span class="string">"mockjs"</span>: <span class="string">"^1.1.0"</span>,</span><br><span class="line">    <span class="string">"vite"</span>: <span class="string">"^5.3.1"</span>,</span><br><span class="line">    <span class="string">"vite-plugin-mock"</span>: <span class="string">"^3.0.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、在vite-config-js中配置vite-plugin-mock插件"><a href="#二、在vite-config-js中配置vite-plugin-mock插件" class="headerlink" title="二、在vite.config.js中配置vite-plugin-mock插件"></a>二、在vite.config.js中配置vite-plugin-mock插件</h2><p>● viteMockServe的相关配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; fileURLToPath, URL &#125; <span class="keyword">from</span> <span class="string">'node:url'</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">'vite'</span></span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">'@vitejs/plugin-vue'</span></span><br><span class="line"><span class="keyword">import</span> &#123; viteMockServe &#125; <span class="keyword">from</span> <span class="string">'vite-plugin-mock'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    vue(),</span><br><span class="line">    <span class="comment">// mock 数据的 dev环境</span></span><br><span class="line">    viteMockServe(&#123;</span><br><span class="line">      <span class="comment">// supportTs: true, // 是否开启支持ts</span></span><br><span class="line">      mockPath: <span class="string">'mock'</span>, <span class="comment">// 设置mockPath为根目录下的mock目录</span></span><br><span class="line">      localEnabled: <span class="literal">true</span>, <span class="comment">// 设置是否监视mockPath对应的文件夹内文件中的更改</span></span><br><span class="line">      prodEnabled: <span class="literal">false</span>, <span class="comment">// 设置是否启用生产环境的mock服务</span></span><br><span class="line">      watchFiles: <span class="literal">true</span>, <span class="comment">// 是否监视文件更改</span></span><br><span class="line">      logger: <span class="literal">true</span>  <span class="comment">//是否在控制台显示请求日志</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'@'</span>: fileURLToPath(<span class="keyword">new</span> URL(<span class="string">'./src'</span>, <span class="keyword">import</span>.meta.url))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在viteMockServe中指定了mockPath为mock也就是根目录下的mock目录，在该目录下的mock服务都会被发布成mock服务。</p>
+<h2 id="三、实现mock服务"><a href="#三、实现mock服务" class="headerlink" title="三、实现mock服务"></a>三、实现mock服务</h2><p>在根目录下新建mock目录在mock目录下新建mock文件实现mock服务，如app.js、user.js</p>
+<p><img src="http://image2.ishareread.com/images/2024/20240824/1-mock%E7%9B%AE%E5%BD%95.png" alt="mock目录"></p>
+<p>app.js代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [&#123;</span><br><span class="line">    url: <span class="string">'/mock/api/getApiInfo'</span>,</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    response: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        code: <span class="number">200</span>,</span><br><span class="line">        title: <span class="string">'mock api test.'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    url: <span class="string">'/api/category'</span>,</span><br><span class="line">    type: <span class="string">'get'</span>,</span><br><span class="line">    response: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            code: <span class="number">200</span>,</span><br><span class="line">            data: [</span><br><span class="line">                &#123;</span><br><span class="line">                    id: <span class="number">1</span>,</span><br><span class="line">                    title: <span class="string">'JAVA'</span>,</span><br><span class="line">                    href: <span class="string">'/category/java'</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    id: <span class="number">2</span>,</span><br><span class="line">                    title: <span class="string">'SpringBoot'</span>,</span><br><span class="line">                    href: <span class="string">'/category/SpringBoot'</span>,</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    id: <span class="number">3</span>,</span><br><span class="line">                    title: <span class="string">'MySql'</span>,</span><br><span class="line">                    href: <span class="string">'/category/MySql'</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    id: <span class="number">4</span>,</span><br><span class="line">                    title: <span class="string">'随笔'</span>,</span><br><span class="line">                    href: <span class="string">'/category/live'</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>在app.js中我们并没有用mock生产数据，只是实现了mock服务放到了mock文件目录通过viteMockServe发布出来，后面可以通过axios调用获取。<br>user.js代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Mock <span class="keyword">from</span> <span class="string">'mockjs'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过Mock生成模拟数据</span></span><br><span class="line"><span class="keyword">const</span> userdata = Mock.mock(&#123;</span><br><span class="line">  <span class="string">'list|10'</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">'id|+1'</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">'name'</span>: <span class="string">'@cname'</span>,</span><br><span class="line">      <span class="string">'age|18-60'</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="string">'email'</span>: <span class="string">'@email'</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> [</span><br><span class="line">  &#123;</span><br><span class="line">    url: <span class="string">'/mock/api/getUserInfo'</span>,</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    response: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        code: <span class="number">200</span>,</span><br><span class="line">        data: userdata</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>在user.js中，我们通过Mock生成模拟的用户列表数据</p>
+<h2 id="四、调用api接口请求mock数据"><a href="#四、调用api接口请求mock数据" class="headerlink" title="四、调用api接口请求mock数据"></a>四、调用api接口请求mock数据</h2><h3 id="方法一、直接使用axios-请求mock-数据"><a href="#方法一、直接使用axios-请求mock-数据" class="headerlink" title="方法一、直接使用axios 请求mock 数据"></a>方法一、直接使用axios 请求mock 数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br></pre></td></tr></table></figure>
+
+<p>在方法中通过axios.get()方法直接获取请求数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> getData() &#123;</span><br><span class="line">         <span class="keyword">await</span> axios.get(<span class="string">'/mock/api/getApiInfo'</span>).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data)</span><br><span class="line">          <span class="keyword">this</span>.msg = res.data.title</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二、对axios进行封装统一请求mock数据"><a href="#方法二、对axios进行封装统一请求mock数据" class="headerlink" title="方法二、对axios进行封装统一请求mock数据"></a>方法二、对axios进行封装统一请求mock数据</h3><p>建立一个service.js对axios进行封装，让后通过service.js来统一请求mock数据，这样做的好处是在切到真实接口的时候可以更加灵活<br>service.js的代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">const</span> api_rul = <span class="string">''</span>  <span class="comment">//mock 接口地址可以为空字符串，真实接口配置为真实的接口地址。</span></span><br><span class="line"><span class="comment">// create an axios instance</span></span><br><span class="line"><span class="keyword">const</span> service = axios.create(&#123;</span><br><span class="line">    baseURL: api_rul,</span><br><span class="line">    timeout: <span class="number">5000</span> <span class="comment">// request timeout</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> service</span><br></pre></td></tr></table></figure>
+
+<p>通过一个统一的调用接口文件请求mock数据<br>如mockapi.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> service <span class="keyword">from</span> <span class="string">'@/utils/service'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>  <span class="title">getCategory</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> service(&#123;</span><br><span class="line">        url: <span class="string">'/api/category'</span>,</span><br><span class="line">        method: <span class="string">'get'</span>,</span><br><span class="line">        params: &#123;&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>  <span class="title">getUserInfo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> service(&#123;</span><br><span class="line">        url: <span class="string">'/mock/api/getUserInfo'</span>,</span><br><span class="line">        method: <span class="string">'get'</span>,</span><br><span class="line">        params: &#123;&#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在methods中进行方法的调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法二：通过封装后的get方法获取数据</span></span><br><span class="line">    getUserInfo()</span><br><span class="line">    &#123;</span><br><span class="line">      getUserInfo().then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data)</span><br><span class="line">          <span class="keyword">this</span>.userinfo = res.data.data</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;,</span><br><span class="line">    getCategory()</span><br><span class="line">    &#123;</span><br><span class="line">      getCategory().then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data)</span><br><span class="line">          <span class="keyword">this</span>.categorys = res.data.data</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在vue的组件中具体的调用和展示代码如下：<br>HelloWorld.vue</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123; msg &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div&gt;</span></span><br><span class="line"><span class="regexp">    人员列表</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li v-<span class="keyword">for</span>=<span class="string">"(user) in userinfo.list"</span> :key=<span class="string">"index"</span>&gt;</span><br><span class="line">        &#123;&#123; user.id &#125;&#125; : &#123;&#123; user.name &#125;&#125;  &#123;&#123; user.age &#125;&#125;  &#123;&#123; user.email &#125;&#125;</span><br><span class="line">      &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  &lt;div&gt;</span></span><br><span class="line"><span class="regexp">    目录</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li v-<span class="keyword">for</span>=<span class="string">"(category) in categorys"</span> :key=<span class="string">"index"</span>&gt;</span><br><span class="line">        &#123;&#123; category.id &#125;&#125; : &#123;&#123; category.title &#125;&#125;  &#123;&#123; category.href &#125;&#125; </span><br><span class="line">      &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script &gt;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> &#123; getCategory,getUserInfo &#125; <span class="keyword">from</span> <span class="string">'../api/mockapi'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'Welcome to Your Vue.js App'</span>,</span><br><span class="line">      userinfo: &#123;&#125;,</span><br><span class="line">      categorys: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    <span class="keyword">this</span>.getData()</span><br><span class="line">    <span class="keyword">this</span>.getUserInfo()</span><br><span class="line">    <span class="keyword">this</span>.getCategory()</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 方法一：直接axios请求调用获取mock数据</span></span><br><span class="line">    <span class="keyword">async</span> getData() &#123;</span><br><span class="line">         <span class="keyword">await</span> axios.get(<span class="string">'/mock/api/getApiInfo'</span>).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data)</span><br><span class="line">          <span class="keyword">this</span>.msg = res.data.title</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 方法二：通过封装后的get方法获取数据</span></span><br><span class="line">    getUserInfo()</span><br><span class="line">    &#123;</span><br><span class="line">      getUserInfo().then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data)</span><br><span class="line">          <span class="keyword">this</span>.userinfo = res.data.data</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;,</span><br><span class="line">    getCategory()</span><br><span class="line">    &#123;</span><br><span class="line">      getCategory().then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data)</span><br><span class="line">          <span class="keyword">this</span>.categorys = res.data.data</span><br><span class="line">        &#125;</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>整个工程的目录结构说明如下：</p>
+<p><img src="http://image2.ishareread.com/images/2024/20240824/2-mocktest%E5%B7%A5%E7%A8%8B%E7%9B%AE%E5%BD%95.png" alt="mocktest工程目录"></p>
+<h2 id="五、实际运行效果"><a href="#五、实际运行效果" class="headerlink" title="五、实际运行效果"></a>五、实际运行效果</h2><p><img src="http://image2.ishareread.com/images/2024/20240824/3-mock%E6%95%88%E6%9E%9C.png" alt="mock效果"><br>可以看到分别用两种方式获取mock数据的效果，其中人员列表中的数据是mock生成的模拟数。</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注微信公众号,一起学习、成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/927ce8c5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -360,8 +617,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:51+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -585,8 +842,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:51+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -817,8 +1074,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -1071,8 +1328,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:19+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -1311,8 +1568,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -1547,8 +1804,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -1787,8 +2044,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -2022,8 +2279,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -2294,8 +2551,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
-                2025-12-10
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
               </time>
             
           </span>
@@ -2496,292 +2753,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/d8042a8c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d8042a8c/" itemprop="url">什么是基于风险的漏洞管理RBVM及其优势</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-06-13T22:20:11+08:00">
-                2024-06-13
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-10T15:13:18+08:00">
-                2025-12-10
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d8042a8c/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d8042a8c/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d8042a8c/" class="leancloud_visitors" data-flag-title="什么是基于风险的漏洞管理RBVM及其优势">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、什么是漏洞管理"><a href="#一、什么是漏洞管理" class="headerlink" title="一、什么是漏洞管理"></a>一、什么是漏洞管理</h2><p>安全漏洞是网络或网络资产的结构、功能或实现中的任何缺陷或弱点，黑客可以利用这些缺陷或弱点发起网络攻击，获得对系统或数据的未经授权的访问，或以其他方式损害组织。常见漏洞的示例包括可能允许某些类型的恶意软件进入网络的防火墙配置错误，或可能允许黑客接管设备的操作系统远程桌面协议中未修补的错误。</p>
-<p>漏洞管理是指通过对网络系统中的漏洞进行识别、评估、修复、验证等一系列操作，以保障系统的安全性。这一过程是IT风险管理的一个子领域，主要关注组织IT基础设施和软件中的安全漏洞。</p>
-<p>关于漏洞的分类及漏洞管理参见《<a href="http://xiejava.ishareread.com/posts/a937cbf5/">安全运营之漏洞管理</a>》</p>
-<h2 id="二、什么是基于风险的漏洞管理RBVM"><a href="#二、什么是基于风险的漏洞管理RBVM" class="headerlink" title="二、什么是基于风险的漏洞管理RBVM"></a>二、什么是基于风险的漏洞管理RBVM</h2><p>传统的漏洞管理方法通常依赖于扫描工具来发现漏洞，然后按照某种顺序（如时间顺序或严重程度）进行修复。随着技术的快速发展和数字化转型的推进，网络系统和应用程序的复杂性日益增加，导致安全漏洞的数量也呈现爆炸式增长。面对不断增长的漏洞列表和警报，安全团队很容易陷入警报疲劳，难以判断哪些漏洞是真正需要优先处理的。</p>
-<p>而<strong>RBVM（Risk-based Vulnerability Management）是基于风险的漏洞管理</strong>，RBVM方法不是简单地修补所有漏洞，而是关注那些实际可利用的、对组织构成风险的漏洞。这种方法通过分析内部资产、攻击者活动以及威胁情报馈送（特别是漏洞情报），来确定哪些漏洞是需要优先处理的。是一种更加智能化和策略性的方法来识别、评估、优先级排序和修复组织中的安全漏洞。</p>
-<p>RBVM的核心在于更好地了解和评估风险，通过综合考虑漏洞的严重性、可利用性、资产价值等因素，确定每个漏洞的风险等级，并据此制定修复策略。这种方法能够帮助安全团队集中资源处理那些真正高风险的漏洞，提高漏洞管理的效率和效果。</p>
-<h2 id="三、RBVM的基本流程"><a href="#三、RBVM的基本流程" class="headerlink" title="三、RBVM的基本流程"></a>三、RBVM的基本流程</h2><p>RBVM（基于风险的漏洞管理）与传统漏洞管理的识别、评估、修复、验证相比是多了资产识别、风险评估和优先级排序。RBVM的基本流程如下：</p>
-<p><img src="http://image2.ishareread.com/images/2024/20240613/RBVM%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B.png" alt="RBVM的基本流程"></p>
-<p><strong>1. 资产识别</strong></p>
-<ul>
-<li>列出组织内的所有关键资产，包括硬件、软件、数据和网络等。</li>
-<li>对每个资产进行分类，如生产环境、测试环境、非关键业务系统等。</li>
-<li>确定每个资产的重要性级别，如高、中、低。</li>
-</ul>
-<p><strong>2. 漏洞发现</strong></p>
-<ul>
-<li>使用自动化漏洞扫描工具对关键资产进行定期扫描。</li>
-<li>结合手动渗透测试，发现可能存在的未知漏洞。</li>
-<li>订阅外部漏洞情报服务，获取最新的漏洞信息。</li>
-</ul>
-<p><strong>3. 风险评估</strong></p>
-<ul>
-<li>对每个发现的漏洞进行风险评估，包括严重性、可利用性、资产重要性等因素。</li>
-<li>使用脆弱性优先级技术（Vulnerability Prioritize Technology–VPT）、CVSS（Common Vulnerability Scoring System）或其他风险评估框架进行评分。</li>
-<li>结合威胁情报，评估漏洞被利用的可能性和潜在影响。</li>
-</ul>
-<p><strong>4. 优先级排序</strong></p>
-<ul>
-<li>根据风险评估结果，将漏洞按照风险级别进行排序。</li>
-<li>优先处理高风险漏洞，确保关键资产的安全。</li>
-<li>对于中低风险漏洞，制定缓解措施或监控计划。</li>
-</ul>
-<p><strong>5. 修复和缓解</strong></p>
-<ul>
-<li>对于高风险漏洞，立即制定修复计划并实施。</li>
-<li>对于无法立即修复的漏洞，制定缓解措施，如限制访问权限、部署防火墙规则等。</li>
-<li>与供应商和社区保持沟通，获取漏洞修复的最新信息。</li>
-</ul>
-<p><strong>6. 监控和重新评估</strong></p>
-<ul>
-<li>定期对已修复的漏洞进行验证，确保漏洞已被成功修复。</li>
-<li>监控新的漏洞和威胁情报，及时更新风险评估和优先级排序。</li>
-<li>定期对RBVM流程进行审查和更新，以适应组织环境的变化。</li>
-</ul>
-<p>RBVM策略将帮助我们优先处理那些对组织构成最大威胁的漏洞，从而在有限的资源下实现最大的安全效益。</p>
-<h2 id="四、RBVM的特点和优势"><a href="#四、RBVM的特点和优势" class="headerlink" title="四、RBVM的特点和优势"></a>四、RBVM的特点和优势</h2><p>RBVM是一种更为精细化和策略性的方法，旨在识别、评估、优先级排序和修复那些对组织构成最大风险的漏洞。与传统的漏洞管理方法相比，RBVM具有以下区别：</p>
-<ol>
-<li>风险评估：传统的漏洞管理通常侧重于发现和修复所有检测到的漏洞，而不考虑这些漏洞对组织的实际风险。而RBVM则根据漏洞的严重性、可利用性、资产的重要性以及威胁的紧迫性等因素，对漏洞进行风险评估，以确定修复的优先级。</li>
-<li>资源优化：由于RBVM侧重于修复高风险的漏洞，因此它可以帮助组织更有效地分配资源。组织可以将有限的资源集中在那些对业务影响最大的漏洞上，而不是盲目地修复所有检测到的漏洞。</li>
-<li>业务上下文：RBVM将漏洞管理置于业务上下文中，考虑漏洞对组织业务运营和战略目标的影响。这种方法使组织能够更清楚地了解哪些漏洞是需要优先处理的，以确保业务连续性和合规性。</li>
-<li>持续监控和评估：RBVM强调对漏洞的持续监控和评估。它使用自动化工具和流程来跟踪漏洞的状态，包括已知漏洞的发布、修复和再利用等。此外，RBVM还利用威胁情报来识别新的攻击向量和漏洞，以便及时调整漏洞管理策略。</li>
-<li>威胁情报整合：RBVM将威胁情报与漏洞管理相结合，以便更准确地评估漏洞的风险。威胁情报提供了关于攻击者行为、目标、工具和技术的信息，这些信息有助于组织识别那些可能被攻击者利用的漏洞。</li>
-<li>优先级排序：RBVM使用风险评估结果来确定漏洞修复的优先级。这有助于组织在有限的资源下，优先处理那些对业务影响最大的漏洞。与传统的漏洞管理方法相比，这种方法更加灵活和有效。</li>
-</ol>
-<p><strong>RBVM的优点</strong></p>
-<ol>
-<li>资源优化：通过优先处理高风险的漏洞，RBVM可以帮助组织更有效地分配资源，确保在有限的资源下取得最大的安全效益。</li>
-<li>业务连续性：RBVM关注业务上下文与业务的关联性强，确保在修复漏洞的过程中不会中断关键业务操作或影响用户体验。</li>
-<li>提高安全性：通过持续监控和评估漏洞风险，RBVM可以帮助组织及时发现并修复潜在的安全隐患，提高整体安全性。</li>
-</ol>
-<p>RBVM 在传统漏洞管理的基础上，进一步引入了资产攻击面、 漏洞情报、威胁情报等多维度数据 ，以脆弱性优先级技术（Vulnerability Prioritize Technology – VPT）对漏洞进行打分 与评级。如此一来，安全团队需要面对的“高危”、“严重”漏洞的范围与数量大大缩小，漏洞不再只是漏洞，而是与业务连续性、 资产关键性等联系更加紧密的脆弱点。安全团队可以更加主动地协调运维、业务部门率先修复高优先级的脆弱点。</p>
-<p><strong>RBVM 的主要价值在于</strong>，避免那些最需要优先被关注的可能带来巨大风险的漏洞淹没在海量漏洞告警中，转而<strong>让安全团队能够优先考虑优先级更高的关键漏洞</strong>。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2838,7 +2809,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">219</span>
+                  <span class="site-state-item-count">220</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2849,7 +2820,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2860,7 +2831,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2936,7 +2907,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2950,7 +2921,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">441.2k</span>
+    <span title="Site words total count">449.2k</span>
   
   
 <!--51la网站应用监控-->
