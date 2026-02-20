@@ -313,6 +313,268 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/5cd84f32/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/5cd84f32/" itemprop="url">常见网络攻击方式及防御方法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-07-04T11:22:23+08:00">
+                2024-07-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
+                2025-12-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/5cd84f32/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5cd84f32/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/5cd84f32/" class="leancloud_visitors" data-flag-title="常见网络攻击方式及防御方法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>网络安全威胁的不断演变和增长，网络攻击的种类和数量也在不断增加，攻防对抗实战演练在即，让我们一起了解一下常见网络攻击方式及防御方法。</p>
+<h2 id="1-DDOS攻击（分布式拒绝服务攻击）"><a href="#1-DDOS攻击（分布式拒绝服务攻击）" class="headerlink" title="1. DDOS攻击（分布式拒绝服务攻击）"></a>1. DDOS攻击（分布式拒绝服务攻击）</h2><p>借助于C/S（客户端/服务器）技术，将多个计算机联合起来作为攻击平台，对一个或多个目标发动DDOS攻击，从而成倍地提高拒绝服务攻击的威力。<br><strong>防护方法：</strong><br>所有的主机平台都有低于DDOS的设置，基本的有：</p>
+<ul>
+<li>关闭不必要的服务</li>
+<li>限制同时打开的syn半连接数目</li>
+<li>缩短syn半连接的time out时间</li>
+<li>及时更新补丁</li>
+</ul>
+<p><strong>网络设置：</strong><br>防火墙</p>
+<ul>
+<li>禁止对主机的非半开服务的访问，限制SYN的连接数和IP访问</li>
+<li>路由器</li>
+<li>设置SYN数据包流量速率</li>
+</ul>
+<h2 id="2-UDP洪水攻击"><a href="#2-UDP洪水攻击" class="headerlink" title="2. UDP洪水攻击"></a>2. UDP洪水攻击</h2><p>利用含有udp数据包的ip数据包对目标主机上的随机端口进行饱和攻击，由于udp流量不需要像tcp那样三次握手，可以低成本的运行。这种特质也使得udp非常脆弱，更容易被滥用，一些udp洪水攻击能够利用dns方法攻击的形式实施。<br><strong>防护方法：</strong><br>根据业务UDP最大包长设置UDP最大包大小以过滤异常流量。<br>建立UDP连接规则，要求所有去往该端口的UDP包，必须首先与TCP端口建立TCP连接。</p>
+<h2 id="3-Smurf攻击"><a href="#3-Smurf攻击" class="headerlink" title="3. Smurf攻击"></a>3. Smurf攻击</h2><p>攻击者向网络广播地址发送ICMP包，并将回复地址设置成受害网络的广播地址，通过使用ICMP应答请求数据包来淹没受害主机的方式进行，最终导致该网络的所有主机都对次ICMP应答请求作出答复，导致网络阻塞。更加复杂的Smurf攻击攻击将源地址改为第三方受害者，最终导致第三方崩溃。<br><strong>防护方法：</strong><br>1.配置路由器禁止IP广播包进网<br>2.配置网络上所有计算机的操作系统，禁止对目标地址为广播地址的ICMP包响应<br>3.对于从本网络向外部网络发送的数据包，本网络应该将其源地址为其他网络的这部分数据包过滤掉</p>
+<h2 id="4-CC攻击"><a href="#4-CC攻击" class="headerlink" title="4. CC攻击"></a>4. CC攻击</h2><p>CC攻击利用代理服务器向网站发送大量需要较长计算时间的URL请求，如数据库查询等，导致服务器进行大量计算而很快达到自身的处理能力而形成DOS，而攻击者一旦发送请求给代理后就主动断开连接，因为代理并不因为客户端这边连接的断开就不去连接目标服务器，因此攻击机的资源消耗相对很小，而从目标服务器看来，来自代理的请求都是合法的。<br><strong>防护方法：</strong><br>CC有效性在于攻击方不接受服务器回应的数据，发送完请求后就主动断开连接，因此要确认连接是否是CC，服务器端不立即执行URL请求命令，而是简单的返回一个页面转向的回应，回应中包含新的URL请求地址，如果是正常访问，客户端会主动再次连接到转向页面，对用户来说是透明的;而对于CC攻击者，由于不接收回应数据，因此就不会重新连接，服务器也就不需要进行查询操作。</p>
+<h2 id="5-ARP攻击（中间人攻击）"><a href="#5-ARP攻击（中间人攻击）" class="headerlink" title="5. ARP攻击（中间人攻击）"></a>5. ARP攻击（中间人攻击）</h2><p>通过伪造IP地址和MAC地址实现ARP欺骗，能够在网络中产生大量的ARP通信量使网络阻塞，攻击者只要持续不断的发出伪造的ARP相应包就能更改目标主机ARP缓存中的IP-MAC条目，造成网络终端或中间人攻击。<br><strong>防护方法：</strong></p>
+<ul>
+<li>网关和终端双向绑定IP和MAC地址</li>
+<li>局域网中的每台电脑中进行静态ARP绑定</li>
+<li>打开安全防护软件的ARP防火墙功能</li>
+<li>彻底追踪查杀ARP病毒</li>
+</ul>
+<h2 id="6-邮件钓鱼"><a href="#6-邮件钓鱼" class="headerlink" title="6. 邮件钓鱼"></a>6. 邮件钓鱼</h2><p>利用伪装的电邮，欺骗收件人将账号、口令等信息回复给指定的接收者；或引导收件人连接到特制的网页，这些网页通常会伪装成和真实网站一样，如银行或理财的网页，令登录者信以为真，输入信用卡或银行卡号码、账户名称及密码等而被盗取。<br><strong>防护方法：</strong></p>
+<ul>
+<li>不点击不知来源的邮件和附件</li>
+<li>在邮箱服务端安装安全软件，开启SPF策略</li>
+<li>安装个人电脑杀毒软件</li>
+</ul>
+<p><strong>拓展：</strong></p>
+<ul>
+<li>鱼叉攻击<br>攻击者将木马程序作为电子邮件的附件，并起上一个极具诱惑力的名称，发送给目标电脑，诱使受害者打开附件，从而感染木马。</li>
+<li>水坑攻击<br>攻击者分析攻击目标的上网活动规律，寻找攻击目标经常访问的网站的弱点，先将此网站“攻破”并植入攻击代码，一旦攻击目标访问该网站就会“中招”。</li>
+</ul>
+<h2 id="7-WIFI钓鱼"><a href="#7-WIFI钓鱼" class="headerlink" title="7. WIFI钓鱼"></a>7. WIFI钓鱼</h2><p>WIFI钓鱼是一种新型的无线网络攻击方式，将中间人攻击和钓鱼攻击相结合，选定目标路由器后，将连接到路由器上的客户端全部强制退出重新登录。当用户再次登录时，会连接到假冒的路由器上，弹出登录窗口，并要求用户输入无线网络的用户名和密码来更新路由器硬件，从而盗取用户的账号密码等信息。<br><strong>防护方法：</strong><br>1.不连接公共场所的wifi，重要文件用手机热点发送<br>2.路由器定期更换密码<br>3.路由器定期升级</p>
+<h2 id="8-挖矿木马"><a href="#8-挖矿木马" class="headerlink" title="8. 挖矿木马"></a>8. 挖矿木马</h2><p>由于区块链技术热炒以及数字货币的推广运营，如比特币、以太币等层出不穷的数字货币各种热炒，在这些的利益驱使下便出现各种模式的挖矿木马程序，挖矿木马主要就是通过利用各种手段，将挖矿程序植入到用户的计算机中，在用户不知情的情况下，偷偷利用用户的计算机进行执行挖矿功能，从而获取收益。<br><strong>用户中木马的常见方式：</strong><br>1.用户往往在不注意的时候，下载并运行了来历不明的破解软件或不安全软件<br>2.用户点击运行了钓鱼邮件中的附件的文件<br>3.用户没有做好系统及时更新，通过系统漏洞传播<br>4.用户浏览了植入挖矿脚本的网页，浏览器就解析脚本进行挖矿<br><strong>防护方法：</strong><br>1.在计算机中安装病毒查杀软件(火绒、360杀毒)，并及时更新病毒查杀软件的病毒库，还需做好定时全盘查杀病毒。<br>2.及时做好计算机系统补丁的更新。<br>3.服务器、主机、数据库等使用高强度的密码口令，切勿使用弱口令，防止被暴力破解。<br>4.网络上不要去随意下载、运行来历不明的程序或者破解程序，不随意点击来历不明的链接。</p>
+<h2 id="9-0day攻击"><a href="#9-0day攻击" class="headerlink" title="9. 0day攻击"></a>9. 0day攻击</h2><p>0day漏洞是指攻击者最新发现的，厂家还未发布补丁，在网络上还未公布的系统或应用程序新漏洞。<br><strong>防护方法：</strong><br>1.安装实时监控和主动防御设备<br>2.实施网络边界防范<br>3.加固终端系统<br>4.加强网络基础设施的安全</p>
+<hr>
+<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/d8042a8c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2703,298 +2965,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/d0ec9c8f/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/d0ec9c8f/" itemprop="url">数据安全产品之认识数据脱敏系统</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-04-10T19:52:30+08:00">
-                2024-04-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:50+08:00">
-                2025-12-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">网络安全</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/d0ec9c8f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/d0ec9c8f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/d0ec9c8f/" class="leancloud_visitors" data-flag-title="数据安全产品之认识数据脱敏系统">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>随着业务的快速发展，特别是在银行、电信、医疗等行业中，企业积累了大量的包含账户、个人身份信息、财务信息等敏感信息的数据。这些数据如果被泄露或损坏，不仅会给企业带来经济上的损失，还可能严重影响企业的声誉和客户的信任。</p>
-<p>此外，随着数据分析和挖掘技术的广泛应用，企业需要对数据进行各种处理以满足业务需求。然而，在数据使用的过程中，如何确保敏感数据不被泄露或滥用成为了一个重要的问题。特别是在开发、测试、外包等场景中，直接使用真实数据存在极大的风险。</p>
-<p>因此，数据脱敏技术应运而生。它通过对敏感数据进行变形、替换、删除等操作，使数据在保持一定特征的同时，不再包含敏感信息。这样，即使数据被泄露，也不会造成严重的后果。</p>
-<p>本文让我们一起来认识数据脱敏系统</p>
-<h2 id="一、什么是数据脱敏"><a href="#一、什么是数据脱敏" class="headerlink" title="一、什么是数据脱敏"></a>一、什么是数据脱敏</h2><p>数据脱敏是一种信息安全技术，它通过将敏感信息转换成无实际意义的数据，同时保持原始数据的格式、类型和业务逻辑，以确保数据在使用过程中的安全性和合规性。数据脱敏的目的是保护个人隐私和企业敏感信息，防止数据在非生产环境中泄露或被不当使用。</p>
-<p>数据脱敏具有几个关键点：敏感数据、脱敏规则、使用环境。敏感数据是需要进行保护的目标，如身份证号、手机号、卡号、客户号等个人信息；脱敏规则是进行数据变形时遵循的标准或方法；使用环境则是指数据脱敏后应用的具体场景，如开发、测试环境等。</p>
-<p>数据脱敏的类型主要有两种：静态脱敏和动态脱敏。静态脱敏是指对敏感数据进行脱敏处理后，将数据从生产环境导入到其他非生产环境进行使用。而动态脱敏则会对数据进行多次脱敏，更多应用于直接连接生产数据的场景，在用户访问生产环境敏感数据时，通过匹配用户IP或MAC地址等脱敏条件，根据用户权限采用改写查询SQL语句等方式返回脱敏后的数据。</p>
-<p>通过数据脱敏，企业可以在确保数据安全性和隐私性的前提下，充分利用数据进行业务分析、测试和开发等工作，同时满足法规合规性要求。</p>
-<h2 id="二、为什么要做数据脱敏"><a href="#二、为什么要做数据脱敏" class="headerlink" title="二、为什么要做数据脱敏"></a>二、为什么要做数据脱敏</h2><p>数据脱敏是数据保护的关键环节，主要出于以下原因：</p>
-<ol>
-<li>保护隐私：数据脱敏可以确保敏感信息不被未经授权的人员访问或滥用。例如，在医疗、金融等领域，个人身份信息、疾病信息、财务信息等都属于高度敏感数据，如果不进行脱敏处理，一旦泄露，可能会给个人或组织带来严重的隐私和财务风险。</li>
-<li>遵守法规：许多国家和地区都有关于数据保护和隐私的法律法规，要求企业在处理个人数据时必须采取适当的保护措施。数据脱敏是满足这些法规要求的重要手段之一。</li>
-<li>安全测试：在软件开发和测试过程中，经常需要使用真实的数据进行模拟测试。然而，直接使用原始敏感数据进行测试可能会带来安全风险。通过数据脱敏，可以在保留数据结构和特性的同时，去除敏感信息，从而确保测试过程的安全性和合规性。</li>
-<li>防止数据滥用：即使在企业内部，不同部门和员工对数据的访问和使用权限也应有所限制。数据脱敏可以防止员工滥用数据，确保数据在内部使用的安全性和合规性。</li>
-</ol>
-<p>总的来说，数据脱敏是确保数据安全和隐私保护的重要手段，有助于企业在处理敏感数据时遵守法规要求，降低安全风险，并促进数据的合规使用和共享。</p>
-<h2 id="三、数据脱敏系统的工作原理"><a href="#三、数据脱敏系统的工作原理" class="headerlink" title="三、数据脱敏系统的工作原理"></a>三、数据脱敏系统的工作原理</h2><p>数据脱敏系统的工作原理涉及几个关键步骤和技术，主要目的是将敏感数据转换成非敏感数据，同时保持数据的一致性和可用性。</p>
-<p><img src="http://image2.ishareread.com/images/2024/20240410/%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="数据脱敏系统工作原理图"></p>
-<ol>
-<li>数据识别：首先，系统需要识别和分类需要脱敏的数据。这通常涉及到扫描数据源，如数据库、数据仓库或文件系统，以确定包含敏感信息的数据字段。这些数据字段可能包括个人身份信息（如姓名、身份证号、联系方式等）、财务信息、健康记录等。</li>
-<li>脱敏规则定义：一旦识别了敏感数据，下一步是定义脱敏规则。这些规则指定了如何转换敏感数据，以及哪些数据需要被脱敏。脱敏规则可以基于数据类型、数据敏感级别、业务需求和合规要求来制定。例如，可以使用掩码遮盖电话号码的一部分，或者将姓名替换为随机生成的别名。</li>
-<li>脱敏算法应用：根据定义的脱敏规则，系统将选择合适的脱敏算法来处理数据。这些算法可能包括数据替换、数据混淆、数据加密、散列等。例如，可以使用伪随机数生成器产生新的、不与原始数据相关的数据，或者应用加密算法将原始数据转换为不可读的密文。</li>
-<li>数据转换：在应用脱敏算法后，敏感数据将被转换成非敏感数据。这个过程需要确保数据的格式和结构保持不变，以便数据仍然可以用于分析、测试或其他业务用途。</li>
-<li>数据验证和审计：脱敏后的数据需要进行验证，以确保敏感信息已被有效脱敏，并且数据的一致性和完整性得到保持。此外，系统通常包括审计功能，记录所有脱敏活动，以便在需要时进行审查和合规性报告。</li>
-<li>数据输出：经过脱敏处理的数据可以输出到目标系统或存储位置，供进一步的业务使用。这些数据现在可以安全地在非生产环境中使用，例如开发、测试或数据分析，而不会泄露敏感信息。</li>
-</ol>
-<p>数据脱敏系统的设计和实现需要考虑到数据的安全性、可用性和合规性。系统应具备灵活性和可扩展性，以适应不断变化的业务需求和法规要求。通过这些步骤，数据脱敏系统能够有效地保护敏感数据，同时允许数据在各种环境中安全地使用。</p>
-<h2 id="四、常见的数据脱敏方法"><a href="#四、常见的数据脱敏方法" class="headerlink" title="四、常见的数据脱敏方法"></a>四、常见的数据脱敏方法</h2><p>常见的数据脱敏方法主要包括以下几种：</p>
-<ol>
-<li>哈希脱敏：这是通过将数据通过哈希函数转换成固定长度的摘要信息。这种脱敏方法的优点是不可逆，即无法通过摘要信息还原出原始数据，从而确保了数据的安全性。</li>
-<li>加密脱敏：使用加密算法将数据转换成密文，只有拥有相应密钥的人才能对其进行解密还原。这种方法的优点在于可以通过密钥进行数据的还原，但缺点是需要保护好密钥的安全性，防止泄露。</li>
-<li>掩码脱敏：这种方法是将数据中的一部分信息替换成通用的字符，如用“*”或“X”来代替部分数据。其优点是简单、易于实现，但也存在被还原的风险。</li>
-<li>伪造脱敏：将真实数据替换成一些看起来合理的但并非真实的数据。例如，将真实的姓名替换成随机的姓名或将真实的年龄替换成一个合理的年龄区间。</li>
-<li>基于规则的脱敏：根据不同的敏感程度，制定相应的脱敏规则。对于姓名、联系方式等个人信息，可以将关键信息用“*”代替。</li>
-<li>数据扰动脱敏：将原始数据进行随机化处理，添加一定的随机误差，使得原始数据不易被还原，从而达到数据保护的目的。</li>
-</ol>
-<p>这些方法可以根据具体的业务需求和数据特性进行选择和应用，以确保数据的安全性和隐私性。同时，也需要注意，任何脱敏方法都不是绝对安全的，需要综合考虑技术、管理和法律等多个层面的因素，来制定和完善数据保护策略。</p>
-<h2 id="五、数据脱敏系统的主要功能"><a href="#五、数据脱敏系统的主要功能" class="headerlink" title="五、数据脱敏系统的主要功能"></a>五、数据脱敏系统的主要功能</h2><p>数据脱敏系统具备一系列核心功能，这些功能旨在确保敏感数据的安全性和合规性，同时满足各种业务需求。数据脱敏系统的主要核心功能包括：</p>
-<ol>
-<li>数据识别与分类：<br>系统能够自动识别和分类敏感数据，如个人身份信息、财务信息、商业机密等。<br>通过预设的规则或算法，系统能够准确识别出需要进行脱敏处理的数据项。</li>
-<li>脱敏规则配置：<br>系统允许用户根据业务需求自定义脱敏规则，包括替换、遮蔽、变形、加密等多种脱敏方法。<br>用户可以针对不同的数据类型和敏感程度，配置不同的脱敏策略。</li>
-<li>数据脱敏处理：<br>根据预设的脱敏规则，系统能够自动对敏感数据进行脱敏处理。<br>脱敏过程可以批量进行，也可以针对特定数据进行单独处理。</li>
-<li>脱敏效果验证：<br>系统提供脱敏效果验证功能，确保脱敏后的数据达到预期的效果。<br>用户可以通过对比原始数据和脱敏数据，验证脱敏操作的准确性和完整性。</li>
-<li>数据管理与调度：<br>系统提供统一的数据管理和调度功能，方便用户对脱敏数据进行管理和使用。<br>用户可以方便地查看、查询和导出脱敏数据，满足不同的业务需求。</li>
-<li>审计与监控：<br>系统记录脱敏操作的全过程，包括操作时间、操作人员、操作内容等。<br>提供审计日志和监控报表，方便企业进行安全审计和合规性检查。</li>
-<li>权限管理与控制：<br>系统具备严格的权限管理和控制功能，确保只有授权的用户才能访问和操作脱敏数据。<br>通过角色和权限的设置，实现不同用户之间的数据隔离和访问控制。</li>
-<li>可扩展性与集成性：<br>数据脱敏系统通常具备良好的可扩展性，能够支持不同规模和复杂度的数据脱敏需求。<br>系统还提供了与其他系统的集成接口，方便与其他数据管理和安全系统进行对接。</li>
-</ol>
-<p>这些功能共同构成了数据脱敏系统的核心功能体系，有助于企业全面、高效地管理和保护敏感数据，确保数据的隐私性和安全性。</p>
-<h2 id="六、数据脱敏系统的部署方式"><a href="#六、数据脱敏系统的部署方式" class="headerlink" title="六、数据脱敏系统的部署方式"></a>六、数据脱敏系统的部署方式</h2><p>脱敏产品一般支持代理接入部署模式和半透明网桥部署模式两种部署模式，满足用户不同的系统部署需求场景。</p>
-<ol>
-<li><p>代理接入部署模式<br>利用代理接入部署模式将动态数据脱敏系统并联接入网络，客户端逻辑连接动态数据脱敏系统的IP地址，使得动态数据脱敏系统转发流量到数据库服务器。</p>
-</li>
-<li><p>半透明网桥部署模式<br>利用半透明网桥部署模式将动态数据脱敏系统物理串联接入网络，所有用户访问的网络流量均串联流经该设备。通过半透明网桥技术，客户端看到的数据库服务的IP地址不变。</p>
-</li>
-</ol>
-<h2 id="七、数据脱敏与去标识化的关系与区别"><a href="#七、数据脱敏与去标识化的关系与区别" class="headerlink" title="七、数据脱敏与去标识化的关系与区别"></a>七、数据脱敏与去标识化的关系与区别</h2><p>数据脱敏（Data Masking）和去标识化（de-identification）是两种不同的数据处理技术，它们都旨在保护敏感信息，但方法和目的有所不同。</p>
-<ol>
-<li>目的和应用场景：<br>○ 数据脱敏主要是为了在非生产环境中保护敏感数据，例如在开发、测试或培训环境中使用生产数据的副本。它的目的是通过替换、掩盖或其他技术手段，使得敏感数据在外观上不再识别得出，同时保持数据的某些使用功能和分析价值。<br>○ 去标识化则是将个人信息从数据集中剥离，使得数据不再能够直接或间接地识别特定的个人。它的目的是在数据发布、共享或用于统计和研究等场景中，保护个人隐私，同时允许数据的其他用途。</li>
-<li>处理程度和技术方法：<br>○ 数据脱敏可以采用多种技术手段，如数据替换、数据掩盖、数据混淆等，这些方法通常保持了数据的格式和结构，但改变了数据的内容，使其无法追溯到原始个人。<br>○ 去标识化则更侧重于消除或减少数据集中与个人身份的关联性，它可能包括删除直接标识符、使用伪匿名技术、应用统计技术等，以确保数据在不借助额外信息的情况下无法识别个人。</li>
-<li>法律和合规要求：<br>○ 数据脱敏通常是为了满足特定的业务需求和合规要求，如《电信和互联网行业数据安全标准体系建设指南》中提到的数据处理标准，以及《个人信息保护法》中对个人信息处理的规定。<br>○ 去标识化则更多地关联于数据的发布和共享，它需要确保处理后的数据不再属于个人信息，从而不受个人信息保护法规的约束，如《个人信息保护法》第4条所述的匿名化信息不属于个人信息。</li>
-<li>数据的可用性：<br>○ 脱敏后的数据通常仍然可以用于分析、测试和开发等目的，尽管数据的敏感内容已经被改变或隐藏。<br>○ 而去标识化后的数据则更侧重于数据的发布和共享，其可用性可能受到更多限制，因为它需要确保数据无法被重新识别到个人。</li>
-</ol>
-<p>总结来说，数据脱敏和去标识化都是为了保护敏感信息，但它们在目的、处理手段、法律要求和数据可用性方面存在差异。数据脱敏更侧重于在非生产环境中保护数据的外观和某些功能，而去标识化则侧重于消除数据与个人身份的关联，以确保数据的安全发布和共享。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
-<center> 
-<br>
-
-<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/6/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/6/">&gt;</a>
   </nav>
 
 
@@ -3046,7 +3021,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">220</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3158,7 +3133,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">448.9k</span>
+    <span title="Site words total count">450.1k</span>
   
   
 <!--51la网站应用监控-->

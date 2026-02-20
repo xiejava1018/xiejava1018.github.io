@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiejava.ishareread.com/"/>
-  <updated>2026-01-21T15:00:58.499Z</updated>
+  <updated>2026-02-20T10:19:24.096Z</updated>
   <id>http://xiejava.ishareread.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络安全资产画像实战</title>
+    <link href="http://xiejava.ishareread.com/posts/5c086d44/"/>
+    <id>http://xiejava.ishareread.com/posts/5c086d44/</id>
+    <published>2026-02-20T09:58:07.000Z</published>
+    <updated>2026-02-20T10:19:24.096Z</updated>
+    
+    <content type="html"><![CDATA[<p>资产是安全防守的基石。如果你不知道自己有什么，就不可能保护好它们。在网络安全攻防实战中，企业对自己资产的了解程度往往远低于攻击者。攻击者只需要找到一个入口点，而防守者需要保护所有可能的入口，资产画像就是解决这个问题的核心方法论。</p><h1 id="【什么是资产画像？】"><a href="#【什么是资产画像？】" class="headerlink" title="【什么是资产画像？】"></a>【什么是资产画像？】</h1><p>资产画像是对网络空间中每一项资产进行全方位、多维度描述的过程。目标是回答三个核心问题：</p><ol><li>这资产是什么？—— 身份与属性</li><li>暴露面有多大？—— 可攻击面</li><li>风险有多少？—— 脆弱性与影响</li></ol><h1 id="【资产画像的七大核心维度】"><a href="#【资产画像的七大核心维度】" class="headerlink" title="【资产画像的七大核心维度】"></a>【资产画像的七大核心维度】</h1><h2 id="一、身份维度（是谁）"><a href="#一、身份维度（是谁）" class="headerlink" title="一、身份维度（是谁）"></a>一、身份维度（是谁）</h2><ul><li>资产标识：IP、MAC、主机名、域名</li><li>资产类型：服务器、网络设备、安全设备、终端、IoT、云资源</li><li>资产权属：所属业务、所属部门、责任人</li><li>生命周期：入网时间、退役时间、状态</li><li>实战要点：建立统一命名规范，确保对应关系准确，关注云环境弹性资产</li></ul><h2 id="二、暴露面维度（在哪）"><a href="#二、暴露面维度（在哪）" class="headerlink" title="二、暴露面维度（在哪）"></a>二、暴露面维度（在哪）</h2><ul><li>网络位置：内网/DMZ/外网/云上</li><li>可达性：从互联网是否可直接访问</li><li>开放端口与服务：22、80、443、3389、3306等</li><li>攻击面：外部暴露点、可被利用的入口</li><li>实战要点：互联网暴露资产是重中之重，关注非常规端口，区分主动/被动暴露</li></ul><h2 id="三、脆弱性维度（有什么弱点）"><a href="#三、脆弱性维度（有什么弱点）" class="headerlink" title="三、脆弱性维度（有什么弱点）"></a>三、脆弱性维度（有什么弱点）</h2><ul><li>系统漏洞：CVE编号、CVSS评分、PoC状态</li><li>配置缺陷：弱口令、默认配置、未授权访问</li><li>补丁状态：缺失的关键补丁</li><li>组件风险：Log4j、Fastjson等高危组件</li><li>实战要点：漏洞数量不重要，可利用性才重要，关注N-day漏洞武器化程度</li></ul><h2 id="四、价值维度（值不值得保护）"><a href="#四、价值维度（值不值得保护）" class="headerlink" title="四、价值维度（值不值得保护）"></a>四、价值维度（值不值得保护）</h2><ul><li>数据敏感度：是否含敏感数据、数据级别</li><li>业务重要性：核心系统/一般系统/边缘系统</li><li>影响范围：一旦失陷影响面多大</li><li>实战要点：核心业务+敏感数据=最高防护优先级，关注低调但重要的资产</li></ul><h2 id="五、防护维度（有什么保护）"><a href="#五、防护维度（有什么保护）" class="headerlink" title="五、防护维度（有什么保护）"></a>五、防护维度（有什么保护）</h2><ul><li>终端防护：杀软、EDR、HIDS</li><li>网络防护：防火墙、WAF、IPS</li><li>访问控制：VPN、零信任、多因素认证</li><li>监控覆盖：日志审计、流量监控</li><li>实战要点：有部署不等于有效防护，关注防护盲区，日志要能支撑溯源</li></ul><h2 id="六、行为维度（平时干什么）"><a href="#六、行为维度（平时干什么）" class="headerlink" title="六、行为维度（平时干什么）"></a>六、行为维度（平时干什么）</h2><ul><li>通信模式：正常对外连接哪些IP/端口</li><li>流量基线：日常流量特征</li><li>用户行为：谁在用什么方式访问</li><li>实战要点：建立基线需2-4周积累，关注突然出现的行为，可用于威胁狩猎</li></ul><h2 id="七、信任关系维度（和谁有联系）"><a href="#七、信任关系维度（和谁有联系）" class="headerlink" title="七、信任关系维度（和谁有联系）"></a>七、信任关系维度（和谁有联系）</h2><ul><li>横向关联：和哪些内网资产通信</li><li>纵向关联：上下游业务依赖</li><li>信任路径：从它出发能到达哪些关键资产</li><li>实战要点：关注枢纽型资产，横向移动目标是域控/核心数据库，打破内网即信任假设</li></ul><h1 id="【实施优先级】"><a href="#【实施优先级】" class="headerlink" title="【实施优先级】"></a>【实施优先级】</h1><ul><li>第一阶段（1-2月）：身份+暴露面+脆弱性 —— 摸清家底，识别高风险资产</li><li>第二阶段（1-2月）：价值+信任关系 —— 建立业务视角，识别关键资产</li><li>第三阶段（持续）：防护+行为 —— 完善监控，支撑威胁检测</li></ul><h1 id="【资产画像数据来源】"><a href="#【资产画像数据来源】" class="headerlink" title="【资产画像数据来源】"></a>【资产画像数据来源】</h1><ul><li>自动化采集：nmap/masscan资产发现、Nessus/OpenVAS漏洞扫描、NDR流量分析、SIEM日志平台</li><li>人工维护：CMDB资产流程、业务调研访谈、数据分类分级项目</li></ul><h1 id="【应用场景】"><a href="#【应用场景】" class="headerlink" title="【应用场景】"></a>【应用场景】</h1><ol><li>资产清点与合规</li><li>漏洞管理优先级</li><li>攻防演练与红队评估</li><li>应急响应与溯源</li><li>安全运营与威胁狩猎</li></ol><h1 id="【常见挑战与对策】"><a href="#【常见挑战与对策】" class="headerlink" title="【常见挑战与对策】"></a>【常见挑战与对策】</h1><ul><li>挑战1：资产数量庞大 → 分阶段推进，优先覆盖核心资产</li><li>挑战2：数据质量差 → 多源数据交叉验证，建立校验机制</li><li>挑战3：云环境动态变化 → 接入云API实时同步，缩短扫描周期</li><li>挑战4：跨部门协作困难 → 建立统一资产平台，明确维护责任</li></ul><h1 id="【结语】"><a href="#【结语】" class="headerlink" title="【结语】"></a>【结语】</h1><p>资产画像不是一次性项目，而是持续演进的过程。最终目标：知己知彼，百战不殆。<br>当攻击来临时，你能比攻击者更快地回答：</p><ul><li>哪些资产暴露在互联网上？</li><li>哪些资产存在高危漏洞？</li><li>哪些资产存储敏感数据？</li><li>攻击者可能通过什么路径横向移动？</li></ul><p>做到这些，你就拥有了防守的主动权。</p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;资产是安全防守的基石。如果你不知道自己有什么，就不可能保护好它们。在网络安全攻防实战中，企业对自己资产的了解程度往往远低于攻击者。攻击者只需要找到一个入口点，而防守者需要保护所有可能的入口，资产画像就是解决这个问题的核心方法论。&lt;/p&gt;
+&lt;h1 id=&quot;【什么是资产画像？】
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="网络安全" scheme="http://xiejava.ishareread.com/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>让Claude Code写了个运维健康检查的Skill还挺好用的</title>
@@ -560,34 +589,6 @@
     
     
       <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>飞牛NAS本地化部署dify打造私有LLMOps平台</title>
-    <link href="http://xiejava.ishareread.com/posts/a0bb8a4f/"/>
-    <id>http://xiejava.ishareread.com/posts/a0bb8a4f/</id>
-    <published>2025-06-14T03:25:43.000Z</published>
-    <updated>2025-12-17T11:21:51.795Z</updated>
-    
-    <content type="html"><![CDATA[<p>作为一名程序员，在AI蓬勃发展的时代，一定要拥抱AI。<strong>Dify</strong> 是一款开源的大语言模型(LLM) 应用开发平台。它融合了后端即服务（Backend as Service）和 LLMOps 的理念，使开发者可以快速搭建生产级的生成式 AI 应用。即使你是非技术人员，也能参与到 AI 应用的定义和数据运营过程中。</p><p>由于 Dify 内置了构建 LLM 应用所需的关键技术栈，包括对数百个模型的支持、直观的 Prompt 编排界面、高质量的 RAG 引擎、稳健的 Agent 框架、灵活的流程编排，并同时提供了一套易用的界面和 API。这为开发者节省了许多重复造轮子的时间，使其可以专注在创新和业务需求上。</p><p>NAS作为私有化的个人数据中心，基本保持不停机的状态并且功耗小，比较适合作为私有化的开发平台载体。本文介绍如何在家庭飞牛NAS上本地化部署dify打造属于自己的私有化LLMOps平台，可以随时随地的通过Dify来构建自己的AI应用。</p><h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、环境介绍"><a href="#1、环境介绍" class="headerlink" title="1、环境介绍"></a>1、环境介绍</h3><p>我的NAS设备为零刻ME mini全闪小主机，CPU intel N200,内存12G，装了fnOS作为NAS用。这个配置如果仅仅只是存存相片、文件等还是有点过剩了，所以为了充分发挥迷你主机的效用决定把它打造为私有的LLMOps平台。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/1-nas%E9%85%8D%E7%BD%AE.png" alt="NAS的硬件配置"></p><h3 id="2、打开飞牛OS的SSH登录"><a href="#2、打开飞牛OS的SSH登录" class="headerlink" title="2、打开飞牛OS的SSH登录"></a>2、打开飞牛OS的SSH登录</h3><p>登录到飞牛OS，在“系统设置”中找到“SSH”，打开SSH功能</p><p><img src="http://image2.ishareread.com/images/2025/20250614/2-%E6%89%93%E5%BC%80SSH.png" alt="打开SSH"></p><h3 id="3、通过SSH客户端连上NAS主机"><a href="#3、通过SSH客户端连上NAS主机" class="headerlink" title="3、通过SSH客户端连上NAS主机"></a>3、通过SSH客户端连上NAS主机</h3><p>打开SSH后就可以通过SSH的客户端工具连到fnOS</p><p><img src="http://image2.ishareread.com/images/2025/20250614/3-SSH%E8%BF%9E%E6%8E%A5%E4%B8%BB%E6%9C%BA.png" alt="SSH连接主机"></p><h2 id="二、在飞牛NAS上安装Dify"><a href="#二、在飞牛NAS上安装Dify" class="headerlink" title="二、在飞牛NAS上安装Dify"></a>二、在飞牛NAS上安装Dify</h2><h3 id="1、找到Dify的安装源"><a href="#1、找到Dify的安装源" class="headerlink" title="1、找到Dify的安装源"></a>1、找到Dify的安装源</h3><p>在github或gitee上找到dify的项目地址<br><a href="https://github.com/langgenius/dify/" target="_blank" rel="noopener">https://github.com/langgenius/dify/</a><br><a href="https://gitee.com/dify_ai/dify" target="_blank" rel="noopener">https://gitee.com/dify_ai/dify</a><br>在国内访问github比较慢，可以访问gitee上的difyi项目地址。<br>这里有安装Dify的硬件要求和安装步骤。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/4-gitee%E7%9A%84dify%E9%A1%B9%E7%9B%AE.png" alt="gitee的dify项目"></p><h3 id="2、在飞牛NAS上创建存储目录"><a href="#2、在飞牛NAS上创建存储目录" class="headerlink" title="2、在飞牛NAS上创建存储目录"></a>2、在飞牛NAS上创建存储目录</h3><p>在飞牛NAS上创建一个用户clone和安装dify的目录</p><p><img src="http://image2.ishareread.com/images/2025/20250614/5-nas%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95.png" alt="NAS上创建Dify目录"><br>右键点击dify文件夹，点击“详细信息”。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/6-%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AD%98%E5%82%A8%E8%AF%A6%E6%83%85.png" alt="查看目录详情"></p><p>在详细信息中找到“复制原始路径”，这里复制的原始路径就是该文件夹在fnOS操作系统的实际路径。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/7-%E5%A4%8D%E5%88%B6%E5%8E%9F%E5%A7%8B%E8%B7%AF%E5%BE%84.png" alt="找到实际路径"></p><h3 id="3、开始安装Dify"><a href="#3、开始安装Dify" class="headerlink" title="3、开始安装Dify"></a>3、开始安装Dify</h3><p>安装Dify需要docker环境，fnOS本身就已经安装好了docker环境，所以可以直接clone后进行安装<br>通过<code>sudo -i</code> 切换到 root 用户，进入到开始复制的原始路径。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/8-%E5%88%87%E6%8D%A2root%E7%94%A8%E6%88%B7%E8%BF%9B%E5%85%A5dify%E7%9B%AE%E5%BD%95.png" alt="切换root用户"></p><p>通过<code>git clone https://gitee.com/dify_ai/dify</code> 命令clone项目</p><p><img src="http://image2.ishareread.com/images/2025/20250614/9-clonedify.png" alt="clone项目"></p><p>进入到dify下的docker目录，将.env.example 复制成.env文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dify/docker</span><br><span class="line">cp .env.example .env</span><br></pre></td></tr></table></figure><p>.env文件中配置的是dify的一些环境变量，dify默认的web端口是80，为了避免80端口冲突，我们把dify的默认端口改成8080，修改.env的配置文件，将docker输出的Nginx端口改成8080，Nginx的SSL端口改成8443。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE_NGINX_PORT=8080</span><br><span class="line">EXPOSE_NGINX_SSL_PORT=8080</span><br></pre></td></tr></table></figure><p><img src="http://image2.ishareread.com/images/2025/20250614/10-%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3.png" alt="修改端口"></p><p>然后执行 <code>docker compose up -d</code> 就可以完成dify的安装</p><p><img src="http://image2.ishareread.com/images/2025/20250614/11-%E5%AE%89%E8%A3%85dify.png" alt="安装dify"></p><p>安装完成后通过NAS的内网IP就可以访问到dify的初始化界面<br><a href="http://192.168.0.18:8080/install" target="_blank" rel="noopener">http://192.168.0.18:8080/install</a><br>通过简单的配置，配置用户名、口令就可以正式使用dify了。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/12-%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="内网访问dify"></p><h2 id="三、设置外网访问"><a href="#三、设置外网访问" class="headerlink" title="三、设置外网访问"></a>三、设置外网访问</h2><p>为了随时随地的访问和使用dify我们要对dify进行端口映射，使用nas的ddns来进行外网访问。</p><h3 id="1、外网端口映射"><a href="#1、外网端口映射" class="headerlink" title="1、外网端口映射"></a>1、外网端口映射</h3><p>在路由器上添加一条映射规则，将内网的8080端口映射到外网的某个端口上。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/12-%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="外网端口映射"></p><h3 id="2、在飞牛nas上进行ddns配置"><a href="#2、在飞牛nas上进行ddns配置" class="headerlink" title="2、在飞牛nas上进行ddns配置"></a>2、在飞牛nas上进行ddns配置</h3><p>如有域名就可以配置阿里云或Cloudflare的ddns服务</p><p><img src="http://image2.ishareread.com/images/2025/20250614/13-DDNS%E9%85%8D%E7%BD%AE.png" alt="DDNS配置"></p><p>这样就可以通过域名+端口直接访问NAS上的dify应用，随时随地构建和调试自己的AI应用了。</p><p><img src="http://image2.ishareread.com/images/2025/20250614/14-%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="外网访问"></p><hr><p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p><center> <br><p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p><p>关注：微信公众号,一起学习成长！</center></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;作为一名程序员，在AI蓬勃发展的时代，一定要拥抱AI。&lt;strong&gt;Dify&lt;/strong&gt; 是一款开源的大语言模型(LLM) 应用开发平台。它融合了后端即服务（Backend as Service）和 LLMOps 的理念，使开发者可以快速搭建生产级的生成式 AI 应
-      
-    
-    </summary>
-    
-    
-      <category term="技术" scheme="http://xiejava.ishareread.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="AI机器学习" scheme="http://xiejava.ishareread.com/tags/AI%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="NAS" scheme="http://xiejava.ishareread.com/tags/NAS/"/>
     
   </entry>
   

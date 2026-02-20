@@ -313,6 +313,257 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/a0bb8a4f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/a0bb8a4f/" itemprop="url">飞牛NAS本地化部署dify打造私有LLMOps平台</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-06-14T11:25:43+08:00">
+                2025-06-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:51+08:00">
+                2025-12-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/a0bb8a4f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/a0bb8a4f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/a0bb8a4f/" class="leancloud_visitors" data-flag-title="飞牛NAS本地化部署dify打造私有LLMOps平台">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  991
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作为一名程序员，在AI蓬勃发展的时代，一定要拥抱AI。<strong>Dify</strong> 是一款开源的大语言模型(LLM) 应用开发平台。它融合了后端即服务（Backend as Service）和 LLMOps 的理念，使开发者可以快速搭建生产级的生成式 AI 应用。即使你是非技术人员，也能参与到 AI 应用的定义和数据运营过程中。</p>
+<p>由于 Dify 内置了构建 LLM 应用所需的关键技术栈，包括对数百个模型的支持、直观的 Prompt 编排界面、高质量的 RAG 引擎、稳健的 Agent 框架、灵活的流程编排，并同时提供了一套易用的界面和 API。这为开发者节省了许多重复造轮子的时间，使其可以专注在创新和业务需求上。</p>
+<p>NAS作为私有化的个人数据中心，基本保持不停机的状态并且功耗小，比较适合作为私有化的开发平台载体。本文介绍如何在家庭飞牛NAS上本地化部署dify打造属于自己的私有化LLMOps平台，可以随时随地的通过Dify来构建自己的AI应用。</p>
+<h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、环境介绍"><a href="#1、环境介绍" class="headerlink" title="1、环境介绍"></a>1、环境介绍</h3><p>我的NAS设备为零刻ME mini全闪小主机，CPU intel N200,内存12G，装了fnOS作为NAS用。这个配置如果仅仅只是存存相片、文件等还是有点过剩了，所以为了充分发挥迷你主机的效用决定把它打造为私有的LLMOps平台。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/1-nas%E9%85%8D%E7%BD%AE.png" alt="NAS的硬件配置"></p>
+<h3 id="2、打开飞牛OS的SSH登录"><a href="#2、打开飞牛OS的SSH登录" class="headerlink" title="2、打开飞牛OS的SSH登录"></a>2、打开飞牛OS的SSH登录</h3><p>登录到飞牛OS，在“系统设置”中找到“SSH”，打开SSH功能</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/2-%E6%89%93%E5%BC%80SSH.png" alt="打开SSH"></p>
+<h3 id="3、通过SSH客户端连上NAS主机"><a href="#3、通过SSH客户端连上NAS主机" class="headerlink" title="3、通过SSH客户端连上NAS主机"></a>3、通过SSH客户端连上NAS主机</h3><p>打开SSH后就可以通过SSH的客户端工具连到fnOS</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/3-SSH%E8%BF%9E%E6%8E%A5%E4%B8%BB%E6%9C%BA.png" alt="SSH连接主机"></p>
+<h2 id="二、在飞牛NAS上安装Dify"><a href="#二、在飞牛NAS上安装Dify" class="headerlink" title="二、在飞牛NAS上安装Dify"></a>二、在飞牛NAS上安装Dify</h2><h3 id="1、找到Dify的安装源"><a href="#1、找到Dify的安装源" class="headerlink" title="1、找到Dify的安装源"></a>1、找到Dify的安装源</h3><p>在github或gitee上找到dify的项目地址<br><a href="https://github.com/langgenius/dify/" target="_blank" rel="noopener">https://github.com/langgenius/dify/</a><br><a href="https://gitee.com/dify_ai/dify" target="_blank" rel="noopener">https://gitee.com/dify_ai/dify</a><br>在国内访问github比较慢，可以访问gitee上的difyi项目地址。<br>这里有安装Dify的硬件要求和安装步骤。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/4-gitee%E7%9A%84dify%E9%A1%B9%E7%9B%AE.png" alt="gitee的dify项目"></p>
+<h3 id="2、在飞牛NAS上创建存储目录"><a href="#2、在飞牛NAS上创建存储目录" class="headerlink" title="2、在飞牛NAS上创建存储目录"></a>2、在飞牛NAS上创建存储目录</h3><p>在飞牛NAS上创建一个用户clone和安装dify的目录</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/5-nas%E5%88%9B%E5%BB%BA%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95.png" alt="NAS上创建Dify目录"><br>右键点击dify文件夹，点击“详细信息”。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/6-%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AD%98%E5%82%A8%E8%AF%A6%E6%83%85.png" alt="查看目录详情"></p>
+<p>在详细信息中找到“复制原始路径”，这里复制的原始路径就是该文件夹在fnOS操作系统的实际路径。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/7-%E5%A4%8D%E5%88%B6%E5%8E%9F%E5%A7%8B%E8%B7%AF%E5%BE%84.png" alt="找到实际路径"></p>
+<h3 id="3、开始安装Dify"><a href="#3、开始安装Dify" class="headerlink" title="3、开始安装Dify"></a>3、开始安装Dify</h3><p>安装Dify需要docker环境，fnOS本身就已经安装好了docker环境，所以可以直接clone后进行安装<br>通过<code>sudo -i</code> 切换到 root 用户，进入到开始复制的原始路径。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/8-%E5%88%87%E6%8D%A2root%E7%94%A8%E6%88%B7%E8%BF%9B%E5%85%A5dify%E7%9B%AE%E5%BD%95.png" alt="切换root用户"></p>
+<p>通过<code>git clone https://gitee.com/dify_ai/dify</code> 命令clone项目</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/9-clonedify.png" alt="clone项目"></p>
+<p>进入到dify下的docker目录，将.env.example 复制成.env文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dify/docker</span><br><span class="line">cp .env.example .env</span><br></pre></td></tr></table></figure>
+
+<p>.env文件中配置的是dify的一些环境变量，dify默认的web端口是80，为了避免80端口冲突，我们把dify的默认端口改成8080，修改.env的配置文件，将docker输出的Nginx端口改成8080，Nginx的SSL端口改成8443。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">EXPOSE_NGINX_PORT=8080</span><br><span class="line">EXPOSE_NGINX_SSL_PORT=8080</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://image2.ishareread.com/images/2025/20250614/10-%E4%BF%AE%E6%94%B9%E7%AB%AF%E5%8F%A3.png" alt="修改端口"></p>
+<p>然后执行 <code>docker compose up -d</code> 就可以完成dify的安装</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/11-%E5%AE%89%E8%A3%85dify.png" alt="安装dify"></p>
+<p>安装完成后通过NAS的内网IP就可以访问到dify的初始化界面<br><a href="http://192.168.0.18:8080/install" target="_blank" rel="noopener">http://192.168.0.18:8080/install</a><br>通过简单的配置，配置用户名、口令就可以正式使用dify了。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/12-%E5%86%85%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="内网访问dify"></p>
+<h2 id="三、设置外网访问"><a href="#三、设置外网访问" class="headerlink" title="三、设置外网访问"></a>三、设置外网访问</h2><p>为了随时随地的访问和使用dify我们要对dify进行端口映射，使用nas的ddns来进行外网访问。</p>
+<h3 id="1、外网端口映射"><a href="#1、外网端口映射" class="headerlink" title="1、外网端口映射"></a>1、外网端口映射</h3><p>在路由器上添加一条映射规则，将内网的8080端口映射到外网的某个端口上。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/12-%E5%A4%96%E7%BD%91%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84.png" alt="外网端口映射"></p>
+<h3 id="2、在飞牛nas上进行ddns配置"><a href="#2、在飞牛nas上进行ddns配置" class="headerlink" title="2、在飞牛nas上进行ddns配置"></a>2、在飞牛nas上进行ddns配置</h3><p>如有域名就可以配置阿里云或Cloudflare的ddns服务</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/13-DDNS%E9%85%8D%E7%BD%AE.png" alt="DDNS配置"></p>
+<p>这样就可以通过域名+端口直接访问NAS上的dify应用，随时随地构建和调试自己的AI应用了。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20250614/14-%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AEdify.png" alt="外网访问"></p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/a95e359b/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2884,255 +3135,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/12b9f376/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/12b9f376/" itemprop="url">vue3+vite配置环境变量实现开发、测试、生产的区分</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-08-25T14:57:34+08:00">
-                2024-08-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:51+08:00">
-                2025-12-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/12b9f376/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/12b9f376/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/12b9f376/" class="leancloud_visitors" data-flag-title="vue3+vite配置环境变量实现开发、测试、生产的区分">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  973
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在vue的实际项目中都要经过开发、测试、然后上生产的阶段，在开发、测试的过程中往往会要频繁的切换开发、测试、生产等不同的环境。每个环境的配置有可能不一样，本文介绍如何通过vue3+vite配置环境变量实现开发、测试、生产灵活便捷的切换。</p>
-<h2 id="一、为什么需要区分-dev-、测试-test-和生产-prod-环境"><a href="#一、为什么需要区分-dev-、测试-test-和生产-prod-环境" class="headerlink" title="一、为什么需要区分 (dev)、测试 (test) 和生产 (prod) 环境"></a>一、为什么需要区分 (dev)、测试 (test) 和生产 (prod) 环境</h2><p>做过大型项目开发的都知道，每个项目都会要经历开发、测试、再到生产上线，一般在开发时候最常用到(development)开发环境、(production)生产环境、(test)测试环境。每个环境的配置可能都不太一样。</p>
-<ul>
-<li><strong>开发环境</strong>：为开发人员提供一个安全的地方来进行编码和调试，不会影响到其他环境，一般来说开发人员在本地机器上运行和测试应用程序。</li>
-<li><strong>测试环境</strong>：用于测试，模拟生产环境，确保新功能在部署前能够正常工作，并且不会影响现有功能。</li>
-<li><strong>生产环境</strong>：是面向用户的最终环境，任何更改都必须经过严格的测试才能部署到这里，通常具有优化和最少的日志记录。</li>
-</ul>
-<p>区分开发 (dev)、测试 (test) 和生产 (prod) 环境是软件开发中的一个最佳实践。不同的环境通常有不同的资源配置。典型的如vue所调用的后台接口数据，在开发平台可能是本地服务提供的接口、用于自动化测试可能是mock提供的数据、生产应该是正式环境提供的真实接口。</p>
-<h2 id="二、vue3的项目如何通过配置方式区分不同的环境"><a href="#二、vue3的项目如何通过配置方式区分不同的环境" class="headerlink" title="二、vue3的项目如何通过配置方式区分不同的环境"></a>二、vue3的项目如何通过配置方式区分不同的环境</h2><p>vue3的项目可以通过vite的环境变量配置来进行不同环境的配置，可以参考vite的官方文档《<a href="https://cn.vitejs.dev/guide/env-and-mode.html" target="_blank" rel="noopener">环境变量和模式</a>》<br>接下来，我们以一个实例来介绍在vue3的项目如何通过vite配置方式区分不同的环境。</p>
-<h3 id="1、创建不同环境的-env文件"><a href="#1、创建不同环境的-env文件" class="headerlink" title="1、创建不同环境的.env文件"></a>1、创建不同环境的.env文件</h3><p>在vue3根目录下创建三个文件分别为<code>.env.develoment</code>、<code>.env.test</code>、<code>.env.production</code><br>创建的文件需要<code>.env</code>开头</p>
-<p><img src="http://image2.ishareread.com/images/2024/20240825/1-env%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.png" alt="env文件"></p>
-<h3 id="2、在不同的-env文件中配置相应的环境变量"><a href="#2、在不同的-env文件中配置相应的环境变量" class="headerlink" title="2、在不同的.env文件中配置相应的环境变量"></a>2、在不同的.env文件中配置相应的环境变量</h3><h4 id="1）-env-develoment"><a href="#1）-env-develoment" class="headerlink" title="1）.env.develoment"></a>1）.env.develoment</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">'development'</span></span><br><span class="line"><span class="comment"># API URL</span></span><br><span class="line">VITE_APP_API_URL=<span class="string">'http://localhost:8000'</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2）-env-test"><a href="#2）-env-test" class="headerlink" title="2）.env.test"></a>2）.env.test</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">'test'</span></span><br><span class="line"><span class="comment"># API URL</span></span><br><span class="line">VITE_APP_API_URL=<span class="string">''</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3）-env-production"><a href="#3）-env-production" class="headerlink" title="3）.env.production"></a>3）.env.production</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=<span class="string">'production'</span></span><br><span class="line"><span class="comment"># API URL</span></span><br><span class="line">VITE_APP_API_URL=<span class="string">'http://iblog.ishareread.com'</span></span><br></pre></td></tr></table></figure>
-
-<p>这里我们主要通过<code>VITE_APP_API_URL</code>变量来区分不同的环境调用不同的接口，在开发环境调用本地接口<a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a> ，在测试环境用mock接口，在生产环境调用真实接口。</p>
-<h3 id="3、在项目中使用环境变量"><a href="#3、在项目中使用环境变量" class="headerlink" title="3、在项目中使用环境变量"></a>3、在项目中使用环境变量</h3><p>使用<code>import.meta.env.VITE_APP_API_URL</code>在axios请求中使用环境变量的配置来调用不同的接口。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">const</span> api_rul = <span class="keyword">import</span>.meta.env.VITE_APP_API_URL</span><br><span class="line"><span class="comment">// create an axios instance</span></span><br><span class="line"><span class="keyword">const</span> service = axios.create(&#123;</span><br><span class="line">    baseURL: api_rul,</span><br><span class="line">    timeout: <span class="number">5000</span> <span class="comment">// request timeout</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> service</span><br></pre></td></tr></table></figure>
-<p>查看调用的哪些环境变量，可以在在main.js打印<code>console.log(&#39;环境变量：&#39;, import.meta.env);</code>看一下<br>main.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'./assets/main.css'</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'环境变量：'</span>, <span class="keyword">import</span>.meta.env);</span><br><span class="line"></span><br><span class="line">createApp(App).mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、在package-json中定义运行项目的脚本命令"><a href="#4、在package-json中定义运行项目的脚本命令" class="headerlink" title="4、在package.json中定义运行项目的脚本命令"></a>4、在package.json中定义运行项目的脚本命令</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"mocktest"</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.0.0"</span>,</span><br><span class="line">  <span class="string">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">"type"</span>: <span class="string">"module"</span>,</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"vite"</span>,</span><br><span class="line">    <span class="string">"test"</span>: <span class="string">"vite --mode test"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"vite build"</span>,</span><br><span class="line">    <span class="string">"preview"</span>: <span class="string">"vite preview"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"axios"</span>: <span class="string">"^1.7.5"</span>,</span><br><span class="line">    <span class="string">"vue"</span>: <span class="string">"^3.4.29"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"@vitejs/plugin-vue"</span>: <span class="string">"^5.0.5"</span>,</span><br><span class="line">    <span class="string">"mockjs"</span>: <span class="string">"^1.1.0"</span>,</span><br><span class="line">    <span class="string">"vite"</span>: <span class="string">"^5.3.1"</span>,</span><br><span class="line">    <span class="string">"vite-plugin-mock"</span>: <span class="string">"^3.0.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://image2.ishareread.com/images/2024/20240825/2-package.json%E6%96%87%E4%BB%B6.png" alt="package.json"></p>
-<h2 id="三、运行效果"><a href="#三、运行效果" class="headerlink" title="三、运行效果"></a>三、运行效果</h2><p>开发环境运行<code>npm run dev</code></p>
-<p><img src="http://image2.ishareread.com/images/2024/20240825/3-dev%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C.png" alt="npm run dev"></p>
-<p>测试环境运行<code>npm run test</code></p>
-<p><img src="http://image2.ishareread.com/images/2024/20240825/4-test%E6%89%A7%E8%A1%8C%E6%95%88%E6%9E%9C.png" alt="npm run dev"></p>
-<p>可以看出通过运行不同的命令通过环境变量区分了不同的运行环境，避免了不同环境去改代码去适配不同的环境。</p>
-<hr>
-<p>博客地址：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注微信公众号,一起学习、成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/4/">&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/4/">&gt;</a>
   </nav>
 
 
@@ -3184,7 +3191,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">220</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3296,7 +3303,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">448.9k</span>
+    <span title="Site words total count">450.1k</span>
   
   
 <!--51la网站应用监控-->

@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.cat.net/css?family=Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络安全," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="XieJava's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="资产是安全防守的基石。如果你不知道自己有什么，就不可能保护好它们。在网络安全攻防实战中，企业对自己资产的了解程度往往远低于攻击者。攻击者只需要找到一个入口点，而防守者需要保护所有可能的入口，资产画像就是解决这个问题的核心方法论。 【什么是资产画像？】资产画像是对网络空间中每一项资产进行全方位、多维度描述的过程。目标是回答三个核心问题：  这资产是什么？—— 身份与属性 暴露面有多大？—— 可攻击面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全资产画像实战">
+<meta property="og:url" content="http://xiejava.ishareread.com/posts/5c086d44/index.html">
+<meta property="og:site_name" content="XieJava&#39;s blog">
+<meta property="og:description" content="资产是安全防守的基石。如果你不知道自己有什么，就不可能保护好它们。在网络安全攻防实战中，企业对自己资产的了解程度往往远低于攻击者。攻击者只需要找到一个入口点，而防守者需要保护所有可能的入口，资产画像就是解决这个问题的核心方法论。 【什么是资产画像？】资产画像是对网络空间中每一项资产进行全方位、多维度描述的过程。目标是回答三个核心问题：  这资产是什么？—— 身份与属性 暴露面有多大？—— 可攻击面">
+<meta property="og:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+<meta property="article:published_time" content="2026-02-20T09:58:07.000Z">
+<meta property="article:modified_time" content="2026-02-20T10:19:24.096Z">
+<meta property="article:author" content="XieJava">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xiejava.ishareread.com/posts/5c086d44/"/>
+
+
+
+
+
+  <title>网络安全资产画像实战 | XieJava's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XieJava's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">记录最好的自己</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/5c086d44/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络安全资产画像实战</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2026-02-20T17:58:07+08:00">
+                2026-02-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2026-02-20T18:19:24+08:00">
+                2026-02-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/5c086d44/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/5c086d44/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/5c086d44/" class="leancloud_visitors" data-flag-title="网络安全资产画像实战">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>资产是安全防守的基石。如果你不知道自己有什么，就不可能保护好它们。在网络安全攻防实战中，企业对自己资产的了解程度往往远低于攻击者。攻击者只需要找到一个入口点，而防守者需要保护所有可能的入口，资产画像就是解决这个问题的核心方法论。</p>
+<h1 id="【什么是资产画像？】"><a href="#【什么是资产画像？】" class="headerlink" title="【什么是资产画像？】"></a>【什么是资产画像？】</h1><p>资产画像是对网络空间中每一项资产进行全方位、多维度描述的过程。目标是回答三个核心问题：</p>
+<ol>
+<li>这资产是什么？—— 身份与属性</li>
+<li>暴露面有多大？—— 可攻击面</li>
+<li>风险有多少？—— 脆弱性与影响</li>
+</ol>
+<h1 id="【资产画像的七大核心维度】"><a href="#【资产画像的七大核心维度】" class="headerlink" title="【资产画像的七大核心维度】"></a>【资产画像的七大核心维度】</h1><h2 id="一、身份维度（是谁）"><a href="#一、身份维度（是谁）" class="headerlink" title="一、身份维度（是谁）"></a>一、身份维度（是谁）</h2><ul>
+<li>资产标识：IP、MAC、主机名、域名</li>
+<li>资产类型：服务器、网络设备、安全设备、终端、IoT、云资源</li>
+<li>资产权属：所属业务、所属部门、责任人</li>
+<li>生命周期：入网时间、退役时间、状态</li>
+<li>实战要点：建立统一命名规范，确保对应关系准确，关注云环境弹性资产</li>
+</ul>
+<h2 id="二、暴露面维度（在哪）"><a href="#二、暴露面维度（在哪）" class="headerlink" title="二、暴露面维度（在哪）"></a>二、暴露面维度（在哪）</h2><ul>
+<li>网络位置：内网/DMZ/外网/云上</li>
+<li>可达性：从互联网是否可直接访问</li>
+<li>开放端口与服务：22、80、443、3389、3306等</li>
+<li>攻击面：外部暴露点、可被利用的入口</li>
+<li>实战要点：互联网暴露资产是重中之重，关注非常规端口，区分主动/被动暴露</li>
+</ul>
+<h2 id="三、脆弱性维度（有什么弱点）"><a href="#三、脆弱性维度（有什么弱点）" class="headerlink" title="三、脆弱性维度（有什么弱点）"></a>三、脆弱性维度（有什么弱点）</h2><ul>
+<li>系统漏洞：CVE编号、CVSS评分、PoC状态</li>
+<li>配置缺陷：弱口令、默认配置、未授权访问</li>
+<li>补丁状态：缺失的关键补丁</li>
+<li>组件风险：Log4j、Fastjson等高危组件</li>
+<li>实战要点：漏洞数量不重要，可利用性才重要，关注N-day漏洞武器化程度</li>
+</ul>
+<h2 id="四、价值维度（值不值得保护）"><a href="#四、价值维度（值不值得保护）" class="headerlink" title="四、价值维度（值不值得保护）"></a>四、价值维度（值不值得保护）</h2><ul>
+<li>数据敏感度：是否含敏感数据、数据级别</li>
+<li>业务重要性：核心系统/一般系统/边缘系统</li>
+<li>影响范围：一旦失陷影响面多大</li>
+<li>实战要点：核心业务+敏感数据=最高防护优先级，关注低调但重要的资产</li>
+</ul>
+<h2 id="五、防护维度（有什么保护）"><a href="#五、防护维度（有什么保护）" class="headerlink" title="五、防护维度（有什么保护）"></a>五、防护维度（有什么保护）</h2><ul>
+<li>终端防护：杀软、EDR、HIDS</li>
+<li>网络防护：防火墙、WAF、IPS</li>
+<li>访问控制：VPN、零信任、多因素认证</li>
+<li>监控覆盖：日志审计、流量监控</li>
+<li>实战要点：有部署不等于有效防护，关注防护盲区，日志要能支撑溯源</li>
+</ul>
+<h2 id="六、行为维度（平时干什么）"><a href="#六、行为维度（平时干什么）" class="headerlink" title="六、行为维度（平时干什么）"></a>六、行为维度（平时干什么）</h2><ul>
+<li>通信模式：正常对外连接哪些IP/端口</li>
+<li>流量基线：日常流量特征</li>
+<li>用户行为：谁在用什么方式访问</li>
+<li>实战要点：建立基线需2-4周积累，关注突然出现的行为，可用于威胁狩猎</li>
+</ul>
+<h2 id="七、信任关系维度（和谁有联系）"><a href="#七、信任关系维度（和谁有联系）" class="headerlink" title="七、信任关系维度（和谁有联系）"></a>七、信任关系维度（和谁有联系）</h2><ul>
+<li>横向关联：和哪些内网资产通信</li>
+<li>纵向关联：上下游业务依赖</li>
+<li>信任路径：从它出发能到达哪些关键资产</li>
+<li>实战要点：关注枢纽型资产，横向移动目标是域控/核心数据库，打破内网即信任假设</li>
+</ul>
+<h1 id="【实施优先级】"><a href="#【实施优先级】" class="headerlink" title="【实施优先级】"></a>【实施优先级】</h1><ul>
+<li>第一阶段（1-2月）：身份+暴露面+脆弱性 —— 摸清家底，识别高风险资产</li>
+<li>第二阶段（1-2月）：价值+信任关系 —— 建立业务视角，识别关键资产</li>
+<li>第三阶段（持续）：防护+行为 —— 完善监控，支撑威胁检测</li>
+</ul>
+<h1 id="【资产画像数据来源】"><a href="#【资产画像数据来源】" class="headerlink" title="【资产画像数据来源】"></a>【资产画像数据来源】</h1><ul>
+<li>自动化采集：nmap/masscan资产发现、Nessus/OpenVAS漏洞扫描、NDR流量分析、SIEM日志平台</li>
+<li>人工维护：CMDB资产流程、业务调研访谈、数据分类分级项目</li>
+</ul>
+<h1 id="【应用场景】"><a href="#【应用场景】" class="headerlink" title="【应用场景】"></a>【应用场景】</h1><ol>
+<li>资产清点与合规</li>
+<li>漏洞管理优先级</li>
+<li>攻防演练与红队评估</li>
+<li>应急响应与溯源</li>
+<li>安全运营与威胁狩猎</li>
+</ol>
+<h1 id="【常见挑战与对策】"><a href="#【常见挑战与对策】" class="headerlink" title="【常见挑战与对策】"></a>【常见挑战与对策】</h1><ul>
+<li>挑战1：资产数量庞大 → 分阶段推进，优先覆盖核心资产</li>
+<li>挑战2：数据质量差 → 多源数据交叉验证，建立校验机制</li>
+<li>挑战3：云环境动态变化 → 接入云API实时同步，缩短扫描周期</li>
+<li>挑战4：跨部门协作困难 → 建立统一资产平台，明确维护责任</li>
+</ul>
+<h1 id="【结语】"><a href="#【结语】" class="headerlink" title="【结语】"></a>【结语】</h1><p>资产画像不是一次性项目，而是持续演进的过程。最终目标：知己知彼，百战不殆。<br>当攻击来临时，你能比攻击者更快地回答：</p>
+<ul>
+<li>哪些资产暴露在互联网上？</li>
+<li>哪些资产存在高危漏洞？</li>
+<li>哪些资产存储敏感数据？</li>
+<li>攻击者可能通过什么路径横向移动？</li>
+</ul>
+<p>做到这些，你就拥有了防守的主动权。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    XieJava
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://xiejava.ishareread.com/posts/5c086d44/" title="网络安全资产画像实战">http://xiejava.ishareread.com/posts/5c086d44/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/5f421230/" rel="next" title="让Claude Code写了个运维健康检查的Skill还挺好用的">
+                <i class="fa fa-chevron-left"></i> 让Claude Code写了个运维健康检查的Skill还挺好用的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://img9.doubanio.com/icon/ul70489051-4.jpg"
+                alt="XieJava" />
+            
+              <p class="site-author-name" itemprop="name">XieJava</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/xiejava1018" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ishareread.com/" title="爱分享读书" target="_blank">爱分享读书</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/fullbug" title="CSDN" target="_blank">CSDN</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.douban.com/people/xiejava/" title="豆瓣" target="_blank">豆瓣</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【什么是资产画像？】"><span class="nav-number">1.</span> <span class="nav-text">【什么是资产画像？】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【资产画像的七大核心维度】"><span class="nav-number">2.</span> <span class="nav-text">【资产画像的七大核心维度】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、身份维度（是谁）"><span class="nav-number">2.1.</span> <span class="nav-text">一、身份维度（是谁）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、暴露面维度（在哪）"><span class="nav-number">2.2.</span> <span class="nav-text">二、暴露面维度（在哪）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、脆弱性维度（有什么弱点）"><span class="nav-number">2.3.</span> <span class="nav-text">三、脆弱性维度（有什么弱点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、价值维度（值不值得保护）"><span class="nav-number">2.4.</span> <span class="nav-text">四、价值维度（值不值得保护）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、防护维度（有什么保护）"><span class="nav-number">2.5.</span> <span class="nav-text">五、防护维度（有什么保护）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、行为维度（平时干什么）"><span class="nav-number">2.6.</span> <span class="nav-text">六、行为维度（平时干什么）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、信任关系维度（和谁有联系）"><span class="nav-number">2.7.</span> <span class="nav-text">七、信任关系维度（和谁有联系）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【实施优先级】"><span class="nav-number">3.</span> <span class="nav-text">【实施优先级】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【资产画像数据来源】"><span class="nav-number">4.</span> <span class="nav-text">【资产画像数据来源】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【应用场景】"><span class="nav-number">5.</span> <span class="nav-text">【应用场景】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【常见挑战与对策】"><span class="nav-number">6.</span> <span class="nav-text">【常见挑战与对策】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【结语】"><span class="nav-number">7.</span> <span class="nav-text">【结语】</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XieJava</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">450.1k</span>
+  
+  
+<!--51la网站应用监控-->
+<script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script>
+<script>
+  new LingQue.Monitor().init({id:"JdyGwOQm8BurILgP"});
+</script>
+<!--51la网站访问统计-->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JdyBT51UUKIm9A1e",ck: "JdyBT51UUKIm9A1e"})</script>
+<br>
+<script id="LA-DATA-WIDGET" crossorigin="anonymous" src="https://v6-widget.51.la/v6/JdyBT51UUKIm9A1e/quote.js?theme=0&f=12"></script>
+<br>
+<a target="_blank" title="51la网站统计" href="https://v6.51.la/land/JdyBT51UUKIm9A1e"><img src="https://sdk.51.la/icon/2-4.png"></a>
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+  <div >
+    <!-- 友盟代码 -->
+    <script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278575888'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278575888%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+	<!-- 友盟代码 end -->
+  </div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz',
+        appKey: 'NXbIDcd2qs0UWvoi0MXdwbmW',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("LfKg3xroRwHlese1o0oSY2zx-gzGzoHsz", "NXbIDcd2qs0UWvoi0MXdwbmW");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=6.3.0"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=6.3.0"></script>
+
+
+  
+
+
+</body>
+</html>
