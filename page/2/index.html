@@ -313,6 +313,285 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/8d366bb0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XieJava">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XieJava's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/8d366bb0/" itemprop="url">开源安全管理平台wazuh-文件完整性监控FIM</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-10-08T20:26:53+08:00">
+                2025-10-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:52+08:00">
+                2025-12-17
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">网络安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/posts/8d366bb0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/8d366bb0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/posts/8d366bb0/" class="leancloud_visitors" data-flag-title="开源安全管理平台wazuh-文件完整性监控FIM">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Wazuh是一个功能强大的开源安全平台，它集成了安全信息与事件管理（SIEM）和扩展检测与响应（XDR）的能力，旨在为本地、虚拟化、容器化及云环境中的工作负载提供统一的威胁预防、检测和响应解决方案。<br>文件完整性监控（File integrity monitoring FIM）有助于审计敏感文件和满足合规性要求。Wazuh内置了一个FIM模块，用于监控文件系统变化，以检测文件的创建、修改和删除。<br>本文通过POC来验证Wazuh的FIM功能，使用Wazuh FIM模块来检测Ubuntu和Windows端点上监控目录的变化。Wazuh FIM模块通过使用who-data审计获取有关更改用户和进程的信息来丰富告警数据。</p>
+<h1 id="一、环境准备"><a href="#一、环境准备" class="headerlink" title="一、环境准备"></a>一、环境准备</h1><p>POC环境如下图所示：<br><img src="http://image2.ishareread.com/images/2025/20251008/1-FIMPOC%E6%8B%93%E6%89%91%E5%9B%BE.png" alt="POC环境拓扑图"></p>
+<table>
+<thead>
+<tr>
+<th>主机</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安全管理平台wazuh-server<br>(192.168.0.40)</td>
+<td>All in one安装wazuh，监控wazuh-agent上报的告警信息进行文件完整性监控(FIM)</td>
+</tr>
+<tr>
+<td>被监控Windows 11机器<br>(192.168.0.16)</td>
+<td>安装wazuh-agent，通过Wazuh FIM模块在此端点监控一个目录，以检测文件创建、更改和删除。</td>
+</tr>
+<tr>
+<td>被监控Ubuntu主机<br>(192.168.0.41)</td>
+<td>安装wazuh-agent，通过Wazuh FIM模块在此端点监控一个目录，以检测文件创建、更改和删除。</td>
+</tr>
+</tbody></table>
+<h1 id="二、wazuh配置"><a href="#二、wazuh配置" class="headerlink" title="二、wazuh配置"></a>二、wazuh配置</h1><h2 id="1、window机器安装wazuh并配置"><a href="#1、window机器安装wazuh并配置" class="headerlink" title="1、window机器安装wazuh并配置"></a>1、window机器安装wazuh并配置</h2><h3 id="1）安装wazuh-agent"><a href="#1）安装wazuh-agent" class="headerlink" title="1）安装wazuh-agent"></a>1）安装wazuh-agent</h3><p>在wazuh的管理端找到部署agent界面，选择window的agent安装包</p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/2-wazuh%E9%83%A8%E7%BD%B2agent%E7%95%8C%E9%9D%A2.png" alt="wazuh部署agent界面"></p>
+<p>wazuh会自动生成部署agent的脚本</p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/3-%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%83%A8%E7%BD%B2agent%E7%9A%84%E8%84%9A%E6%9C%AC.png" alt="自动生成部署agent的脚本"></p>
+<p>在window11（192.168.0.16）机器上以管理员权限运行powershell,在powershell中运行agent安装脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.13.0-1.msi -OutFile <span class="variable">$env</span>:tmp\wazuh-agent; msiexec.exe /i <span class="variable">$env</span>:tmp\wazuh-agent /q WAZUH_MANAGER=<span class="string">'192.168.0.40'</span> WAZUH_AGENT_NAME=<span class="string">'Lenovo-L13-agent'</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://image2.ishareread.com/images/2025/20251008/4-%E8%BF%90%E8%A1%8Cagent%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC.png" alt="运行agent安装脚本"></p>
+<p>运行<code>NET START Wazuh</code>启动wazuh-agent，过一会就可以在wazuh服务端的dashboard中看到window 11的wazuh-agent注册上来了。</p>
+<p><img src="http://image2.ishareread.com/images/2025/20251008/5-%E6%B3%A8%E5%86%8Cagent.png" alt="注册agent"></p>
+<h3 id="2）-配置window端点的wazuh-agent"><a href="#2）-配置window端点的wazuh-agent" class="headerlink" title="2） 配置window端点的wazuh-agent"></a>2） 配置window端点的wazuh-agent</h3><p>按照以下步骤配置Wazuh代理以监控以下目录的文件系统更改。如监控<code>C:\Users\xiejava\Desktop</code>的文件更改。<br>在受监控的Windows端点上编辑<code>C:\Program Files (x86)\ossec-agent\ossec.conf</code>配置文件。在<code>&lt;syscheck&gt;</code>块内添加监控目录。配置Wazuh监控<code>C:\Users\xiejava\Desktop</code>目录。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">directories</span> <span class="attr">check_all</span>=<span class="string">"yes"</span> <span class="attr">report_changes</span>=<span class="string">"yes"</span> <span class="attr">realtime</span>=<span class="string">"yes"</span>&gt;</span>C:\Users\xiejava\Desktop<span class="tag">&lt;/<span class="name">directories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://image2.ishareread.com/images/2025/20251008/6-%E9%85%8D%E7%BD%AEwindow%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png" alt="配置FIM监控"></p>
+<p>使用具有管理员权限的PowerShell重新启动Wazuh代理以使配置更改生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Restart-Service -Name wazuh</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、ubuntu主机的wazuh-agent配置"><a href="#2、ubuntu主机的wazuh-agent配置" class="headerlink" title="2、ubuntu主机的wazuh-agent配置"></a>2、ubuntu主机的wazuh-agent配置</h2><p>由于ubuntu主机（192.168.0.41）已经安装了wazuh-agent，只需要对wazuh-agent进行配置就可以了。<br>执行以下步骤以配置Wazuh代理以监控<code>/root</code>目录中的文件系统更改。<br>编辑Wazuh代理的<code>/var/ossec/etc/ossec.conf</code>配置文件。在<code>&lt;syscheck&gt;</code>块中添加监控的目录。配置Wazuh监控<code>/root</code>目录。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">directories</span> <span class="attr">check_all</span>=<span class="string">"yes"</span> <span class="attr">report_changes</span>=<span class="string">"yes"</span> <span class="attr">realtime</span>=<span class="string">"yes"</span>&gt;</span>/root<span class="tag">&lt;/<span class="name">directories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://image2.ishareread.com/images/2025/20251008/7-%E9%85%8D%E7%BD%AEubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E7%9B%91%E6%8E%A7.png" alt="配置ubuntu端点的FIM监控"></p>
+<p>重新启动Wazuh代理以使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart wazuh-agent</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、效果验证"><a href="#三、效果验证" class="headerlink" title="三、效果验证"></a>三、效果验证</h1><h2 id="1、windows端点文件完整性监控"><a href="#1、windows端点文件完整性监控" class="headerlink" title="1、windows端点文件完整性监控"></a>1、windows端点文件完整性监控</h2><h3 id="1）文件增、删、改"><a href="#1）文件增、删、改" class="headerlink" title="1）文件增、删、改"></a>1）文件增、删、改</h3><p>在window 11(192.168.0.16)的机器的桌面上新建一个.txt文件，然后重命名为test-win11.txt，再修改test-win11.txt的内容。</p>
+<h3 id="2）可视化告警监控"><a href="#2）可视化告警监控" class="headerlink" title="2）可视化告警监控"></a>2）可视化告警监控</h3><p>在wazuh的dashboard中可以看到window 11机器的完整性监控告警。<br><img src="http://image2.ishareread.com/images/2025/20251008/8-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6.png" alt="win11的FIM告警"></p>
+<p>在详情中可以看到window11机器c:\users\xiejava\desktop\下文件变更的详情。<br><img src="http://image2.ishareread.com/images/2025/20251008/9-win11%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="win11的FIM告警详情"></p>
+<h2 id="2、ubuntu主机文件完整性监控"><a href="#2、ubuntu主机文件完整性监控" class="headerlink" title="2、ubuntu主机文件完整性监控"></a>2、ubuntu主机文件完整性监控</h2><h3 id="1）文件增、删、改-1"><a href="#1）文件增、删、改-1" class="headerlink" title="1）文件增、删、改"></a>1）文件增、删、改</h3><p>  在ubuntu(192.168.0.41)的机器的/root新建一个test.txt文件，然后重命名为test-ubuntu.txt，再修改test-ubuntu.txt的内容。</p>
+<h3 id="2）可视化告警监控-1"><a href="#2）可视化告警监控-1" class="headerlink" title="2）可视化告警监控"></a>2）可视化告警监控</h3><p>在wazuh的dashboard中可以看到ubuntu(192.168.0.41)主机的文件完整性监控告警。<br><img src="http://image2.ishareread.com/images/2025/20251008/10-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E4%BA%8B%E4%BB%B6.png" alt="ubuntu端点的FIM告警事件"></p>
+<p>在Dashboard中可以看到FIM的统计信息包括对文件的新增、删除、修改等。<br><img src="http://image2.ishareread.com/images/2025/20251008/11-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIMDashboard.png" alt="ubuntu端点的FIMDashboard"></p>
+<p>在Events中可以看到文件被修改触发的事件<br><img src="http://image2.ishareread.com/images/2025/20251008/12-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E5%88%97%E8%A1%A8.png" alt="ubuntu端点的FIM告警列表"></p>
+<p>可以查看具体的事件详情<br><img src="http://image2.ishareread.com/images/2025/20251008/13-ubuntu%E7%AB%AF%E7%82%B9%E7%9A%84FIM%E5%91%8A%E8%AD%A6%E8%AF%A6%E6%83%85.png" alt="ubuntu端点的FIM告警详情"></p>
+<p>至此，我们通过POC实例来验证了Wazuh的文件完整性监控FIM功能，使用Wazuh FIM模块来检测Ubuntu和Windows端点上监控目录的变化。</p>
+<hr>
+<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
+<center> 
+
+<br>
+
+<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
+<p>关注：微信公众号,一起学习成长！</center></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/8d7a03ba/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2926,267 +3205,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://xiejava.ishareread.com/posts/4999be0b/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XieJava">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://img9.doubanio.com/icon/ul70489051-4.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="XieJava's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/4999be0b/" itemprop="url">国内免代理免费使用Gemini大模型实战</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-07-07T19:19:01+08:00">
-                2025-07-07
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2025-12-17T19:21:51+08:00">
-                2025-12-17
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/posts/4999be0b/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/4999be0b/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/posts/4999be0b/" class="leancloud_visitors" data-flag-title="国内免代理免费使用Gemini大模型实战">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>谷歌的Gemini API 为开发者提供了具体的免费额度，允许将Gemini模型集成到自己的应用程序中。<br>模型可访问范围：开发者可以免费调用 Gemini 2.5 Pro 模型及其轻量级版本 Gemini 2.5 Flash 。<br>标准免费额度：通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。</p>
-<h2 id="一、免费申请Gemini-API密钥"><a href="#一、免费申请Gemini-API密钥" class="headerlink" title="一、免费申请Gemini API密钥"></a>一、免费申请Gemini API密钥</h2><p>注册google账号就可以免费申请Gemini API密钥。<br>申请地址 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">https://aistudio.google.com/</a><br><img src="http://image2.ishareread.com/images/2025/20250707/1-%E7%94%B3%E8%AF%B7GeminiAPIkey.PNG" alt="申请密钥"></p>
-<p>有了Gemini API密钥后就可以调用API使用Gemini 大模型的能力了。<br>国内上网环境无法直接使用Gemini API，本文介绍能够免代理使用Gemini的方法。</p>
-<h2 id="二、使用openai-gemini"><a href="#二、使用openai-gemini" class="headerlink" title="二、使用openai-gemini"></a>二、使用openai-gemini</h2><h3 id="1、在github上找到openai-gemini"><a href="#1、在github上找到openai-gemini" class="headerlink" title="1、在github上找到openai-gemini"></a>1、在github上找到openai-gemini</h3><p>openai-gemini 是一个 serverless 的代理项目，用于将 Gemini API 转换为 OpenAI API 。<br>项目地址：<a href="https://github.com/PublicAffairs/openai-gemini" target="_blank" rel="noopener">https://github.com/PublicAffairs/openai-gemini</a><br>Gemini API 是免费的， 但有许多工具专门与 OpenAI API 一起使用。该项目可以将Gemini API 转换为 OpenAI API ，并且通过serverless进行调用。我们可以找个国内可以访问的免费serverless服务进行中转满足国内调用使用需求。<br>这里介绍将openai-gemini部署到Netlify<br>Netlify 是一个领先的 Web 开发平台，它专门为构建、部署和管理现代高性能网站和 Web 应用程序提供了一站式解决方案。Netlify 的核心理念是支持 Jamstack 架构（JavaScript, APIs, Markup），该架构强调将网站内容预构建为静态文件，并通过 CDN 快速分发，然后通过 API 调用动态数据和执行后端逻辑。</p>
-<h3 id="2、将openai-gemini部署到Netlify"><a href="#2、将openai-gemini部署到Netlify" class="headerlink" title="2、将openai-gemini部署到Netlify"></a>2、将openai-gemini部署到Netlify</h3><p><img src="http://image2.ishareread.com/images/2025/20250707/2-DeployNetlify.PNG" alt="Deploy to Netlify"></p>
-<p>找到”Deploy to Netlify” 点击就可以一键部署到Netlify,部署完成后Netlify会自动分配一个地址用于访问刚部署的openai-gemini的serverless服务。并且这个地址是在过国内可以正常访问的。<br><img src="http://image2.ishareread.com/images/2025/20250707/3-NetlifyProjectOvervier.PNG" alt="project overview"></p>
-<h3 id="3、在Cherry-Studio中配置和使用gemini的模型"><a href="#3、在Cherry-Studio中配置和使用gemini的模型" class="headerlink" title="3、在Cherry Studio中配置和使用gemini的模型"></a>3、在Cherry Studio中配置和使用gemini的模型</h3><h4 id="1）在Cherry-Studio中配置gemini-API"><a href="#1）在Cherry-Studio中配置gemini-API" class="headerlink" title="1）在Cherry Studio中配置gemini API"></a>1）在Cherry Studio中配置gemini API</h4><p>通过Netlify中转访问gemini API，我们可以直接在Cherry Studio中配置通过Netlify中转访问gemini API<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini-2.5-pro<br><img src="http://image2.ishareread.com/images/2025/20250707/4-CherryStudio%E9%85%8D%E7%BD%AEGeminiAPI.PNG" alt="Cherry Studio中配置API key"></p>
-<h4 id="2）在Cherry-Studio中使用gemini-的模型"><a href="#2）在Cherry-Studio中使用gemini-的模型" class="headerlink" title="2）在Cherry Studio中使用gemini 的模型"></a>2）在Cherry Studio中使用gemini 的模型</h4><p>在Cherry Studio中选择刚配置的gemini-2.5-pro并和它对话，可以看到gemini-2.5-pro可以流畅的输出。<br><img src="http://image2.ishareread.com/images/2025/20250707/5-CherryStudio%E4%B8%AD%E4%BD%BF%E7%94%A8GeminiAPI.png" alt="在cherry Studio中使用gemini"></p>
-<h3 id="4、在Dify中配置和使用gemini的模型"><a href="#4、在Dify中配置和使用gemini的模型" class="headerlink" title="4、在Dify中配置和使用gemini的模型"></a>4、在Dify中配置和使用gemini的模型</h3><h4 id="1-在Dify中配置gemini-API"><a href="#1-在Dify中配置gemini-API" class="headerlink" title="1) 在Dify中配置gemini API"></a>1) 在Dify中配置gemini API</h4><p>  通过openai-gemini将 Gemini API 转换为了 OpenAI API ，所以在dify中应该使用“OpenAI-API-compatible”的插件来配置模型。<br><img src="http://image2.ishareread.com/images/2025/20250707/6-%E5%9C%A8dify%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86.png" alt="OpenAI插件"></p>
-<p>如果没有安装“OpenAI-API-compatible”插件需先安装。在模型供应商中选择“OpenAI-API-compatible”,点击“添加模型”。<br>配置API地址为通过netlify中转的地址<br>API密钥为google gemini 的API Key<br>模型可以配置你想使用的模型 如：gemini 2.5 pro<br><img src="http://image2.ishareread.com/images/2025/20250707/7-%E5%9C%A8%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E4%B8%AD%E9%85%8D%E7%BD%AEGeminiAPI.png" alt="配置API key"></p>
-<h4 id="2）在Dify中使用gemini的模型"><a href="#2）在Dify中使用gemini的模型" class="headerlink" title="2）在Dify中使用gemini的模型"></a>2）在Dify中使用gemini的模型</h4><p>在Dify中建一个对话应用，选择刚配置好的 Gemini 2.5 Pro 模型进行对话，可以看到对话成功的调用了gemini API使用Gemini 2.5 Pro的模型进行了回复。<br><img src="http://image2.ishareread.com/images/2025/20250707/8-%E5%9C%A8Dify%E4%B8%AD%E9%85%8D%E7%BD%AEGemini%E6%A8%A1%E5%9E%8B.png" alt="在Dify中使用"></p>
-<h3 id="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"><a href="#5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问" class="headerlink" title="5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问"></a>5、如果自己有域名可以用自己的域名来中转netlify的地址进行访问</h3><h4 id="1-在自己的DNS中配置域名解析到netlify的地址"><a href="#1-在自己的DNS中配置域名解析到netlify的地址" class="headerlink" title="1) 在自己的DNS中配置域名解析到netlify的地址"></a>1) 在自己的DNS中配置域名解析到netlify的地址</h4><p>以我的cloud flare域名服务配置为例，在DNS中配置一个netlifygemini的子域名，解析到目标为开始netlify给的服务地址。<br><img src="http://image2.ishareread.com/images/2025/20250707/9-DNS%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="配置子域名"></p>
-<h4 id="2）在netlify中配置子域名"><a href="#2）在netlify中配置子域名" class="headerlink" title="2）在netlify中配置子域名"></a>2）在netlify中配置子域名</h4><p>在netlify中可以配置自己的域名对gemini API进行访问。在netlify的项目中找到“domain you already own”<br><img src="http://image2.ishareread.com/images/2025/20250707/10-%E5%9C%A8netlify%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D.png" alt="在netlify中配置自己的域名"></p>
-<p>在自定义域名配置界面，输入自己的子域名，它会给出Host和Value的值，这两个值需要在自己的DNS域名服务器中配置校验。<br><img src="http://image2.ishareread.com/images/2025/20250707/11-netlify%E4%B8%AD%E7%9A%84%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="效验信息"></p>
-<p>接下来需要在自己的DNS服务中进行配置，我以自己的cloud flare域名服务配置为例，配置如下：</p>
-<h4 id="3）在-Cloudflare-中添加TXT记录用于校验"><a href="#3）在-Cloudflare-中添加TXT记录用于校验" class="headerlink" title="3）在 Cloudflare 中添加TXT记录用于校验"></a>3）在 Cloudflare 中添加TXT记录用于校验</h4><ol>
-<li>登录你的 Cloudflare 账户，选择我的域名doai8.dpdns.org。</li>
-<li>进入左侧的 “DNS” 菜单。</li>
-<li>点击 “Add record” (添加记录) 按钮。</li>
-<li>根据下面的表格，准确填写每一个字段：</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>Cloudflare 字段</th>
-<th>你需要填写的内容 (从 Netlify 截图复制)</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Type (类型)</td>
-<td>TXT</td>
-</tr>
-<tr>
-<td>Name (名称)</td>
-<td>netlify-challenge</td>
-</tr>
-<tr>
-<td>Content (内容)</td>
-<td>4f<strong><strong><strong>*****</strong></strong></strong>062b</td>
-</tr>
-<tr>
-<td>TTL</td>
-<td>保持默认的 Auto 即可</td>
-</tr>
-</tbody></table>
-<p><img src="http://image2.ishareread.com/images/2025/20250707/12-%E5%9C%A8DNS%E4%B8%AD%E9%85%8D%E7%BD%AETXT%E9%AA%8C%E8%AF%81%E4%BF%A1%E6%81%AF.png" alt="添加TXT记录"></p>
-<h4 id="4）在netify中进行验证，验证通过就可以用自己的域名访问了"><a href="#4）在netify中进行验证，验证通过就可以用自己的域名访问了" class="headerlink" title="4）在netify中进行验证，验证通过就可以用自己的域名访问了"></a>4）在netify中进行验证，验证通过就可以用自己的域名访问了</h4><p>在netify中进行验证，验证通过就可以用自己的域名访问了，在图中可以看到自己的子域名和netlify给的子域名。两个域名都可以用，自己的子域名的好处就是自己容易记忆。<br><img src="http://image2.ishareread.com/images/2025/20250707/13-Netlify%E5%9F%9F%E5%90%8D%E7%AE%A1%E7%90%86.png" alt="自定义域名配好"></p>
-<h4 id="5）用自定义域名进行gemini-API接口的测试"><a href="#5）用自定义域名进行gemini-API接口的测试" class="headerlink" title="5）用自定义域名进行gemini API接口的测试"></a>5）用自定义域名进行gemini API接口的测试</h4><p> 在Cherry Studio中将API地址配置程自定义域名的地址<br><img src="http://image2.ishareread.com/images/2025/20250707/14-%E5%9C%A8cherrystdio%E4%B8%AD%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3.png" alt="配置自定义域名地址"><br>可以看到和gemini 2.5 pro 对话同样也很丝滑。<br><img src="http://image2.ishareread.com/images/2025/20250707/15-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E6%8E%A5%E5%8F%A3%E4%BD%BF%E7%94%A8%E6%95%88%E6%9E%9C.png" alt="测试"></p>
-<hr>
-<p>作者博客：<a href="http://xiejava.ishareread.com/">http://xiejava.ishareread.com/</a></p>
-<center> 
-
-<br>
-
-<p><img src="http://image2.ishareread.com/images/fullbug%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.jpg" alt="“fullbug”微信公众号" title="“fullbug”微信公众号"> </p>
-<p>关注：微信公众号,一起学习成长！</center></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3243,7 +3261,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">222</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3355,7 +3373,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">450.1k</span>
+    <span title="Site words total count">451.8k</span>
   
   
 <!--51la网站应用监控-->
