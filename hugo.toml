@@ -1,0 +1,110 @@
+baseURL = '/'
+languageCode = 'zh-CN'
+defaultContentLanguage = 'zh'
+hasCJKLanguage = true
+title = "XieJava's blog"
+theme = 'PaperMod'
+copyright = '© XieJava'
+
+[params]
+  author = 'XieJava'
+  description = '记录最好的自己'
+  DateFormat = '2006-01-02'
+  defaultTheme = 'auto'
+  ShowToc = true
+  TocOpen = false
+  ShowReadingTime = true
+  ShowWordCount = true
+  ShowCodeCopyButtons = true
+  ShowShareButtons = false
+  ShowRelatedPosts = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  comments = true
+  mainSections = ['posts']
+
+  [params.homeInfoParams]
+    Title = "XieJava's blog"
+    Content = '记录最好的自己'
+
+  [params.assets]
+    favicon = '/favicon.ico'
+    favicon16x16 = '/favicon-16x16.png'
+    favicon32x32 = '/favicon-32x32.png'
+    apple_touch_icon = '/apple-touch-icon.png'
+
+  [[params.socialIcons]]
+    name = 'github'
+    url = 'https://github.com/xiejava1018'
+    title = 'GitHub'
+
+  [[params.socialIcons]]
+    name = 'rss'
+    url = '/index.xml'
+    title = 'RSS'
+
+[params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = ['title', 'permalink', 'summary', 'content']
+
+[menu]
+  [[menu.main]]
+    identifier = 'home'
+    name = '首页'
+    url = '/'
+    weight = 1
+
+  [[menu.main]]
+    identifier = 'archives'
+    name = '归档'
+    url = '/archives/'
+    weight = 2
+
+  [[menu.main]]
+    identifier = 'categories'
+    name = '分类'
+    url = '/categories/'
+    weight = 3
+
+  [[menu.main]]
+    identifier = 'tags'
+    name = '标签'
+    url = '/tags/'
+    weight = 4
+
+  [[menu.main]]
+    identifier = 'about'
+    name = '关于'
+    url = '/about/'
+    weight = 5
+
+  [[menu.main]]
+    identifier = 'links'
+    name = '友链'
+    url = '/links/'
+    weight = 6
+
+  [[menu.main]]
+    identifier = 'search'
+    name = '搜索'
+    url = '/search/'
+    weight = 7
+
+ignoreLogs = ['warning-goldmark-raw-html']
+
+[markup]
+  [markup.highlight]
+    style = 'dracula'
+    lineNos = true
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ['HTML', 'RSS', 'JSON']
