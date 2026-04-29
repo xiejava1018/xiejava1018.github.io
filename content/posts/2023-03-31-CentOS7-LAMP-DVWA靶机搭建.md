@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 网络安全
-abbrlink: 4405dad8
+slug: 4405dad8
 date: 2023-03-31 15:43:55
 ---
 ## 一、什么是DVWA

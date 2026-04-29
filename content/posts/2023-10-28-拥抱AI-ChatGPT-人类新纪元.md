@@ -6,7 +6,7 @@ tags:
   - AI机器学习
 categories:
   - 读书
-abbrlink: 5ce9b0c0
+slug: 5ce9b0c0
 date: 2023-10-28 16:10:01
 ---
 ![ChatGPT](http://image2.ishareread.com/images/2023/20231028/ChatGPTlogo.png)

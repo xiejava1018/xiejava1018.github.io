@@ -5,7 +5,7 @@ tags:
   - Vue
 categories:
   - 技术
-abbrlink: ea8d8762
+slug: ea8d8762
 date: 2024-09-02 09:45:22
 ---
 Element Plus 是一个基于 Vue 3 的现代化 UI 组件库，旨在帮助开发者快速构建美观且功能丰富的 Web 应用程序。它提供了大量的 UI 组件，如按钮、表单、表格、弹出框、标签页、树形控件等，涵盖了 Web 应用开发中常见的大多数场景。本文通过一个实例来说明vue3+elementplus查询、展示和分页实战。

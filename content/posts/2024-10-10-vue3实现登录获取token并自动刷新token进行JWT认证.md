@@ -5,7 +5,7 @@ tags:
   - Vue
 categories:
   - 技术
-abbrlink: faae10b6
+slug: faae10b6
 date: 2024-10-10 14:49:20
 ---
 在[《django应用JWT(JSON Web Token)实战》](http://xiejava.ishareread.com/posts/ca8e72/)介绍了如何通过django实现JWT，并以一个具体API接口实例的调用来说明JWT如何使用。本文介绍如何通过vue3的前端应用来使用JWT认证调用后端的API接口，实现一下的登录认证获取JWT进行接口认证。

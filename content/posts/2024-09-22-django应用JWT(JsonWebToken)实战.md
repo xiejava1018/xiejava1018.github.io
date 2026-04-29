@@ -6,7 +6,7 @@ tags:
   - Django
 categories:
   - 技术
-abbrlink: ca8e72
+slug: ca8e72
 date: 2024-09-22 12:17:14
 ---
 在前后端分离的项目中，前后端进行身份验证通常用JWT来进行，JWT 提供了一个理想的认证解决方案，用来保护 RESTful API，确保只有经过认证的用户才能访问受保护的资源。基于前端框架（如React, Angular, Vue.js）的单页面应用 (SPA)，开发者通过使用 JWT可以获得一种简单、安全、高效的方式来处理用户认证和授权的问题。本文通过django项目的实战来说明如何应用和使用JWT。

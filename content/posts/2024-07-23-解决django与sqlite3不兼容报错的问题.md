@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: b952e40e
+slug: b952e40e
 date: 2024-07-23 17:23:11
 ---
 今天在尝试用pytest进行django的单元测试，pytest用的数据库是sqlite3，在window环境下测试得好好的，但是放到linux环境下就报错，具体是报`django.core.exceptions.ImproperlyConfigured: SQLite 3.9.0 or later is required (found 3.8.2).`的错。

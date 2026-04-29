@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 7f405b25
+slug: 7f405b25
 date: 2021-11-05 23:38:53
 ---
 在生产环境中通常用uwsgi作为Flask的web服务网关，通过nginx反向代理进行负载均衡，通过supervior进行服务进行的管理。这一套搭下来还是有一些坑要踩，本文通过一个简单的Flask web应用记录了CentOS7下python3+Flask+uWSGI+Nginx+Supervisor环境搭建的全过程，以及一些注意事项，以免遗忘。

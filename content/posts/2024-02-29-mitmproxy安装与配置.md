@@ -8,7 +8,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 699b1506
+slug: 699b1506
 date: 2024-02-29 18:33:41
 ---
 mitmproxy是一个免费的开源交互式的HTTPS代理工具。它类似于其他抓包工具如WireShark和Fiddler，支持抓取HTTP和HTTPS协议的数据包，并可以通过控制台形式进行操作。mitmproxy具有两个非常有用的组件：mitmdump和mitmweb。mitmdump是mitmproxy的命令行接口，可以直接抓取请求数据，而mitmweb是一个web程序，可以清楚地观察mitmproxy抓取的请求数据。

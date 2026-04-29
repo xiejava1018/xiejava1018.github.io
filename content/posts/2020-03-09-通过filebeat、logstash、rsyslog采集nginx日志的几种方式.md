@@ -7,7 +7,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: f3e97829
+slug: f3e97829
 date: 2020-03-09 23:13:51
 ---
 由于nginx功能强大，性能突出，越来越多的web应用采用nginx作为http和反向代理的web服务器。而nginx的访问日志不管是做用户行为分析还是安全分析都是非常重要的数据源之一。如何有效便捷的采集nginx的日志进行有效的分析成为大家关注的问题。本文通过几个实例来介绍如何通过filebeat、logstash、rsyslog采集nginx的访问日志和错误日志。

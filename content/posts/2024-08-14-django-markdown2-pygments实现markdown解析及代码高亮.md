@@ -6,7 +6,7 @@ tags:
   - Django
 categories:
   - 技术
-abbrlink: af83983b
+slug: af83983b
 date: 2024-08-14 18:38:22
 ---
 随着markdown的流行，web应用系统常常会要碰到有使用markdown编辑器进行富文本编辑，然后在前台web页面进行显示。常见的博客系统当然也需要支持markdown的编辑与显示。本文就通过一个真实的博客系统来说明django+markdown2+pygments实现markdown解析及代码高亮。

@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 4864590d
+slug: 4864590d
 date: 2022-01-22 17:35:55
 ---
 ![pandas](http://image2.ishareread.com/images/2022/20220122/pandas.png)

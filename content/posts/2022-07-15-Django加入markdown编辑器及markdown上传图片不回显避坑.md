@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 462af16b
+slug: 462af16b
 date: 2022-07-15 23:29:21
 ---
 一般来说一个CMS系统如博客系统都需要一个好的富文本编辑器，现在大家更多的是选择MarkDown编辑器来编辑内容。Django作为python的主流web开发框架当然少不了markdown的插件。本文介绍如何在Django框架中引入markdown编辑器及在使用markdown时的注意事项。

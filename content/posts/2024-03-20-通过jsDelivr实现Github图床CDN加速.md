@@ -7,7 +7,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: a0bac159
+slug: a0bac159
 date: 2024-03-20 17:02:16
 ---
 最近小伙伴们是否发现访问我的个人博客[http://xiejava.ishareread.com/](http://xiejava.ishareread.com/)图片显示特别快了？

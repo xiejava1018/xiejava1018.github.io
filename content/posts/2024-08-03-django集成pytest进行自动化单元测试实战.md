@@ -6,7 +6,7 @@ tags:
   - Django
 categories:
   - 技术
-abbrlink: 8fbbc02f
+slug: 8fbbc02f
 date: 2024-08-03 17:23:11
 ---
 在Django项目中集成Pytest进行单元测试可以提高测试的灵活性和效率，相比于Django自带的测试框架，Pytest提供了更为丰富和强大的测试功能。本文通过一个实际项目ishareblog介绍django集成pytest进行自动化单元测试实战。

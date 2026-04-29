@@ -5,7 +5,7 @@ tags:
   - AI机器学习
 categories:
   - 技术
-abbrlink: d786604d
+slug: d786604d
 date: 2025-07-10 23:22:18
 ---
 Gemini是目前好用的免费大模型，通过在 Google AI Studio 获取 API 密钥，每位开发者可以获得慷慨的免费使用额度。这包括每天 300,000 个 Token（包括提示和响应）以及每分钟 60 个请求的速率限制 。虽然免费但有一定的额度，不过通过申请不同的账号可以申请获取多个API密钥。Gemini Balance 就是这么一款工具，允许您管理多个 Gemini API Key，这样就可以使Gemini免费额度翻N倍。

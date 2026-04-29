@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 5b619f34
+slug: 5b619f34
 date: 2022-07-03 16:36:53
 ---
 对于用类似Vue前后端分离技术架构的单页应用页面之间的跳转没有非前后端分离那么来得直接，甚至连设置跳转页面的Title都要费一番周折，本文介绍Vue3引入vue-router路由并设置页面Title，通过vue-router实现页面的路由，通过vue-wechat-title来设置页面的title。

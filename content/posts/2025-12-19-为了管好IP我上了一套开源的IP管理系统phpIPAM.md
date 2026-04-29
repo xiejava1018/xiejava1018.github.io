@@ -7,7 +7,7 @@ tags:
 categories:
   - - 技术
     - 运维
-abbrlink: db0ebabe
+slug: db0ebabe
 date: 2025-12-19 14:33:19
 ---
 

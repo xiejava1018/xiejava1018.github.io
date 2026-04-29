@@ -7,7 +7,7 @@ tags:
 categories:
   - - 技术
     - 架构
-abbrlink: 3ea90a75
+slug: 3ea90a75
 date: 2025-12-04 11:22:22
 ---
 # 一、什么是Harbor

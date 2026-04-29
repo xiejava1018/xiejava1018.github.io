@@ -7,7 +7,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 54e4fd14
+slug: 54e4fd14
 date: 2020-03-16 17:38:37
 ---
 logstash是一个非常灵活好用的数据采集框架工具，可以通过简单的配置满足绝大多数数据采集场景的需求。

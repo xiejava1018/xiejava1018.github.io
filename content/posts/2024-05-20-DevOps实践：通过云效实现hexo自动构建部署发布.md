@@ -8,7 +8,7 @@ categories:
     - 项目管理
   - - 技术
     - 开发
-abbrlink: f872a2f0
+slug: f872a2f0
 date: 2024-05-20 12:41:16
 ---
 

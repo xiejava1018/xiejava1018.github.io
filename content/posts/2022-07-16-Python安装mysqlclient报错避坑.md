@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 7435f815
+slug: 7435f815
 date: 2022-07-16 11:07:00
 ---
 MySQL是常用的开源数据库，Python环境下django框架连接MySQL数据库用的是mysqlclient库，今天在用pip安装mysqlclient库时报错，特记录一下，避免后续继续踩坑。

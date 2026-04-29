@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 19a32f6f
+slug: 19a32f6f
 date: 2020-11-03 17:16:00
 ---
 最近用python的tkinter写了个小工具，发现用pyinstaller打包成exe后运行出错。报Failed to execute script XXXX

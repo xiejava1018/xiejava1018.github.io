@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: e37e6718
+slug: e37e6718
 date: 2022-07-19 11:07:00
 ---
 Vue实现博客前端，需要实现markdown的解析，如果有代码则需要实现代码的高亮。

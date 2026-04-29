@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 272f3054
+slug: 272f3054
 date: 2020-03-10 16:11:33
 ---
 用Hexo搭了个Gitpage的博客，兴冲冲的发了11篇博文后发现翻页按钮不正常显示，显示为`<i class="fa fa-angle-right"></i>`的HTML编码。如下图：

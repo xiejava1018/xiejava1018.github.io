@@ -5,7 +5,7 @@ tags:
   - Hexo
 categories:
   - [技术,开发]
-abbrlink: 79ebd763
+slug: 79ebd763
 date: 2020-02-12 15:41:23
 ---
 # 一、申请并配置Github Pages

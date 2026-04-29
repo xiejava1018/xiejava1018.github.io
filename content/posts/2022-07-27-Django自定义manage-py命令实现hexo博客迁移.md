@@ -6,7 +6,7 @@ tags:
   - Hexo
 categories:
   - 技术
-abbrlink: 32650d1c
+slug: 32650d1c
 date: 2022-07-27 16:39:24
 ---
 实现了hexo的md文件格式解析，通过什么方式怎么来迁移hexo的博客到django的博客呢？开始想到的是通过Django的manage.py的shell命令，通过shell可以执行写好的python脚本进行hexo的md文件格式解析并入库。后来想想为啥不直接自定义一个manage.py的命令直接进行迁移呢？就如我们新建Django工程迁移数据库一样，执行python manage.py migrate来迁移数据库。我们可以定义python manage.py xxx来执行的迁移hexo博客。

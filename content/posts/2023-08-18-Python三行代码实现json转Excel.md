@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 213c546f
+slug: 213c546f
 date: 2023-08-18 14:33:33
 ---
 最近重保，经常需要通过Excel上报威胁事件。安全设备的告警很多都是json格式的，就需要将json转成Excel。

@@ -6,7 +6,7 @@ tags:
   - Hexo
 categories:
   - 技术
-abbrlink: f47f6214
+slug: f47f6214
 date: 2022-07-27 09:41:35
 ---
 最近用django+Vue实现了一个博客应用，原来的hexo的博客用着也挺好，想继续留着用，于是就想将hexo生成的.md的博客内容文件解析后直接写到django的博客数据库里做同步显示。

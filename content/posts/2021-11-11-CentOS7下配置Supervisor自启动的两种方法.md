@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: 4ba25d97
+slug: 4ba25d97
 date: 2021-11-11 14:18:19
 ---
 很多网友留言问如何配置Supervisor 自启动，现将如何在CentOS7下配置Supervisor自启动的两种方法整理如下：

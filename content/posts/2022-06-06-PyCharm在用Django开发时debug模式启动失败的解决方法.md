@@ -6,7 +6,7 @@ tags:
 categories:
   - - 技术
     - 开发
-abbrlink: aebdf141
+slug: aebdf141
 date: 2022-06-06 08:56:51
 ---
 初次用Django开发web应用，在试图用Pycharm进行debug的时候，出现了一个奇怪的问题。以正常模式启动或者在terminal启动都没有问题。但是以debug模式启动时，显示`can't find '__main__' module”`报错。在网上找了很久都没有看到解决方法，最后在某乎上看到一篇文章，在启动时加上`--noreload`参数，既可以debug模式启动。
