@@ -5,8 +5,7 @@ tags:
   - Python
   - Vue
 categories:
-  - - 技术
-    - 开发
+  - 技术
 slug: 15ee23ea
 date: 2022-07-26 17:18:33
 ---

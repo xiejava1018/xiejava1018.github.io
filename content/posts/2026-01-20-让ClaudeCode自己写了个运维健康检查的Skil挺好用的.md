@@ -2,7 +2,6 @@
 title: 让Claude Code写了个运维健康检查的Skill还挺好用的
 categories:
   - 技术
-  - - AI 
 tags:
   - AI机器学习
   - 运维自动化

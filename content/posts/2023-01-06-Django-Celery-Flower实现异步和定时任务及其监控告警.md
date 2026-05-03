@@ -5,8 +5,7 @@ tags:
   - Python
   - Django
 categories:
-  - - 技术
-    - 开发
+  - 技术
 slug: c2fa9556
 date: 2023-01-06 21:00:15
 ---

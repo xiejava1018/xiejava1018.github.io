@@ -5,8 +5,7 @@ tags:
   - 大数据
   - ELK
 categories:
-  - - 技术
-    - 开发
+  - 技术
 slug: 54e4fd14
 date: 2020-03-16 17:38:37
 ---

@@ -5,8 +5,7 @@ tags:
   - Python
   - 网络安全
 categories:
-  - - 技术
-    - 开发
+  - 技术
 slug: 2c5697c0
 date: 2021-11-10 10:24:01
 ---

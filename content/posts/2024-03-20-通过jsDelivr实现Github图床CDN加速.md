@@ -5,8 +5,7 @@ tags:
   - Python
   - Hexo
 categories:
-  - - 技术
-    - 开发
+  - 技术
 slug: a0bac159
 date: 2024-03-20 17:02:16
 ---

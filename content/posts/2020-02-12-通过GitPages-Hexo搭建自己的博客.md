@@ -4,7 +4,7 @@ id: 20200212001
 tags:
   - Hexo
 categories:
-  - [技术,开发]
+  - 技术
 slug: 79ebd763
 date: 2020-02-12 15:41:23
 ---

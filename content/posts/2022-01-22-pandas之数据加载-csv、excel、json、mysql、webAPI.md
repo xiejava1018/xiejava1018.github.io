@@ -4,8 +4,7 @@ id: 20220122001
 tags:
   - Python
 categories:
-  - - 技术
-    - 开发
+  - 技术
 slug: 4864590d
 date: 2022-01-22 17:35:55
 ---
