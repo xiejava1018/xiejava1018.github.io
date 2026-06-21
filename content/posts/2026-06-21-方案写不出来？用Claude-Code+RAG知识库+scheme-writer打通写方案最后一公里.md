@@ -1,5 +1,5 @@
 ---
-title: 方案写不出来？用 Claude Code + RAG 打通写方案最后一公里
+title: 方案写不出来？用 Claude Code+RAG知识库+scheme-writer打通写方案最后一公里
 tags:
   - Claude-Code
   - Skill
