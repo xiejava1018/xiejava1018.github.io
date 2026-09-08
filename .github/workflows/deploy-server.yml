@@ -53,6 +53,7 @@ jobs:
             rm -rf ${{ env.SERVER_PATH }}/* && \
             tar -xzf /tmp/site.tgz -C ${{ env.SERVER_PATH }} && \
             rm -f /tmp/site.tgz && \
+            ls -dt ${{ env.SERVER_PATH }}.bak-* 2>/dev/null | tail -n +4 | xargs -r rm -rf && \
             ls ${{ env.SERVER_PATH }}/posts | wc -l"
 
       - name: Verify
