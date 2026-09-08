@@ -39,6 +39,7 @@ jobs:
 
       - name: Setup SSH key
         run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
           install -m 600 /dev/null ~/.ssh/id_ed25519
           echo "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ env.SERVER_HOST }} >> ~/.ssh/known_hosts
