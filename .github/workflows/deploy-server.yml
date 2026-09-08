@@ -1,0 +1,62 @@
+name: Deploy Hugo to Aliyun Server
+
+on:
+  workflow_run:
+    workflows: ["Deploy Hugo to GitHub Pages"]
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: "deploy-server"
+  cancel-in-progress: false
+
+env:
+  SERVER_HOST: 120.25.191.240
+  SERVER_USER: root
+  SERVER_PATH: /var/www/myblog
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.160.1/hugo_extended_0.160.1_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Build with Hugo
+        env:
+          TZ: Asia/Shanghai
+        run: hugo --minify --buildFuture --baseURL "http://xiejava.ishareread.com/"
+
+      - name: Setup SSH key
+        run: |
+          install -m 600 /dev/null ~/.ssh/id_ed25519
+          echo "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ env.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Backup and deploy
+        run: |
+          tar -C public -czf site.tgz .
+          scp -q site.tgz ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:/tmp/site.tgz
+          ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "\
+            cp -a ${{ env.SERVER_PATH }} ${{ env.SERVER_PATH }}.bak-\$(date +%Y%m%d-%H%M%S) && \
+            rm -rf ${{ env.SERVER_PATH }}/* && \
+            tar -xzf /tmp/site.tgz -C ${{ env.SERVER_PATH }} && \
+            rm -f /tmp/site.tgz && \
+            ls ${{ env.SERVER_PATH }}/posts | wc -l"
+
+      - name: Verify
+        run: |
+          sleep 2
+          code=$(curl -s -o /dev/null -w "%{http_code}" http://xiejava.ishareread.com/)
+          echo "Homepage HTTP $code"
+          [ "$code" = "200" ] || { echo "Deployment verification failed"; exit 1; }
