@@ -325,7 +325,7 @@ LLM Wiki + Obsidian + Claude 的组合，本质上是**一次分工的重新划�
 **相关阅读**
 
 - [《腾讯开源 WeKnora 知识库部署实战（含踩坑排查）》](http://xiejava.ishareread.com/posts/a3f7c9e2/)
-- [《ClaudeCode安装教程（小白版）》](https://xiejava.ishareread.com/posts/5c086d45/)
+- [《ClaudeCode安装教程（小白版）》](http://xiejava.ishareread.com/posts/5c086d45/)
 
 
 ---
