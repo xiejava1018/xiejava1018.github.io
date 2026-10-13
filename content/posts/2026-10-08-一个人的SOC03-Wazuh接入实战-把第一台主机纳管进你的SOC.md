@@ -304,6 +304,8 @@ A：这是告警治理的事。AI-miniSOC 内置了"13/10/7/4"四级告警分级
 **【项目地址】**[AI-miniSOC - GitHub](https://github.com/xiejava1018/AI-miniSOC) · MIT 开源，欢迎 Star ⭐
 
 https://github.com/xiejava1018/AI-miniSOC
+同步gitee
+https://gitee.com/xiejava/AI-miniSOC
 
 **【交流】** Wazuh 接入卡住了？把 `tail -f /var/log/wazuh/integrations.log` 和 `docker compose logs wazuh-collector` 的输出发到 Issue，我会逐个回复。
 
