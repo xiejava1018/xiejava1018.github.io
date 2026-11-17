@@ -58,7 +58,14 @@ jobs:
 
       - name: Verify
         run: |
-          sleep 2
-          code=$(curl -s -o /dev/null -w "%{http_code}" http://xiejava.ishareread.com/)
-          echo "Homepage HTTP $code"
-          [ "$code" = "200" ] || { echo "Deployment verification failed"; exit 1; }
+          sleep 5
+          # 域名走阿里云 ESA 边缘加速，多节点轮询；部署替换瞬间个别边缘节点可能
+          # 回源超时返回 5xx。失败时重试（最多 5 次，间隔 10s），全部失败才判失败。
+          ok=0
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 http://xiejava.ishareread.com/ || echo "000")
+            echo "Attempt $i: Homepage HTTP $code"
+            if [ "$code" = "200" ]; then ok=1; break; fi
+            sleep 10
+          done
+          [ "$ok" = "1" ] || { echo "Deployment verification failed after 5 attempts"; exit 1; }
