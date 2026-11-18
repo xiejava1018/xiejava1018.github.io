@@ -61,7 +61,7 @@ description: "'练表达最难的不是坚持，是三件事：没有反馈、�
 
 于是我把每天 10 分钟的录音点评，做成了一个小系统：
 
-![AI-ExpressCoach：一天一条录音的闭环](http://image2.ishareread.com/images/20261117/expresscoach-arch-v2.png)
+![AI-ExpressCoach：一天一条录音的闭环](http://image2.ishareread.com/images/20261118/expresscoach-arch-v2.png)
 
 就这么四层，但每个环节都有讲究。
 
@@ -69,7 +69,7 @@ description: "'练表达最难的不是坚持，是三件事：没有反馈、�
 
 数数这种活，一律交给脚本——语速、字数、口头禅频次、重复卡顿，一个 Python 脚本输出，永远不数错。AI 只干它擅长的：结构分析、亮点识别、打分、开处方。
 
-![第一条铁律：机器管测量，AI 管判断](http://image2.ishareread.com/images/20261117/expresscoach-split.png)
+![第一条铁律：机器管测量，AI 管判断](http://image2.ishareread.com/images/20261118/expresscoach-split-v2.png)
 
 这是整套系统的第一铁律。**机器的归机器，智能的归 AI。**
 
@@ -161,7 +161,7 @@ description: "'练表达最难的不是坚持，是三件事：没有反馈、�
 
 跑通流程之后，我干了一件程序员的老事：**把跑通的东西固化成别人也能装的包。**
 
-![七步工作流：一条录音怎么变成一条进步证据](http://image2.ishareread.com/images/20261117/expresscoach-flow.png)
+![七步工作流：一条录音怎么变成一条进步证据](http://image2.ishareread.com/images/20261118/expresscoach-flow-v2.png)
 
 整个包只有四个文件，纯 Markdown 加一个 Python 脚本，**只用标准库，零第三方依赖**：
 
